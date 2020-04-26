@@ -44,17 +44,11 @@
     border-bottom:0.25px solid #455A64;
     font-weight:bold;
 }
-.sidebar-navigation li .fa {
-    margin-right: 10px;
+
+.sidebar-container .sidebar-navigation li a.active {
+    background-color: #0092DF;
 }
 
-.sidebar-navigation li.active{
-    background-color:indianred;
-}
-
-
-
-.sidebar-container li a:active,
 .sidebar-navigation li a:hover,
 .sidebar-navigation li a:focus{
     text-decoration: none;
@@ -93,3 +87,8 @@
 .content-container {
     padding-left: 240px;
 }
+
+.card{
+    width: 50rem;
+}
+

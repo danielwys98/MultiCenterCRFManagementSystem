@@ -17,7 +17,7 @@
 
 <div class="sidebar-container">
     <div class="sidebar-logo">
-        <h5>MultiCentre-CRF Management System/LOGO</h5>
+               <h5>MultiCentre-CRF Management System/LOGO</h5>
     </div>
     <ul class="sidebar-navigation">
         <li class="header">Menu</li>
@@ -27,7 +27,6 @@
         <li>
             <a href="/preScreening">Pre-Screening</a>
         </li>
-
         <li>
             <a href="/studySpecific">Study Specific</a>
         </li>
