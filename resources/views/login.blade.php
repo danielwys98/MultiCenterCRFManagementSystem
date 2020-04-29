@@ -13,27 +13,21 @@
 
 
 </head>
-<body>
-    <div class="row">
-    <div class="container-logo">
-            <span id="logo"><img src="photos/BK_Logo.png"/></span>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Login</h4>
-                <h5 class="card-subtitle mb-2">Welcome back!</h5>
-                    <div class="form-group">
-                        <label for="inputUsersName">Users Name: </label>
-                        <input type="text" class="form-control" id="inputUsersName" aria-describedby="email" placeholder="Enter usersname">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input type="password" class="form-control" id="inputPassword" aria-describedby="password" placeholder="Password">
-                    </div>
-                    <a href="/dashboard"><button type="button" class="btn btn-primary">Login</button></a>
-            </div>
+<body id="bkg-color">
+    <div class="row row-login offset-lg-4">
+        <div id="login">
+                        <span id="logo"><img src="photos/BK_Logo.png" alt="Borneo Kinetics Logo"></span>
+                        <h3 class="subtitle mb-2">Welcome back!</h3>
+                        <div class="form-group">
+                            <label for="inputUsersName">Users Name: </label>
+                            <input type="text" class="form-control" id="inputUsersName" aria-describedby="email" placeholder="Enter usersname">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" class="form-control" id="inputPassword" aria-describedby="password" placeholder="Password">
+                        </div>
+                        <a href="/dashboard"><button type="button" class="btn btn-danger">Login</button></a>
         </div>
-      </div>
     </div>
-
 </body>
 </html>

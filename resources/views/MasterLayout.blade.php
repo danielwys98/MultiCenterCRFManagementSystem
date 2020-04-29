@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e601eb5514.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -47,17 +48,19 @@
 
 <div class="content-container">
     <div class="HeaderInContent">
-    <div class="row">
-    <h1 class="col-lg-11">Welcome! {users.name}</h1>
-    <a href="/" class="col-lg-1">Log off </a>
+        <div class="row">
+        <h1 class="col-lg-11">Welcome! {users.name}</h1>
+        <a href="/" class="col-lg-1"><i class="fas fa-power-off"></i> </a>
+        </div>
+        <hr/>
     </div>
-    </div>
-    <hr>
+
         {{--//main content starts here--}}
         <div class="container-fluid">
             @yield('content')
         </div>
 </div>
+
 
 
 

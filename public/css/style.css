@@ -87,8 +87,34 @@
 .content-container {
     padding-left: 240px;
 }
-
-.card{
-    width: 50rem;
+.fa-power-off{
+    padding-top:12px;
+    color:black;
 }
+
+#logo{
+    padding-left: 250px;
+}
+
+.row-login{
+    padding-top:200px;
+}
+#login{
+    /*background-image:linear-gradient(to bottom,#0092DF,#CD5C5C);*/
+    width:45rem;
+    padding: 25px 25px 25px 25px;
+    border: 0.5px solid;
+    background-color: white;
+}
+
+#bkg-color{
+    background:rgba(0,146,233,0.6);
+}
+
+.btn-danger:hover
+{
+    background: indianred;
+
+}
+
 
