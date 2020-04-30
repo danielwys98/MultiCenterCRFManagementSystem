@@ -94,10 +94,12 @@
 
 #logo{
     padding-left: 250px;
+    position:relative;
 }
 
 .row-login{
     padding-top:200px;
+    position:relative;
 }
 #login{
     /*background-image:linear-gradient(to bottom,#0092DF,#CD5C5C);*/
@@ -105,7 +107,7 @@
     padding: 25px 25px 25px 25px;
     border: 2px outset #ff6768;
     background-color: white;
-    border-radius: 30PX;
+    border-radius: 30px;
 }
 
 #bkg-color{
@@ -116,6 +118,7 @@
 .btn-danger:hover
 {
     background: indianred;
+    border-color: indianred;
 
 }
 
