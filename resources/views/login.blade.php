@@ -14,8 +14,8 @@
 
 </head>
 <body id="bkg-color">
-    <div class="row row-login offset-lg-4">
-        <div id="login">
+    <div class="row d-flex justify-content-center row-login">
+        <div id="login" class="col-md-5">
                         <span id="logo"><img src="photos/BK_Logo.png" alt="Borneo Kinetics Logo"></span>
                         <h3 class="subtitle mb-2">Welcome back!</h3>
                         <div class="form-group">

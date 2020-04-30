@@ -103,12 +103,14 @@
     /*background-image:linear-gradient(to bottom,#0092DF,#CD5C5C);*/
     width:45rem;
     padding: 25px 25px 25px 25px;
-    border: 0.5px solid;
+    border: 2px outset #ff6768;
     background-color: white;
+    border-radius: 30PX;
 }
 
 #bkg-color{
-    background:rgba(0,146,233,0.6);
+    /*background:rgba(0,146,233,0.6);*/
+    background-color: #263859;
 }
 
 .btn-danger:hover
