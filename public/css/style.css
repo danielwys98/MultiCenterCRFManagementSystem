@@ -97,7 +97,7 @@
     position:relative;
 }
 
-.row-login{
+.row-auth{
     padding-top:200px;
     position:relative;
 }
@@ -115,11 +115,5 @@
     background-color: #263859;
 }
 
-.btn-danger:hover
-{
-    background: indianred;
-    border-color: indianred;
-
-}
 
 

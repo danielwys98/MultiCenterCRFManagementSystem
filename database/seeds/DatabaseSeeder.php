@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
+        $this->call(RolesTablerSeeder::class);
         // $this->call(UserSeeder::class);
+        $this->call(UsersTablerSeeder::class);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
