@@ -27,13 +27,9 @@ Route::get('/preScreeningdb','PagesController@preScreeningDB');
 
 Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
-
+Route::get('/preScreeningForm','PagesController@preScreeningForm');
 
 Auth::routes();
-
-Route::get('/preScreeningForm', function () {
-    return view('preScreeningForm');
-});
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){
     Route::resource('users','UsersController',['except'=>['show','create','store']]);
