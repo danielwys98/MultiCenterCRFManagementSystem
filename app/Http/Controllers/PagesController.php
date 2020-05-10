@@ -16,6 +16,11 @@ class PagesController extends Controller
     {
         $this->middleware('auth');
     }
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+
 
     /**
      * Show the application dashboard.
@@ -32,7 +37,6 @@ class PagesController extends Controller
     }
     public function studySpecific()
     {
-
         return view('studySpecific');
     }
     public function preScreeningDB()
@@ -42,6 +46,10 @@ class PagesController extends Controller
     public function studySpecificDB()
     {
         return view('studySpecificdb');
+    }
+    public function preScreeningForm()
+    {
+        return view('preScreeningForm');
     }
 
 }
