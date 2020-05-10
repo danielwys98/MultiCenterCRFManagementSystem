@@ -16,6 +16,11 @@ class PagesController extends Controller
     {
         $this->middleware('auth');
     }
+    public function loginPage()
+    {
+        return view('auth.login');
+    }
+
 
     /**
      * Show the application dashboard.
