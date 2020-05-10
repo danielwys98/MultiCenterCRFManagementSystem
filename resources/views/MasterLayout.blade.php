@@ -32,7 +32,7 @@
                 <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
                 </li>
-
+                @can('adminFunctions')
                 <li>
                     <a href="/preScreeningdb" class="{{request()->is('preScreeningdb')? 'active' :' '}}" >Pre-Screening Database</a>
                 </li>
@@ -42,10 +42,10 @@
                 </li>
 
                 <li>
-                    @can('adminFunctions')
                     <a href="admin/users" class="{{request()->is('admin/users')? 'active' :' '}}"}}>Administration</a>
-                    @endcan
+
                 </li>
+                @endcan
             </ul>
         </div>
 
