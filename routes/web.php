@@ -37,6 +37,10 @@ Route::get('/studySpecificdb', function () {
     return view('studySpecificdb');
 });
 
+Route::get('/preScreeningForm', function () {
+    return view('preScreeningForm');
+});
+
 Route::get('/admin', function () {
     return view('admin');
 });
