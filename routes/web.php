@@ -14,29 +14,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'PagesController@index');
 
-Route::get('/preScreening', function () {
-    return view('preScreening');
-});
+Route::get('/preScreening', 'PagesController@preScreening');
 
-Route::get('/studySpecific', function () {
-    return view('studySpecific');
-});
+Route::get('/studySpecific', 'PagesController@studySpecific');
 
-Route::get('/preScreeningdb', function () {
-    return view('preScreeningdb');
-});
+Route::get('/preScreeningdb','PagesController@preScreeningDB');
 
-Route::get('/studySpecificdb', function () {
-    return view('studySpecificdb');
-});
+Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
-Route::get('/admin', function () {
-    return view('admin');
+
+
+Auth::routes();
+
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){
+    Route::resource('users','UsersController',['except'=>['show','create','store']]);
 });
