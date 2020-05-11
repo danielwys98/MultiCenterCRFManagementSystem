@@ -35,6 +35,10 @@ class PagesController extends Controller
     {
         return view('preScreening');
     }
+    public function preScreeningForm()
+    {
+        return view('preScreeningForm');
+    }
     public function studySpecific()
     {
         return view('studySpecific');
@@ -47,9 +51,4 @@ class PagesController extends Controller
     {
         return view('studySpecificdb');
     }
-    public function preScreeningForm()
-    {
-        return view('preScreeningForm');
-    }
-
 }
