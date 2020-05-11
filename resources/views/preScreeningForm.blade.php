@@ -1,162 +1,194 @@
 @extends('MasterLayout')
 
 @section('content')
-   <h2>Visit 1: Pre-Study Screening</h2>
-   <hr>
+    <h2>Visit 1: Pre-Study Screening</h2>
+    <hr>
 
     {!! Form::open(['url' => 'foo/bar']) !!}
-
     {{-- general consent --}}
-    <div class="form-group">
-        <h3>General Consent</h3>
-        <div class="row">
-            <div class="col-sm-3">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
-                {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
-            </div>
-            <div class="col-sm-3">
-                {!! Form::label('timeTaken', 'Time Taken: ') !!}
-                {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
-            </div>
+    <h3>General Consent</h3>
+    <hr>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        </div>
+        <div class=" offset-3 col-md-1">
+            {!! Form::label('timeTaken', 'Time Taken: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </div>
     </div>
     {{-- subject demographics --}}
-    <div class="form-group">
-        <h3>Subject Demographics</h3>
-        <table class="table col-sm-9">
-            <tr>
-                <td>{!! Form::label('Gender', 'Gender:') !!}</td>
-                <td>
-                    {!! Form::label('GenderM', 'Male') !!}
-                    {!! Form::radio('GenderM', 'Male') !!}
-                    {!! Form::label('GenderF', 'Female') !!}
-                    {!! Form::radio('GenderF', 'Female') !!}
-                </td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('Ethnicity', 'Ethnicity:') !!}</td>
-                <td>
-                    {!! Form::radio('Ethnicity-C', 'Chinese') !!}
-                    {!! Form::label('Ethnicity-C', 'Chinese') !!}
-                    
-                    {!! Form::radio('Ethnicity-M', 'Malay') !!}
-                    {!! Form::label('Ethnicity-M', 'Malay') !!}
-
-                    {!! Form::radio('Ethnicity-I', 'Indian') !!}
-                    {!! Form::label('Ethnicity-I', 'Indian') !!}
-
-                    {!! Form::radio('Ethnicity-O', 'Others') !!}
-                    {!! Form::label('Ethnicity-O', 'Others') !!}
-                    {!! Form::text('Ethnicity-O', '') !!}
-                </td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('DoB', 'Date of Birth: ') !!}</td>
-                <td>{!! Form::date('DoB', \Carbon\Carbon::now()) !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('age', 'Age: ') !!}</td>
-                <td>{!! Form::number('age', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('maritalstatus', 'Marital Status:') !!}</td>
-                <td>
-                    {!! Form::label('maritalstatusS', 'Single') !!}
-                    {!! Form::radio('maritalstatusS', 'Single') !!}
-                
-                    {!! Form::label('maritalstatusM', 'Married') !!}
-                    {!! Form::radio('maritalstatusM', 'Married') !!}
-                </td>
-            </tr>
-        </table>
+    <h3>Subject Demographics</h3>
+    <hr>
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('Gender', 'Gender:') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('Gender', 'Male') !!}
+            {!! Form::label('Male', 'Male') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('Gender', 'Female') !!}
+            {!! Form::label('Female', 'Female') !!}
+        </div>
     </div>
-    {{-- body measurements and vital signs --}}
-    <div class="form-group">
-        <h3>Body Measurements and Vital Signs</h3>
-        <div class="row">
-            <div class="col-sm-3">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
-                {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
-            </div>
-            <div class="col-sm-3">
-                {!! Form::label('timeTaken', 'Time Taken: ') !!}
-                {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('Ethnicity', 'Ethnicity:') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('Ethnicity', 'Chinese') !!}
+            {!! Form::label('Chinese', 'Chinese') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('Ethnicity', 'Malay') !!}
+            {!! Form::label('Malay', 'Malay') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('Ethnicity', 'Indian') !!}
+            {!! Form::label('Indian', 'Indian') !!}
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-md-3">
+            {!! Form::radio('Ethnicity', 'Others') !!}
+            {!! Form::label('Others', 'Others') !!}
+                </div>
+                <div class="col-md-5">
+            {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                </div>
             </div>
         </div>
-        <table class="table col-sm-9">
-            <tr>
-                <td>{!! Form::label('weight', 'Weight: ') !!}</td>
-                <td>kg</td>
-                <td>{!! Form::number('weight', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('height', 'Height: ') !!}</td>
-                <td>cm</td>
-                <td>{!! Form::number('height', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('bmi', 'Body Mass Index: ') !!}</td>
-                <td>kg/m2</td>
-                <td>{!! Form::number('bmi', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('temperature', 'Temperature: ') !!}</td>
-                <td>°C</td>
-                <td>{!! Form::number('temperature', '') !!}</td>
-            </tr>
-        </table>
-        <table class="table col-sm-12">
-            <tr>
-                <h4>Vital Signs</h4>
-            </tr>
-            <tr>
-                <th>Position</th>
-                <th>
-                    Reading Time
-                    (24-hour clock)
-                </th>
-                <th>
-                    Blood Pressure
-                    (systolic/diastolic)
-                    (mmHg)
-                </th>
-                <th>
-                    Heart Rate
-                    (beats per min)
-                </th>
-                <th>
-                    Respiratory Rate
-                    (breaths per min)
-                </th>
-            </tr>
-            <tr>
-                <td>{!! Form::label('Supine', 'Supine: ') !!}</td>
-                <td>{!! Form::number('Supine', '') !!}</td>
-                <td>{!! Form::number('Supine', '') !!}</td>
-                <td>{!! Form::number('Supine', '') !!}</td>
-                <td>{!! Form::number('Supine', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('Sitting', 'Sitting: ') !!}</td>
-                <td>{!! Form::number('Sitting', '') !!}</td>
-                <td>{!! Form::number('Sitting', '') !!}</td>
-                <td>{!! Form::number('Sitting', '') !!}</td>
-                <td>{!! Form::number('Sitting', '') !!}</td>
-            </tr>
-            <tr>
-                <td>{!! Form::label('Standing', 'Standing: ') !!}</td>
-                <td>{!! Form::number('Standing', '') !!}</td>
-                <td>{!! Form::number('Standing', '') !!}</td>
-                <td>{!! Form::number('Standing', '') !!}</td>
-                <td>{!! Form::number('Standing', '') !!}</td>
-                <td>
-                    {!! Form::label('Initial', 'Initial: ') !!}
-                    {!! Form::text('Initial', '') !!}
-                </td>
-            </tr>
-        </table>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('DoB', 'Date of Birth: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('DoB', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('age', 'Age: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::number('age', '',['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('maritalstatus', 'Marital Status:') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('maritalstatus', 'Single') !!}
+            {!! Form::label('maritalstatusS', 'Single') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('maritalstatus', 'Married') !!}
+            {!! Form::label('maritalstatusM', 'Married') !!}
+        </div>
+    </div>
+    {{-- body measurements and vital signs --}}
+    <h3>Body Measurements and Vital Signs</h3>
+    <hr>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        </div>
+        <div class=" offset-3 col-md-1">
+            {!! Form::label('timeTaken', 'Time Taken: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('weight', 'Weight: ') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::number('weight', '', ['class'=>'form-control','placeholder'=>'kg']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('height', 'Height: ') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::number('height', '', ['class'=> 'form-control','placeholder'=>'cm']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('bmi', 'Body Mass Index: ') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::number('bmi', '',['class'=>'form-control','placeholder'=>'kg/m2']) !!}
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('temperature', 'Temperature: ') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::number('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
+        </div>
         {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
     </div>
+
+    <h4>Vital Signs</h4>
+    <div class="form-group row">
+        <div class="col-md-4">Position</div>
+        <div class="col-md-2">Reading Time (24-hour clock)</div>
+        <div class="col-md-2">Blood Pressure (systolic/diastolic) (mmHg)</div>
+        <div class="col-md-2">Heart Rate (beats per min)</div>
+        <div class="col-md-2">Respiratory Rate (breaths per min)</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{!! Form::label('Supine', 'Supine: ') !!}</div>
+        <div class="col-md-2">{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{!! Form::label('Sitting', 'Sitting: ') !!}</div>
+        <div class="col-md-2">{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{!! Form::label('Standing', 'Standing: ') !!}</div>
+        <div class="col-md-2">{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+        <div class="col-md-2">{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-8"></div>
+        <div class="col-md-2">{!! Form::label('Initial', 'Initial: ') !!}</div>
+        <div class="col-md-2">{!! Form::text('Initial', '',['class'=>'form-control','placeholder'=>'']) !!}</div>
+    </div>
+    
     {{-- breath alcohol test --}}
     <div class="form-group">
         <h3>Breath Alcohol Test</h3>
@@ -1262,8 +1294,8 @@
             </div>
         </div>
     </div>
-
+    {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
     {!! Form::close() !!}
-    
-    
+
+
 @endsection
