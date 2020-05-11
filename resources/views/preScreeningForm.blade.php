@@ -5,7 +5,6 @@
    <hr>
 
     {!! Form::open(['url' => 'foo/bar']) !!}
-
     {{-- general consent --}}
     <div class="form-group">
         <h3>General Consent</h3>
@@ -1262,7 +1261,7 @@
             </div>
         </div>
     </div>
-
+    {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
     {!! Form::close() !!}
     
     
