@@ -150,7 +150,7 @@
         </div>
         <div class="col-md-1">
             {!! Form::number('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
-			
+
     {{-- general consent --}}
     <div class="form-group">
         <h3>General Consent</h3>
@@ -183,7 +183,7 @@
                 <td>
                     {!! Form::radio('Ethnicity-C', 'Chinese') !!}
                     {!! Form::label('Ethnicity-C', 'Chinese') !!}
-                    
+
                     {!! Form::radio('Ethnicity-M', 'Malay') !!}
                     {!! Form::label('Ethnicity-M', 'Malay') !!}
 
@@ -208,7 +208,7 @@
                 <td>
                     {!! Form::label('maritalstatusS', 'Single') !!}
                     {!! Form::radio('maritalstatusS', 'Single') !!}
-                
+
                     {!! Form::label('maritalstatusM', 'Married') !!}
                     {!! Form::radio('maritalstatusM', 'Married') !!}
                 </td>
@@ -570,7 +570,7 @@
                     {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
                     {!! Form::radio('Fertility Control counseling', 'No') !!}
                     {!! Form::radio('Fertility Control counseling', 'Yes') !!}
-                    
+
                     {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
                     {!! Form::checkbox('Fertility Control counseling', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
                     {!! Form::checkbox('Fertility Control counseling', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
@@ -779,7 +779,7 @@
                 {!! Form::label('Transcribedby', 'Transcribed by (initial): ') !!}
                 {!! Form::text('Transcribedby', '') !!}
             </div>
-        </div>        
+        </div>
     </div>
     {{-- urine drugs for abuse test --}}
     <div class="form-group">
@@ -1407,7 +1407,6 @@
             </div>
         </div>
     </div>
-
     {!! Form::close() !!}
 
 
