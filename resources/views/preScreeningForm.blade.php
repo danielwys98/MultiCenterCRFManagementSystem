@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <h2>Visit 1: Pre-Study Screening</h2>
-        <ul class="nav nav-pills">
+        <ul class="nav nav-pills sticky-top bg-light">
             <li class="active"><a data-toggle="tab" href="#General">General Consent</a></li>
             <li><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
             <li><a data-toggle="tab" href="#BATER">Breath Alcohol Test and Electrocardiogram Recording</a></li>
@@ -215,7 +215,7 @@
         </div>
             {{--Body Measurement and Vital Signs end here after the div class below--}}
 
-    <div id="BATER"class="tab-pane fade in active">
+    <div id="BATER" class="tab-pane fade in active">
      {{--breath alcohol test --}}
     <h3>Breath Alcohol Test</h3>
     <p>(Transcribed from Breath Alcohol Test Logbook)</p>
