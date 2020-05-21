@@ -3,15 +3,29 @@
 @section('content')
     <div class="container-fluid">
         <h2>Visit 1: Pre-Study Screening</h2>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#General">General Consent</a></li>
+            <li><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
+            <li><a data-toggle="tab" href="#BATER">Breath Alcohol Test and Electrocardiogram Recording</a></li>
+            <li><a data-toggle="tab" href="#MHistory">Medical History</a></li>
+            <li><a data-toggle="tab" href="#PExam">Physical Examination</a></li>
+            <li><a data-toggle="tab" href="#UrineTest">Urine Pregnancy and Drugs Test</a></li>
+            <li><a data-toggle="tab" href="#LabTest">Laboratory Test</a></li>
+            <li><a data-toggle="tab" href="#STest">Serology Test</a></li>
+            <li><a data-toggle="tab" href="#Criteria">Inclusion and Exclusion Criteria</a></li>
+            <li><a data-toggle="tab" href="#Conclude">Conclusion and Signature</a></li>
+        </ul>
         <hr>
-
+        <div class="tab-content">
+        <div id="General" class="tab-pane fade in active">
         {!! Form::open(['url' => 'foo/bar']) !!}
         {{-- general consent --}}
         <h3>General Consent</h3>
         <hr>
         <div class="form-group row">
             <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}</div>
+                {!! Form::label('dateTaken', 'Date Taken: ') !!}
+            </div>
             <div class="col-md-2">
                 {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
@@ -87,20 +101,21 @@
             </div>
         </div>
 
-        <div class="form-group row">
-            <div class="col-md-4">
-                {!! Form::label('maritalstatus', 'Marital Status:') !!}
-            </div>
-            <div class="col-md-1">
-                {!! Form::radio('maritalstatus', 'Single') !!}
-                {!! Form::label('maritalstatusS', 'Single') !!}
-            </div>
-            <div class="col-md-1">
-                {!! Form::radio('maritalstatus', 'Married') !!}
-                {!! Form::label('maritalstatusM', 'Married') !!}
-            </div>
+        <div class="col-md-4">
+            {!! Form::label('maritalstatus', 'Marital Status:') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('maritalstatus', 'Single') !!}
+            {!! Form::label('maritalstatusS', 'Single') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('maritalstatus', 'Married') !!}
+            {!! Form::label('maritalstatusM', 'Married') !!}
+        </div>
+            {{--General consents content ends here after the div class below--}}
         </div>
 
+         <div id="BMVS" class="tab-pane fade">
         {{-- body measurements and vital signs --}}
         <h3>Body Measurements and Vital Signs</h3>
         <hr>
@@ -153,155 +168,168 @@
             </div>
         </div>
 
-        <h4>Vital Signs</h4>
-        <hr>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Position</th>
-                <th scope="col">Reading Time (24-hour clock)</th>
-                <th scope="col">Blood Pressure (systolic/diastolic) (mmHg)</th>
-                <th scope="col">Heart Rate (beats per min)</th>
-                <th scope="col">Respiratory Rate (breaths per min)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-            </tr>
-            <tr>
-                <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-            </tr>
-            <tr>
-                <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-            </tr>
-            <tr>
-                <th scope="row" colspan="4"
-                    class="text-lg-right">{!! Form::label('Initial','Initial: ',['class'=>'text-md-left']) !!}</th>
-                <td>{!! Form::text('Initial', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-            </tr>
-            </tbody>
-        </table>
-        <p>
-            {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
-        </p>
+    <h4>Vital Signs</h4>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Position</th>
+            <th scope="col">Reading Time (24-hour clock)</th>
+            <th scope="col">Blood Pressure (systolic/diastolic) (mmHg)</th>
+            <th scope="col">Heart Rate (beats per min)</th>
+            <th scope="col">Respiratory Rate (breaths per min)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
+            <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        </tr>
+        <tr>
+            <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
+            <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        </tr>
+        <tr>
+            <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
+            <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        </tr>
+        <tr>
+            <th scope="row" colspan="4"
+                class="text-lg-right">{!! Form::label('Initial','Initial: ',['class'=>'text-md-left']) !!}</th>
+            <td>{!! Form::text('Initial', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
+    </p>
+        </div>
+            {{--Body Measurement and Vital Signs end here after the div class below--}}
 
-        {{-- breath alcohol test --}}
-        <h3>Breath Alcohol Test</h3>
-        <p>(Transcribed from Breath Alcohol Test Logbook)</p>
-        <hr>
-        <div class="form-group row">
-            <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}</div>
-            <div class="col-md-2">
-                {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
-            </div>
-            <div class=" offset-3 col-md-1">
-                {!! Form::label('timeTaken', 'Time Taken: ') !!}
-            </div>
-            <div class="col-md-2">
-                {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
-            </div>
+    <div id="BATER"class="tab-pane fade in active">
+     {{--breath alcohol test --}}
+    <h3>Breath Alcohol Test</h3>
+    <p>(Transcribed from Breath Alcohol Test Logbook)</p>
+    <hr>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('dateTaken', 'Date Taken: ') !!}</div>
+        <div class="col-md-2">
+            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </div>
-        <div class="form-group row">
-            <div class="col-md-4">{!! Form::label('Laboratory', 'Laboratory: ') !!}</div>
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="col-md-1">
-                        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-                    </div>
-                    <div class="col-md-11">
-                        {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="row">
-                    <div class="col-md-2">
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other') !!}
-                    </div>
-                    <div class="col-md-5">
-                        {!! Form::text('Laboratory', '',['placeholder'=>'Please Specify']) !!}
-                    </div>
-                </div>
-            </div>
+        <div class=" offset-3 col-md-1">
+            {!! Form::label('timeTaken', 'Time Taken: ') !!}
         </div>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th scope="col">Test</th>
-                <th scope="col">%BAC</th>
-                <th scope="col">Result</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
-                <td>{!! Form::number('breathalcohol', '',['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
-                <td>
-                    {!! Form::radio('breathalcohol', 'Positive') !!}
-                    {!! Form::label('breathalcohol', 'Positive ') !!}
-                    {!! Form::radio('breathalcohol', 'Negative') !!}
-                    {!! Form::label('breathalcohol', 'Negative ') !!}
-                </td>
-            <tr>
-                <th scope="row" colspan="2"
-                    class="text-lg-right">{!! Form::label('Transcribedby', 'Transcribed by: ') !!}</th>
-                <td>{!! Form::text('Transcribedby', '',['class'=>'form-control']) !!}</td>
-            </tr>
-            </tbody>
-        </table>
-        {{-- electrocardiogram recording --}}
-        <h3>Electrocardiogram Recording</h3>
-        <p>(ECG Recording attached in Appendix)</p>
-        <hr>
-        <div class="form-group row">
-            <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
-            </div>
-            <div class="col-md-2">
-                {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
-            </div>
+        <div class="col-md-2">
+            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </div>
-        <div class="form-group row">
-            <div class="col-md-3">
-                {!! Form::label('Conclusion', 'Conclusion: ') !!}
-            </div>
-{{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}
-            {!! Form::radio('Conclusion', 'Normal') !!}
-            {!! Form::label('Conclusion', 'Normal') !!}
-            {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ') !!}
-            {!! Form::label('Conclusion', 'Abnormal but not clinically significant ') !!}
-            {!! Form::radio('Conclusion', 'Abnormal and clinically significant') !!}
-            {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
-        </div>
-        {{-- medical history --}}
-        <div class="form-group">
-            <h3>Medical History</h3>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">{!! Form::label('Laboratory', 'Laboratory: ') !!}</div>
+        <div class="col-md-3">
             <div class="row">
-                <div class="col-sm-3">
-                    {!! Form::label('dateTaken', 'Date Taken: ') !!}
-                    {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+                <div class="col-md-1">
+                    {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
                 </div>
-                <div class="col-sm-3">
-                    {!! Form::label('timeTaken', 'Time Taken: ') !!}
-                    {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+                <div class="col-md-11">
+                    {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
                 </div>
             </div>
-            <table class="table col-sm-9">
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-2">
+                    {!! Form::radio('Laboratory', 'Other') !!}
+                    {!! Form::label('Laboratory', 'Other') !!}
+                </div>
+                <div class="col-md-5">
+                    {!! Form::text('Laboratory', '',['placeholder'=>'Please Specify']) !!}
+                </div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">Test</th>
+            <th scope="col">%BAC</th>
+            <th scope="col">Result</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
+            <td>{!! Form::number('breathalcohol', '',['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
+            <td>
+                {!! Form::radio('breathalcohol', 'Positive') !!}
+                {!! Form::label('breathalcohol', 'Positive ') !!}
+                {!! Form::radio('breathalcohol', 'Negative') !!}
+                {!! Form::label('breathalcohol', 'Negative ') !!}
+            </td>
+        <tr>
+            <th scope="row" colspan="2"
+                class="text-lg-right">{!! Form::label('Transcribedby', 'Transcribed by: ') !!}</th>
+            <td>{!! Form::text('Transcribedby', '',['class'=>'form-control']) !!}</td>
+        </tr>
+        </tbody>
+    </table>
+    {{-- electrocardiogram recording --}}
+    <h3>Electrocardiogram Recording</h3>
+    <p>(ECG Recording attached in Appendix)</p>
+    <hr>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-2">
+            {!! Form::label('Conclusion', 'Conclusion: ') !!}
+        </div>
+                  {{--  TODO: Continue from here tomorrow try work with form-check bootstrap--}}
+        <div class="col-md-2">
+        {!! Form::radio('Conclusion', 'Normal') !!}
+        {!! Form::label('Conclusion', 'Normal') !!}
+        </div>
+        <div class="col-md-2">
+        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ') !!}
+        {!! Form::label('Conclusion', 'Abnormal but not clinically significant ') !!}
+        </div>
+        <div class="col-md-2">
+        {!! Form::radio('Conclusion', 'Abnormal and clinically significant') !!}
+        {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
+        </div>
+    </div>
+        {{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}
+    </div>
+
+   <div id="MHistory" class="tab-pane fade">
+   {{--  medical history --}}
+    <div class="form-group">
+        <h3>Medical History</h3>
+        <div class="row">
+            <div class="col-sm-3">
+                {!! Form::label('dateTaken', 'Date Taken: ') !!}
+                {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+            </div>
+            <div class="col-sm-3">
+                {!! Form::label('timeTaken', 'Time Taken: ') !!}
+                {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            </div>
+        </div>
+        <table class="table col-sm-9">
                 <tr>
                     <th>System Review</th>
                     <th>Normal</th>
@@ -325,7 +353,7 @@
                     <td>{!! Form::radio('Respiratory', 'Normal') !!}</td>
                     <td>{!! Form::radio('Respiratory', 'Abnormal') !!}</td>
                     <td>{!! Form::text('Respiratory', '') !!}</td>
-                </tr>
+                <tr>
                 <tr>
                     <td>Cardiovascular</td>
                     <td>{!! Form::radio('Cardiovascular', 'Normal') !!}</td>
@@ -339,64 +367,64 @@
                     <td>{!! Form::text('Gastrointestinal', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Genitourinary</td>
-                    <td>{!! Form::radio('Genitourinary', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Genitourinary', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Genitourinary', '') !!}</td>
+                        <td>Genitourinary</td>
+                        <td>{!! Form::radio('Genitourinary', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Genitourinary', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Genitourinary', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Neurological</td>
-                    <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Neurological', '') !!}</td>
+                        <td>Neurological</td>
+                        <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Neurological', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Haematopoietic-Lymphatic</td>
-                    <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Haematopoietic-Lymphatic', '') !!}</td>
+                        <td>Haematopoietic-Lymphatic</td>
+                        <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Haematopoietic-Lymphatic', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Endocrine-Metabolic</td>
-                    <td>{!! Form::radio('Endocrine-Metabolic', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Endocrine-Metabolic', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Endocrine-Metabolic', '') !!}</td>
+                        <td>Endocrine-Metabolic</td>
+                        <td>{!! Form::radio('Endocrine-Metabolic', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Endocrine-Metabolic', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Endocrine-Metabolic', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Dermatological</td>
-                    <td>{!! Form::radio('Dermatological', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Dermatological', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Dermatological', '') !!}</td>
+                        <td>Dermatological</td>
+                        <td>{!! Form::radio('Dermatological', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Dermatological', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Dermatological', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Musculoskeletal</td>
-                    <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Musculoskeletal', '') !!}</td>
+                        <td>Musculoskeletal</td>
+                        <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Musculoskeletal', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Psychological</td>
-                    <td>{!! Form::radio('Psychological', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Psychological', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Psychological', '') !!}</td>
+                        <td>Psychological</td>
+                        <td>{!! Form::radio('Psychological', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Psychological', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Psychological', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Family History</td>
-                    <td>{!! Form::radio('Family History', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Family History', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Family History', '') !!}</td>
+                        <td>Family History</td>
+                        <td>{!! Form::radio('Family History', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Family History', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Family History', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Surgical History</td>
-                    <td>{!! Form::radio('Surgical History', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Surgical History', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Surgical History', '') !!}</td>
+                        <td>Surgical History</td>
+                        <td>{!! Form::radio('Surgical History', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Surgical History', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Surgical History', '') !!}</td>
                 </tr>
                 <tr>
-                    <td>Previous Hospitalization</td>
-                    <td>{!! Form::radio('Previous Hospitalization', 'Normal') !!}</td>
-                    <td>{!! Form::radio('Previous Hospitalization', 'Abnormal') !!}</td>
-                    <td>{!! Form::text('Previous Hospitalization', '') !!}</td>
+                        <td>Previous Hospitalization</td>
+                        <td>{!! Form::radio('Previous Hospitalization', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Previous Hospitalization', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Previous Hospitalization', '') !!}</td>
                 </tr>
             </table>
             <table class="table col-sm-9">
@@ -509,7 +537,11 @@
                 {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
             </div>
         </div>
-        {{-- physical examination --}}
+       {{--medical history ends here after the div class below--}}
+   </div>
+
+    <div id="PExam" class="tab-pane fade">
+         {{--physical examination --}}
         <div class="form-group">
             <h3>Physical Examination</h3>
             <div class="row">
@@ -635,6 +667,10 @@
                 {!! Form::text('Otherwise', '') !!}
             </div>
         </div>
+       {{--PE ends here after the div tag below--}}
+   </div>
+
+   <div id="UrineTest" class="tab-pane fade">
         {{-- urine pregnancy test --}}
         <div class="form-group">
             <h3>Urine Pregnancy Test</h3>
@@ -695,6 +731,7 @@
                 </div>
             </div>
         </div>
+
         {{-- urine drugs for abuse test --}}
         <div class="form-group">
             <h3>Urine Drugs of Abuse Test</h3>
@@ -781,7 +818,11 @@
                 </div>
             </div>
         </div>
-        {{-- laboratory test --}}
+            {{--Urine Test ends here after the div tag below--}}
+   </div>
+
+   <div id="LabTest" class="tab-pane fade">
+    {{-- laboratory test--}}
         <div class="form-group">
             <h3>Laboratory Tests</h3>
             <p>(Laboratory Test Report attached in Appendix)</p>
@@ -878,7 +919,11 @@
                 {!! Form::text('Laboratory', '') !!}
             </div>
         </div>
-        {{-- serology test --}}
+        {{--Lab Test ends here after the div tag below--}}
+   </div>
+
+   <div id="STest" class="tab-pane fade">
+       {{--  serology test --}}
         <div class="form-group">
             <h3>Serology Test</h3>
             <p>(Laboratory Test Report attached in Appendix)</p>
@@ -905,8 +950,11 @@
                 {!! Form::text('Laboratory', '') !!}
             </div>
         </div>
+       {{--Serology Test ends here after the div tag below--}}
+   </div>
 
-        {{-- inclusion and exclusion criteria --}}
+   <div id="Criteria" class="tab-pane fade">
+         {{--inclusion and exclusion criteria --}}
         <div class="form-group">
             <h3>Inclusion and Exclusion Criteria</h3>
             <h5>Inclusion Criteria</h5>
@@ -1295,8 +1343,11 @@
                 </div>
             </div>
         </div>
+       {{--Criteria ends here after the div tag below--}}
+   </div>
 
-        {{-- conclusion --}}
+   <div id="Conclude" class="tab-pane fade">
+       {{-- conclusion --}}
         <div class="form-group">
             <h3>Conclusion</h3>
             <div class="row">
@@ -1326,7 +1377,7 @@
             </div>
         </div>
 
-        {{-- pre-study screening signature --}}
+         {{--pre-study screening signature--}}
         <div class="form-group">
             <h3>Pre-study Screening Signature</h3>
             <div class="row">
@@ -1348,9 +1399,11 @@
                 </div>
             </div>
         </div>
+        {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+        {!! Form::close() !!}
+       {{--Conclusion ends here after the div tag below--}}
+        </div>
+            {{--This ending div tag is for the "tab-content" div--}}
     </div>
-    {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
-    {!! Form::close() !!}
-
-
+    </div>
 @endsection

@@ -12,7 +12,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/e601eb5514.js" crossorigin="anonymous"></script>
+
 
 
 </head>
@@ -27,7 +31,7 @@
                     <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/preScreening" class="{{request()->is('preScreening')? 'active' :' '}}" >Pre-Screening</a>
+                    <a href="/preScreening" class="{{request()->is('preScreeningForm')? 'active' :' '}}" >Pre-Screening</a>
                 </li>
                 <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>

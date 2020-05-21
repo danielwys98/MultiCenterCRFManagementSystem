@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <h1>This is the Pre-screening Page</h1>
-
         <h3>Please fill in the belows to start creating an Pre-Studing Screening Form</h3>
         {!! Form::open(['url' => 'foo/bar']) !!}
         <div class="form-group row">
