@@ -17,11 +17,11 @@ Route::get('/','PagesController@loginPage');
 
 Route::get('/dashboard', 'PagesController@index');
 
-Route::get('/preScreening', 'PagesController@preScreening');
+/*Route::get('/preScreening', 'PagesController@preScreening');*/
 
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
-Route::get('/preScreeningdb','PagesController@preScreeningDB');
+/*Route::get('/preScreeningdb','PagesController@preScreeningDB');*/
 
 Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
@@ -32,3 +32,5 @@ Auth::routes();
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){
     Route::resource('users','UsersController',['except'=>['show','create','store']]);
 });
+
+Route::resource('preScreening','preScreeningController');
