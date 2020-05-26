@@ -117,6 +117,7 @@
         {!! Form::number('MRNno', old('MRNno'),['class'=>'form-control']) !!}
         </div>
     </div>
-        {!! Form::close() !!}
+    <a href="{{ route('preScreening.index')}}" class="btn btn-primary">Back</a>
+    {!! Form::close() !!}
 
 @endsection
