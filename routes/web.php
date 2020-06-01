@@ -17,11 +17,10 @@ Route::get('/','PagesController@loginPage');
 
 Route::get('/dashboard', 'PagesController@index');
 
-/*Route::get('/preScreening', 'PagesController@preScreening');*/
 
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
-/*Route::get('/preScreeningdb','PagesController@preScreeningDB');*/
+Route::get('/preScreening/admin','preScreeningController@admin');
 
 Route::get('/studySpecificdb','PagesController@studySpecificdb');
 

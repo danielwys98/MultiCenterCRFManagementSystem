@@ -38,7 +38,7 @@
                 </li>
                 @can('adminFunctions')
                 <li>
-                    <a href="/preScreeningdb" class="{{request()->is('preScreeningdb')? 'active' :' '}}" >Pre-Screening Database</a>
+                    <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
                 </li>
 
                 <li>
