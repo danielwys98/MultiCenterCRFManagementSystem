@@ -20,9 +20,10 @@ Route::get('/dashboard', 'PagesController@index');
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 Route::get('preScreening/create2',function(){return view('preScreening.create2');});
 
+
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
-/*Route::get('/preScreeningdb','PagesController@preScreeningDB');*/
+Route::get('/preScreening/admin','preScreeningController@admin');
 
 Route::get('/studySpecificdb','PagesController@studySpecificdb');
 

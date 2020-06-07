@@ -19,6 +19,13 @@ class preScreeningController extends Controller
         return view('preScreening.index',compact('patients'));
 
     }
+    public function admin()
+    {
+        $patients = Patient::all();
+
+        return view('preScreening.admin',compact('patients'));
+
+    }
 
     /**
      * Show the form for creating a new resource.
