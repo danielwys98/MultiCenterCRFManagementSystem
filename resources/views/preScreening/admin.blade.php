@@ -16,8 +16,24 @@
                     <p>{{$patient->name}}</p><br>
                 </td>
                 <td>
-                    <a href="{{ route('preScreening.show',$patient->id) }}" class="btn btn-dark">View {{$patient->name}} 's Profile</a>
+                    <a href="{{ route('preScreening.show',$patient->id) }}" class="btn btn-dark">View Profile</a>
+
+                </td>
+                <td>
                     <a href="{{ route('preScreening.edit',$patient->id) }}" class="btn btn-primary">Edit Profile</a>
+                </td>
+                <td>
+                    {{--<form action="{{route('Patients_Details.create',$patient->id)}}" method="POST">
+                        @csrf
+                        {{method_field('GET')}}
+                        <button type="submit" class="btn btn-primary">Add Details</button>
+                    </form>--}}
+                    <a href="{{route('Patients_Details.create',$patient->id)}}" class="btn btn-primary">Add Details</a>
+                </td>
+                <td>
+                    <a href="{{route('Patients_Details.show',$patient->id)}}" class="btn btn-primary">Show Details</a>
+                </td>
+                <td>
                     <form action="{{route('preScreening.destroy',$patient->id)}}" method="POST">
                         @csrf
                         {{method_field('DELETE')}}
@@ -28,5 +44,6 @@
         @endforeach
         </tbody>
     </table>
+    <a href="{{ route('preScreening.create') }}" class="btn btn-primary">Add a new Subject</a>
 
 @endsection

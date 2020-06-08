@@ -26,6 +26,12 @@ Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
 Route::get('/preScreeningForm','PagesController@preScreeningForm');
 
+Route::get('Patients_Details/create/{id}','BMVS_Controller@create')->name('Patients_Details.create');
+
+Route::post('Patients_Details/{id}','BMVS_Controller@store')->name('Patients_Details.store');
+
+Route::get('Patients_Details/show/{id}','BMVS_Controller@show')->name('Patients_Details.show');
+
 Auth::routes();
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){

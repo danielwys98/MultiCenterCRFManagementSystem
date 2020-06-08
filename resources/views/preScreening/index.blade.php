@@ -7,7 +7,6 @@
         @if(count($patients))
         <tr>
             <th scope="col">All the Patients</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -15,9 +14,6 @@
             <tr>
                 <td>
                     <p>{{$patient->name}}</p><br>
-                </td>
-                <td>
-                    <a href="{{ route('preScreening.show',$patient->id) }}" class="btn btn-dark">View {{$patient->name}} 's Profile</a>
                 </td>
             </tr>
         @endforeach
@@ -28,6 +24,4 @@
         @endif
         </tbody>
     </table>
-    <a href="{{ route('preScreening.create') }}" class="btn btn-primary">Add a new Subject</a>
-
 @endsection

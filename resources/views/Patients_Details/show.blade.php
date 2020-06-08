@@ -17,7 +17,8 @@
         <hr>
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
-            {!! Form::open(['url' => 'foo/bar']) !!}
+                {!! Form::model($patient,['route' => ['preScreening.update',$patient->id]]) !!}
+                @csrf
             {{-- body measurements and vital signs --}}
             <h3>Body Measurements and Vital Signs</h3>
             <hr>
@@ -41,7 +42,7 @@
                     {!! Form::label('weight', 'Weight: ') !!}
                 </div>
                 <div class="col-md-1">
-                    {!! Form::number('weight', '', ['class'=>'form-control','placeholder'=>'kg']) !!}
+                    {!! Form::number('weight','', ['class'=>'form-control','placeholder'=>'kg']) !!}
                 </div>
             </div>
             <div class="form-group row">
@@ -85,40 +86,41 @@
             <tbody>
             <tr>
                 <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Supine', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Supine_ReadingTime', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Supine_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Supine_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Supine_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
             </tr>
             <tr>
                 <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Sitting', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Sitting_ReadingTime', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Sitting_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Sitting_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Sitting_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
             </tr>
             <tr>
                 <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::number('Standing', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Standing_ReadingTime', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Standing_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Standing_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::number('Standing_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
             </tr>
             <tr>
                 <th scope="row" colspan="4"
                     class="text-lg-right">{!! Form::label('Initial','Initial: ',['class'=>'text-md-left']) !!}</th>
-                <td>{!! Form::text('Initial', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>{!! Form::text('Initial',old('Initial'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             </tr>
             </tbody>
         </table>
         <p>
             {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
         </p>
+                <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
+                {!! Form::close() !!}
                 {{--Body Measurement and Vital Signs end here after the div class below--}}
         </div>
-
-        <div id="BATER" class="tab-pane fade">
-         {{--breath alcohol test --}}
+       {{-- <div id="BATER" class="tab-pane fade">
+         --}}{{--breath alcohol test --}}{{--
         <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>
         <hr>
@@ -184,7 +186,7 @@
             </tr>
             </tbody>
         </table>
-        {{-- electrocardiogram recording --}}
+        --}}{{-- electrocardiogram recording --}}{{--
         <h3>Electrocardiogram Recording</h3>
         <p>(ECG Recording attached in Appendix)</p>
         <hr>
@@ -200,7 +202,7 @@
             <div class="col-md-2">
                 {!! Form::label('Conclusion', 'Conclusion: ') !!}
             </div>
-                      {{--  TODO: Continue from here tomorrow try work with form-check bootstrap--}}
+                      --}}{{--  TODO: Continue from here tomorrow try work with form-check bootstrap--}}{{--
             <div class="col-md-2">
             {!! Form::radio('Conclusion', 'Normal') !!}
             {!! Form::label('Conclusion', 'Normal') !!}
@@ -214,11 +216,11 @@
             {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
             </div>
         </div>
-            {{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}
+            --}}{{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}{{--
         </div>
 
        <div id="MHistory" class="tab-pane fade">
-       {{--  medical history --}}
+       --}}{{--  medical history --}}{{--
         <div class="form-group">
             <h3>Medical History</h3>
             <div class="row">
@@ -439,11 +441,11 @@
                     {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
                 </div>
             </div>
-           {{--medical history ends here after the div class below--}}
+           --}}{{--medical history ends here after the div class below--}}{{--
        </div>
 
         <div id="PExam" class="tab-pane fade">
-             {{--physical examination --}}
+             --}}{{--physical examination --}}{{--
             <div class="form-group">
                 <h3>Physical Examination</h3>
                 <div class="row">
@@ -569,11 +571,11 @@
                     {!! Form::text('Otherwise', '') !!}
                 </div>
             </div>
-           {{--PE ends here after the div tag below--}}
+           --}}{{--PE ends here after the div tag below--}}{{--
        </div>
 
        <div id="UrineTest" class="tab-pane fade">
-            {{-- urine pregnancy test --}}
+            --}}{{-- urine pregnancy test --}}{{--
             <div class="form-group">
                 <h3>Urine Pregnancy Test</h3>
                 <p>(Transcribed from Urine Logbook)</p>
@@ -634,7 +636,7 @@
                 </div>
             </div>
 
-            {{-- urine drugs for abuse test --}}
+            --}}{{-- urine drugs for abuse test --}}{{--
             <div class="form-group">
                 <h3>Urine Drugs of Abuse Test</h3>
                 <p>(Transcribed from Urine Logbook)</p>
@@ -720,11 +722,11 @@
                     </div>
                 </div>
             </div>
-                {{--Urine Test ends here after the div tag below--}}
+                --}}{{--Urine Test ends here after the div tag below--}}{{--
        </div>
 
        <div id="LabTest" class="tab-pane fade">
-        {{-- laboratory test--}}
+        --}}{{-- laboratory test--}}{{--
             <div class="form-group">
                 <h3>Laboratory Tests</h3>
                 <p>(Laboratory Test Report attached in Appendix)</p>
@@ -821,11 +823,11 @@
                     {!! Form::text('Laboratory', '') !!}
                 </div>
             </div>
-            {{--Lab Test ends here after the div tag below--}}
+            --}}{{--Lab Test ends here after the div tag below--}}{{--
        </div>
 
        <div id="STest" class="tab-pane fade">
-           {{--  serology test --}}
+           --}}{{--  serology test --}}{{--
             <div class="form-group">
                 <h3>Serology Test</h3>
                 <p>(Laboratory Test Report attached in Appendix)</p>
@@ -852,11 +854,11 @@
                     {!! Form::text('Laboratory', '') !!}
                 </div>
             </div>
-           {{--Serology Test ends here after the div tag below--}}
+           --}}{{--Serology Test ends here after the div tag below--}}{{--
        </div>
 
        <div id="Criteria" class="tab-pane fade">
-             {{--inclusion and exclusion criteria --}}
+             --}}{{--inclusion and exclusion criteria --}}{{--
             <div class="form-group">
                 <h3>Inclusion and Exclusion Criteria</h3>
                 <h5>Inclusion Criteria</h5>
@@ -1245,11 +1247,11 @@
                     </div>
                 </div>
             </div>
-           {{--Criteria ends here after the div tag below--}}
+           --}}{{--Criteria ends here after the div tag below--}}{{--
        </div>
 
        <div id="Conclude" class="tab-pane fade">
-           {{-- conclusion --}}
+           --}}{{-- conclusion --}}{{--
             <div class="form-group">
                 <h3>Conclusion</h3>
                 <div class="row">
@@ -1279,7 +1281,7 @@
                 </div>
             </div>
 
-             {{--pre-study screening signature--}}
+             --}}{{--pre-study screening signature--}}{{--
             <div class="form-group">
                 <h3>Pre-study Screening Signature</h3>
                 <div class="row">
@@ -1303,9 +1305,11 @@
             </div>
         {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
         {!! Form::close() !!}
-       {{--Conclusion ends here after the div tag below--}}
-        </div>
+       --}}{{--Conclusion ends here after the div tag below--}}{{--
+        </div>--}}
             {{--This ending div tag is for the "tab-content" div--}}
     </div>
+
+
     </div>
 @endsection
