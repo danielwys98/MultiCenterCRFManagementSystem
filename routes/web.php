@@ -17,6 +17,9 @@ Route::get('/','PagesController@loginPage');
 
 Route::get('/dashboard', 'PagesController@index');
 
+/*Route::get('/preScreening', 'PagesController@preScreening');*/
+Route::get('preScreening/create2',function(){return view('preScreening.create2');});
+
 
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
