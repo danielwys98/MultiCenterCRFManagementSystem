@@ -17,8 +17,9 @@
         <hr>
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
-                {!! Form::model($data,['url' => 'foo/bar']) !!}
+                {!! Form::model($data,['route' => ['Patients_Details.update',$patient->id]]) !!}
                 @csrf
+                @method('PUT')
             {{-- body measurements and vital signs --}}
             <h3>Body Measurements and Vital Signs</h3>
             <hr>
@@ -116,6 +117,7 @@
             {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
         </p>
                 <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
+                {{Form::submit('Update',['class'=>'btn btn-primary'])}}
                 {!! Form::close() !!}
                 {{--Body Measurement and Vital Signs end here after the div class below--}}
         </div>

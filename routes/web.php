@@ -35,6 +35,10 @@ Route::post('Patients_Details/{id}','BMVS_Controller@store')->name('Patients_Det
 
 Route::get('Patients_Details/show/{id}','BMVS_Controller@show')->name('Patients_Details.show');
 
+Route::get('Patients_Details/edit/{id}','BMVS_Controller@edit')->name('Patients_Details.edit');
+
+Route::put('Patients_Details/update/{id}','BMVS_Controller@update')->name('Patients_Details.update');
+
 Auth::routes();
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){

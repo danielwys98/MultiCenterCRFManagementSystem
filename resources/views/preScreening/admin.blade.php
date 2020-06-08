@@ -34,6 +34,9 @@
                     <a href="{{route('Patients_Details.show',$patient->id)}}" class="btn btn-primary">Show Details</a>
                 </td>
                 <td>
+                    <a href="{{route('Patients_Details.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
+                </td>
+                <td>
                     <form action="{{route('preScreening.destroy',$patient->id)}}" method="POST">
                         @csrf
                         {{method_field('DELETE')}}
