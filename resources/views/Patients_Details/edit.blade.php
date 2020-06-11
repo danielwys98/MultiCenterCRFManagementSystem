@@ -18,8 +18,8 @@
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                 {!! Form::model($data,['route' => ['Patients_Details.update',$patient->id]]) !!}
-                @csrf
                 @method('PUT')
+                @csrf
             {{-- body measurements and vital signs --}}
             <h3>Body Measurements and Vital Signs</h3>
             <hr>

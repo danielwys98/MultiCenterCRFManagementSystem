@@ -18,8 +18,6 @@ Route::get('/','PagesController@loginPage');
 Route::get('/dashboard', 'PagesController@index');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
-Route::get('preScreening/create2',function(){return view('preScreening.create2');});
-
 
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
@@ -37,7 +35,9 @@ Route::get('Patients_Details/show/{id}','BMVS_Controller@show')->name('Patients_
 
 Route::get('Patients_Details/edit/{id}','BMVS_Controller@edit')->name('Patients_Details.edit');
 
-Route::put('Patients_Details/update/{id}','BMVS_Controller@update')->name('Patients_Details.update');
+Route::put('Patients_Details/{Patients_Details}','BMVS_Controller@update')->name('Patients_Details.update');
+
+Route::delete('Patients_Details/{Patients_Details}','BMVS_Controller@delete')->name('Patients_Details.delete');
 
 Auth::routes();
 

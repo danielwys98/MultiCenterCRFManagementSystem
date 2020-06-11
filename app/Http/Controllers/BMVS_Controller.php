@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_BodyAndVitalSigns;
+use DB;
 
 class BMVS_Controller extends Controller
 {
@@ -60,9 +61,33 @@ class BMVS_Controller extends Controller
 
     public function update(Request $request,$id)
     {
-        $bmvs = Patient_BodyAndVitalSigns::find($id);
-        dd($bmvs);
-  /*      $bmvs->patient_id =$patient_id;
+       DB::table('patient_body_and_vital_signs')
+                        ->where('patient_id',$id)
+                        ->update([
+                                'dateTaken'=>$request->dateTaken,
+                                'timeTaken'=>$request->timeTaken,
+                                'weight'=>$request->weight,
+                                'height'=>$request->height,
+                                'bmi'=>$request->bmi,
+                                'temperature'=>$request->temperature,
+                                'Supine_ReadingTime'=>$request->Supine_ReadingTime,
+                                'Supine_BP'=>$request->Supine_BP,
+                                'Supine_HR'=>$request->Supine_HR,
+                                'Supine_RespiratoryRate'=>$request->Supine_RespiratoryRate,
+                                'Sitting_ReadingTime'=>$request->Sitting_ReadingTime,
+                                'Sitting_BP'=>$request->Sitting_BP,
+                                'Sitting_HR'=>$request->Sitting_HR,
+                                'Sitting_RespiratoryRate'=>$request->Sitting_RespiratoryRate,
+                                'Standing_ReadingTime'=>$request->Standing_ReadingTime,
+                                'Standing_BP'=>$request->Standing_BP,
+                                'Standing_HR'=>$request->Standing_HR,
+                                'Standing_RespiratoryRate'=>$request->Standing_RespiratoryRate,
+                                'Initial'=>$request->Initial
+                        ]);
+
+        return redirect('preScreening/admin');
+
+/*        $bmvs->patient_id =$patient_id;
         $bmvs->dateTaken=$request->dateTaken;
         $bmvs->timeTaken=$request->timeTaken;
         $bmvs->weight=$request->weight;
@@ -81,11 +106,14 @@ class BMVS_Controller extends Controller
         $bmvs->Standing_BP=$request->Standing_BP;
         $bmvs->Standing_HR=$request->Standing_HR;
         $bmvs->Standing_RespiratoryRate=$request->Standing_RespiratoryRate;
-        $bmvs->Initial=$request->Initial;*/
+        $bmvs->Initial=$request->Initial;
 
-      /*  $bmvs->save();*/
+      $bmvs->save();*/
+    }
+    public function delete($id)
+    {
+        DB::table('patient_body_and_vital_signs')->where('patient_id',$id)->delete();
 
-
-    /*  return redirect('preScreening/admin');*/
+        return redirect('preScreening/admin')->with('Messages',"You had deleted the patient's details!");
     }
 }

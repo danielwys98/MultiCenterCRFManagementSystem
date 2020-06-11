@@ -2,6 +2,18 @@
 
 @section('content')
     <h1>This is the Pre-Screening Database Page</h1>
+    <div class="card-body">
+        @if (session('Messages'))
+            <div class="alert alert-success">
+                {{ session('Messages') }}
+            </div>
+        @endif
+        @if (session('ErrorMessages'))
+            <div class="alert alert-danger">
+                {{ session('ErrorMessages') }}
+            </div>
+        @endif
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -37,9 +49,16 @@
                     <a href="{{route('Patients_Details.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
                 </td>
                 <td>
+                    <form action="{{route('Patients_Details.delete',$patient->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete Details</button>
+                    </form>
+                </td>
+                <td>
                     <form action="{{route('preScreening.destroy',$patient->id)}}" method="POST">
                         @csrf
-                        {{method_field('DELETE')}}
+                        @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete Subject</button>
                     </form>
                 </td>
