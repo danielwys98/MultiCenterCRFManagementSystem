@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2>Visit 1: Pre-Study Screening of This Guy's Name</h2>
+        <h2>Visit 1: Pre-Study Screening of {{$patient->name}}</h2>
         <ul class="nav nav-pills sticky-top bg-light">
             <li class="active"><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
             <li><a data-toggle="tab" href="#BATER">Breath Alcohol Test and Electrocardiogram Recording</a></li>
@@ -17,7 +17,7 @@
         <hr>
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
-            {!! Form::open(['route' => ['Patients_Details.store',$patient->id]]) !!}
+                {!! Form::open(['route' => ['details.store',$patient->id]]) !!}
                 @csrf
             {{-- body measurements and vital signs --}}
             <h3>Body Measurements and Vital Signs</h3>
@@ -119,8 +119,10 @@
                 {!! Form::close() !!}
                 {{--Body Measurement and Vital Signs end here after the div class below--}}
         </div>
-       {{-- <div id="BATER" class="tab-pane fade">
-         --}}{{--breath alcohol test --}}{{--
+       <div id="BATER" class="tab-pane fade">
+       {!! Form::open(['route' => ['store.bater',$patient->id]]) !!}
+           @csrf
+        {{--breath alcohol test --}}
         <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>
         <hr>
@@ -137,30 +139,50 @@
                 {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
             </div>
         </div>
-        <div class="form-group row">
+{{--        <div class="form-group row">
             <div class="col-md-4">{!! Form::label('Laboratory', 'Laboratory: ') !!}</div>
             <div class="col-md-3">
                 <div class="row">
                     <div class="col-md-1">
-                        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+                        {!! Form::radio('Laboratory1', 'Sarawak General Hospital Heart Centre') !!}
                     </div>
                     <div class="col-md-11">
-                        {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+                        {!! Form::label('Laboratory1', 'Sarawak General Hospital Heart Centre') !!}
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-2">
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other') !!}
+                        {!! Form::radio('Laboratory2', 'Other') !!}
+                        {!! Form::label('Laboratory2', 'Other') !!}
                     </div>
                     <div class="col-md-5">
-                        {!! Form::text('Laboratory', '',['placeholder'=>'Please Specify']) !!}
+                        {!! Form::text('Laboratory2', '',['placeholder'=>'Please Specify']) !!}
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
+           <div class="form-group row">
+               <div class="col-md-2">
+                   {!! Form::label('Laboratory', 'Laboratory:') !!}
+               </div>
+               <div class="col-md-1">
+                   {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+                   {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+               </div>
+               <div class="col-md-5">
+                   <div class="row">
+                       <div class="col-md-2">
+                           {!! Form::radio('Others', 'Others') !!}
+                           {!! Form::label('Laboratory', 'Others') !!}
+                       </div>
+                       <div class="col-md-3">
+                           {!! Form::text('Laboratory', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                       </div>
+                   </div>
+               </div>
+           </div>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -174,35 +196,34 @@
                 <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
                 <td>{!! Form::number('breathalcohol', '',['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
                 <td>
-                    {!! Form::radio('breathalcohol', 'Positive') !!}
-                    {!! Form::label('breathalcohol', 'Positive ') !!}
-                    {!! Form::radio('breathalcohol', 'Negative') !!}
-                    {!! Form::label('breathalcohol', 'Negative ') !!}
+                    {!! Form::radio('breathalcoholResult', 'Positive') !!}
+                    {!! Form::label('breathalcoholResult', 'Positive ') !!}
+                    {!! Form::radio('breathalcoholResult', 'Negative') !!}
+                    {!! Form::label('breathalcoholResult', 'Negative ') !!}
                 </td>
             <tr>
                 <th scope="row" colspan="2"
                     class="text-lg-right">{!! Form::label('Transcribedby', 'Transcribed by: ') !!}</th>
-                <td>{!! Form::text('Transcribedby', '',['class'=>'form-control']) !!}</td>
+                <td>{!! Form::text('Usertranscribed', '',['class'=>'form-control']) !!}</td>
             </tr>
             </tbody>
         </table>
-        --}}{{-- electrocardiogram recording --}}{{--
+       {{-- electrocardiogram recording --}}
         <h3>Electrocardiogram Recording</h3>
         <p>(ECG Recording attached in Appendix)</p>
         <hr>
         <div class="form-group row">
             <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
+                {!! Form::label('ECGdateTaken', 'Date Taken: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+                {!! Form::date('ECGdateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
             <div class="col-md-2">
                 {!! Form::label('Conclusion', 'Conclusion: ') !!}
             </div>
-                      --}}{{--  TODO: Continue from here tomorrow try work with form-check bootstrap--}}{{--
             <div class="col-md-2">
             {!! Form::radio('Conclusion', 'Normal') !!}
             {!! Form::label('Conclusion', 'Normal') !!}
@@ -216,11 +237,13 @@
             {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
             </div>
         </div>
-            --}}{{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}{{--
+           {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+           {!! Form::close() !!}
+            {{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}
         </div>
 
-       <div id="MHistory" class="tab-pane fade">
-       --}}{{--  medical history --}}{{--
+       {{--}}<div id="MHistory" class="tab-pane fade">
+       {{--  medical history --}}{{--
         <div class="form-group">
             <h3>Medical History</h3>
             <div class="row">

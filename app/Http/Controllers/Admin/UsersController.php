@@ -27,6 +27,7 @@ class UsersController extends Controller
     }
 
     /**
+     *
      * Show the form for editing the specified resource.
      *
      * @param  \App\User  $user

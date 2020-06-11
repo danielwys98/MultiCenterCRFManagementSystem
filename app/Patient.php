@@ -14,4 +14,8 @@ class Patient extends Model
     {
         return $this->hasOne('App\Patient_BodyAndVitalSigns','patient_id','id');
     }
+    public function BreathAlcoholTestAndElectrocardiogram()
+    {
+        return $this->hasOne('App\Patient_BreathAlcoholTestAndElectrocardiogram','patient_id','id');
+    }
 }

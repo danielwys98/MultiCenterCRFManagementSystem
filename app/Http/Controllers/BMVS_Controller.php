@@ -12,7 +12,7 @@ class BMVS_Controller extends Controller
     public function create($id)
     {
         $patient = Patient::find($id);
-        return view('Patients_Details.create',compact('patient'));
+        return view('details.create',compact('patient'));
     }
     public function store(Request $request,$id)
     {
@@ -49,14 +49,15 @@ class BMVS_Controller extends Controller
     {
         $patient = Patient::find($id);
         $data =$patient->bodyandvitalsigns;
-        return view('Patients_Details.show',compact('data'))->with('patient',$patient);
+        return view('details.show',compact('data'))->with('patient',$patient);
     }
 
     public function edit($id)
     {
         $patient = Patient::find($id);
         $data =$patient->bodyandvitalsigns;
-        return view('Patients_Details.edit',compact('data'))->with('patient',$patient);
+        $data2 =$patient->BreathAlcoholTestAndElectrocardiogram;
+        return view('details.edit',compact('data','data2'))->with('patient',$patient);
     }
 
     public function update(Request $request,$id)
@@ -110,10 +111,10 @@ class BMVS_Controller extends Controller
 
       $bmvs->save();*/
     }
-    public function delete($id)
+/*    public function delete($id)
     {
         DB::table('patient_body_and_vital_signs')->where('patient_id',$id)->delete();
 
         return redirect('preScreening/admin')->with('Messages',"You had deleted the patient's details!");
-    }
+    }*/
 }

@@ -27,21 +27,26 @@ Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
 Route::get('/preScreeningForm','PagesController@preScreeningForm');
 
-Route::get('Patients_Details/create/{id}','BMVS_Controller@create')->name('Patients_Details.create');
+Route::get('details/create/{id}','BMVS_Controller@create')->name('details.create');
 
-Route::post('Patients_Details/{id}','BMVS_Controller@store')->name('Patients_Details.store');
+Route::post('details/{id}','BMVS_Controller@store')->name('details.store');
 
-Route::get('Patients_Details/show/{id}','BMVS_Controller@show')->name('Patients_Details.show');
+Route::get('details/show/{id}','BMVS_Controller@show')->name('details.show');
 
-Route::get('Patients_Details/edit/{id}','BMVS_Controller@edit')->name('Patients_Details.edit');
+Route::get('details/edit/{id}','BMVS_Controller@edit')->name('details.edit');
 
-Route::put('Patients_Details/{Patients_Details}','BMVS_Controller@update')->name('Patients_Details.update');
+Route::put('details/{details}','BMVS_Controller@update')->name('details.update');
 
-Route::delete('Patients_Details/{Patients_Details}','BMVS_Controller@delete')->name('Patients_Details.delete');
+Route::post('bater/{id}','BATER_Controller@storeBATER')->name('store.bater');
+
+Route::put('bater/{bater}','BATER_Controller@updateBATER')->name('update.bater');
+
+
+/*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
 Auth::routes();
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){
+Route::namespace('Admin')->name('admin.')->middleware('can:adminFunctions')->group(function (){
     Route::resource('users','UsersController',['except'=>['show','create','store']]);
 });
 
