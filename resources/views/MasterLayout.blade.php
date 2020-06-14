@@ -22,7 +22,7 @@
 <body>
         <div class="sidebar-container">
             <div class="sidebar-logo">
-                      <h5>MultiCentre-CRF Management System</h5>
+                      <h6>MultiCentre-CRF Management System</h6>
             </div>
             <ul class="sidebar-navigation">
                 <li class="header">Menu</li>
