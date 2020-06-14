@@ -7,7 +7,7 @@
                     <div class="card-header"><b>Edit User on {{$user->name}}</b></div>
 
                     <div class="card-body">
-                        <form action="{{route('admin.users.update',$user)}}" method="POST">
+                        <form action="{{route('users.update',$user)}}" method="POST">
                             {{--Update Email--}}
                             <div class="form-group row">
                                 <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>

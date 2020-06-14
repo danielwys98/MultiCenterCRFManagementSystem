@@ -37,7 +37,7 @@ class UsersController extends Controller
     {
         if(Gate::denies('edit-users'))
         {
-            return redirect()->route('admin.users.index')->with('ErrorMessages','You had no access to this!');
+            return redirect()->route('users.index')->with('ErrorMessages','You had no access to this!');
         }
         $roles = Role::all();
 
@@ -63,7 +63,7 @@ class UsersController extends Controller
         $user->save();
 
 
-        return redirect()->route('admin.users.index')->with('Messages','You had updated the users!');
+        return redirect()->route('users.index')->with('Messages','You had updated the users!');
     }
 
     /**
@@ -76,11 +76,11 @@ class UsersController extends Controller
     {
         if(Gate::denies('delete-users'))
         {
-            return redirect()->route('admin.users.index')->with('ErrorMessages','You had no access to this!');
+            return redirect()->route('users.index')->with('ErrorMessages','You had no access to this!');
         }
         $user->roles()->detach();
         $user->delete();
 
-        return redirect()->route('admin.users.index')->with('Messages','You had deleted the users!');
+        return redirect()->route('users.index')->with('Messages','You had deleted the users!');
     }
 }

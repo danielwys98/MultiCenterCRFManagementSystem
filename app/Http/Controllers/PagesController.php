@@ -18,7 +18,7 @@ class PagesController extends Controller
     }
     public function loginPage()
     {
-        return view('auth.login');
+        return redirect('/login');
     }
 
 

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/e601eb5514.js" crossorigin="anonymous"></script>
 
 
 
@@ -46,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="admin/users" class="{{request()->is('admin/users')? 'active' :' '}}"}}>Administration</a>
+                    <a href="/users" class="{{request()->is('/users')? 'active' :' '}}"}}>Administration</a>
 
                 </li>
                 @endcan
@@ -61,7 +60,7 @@
                         <a href="{{route('logout')}}" class="col-lg-1"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            <i class="fas fa-power-off"></i>
+                            <span id="power_button"><img src="photos/logoff.png" alt="Log Off Button"></span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

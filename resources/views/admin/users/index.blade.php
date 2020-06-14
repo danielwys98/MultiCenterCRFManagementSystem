@@ -36,9 +36,9 @@
                                 <td>{{$user->created_at}}</td>
                                 <td>{{implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
                                 <td>
-                                    <a href="{{route('admin.users.edit',$user->id)}}"><button type="button" class="btn btn-primary float-left">Edit</button></a>
+                                    <a href="{{route('users.edit',$user->id)}}"><button type="button" class="btn btn-primary float-left">Edit</button></a>
                                         {{--submit it as form to delete the users--}}
-                                       <form action="{{route('admin.users.destroy',$user->id)}}" method="POST">
+                                       <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                            @csrf
                                            {{method_field('DELETE')}}
                                            <button type="submit" class="btn btn-danger">Delete</button>
