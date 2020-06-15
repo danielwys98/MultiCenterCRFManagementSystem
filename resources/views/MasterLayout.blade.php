@@ -58,7 +58,7 @@
                     <h1 class="col-lg-11">Welcome! {{Auth::user()->name}}</h1>
                     {{logger($errors)}}
                         <a href="{{route('logout')}}" class="col-lg-1"
-                            onclick="event.preventDefault();
+                            onclick="preventDefault();
                             document.getElementById('logout-form').submit();">
                             <span id="power_button"><img src="{{ URL::asset("photos/logoff.png") }}" alt="Log Off Button"></span>
                         </a>
