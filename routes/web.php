@@ -47,6 +47,7 @@ Route::put('bater/{bater}','BATER_Controller@updateBATER')->name('update.bater')
 Auth::routes();
 
 
+
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);
 
 Route::resource('preScreening','preScreeningController');

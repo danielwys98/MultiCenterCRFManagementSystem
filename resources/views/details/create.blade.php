@@ -174,7 +174,7 @@
                <div class="col-md-5">
                    <div class="row">
                        <div class="col-md-2">
-                           {!! Form::radio('Others', 'Others') !!}
+                           {!! Form::radio('Laboratory', 'Others') !!}
                            {!! Form::label('Laboratory', 'Others') !!}
                        </div>
                        <div class="col-md-3">
