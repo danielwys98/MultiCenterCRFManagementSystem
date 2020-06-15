@@ -63,7 +63,7 @@
                         {!! Form::label('Others', 'Others') !!}
                     </div>
                     <div class="col-md-5">
-                        {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                        {!! Form::text('Others', '',['placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
             </div>
@@ -280,7 +280,7 @@
             <div class="col-md-3">
                 {!! Form::label('Conclusion', 'Conclusion: ') !!}
             </div>
-{{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}
+            {{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}
             {!! Form::radio('Conclusion', 'Normal') !!}
             {!! Form::label('Conclusion', 'Normal') !!}
             {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ') !!}
