@@ -178,7 +178,7 @@
                            {!! Form::label('Laboratory', 'Others') !!}
                        </div>
                        <div class="col-md-3">
-                           {!! Form::text('Laboratory', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                           {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                        </div>
                    </div>
                </div>

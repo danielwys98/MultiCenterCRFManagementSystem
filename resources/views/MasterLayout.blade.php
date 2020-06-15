@@ -30,7 +30,7 @@
                     <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/preScreening" class="{{request()->is('preScreeningForm')? 'active' :' '}}" >Pre-Screening</a>
+                    <a href="/preScreening" class="{{request()->is('preScreening')? 'active' :' '}}" >Pre-Screening</a>
                 </li>
                 <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
@@ -60,7 +60,7 @@
                         <a href="{{route('logout')}}" class="col-lg-1"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            <span id="power_button"><img src="photos/logoff.png" alt="Log Off Button"></span>
+                            <span id="power_button"><img src="{{ URL::asset("photos/logoff.png") }}" alt="Log Off Button"></span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

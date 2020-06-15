@@ -9,6 +9,10 @@ use DB;
 
 class BATER_Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function storeBATER(Request $request,$id)
     {
         $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;

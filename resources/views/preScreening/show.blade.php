@@ -114,7 +114,7 @@
     <div class="form-group row">
         <div class="col-md-4">
         {!! Form::label('MRNno', 'MRN Hopsital Registration Number: ') !!}
-        {!! Form::number('MRNno', old('MRNno'),['class'=>'form-control']) !!}
+        {!! Form::text('MRNno', old('MRNno'),['class'=>'form-control']) !!}
         </div>
     </div>
     <a href="{{ route('preScreening.index')}}" class="btn btn-primary">Back</a>
