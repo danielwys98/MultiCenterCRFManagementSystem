@@ -30,7 +30,7 @@
                     <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/preScreening" class="{{request()->is('preScreeningForm')? 'active' :' '}}" >Pre-Screening</a>
+                    <a href="/preScreening" class="{{request()->is('preScreening')? 'active' :' '}}" >Pre-Screening</a>
                 </li>
                 <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
