@@ -12,14 +12,17 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/e601eb5514.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 
 
 </head>
 <body>
         <div class="sidebar-container">
             <div class="sidebar-logo">
-                      <h5>MultiCentre-CRF Management System</h5>
+                      <h6>MultiCentre-CRF Management System</h6>
             </div>
             <ul class="sidebar-navigation">
                 <li class="header">Menu</li>
@@ -27,14 +30,14 @@
                     <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/preScreening" class="{{request()->is('preScreening')? 'active' :' '}}" >Pre-Screening</a>
+                    <a href="/preScreening" class="{{request()->is('preScreeningForm')? 'active' :' '}}" >Pre-Screening</a>
                 </li>
                 <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
                 </li>
                 @can('adminFunctions')
                 <li>
-                    <a href="/preScreeningdb" class="{{request()->is('preScreeningdb')? 'active' :' '}}" >Pre-Screening Database</a>
+                    <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
                 </li>
 
                 <li>
@@ -42,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="admin/users" class="{{request()->is('admin/users')? 'active' :' '}}"}}>Administration</a>
+                    <a href="/users" class="{{request()->is('/users')? 'active' :' '}}"}}>Administration</a>
 
                 </li>
                 @endcan
@@ -57,7 +60,7 @@
                         <a href="{{route('logout')}}" class="col-lg-1"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            <i class="fas fa-power-off"></i>
+                            <span id="power_button"><img src="photos/logoff.png" alt="Log Off Button"></span>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

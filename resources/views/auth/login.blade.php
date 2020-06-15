@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center row-auth">
             <div id="login" class="col-md-8">
-                    <span id="logo"><img src="photos/BK_Logo.png" alt="Borneo Kinetics Logo" class="mx-auto d-block"></span>
+                    <span id="logo"><img src="photos/BK_Logo2.jpg" alt="Borneo Kinetics Logo" class="mx-auto d-block"></span>
                     <hr/>
                     <h3 class="subtitle mb-2">Welcome back!</h3>
                     <br>
