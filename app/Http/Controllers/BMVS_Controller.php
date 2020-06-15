@@ -9,6 +9,10 @@ use DB;
 
 class BMVS_Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function create($id)
     {
         $patient = Patient::find($id);
