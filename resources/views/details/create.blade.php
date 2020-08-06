@@ -242,8 +242,10 @@
             {{--Breath Alcohol Test and Electrocardiogram Recording ends here--}}
         </div>
 
-       {{--}}<div id="MHistory" class="tab-pane fade">
-       {{--  medical history --}}{{--
+       <div id="MHistory" class="tab-pane fade">
+        {!! Form::open(['route' => ['store.mhistory',$patient->id]]) !!}
+        @csrf
+       {{--  medical history --}}
         <div class="form-group">
             <h3>Medical History</h3>
             <div class="row">
@@ -267,91 +269,91 @@
                         <td>Allergy</td>
                         <td>{!! Form::radio('Allergy', 'Normal') !!}</td>
                         <td>{!! Form::radio('Allergy', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Allergy', '') !!}</td>
+                        <td>{!! Form::text('Allergy_txt', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Eyes-Ears-Nose-Throat</td>
-                        <td>{!! Form::radio('Eyes-Ears-Nose-Throat', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Eyes-Ears-Nose-Throat', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Eyes-Ears-Nose-Throat', '') !!}</td>
+                        <td>{!! Form::radio('EENT', 'Normal') !!}</td>
+                        <td>{!! Form::radio('EENT', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('EENT_txt', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Respiratory</td>
                         <td>{!! Form::radio('Respiratory', 'Normal') !!}</td>
                         <td>{!! Form::radio('Respiratory', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Respiratory', '') !!}</td>
+                        <td>{!! Form::text('Respiratory_txt', '') !!}</td>
                     <tr>
                     <tr>
                         <td>Cardiovascular</td>
                         <td>{!! Form::radio('Cardiovascular', 'Normal') !!}</td>
                         <td>{!! Form::radio('Cardiovascular', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Cardiovascular', '') !!}</td>
+                        <td>{!! Form::text('Cardiovascular_txt', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Gastrointestinal</td>
                         <td>{!! Form::radio('Gastrointestinal', 'Normal') !!}</td>
                         <td>{!! Form::radio('Gastrointestinal', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Gastrointestinal', '') !!}</td>
+                        <td>{!! Form::text('Gastrointestinal_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Genitourinary</td>
                             <td>{!! Form::radio('Genitourinary', 'Normal') !!}</td>
                             <td>{!! Form::radio('Genitourinary', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Genitourinary', '') !!}</td>
+                            <td>{!! Form::text('Genitourinary_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Neurological</td>
                             <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
                             <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Neurological', '') !!}</td>
+                            <td>{!! Form::text('Neurological_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Haematopoietic-Lymphatic</td>
-                            <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Normal') !!}</td>
-                            <td>{!! Form::radio('Haematopoietic-Lymphatic', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Haematopoietic-Lymphatic', '') !!}</td>
+                            <td>{!! Form::radio('HaematopoieticL', 'Normal') !!}</td>
+                            <td>{!! Form::radio('HaematopoieticL', 'Abnormal') !!}</td>
+                            <td>{!! Form::text('HaematopoieticL_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Endocrine-Metabolic</td>
-                            <td>{!! Form::radio('Endocrine-Metabolic', 'Normal') !!}</td>
-                            <td>{!! Form::radio('Endocrine-Metabolic', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Endocrine-Metabolic', '') !!}</td>
+                            <td>{!! Form::radio('EndocrineM', 'Normal') !!}</td>
+                            <td>{!! Form::radio('EndocrineM', 'Abnormal') !!}</td>
+                            <td>{!! Form::text('EndocrineM_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Dermatological</td>
                             <td>{!! Form::radio('Dermatological', 'Normal') !!}</td>
                             <td>{!! Form::radio('Dermatological', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Dermatological', '') !!}</td>
+                            <td>{!! Form::text('Dermatological_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Musculoskeletal</td>
                             <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
                             <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Musculoskeletal', '') !!}</td>
+                            <td>{!! Form::text('Musculoskeletal_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Psychological</td>
                             <td>{!! Form::radio('Psychological', 'Normal') !!}</td>
                             <td>{!! Form::radio('Psychological', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Psychological', '') !!}</td>
+                            <td>{!! Form::text('Psychological_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Family History</td>
-                            <td>{!! Form::radio('Family History', 'Normal') !!}</td>
-                            <td>{!! Form::radio('Family History', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Family History', '') !!}</td>
+                            <td>{!! Form::radio('FamilyHistory', 'Normal') !!}</td>
+                            <td>{!! Form::radio('FamilyHistory', 'Abnormal') !!}</td>
+                            <td>{!! Form::text('FamilyHistory_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Surgical History</td>
-                            <td>{!! Form::radio('Surgical History', 'Normal') !!}</td>
-                            <td>{!! Form::radio('Surgical History', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Surgical History', '') !!}</td>
+                            <td>{!! Form::radio('SurgicalHistory', 'Normal') !!}</td>
+                            <td>{!! Form::radio('SurgicalHistory', 'Abnormal') !!}</td>
+                            <td>{!! Form::text('SurgicalHistory_txt', '') !!}</td>
                     </tr>
                     <tr>
                             <td>Previous Hospitalization</td>
-                            <td>{!! Form::radio('Previous Hospitalization', 'Normal') !!}</td>
-                            <td>{!! Form::radio('Previous Hospitalization', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Previous Hospitalization', '') !!}</td>
+                            <td>{!! Form::radio('PrevHospitalization', 'Normal') !!}</td>
+                            <td>{!! Form::radio('PrevHospitalization', 'Abnormal') !!}</td>
+                            <td>{!! Form::text('PrevHospitalization_txt', '') !!}</td>
                     </tr>
                 </table>
                 <table class="table col-sm-9">
@@ -366,91 +368,91 @@
                         <td>{!! Form::radio('Smoker', 'No') !!}</td>
                         <td>{!! Form::radio('Smoker', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Smoker', 'number of sticks a day: ') !!}
-                            {!! Form::text('Smoker', '') !!}
+                            {!! Form::label('Smoker_txt', 'number of sticks a day: ') !!}
+                            {!! Form::text('Smoker_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Regular Alchohol Intake</td>
-                        <td>{!! Form::radio('Regular Alchohol Intake', 'No') !!}</td>
-                        <td>{!! Form::radio('Regular Alchohol Intake', 'Yes') !!}</td>
+                        <td>{!! Form::radio('RAI', 'No') !!}</td>
+                        <td>{!! Form::radio('RAI', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Regular Alchohol Intake', 'amount and frequency: ') !!}
-                            {!! Form::text('Regular Alchohol Intake', '') !!}
+                            {!! Form::label('RAI_txt', 'amount and frequency: ') !!}
+                            {!! Form::text('RAI_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Regular Medications or Supplements</td>
-                        <td>{!! Form::radio('Regular Medications or Supplements', 'No') !!}</td>
-                        <td>{!! Form::radio('Regular Medications or Supplements', 'Yes') !!}</td>
+                        <td>{!! Form::radio('RMS', 'No') !!}</td>
+                        <td>{!! Form::radio('RMS', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Regular Medications or Supplements', 'describe: ') !!}
-                            {!! Form::text('Regular Medications or Supplements', '') !!}
+                            {!! Form::label('RMS_txt', 'describe: ') !!}
+                            {!! Form::text('RMS_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Regular Exercise</td>
-                        <td>{!! Form::radio('Regular Exercise', 'No') !!}</td>
-                        <td>{!! Form::radio('Regular Exercise', 'Yes') !!}</td>
+                        <td>{!! Form::radio('RegularExercise', 'No') !!}</td>
+                        <td>{!! Form::radio('RegularExercise', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Regular Exercise', 'activity and frequency: ') !!}
-                            {!! Form::text('Regular Exercise', '') !!}
+                            {!! Form::label('RegularExercise_txt', 'activity and frequency: ') !!}
+                            {!! Form::text('RegularExercise_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Blood Donations</td>
-                        <td>{!! Form::radio('Blood Donations', 'No') !!}</td>
-                        <td>{!! Form::radio('Blood Donations', 'Yes') !!}</td>
+                        <td>{!! Form::radio('BloodDonations', 'No') !!}</td>
+                        <td>{!! Form::radio('BloodDonations', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Blood Donations', 'date and blood volume: ') !!}
-                            {!! Form::text('Blood Donations', '') !!}
+                            {!! Form::label('BloodDonations_txt', 'date and blood volume: ') !!}
+                            {!! Form::text('BloodDonations_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Regular Periods
-                            {!! Form::radio('Regular Periods', 'Not Applicable') !!}
-                            {!! Form::label('Regular Periods', 'Not Applicable') !!}
+                            {!! Form::radio('RegularPeriods', 'Not Applicable') !!}
+                            {!! Form::label('RegularPeriods', 'Not Applicable') !!}
                         </td>
-                        <td>{!! Form::radio('Regular Periods', 'No') !!}</td>
-                        <td>{!! Form::radio('Regular Periods', 'Yes') !!}</td>
+                        <td>{!! Form::radio('RegularPeriods', 'No') !!}</td>
+                        <td>{!! Form::radio('RegularPeriods', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Regular Periods', 'If No, describe: ') !!}
-                            {!! Form::text('Regular Periods', '') !!}
-                            {!! Form::label('Regular Periods', 'If Yes, please state last menstrual period: ') !!}
-                            {!! Form::text('Regular Periods', '') !!}
+                            {!! Form::label('RegularPeriods_txt', 'If No, describe: ') !!}
+                            {!! Form::text('RegularPeriods_txt', '') !!}
+                            {!! Form::label('RegularPeriods_txt', 'If Yes, please state last menstrual period: ') !!}
+                            {!! Form::text('RegularPeriods_txt', '') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Active Sexual Activities</td>
-                        <td>{!! Form::radio('Active Sexual Activities', 'No') !!}</td>
-                        <td>{!! Form::radio('Active Sexual Activities', 'Yes') !!}</td>
+                        <td>{!! Form::radio('ActiveSexAct', 'No') !!}</td>
+                        <td>{!! Form::radio('ActiveSexAct', 'Yes') !!}</td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>
                             Fertility Control
-                            {!! Form::radio('Fertility Control', 'Not Applicable') !!}
-                            {!! Form::label('Fertility Control', 'Not Applicable') !!}
+                            {!! Form::radio('FertilityControl', 'Not Applicable') !!}
+                            {!! Form::label('FertilityControl', 'Not Applicable') !!}
                         </td>
-                        <td>{!! Form::radio('Fertility Control', 'No') !!}</td>
-                        <td>{!! Form::radio('Fertility Control', 'Yes') !!}</td>
+                        <td>{!! Form::radio('FertilityControl', 'No') !!}</td>
+                        <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
                         <td>
-                            {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
-                            {!! Form::radio('Fertility Control counseling', 'No') !!}
-                            {!! Form::radio('Fertility Control counseling', 'Yes') !!}
+                            {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
+                            {!! Form::radio('FertilityControlCounseling', 'No') !!}
+                            {!! Form::radio('FertilityControlCounseling', 'Yes') !!}
 
                             {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
-                            {!! Form::checkbox('Fertility Control counseling', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
-                            {!! Form::checkbox('Fertility Control counseling', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
-                            {!! Form::checkbox('Fertility Control counseling', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
-                            {!! Form::checkbox('Fertility Control counseling', 'Long term (tubal ligation, vasectomy)') !!}
+                            {!! Form::checkbox('FertilityControlCounseling', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
+                            {!! Form::checkbox('FertilityControlCounseling', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
+                            {!! Form::checkbox('FertilityControlCounseling', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
+                            {!! Form::checkbox('FertilityControlCounseling', 'Long term (tubal ligation, vasectomy)') !!}
                         </td>
                     </tr>
                     <tr>
                         <td>Breastfeeding Female</td>
-                        <td>{!! Form::radio('Breastfeeding Female', 'No') !!}</td>
-                        <td>{!! Form::radio('Breastfeeding Female', 'Yes') !!}</td>
+                        <td>{!! Form::radio('Breastfeeding', 'No') !!}</td>
+                        <td>{!! Form::radio('Breastfeeding', 'Yes') !!}</td>
                         <td></td>
                     </tr>
                 </table>
@@ -464,11 +466,15 @@
                     {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
                 </div>
             </div>
-           --}}{{--medical history ends here after the div class below--}}{{--
+            {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+           {!! Form::close() !!}
+          {{--medical history ends here after the div class below--}}
        </div>
 
         <div id="PExam" class="tab-pane fade">
-             --}}{{--physical examination --}}{{--
+            {!! Form::open(['route' => ['store.pexam',$patient->id]]) !!}
+            @csrf
+            {{--physical examination --}}
             <div class="form-group">
                 <h3>Physical Examination</h3>
                 <div class="row">
@@ -486,9 +492,9 @@
                     </tr>
                     <tr>
                         <td>General Appearance</td>
-                        <td>{!! Form::radio('General Appearance', 'Normal') !!}</td>
-                        <td>{!! Form::radio('General Appearance', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('General Appearance', '') !!}</td>
+                        <td>{!! Form::radio('GeneralAppearance', 'Normal') !!}</td>
+                        <td>{!! Form::radio('GeneralAppearance', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('GeneralAppearance', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Skin</td>
@@ -498,9 +504,9 @@
                     </tr>
                     <tr>
                         <td>Head-Neck</td>
-                        <td>{!! Form::radio('Head-Neck', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Head-Neck', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Head-Neck', '') !!}</td>
+                        <td>{!! Form::radio('Head_Neck', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Head_Neck', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Head_Neck', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Eyes</td>
@@ -510,9 +516,9 @@
                     </tr>
                     <tr>
                         <td>Ears / Nose / Throat</td>
-                        <td>{!! Form::radio('Ears / Nose / Throat', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Ears / Nose / Throat', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Ears / Nose / Throat', '') !!}</td>
+                        <td>{!! Form::radio('Ears_Nose_Throat', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Ears_Nose_Throat', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Ears_Nose_Throat', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Mouth</td>
@@ -522,9 +528,9 @@
                     </tr>
                     <tr>
                         <td>Chest / Lungs</td>
-                        <td>{!! Form::radio('Chest / Lungs', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Chest / Lungs', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Chest / Lungs', '') !!}</td>
+                        <td>{!! Form::radio('Chest_Lungs', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Chest_Lungs', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Chest_Lungs', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Heart</td>
@@ -540,9 +546,9 @@
                     </tr>
                     <tr>
                         <td>Back-Spine</td>
-                        <td>{!! Form::radio('Back-Spine', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Back-Spine', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Back-Spine', '') !!}</td>
+                        <td>{!! Form::radio('Back_Spine', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Back_Spine', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Back_Spine', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Musculoskeletal</td>
@@ -564,9 +570,9 @@
                     </tr>
                     <tr>
                         <td>Lymph Nodes</td>
-                        <td>{!! Form::radio('Lymph Nodes', 'Normal') !!}</td>
-                        <td>{!! Form::radio('Lymph Nodes', 'Abnormal') !!}</td>
-                        <td>{!! Form::text('Lymph Nodes', '') !!}</td>
+                        <td>{!! Form::radio('Lymph_Nodes', 'Normal') !!}</td>
+                        <td>{!! Form::radio('Lymph_Nodes', 'Abnormal') !!}</td>
+                        <td>{!! Form::text('Lymph_Nodes', '') !!}</td>
                     </tr>
                     <tr>
                         <td>Other</td>
@@ -576,29 +582,33 @@
                     </tr>
                 </table>
                 <div>
-                    {!! Form::label('Cubital fossa veins', 'Cubital fossa veins: ') !!}
-                    {!! Form::radio('Cubital fossa veins', 'Clearly visible') !!}
-                    {!! Form::label('Cubital fossa veins', 'Clearly visible') !!}
-                    {!! Form::radio('Cubital fossa veins', 'Moderately visible') !!}
-                    {!! Form::label('Cubital fossa veins', 'Moderately visible') !!}
-                    {!! Form::radio('Cubital fossa veins', 'Poorly visible') !!}
-                    {!! Form::label('Cubital fossa veins', 'Poorly visible') !!}
+                    {!! Form::label('Cubital_Fossa_Veins', 'Cubital fossa veins: ') !!}
+                    {!! Form::radio('Cubital_Fossa_Veins', 'Clearly visible') !!}
+                    {!! Form::label('Cubital_Fossa_Veins', 'Clearly visible') !!}
+                    {!! Form::radio('Cubital_Fossa_Veins', 'Moderately visible') !!}
+                    {!! Form::label('Cubital_Fossa_Veins', 'Moderately visible') !!}
+                    {!! Form::radio('Cubital_Fossa_Veins', 'Poorly visible') !!}
+                    {!! Form::label('Cubital_Fossa_Veins', 'Poorly visible') !!}
                 </div>
                 <div>
                     {!! Form::label('Comments', 'Comments: ') !!}
-                    {!! Form::radio('Physically Healthy', 'Physically Healthy') !!}
-                    {!! Form::label('Physically Healthy', 'Physically Healthy') !!}
-                    {!! Form::text('Physically Healthy ', '') !!}
-                    {!! Form::radio('Otherwise', 'Otherwise') !!}
-                    {!! Form::label('Otherwise', 'Otherwise') !!}
-                    {!! Form::text('Otherwise', '') !!}
+                    {!! Form::radio('Comments', 'Physically Healthy') !!}
+                    {!! Form::label('Comments', 'Physically Healthy') !!}
+                    {!! Form::text('Comments_Physically_Healthy', '') !!}
+                    {!! Form::radio('Comments', 'Otherwise') !!}
+                    {!! Form::label('Comments', 'Otherwise') !!}
+                    {!! Form::text('Comments_Otherwise', '') !!}
                 </div>
             </div>
-           --}}{{--PE ends here after the div tag below--}}{{--
+            {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+           {!! Form::close() !!}
+        {{--PE ends here after the div tag below--}}
        </div>
 
        <div id="UrineTest" class="tab-pane fade">
-            --}}{{-- urine pregnancy test --}}{{--
+            {!! Form::open(['route' => ['store.urinetest',$patient->id]]) !!}
+            @csrf
+            {{-- urine pregnancy test --}}
             <div class="form-group">
                 <h3>Urine Pregnancy Test</h3>
                 <p>(Transcribed from Urine Logbook)</p>
@@ -659,7 +669,7 @@
                 </div>
             </div>
 
-            --}}{{-- urine drugs for abuse test --}}{{--
+            {{-- urine drugs for abuse test --}}
             <div class="form-group">
                 <h3>Urine Drugs of Abuse Test</h3>
                 <p>(Transcribed from Urine Logbook)</p>
@@ -745,11 +755,13 @@
                     </div>
                 </div>
             </div>
-                --}}{{--Urine Test ends here after the div tag below--}}{{--
+            {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+           {!! Form::close() !!}
+            {{--Urine Test ends here after the div tag below--}}
        </div>
 
        <div id="LabTest" class="tab-pane fade">
-        --}}{{-- laboratory test--}}{{--
+        {{-- laboratory test--}}
             <div class="form-group">
                 <h3>Laboratory Tests</h3>
                 <p>(Laboratory Test Report attached in Appendix)</p>
@@ -846,11 +858,11 @@
                     {!! Form::text('Laboratory', '') !!}
                 </div>
             </div>
-            --}}{{--Lab Test ends here after the div tag below--}}{{--
+            {{--Lab Test ends here after the div tag below--}}
        </div>
 
        <div id="STest" class="tab-pane fade">
-           --}}{{--  serology test --}}{{--
+           {{--  serology test --}}
             <div class="form-group">
                 <h3>Serology Test</h3>
                 <p>(Laboratory Test Report attached in Appendix)</p>
@@ -877,11 +889,11 @@
                     {!! Form::text('Laboratory', '') !!}
                 </div>
             </div>
-           --}}{{--Serology Test ends here after the div tag below--}}{{--
+           {{--Serology Test ends here after the div tag below--}}
        </div>
 
        <div id="Criteria" class="tab-pane fade">
-             --}}{{--inclusion and exclusion criteria --}}{{--
+            {{--inclusion and exclusion criteria --}}
             <div class="form-group">
                 <h3>Inclusion and Exclusion Criteria</h3>
                 <h5>Inclusion Criteria</h5>
@@ -1270,11 +1282,11 @@
                     </div>
                 </div>
             </div>
-           --}}{{--Criteria ends here after the div tag below--}}{{--
+           {{--Criteria ends here after the div tag below--}}
        </div>
 
        <div id="Conclude" class="tab-pane fade">
-           --}}{{-- conclusion --}}{{--
+           {{-- conclusion --}}
             <div class="form-group">
                 <h3>Conclusion</h3>
                 <div class="row">
@@ -1282,12 +1294,12 @@
                         <p>Does the subject fulfill all the inclusion criteria and none of the exclusion criteria?</p>
                     </div>
                     <div class="col-sm-3">
-                        <p>{!! Form::label('Yes', 'Yes') !!}</p>
-                        <p>{!! Form::radio('Yes', 'Yes') !!}</p>
+                        <p>{!! Form::label('inclusionYesNo', 'Yes') !!}</p>
+                        <p>{!! Form::radio('inclusionYesNo', 'Yes') !!}</p>
                     </div>
                     <div class="col-sm-3">
-                        <p>{!! Form::label('No', 'No') !!}</p>
-                        <p>{!! Form::radio('No', 'No') !!}</p>
+                        <p>{!! Form::label('inclusionYesNo', 'No') !!}</p>
+                        <p>{!! Form::radio('inclusionYesNo', 'No') !!}</p>
                     </div>
                 </div>
                 <p>If “Yes”, enroll the subject into the study.</p>
@@ -1304,7 +1316,7 @@
                 </div>
             </div>
 
-             --}}{{--pre-study screening signature--}}{{--
+            {{--pre-study screening signature--}}
             <div class="form-group">
                 <h3>Pre-study Screening Signature</h3>
                 <div class="row">
@@ -1328,9 +1340,9 @@
             </div>
         {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
         {!! Form::close() !!}
-       --}}{{--Conclusion ends here after the div tag below--}}{{--
-        </div>--}}
-            {{--This ending div tag is for the "tab-content" div--}}
+        {{--Conclusion ends here after the div tag below--}}
+        </div>
+        {{--This ending div tag is for the "tab-content" div--}}
     </div>
 
 

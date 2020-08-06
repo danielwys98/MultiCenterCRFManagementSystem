@@ -41,6 +41,17 @@ Route::post('bater/{id}','BATER_Controller@storeBATER')->name('store.bater');
 
 Route::put('bater/{bater}','BATER_Controller@updateBATER')->name('update.bater');
 
+Route::post('mhistory/{id}','MH_Controller@storeMH')->name('store.mhistory');
+
+Route::put('mhistory/{mhistory}','MH_Controller@updateMH')->name('update.mhistory');
+
+Route::post('pexam/{id}','PE_Controller@storePE')->name('store.pexam');
+
+Route::put('pexam/{pexam}','PE_Controller@updatePE')->name('update.pexam');
+
+Route::post('urinetest/{id}','UT_Controller@storeUT')->name('store.urinetest');
+
+Route::put('urinetest/{urinetest}','UT_Controller@updateUT')->name('update.urinetest');
 
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
