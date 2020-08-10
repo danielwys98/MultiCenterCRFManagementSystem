@@ -29,21 +29,14 @@ class CreatePatientUrineTestsTable extends Migration
             $table->string('UPreg_Transcribedby');
 
             //Urine Drug
-            $table->string('UDrug_dateTaken');
-            $table->string('UDrug_TestTime');
-            $table->string('Chest_Lungs');
-            $table->string('Heart');
-            $table->string('Abdomen');
-            $table->string('Back_Spine');
-            $table->string('Musculoskeletal');
-            $table->string('Neurological');
-            $table->string('Extremities');
-            $table->string('Lymph_Nodes');
-            $table->string('Other');
-            $table->string('Cubital_Fossa_Veins');
-            $table->string('Comments');
-            $table->string('Comments_Physically_Healthy');
-            $table->string('Comments_Otherwise');
+            $table->date('UDrug_dateTaken');
+            $table->time('UDrug_TestTime');
+            $table->time('UDrug_ReadTime');
+            $table->string('UDrug_Laboratory');
+            $table->string('UDrug_Methamphetamine');
+            $table->string('UDrug_Morphine');
+            $table->string('UDrug_Marijuana');
+            $table->string('UDrug_Transcribedby');
 
             $table->timestamps();
         });

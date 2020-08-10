@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Patient_UrineTest extends Model
 {
-    protected $table = 'patient_urine_test';
+    protected $table = 'patient_urine_tests';
     protected $fillable=['form_id','patient_id'];
     public function patient()
     {
