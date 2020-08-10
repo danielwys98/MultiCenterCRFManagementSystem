@@ -53,6 +53,14 @@ Route::post('urinetest/{id}','UT_Controller@storeUT')->name('store.urinetest');
 
 Route::put('urinetest/{urinetest}','UT_Controller@updateUT')->name('update.urinetest');
 
+Route::post('iecriteria/{id}','IEC_Controller@storeIEC')->name('store.iecriteria');
+
+Route::put('iecriteria/{iecriteria}','IEC_Controller@updateIEC')->name('update.iecriteria');
+
+Route::post('conclusion/{id}','CS_Controller@storeCS')->name('store.conclusion');
+
+Route::put('conclusion/{conclusion}','CS_Controller@updateCS')->name('update.conclusion');
+
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
 Auth::routes();

@@ -893,6 +893,8 @@
             </div>
 
             <div id="Criteria" class="tab-pane fade">
+                {!! Form::open(['route' => ['store.iecriteria',$patient->id]]) !!}
+                @csrf
                 {{--inclusion and exclusion criteria --}}
                 <div class="form-group">
                     <h3>Inclusion and Exclusion Criteria</h3>
@@ -1282,10 +1284,14 @@
                         </div>
                     </div>
                 </div>
+                {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+                {!! Form::close() !!}
                 {{--Criteria ends here after the div tag below--}}
             </div>
 
             <div id="Conclude" class="tab-pane fade">
+                {!! Form::open(['route' => ['store.conclusion',$patient->id]]) !!}
+                @csrf
                 {{-- conclusion --}}
                 <div class="form-group">
                     <h3>Conclusion</h3>
