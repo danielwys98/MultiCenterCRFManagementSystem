@@ -867,6 +867,8 @@
             </div>
 
             <div id="STest" class="tab-pane fade">
+                {!! Form::open(['route' => ['store.serology',$patient->id]]) !!}
+                @csrf
                 {{--  serology test --}}
                 <div class="form-group">
                     <h3>Serology Test</h3>
@@ -894,6 +896,8 @@
                         {!! Form::text('Laboratory', '') !!}
                     </div>
                 </div>
+                {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+                {!! Form::close() !!}
                 {{--Serology Test ends here after the div tag below--}}
             </div>
 

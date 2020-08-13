@@ -65,6 +65,10 @@ Route::post('conclusion/{id}','CS_Controller@storeCS')->name('store.conclusion')
 
 Route::put('conclusion/{conclusion}','CS_Controller@updateCS')->name('update.conclusion');
 
+Route::post('serology/{id}','ST_Controller@storeST')->name('store.serology');
+
+Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serology');
+
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
 Auth::routes();
