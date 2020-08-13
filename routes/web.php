@@ -53,6 +53,10 @@ Route::post('urinetest/{id}','UT_Controller@storeUT')->name('store.urinetest');
 
 Route::put('urinetest/{urinetest}','UT_Controller@updateUT')->name('update.urinetest');
 
+Route::post('labtest/{id}','Lab_Controller@storeLT')->name('store.labtest');
+
+Route::put('labtest/{labtest}','Lab_Controller@updateLT')->name('update.labtest');
+
 Route::post('iecriteria/{id}','IEC_Controller@storeIEC')->name('store.iecriteria');
 
 Route::put('iecriteria/{iecriteria}','IEC_Controller@updateIEC')->name('update.iecriteria');

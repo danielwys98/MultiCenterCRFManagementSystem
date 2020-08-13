@@ -762,6 +762,8 @@
             </div>
 
             <div id="LabTest" class="tab-pane fade">
+                {!! Form::open(['route' => ['store.labtest',$patient->id]]) !!}
+                @csrf
                 {{-- laboratory test--}}
                 <div class="form-group">
                     <h3>Laboratory Tests</h3>
@@ -790,35 +792,35 @@
                         </div>
                     </div>
                     <div>
-                        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Laboratory', '') !!}
+                        {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
+                        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('Blood_Laboratory', 'Other') !!}
+                        {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::text('Blood_Laboratory', '') !!}
                     </div>
 
                     <div class="row">
                         <div class="col-sm-6">
-                            {!! Form::label('NAtest', 'Not Applicable') !!}
-                            {!! Form::checkbox('NAtest', 'Not Applicable') !!}
-                            {!! Form::label('repeattest', 'Repeated test: ') !!}
-                            {!! Form::text('repeattest', '') !!}
+                            {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
+                            {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
+                            {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
+                            {!! Form::text('Blood_RepeatTest', '') !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            {!! Form::label('dateBCollected', 'Date Blood Collected: ') !!}
-                            {!! Form::date('dateBCollected', \Carbon\Carbon::now()) !!}
+                            {!! Form::label('Repeat_dateBCollected', 'Date Blood Collected: ') !!}
+                            {!! Form::date('Repeat_dateBCollected', \Carbon\Carbon::now()) !!}
                         </div>
                     </div>
                     <div>
-                        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Laboratory', '') !!}
+                        {!! Form::label('BloodRepeat_Laboratory', 'Laboratory: ') !!}
+                        {!! Form::radio('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::label('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('BloodRepeat_Laboratory', 'Other') !!}
+                        {!! Form::label('BloodRepeat_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::text('BloodRepeat_Laboratory', '') !!}
                     </div>
 
                     <h5>Urine (Microbiology)</h5>
@@ -829,36 +831,38 @@
                         </div>
                     </div>
                     <div>
-                        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Laboratory', '') !!}
+                        {!! Form::label('Urine_Laboratory', 'Laboratory: ') !!}
+                        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::label('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('Urine_Laboratory', 'Other') !!}
+                        {!! Form::label('Urine_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::text('Urine_Laboratory', '') !!}
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
-                            {!! Form::label('NAtest', 'Not Applicable') !!}
-                            {!! Form::checkbox('NAtest', 'Not Applicable') !!}
-                            {!! Form::label('repeattest', 'Repeated test: ') !!}
-                            {!! Form::text('repeattest', '') !!}
+                            {!! Form::label('Urine_NAtest', 'Not Applicable') !!}
+                            {!! Form::checkbox('Urine_NAtest', 'Not Applicable') !!}
+                            {!! Form::label('Urine_RepeatTest', 'Repeated test: ') !!}
+                            {!! Form::text('Urine_RepeatTest', '') !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            {!! Form::label('dateBCollected', 'Date Blood Collected: ') !!}
-                            {!! Form::date('dateBCollected', \Carbon\Carbon::now()) !!}
+                            {!! Form::label('Repeat_dateUCollected', 'Date Urine Collected: ') !!}
+                            {!! Form::date('Repeat_dateUCollected', \Carbon\Carbon::now()) !!}
                         </div>
                     </div>
                     <div>
-                        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Laboratory', '') !!}
+                        {!! Form::label('UrineRepeat_Laboratory', 'Laboratory: ') !!}
+                        {!! Form::radio('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::label('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('UrineRepeat_Laboratory', 'Other') !!}
+                        {!! Form::label('UrineRepeat_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::text('UrineRepeat_Laboratory', '') !!}
                     </div>
                 </div>
+                {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+                {!! Form::close() !!}
                 {{--Lab Test ends here after the div tag below--}}
             </div>
 

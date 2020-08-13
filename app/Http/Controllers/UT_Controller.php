@@ -47,7 +47,7 @@ class UT_Controller extends Controller
 
     public function updateUT(Request $request,$id)
     {
-        DB::table('patient_physical_examinations')
+        DB::table('patient_urine_tests')
             ->where('patient_id',$id)
             ->update([
                 'UPreg_male'=>$request->UPreg_male,
