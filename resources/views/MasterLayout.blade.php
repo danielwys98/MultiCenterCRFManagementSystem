@@ -45,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="/users" class="{{request()->is('/users')? 'active' :' '}}"}}>Administration</a>
+                    <a href="/users" class="{{request()->is('users')? 'active' :' '}}"}}>Administration</a>
 
                 </li>
                 @endcan
