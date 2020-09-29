@@ -17,15 +17,22 @@ class BATER_Controller extends Controller
     {
         $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;
 
+        $lab = $request->Laboratory;
+        if($lab==NULL)
+        {
+            $bater->laboratory = $request->Laboratory_text;
+        }else{
+            $bater->laboratory = $request->Laboratory;
+        }
         $bater->patient_id=$id;
         $bater->dateTaken=$request->dateTaken;
         $bater->timeTaken=$request->timeTaken;
-        $bater->laboratory=$request->Laboratory;
         $bater->breathalcohol=$request->breathalcohol;
         $bater->breathalcoholResult=$request->breathalcoholResult;
         $bater->Usertranscribed=$request->Usertranscribed;
         $bater->ECGdateTaken=$request->ECGdateTaken;
         $bater->conclusion=$request->Conclusion;
+
 
         $bater->save();
 
@@ -33,12 +40,13 @@ class BATER_Controller extends Controller
     }
     public function updateBATER(Request $request,$id)
     {
+        $lab=$request->Laboratory;
+
        DB::table('patient_breath_alcohol_test_and_electrocardiograms')
             ->where('patient_id',$id)
             ->update([
             'dateTaken'=>$request->dateTaken,
             'timeTaken'=>$request->timeTaken,
-            'laboratory'=>$request->Laboratory,
             'breathalcohol'=>$request->breathalcohol,
             'breathalcoholResult'=>$request->breathalcoholResult,
             'Usertranscribed'=>$request->Usertranscribed,
@@ -46,6 +54,22 @@ class BATER_Controller extends Controller
             'conclusion'=>$request->Conclusion
         ]);
 
-        return redirect(route('details.create',$id));
+           if($lab==NULL)
+            {
+                DB::table('patient_breath_alcohol_test_and_electrocardiograms')
+                    ->where('patient_id',$id)
+                    ->update([
+                        'laboratory'=>$request->Laboratory_text
+                    ]);
+
+            }else{
+                DB::table('patient_breath_alcohol_test_and_electrocardiograms')
+                    ->where('patient_id',$id)
+                    ->update([
+                        'laboratory'=>$request->Laboratory
+                    ]);
+            }
+
+        return redirect(route('details.edit',$id));
     }
 }
