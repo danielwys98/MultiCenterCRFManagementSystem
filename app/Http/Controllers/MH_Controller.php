@@ -15,7 +15,12 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
-        $mh = new Patient_MedicalHistory;
+
+        $checkdata=$request;
+        $this->checkMH($checkdata);
+        dd($checkdata);
+
+/*        $mh = new Patient_MedicalHistory;
 
         $mh->patient_id=$id;
         $mh->dateTaken=$request->dateTaken;
@@ -53,7 +58,7 @@ class MH_Controller extends Controller
         $mh->Breastfeeding=$request->Breastfeeding;
         $mh->Conclusion=$request->Conclusion;
 
-        $mh->save();
+        $mh->save();*/
 
         return redirect(route('details.create',$id));
     }
@@ -98,5 +103,16 @@ class MH_Controller extends Controller
         ]);
 
         return redirect(route('details.create',$id));
+    }
+    public function checkMH($data)
+    {
+        $mh_allergy =$data->Allergy;
+        if($mh_allergy == "Normal")
+        {
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }
