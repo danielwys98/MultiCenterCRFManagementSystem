@@ -1,7 +1,17 @@
 @extends('MasterLayout')
 
 @section('content')
-    <h1>This is the Pre-Screening Database Page</h1>
+    <div class="row">
+        <div class="col-lg-5">
+        <h1>Pre-Screening Database</h1>
+        </div>
+        <div class="col-lg-7">
+            <form class="form-inline" method="get" action="{{url('/preScreening/admin/search')}}">
+                <input name="search_patient" class="form-control col-lg-10" type="search" placeholder="Patient">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
     <div class="card-body">
         @if (session('Messages'))
             <div class="alert alert-success">

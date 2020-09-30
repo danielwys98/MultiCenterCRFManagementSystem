@@ -23,6 +23,8 @@ Route::get('/studySpecific', 'PagesController@studySpecific');
 
 Route::get('/preScreening/admin','preScreeningController@admin');
 
+Route::get('/preScreening/admin/search','preScreeningController@search');
+
 Route::get('/studySpecificdb','PagesController@studySpecificdb');
 
 Route::get('/preScreeningForm','PagesController@preScreeningForm');

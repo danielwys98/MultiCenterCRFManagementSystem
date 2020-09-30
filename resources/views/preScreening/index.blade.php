@@ -5,9 +5,9 @@
     <table class="table table-hover">
         <thead>
         @if(count($patients))
-        <tr>
-            <th scope="col">All the Patients</th>
-        </tr>
+            <tr>
+                <th scope="col">All the Patients</th>
+            </tr>
         </thead>
         <tbody>
         @foreach($patients as $patient)
