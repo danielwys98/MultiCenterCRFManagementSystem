@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_MedicalHistory;
 use DB;
+use function GuzzleHttp\Psr7\copy_to_string;
 
 class MH_Controller extends Controller
 {
@@ -15,10 +16,26 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
+        $mh = new Patient_MedicalHistory();
 
-        $checkdata=$request;
-        $this->checkMH($checkdata);
-        dd($checkdata);
+        $data =$request->except('_token');
+
+        foreach($data as $id=>$value)
+        {
+            if($value =="Abnormal")
+            {
+                $abnormal_txt= $id."_txt";
+                $mh->$abnormal_txt=$data->$abnormal_txt;
+            }else if($value == "Normal")
+            {
+                $normal_txt = $id;
+                $mh->$normal_txt=$data->$normal_txt;
+            }
+        }
+        $mh->save();
+       /* $this->checkMH($request);*/
+     /*   dd(checkMH($checkdata));*/
+
 
 /*        $mh = new Patient_MedicalHistory;
 
@@ -60,7 +77,7 @@ class MH_Controller extends Controller
 
         $mh->save();*/
 
-        return redirect(route('details.create',$id));
+     /*   return redirect(route('details.create',$id));*/
     }
     public function updateMH(Request $request,$id)
     {
@@ -102,17 +119,22 @@ class MH_Controller extends Controller
             'conclusion'=>$request->Conclusion
         ]);
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.edit',$id));
     }
     public function checkMH($data)
     {
-        $mh_allergy =$data->Allergy;
-        if($mh_allergy == "Normal")
+       /* $test=array($data->all());*/
+        $test = $data ->except('_token');
+        foreach($test as $id => $value)
         {
-            return true;
-        }else
-        {
-            return false;
+            /*echo "key=".$id."value=".$value.'</br>';*/
+            if($value=="Abnormal")
+            {
+                echo "key=".$id.'</br>';
+            }else if($value=="Normal"){
+                echo $id."="."normal".'</br>';
+            }
         }
+
     }
 }

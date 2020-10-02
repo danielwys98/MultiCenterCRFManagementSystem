@@ -1,4 +1,3 @@
-
 {!! Form::model($data2,['route' => ['update.bater',$patient->id]]) !!}
     @method('PUT')
     <h3>Breath Alcohol Test</h3>
