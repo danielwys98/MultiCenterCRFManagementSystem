@@ -439,8 +439,8 @@
                             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
                             <td>
                                 {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                                {!! Form::radio('FertilityControl_No_txt', 'No') !!}
-                                {!! Form::radio('FertilityControl_No_txt', 'Yes') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'Counseling not given') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'Counseling given') !!}
 
                                 {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
                                 {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}

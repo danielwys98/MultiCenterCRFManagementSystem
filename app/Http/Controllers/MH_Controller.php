@@ -23,6 +23,7 @@ class MH_Controller extends Controller
         $mh->patient_id = $id;
         $mh->dateTaken=$request->dateTaken;
         $mh->timeTaken=$request->timeTaken;
+
         //some key does not have the text box, therefore, those keys needed be checked individually.
         foreach($data as $key=>$value)
         {
@@ -30,33 +31,29 @@ class MH_Controller extends Controller
             {
                 $abnormal_txt= $key."_txt";
                  $mh->$key=$data[$abnormal_txt];
-                /*  echo $key . "=".$data[$abnormal_txt].'</br>';*/
             }else if($value == "Normal")
             {
                 $normal_txt = $key;
                $mh->$key=$data[$normal_txt];
-               /*  echo $key . "=".$data[$normal_txt].'</br>';*/
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
                 $mh->$key=$data[$RP_Yes];
-              /*echo $key. "=" .$data[$RP_Yes].'</br>';*/
 
             }else if($key == "RegularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
                 $mh->$key=$data[$RP_No];
-                echo $key. "=" .$data[$RP_No].'</br>';
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
                 $mh->$key=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
-                $FC_Yes = $key."_Yes_txt";
+                $FC_Yes ="FertilityControl_Yes_txt";
                 $mh->$key=$data[$FC_Yes];
             }else if($key =="FertilityControl" and $value=="No")
             {
-                $FC_No=$key."_No_txt";
+                $FC_No="FertilityControl_No_txt";
                 $mh->$key=$data[$FC_No];
             }else if($key =="FertilityControl" and $value == "Not Applicable")
             {
@@ -65,7 +62,6 @@ class MH_Controller extends Controller
             else if($key == "ActiveSexAct")
             {
                 $mh->$key=$data[$key];
-             /*   echo $key. "=" . $data[$key].'</br>';*/
 
             }
             else if($key == "Breastfeeding")
