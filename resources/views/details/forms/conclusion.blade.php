@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-{!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
-@method('PUT')
-=======
 {!! Form::model($data,['route' => ['update.conclusion',$patient->id]]) !!}
     @method('PUT')
->>>>>>> Stashed changes
 <div class="form-group">
     <h3>Conclusion</h3>
     @if ($errors->any())
