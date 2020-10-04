@@ -123,57 +123,5 @@ class MH_Controller extends Controller
 
         return redirect(route('details.edit',$id));
     }
-    public function check_systemReview($data,$p_id)
-    {
-
-        $mh = new Patient_MedicalHistory;
-
-        $mh->patient_id=$p_id;
-
-        $system_review =$data->except('_token','dateTaken','timeTaken','Smoker','RAI','RMS','RegularExercise','BloodDonations'
-            ,'RegularPeriods','ActiveSexAct','FertilityControl','Breastfeeding','Conclusion');
-        foreach($system_review as $key=>$value)
-        {
-            if($value =="Abnormal")
-            {
-                $abnormal_txt= $key."_txt";
-                 $mh->$abnormal_txt=$system_review[$abnormal_txt];
-              /*  echo $key . "=".$system_review[$abnormal_txt].'</br>';*/
-            }else if($value == "Normal")
-            {
-                $normal_txt = $key;
-                $mh->$normal_txt=$system_review[$normal_txt];
-               /* echo $key . "=".$system_review[$normal_txt].'</br>';*/
-            }
-        }
-       $mh->save();
-    }
-
-    public function check_SubjectLifestyle($data,$p_id)
-    {
-        $mh = new Patient_MedicalHistory();
-
-        $mh->patient_id=$p_id;
-
-        $subject_lifestyle = $data->except('_token','dateTaken','timeTaken','Allergy','EENT','Respiratory','Cardiovascular','Gastrointestinal'
-            ,'Genitourinary','Neurological','HaematopoieticL','EndocrineM','Dermatological','Musculoskeletal','Psychological','FamilyHistory'
-            ,'SurgicalHistory','PrevHospitalization','ActiveSexAct','FertilityControl','Breastfeeding','Conclusion','RegularPeriods');
-
-        foreach($subject_lifestyle as $LS_key=>$LS_value)
-        {
-            if($LS_value =="Yes")
-            {
-                $yes_txt= $LS_key."_txt";
-               $mh->$yes_txt=$subject_lifestyle[$yes_txt];
-               /* echo $LS_key . "=".$subject_lifestyle[$yes_txt].'</br>';*/
-            }else if($LS_value == "No")
-            {
-                $no_txt = $LS_key;
-                $mh->$no_txt=$subject_lifestyle[$no_txt];
-             /*   echo $LS_key . "=".$subject_lifestyle[$no_txt].'</br>';*/
-            }
-        }
-        $mh->save();
-    }
 
 }
