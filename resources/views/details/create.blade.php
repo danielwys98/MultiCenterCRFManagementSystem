@@ -1368,11 +1368,11 @@
                         discretion of the research physician.</p>
                     {!! Form::text('NoDetails', '') !!}
                     <div>
-                        {!! Form::checkbox('NAbnormality ', 'NAbnormality ') !!}
+                        {!! Form::checkbox('NAbnormality', 'Yes') !!}
                         {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
                     </div>
                     <div>
-                        {!! Form::checkbox('abnormality ', 'abnormality ') !!}
+                        {!! Form::checkbox('abnormality', 'Yes') !!}
                         {!! Form::label('abnormality', 'Clinically significant abnormality (ies), this subject cannot be enrolled into this study.') !!}
                     </div>
                 </div>

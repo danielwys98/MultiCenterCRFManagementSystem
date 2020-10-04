@@ -1,7 +1,22 @@
+<<<<<<< Updated upstream
 {!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
 @method('PUT')
+=======
+{!! Form::model($data,['route' => ['update.conclusion',$patient->id]]) !!}
+    @method('PUT')
+>>>>>>> Stashed changes
 <div class="form-group">
     <h3>Conclusion</h3>
+    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
     <div class="row">
         <div class="col-sm-6">
             <p>Does the subject fulfill all the inclusion criteria and none of the exclusion criteria?</p>

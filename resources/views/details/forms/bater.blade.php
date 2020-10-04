@@ -1,4 +1,4 @@
-{!! Form::model($data2,['route' => ['update.bater',$patient->id]]) !!}
+{!! Form::model($data,['route' => ['update.bater',$patient->id]]) !!}
     @method('PUT')
     <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>

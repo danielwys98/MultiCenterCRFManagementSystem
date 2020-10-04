@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
 @method('PUT')
 <div class="form-group">
@@ -69,6 +70,27 @@
             <div class="col-sm-3">
                 <p>{!! Form::radio('Inclusion05', 'No') !!}</p>
             </div>
+=======
+{!! Form::model($data,['route' => ['update.iecriteria',$patient->id]]) !!}
+    @method('PUT')
+<div class="form-group">
+    <h3>Inclusion and Exclusion Criteria</h3>
+    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+    <h5>Inclusion Criteria</h5>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>Subject will be eligible for this study if all of the following inclusion criteria are
+                met:</p>
+>>>>>>> Stashed changes
         </div>
 
         <h5>Exclusion Criteria</h5>
