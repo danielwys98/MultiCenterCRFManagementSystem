@@ -439,14 +439,14 @@
                             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
                             <td>
                                 {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                                {!! Form::radio('FertilityControlCounseling', 'No') !!}
-                                {!! Form::radio('FertilityControlCounseling', 'Yes') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'No') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'Yes') !!}
 
-                                {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'Long term (tubal ligation, vasectomy)') !!}
+                                {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)') !!}
                             </td>
                         </tr>
                         <tr>

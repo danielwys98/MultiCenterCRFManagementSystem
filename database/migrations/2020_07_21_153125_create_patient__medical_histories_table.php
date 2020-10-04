@@ -41,7 +41,6 @@ class CreatePatientMedicalHistoriesTable extends Migration
             $table->string('RegularPeriods');
             $table->string('ActiveSexAct');
             $table->string('FertilityControl');
-            $table->string('FertilityControlcounseling');
             $table->string('Breastfeeding');
             $table->string('Conclusion');
             $table->timestamps();

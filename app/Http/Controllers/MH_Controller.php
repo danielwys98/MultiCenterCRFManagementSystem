@@ -16,7 +16,7 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
-
+      /*dd($request);*/
      $mh = new Patient_MedicalHistory();
         $data =$request->except('_token','dateTaken','timeTaken');
 
@@ -47,21 +47,28 @@ class MH_Controller extends Controller
                 $RP_No= $key."_No_txt";
                 $mh->$key=$data[$RP_No];
                 echo $key. "=" .$data[$RP_No].'</br>';
+            }else if($key == "RegularPeriods" and $value =="Not Applicable")
+            {
+                $mh->$key=$data[$key];
+            }else if($key =="FertilityControl" and $value =="Yes")
+            {
+                $FC_Yes = $key."_Yes_txt";
+                $mh->$key=$data[$FC_Yes];
+            }else if($key =="FertilityControl" and $value=="No")
+            {
+                $FC_No=$key."_No_txt";
+                $mh->$key=$data[$FC_No];
+            }else if($key =="FertilityControl" and $value == "Not Applicable")
+            {
+                $mh->$key=$data[$key];
             }
             else if($key == "ActiveSexAct")
             {
                 $mh->$key=$data[$key];
              /*   echo $key. "=" . $data[$key].'</br>';*/
 
-            }else if($key == "FertilityControl" and $value == "Yes")
-            {
-                $mh->$key=$data[$key];
-            }else if($key == "FertilityControl" and $value == "No")
-            {
-                $FCounseling = "FertilityControlCounseling";
-                $mh->$key=$data[$FCounseling];
-
-            }else if($key == "Breastfeeding")
+            }
+            else if($key == "Breastfeeding")
             {
                 $mh->$key=$data[$key];
             }else if($key == "Conclusion")
@@ -78,6 +85,7 @@ class MH_Controller extends Controller
                 $mh->$key=$data[$no_txt];
             }
         }
+
             $mh->save();
         return redirect(route('details.create',$id));
     }
