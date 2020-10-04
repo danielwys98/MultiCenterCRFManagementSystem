@@ -20,8 +20,12 @@ class ST_Controller extends Controller
         $cs->patient_id=$id;
         $cs->dateCTaken=$request->dateCTaken;
         $cs->dateBCollected=$request->dateBCollected;
-        $cs->Laboratory=$request->Laboratory;
-        
+
+        if($request->Laboratory=='Other')
+            $cs->Laboratory=$request->Laboratory_txt;
+        else
+            $cs->Laboratory=$request->Laboratory;
+
         $cs->save();
 
         return redirect(route('details.create',$id));
@@ -34,7 +38,7 @@ class ST_Controller extends Controller
             'dateCTaken'=>$request->dateCTaken,
             'dateBCollected'=>$request->dateBCollected,
             'Laboratory'=>$request->Laboratory,
-            
+
         ]);
 
         return redirect(route('details.create',$id));

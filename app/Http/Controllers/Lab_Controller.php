@@ -19,27 +19,49 @@ class Lab_Controller extends Controller
 
         $ut->patient_id=$id;
 
+        $BloodLab=$request->Blood_Laboratory;
+        $BloodLabRepeat=$request->BloodRepeat_Laboratory;
+
+        $UrineLab=$request->Urine_Laboratory;
+        $UrineLabRepeat=$request->UrineRepeat_Laboratory;
+
         // Urine Pregnancy
         $ut->dateBTaken=$request->dateBTaken;
 
         $ut->dateLMTaken=$request->dateLMTaken;
         $ut->TimeLMTaken=$request->TimeLMTaken;
         $ut->describemeal=$request->describemeal;
-        $ut->Blood_Laboratory=$request->Blood_Laboratory;
+
+        if($BloodLab=='Other'){
+            $ut->Blood_Laboratory=$request->Blood_Laboratory_Text;
+        }else
+            $ut->Blood_Laboratory=$request->Blood_Laboratory;
 
 
         $ut->Blood_NAtest=$request->Blood_NAtest;
         $ut->Blood_RepeatTest=$request->Blood_RepeatTest;
         $ut->Repeat_dateBCollected=$request->Repeat_dateBCollected;
-        $ut->BloodRepeat_Laboratory=$request->BloodRepeat_Laboratory;
+        if($BloodLabRepeat=='Other')
+            $ut->BloodRepeat_Laboratory=$request->BloodRepeat_Laboratory_Text;
+        else
+            $ut->BloodRepeat_Laboratory=$request->BloodRepeat_Laboratory;
 
 
         $ut->dateUTaken=$request->dateUTaken;
-        $ut->Urine_Laboratory=$request->Urine_Laboratory;
+
+        if($UrineLab=='Other')
+            $ut->Urine_Laboratory=$request->Urine_Laboratory_Text;
+        else
+            $ut->Urine_Laboratory=$request->Urine_Laboratory;
+
         $ut->Urine_NAtest=$request->Urine_NAtest;
         $ut->Urine_RepeatTest=$request->Urine_RepeatTest;
         $ut->Repeat_dateUCollected=$request->Repeat_dateUCollected;
-        $ut->UrineRepeat_Laboratory=$request->UrineRepeat_Laboratory;
+
+        if($UrineLabRepeat=='Other')
+            $ut->UrineRepeat_Laboratory=$request->UrineRepeat_Laboratory_txt;
+        else
+            $ut->UrineRepeat_Laboratory=$request->UrineRepeat_Laboratory;
         $ut->save();
 
         return redirect(route('details.create',$id));
@@ -55,7 +77,6 @@ class Lab_Controller extends Controller
                 'dateLMTaken' => $request->dateLMTaken,
                 'TimeLMTaken' => $request->TimeLMTaken,
                 'describemeal' => $request->describemeal,
-                'Blood_Laboratory' => $request->Blood_Laboratory,
 
                 'Blood_NAtest' => $request->Blood_NAtest,
                 'Blood_RepeatTest' => $request->Blood_RepeatTest,
@@ -63,13 +84,27 @@ class Lab_Controller extends Controller
                 'BloodRepeat_Laboratory' => $request->BloodRepeat_Laboratory,
 
                 'dateUTaken' => $request->dateUTaken,
-                'Urine_Lab' => $request->Urine_Lab,
+                'Urine_Laboratory' => $request->Urine_Laboratory,
 
                 'Urine_NAtest' => $request->Urine_NAtest,
                 'Urine_RepeatTest' => $request->Urine_RepeatTest,
                 'Repeat_dateUCollected' => $request->Repeat_dateUCollected,
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
+
+        if($request->Blood_Laboratory=='Other'){
+            DB::table('patient_laboratory_tests')
+                ->when('patiet_id',$id)
+                ->update([
+                    'Blood_Laboratory' => $request->Blood_Laboratory_Text
+                ]);
+        }else{
+            DB::table('patient_laboratory_tests')
+                ->when('patiet_id',$id)
+                ->update([
+                    'Blood_Laboratory' => $request->Blood_Laboratory
+                ]);
+        }
 
         return redirect(route('details.create', $id));
     }
