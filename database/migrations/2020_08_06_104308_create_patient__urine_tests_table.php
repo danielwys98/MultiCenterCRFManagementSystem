@@ -25,17 +25,26 @@ class CreatePatientUrineTestsTable extends Migration
             $table->time('UPreg_ReadTime');
 
             $table->string('UPreg_Laboratory');
+
             $table->string('UPreg_hCG');
+            $table->string('UPreg_hCG_Comment');
             $table->string('UPreg_Transcribedby');
 
             //Urine Drug
             $table->date('UDrug_dateTaken');
             $table->time('UDrug_TestTime');
             $table->time('UDrug_ReadTime');
+
             $table->string('UDrug_Laboratory');
+
             $table->string('UDrug_Methamphetamine');
+            $table->string('UDrug_Methamphetamine_Comment');
+
             $table->string('UDrug_Morphine');
+            $table->string('UDrug_Morphine_Comment');
+
             $table->string('UDrug_Marijuana');
+            $table->string('UDrug_Marijuana_Comment');
             $table->string('UDrug_Transcribedby');
 
             $table->timestamps();
