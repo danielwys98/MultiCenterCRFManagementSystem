@@ -18,14 +18,48 @@ class CS_Controller extends Controller
         $cs = new Patient_Conclusion_Signature;
 
         $cs->patient_id=$id;
-        $cs->inclusionYesNo=$request->inclusionYesNo;
-        $cs->NoDetails=$request->NoDetails;
-        $cs->NAbnormality=$request->NAbnormality;
-        $cs->abnormality=$request->abnormality;
+        // $cs->inclusionYesNo=$request->inclusionYesNo;
+        // $cs->NoDetails=$request->NoDetails;
+        
+        $NoDetails = $request->NoDetails;
+        if($NoDetails==NULL)
+        {
+            $cs->inclusionYesNo = $request->inclusionYesNo;
+        }else{
+            $cs->inclusionYesNo = $request->NoDetails;
+        }
+
+        $NAbnormality=$request->NAbnormality;
+        if($NAbnormality==false)
+        {
+            $cs->NAbnormality="No";
+        }else{
+            $cs->NAbnormality="Yes";
+        }
+
+        $abnormality=$request->abnormality;
+        if($abnormality==true)
+        {
+            $cs->abnormality="No";
+        }else{
+            $cs->abnormality="Yes";
+        }
+
         $cs->physicianSign=$request->physicianSign;
         $cs->physicianName=$request->physicianName;
         $cs->dateTaken=$request->dateTaken;
         
+        
+        // dd($request);
+        // $validatedData = $request->validate([
+        //     'inclusionYesNo' => 'required',
+        //     // 'NAbnormality' => 'required',
+        //     // 'abnormality' => 'required',
+        //     'physicianSign' => 'required',
+        //     'physicianName' => 'required',
+        //     'dateTaken' => 'required',
+        // ]);
+
         $cs->save();
 
         return redirect(route('details.create',$id));
