@@ -17,7 +17,6 @@ class CreatePatientPhysicalExaminationsTable extends Migration
             $table->increments('form_id');
             $table->integer('patient_id');
             $table->date('dateTaken');
-
             $table->string('GeneralAppearance');
             $table->string('Skin');
             $table->string('Head_Neck');
@@ -34,10 +33,9 @@ class CreatePatientPhysicalExaminationsTable extends Migration
             $table->string('Lymph_Nodes');
             $table->string('Other');
             $table->string('Cubital_Fossa_Veins');
-            $table->string('Comments');
-            $table->string('Comments_Physically_Healthy');
-            $table->string('Comments_Otherwise');
-           
+            $table->string('Comments_Physically_Healthy')->nullable();
+            $table->string('Comments_Otherwise')->nullable();
+
             $table->timestamps();
         });
     }
