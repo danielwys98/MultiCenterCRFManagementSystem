@@ -37,10 +37,21 @@ class ST_Controller extends Controller
             ->update([
             'dateCTaken'=>$request->dateCTaken,
             'dateBCollected'=>$request->dateBCollected,
-            'Laboratory'=>$request->Laboratory,
-
         ]);
 
-        return redirect(route('details.create',$id));
+       if($request->Laboratory=='Other'){
+           DB::table('patient_serology_tests')
+               ->where('patient_id',$id)
+               ->update([
+                   'Laboratory'=>$request->Laboratory_txt
+               ]);
+       }else{
+           DB::table('patient_serology_tests')
+               ->where('patient_id',$id)
+               ->update([
+                   'Laboratory'=>$request->Laboratory
+               ]);
+       }
+        return redirect(route('details.edit',$id));
     }
 }

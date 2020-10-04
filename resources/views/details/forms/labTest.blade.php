@@ -41,16 +41,16 @@
 
     <div class="row">
         <div class="col-sm-6">
-            {!! Form::label('NAtest', 'Not Applicable') !!}
-            {!! Form::checkbox('NAtest', 'Not Applicable') !!}
-            {!! Form::label('repeattest', 'Repeated test: ') !!}
-            {!! Form::text('repeattest', '') !!}
+            {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
+            {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
+            {!! Form::label('Blood_NAtest', 'Repeated test: ') !!}
+            {!! Form::text('Blood_NAtest', '') !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('dateBCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('dateBCollected', \Carbon\Carbon::now()) !!}
+            {!! Form::label('Repeat_dateBCollected', 'Date Blood Collected: ') !!}
+            {!! Form::date('Repeat_dateBCollected', \Carbon\Carbon::now()) !!}
         </div>
     </div>
     <div>
@@ -85,16 +85,16 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            {!! Form::label('NAtest', 'Not Applicable') !!}
-            {!! Form::checkbox('NAtest', 'Not Applicable') !!}
-            {!! Form::label('repeattest', 'Repeated test: ') !!}
-            {!! Form::text('repeattest', '') !!}
+            {!! Form::label('Urine_NAtest', 'Not Applicable') !!}
+            {!! Form::checkbox('Urine_NAtest', 'Not Applicable') !!}
+            {!! Form::label('Urine_RepeatTest', 'Repeated test: ') !!}
+            {!! Form::text('Urine_RepeatTest', '') !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('dateBCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('dateBCollected', \Carbon\Carbon::now()) !!}
+            {!! Form::label('Repeat_dateUCollected', 'Date Blood Collected: ') !!}
+            {!! Form::date('Repeat_dateUCollected', \Carbon\Carbon::now()) !!}
         </div>
     </div>
     <div>

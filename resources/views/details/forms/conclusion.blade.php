@@ -1,4 +1,5 @@
-
+{!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
+@method('PUT')
 <div class="form-group">
     <h3>Conclusion</h3>
     <div class="row">

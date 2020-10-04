@@ -1,3 +1,5 @@
+{!! Form::model($data2,['route' => ['update.serology',$patient->id]]) !!}
+@method('PUT')
 <div class="form-group">
     <h3>Serology Test</h3>
     <p>(Laboratory Test Report attached in Appendix)</p>
@@ -19,9 +21,11 @@
         {!! Form::label('Laboratory', 'Laboratory: ') !!}
         {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
         {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
         {!! Form::radio('Laboratory', 'Other') !!}
         {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+
+        {!! Form::text('Laboratory_txt', '') !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>

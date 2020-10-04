@@ -815,7 +815,7 @@
                             {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
-                            {!! Form::text('Blood_RepeatTest', '') !!}
+                            {!! Form::text('Blood_RepeatTest_Text', '') !!}
                         </div>
                     </div>
                     <div class="row">
