@@ -1,3 +1,6 @@
+
+{!! Form::model($data2,['route' => ['update.labtest',$patient->id]]) !!}
+@method('PUT')
 <div class="form-group">
     <h3>Laboratory Tests</h3>
     <p>(Laboratory Test Report attached in Appendix)</p>
@@ -25,12 +28,15 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
+
+        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
+        {!! Form::radio('Blood_Laboratory', 'Other') !!}
+        {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
+
+        {!! Form::text('Blood_Laboratory_Text', '') !!}
     </div>
 
     <div class="row">
@@ -48,12 +54,15 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {!! Form::label('BloodRepeat_Laboratory', 'Laboratory: ') !!}
+
+        {!! Form::radio('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::label('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
+        {!! Form::radio('BloodRepeat_Laboratory', 'Other') !!}
+        {!! Form::label('BloodRepeat_Laboratory', 'Other, specify: ') !!}
+
+        {!! Form::text('BloodRepeat_Laboratory_Text', '') !!}
     </div>
 
     <h5>Urine (Microbiology)</h5>
@@ -64,12 +73,15 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {!! Form::label('Urine_Laboratory', 'Laboratory: ') !!}
+
+        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::label('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
+        {!! Form::radio('Urine_Laboratory', 'Other') !!}
+        {!! Form::label('Urine_Laboratory', 'Other, specify: ') !!}
+
+        {!! Form::text('Urine_Laboratory_Text', '') !!}
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -86,12 +98,15 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {!! Form::label('UrineRepeat_Laboratory', 'Laboratory: ') !!}
+
+        {!! Form::radio('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::label('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
+        {!! Form::radio('UrineRepeat_Laboratory', 'Other') !!}
+        {!! Form::label('UrineRepeat_Laboratory', 'Other, specify: ') !!}
+
+        {!! Form::text('UrineRepeat_Laboratory', '') !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
