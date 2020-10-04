@@ -20,12 +20,24 @@
         </div>
     </div>
     <div>
+        {{--<div class="form-group row">
+            <div class="col-md-2">--}}
         {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {{--</div>
+        <div class="col-md-1">--}}
+        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
+        {{--</div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="col-md-2">--}}
+        {!! Form::radio('Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
+        {!! Form::label('Laboratory', 'Others') !!}
+        {{--</div>
+        <div class="col-md-3">--}}
+        {!! Form::text('Laboratory_text',old('laboratory'),['placeholder'=>'Please specify']) !!}
+        {{--</div>
+    </div>--}}
     </div>
     <div class="row">
         <div class="col-sm-3">
@@ -78,12 +90,12 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::label('Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Laboratory', '') !!}
+        {!! Form::label('Abuse_Laboratory', 'Laboratory: ') !!}
+        {!! Form::radio('Abuse_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::label('Abuse_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('Abuse_Laboratory', 'Other') !!}
+        {!! Form::label('Abuse_Laboratory', 'Other, specify: ') !!}
+        {!! Form::text('Abuse_Laboratory', '') !!}
     </div>
     <div class="row">
         <div class="col-sm-3">
@@ -142,8 +154,8 @@
             {!! Form::text('Transcribedby', '') !!}
         </div>
     </div>
-    </div>
-        <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
-        {{Form::submit('Update',['class'=>'btn btn-primary'])}}
-        {!! Form::close() !!}
+</div>
+<a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
+{!! Form::close() !!}
 
