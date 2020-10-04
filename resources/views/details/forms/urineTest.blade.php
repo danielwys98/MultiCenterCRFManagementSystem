@@ -18,7 +18,7 @@
         </div>
         <div class="col-sm-3">
             {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
-            {!! Form::time('Read UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
         </div>
     </div>
     <div>
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-md-2">--}}
         {!! Form::radio('UPreg_Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
-        {!! Form::label('UPreg_Laboratory', 'Others') !!}
+        {!! Form::label('UPreg_Laboratory', 'Other') !!}
         {{--</div>
         <div class="col-md-3">--}}
         {!! Form::text('UPreg_Laboratory_Text',old('laboratory'),['placeholder'=>'Please specify']) !!}
@@ -98,7 +98,7 @@
         {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
 
         {!! Form::radio('UDrug_Laboratory', 'Other') !!}
-        {!! Form::label('UDrug_Laboratory', 'Other, specify: ') !!}
+        {!! Form::label('UDrug_Laboratory', 'Other') !!}
 
         {!! Form::text('UDrug_Laboratory_Text', '') !!}
     </div>
