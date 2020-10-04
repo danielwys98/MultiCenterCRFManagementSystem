@@ -34,17 +34,11 @@ class CreatePatientMedicalHistoriesTable extends Migration
             $table->string('SurgicalHistory');
             $table->string('PrevHospitalization');
             $table->string('Smoker');
-            $table->string('Smoker_txt');
             $table->string('RAI');
-            $table->string('RAI_txt');
             $table->string('RMS');
-            $table->string('RMS_txt');
             $table->string('RegularExercise');
-            $table->string('RegularExercise_txt');
             $table->string('BloodDonations');
-            $table->string('BloodDonations_txt');
             $table->string('RegularPeriods');
-            $table->string('RegularPeriods_txt');
             $table->string('ActiveSexAct');
             $table->string('FertilityControl');
             $table->string('FertilityControlcounseling');

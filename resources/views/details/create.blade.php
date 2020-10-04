@@ -417,10 +417,10 @@
                             <td>{!! Form::radio('RegularPeriods', 'No') !!}</td>
                             <td>{!! Form::radio('RegularPeriods', 'Yes') !!}</td>
                             <td>
-                                {!! Form::label('RegularPeriods_txt', 'If No, describe: ') !!}
-                                {!! Form::text('RegularPeriods_txt', '') !!}
-                                {!! Form::label('RegularPeriods_txt', 'If Yes, please state last menstrual period: ') !!}
-                                {!! Form::text('RegularPeriods_txt', '') !!}
+                                {!! Form::label('RegularPeriods_No_txt', 'If No, describe: ') !!}
+                                {!! Form::text('RegularPeriods_No_txt', '') !!}
+                                {!! Form::label('RegularPeriods_Yes_txt', 'If Yes, please state last menstrual period: ') !!}
+                                {!! Form::text('RegularPeriods_Yes_txt', '') !!}
                             </td>
                         </tr>
                         <tr>
