@@ -17,29 +17,39 @@ class PE_Controller extends Controller
     {
         $pe = new Patient_PhysicalExamination;
 
+        $data =$request->except('_token','dateTaken','timeTaken');
+
         $pe->patient_id=$id;
         $pe->dateTaken=$request->dateTaken;
-        $pe->GeneralAppearance=$request->GeneralAppearance;
-        $pe->Skin=$request->Skin;
-        $pe->Head_Neck=$request->Head_Neck;
-        $pe->Eyes=$request->Eyes;
-        $pe->Ears_Nose_Throat=$request->Ears_Nose_Throat;
-        $pe->Mouth=$request->Mouth;
-        $pe->Chest_Lungs=$request->Chest_Lungs;
-        $pe->Heart=$request->Heart;
-        $pe->Abdomen=$request->Abdomen;
-        $pe->Back_Spine=$request->Back_Spine;
-        $pe->Musculoskeletal=$request->Musculoskeletal;
-        $pe->Neurological=$request->Neurological;
-        $pe->Extremities=$request->Extremities;
-        $pe->Lymph_Nodes=$request->Lymph_Nodes;
-        $pe->Other=$request->Other;
-        $pe->Cubital_Fossa_Veins=$request->Cubital_Fossa_Veins;
-        $pe->Comments=$request->Comments;
-        $pe->Comments_Physically_Healthy=$request->Comments_Physically_Healthy;
-        $pe->Comments_Otherwise=$request->Comments_Otherwise;
 
-        $pe->save();
+        foreach($data as $key=>$value)
+        {
+            if($value=="Abnormal")
+            {
+                $abnormal_txt=$key."_txt";
+             /*   echo $key."=".$data[$abnormal_txt].'</br>';*/
+                $pe->$key=$data[$abnormal_txt];
+            }else if($value=="Normal")
+            {
+                $normal_txt=$key;
+                /*echo $key."=".$data[$normal_txt].'</br>';*/
+                $pe->$key=$data[$normal_txt];
+            }else if($key =="Cubital_Fossa_Veins")
+            {
+                /*echo $key."=".$data[$key].'</br>';*/
+                $pe->$key=$data[$key];
+            }else if($key== "Comments_Physically_Healthy" and $value ==!NULL)
+            {
+              /*  echo $key."=".$data[$key].'</br>';*/
+                $pe->$key=$data[$key];
+            }else if($key == "Comments_Otherwise" and $value==!NULL)
+            {
+              /*  echo $key."=".$data[$key].'</br>';*/
+                $pe->$key=$data[$key];
+            }
+        }
+
+         $pe->save();
 
         return redirect(route('details.create',$id));
     }

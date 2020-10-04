@@ -439,14 +439,14 @@
                             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
                             <td>
                                 {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                                {!! Form::radio('FertilityControlCounseling', 'No') !!}
-                                {!! Form::radio('FertilityControlCounseling', 'Yes') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'Counseling not given') !!}
+                                {!! Form::radio('FertilityControl_No_txt', 'Counseling given') !!}
 
-                                {!! Form::label('Fertility Control', 'If No, advice and counseling given: ') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
-                                {!! Form::checkbox('FertilityControlCounseling', 'Long term (tubal ligation, vasectomy)') !!}
+                                {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
+                                {!! Form::radio('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)') !!}
                             </td>
                         </tr>
                         <tr>
@@ -494,91 +494,91 @@
                             <td>General Appearance</td>
                             <td>{!! Form::radio('GeneralAppearance', 'Normal') !!}</td>
                             <td>{!! Form::radio('GeneralAppearance', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('GeneralAppearance', '') !!}</td>
+                            <td>{!! Form::text('GeneralAppearance_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Skin</td>
                             <td>{!! Form::radio('Skin', 'Normal') !!}</td>
                             <td>{!! Form::radio('Skin', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Skin', '') !!}</td>
+                            <td>{!! Form::text('Skin_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Head-Neck</td>
                             <td>{!! Form::radio('Head_Neck', 'Normal') !!}</td>
                             <td>{!! Form::radio('Head_Neck', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Head_Neck', '') !!}</td>
+                            <td>{!! Form::text('Head_Neck_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Eyes</td>
                             <td>{!! Form::radio('Eyes', 'Normal') !!}</td>
                             <td>{!! Form::radio('Eyes', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Eyes', '') !!}</td>
+                            <td>{!! Form::text('Eyes_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Ears / Nose / Throat</td>
                             <td>{!! Form::radio('Ears_Nose_Throat', 'Normal') !!}</td>
                             <td>{!! Form::radio('Ears_Nose_Throat', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Ears_Nose_Throat', '') !!}</td>
+                            <td>{!! Form::text('Ears_Nose_Throat_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Mouth</td>
                             <td>{!! Form::radio('Mouth', 'Normal') !!}</td>
                             <td>{!! Form::radio('Mouth', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Mouth', '') !!}</td>
+                            <td>{!! Form::text('Mouth_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Chest / Lungs</td>
                             <td>{!! Form::radio('Chest_Lungs', 'Normal') !!}</td>
                             <td>{!! Form::radio('Chest_Lungs', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Chest_Lungs', '') !!}</td>
+                            <td>{!! Form::text('Chest_Lungs_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Heart</td>
                             <td>{!! Form::radio('Heart', 'Normal') !!}</td>
                             <td>{!! Form::radio('Heart', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Heart', '') !!}</td>
+                            <td>{!! Form::text('Heart_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Abdomen</td>
                             <td>{!! Form::radio('Abdomen', 'Normal') !!}</td>
                             <td>{!! Form::radio('Abdomen', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Abdomen', '') !!}</td>
+                            <td>{!! Form::text('Abdomen_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Back-Spine</td>
                             <td>{!! Form::radio('Back_Spine', 'Normal') !!}</td>
                             <td>{!! Form::radio('Back_Spine', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Back_Spine', '') !!}</td>
+                            <td>{!! Form::text('Back_Spine_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Musculoskeletal</td>
                             <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
                             <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Musculoskeletal', '') !!}</td>
+                            <td>{!! Form::text('Musculoskeletal_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Neurological</td>
                             <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
                             <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Neurological', '') !!}</td>
+                            <td>{!! Form::text('Neurological_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Extremities</td>
                             <td>{!! Form::radio('Extremities', 'Normal') !!}</td>
                             <td>{!! Form::radio('Extremities', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Extremities', '') !!}</td>
+                            <td>{!! Form::text('Extremities_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Lymph Nodes</td>
                             <td>{!! Form::radio('Lymph_Nodes', 'Normal') !!}</td>
                             <td>{!! Form::radio('Lymph_Nodes', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Lymph_Nodes', '') !!}</td>
+                            <td>{!! Form::text('Lymph_Nodes_txt', '') !!}</td>
                         </tr>
                         <tr>
                             <td>Other</td>
                             <td>{!! Form::radio('Other', 'Normal') !!}</td>
                             <td>{!! Form::radio('Other', 'Abnormal') !!}</td>
-                            <td>{!! Form::text('Other', '') !!}</td>
+                            <td>{!! Form::text('Other_txt', '') !!}</td>
                         </tr>
                     </table>
                     <div>
@@ -592,11 +592,13 @@
                     </div>
                     <div>
                         {!! Form::label('Comments', 'Comments: ') !!}
-                        {!! Form::radio('Comments', 'Physically Healthy') !!}
-                        {!! Form::label('Comments', 'Physically Healthy') !!}
+
+                        {!! Form::radio('Comments_Physically_Healthy', 'Physically Healthy') !!}
+                        {!! Form::label('Comments_Physically_Healthy', 'Physically Healthy') !!}
                         {!! Form::text('Comments_Physically_Healthy', '') !!}
-                        {!! Form::radio('Comments', 'Otherwise') !!}
-                        {!! Form::label('Comments', 'Otherwise') !!}
+
+                        {!! Form::radio('Comments_Otherwise', 'Otherwise') !!}
+                        {!! Form::label('Comments_Otherwise', 'Otherwise') !!}
                         {!! Form::text('Comments_Otherwise', '') !!}
                     </div>
 
@@ -614,7 +616,7 @@
                     <h3>Urine Pregnancy Test</h3>
                     <p>(Transcribed from Urine Logbook)</p>
                     {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
-                    {!! Form::checkbox('UPreg_male', 'Not Applicable for male') !!}
+                    {!! Form::checkbox('UPreg_male') !!}
                     <div class="row">
                         <div class="col-sm-3">
                             {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
@@ -800,11 +802,14 @@
                     </div>
                     <div>
                         {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
+
                         {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
                         {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
                         {!! Form::radio('Blood_Laboratory', 'Other') !!}
                         {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Blood_Laboratory', '') !!}
+
+                        {!! Form::text('Blood_Laboratory_Text', '') !!}
                     </div>
 
                     <div class="row">
@@ -812,7 +817,7 @@
                             {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
-                            {!! Form::text('Blood_RepeatTest', '') !!}
+                            {!! Form::text('Blood_RepeatTest_Text', '') !!}
                         </div>
                     </div>
                     <div class="row">
@@ -823,11 +828,14 @@
                     </div>
                     <div>
                         {!! Form::label('BloodRepeat_Laboratory', 'Laboratory: ') !!}
+
                         {!! Form::radio('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
                         {!! Form::label('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
                         {!! Form::radio('BloodRepeat_Laboratory', 'Other') !!}
                         {!! Form::label('BloodRepeat_Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('BloodRepeat_Laboratory', '') !!}
+
+                        {!! Form::text('BloodRepeat_Laboratory_Text', '') !!}
                     </div>
 
                     <h5>Urine (Microbiology)</h5>
@@ -839,11 +847,14 @@
                     </div>
                     <div>
                         {!! Form::label('Urine_Laboratory', 'Laboratory: ') !!}
+
                         {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
                         {!! Form::label('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
                         {!! Form::radio('Urine_Laboratory', 'Other') !!}
                         {!! Form::label('Urine_Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Urine_Laboratory', '') !!}
+
+                        {!! Form::text('Urine_Laboratory_Text', '') !!}
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -861,11 +872,14 @@
                     </div>
                     <div>
                         {!! Form::label('UrineRepeat_Laboratory', 'Laboratory: ') !!}
+
                         {!! Form::radio('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
                         {!! Form::label('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
                         {!! Form::radio('UrineRepeat_Laboratory', 'Other') !!}
                         {!! Form::label('UrineRepeat_Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('UrineRepeat_Laboratory', '') !!}
+
+                        {!! Form::text('UrineRepeat_Laboratory_txt', '') !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
@@ -896,11 +910,14 @@
                     </div>
                     <div>
                         {!! Form::label('Laboratory', 'Laboratory: ') !!}
+
                         {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
                         {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+
                         {!! Form::radio('Laboratory', 'Other') !!}
                         {!! Form::label('Laboratory', 'Other, specify: ') !!}
-                        {!! Form::text('Laboratory', '') !!}
+
+                        {!! Form::text('Laboratory_txt', '') !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}

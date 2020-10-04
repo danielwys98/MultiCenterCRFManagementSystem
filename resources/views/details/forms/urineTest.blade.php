@@ -1,41 +1,43 @@
+{!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
+@method('PUT')
 <div class="form-group">
     <h3>Urine Pregnancy Test</h3>
     <p>(Transcribed from Urine Logbook)</p>
-    {!! Form::label('male', 'Not Applicable for male') !!}
-    {!! Form::checkbox('male', 'Not Applicable for male') !!}
+    {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
+    {!! Form::checkbox('UPreg_male', 'Not Applicable for male') !!}
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
+            {!! Form::date('UPreg_dateTaken', \Carbon\Carbon::now()) !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('TestTime', 'Test Time: ') !!}
-            {!! Form::time('TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
+            {!! Form::time('UPreg_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::label('Read Time', 'Read Time: ') !!}
-            {!! Form::time('Read Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
+            {!! Form::time('Read UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
         </div>
     </div>
     <div>
         {{--<div class="form-group row">
             <div class="col-md-2">--}}
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
-        {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::label('UPreg_Laboratory','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
         <div class="col-md-5">
             <div class="row">
                 <div class="col-md-2">--}}
-        {!! Form::radio('Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
-        {!! Form::label('Laboratory', 'Others') !!}
+        {!! Form::radio('UPreg_Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
+        {!! Form::label('UPreg_Laboratory', 'Others') !!}
         {{--</div>
         <div class="col-md-3">--}}
-        {!! Form::text('Laboratory_text',old('laboratory'),['placeholder'=>'Please specify']) !!}
+        {!! Form::text('UPreg_Laboratory_Text',old('laboratory'),['placeholder'=>'Please specify']) !!}
         {{--</div>
     </div>--}}
     </div>
@@ -52,20 +54,20 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('hCG', 'hCG: ') !!}
+            {!! Form::label('UPreg_hCG', 'hCG: ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::radio('hCG', 'Positive') !!}
-            {!! Form::label('hCG', 'Positive ') !!}
-            {!! Form::radio('hCG', 'Negative') !!}
-            {!! Form::label('hCG', 'Negative ') !!}
+            {!! Form::radio('UPreg_hCG', 'Positive') !!}
+            {!! Form::label('UPreg_hCG', 'Positive ') !!}
+            {!! Form::radio('UPreg_hCG', 'Negative') !!}
+            {!! Form::label('UPreg_hCG', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('hCG', '') !!}
+            {!! Form::text('UPreg_hCG_Comment', '') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::label('Transcribedby', 'Transcribed by (initial): ') !!}
-            {!! Form::text('Transcribedby', '') !!}
+            {!! Form::label('UPreg_Transcribedby', 'Transcribed by (initial): ') !!}
+            {!! Form::text('UPreg_Transcribedby', '') !!}
         </div>
     </div>
 </div>
@@ -75,27 +77,30 @@
     <p>(Transcribed from Urine Logbook)</p>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
+            {!! Form::date('UDrug_dateTaken', \Carbon\Carbon::now()) !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('TestTime', 'Test Time: ') !!}
-            {!! Form::time('TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::label('UDrug_TestTime', 'Test Time: ') !!}
+            {!! Form::time('UDrug_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::label('Read Time', 'Read Time: ') !!}
-            {!! Form::time('Read Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::label('UDrug_ReadTime', 'Read Time: ') !!}
+            {!! Form::time('UDrug_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
         </div>
     </div>
     <div>
-        {!! Form::label('Abuse_Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Abuse_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::label('Abuse_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::radio('Abuse_Laboratory', 'Other') !!}
-        {!! Form::label('Abuse_Laboratory', 'Other, specify: ') !!}
-        {!! Form::text('Abuse_Laboratory', '') !!}
+        {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
+
+        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+
+        {!! Form::radio('UDrug_Laboratory', 'Other') !!}
+        {!! Form::label('UDrug_Laboratory', 'Other, specify: ') !!}
+
+        {!! Form::text('UDrug_Laboratory_Text', '') !!}
     </div>
     <div class="row">
         <div class="col-sm-3">
@@ -110,16 +115,16 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('Methamphetamine', 'Methamphetamine (mAMP): ') !!}
+            {!! Form::label('UDrug_Methamphetamine', 'Methamphetamine (mAMP): ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::radio('Methamphetamine', 'Positive') !!}
-            {!! Form::label('Methamphetamine', 'Positive ') !!}
-            {!! Form::radio('Methamphetamine', 'Negative') !!}
-            {!! Form::label('Methamphetamine', 'Negative ') !!}
+            {!! Form::radio('UDrug_Methamphetamine', 'Positive') !!}
+            {!! Form::label('UDrug_Methamphetamine', 'Positive ') !!}
+            {!! Form::radio('UDrug_Methamphetamine', 'Negative') !!}
+            {!! Form::label('UDrug_Methamphetamine', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('Methamphetamine', '') !!}
+            {!! Form::text('UDrug_Methamphetamine_Comment', '') !!}
         </div>
     </div>
     <div class="row">
@@ -127,31 +132,31 @@
             {!! Form::label('Morphine', 'Morphine (MOR): ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::radio('Morphine', 'Positive') !!}
-            {!! Form::label('Morphine', 'Positive ') !!}
-            {!! Form::radio('Morphine', 'Negative') !!}
-            {!! Form::label('Morphine', 'Negative ') !!}
+            {!! Form::radio('UDrug_Morphine', 'Positive') !!}
+            {!! Form::label('UDrug_Morphine', 'Positive ') !!}
+            {!! Form::radio('UDrug_Morphine', 'Negative') !!}
+            {!! Form::label('UDrug_Morphine', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('Morphine', '') !!}
+            {!! Form::text('UDrug_Morphine_Comment', '') !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            {!! Form::label('Marijuana', 'Marijuana (THC): ') !!}
+            {!! Form::label('UDrug_Marijuana', 'Marijuana (THC): ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::radio('Marijuana', 'Positive') !!}
-            {!! Form::label('Marijuana', 'Positive ') !!}
-            {!! Form::radio('Marijuana', 'Negative') !!}
-            {!! Form::label('Marijuana', 'Negative ') !!}
+            {!! Form::radio('UDrug_Marijuana', 'Positive') !!}
+            {!! Form::label('UDrug_Marijuana', 'Positive ') !!}
+            {!! Form::radio('UDrug_Marijuana', 'Negative') !!}
+            {!! Form::label('UDrug_Marijuana', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('Marijuana', '') !!}
+            {!! Form::text('UDrug_Marijuana_Comment', '') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::label('Transcribedby', 'Transcribed by (initial): ') !!}
-            {!! Form::text('Transcribedby', '') !!}
+            {!! Form::label('UDrug_Transcribedby', 'Transcribed by (initial): ') !!}
+            {!! Form::text('UDrug_Transcribedby', '') !!}
         </div>
     </div>
 </div>

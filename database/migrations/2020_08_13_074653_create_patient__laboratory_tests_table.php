@@ -25,20 +25,20 @@ class CreatePatientLaboratoryTestsTable extends Migration
             $table->string('Blood_Laboratory');
 
             //Blood Repeated Test
-            $table->string('Blood_NAtest');
-            $table->string('Blood_RepeatTest');
-            $table->date('Repeat_dateBCollected');
-            $table->string('BloodRepeat_Laboratory');
+            $table->string('Blood_NAtest')->nullable();
+            $table->string('Blood_RepeatTest')->nullable();
+            $table->date('Repeat_dateBCollected')->nullable();
+            $table->string('BloodRepeat_Laboratory')->nullable();
 
             //Urine
             $table->date('dateUTaken');
             $table->string('Urine_Laboratory');
 
             //Urine Repeated Test
-            $table->string('Urine_NAtest');
-            $table->string('Urine_RepeatTest');
-            $table->string('Repeat_dateUCollected');
-            $table->string('UrineRepeat_Laboratory');
+            $table->string('Urine_NAtest')->nullable();
+            $table->string('Urine_RepeatTest')->nullable();
+            $table->string('Repeat_dateUCollected')->nullable();
+            $table->string('UrineRepeat_Laboratory')->nullable();
 
             $table->timestamps();
         });
