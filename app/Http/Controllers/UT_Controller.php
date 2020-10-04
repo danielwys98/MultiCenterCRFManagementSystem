@@ -15,7 +15,11 @@ class UT_Controller extends Controller
     }
     public function storeUT(Request $request,$id)
     {
+        //dd($request);
         $ut = new Patient_UrineTest;
+
+        $UPreg_lab=$request->UPreg_Laboratory;
+        $UDrug_lab=$request->UDrug_Laboratory;
 
         $ut->patient_id=$id;
 
@@ -26,18 +30,37 @@ class UT_Controller extends Controller
         $ut->UPreg_TestTime=$request->UPreg_TestTime;
         $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
 
-        $ut->UPreg_Laboratory=$request->UPreg_Laboratory;
+
+        if($UPreg_lab==NULL){
+            $ut->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
+        }else{
+            //$ut->UPreg_Laboratory=$request->UPreg_Laboratory;
+            $ut->UPreg_Laboratory=$UPreg_lab;
+        }
         $ut->UPreg_hCG=$request->UPreg_hCG;
+        //TODO: add comment
         $ut->UPreg_Transcribedby=$request->UPreg_Transcribedby;
+        
 
         // Urine Drug
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;
         $ut->UDrug_ReadTime=$request->UDrug_ReadTime;
-        $ut->UDrug_Laboratory=$request->UDrug_Laboratory;
+
+
+        if($UDrug_lab==NULL)
+            $ut->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
+        else
+            $ut->UDrug_Laboratory=$UDrug_lab;
+
         $ut->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
+        //TODO: add comment
+
         $ut->UDrug_Morphine=$request->UDrug_Morphine;
+        //TODO: add comment
+
         $ut->UDrug_Marijuana=$request->UDrug_Marijuana;
+        //TODO: add comment
         $ut->UDrug_Transcribedby=$request->UDrug_Transcribedby;
 
         $ut->save();
@@ -47,7 +70,8 @@ class UT_Controller extends Controller
 
     public function updateUT(Request $request,$id)
     {
-        DB::table('patient_urine_tests')
+        dd($request);
+        /*DB::table('patient_urine_tests')
             ->where('patient_id',$id)
             ->update([
                 'UPreg_male'=>$request->UPreg_male,
@@ -70,6 +94,6 @@ class UT_Controller extends Controller
                 'UDrug_Transcribedby'=>$request->UDrug_Transcribedby
             ]);
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id));*/
     }
 }
