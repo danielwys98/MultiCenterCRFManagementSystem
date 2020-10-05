@@ -9,7 +9,9 @@
             <form class="form-inline" method="get" action="{{url('/preScreening/admin/search')}}">
                 <input name="search_patient" class="form-control col-lg-10" type="search" placeholder="Patient">
                 <button class="btn btn-success" type="submit">Search</button>
+                <button class="btn btn-warning" type="submit" value="show">Show all</button>
             </form>
+
         </div>
     </div>
     <div class="card-body">

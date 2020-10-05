@@ -33,8 +33,14 @@ class preScreeningController extends Controller
     }
 
     public function search(Request $request){
-        $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
-        return view('preScreening.admin',compact('patients'));
+        if($request->search_patient==NULL){
+            $patients = Patient::all();
+            return view('preScreening.admin',compact('patients'));
+        }else{
+            $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
+            return view('preScreening.admin',compact('patients'));
+        }
+
 
 
     }
