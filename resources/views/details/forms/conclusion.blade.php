@@ -1,4 +1,4 @@
-{!! Form::model($data,['route' => ['update.conclusion',$patient->id]]) !!}
+{!! Form::model($Conclu,['route' => ['update.conclusion',$patient->id]]) !!}
     @method('PUT')
 <div class="form-group">
     <h3>Conclusion</h3>

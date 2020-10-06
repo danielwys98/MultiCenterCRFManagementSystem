@@ -1,4 +1,5 @@
-<div class="form-group">
+{!! Form::model($Physical,['route' => ['update.labtest',$patient->id]]) !!}
+@method('PUT')<div class="form-group">
     <h3>Physical Examination</h3>
     <div class="row">
         <div class="col-sm-3">

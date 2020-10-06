@@ -1,4 +1,4 @@
-    {!! Form::model($data,['route' => ['details.update',$patient->id]]) !!}
+    {!! Form::model($BodyAndVitals,['route' => ['details.update',$patient->id]]) !!}
     @method('PUT')
     @csrf
     {{-- body measurements and vital signs --}}
