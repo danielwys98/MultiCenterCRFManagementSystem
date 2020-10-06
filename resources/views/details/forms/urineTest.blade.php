@@ -1,4 +1,4 @@
-{!! Form::model($data2,['route' => ['update.urinetest',$patient->id]]) !!}
+{!! Form::model($UrineTest,['route' => ['update.urinetest',$patient->id]]) !!}
 @method('PUT')
 <div class="form-group">
     <h3>Urine Pregnancy Test</h3>
@@ -8,17 +8,17 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('UPreg_dateTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('UPreg_dateTaken', old('UPreg_dateTaken'))!!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
-            {!! Form::time('UPreg_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('UPreg_TestTime', old('UPreg_TestTme')) !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
-            {!! Form::time('UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('UPreg_ReadTime', old('UPreg_ReadTime'))!!}
         </div>
     </div>
     <div>
@@ -27,17 +27,18 @@
         {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
-        {!! Form::label('UPreg_Laboratory','Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
+['id'=>'testing']) !!}
+        {!! Form::label('testing','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
         <div class="col-md-5">
             <div class="row">
                 <div class="col-md-2">--}}
-        {!! Form::radio('UPreg_Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
+        {!! Form::radio('UPreg_Laboratory','',(old('UPreg_Laboratory')!='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('UPreg_Laboratory', 'Other') !!}
         {{--</div>
         <div class="col-md-3">--}}
-        {!! Form::text('UPreg_Laboratory_Text',old('laboratory'),['placeholder'=>'Please specify']) !!}
+        {!! Form::text('UPreg_Laboratory_Text',old('UPreg_Laboratory'),['placeholder'=>'Please specify']) !!}
         {{--</div>
     </div>--}}
     </div>
@@ -67,7 +68,7 @@
         </div>
         <div class="col-sm-3">
             {!! Form::label('UPreg_Transcribedby', 'Transcribed by (initial): ') !!}
-            {!! Form::text('UPreg_Transcribedby', '') !!}
+            {!! Form::text('UPreg_Transcribedby', old('UPreg_Transcribedby ')) !!}
         </div>
     </div>
 </div>
@@ -78,17 +79,17 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('UDrug_dateTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('UDrug_dateTaken', old('UDrug_dateTaken')) !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UDrug_TestTime', 'Test Time: ') !!}
-            {!! Form::time('UDrug_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('UDrug_TestTime', old('UDrug_TestTime')) !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('UDrug_ReadTime', 'Read Time: ') !!}
-            {!! Form::time('UDrug_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('UDrug_ReadTime', old('UDrug_ReadTime')) !!}
         </div>
     </div>
     <div>
@@ -156,7 +157,7 @@
         </div>
         <div class="col-sm-3">
             {!! Form::label('UDrug_Transcribedby', 'Transcribed by (initial): ') !!}
-            {!! Form::text('UDrug_Transcribedby', '') !!}
+            {!! Form::text('UDrug_Transcribedby', old('UDrug_Transcribedby')) !!}
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-{!! Form::model($data2,['route' => ['update.bater',$patient->id]]) !!}
+{!! Form::model($BATER,['route' => ['update.bater',$patient->id]]) !!}
     @method('PUT')
     <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>
@@ -21,13 +21,13 @@
                 {!! Form::label('Laboratory', 'Laboratory:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+                {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
                 {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
             </div>
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-2">
-                        {!! Form::radio('Laboratory',(old('Laboratory')=='Others')? 'checked' : '') !!}
+                        {!! Form::radio('Laboratory',(old('laboratory')=='Others')? 'checked' : '') !!}
                         {!! Form::label('Laboratory', 'Others') !!}
                     </div>
                     <div class="col-md-3">

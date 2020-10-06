@@ -52,16 +52,32 @@ class BMVS_Controller extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
-        $data =$patient->bodyandvitalsigns;
-        return view('details.show',compact('data'))->with('patient',$patient);
+        $BodyAndVitals =$patient->bodyandvitalsigns;
+        return view('details.show',compact('BodyAndVitals'))->with('patient',$patient);
     }
 
     public function edit($id)
     {
         $patient = Patient::find($id);
-        $data =$patient->bodyandvitalsigns;
-        $data2 =$patient->BreathAlcoholTestAndElectrocardiogram;
-        return view('details.edit',compact('data','data2'))->with('patient',$patient);
+        $BodyAndVitals =$patient->bodyandvitalsigns;
+        $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
+        $Medical=$patient->MedicalHistory;
+        $Physical=$patient->PhysicalExam;
+        $UrineTest=$patient->UrineTest;
+        $LabTest=$patient->LabTest;
+        $Serology=$patient->SerologyTest;
+        $InclusionExclusion=$patient->InclusionExclusion;
+        $Conclu=$patient->Conclu;
+        return view('details.edit',compact(
+            'BodyAndVitals',
+            'BATER',
+            'Medical',
+            'Physical',
+            'UrineTest',
+            'LabTest',
+            'Serology',
+            'InclusionExclusion',
+            'Conclu'))->with('patient',$patient);
     }
 
     public function update(Request $request,$id)

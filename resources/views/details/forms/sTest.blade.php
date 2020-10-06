@@ -1,4 +1,4 @@
-{!! Form::model($data2,['route' => ['update.serology',$patient->id]]) !!}
+{!! Form::model($Serology,['route' => ['update.serology',$patient->id]]) !!}
 @method('PUT')
 <div class="form-group">
     <h3>Serology Test</h3>

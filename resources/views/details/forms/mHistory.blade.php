@@ -1,3 +1,5 @@
+{!! Form::model($Medical,['route' => ['update.labtest',$patient->id]]) !!}
+@method('PUT')
 <div class="form-group">
     <h3>Medical History</h3>
     <div class="row">
