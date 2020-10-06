@@ -124,14 +124,7 @@ class IEC_Controller extends Controller
             'Exclusion25'=>$request->Exclusion25
             
         ]);
-        return $validatedData= $this->validation($request);
-
-        return redirect(route('details.edit',$id));
-    }
-
-    public function validation(Request $request)
-    {
-        $this->validate ($request,[
+        $validatedData=$this->validate($request,[
             'Inclusion01' => 'required',
             'Inclusion02' => 'required',
             'Inclusion03' => 'required',
@@ -163,5 +156,8 @@ class IEC_Controller extends Controller
             'Exclusion24' => 'required',
             'Exclusion25' => 'required',
         ]);
+
+        return redirect(route('details.edit',$id));
     }
+
 }

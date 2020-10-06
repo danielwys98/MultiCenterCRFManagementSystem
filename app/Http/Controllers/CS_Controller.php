@@ -16,8 +16,6 @@ class CS_Controller extends Controller
     public function storeCS(Request $request,$id)
     {
         $cs = new Patient_Conclusion_Signature;
-
-        // dd($request);
         $cs->patient_id=$id;
         
         $inclusionYesNo = $request->inclusionYesNo;
