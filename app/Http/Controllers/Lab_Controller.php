@@ -37,6 +37,7 @@ class Lab_Controller extends Controller
         } else
             $ut->Blood_Laboratory = $request->Blood_Laboratory;
 
+        //Check if Repeat Blood Test id Required
         $ut->Blood_NAtest = $request->Blood_NAtest;
         if ($request->Blood_NAtest == true) {
             $ut->Blood_RepeatTest = NULL;
@@ -58,6 +59,7 @@ class Lab_Controller extends Controller
         else
             $ut->Urine_Laboratory = $request->Urine_Laboratory;
 
+        //Check if Repeat Urine Test is Required
         $ut->Urine_NAtest = $request->Urine_NAtest;
         if ($request->Urine_NAtest == true) {
             $ut->Urine_RepeatTest = NULL;
@@ -108,7 +110,7 @@ class Lab_Controller extends Controller
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
 
-        if ($request->Blood_Laboratory == 'Other') {
+        if ($request->Blood_Laboratory != 'Sarawak General Hospital Heart Centre') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -141,7 +143,7 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        if($request->Urine_Laboratory=='Other'){
+        if($request->Urine_Laboratory!='Sarawak General Hospital Heart Centre'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([

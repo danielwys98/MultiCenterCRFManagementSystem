@@ -7,35 +7,39 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('dateBTaken', 'Date Blood Taken: ') !!}
-            {!! Form::date('dateBTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('dateBTaken') !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('dateLMTaken', 'Date Last Meal Taken: ') !!}
-            {!! Form::date('dateLMTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('dateLMTaken') !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('TimeLMTaken', 'Time Last Meal Taken: ') !!}
-            {!! Form::time('TimeLMTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+            {!! Form::time('TimeLMTaken') !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
-            {!! Form::text('describemeal', '') !!}
+            {!! Form::text('describemeal',
+old('describemeal', $LabTest->describemeal)) !!}
         </div>
     </div>
     <div>
         {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
 
-        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd',
+(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
         {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-        {!! Form::radio('Blood_Laboratory', 'Other') !!}
+        {!! Form::radio('Blood_Laboratory',
+(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : true) !!}
         {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Blood_Laboratory_Text', '') !!}
+        {!! Form::text('Blood_Laboratory_Text',
+(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : $LabTest->Blood_Laboratory) !!}
     </div>
 
     <div class="row">
@@ -49,7 +53,7 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('Repeat_dateBCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('Repeat_dateBCollected', \Carbon\Carbon::now()) !!}
+            {!! Form::date('Repeat_dateBCollected') !!}
         </div>
     </div>
     <div>
@@ -68,19 +72,22 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('dateUTaken', 'Date Urine Collected: ') !!}
-            {!! Form::date('dateUTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('dateUTaken') !!}
         </div>
     </div>
     <div>
         {!! Form::label('Urine_Laboratory', 'Laboratory: ') !!}
 
-        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd',
+(old('Urine_Laboratory',$LabTest->Urine_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
         {!! Form::label('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-        {!! Form::radio('Urine_Laboratory', 'Other') !!}
+        {!! Form::radio('Urine_Laboratory',
+(old('Urine_Laboratory',$LabTest->Urine_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : true) !!}
         {!! Form::label('Urine_Laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Urine_Laboratory_Text', '') !!}
+        {!! Form::text('Urine_Laboratory_Text',
+(old('Urine_Laboratory',$LabTest->Urine_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : $LabTest->Urine_Laboratory) !!}
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -93,7 +100,7 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('Repeat_dateUCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('Repeat_dateUCollected', \Carbon\Carbon::now()) !!}
+            {!! Form::date('Repeat_dateUCollected') !!}
         </div>
     </div>
     <div>

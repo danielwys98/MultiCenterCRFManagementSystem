@@ -21,17 +21,17 @@
                 {!! Form::label('Laboratory', 'Laboratory:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+                {!! Form::radio('Laboratory', 'z',(old('laboratory',$BATER->laboratoy)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
                 {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
             </div>
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-2">
-                        {!! Form::radio('Laboratory',(old('laboratory')=='Others')? 'checked' : '') !!}
+                        {!! Form::radio('Laboratory',(old('laboratory',$BATER->laboratoy)=='Sarawak General Hospital Heart Centre')? '' : true) !!}
                         {!! Form::label('Laboratory', 'Others') !!}
                     </div>
                     <div class="col-md-3">
-                        {!! Form::text('Laboratory_text', old('laboratory'),['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                        {!! Form::text('Laboratory_text', (old('laboratory',$BATER->laboratoy)=='Sarawak General Hospital Heart Centre')? '' : $BATER->laboratory,['class'=>'form-control','placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
             </div>
@@ -74,19 +74,19 @@
         </div>
         <div class="form-group row">
             <div class="col-md-2">
-                {!! Form::label('Conclusion', 'Conclusion: ') !!}
+                {!! Form::label('conclusion', 'Conclusion: ') !!}
             </div>
             <div class="col-md-2">
-            {!! Form::radio('Conclusion', 'Normal') !!}
-            {!! Form::label('Conclusion', 'Normal') !!}
+            {!! Form::radio('conclusion', 'Normal') !!}
+            {!! Form::label('conclusion', 'Normal') !!}
             </div>
             <div class="col-md-2">
-            {!! Form::radio('Conclusion', 'Abnormal but not clinically significant') !!}
-            {!! Form::label('Conclusion', 'Abnormal but not clinically significant') !!}
+            {!! Form::radio('conclusion', 'Abnormal but not clinically significant') !!}
+            {!! Form::label('conclusion', 'Abnormal but not clinically significant') !!}
             </div>
             <div class="col-md-2">
-            {!! Form::radio('Conclusion', 'Abnormal and clinically significant')!!}
-            {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
+            {!! Form::radio('conclusion', 'Abnormal and clinically significant')!!}
+            {!! Form::label('conclusion', 'Abnormal and clinically significant') !!}
             </div>
         </div>
     <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>

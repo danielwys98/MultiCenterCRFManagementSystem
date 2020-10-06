@@ -16,7 +16,7 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
-      /*dd($request);*/
+     /* dd($request);*/
      $mh = new Patient_MedicalHistory();
         $data =$request->except('_token','dateTaken','timeTaken');
 
@@ -38,15 +38,20 @@ class MH_Controller extends Controller
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
-                $mh->$key=$data[$RP_Yes];
+                $mh->RegularPeriods_YesNo=$data[$key];
+                $mh->$key=$value.",".$data[$RP_Yes];
+                //echo $key = $value.", ".$data[$RP_Yes];
 
             }else if($key == "RegularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
-                $mh->$key=$data[$RP_No];
+                $mh->RegularPeriods_YesNo=$data[$key];
+                $mh->$key=$value.",".$data[$RP_No];
+               /* echo $key = $value.", ".$data[$RP_No];*/
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
                 $mh->$key=$data[$key];
+                $mh->RegularPeriods_YesNo=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
                 $FC_Yes ="FertilityControl_Yes_txt";
@@ -82,7 +87,7 @@ class MH_Controller extends Controller
         }
 
             $mh->save();
-        return redirect(route('details.create',$id));
+       return redirect(route('details.create',$id));
     }
     public function updateMH(Request $request,$id)
     {

@@ -11,18 +11,20 @@
                 @endforeach
             </ul>
         </div>
-    @endif            
+    @endif
     <div class="row">
         <div class="col-sm-6">
             <p>Does the subject fulfill all the inclusion criteria and none of the exclusion criteria?</p>
         </div>
         <div class="col-sm-3">
-            <p>{!! Form::label('inclusionYesNo', 'Yes') !!}</p>
-            <p>{!! Form::radio('inclusionYesNo', (old('inclusionYesNo')=='Yes')? 'checked' : '') !!}</p>
+            <p>{!! Form::label('Yes', 'Yes') !!}</p>
+            <p>{!! Form::radio('inclusionYesNo','Yes',(old('inclusionYesNo',$Conclu->inlcusionYesNo)=='Yes')? 'checked' : '',
+['id'=>'Yes']) !!}</p>
         </div>
         <div class="col-sm-3">
-            <p>{!! Form::label('inclusionYesNo', 'No') !!}</p>
-            <p>{!! Form::radio('inclusionYesNo', (old('inclusionYesNo')=='No')? 'checked' : '') !!}</p>
+            <p>{!! Form::label('No', 'No') !!}</p>
+            <p>{!! Form::radio('inclusionYesNo','No',(old('inclusionYesNo', $Conclu->inclusionYesNo)=='No ')? 'checked' : '',
+['id'=>'No']) !!}</p>
         </div>
     </div>
     <p>If “Yes”, enroll the subject into the study.</p>
@@ -55,7 +57,7 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+            {!! Form::date('dateTaken') !!}
         </div>
     </div>
     </div>
