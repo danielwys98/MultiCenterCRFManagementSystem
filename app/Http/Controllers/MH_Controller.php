@@ -62,7 +62,6 @@ class MH_Controller extends Controller
             else if($key == "ActiveSexAct")
             {
                 $mh->$key=$data[$key];
-
             }
             else if($key == "Breastfeeding")
             {

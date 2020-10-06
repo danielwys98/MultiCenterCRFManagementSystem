@@ -72,6 +72,17 @@ class Lab_Controller extends Controller
                 $ut->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
         }
 
+        $validatedData=$this->validate($request,[
+            'BloodLab' => 'required',
+            'BloodLabRepeat' => 'required',
+            'UrineLab' => 'required',
+            'UrineLabRepeat' => 'required',
+            'dateBTaken' => 'required',
+            'dateLMTaken' => 'required',
+            'TimeLMTaken' => 'required',
+            'describemeal' => 'required',
+            'Blood_Laboratory' => 'required',
+        ]);
 
         $ut->save();
 

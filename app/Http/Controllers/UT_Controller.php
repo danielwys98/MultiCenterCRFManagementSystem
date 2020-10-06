@@ -15,12 +15,6 @@ class UT_Controller extends Controller
     }
     public function storeUT(Request $request,$id)
     {
-        /*dd($request);*/
-        /*if($request->UPreg_male==true){
-
-        }else{
-
-        }*/
         $ut = new Patient_UrineTest;
 
         $UPreg_lab=$request->UPreg_Laboratory;

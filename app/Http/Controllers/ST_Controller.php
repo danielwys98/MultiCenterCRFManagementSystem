@@ -28,6 +28,11 @@ class ST_Controller extends Controller
 
         $cs->save();
 
+        $validatedData=$this->validate($request,[
+            'dateBCollected' => 'required',
+            'physicianSign' => 'required',
+            'Laboratory' => 'required',
+        ]);
         return redirect(route('details.create',$id));
     }
     public function updateST(Request $request,$id)
@@ -52,6 +57,11 @@ class ST_Controller extends Controller
                    'Laboratory'=>$request->Laboratory
                ]);
        }
+       $validatedData=$this->validate($request,[
+        'dateBCollected' => 'required',
+        'physicianSign' => 'required',
+        'Laboratory' => 'required',
+        ]);
         return redirect(route('details.edit',$id));
     }
 }
