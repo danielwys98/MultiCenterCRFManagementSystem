@@ -1,4 +1,4 @@
-{!! Form::model($UrineTest,['route' => ['update.urinetest',$patient->id]]) !!}
+ {!! Form::model($UrineTest,['route' => ['update.urinetest',$patient->id]]) !!}
 @method('PUT')
 <div class="form-group">
     {{--{{dd($UrineTest)}}--}}
@@ -28,18 +28,21 @@
         {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
+        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',
+(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
 ['id'=>'testing']) !!}
         {!! Form::label('testing','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
         <div class="col-md-5">
             <div class="row">
                 <div class="col-md-2">--}}
-        {!! Form::radio('UPreg_Laboratory','') !!}
+        {!! Form::radio('UPreg_Laboratory')!!}
         {!! Form::label('UPreg_Laboratory', 'Other') !!}
         {{--</div>
         <div class="col-md-3">--}}
-        {!! Form::text('UPreg_Laboratory_Text',(old('UPreg_Laboratory',$UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? '': $UrineTest->UPreg_Laboratory,['placeholder'=>'Please specify']) !!}
+        {!! Form::text('UPreg_Laboratory_Text',
+(old('UPreg_Laboratory',$UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? '': $UrineTest->UPreg_Laboratory,
+['placeholder'=>'Please specify']) !!}
         {{--</div>
     </div>--}}
     </div>

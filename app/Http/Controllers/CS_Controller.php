@@ -17,7 +17,7 @@ class CS_Controller extends Controller
     {
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
-        
+
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
         {
@@ -45,7 +45,7 @@ class CS_Controller extends Controller
         $cs->physicianSign=$request->physicianSign;
         $cs->physicianName=$request->physicianName;
         $cs->dateTaken=$request->dateTaken;
-        
+
         $validatedData=$this->validate($request,[
             'inclusionYesNo' => 'required',
             'physicianSign' => 'required',
@@ -64,7 +64,7 @@ class CS_Controller extends Controller
             ->update([
             'physicianSign'=>$request->physicianSign,
             'physicianName'=>$request->physicianName,
-            'dateTaken'=>$request->dateTaken            
+            'dateTaken'=>$request->dateTaken
 
         ]);
         $inclusionYesNo = $request->inclusionYesNo;
@@ -91,7 +91,7 @@ class CS_Controller extends Controller
                     ->update([
                         'NAbnormality'=>"Yes"
                     ]);
-            }elseif (($NAbnormality=="")){
+            }elseif (($NAbnormality=="No")){
                 DB::table('patient_conclusion_signatures')
                     ->where('patient_id',$id)
                     ->update([
@@ -107,7 +107,7 @@ class CS_Controller extends Controller
                     ->update([
                         'abnormality'=>"Yes"
                     ]);
-            }elseif (($abnormality=="")){
+            }elseif (($abnormality=="No")){
                 DB::table('patient_conclusion_signatures')
                     ->where('patient_id',$id)
                     ->update([

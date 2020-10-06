@@ -51,6 +51,7 @@ class MH_Controller extends Controller
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
                 $mh->$key=$data[$key];
+                $mh->RegularPeriods_YesNo=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
                 $FC_Yes ="FertilityControl_Yes_txt";

@@ -99,7 +99,7 @@ class Lab_Controller extends Controller
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
 
-        if ($request->Blood_Laboratory == 'Other') {
+        if ($request->Blood_Laboratory != 'Sarawak General Hospital Heart Centre') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -132,7 +132,7 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        if($request->Urine_Laboratory=='Other'){
+        if($request->Urine_Laboratory!='Sarawak General Hospital Heart Centre'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
