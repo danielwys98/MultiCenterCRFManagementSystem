@@ -49,6 +49,6 @@ class PagesController extends Controller
     }
     public function studySpecificDB()
     {
-        return view('studySpecificdb');
+        return view('studySpecific.index');
     }
 }
