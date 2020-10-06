@@ -50,11 +50,42 @@ class IEC_Controller extends Controller
         $iec->Exclusion24=$request->Exclusion24;
         $iec->Exclusion25=$request->Exclusion25;
 
-        return $validatedData= $this->validation($request);
+        $validatedData=$this->validate($request,[
+            'Inclusion01' => 'required',
+            'Inclusion02' => 'required',
+            'Inclusion03' => 'required',
+            'Inclusion04' => 'required',
+            'Inclusion05' => 'required',
+            'Exclusion01' => 'required',
+            'Exclusion02' => 'required',
+            'Exclusion03' => 'required',
+            'Exclusion04' => 'required',
+            'Exclusion05' => 'required',
+            'Exclusion06' => 'required',
+            'Exclusion07' => 'required',
+            'Exclusion08' => 'required',
+            'Exclusion09' => 'required',
+            'Exclusion10' => 'required',
+            'Exclusion11' => 'required',
+            'Exclusion12' => 'required',
+            'Exclusion13' => 'required',
+            'Exclusion14' => 'required',
+            'Exclusion15' => 'required',
+            'Exclusion16' => 'required',
+            'Exclusion17' => 'required',
+            'Exclusion18' => 'required',
+            'Exclusion19' => 'required',
+            'Exclusion20' => 'required',
+            'Exclusion21' => 'required',
+            'Exclusion22' => 'required',
+            'Exclusion23' => 'required',
+            'Exclusion24' => 'required',
+            'Exclusion25' => 'required',
+        ]);
 
         $iec->save();
 
-        return redirect(route('details.create',$id)->withErrors($validatedData));
+        return redirect(route('details.create',$id));
     }
     public function updateIEC(Request $request,$id)
     {
@@ -95,7 +126,7 @@ class IEC_Controller extends Controller
         ]);
         return $validatedData= $this->validation($request);
 
-        return redirect(route('details.edit',$id)->withErrors($validatedData));
+        return redirect(route('details.edit',$id));
     }
 
     public function validation(Request $request)

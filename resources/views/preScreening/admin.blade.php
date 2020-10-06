@@ -1,4 +1,4 @@
-@extends('MasterLayout')
+	@extends('MasterLayout')
 
 @section('content')
     <div class="row">
@@ -19,7 +19,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
     <div class="card-body">

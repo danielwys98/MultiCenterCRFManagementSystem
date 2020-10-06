@@ -17,18 +17,18 @@
             <p>Does the subject fulfill all the inclusion criteria and none of the exclusion criteria?</p>
         </div>
         <div class="col-sm-3">
-            <p>{!! Form::label('Yes', 'Yes') !!}</p>
-            <p>{!! Form::radio('Yes', 'Yes') !!}</p>
+            <p>{!! Form::label('inclusionYesNo', 'Yes') !!}</p>
+            <p>{!! Form::radio('inclusionYesNo', (old('inclusionYesNo')=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-sm-3">
-            <p>{!! Form::label('No', 'No') !!}</p>
-            <p>{!! Form::radio('No', 'No') !!}</p>
+            <p>{!! Form::label('inclusionYesNo', 'No') !!}</p>
+            <p>{!! Form::radio('inclusionYesNo', (old('inclusionYesNo')=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <p>If “Yes”, enroll the subject into the study.</p>
     <p>If “No”, provide details. The subject may or may not be enrolled into the study, based on the
         discretion of the research physician.</p>
-    {!! Form::text('NoDetails', '') !!}
+    {!! Form::text('NoDetails', old('inclusionYesNo'),['class'=>'form-control','placeholder'=>'Please specify']) !!}
     <div>
         {!! Form::checkbox('NAbnormality ', 'NAbnormality ') !!}
         {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
@@ -43,13 +43,13 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('physicianSign', 'Physician’s Signature: ') !!}
-            {!! Form::text('physicianSign', '') !!}
+            {!! Form::text('physicianSign', old('physicianSign'),['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-            {!! Form::text('physicianName', '') !!}
+            {!! Form::text('physicianName', old('physicianName'),['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">

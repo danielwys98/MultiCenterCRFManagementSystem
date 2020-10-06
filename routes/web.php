@@ -25,7 +25,9 @@ Route::get('/preScreening/admin','preScreeningController@admin');
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-Route::get('/studySpecificdb','PagesController@studySpecificdb');
+Route::get('/studySpecificdb','studySpecificController@index');
+
+Route::get('/studySpecificdb/create','studySpecificController@create');
 
 Route::get('/preScreeningForm','PagesController@preScreeningForm');
 
@@ -80,3 +82,5 @@ Auth::routes();
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);
 
 Route::resource('preScreening','preScreeningController');
+
+Route::resource('studySpecificdb','studySpecificController');

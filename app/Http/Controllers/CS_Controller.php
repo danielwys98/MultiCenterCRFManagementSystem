@@ -17,6 +17,7 @@ class CS_Controller extends Controller
     {
         $cs = new Patient_Conclusion_Signature;
 
+        // dd($request);
         $cs->patient_id=$id;
         
         $inclusionYesNo = $request->inclusionYesNo;
@@ -47,12 +48,16 @@ class CS_Controller extends Controller
         $cs->physicianName=$request->physicianName;
         $cs->dateTaken=$request->dateTaken;
         
-        
-        return $validatedData= $this->validation($request);
+        $validatedData=$this->validate($request,[
+            'inclusionYesNo' => 'required',
+            'physicianSign' => 'required',
+            'physicianName' => 'required',
+            'dateTaken' => 'required',
+        ]);
 
         $cs->save();
 
-        return redirect(route('details.create',$id)->withErrors($validatedData));
+        return redirect(route('details.create',$id));
     }
     public function updateCS(Request $request,$id)
     {
@@ -112,18 +117,14 @@ class CS_Controller extends Controller
                     ]);
             }
 
-            // return $validatedData= $this->validation($request);
+            $validatedData=$this->validate($request,[
+                'inclusionYesNo' => 'required',
+                'physicianSign' => 'required',
+                'physicianName' => 'required',
+                'dateTaken' => 'required',
+            ]);
 
         return redirect(route('details.edit',$id));
     }
 
-    public function validation(Request $request)
-    {
-        $this->validate ($request,[
-            
-            'physicianSign' => 'required',
-            'physicianName' => 'required',
-            'dateTaken' => 'required',
-        ]);
-    }
 }
