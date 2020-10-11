@@ -29,6 +29,8 @@ Route::get('/studySpecificdb','studySpecificController@index');
 
 Route::get('/studySpecificdb/create','studySpecificController@create');
 
+Route::get('/studySpecificdb/test','studySpecificController@testing');
+
 Route::get('/preScreeningForm','PagesController@preScreeningForm');
 
 Route::get('details/create/{id}','BMVS_Controller@create')->name('details.create');

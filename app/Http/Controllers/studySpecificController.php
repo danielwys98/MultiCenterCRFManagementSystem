@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
+use App\PatientStudySpecific;
 
 class studySpecificController extends Controller
 {
@@ -64,7 +65,7 @@ class studySpecificController extends Controller
     {
         $study = new studySpecific();
 
-        $study->study_name=$request->studyName;
+        $study->studyName=$request->studyName;
         $study->timeTaken = $request->timeTaken;
         $study->dateTaken=$request->dateTaken;
         $study->patient_Count=$request->patient_Count;
@@ -138,5 +139,10 @@ class studySpecificController extends Controller
         $patient->delete();
 
          return redirect('preScreening');*/
+    }
+
+    public function testing()
+    {
+
     }
 }

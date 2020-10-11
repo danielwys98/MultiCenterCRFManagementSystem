@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class studySpecific extends Model
 {
     protected $table="study_specifics";
-    protected $primaryKey="study_id";
- /*   public function patients()
+    protected $primaryKey="studyID";
+  public function patientStudySpecific()
     {
-        return $this->hasMany('App\Patient','patient_id','id');
-    }*/
+        return $this->hasOne('App\PatientStudySpecific','studyID');
+    }
 }

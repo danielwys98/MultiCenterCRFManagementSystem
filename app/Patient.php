@@ -38,8 +38,8 @@ class Patient extends Model
         return $this->hasOne('App\Patient_Conclusion_Signature', 'patient_id', 'id');
     }
 
-    public function studySpecific()
+    public function patientStudySpecific()
     {
-        return $this->hasOne('App\studySpecific','patient_id','id');
+        return $this->hasOne('App\PatientStudySpecific','patient_id','id');
     }
 }
