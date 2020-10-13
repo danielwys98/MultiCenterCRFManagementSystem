@@ -116,13 +116,13 @@
     </div>
     <div>
         {!! Form::label('Comments', 'Comments: ') !!}
-        {!! Form::radio('Comments_Physically_Healthy', 'Physically Healthy',
-(old('Comments_Physically_Healthy',$Physical->Comments_Physically_Healthy)=='Healthy')? 'checked':'')!!}
-        {!! Form::label('Comments_Physically_Healthy', 'Physically Healthy') !!}
+        {!! Form::radio('Comments', 'Physically Healthy',
+(old('Comments',$Physical->Comments)=='Healthy')? 'checked':'')!!}
+        {!! Form::label('Comments', 'Physically Healthy') !!}
         {!! Form::text('Comments_Physically_Healthy', '') !!}
 
-        {!! Form::radio('Comments_Otherwise', 'Otherwise') !!}
-        {!! Form::label('Comments_Otherwise', 'Otherwise') !!}
+        {!! Form::radio('Comments', 'Otherwise') !!}
+        {!! Form::label('Comments', 'Otherwise') !!}
         {!! Form::text('Comments_Otherwise', '') !!}
     </div>
     </div>

@@ -1,9 +1,7 @@
 @extends('MasterLayout')
 
 @section('content')
-
-
-    <div class="container-fluid">
+    <div>
         <h3>Please fill in the belows to start creating an Pre-Study Screening Form</h3>
         <h3>General Consent</h3>
         <hr>
@@ -79,7 +77,7 @@
                         {!! Form::label('otherRaces', 'Others') !!}
                     </div>
                     <div class="col-md-3">
-                        {!! Form::text('Others', old('Others'),['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                        {!! Form::text('Ethnic_Text','',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
             </div>

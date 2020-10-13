@@ -71,7 +71,11 @@ class preScreeningController extends Controller
         $patient->NRIC=$request->NRIC;
         $patient->name=$request->name;
         $patient->Gender=$request->Gender;
-        $patient->Ethnicity=$request->Ethnicity;
+        if($request->Ethnicity=='Others'){
+            $patient->Ethnicity=$request->Ethnic_Text;
+        }else
+            $patient->Ethnicity=$request->Ethnicity;
+
         $patient->DoB=$request->DoB;
         $patient->age=$request->age;
         $patient->maritalstatus=$request->maritalstatus;
@@ -146,7 +150,18 @@ class preScreeningController extends Controller
     {
         $patient = Patient::find($id);
 
+        $patient->bodyandvitalsigns()->delete();
+        $patient->BreathAlcoholTestAndElectrocardiogram()->delete();
+        $patient->MedicalHistory()->delete();
+        $patient->PhysicalExam()->delete();
+        $patient->UrineTest()->delete();
+        $patient->LabTest()->delete();
+        $patient->SerologyTest()->delete();
+        $patient->InclusionExclusion()->delete();
+        $patient->Conclu()->delete();
+
         $patient->delete();
+
 
          return redirect('preScreening');
     }

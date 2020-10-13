@@ -27,6 +27,7 @@ class CreatePatientsTable extends Migration
             $table->string('MRNno');
             $table->rememberToken();
             $table->timestamps();
+
         });
     }
 
