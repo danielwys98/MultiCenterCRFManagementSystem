@@ -76,14 +76,12 @@ class Lab_Controller extends Controller
 
         $validatedData=$this->validate($request,[
             'BloodLab' => 'required',
-            'BloodLabRepeat' => 'required',
-            'UrineLab' => 'required',
-            'UrineLabRepeat' => 'required',
             'dateBTaken' => 'required',
             'dateLMTaken' => 'required',
             'TimeLMTaken' => 'required',
             'describemeal' => 'required',
-            'Blood_Laboratory' => 'required',
+            'dateUTaken' => 'required',
+            'UrineLab' => 'required',
         ]);
 
         $ut->save();
@@ -110,7 +108,7 @@ class Lab_Controller extends Controller
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
 
-        if ($request->Blood_Laboratory != 'Sarawak General Hospital Heart Centre') {
+        if ($request->Blood_Laboratory != 'B.P. Clinical Lab Sdn Bhd') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -143,7 +141,7 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        if($request->Urine_Laboratory!='Sarawak General Hospital Heart Centre'){
+        if($request->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -175,6 +173,17 @@ class Lab_Controller extends Controller
                     'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
                 ]);
         }
+
+        $validatedData=$this->validate($request,[
+            'BloodLab' => 'required',
+            'dateBTaken' => 'required',
+            'dateLMTaken' => 'required',
+            'TimeLMTaken' => 'required',
+            'describemeal' => 'required',
+            'dateUTaken' => 'required',
+            'UrineLab' => 'required',
+        ]);
+        
         return redirect(route('details.edit', $id));
     }
 }
