@@ -15,6 +15,16 @@
             <li><a data-toggle="tab" href="#Conclude">Conclusion and Signature</a></li>
         </ul>
         <hr>
+        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                 {!! Form::open(['route' => ['details.store',$patient->id]]) !!}
@@ -593,12 +603,12 @@
                     <div>
                         {!! Form::label('Comments', 'Comments: ') !!}
 
-                        {!! Form::radio('Comments_Physically_Healthy', 'Physically Healthy') !!}
-                        {!! Form::label('Comments_Physically_Healthy', 'Physically Healthy') !!}
+                        {!! Form::radio('Comments', 'Physically Healthy') !!}
+                        {!! Form::label('Comments', 'Physically Healthy') !!}
                         {!! Form::text('Comments_Physically_Healthy', '') !!}
 
-                        {!! Form::radio('Comments_Otherwise', 'Otherwise') !!}
-                        {!! Form::label('Comments_Otherwise', 'Otherwise') !!}
+                        {!! Form::radio('Comments', 'Otherwise') !!}
+                        {!! Form::label('Comments', 'Otherwise') !!}
                         {!! Form::text('Comments_Otherwise', '') !!}
                     </div>
 

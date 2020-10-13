@@ -86,6 +86,53 @@ class MH_Controller extends Controller
             }
         }
 
+        $validatedData=$this->validate($request,[
+            'Allergy'  => 'required',
+            'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
+            'EENT'  => 'required',
+            'EENT_txt' => 'required_if:EENT,==,Abnormal',
+            'Respiratory'  => 'required',
+            'Respiratory_txt' => 'required_if:Respiratory,==,Abnormal',
+            'Cardiovascular'  => 'required',
+            'Cardiovascular_txt' => 'required_if:Cardiovascular,==,Abnormal',
+            'Gastrointestinal'  => 'required',
+            'Gastrointestinal_txt' => 'required_if:Gastrointestinal,==,Abnormal',
+            'Genitourinary'  => 'required',
+            'Genitourinary_txt' => 'required_if:Genitourinary,==,Abnormal',
+            'Neurological'  => 'required',
+            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'HaematopoieticL'  => 'required',
+            'HaematopoieticL_txt' => 'required_if:HaematopoieticL,==,Abnormal',
+            'EndocrineM'  => 'required',
+            'EndocrineM_txt' => 'required_if:EndocrineM,==,Abnormal',
+            'Dermatological'  => 'required',
+            'Dermatological_txt' => 'required_if:Dermatological,==,Abnormal',
+            'Musculoskeletal'  => 'required',
+            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'Psychological'  => 'required',
+            'Psychological_txt' => 'required_if:Psychological,==,Abnormal',
+            'FamilyHistory'  => 'required',
+            'FamilyHistory_txt' => 'required_if:FamilyHistory,==,Abnormal',
+            'SurgicalHistory'  => 'required',
+            'SurgicalHistory_txt' => 'required_if:SurgicalHistory,==,Abnormal',
+            'PrevHospitalization'  => 'required',
+            'PrevHospitalization_txt' => 'required_if:PrevHospitalization,==,Abnormal',
+            'Smoker'  => 'required',
+            'RAI'  => 'required',
+            'RMS'  => 'required',
+            'RegularExercise'  => 'required',
+            'BloodDonations'  => 'required',
+            'RegularPeriods'  => 'required',
+            'RegularPeriods_No_txt' => 'required_if:PrevHospitalization,==,No',
+            'RegularPeriods_Yes_txt' => 'required_if:PrevHospitalization,==,Yes',
+            'ActiveSexAct'  => 'required',
+            'FertilityControl'  => 'required',
+            'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
+            'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
+            'Breastfeeding'  => 'required',
+            'Conclusion' => 'required',
+        ]);
+
             $mh->save();
        return redirect(route('details.create',$id));
     }
@@ -96,37 +143,179 @@ class MH_Controller extends Controller
             ->update([
             'dateTaken'=>$request->dateTaken,
             'timeTaken'=>$request->timeTaken,
-            'Allergy'=>$request->Allergy,
-            'EENT'=>$request->EENT,
-            'Respiratory'=>$request->Respiratory,
-            'Cardiovascular'=>$request->Cardiovascular,
-            'Gastrointestinal'=>$request->Gastrointestinal,
-            'Genitourinary'=>$request->Genitourinary,
-            'Neurological'=>$request->Neurological,
-            'HaematopoieticL'=>$request->HaematopoieticL,
-            'EndocrineM'=>$request->EndocrineM,
-            'Dermatological'=>$request->Dermatological,
-            'Musculoskeletal'=>$request->Musculoskeletal,
-            'Psychological'=>$request->Psychological,
-            'FamilyHistory'=>$request->FamilyHistory,
-            'SurgicalHistory'=>$request->SurgicalHistory,
-            'PrevHospitalization'=>$request->PrevHospitalization,
-            'Smoker'=>$request->Smoker,
-            'Smoker_txt'=>$request->Smoker_txt,
-            'RAI'=>$request->RAI,
-            'RAI_txt'=>$request->RAI_txt,
-            'RMS'=>$request->RMS_txt,
-            'RegularExercise'=>$request->RegularExercise,
-            'RegularExercise_txt'=>$request->RegularExercise_txt,
-            'BloodDonations'=>$request->BloodDonations,
-            'BloodDonations_txt'=>$request->BloodDonations_txt,
-            'RegularPeriods'=>$request->RegularPeriods,
-            'RegularPeriods_txt'=>$request->RegularPeriods_txt,
-            'ActiveSexAct'=>$request->ActiveSexAct,
-            'FertilityControl'=>$request->FertilityControl,
-            'FertilityControlcounseling'=>$request->FertilityControlcounseling,
-            'Breastfeeding'=>$request->Breastfeeding,
-            'conclusion'=>$request->Conclusion
+        ]);
+
+        foreach($data as $key=>$value)
+        {
+            if($value =="Abnormal")
+            {
+                $abnormal_txt= $key."_txt";
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$abnormal_txt]
+                ]);
+            }else if($value == "Normal")
+            {
+                $normal_txt = $key;
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$normal_txt]
+                ]);               
+            }else if($key == "RegularPeriods" and $value == "Yes")
+            {
+                $RP_Yes = $key."_Yes_txt";
+                // $mh->RegularPeriods_YesNo=$data[$key];
+                // $mh->$key=$value.",".$data[$RP_Yes];
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    'RegularPeriods_YesNo'=>$data[$key],
+                    $key=>$value.",".$data[$RP_Yes]
+                ]);
+                //echo $key = $value.", ".$data[$RP_Yes];
+
+            }else if($key == "RegularPeriods" and $value == "No")
+            {
+                $RP_No= $key."_No_txt";
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    'RegularPeriods_YesNo'=>$data[$key],
+                    $key=>$value.",".$data[$RP_No]
+                ]);
+                // $mh->RegularPeriods_YesNo=$data[$key];
+                // $mh->$key=$value.",".$data[$RP_No];
+               /* echo $key = $value.", ".$data[$RP_No];*/
+            }else if($key == "RegularPeriods" and $value =="Not Applicable")
+            {
+                $mh->$key=$data[$key];
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    'RegularPeriods_YesNo'=>$data[$key]
+                ]); 
+                // $mh->RegularPeriods_YesNo=$data[$key];
+            }else if($key =="FertilityControl" and $value =="Yes")
+            {
+                $FC_Yes ="FertilityControl_Yes_txt";
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$FC_Yes]
+                ]);
+                // $mh->$key=$data[$FC_Yes];
+            }else if($key =="FertilityControl" and $value=="No")
+            {
+                $FC_No="FertilityControl_No_txt";
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$FC_No]
+                ]);
+                // $mh->$key=$data[$FC_No];
+            }else if($key =="FertilityControl" and $value == "Not Applicable")
+            {
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$key]
+                ]);
+                // $mh->$key=$data[$key];
+            }
+            else if($key == "ActiveSexAct")
+            {
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$key]
+                ]);
+                // $mh->$key=$data[$key];
+            }
+            else if($key == "Breastfeeding")
+            {
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$key]
+                ]);
+                // $mh->$key=$data[$key];
+            }else if($key == "Conclusion")
+            {
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$key]
+                ]);
+                // $mh->$key=$data[$key];
+            }
+            else if($value == "Yes")
+            {
+                $yes_txt= $key."_txt";
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$yes_txt]
+                ]);
+                // $mh->$key=$data[$yes_txt];
+            }else if($value == "No")
+            {
+                $no_txt = $key;
+                DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data[$no_txt]
+                ]);
+                // $mh->$key=$data[$no_txt];
+            }
+        }
+
+        $validatedData=$this->validate($request,[
+            'Allergy'  => 'required',
+            'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
+            'EENT'  => 'required',
+            'EENT_txt' => 'required_if:EENT,==,Abnormal',
+            'Respiratory'  => 'required',
+            'Respiratory_txt' => 'required_if:Respiratory,==,Abnormal',
+            'Cardiovascular'  => 'required',
+            'Cardiovascular_txt' => 'required_if:Cardiovascular,==,Abnormal',
+            'Gastrointestinal'  => 'required',
+            'Gastrointestinal_txt' => 'required_if:Gastrointestinal,==,Abnormal',
+            'Genitourinary'  => 'required',
+            'Genitourinary_txt' => 'required_if:Genitourinary,==,Abnormal',
+            'Neurological'  => 'required',
+            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'HaematopoieticL'  => 'required',
+            'HaematopoieticL_txt' => 'required_if:HaematopoieticL,==,Abnormal',
+            'EndocrineM'  => 'required',
+            'EndocrineM_txt' => 'required_if:EndocrineM,==,Abnormal',
+            'Dermatological'  => 'required',
+            'Dermatological_txt' => 'required_if:Dermatological,==,Abnormal',
+            'Musculoskeletal'  => 'required',
+            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'Psychological'  => 'required',
+            'Psychological_txt' => 'required_if:Psychological,==,Abnormal',
+            'FamilyHistory'  => 'required',
+            'FamilyHistory_txt' => 'required_if:FamilyHistory,==,Abnormal',
+            'SurgicalHistory'  => 'required',
+            'SurgicalHistory_txt' => 'required_if:SurgicalHistory,==,Abnormal',
+            'PrevHospitalization'  => 'required',
+            'PrevHospitalization_txt' => 'required_if:PrevHospitalization,==,Abnormal',
+            'Smoker'  => 'required',
+            'RAI'  => 'required',
+            'RMS'  => 'required',
+            'RegularExercise'  => 'required',
+            'BloodDonations'  => 'required',
+            'RegularPeriods'  => 'required',
+            'RegularPeriods_No_txt' => 'required_if:PrevHospitalization,==,No',
+            'RegularPeriods_Yes_txt' => 'required_if:PrevHospitalization,==,Yes',
+            'ActiveSexAct'  => 'required',
+            'FertilityControl'  => 'required',
+            'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
+            'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
+            'Breastfeeding'  => 'required',
+            'Conclusion' => 'required',
         ]);
 
         return redirect(route('details.edit',$id));

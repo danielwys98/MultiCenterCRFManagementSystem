@@ -33,8 +33,7 @@ class CreatePatientPhysicalExaminationsTable extends Migration
             $table->string('Lymph_Nodes');
             $table->string('Other');
             $table->string('Cubital_Fossa_Veins');
-            $table->string('Comments_Physically_Healthy')->nullable();
-            $table->string('Comments_Otherwise')->nullable();
+            $table->string('Comments')->nullable();
 
             $table->timestamps();
         });

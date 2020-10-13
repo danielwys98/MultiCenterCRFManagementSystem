@@ -74,9 +74,14 @@ class Lab_Controller extends Controller
                 $ut->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
         }
 
-       $validatedData=$this->validate($request,[
-            'Repeat_dateBCollected' => 'required',
-            'dateLMTaken' => 'required'
+        $validatedData=$this->validate($request,[
+            'Blood_Laboratory' => 'required',
+            'dateBTaken' => 'required',
+            'dateLMTaken' => 'required',
+            'TimeLMTaken' => 'required',
+            'describemeal' => 'required',
+            'dateUTaken' => 'required',
+            'Urine_Laboratory' => 'required',
         ]);
 
         $ut->save();
@@ -103,7 +108,7 @@ class Lab_Controller extends Controller
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
 
-        if ($request->Blood_Laboratory != 'Sarawak General Hospital Heart Centre') {
+        if ($request->Blood_Laboratory != 'B.P. Clinical Lab Sdn Bhd') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -136,7 +141,7 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        if($request->Urine_Laboratory!='Sarawak General Hospital Heart Centre'){
+        if($request->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -168,6 +173,17 @@ class Lab_Controller extends Controller
                     'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
                 ]);
         }
+
+        $validatedData=$this->validate($request,[
+            'Blood_Laboratory' => 'required',
+            'dateBTaken' => 'required',
+            'dateLMTaken' => 'required',
+            'TimeLMTaken' => 'required',
+            'describemeal' => 'required',
+            'dateUTaken' => 'required',
+            'Urine_Laboratory' => 'required',
+        ]);
+        
         return redirect(route('details.edit', $id));
     }
 }
