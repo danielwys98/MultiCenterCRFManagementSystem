@@ -45,7 +45,7 @@
                 {!! Form::label('Ethnicity', 'Ethnicity:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Chinese') !!}
+                {!! Form::radio('Ethnicity', 'Chinese',['id'=>'Chinese']) !!}
                 {!! Form::label('Chinese', 'Chinese') !!}
             </div>
             <div class="col-md-1">
