@@ -63,7 +63,7 @@
                         {!! Form::label('Others', 'Others') !!}
                     </div>
                     <div class="col-md-5">
-                        {!! Form::text('Others', '',['placeholder'=>'Please specify']) !!}
+                        {!! Form::text('Ethnic_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
             </div>

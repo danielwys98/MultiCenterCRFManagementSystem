@@ -22,32 +22,68 @@ class PE_Controller extends Controller
         $pe->patient_id=$id;
         $pe->dateTaken=$request->dateTaken;
 
+        // dd($request);
         foreach($data as $key=>$value)
         {
             if($value=="Abnormal")
             {
                 $abnormal_txt=$key."_txt";
-             /*   echo $key."=".$data[$abnormal_txt].'</br>';*/
                 $pe->$key=$data[$abnormal_txt];
             }else if($value=="Normal")
             {
                 $normal_txt=$key;
-                /*echo $key."=".$data[$normal_txt].'</br>';*/
                 $pe->$key=$data[$normal_txt];
             }else if($key =="Cubital_Fossa_Veins")
             {
-                /*echo $key."=".$data[$key].'</br>';*/
                 $pe->$key=$data[$key];
-            }else if($key== "Comments_Physically_Healthy" and $value ==!NULL)
+            }else if($value=="Physically Healthy")
             {
-              /*  echo $key."=".$data[$key].'</br>';*/
-                $pe->$key=$data[$key];
-            }else if($key == "Comments_Otherwise" and $value==!NULL)
+                $Comments_Physically_Healthy=$key."_Physically_Healthy";
+                $pe->$key="Physically Healthy: ".$data[$Comments_Physically_Healthy];
+            }else if($value=="Otherwise")
             {
-              /*  echo $key."=".$data[$key].'</br>';*/
-                $pe->$key=$data[$key];
+                $Comments_Otherwise=$key."_Otherwise";
+                $pe->$key="Otherwise: ".$data[$Comments_Otherwise];
             }
         }
+
+        $validatedData=$this->validate($request,[
+            'GeneralAppearance'  => 'required',
+            'GeneralAppearance_txt' => 'required_if:GeneralAppearance,==,Abnormal',
+            'Skin'  => 'required',
+            'Skin_txt' => 'required_if:Skin,==,Abnormal',
+            'Head_Neck'  => 'required',
+            'Head_Neck_txt' => 'required_if:Head_Neck,==,Abnormal',
+            'Eyes'  => 'required',
+            'Eyes_txt' => 'required_if:Eyes,==,Abnormal',
+            'Ears_Nose_Throat'  => 'required',
+            'Ears_Nose_Throat_txt' => 'required_if:Ears_Nose_Throat,==,Abnormal',
+            'Mouth'  => 'required',
+            'Mouth_txt' => 'required_if:Mouth,==,Abnormal',
+            'Chest_Lungs'  => 'required',
+            'Chest_Lungs_txt' => 'required_if:Chest_Lungs,==,Abnormal',
+            'Heart'  => 'required',
+            'Heart_txt' => 'required_if:Heart,==,Abnormal',
+            'Abdomen'  => 'required',
+            'Abdomen_txt' => 'required_if:Abdomen,==,Abnormal',
+            'Back_Spine'  => 'required',
+            'Back_Spine_txt' => 'required_if:Back_Spine,==,Abnormal',
+            'Musculoskeletal'  => 'required',
+            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'Neurological'  => 'required',
+            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'Extremities'  => 'required',
+            'Extremities_txt' => 'required_if:Extremities,==,Abnormal',
+            'Lymph_Nodes'  => 'required',
+            'Lymph_Nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
+            'Other'  => 'required',
+            'Other_txt' => 'required_if:Other,==,Abnormal',
+            
+            'Cubital_Fossa_Veins' => 'required',
+            'Comments' => 'required',
+            'Comments_Physically_Healthy' => 'required_if:Comments,==,Physically Healthy',
+            'Comments_Otherwise' => 'required_if:Comments,==,Otherwise',
+        ]);
 
          $pe->save();
 
@@ -59,25 +95,85 @@ class PE_Controller extends Controller
             ->where('patient_id',$id)
             ->update([
             'dateTaken'=>$request->dateTaken,
-            'GeneralAppearance'=>$request->GeneralAppearance,
-            'Skin'=>$request->Skin,
-            'Head_Neck'=>$request->Head_Neck,
-            'Eyes'=>$request->Eyes,
-            'Ears_Nose_Throat'=>$request->Ears_Nose_Throat,
-            'Mouth'=>$request->Mouth,
-            'Chest_Lungs'=>$request->Chest_Lungs,
-            'Heart'=>$request->Heart,
-            'Abdomen'=>$request->Abdomen,
-            'Back_Spine'=>$request->Back_Spine,
-            'Musculoskeletal'=>$request->Musculoskeletal,
-            'Neurological'=>$request->Neurological,
-            'Extremities'=>$request->Extremities,
-            'Lymph_Nodes'=>$request->Lymph_Nodes,
-            'Other'=>$request->Other,
-            'Cubital_Fossa_Veins'=>$request->Cubital_Fossa_Veins,
-            'Comments'=>$request->Comments,
-            'Comments_Physically_Healthy'=>$request->Comments_Physically_Healthy,
-            'Comments_Otherwise'=>$request->Comments_Otherwise
+        ]);
+
+        $data = $request->except('_token','dateTaken','timeTaken');
+        foreach($data as $key=>$value)
+        {
+            if($value=="Abnormal")
+            {
+                DB::table('patient_physical_examinations')
+                ->where('patient_id', $id)
+                ->update([
+                    $key => $data[$abnormal_txt]
+                ]);
+            }else if($value=="Normal")
+            {
+                DB::table('patient_physical_examinations')
+                ->where('patient_id', $id)
+                ->update([
+                    $key => $data[$normal_txt]
+                ]);
+            }else if($key =="Cubital_Fossa_Veins")
+            {
+                DB::table('patient_physical_examinations')
+                ->where('patient_id', $id)
+                ->update([
+                    $key => $data[$key]
+                ]);
+            }else if($value=="Physically Healthy")
+            {
+                DB::table('patient_physical_examinations')
+                ->where('patient_id', $id)
+                ->update([
+                    $key => "Physically Healthy: ".$data[$Comments_Physically_Healthy]
+                ]);
+            }else if($value=="Otherwise")
+            {
+                DB::table('patient_physical_examinations')
+                ->where('patient_id', $id)
+                ->update([
+                    $key => "Otherwise: ".$data[$Comments_Otherwise]
+                ]);
+            }
+        }
+
+        $validatedData=$this->validate($request,[
+            'GeneralAppearance'  => 'required',
+            'GeneralAppearance_txt' => 'required_if:GeneralAppearance,==,Abnormal',
+            'Skin'  => 'required',
+            'Skin_txt' => 'required_if:Skin,==,Abnormal',
+            'Head_Neck'  => 'required',
+            'Head_Neck_txt' => 'required_if:Head_Neck,==,Abnormal',
+            'Eyes'  => 'required',
+            'Eyes_txt' => 'required_if:Eyes,==,Abnormal',
+            'Ears_Nose_Throat'  => 'required',
+            'Ears_Nose_Throat_txt' => 'required_if:Ears_Nose_Throat,==,Abnormal',
+            'Mouth'  => 'required',
+            'Mouth_txt' => 'required_if:Mouth,==,Abnormal',
+            'Chest_Lungs'  => 'required',
+            'Chest_Lungs_txt' => 'required_if:Chest_Lungs,==,Abnormal',
+            'Heart'  => 'required',
+            'Heart_txt' => 'required_if:Heart,==,Abnormal',
+            'Abdomen'  => 'required',
+            'Abdomen_txt' => 'required_if:Abdomen,==,Abnormal',
+            'Back_Spine'  => 'required',
+            'Back_Spine_txt' => 'required_if:Back_Spine,==,Abnormal',
+            'Musculoskeletal'  => 'required',
+            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'Neurological'  => 'required',
+            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'Extremities'  => 'required',
+            'Extremities_txt' => 'required_if:Extremities,==,Abnormal',
+            'Lymph_Nodes'  => 'required',
+            'Lymph_Nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
+            'Other'  => 'required',
+            'Other_txt' => 'required_if:Other,==,Abnormal',
+            
+            'Cubital_Fossa_Veins' => 'required',
+            'Comments' => 'required',
+            'Comments_Physically_Healthy' => 'required_if:Comments,==,Physically Healthy',
+            'Comments_Otherwise' => 'required_if:Comments,==,Otherwise',
         ]);
 
         return redirect(route('details.create',$id));

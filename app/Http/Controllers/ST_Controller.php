@@ -30,7 +30,6 @@ class ST_Controller extends Controller
 
         $validatedData=$this->validate($request,[
             'dateBCollected' => 'required',
-            'physicianSign' => 'required',
             'Laboratory' => 'required',
         ]);
         return redirect(route('details.create',$id));
@@ -59,7 +58,6 @@ class ST_Controller extends Controller
        }
        $validatedData=$this->validate($request,[
         'dateBCollected' => 'required',
-        'physicianSign' => 'required',
         'Laboratory' => 'required',
         ]);
         return redirect(route('details.edit',$id));
