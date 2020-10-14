@@ -10,7 +10,7 @@ class PatientStudySpecific extends Model
     protected $primaryKey="patientSS_ID";
     public function studySpecific()
     {
-        return $this->belongsTo('App\studySpecific','studyID','study_id');
+        return $this->belongsTo('App\studySpecific','study_id','study_id');
     }
     public function Patient()
     {

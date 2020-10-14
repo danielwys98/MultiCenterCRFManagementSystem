@@ -24,7 +24,7 @@ class UT_Controller extends Controller
 
         // Urine Pregnancy
         $ut->UPreg_male=$request->UPreg_male;
-        
+
         $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
         $ut->UPreg_TestTime=$request->UPreg_TestTime;
         $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
@@ -59,8 +59,8 @@ class UT_Controller extends Controller
         $ut->UDrug_Transcribedby=$request->UDrug_Transcribedby;
 
         $validatedData=$this->validate($request,[
-            'UPreg_lab' => 'required',
-            'UDrug_lab' => 'required',
+            'UPreg_Laboratory' => 'required',
+            'UDrug_Laboratory' => 'required',
             'UPreg_dateTaken' => 'required',
             'UPreg_TestTime' => 'required',
             'UPreg_ReadTime' => 'required',
@@ -154,7 +154,7 @@ class UT_Controller extends Controller
             'UDrug_Marijuana' => 'required',
             'UPreg_Transcribedby' => 'required',
         ]);
-        
+
         return redirect(route('details.edit',$id));
     }
 }

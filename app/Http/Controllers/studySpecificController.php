@@ -144,8 +144,9 @@ class studySpecificController extends Controller
     public function testing()
     {
         //for example getting patient id from request = 1
-        $id= 4;
-        $findStudy=Patient::find($id)->patientStudySpecific;
-
+        $id= 6;
+        $findPatientStudy=Patient::findOrFail($id)->patientStudySpecific;
+        $findStudy=studySpecific::findOrFail($findPatientStudy->study_id);
+        echo $findStudy->study_name;
     }
 }

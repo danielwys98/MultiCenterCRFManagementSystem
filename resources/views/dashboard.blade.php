@@ -8,9 +8,9 @@
             <p>Currently undergoing studies</p>
         </div>
         <div class="card-body">
-            <a href="#">Example 1</a>
-            <a href="#">Example 2</a>
-            <a href="#">Example 3</a>
+            @foreach($studies as $s)
+                    <a href="#">{{$s->study_name}}</a>
+            @endforeach
         </div>
         <div class="card">
             <div class="card-title">
@@ -25,6 +25,4 @@
     </div><br/>
     <a href="{{ url('/studySpecificdb/create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
     <a href="{{ url('/studySpecificdb/test') }}"><button class="btn btn-success" type="submit">test</button></a>
-
 @endsection
-

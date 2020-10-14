@@ -1,4 +1,4 @@
-{!! Form::model($Conclu,['route' => ['update.conclusion',$patient->id]]) !!}
+{!! Form::model([$Conclu,$studies],['route' => ['update.conclusion',$patient->id]]) !!}
     @method('PUT')
 <div class="form-group">
     <h3>Conclusion</h3>
@@ -33,7 +33,7 @@
     {!! Form::text('NoDetails', old('inclusionYesNo'),['class'=>'form-control','placeholder'=>'Please specify']) !!}
     <div>
         {!! Form::checkbox('NAbnormality ', 'NAbnormality ') !!}
-        {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
+        {!! Form::select('study')!!}
     </div>
     <div>
         {!! Form::checkbox('abnormality ', 'abnormality ') !!}

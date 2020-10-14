@@ -16,7 +16,7 @@ class CreatePatientStudySpecificsTable extends Migration
         Schema::create('patient_study_specifics', function (Blueprint $table) {
             $table->increments('patientSS_ID');
 
-            $table->bigInteger('studyID')->unsigned()->nullable();
+            $table->bigInteger('study_id')->unsigned()->nullable();
             $table->bigInteger('patient_id')->unsigned()->nullable();
             $table->bigInteger('SP1_ID')->unsigned()->nullable();
             $table->bigInteger('SP2_ID')->unsigned()->nullable();
