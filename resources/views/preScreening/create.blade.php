@@ -26,7 +26,7 @@
             {!! Form::label('NRIC', 'Please Fill In Your NRIC: ') !!}
             </div>
             <div class="col-md-3">
-            {!! Form::text('NRIC', '',['class'=>'form-control']) !!}
+            {!! Form::text('NRIC', '',['class'=>'form-control', 'placeholder'=>'e.g. 110101-13-5227']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -42,14 +42,14 @@
         <hr>
         <div class="form-group row">
             <div class="col-md-2">
-                {!! Form::label('sex', 'Gender:') !!}
+                {!! Form::label('Gender', 'Gender:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Gender', 'Male') !!}
+                {!! Form::radio('Gender', 'Male','',['id'=>'Male']) !!}
                 {!! Form::label('Male', 'Male') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Gender', 'Female') !!}
+                {!! Form::radio('Gender', 'Female','',['id'=>'Female']) !!}
                 {!! Form::label('Female', 'Female') !!}
             </div>
         </div>
@@ -59,21 +59,21 @@
                 {!! Form::label('race', 'Ethnicity:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Chinese') !!}
+                {!! Form::radio('Ethnicity', 'Chinese','',['id'=>'Chinese']) !!}
                 {!! Form::label('Chinese', 'Chinese') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Malay') !!}
+                {!! Form::radio('Ethnicity', 'Malay','',['id'=>'Malay']) !!}
                 {!! Form::label('Malay', 'Malay') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Indian') !!}
+                {!! Form::radio('Ethnicity', 'Indian','',['id'=>'Indian']) !!}
                 {!! Form::label('Indian', 'Indian') !!}
             </div>
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-2">
-                        {!! Form::radio('Ethnicity', 'Others') !!}
+                        {!! Form::radio('Ethnicity', 'Others','',['id'=>'otherRaces']) !!}
                         {!! Form::label('otherRaces', 'Others') !!}
                     </div>
                     <div class="col-md-3">
@@ -105,12 +105,12 @@
             {!! Form::label('maritalstatus', 'Marital Status:') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::radio('maritalstatus', 'Single') !!}
-            {!! Form::label('maritalstatusS', 'Single') !!}
+            {!! Form::radio('maritalstatus', 'Single','',['id'=>'Single']) !!}
+            {!! Form::label('Single', 'Single') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::radio('maritalstatus', 'Married') !!}
-            {!! Form::label('maritalstatusM', 'Married') !!}
+            {!! Form::radio('maritalstatus', 'Married','',['id'=>'Married']) !!}
+            {!! Form::label('Married', 'Married') !!}
         </div>
         </div>
 

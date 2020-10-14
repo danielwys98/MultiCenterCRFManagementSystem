@@ -184,8 +184,8 @@
                     <div class="col-md-5">
                         <div class="row">
                             <div class="col-md-2">
-                                {!! Form::radio('Laboratory', 'Others') !!}
-                                {!! Form::label('Laboratory', 'Others') !!}
+                                {!! Form::radio('Laboratory', 'Others','',['id'=>'Others']) !!}
+                                {!! Form::label('Others', 'Others') !!}
                             </div>
                             <div class="col-md-3">
                                 {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
@@ -206,10 +206,10 @@
                         <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
                         <td>{!! Form::number('breathalcohol', '',['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
                         <td>
-                            {!! Form::radio('breathalcoholResult', 'Positive') !!}
-                            {!! Form::label('breathalcoholResult', 'Positive ') !!}
-                            {!! Form::radio('breathalcoholResult', 'Negative') !!}
-                            {!! Form::label('breathalcoholResult', 'Negative ') !!}
+                            {!! Form::radio('breathalcoholResult', 'Positive','',['id'=>'Positive']) !!}
+                            {!! Form::label('Positive', 'Positive ') !!}
+                            {!! Form::radio('breathalcoholResult', 'Negative','',['id'=>'Negative']) !!}
+                            {!! Form::label('Negative', 'Negative ') !!}
                         </td>
                     <tr>
                         <th scope="row" colspan="2"
@@ -235,16 +235,16 @@
                         {!! Form::label('Conclusion', 'Conclusion: ') !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::radio('Conclusion', 'Normal') !!}
-                        {!! Form::label('Conclusion', 'Normal') !!}
+                        {!! Form::radio('Conclusion', 'Normal','',['id'=>'Normal']) !!}
+                        {!! Form::label('Normal', 'Normal') !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ') !!}
-                        {!! Form::label('Conclusion', 'Abnormal but not clinically significant ') !!}
+                        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ','',['id'=>'AbnormalN']) !!}
+                        {!! Form::label('AbnormalN', 'Abnormal but not clinically significant ') !!}
                     </div>
                     <div class="col-md-2">
-                        {!! Form::radio('Conclusion', 'Abnormal and clinically significant') !!}
-                        {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
+                        {!! Form::radio('Conclusion', 'Abnormal and clinically significant','',['id'=>'Abnormal']) !!}
+                        {!! Form::label('Abnormal', 'Abnormal and clinically significant') !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
@@ -421,8 +421,8 @@
                         <tr>
                             <td>
                                 Regular Periods
-                                {!! Form::radio('RegularPeriods', 'Not Applicable') !!}
-                                {!! Form::label('RegularPeriods', 'Not Applicable') !!}
+                                {!! Form::radio('RegularPeriods', 'Not Applicable','',['id'=>'NA_R']) !!}
+                                {!! Form::label('NA_R', 'Not Applicable') !!}
                             </td>
                             <td>{!! Form::radio('RegularPeriods', 'No') !!}</td>
                             <td>{!! Form::radio('RegularPeriods', 'Yes') !!}</td>
@@ -442,8 +442,8 @@
                         <tr>
                             <td>
                                 Fertility Control
-                                {!! Form::radio('FertilityControl', 'Not Applicable') !!}
-                                {!! Form::label('FertilityControl', 'Not Applicable') !!}
+                                {!! Form::radio('FertilityControl', 'Not Applicable','',['id'=>'NA_F']) !!}
+                                {!! Form::label('NA_F', 'Not Applicable') !!}
                             </td>
                             <td>{!! Form::radio('FertilityControl', 'No') !!}</td>
                             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
@@ -468,12 +468,15 @@
                     </table>
                     <div>
                         {!! Form::label('Conclusion', 'Conclusion: ') !!}
-                        {!! Form::radio('Conclusion', 'Normal medical listing') !!}
-                        {!! Form::label('Conclusion', 'Normal medical listing') !!}
-                        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant medical history ') !!}
-                        {!! Form::label('Conclusion', 'Abnormal but not clinically significant medical history ') !!}
-                        {!! Form::radio('Conclusion', 'Abnormal and clinically significant medical history') !!}
-                        {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
+
+                        {!! Form::radio('Conclusion', 'Normal medical listing','',['id'=>'Normal_MH']) !!}
+                        {!! Form::label('Normal_MH', 'Normal medical listing') !!}
+
+                        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant medical history ','',['id'=>'AbnormalN_MH']) !!}
+                        {!! Form::label('AbnormalN_MH', 'Abnormal but not clinically significant medical history ') !!}
+
+                        {!! Form::radio('Conclusion', 'Abnormal and clinically significant medical history','',['id'=>'Abnormal_MH']) !!}
+                        {!! Form::label('Abnormal_MH', 'Abnormal and clinically significant medical history') !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
@@ -593,12 +596,15 @@
                     </table>
                     <div>
                         {!! Form::label('Cubital_Fossa_Veins', 'Cubital fossa veins: ') !!}
-                        {!! Form::radio('Cubital_Fossa_Veins', 'Clearly visible') !!}
-                        {!! Form::label('Cubital_Fossa_Veins', 'Clearly visible') !!}
-                        {!! Form::radio('Cubital_Fossa_Veins', 'Moderately visible') !!}
-                        {!! Form::label('Cubital_Fossa_Veins', 'Moderately visible') !!}
-                        {!! Form::radio('Cubital_Fossa_Veins', 'Poorly visible') !!}
-                        {!! Form::label('Cubital_Fossa_Veins', 'Poorly visible') !!}
+
+                        {!! Form::radio('Cubital_Fossa_Veins', 'Clearly visible','',['id'=>'CVisible']) !!}
+                        {!! Form::label('CVisible', 'Clearly visible') !!}
+
+                        {!! Form::radio('Cubital_Fossa_Veins', 'Moderately visible','',['id'=>'MVisible']) !!}
+                        {!! Form::label('MVisible', 'Moderately visible') !!}
+
+                        {!! Form::radio('Cubital_Fossa_Veins', 'Poorly visible','',['id'=>'PVisible']) !!}
+                        {!! Form::label('PVisible', 'Poorly visible') !!}
                     </div>
                     <div>
                         {!! Form::label('Comments', 'Comments: ') !!}
@@ -607,8 +613,8 @@
                         {!! Form::label('Comments', 'Physically Healthy') !!}
                         {!! Form::text('Comments_Physically_Healthy', '') !!}
 
-                        {!! Form::radio('Comments', 'Otherwise') !!}
-                        {!! Form::label('Comments', 'Otherwise') !!}
+                        {!! Form::radio('Comments', 'Otherwise','',['id'=>'Otherwise']) !!}
+                        {!! Form::label('Otherwise', 'Otherwise') !!}
                         {!! Form::text('Comments_Otherwise', '') !!}
                     </div>
 
@@ -646,13 +652,13 @@
                     <div>
                         {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-                        {!! Form::label('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+                        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'Sarawak General Hospital Heart Centre']) !!}
+                        {!! Form::label('Sarawak General Hospital Heart Centre', 'Sarawak General Hospital Heart Centre') !!}
 
-                        {!! Form::radio('UPreg_Laboratory', 'Other') !!}
-                        {!! Form::label('UPreg_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('UPreg_Laboratory', 'Other','',['id'=>'Other']) !!}
+                        {!! Form::label('Other', 'Other: ') !!}
 
-                        {!! Form::text('UPreg_Laboratory_Text', '') !!}
+                        {!! Form::text('UPreg_Laboratory_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
@@ -670,10 +676,10 @@
                             {!! Form::label('UPreg_hCG', 'hCG: ') !!}
                         </div>
                         <div class="col-sm-3">
-                            {!! Form::radio('UPreg_hCG', 'Positive') !!}
-                            {!! Form::label('UPreg_hCG', 'Positive ') !!}
-                            {!! Form::radio('UPreg_hCG', 'Negative') !!}
-                            {!! Form::label('UPreg_hCG', 'Negative ') !!}
+                            {!! Form::radio('UPreg_hCG', 'Positive','',['id'=>'hCG_Positive']) !!}
+                            {!! Form::label('hCG_Positive', 'Positive ') !!}
+                            {!! Form::radio('UPreg_hCG', 'Negative','',['id'=>'hCG_Negative']) !!}
+                            {!! Form::label('hCG_Negative', 'Negative ') !!}
                         </div>
                         <div class="col-sm-3">
                             {!! Form::text('UPreg_hCG_Comment', '') !!}
@@ -708,13 +714,13 @@
                     <div>
                         {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-                        {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+                        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'UDrug_Laboratory_SGHHC']) !!}
+                        {!! Form::label('UDrug_Laboratory_SGHHC', 'Sarawak General Hospital Heart Centre') !!}
 
-                        {!! Form::radio('UDrug_Laboratory', 'Other') !!}
-                        {!! Form::label('UDrug_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('UDrug_Laboratory', 'Other','',['id'=>'UDrug_Laboratory_Other']) !!}
+                        {!! Form::label('UDrug_Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('UDrug_Laboratory_Text', '') !!}
+                        {!! Form::text('UDrug_Laboratory_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
@@ -732,11 +738,11 @@
                             {!! Form::label('UDrug_Methamphetamine', 'Methamphetamine (mAMP): ') !!}
                         </div>
                         <div class="col-sm-3">
-                            {!! Form::radio('UDrug_Methamphetamine', 'Positive') !!}
-                            {!! Form::label('UDrug_Methamphetamine', 'Positive ') !!}
+                            {!! Form::radio('UDrug_Methamphetamine', 'Positive','',['id'=>'UDrug_Methamphetamine_Positive']) !!}
+                            {!! Form::label('UDrug_Methamphetamine_Positive', 'Positive ') !!}
 
-                            {!! Form::radio('UDrug_Methamphetamine', 'Negative') !!}
-                            {!! Form::label('UDrug_Methamphetamine', 'Negative ') !!}
+                            {!! Form::radio('UDrug_Methamphetamine', 'Negative','',['id'=>'UDrug_Methamphetamine_Negative']) !!}
+                            {!! Form::label('UDrug_Methamphetamine_Negative', 'Negative ') !!}
                         </div>
                         <div class="col-sm-3">
                             {!! Form::text('UDrug_Methamphetamine_Comment', '') !!}
@@ -747,10 +753,11 @@
                             {!! Form::label('UDrug_Morphine', 'Morphine (MOR): ') !!}
                         </div>
                         <div class="col-sm-3">
-                            {!! Form::radio('UDrug_Morphine', 'Positive') !!}
-                            {!! Form::label('UDrug_Morphine', 'Positive ') !!}
-                            {!! Form::radio('UDrug_Morphine', 'Negative') !!}
-                            {!! Form::label('UDrug_Morphine', 'Negative ') !!}
+                            {!! Form::radio('UDrug_Morphine', 'Positive','',['id'=>'UDrug_Morphine_Positive']) !!}
+                            {!! Form::label('UDrug_Morphine_Positive', 'Positive ') !!}
+
+                            {!! Form::radio('UDrug_Morphine', 'Negative','',['id'=>'UDrug_Morphine_Negative']) !!}
+                            {!! Form::label('UDrug_Morphine_Negative', 'Negative ') !!}
                         </div>
                         <div class="col-sm-3">
                             {!! Form::text('UDrug_Morphine_Comment', '') !!}
@@ -761,10 +768,11 @@
                             {!! Form::label('UDrug_Marijuana', 'Marijuana (THC): ') !!}
                         </div>
                         <div class="col-sm-3">
-                            {!! Form::radio('UDrug_Marijuana', 'Positive') !!}
-                            {!! Form::label('UDrug_Marijuana', 'Positive ') !!}
-                            {!! Form::radio('UDrug_Marijuana', 'Negative') !!}
-                            {!! Form::label('UDrug_Marijuana', 'Negative ') !!}
+                            {!! Form::radio('UDrug_Marijuana', 'Positive','',['id'=>'UDrug_Marijuana_Positive']) !!}
+                            {!! Form::label('UDrug_Marijuana_Positive', 'Positive ') !!}
+
+                            {!! Form::radio('UDrug_Marijuana', 'Negative','',['id'=>'UDrug_Marijuana_Negative']) !!}
+                            {!! Form::label('UDrug_Marijuana_Negative', 'Negative ') !!}
                         </div>
                         <div class="col-sm-3">
                             {!! Form::text('UDrug_Marijuana_Comment', '') !!}
@@ -813,13 +821,13 @@
                     <div>
                         {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd','',['id'=>'Blood_Laboratory_BP']) !!}
+                        {!! Form::label('Blood_Laboratory_BP', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-                        {!! Form::radio('Blood_Laboratory', 'Other') !!}
-                        {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('Blood_Laboratory', 'Other','',['id'=>'Blood_Laboratory_Other']) !!}
+                        {!! Form::label('Blood_Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('Blood_Laboratory_Text', '') !!}
+                        {!! Form::text('Blood_Laboratory_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
 
                     <div class="row">
@@ -839,13 +847,13 @@
                     <div>
                         {!! Form::label('BloodRepeat_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('BloodRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd','',['id'=>'BloodRepeat_Laboratory_BP']) !!}
+                        {!! Form::label('BloodRepeat_Laboratory_BP', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-                        {!! Form::radio('BloodRepeat_Laboratory', 'Other') !!}
-                        {!! Form::label('BloodRepeat_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('BloodRepeat_Laboratory', 'Other','',['id'=>'BloodRepeat_Laboratory_Other']) !!}
+                        {!! Form::label('BloodRepeat_Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('BloodRepeat_Laboratory_Text', '') !!}
+                        {!! Form::text('BloodRepeat_Laboratory_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
 
                     <h5>Urine (Microbiology)</h5>
@@ -858,13 +866,13 @@
                     <div>
                         {!! Form::label('Urine_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('Urine_Laboratory', 'B.P. Clinical Lab Sdn Bhd','',['id'=>'Urine_Laboratory_BP']) !!}
+                        {!! Form::label('Urine_Laboratory_BP', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-                        {!! Form::radio('Urine_Laboratory', 'Other') !!}
-                        {!! Form::label('Urine_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('Urine_Laboratory', 'Other','',['id'=>'Urine_Laboratory_Other']) !!}
+                        {!! Form::label('Urine_Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('Urine_Laboratory_Text', '') !!}
+                        {!! Form::text('Urine_Laboratory_Text', '',['placeholder'=>'Please specify']) !!}
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
@@ -883,13 +891,13 @@
                     <div>
                         {!! Form::label('UrineRepeat_Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('UrineRepeat_Laboratory', 'B.P. Clinical Lab Sdn Bhd','',['id'=>'UrineRepeat_Laboratory_BP']) !!}
+                        {!! Form::label('UrineRepeat_Laboratory_BP', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-                        {!! Form::radio('UrineRepeat_Laboratory', 'Other') !!}
-                        {!! Form::label('UrineRepeat_Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('UrineRepeat_Laboratory', 'Other','',['id'=>'UrineRepeat_Laboratory_Other']) !!}
+                        {!! Form::label('UrineRepeat_Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('UrineRepeat_Laboratory_txt', '') !!}
+                        {!! Form::text('UrineRepeat_Laboratory_txt', '',['placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
@@ -921,13 +929,13 @@
                     <div>
                         {!! Form::label('Laboratory', 'Laboratory: ') !!}
 
-                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-                        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+                        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd','',['id'=>'Laboratory_BP']) !!}
+                        {!! Form::label('Laboratory_BP', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-                        {!! Form::radio('Laboratory', 'Other') !!}
-                        {!! Form::label('Laboratory', 'Other, specify: ') !!}
+                        {!! Form::radio('Laboratory', 'Other','',['id'=>'Laboratory_Other']) !!}
+                        {!! Form::label('Laboratory_Other', 'Other: ') !!}
 
-                        {!! Form::text('Laboratory_txt', '') !!}
+                        {!! Form::text('Laboratory_txt', '',['placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
@@ -1356,11 +1364,11 @@
                         discretion of the research physician.</p>
                     {!! Form::text('NoDetails', '') !!}
                     <div>
-                        {!! Form::checkbox('NAbnormality', 'Yes') !!}
+                        {!! Form::checkbox('NAbnormality', 'Yes','',['id'=>'NAbnormality']) !!}
                         {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
                     </div>
                     <div>
-                        {!! Form::checkbox('abnormality', 'Yes') !!}
+                        {!! Form::checkbox('abnormality', 'Yes','',['id'=>'abnormality']) !!}
                         {!! Form::label('abnormality', 'Clinically significant abnormality (ies), this subject cannot be enrolled into this study.') !!}
                     </div>
                 </div>
