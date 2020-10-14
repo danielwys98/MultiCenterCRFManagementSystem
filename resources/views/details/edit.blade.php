@@ -15,6 +15,16 @@
             <li><a data-toggle="tab" href="#Conclude">Conclusion and Signature</a></li>
         </ul>
         <hr>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                @include('details.forms.bmvs')

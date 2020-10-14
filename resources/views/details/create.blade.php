@@ -16,15 +16,15 @@
         </ul>
         <hr>
         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+            <div class="alert alert-danger">
+                <ul>
+                    <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                 {!! Form::open(['route' => ['details.store',$patient->id]]) !!}
@@ -941,18 +941,6 @@
                 {{--inclusion and exclusion criteria --}}
                 <div class="form-group">
                     <h3>Inclusion and Exclusion Criteria</h3>
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <h5>Inclusion Criteria</h5>
                     <div class="row">
                         <div class="col-sm-6">
@@ -1349,16 +1337,6 @@
                 @csrf
                 {{-- conclusion --}}
                 <div class="form-group">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <h3>Conclusion</h3>
                     <div class="row">
                         <div class="col-sm-6">
