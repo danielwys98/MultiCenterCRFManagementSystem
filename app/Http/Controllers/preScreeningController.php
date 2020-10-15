@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\studySpecific;
+use Gate;
 
 class preScreeningController extends Controller
 {
@@ -19,9 +21,14 @@ class preScreeningController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        if(Gate::denies('adminFunctions'))
+        {
+            return redirect()->route('users.index')->with('ErrorMessages','You had no access to this!');
+        }else{
+            $patients = Patient::all();
 
-        return view('preScreening.index',compact('patients'));
+            return view('preScreening.index',compact('patients'));
+        }
 
     }
     public function admin()
@@ -52,6 +59,7 @@ class preScreeningController extends Controller
      */
     public function create()
     {
+
         return view('preScreening.create');
     }
 
