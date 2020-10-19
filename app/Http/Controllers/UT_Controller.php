@@ -127,7 +127,6 @@ class UT_Controller extends Controller
                     'UDrug_Laboratory'=>$request->UDrug_Laboratory
                 ]);
         }
-
         if($UPreg_male == 1){
             $validatedData=$this->validate($request,[
                 'UDrug_Laboratory' => 'required',
@@ -182,7 +181,6 @@ class UT_Controller extends Controller
                 'UDrug_Transcribedby' => 'required',
             ]);
         }
-        
         return redirect(route('details.edit',$id));
     }
 }
