@@ -44,6 +44,28 @@ class BMVS_Controller extends Controller
         $bmvs->Standing_RespiratoryRate=$request->Standing_RespiratoryRate;
         $bmvs->Initial=$request->Initial;
 
+        $validatedData=$this->validate($request,[
+            'dateTaken' => 'required',
+            'timeTaken' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'bmi' => 'required',
+            'temperature' => 'required',
+            'Supine_ReadingTime' => 'required',
+            'Supine_BP' => 'required',
+            'Supine_HR' => 'required',
+            'Supine_RespiratoryRate' => 'required',
+            'Sitting_ReadingTime' => 'required',
+            'Sitting_BP' => 'required',
+            'Sitting_HR' => 'required',
+            'Sitting_RespiratoryRate' => 'required',
+            'Standing_ReadingTime' => 'required',
+            'Standing_BP' => 'required',
+            'Standing_HR' => 'required',
+            'Standing_RespiratoryRate' => 'required',
+            'Initial' => 'required',
+        ]);
+
         $bmvs->save();
 
         return redirect('preScreening/admin');
@@ -106,6 +128,28 @@ class BMVS_Controller extends Controller
                                 'Initial'=>$request->Initial
                         ]);
 
+                        $validatedData=$this->validate($request,[
+                            'dateTaken' => 'required',
+                            'timeTaken' => 'required',
+                            'weight' => 'required',
+                            'height' => 'required',
+                            'bmi' => 'required',
+                            'temperature' => 'required',
+                            'Supine_ReadingTime' => 'required',
+                            'Supine_BP' => 'required',
+                            'Supine_HR' => 'required',
+                            'Supine_RespiratoryRate' => 'required',
+                            'Sitting_ReadingTime' => 'required',
+                            'Sitting_BP' => 'required',
+                            'Sitting_HR' => 'required',
+                            'Sitting_RespiratoryRate' => 'required',
+                            'Standing_ReadingTime' => 'required',
+                            'Standing_BP' => 'required',
+                            'Standing_HR' => 'required',
+                            'Standing_RespiratoryRate' => 'required',
+                            'Initial' => 'required',
+                        ]);
+                        
         return redirect('preScreening/admin');
 
 /*        $bmvs->patient_id =$patient_id;

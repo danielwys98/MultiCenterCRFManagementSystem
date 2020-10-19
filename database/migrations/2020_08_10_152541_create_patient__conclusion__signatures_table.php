@@ -19,8 +19,8 @@ class CreatePatientConclusionSignaturesTable extends Migration
 
             $table->string('inclusionYesNo');
             // $table->string('NoDetails');
-            $table->string('NAbnormality');
-            $table->string('abnormality');
+            $table->string('NAbnormality')->nullable();
+            $table->string('abnormality')->nullable();
             $table->string('physicianSign');
             $table->string('physicianName');
             $table->date('dateTaken');

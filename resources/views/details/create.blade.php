@@ -188,7 +188,7 @@
                                 {!! Form::label('Laboratory', 'Others') !!}
                             </div>
                             <div class="col-md-3">
-                                {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                                {!! Form::text('Laboratory_text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                             </div>
                         </div>
                     </div>
@@ -441,22 +441,31 @@
                         </tr>
                         <tr>
                             <td>
-                                Fertility Control
+                                <p>Fertility Control</p>
                                 {!! Form::radio('FertilityControl', 'Not Applicable') !!}
                                 {!! Form::label('FertilityControl', 'Not Applicable') !!}
                             </td>
                             <td>{!! Form::radio('FertilityControl', 'No') !!}</td>
                             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
                             <td>
-                                {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
+                                <p>If No, advice and counseling given:</p>
+                                {{-- {!! Form::label('FertilityControl_No_txt', 'If No, advice and counseling given: ') !!} --}}
                                 {!! Form::radio('FertilityControl_No_txt', 'Counseling not given') !!}
+                                {!! Form::label('FertilityControl_No_txt', 'Counseling not given') !!}
                                 {!! Form::radio('FertilityControl_No_txt', 'Counseling given') !!}
-
-                                {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
+                                {!! Form::label('FertilityControl_No_txt', 'Counseling given') !!}
+                            </td>
+                            <td>
+                                <p>If Yes, advice and counseling given:</p>
+                                {{-- {!! Form::label('FertilityControl_Yes_txt', 'If Yes, advice and counseling given: ') !!} --}}
                                 {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
+                                {!! Form::label('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
                                 {!! Form::radio('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
+                                {!! Form::label('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
                                 {!! Form::radio('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
+                                {!! Form::label('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
                                 {!! Form::radio('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)') !!}
+                                {!! Form::label('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)') !!}
                             </td>
                         </tr>
                         <tr>
@@ -827,7 +836,7 @@
                             {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
-                            {!! Form::text('Blood_RepeatTest_Text', '') !!}
+                            {!! Form::text('Blood_RepeatTest', '') !!}
                         </div>
                     </div>
                     <div class="row">

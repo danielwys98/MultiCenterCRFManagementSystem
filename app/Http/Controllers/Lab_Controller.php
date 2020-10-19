@@ -15,9 +15,9 @@ class Lab_Controller extends Controller
 
     public function storeLT(Request $request, $id)
     {
-        $ut = new Patient_LaboratoryTest;
+        $lt = new Patient_LaboratoryTest;
 
-        $ut->patient_id = $id;
+        $lt->patient_id = $id;
 
         $BloodLab = $request->Blood_Laboratory;
         $BloodLabRepeat = $request->BloodRepeat_Laboratory;
@@ -25,53 +25,57 @@ class Lab_Controller extends Controller
         $UrineLab = $request->Urine_Laboratory;
         $UrineLabRepeat = $request->UrineRepeat_Laboratory;
 
-        // Urine Pregnancy
-        $ut->dateBTaken = $request->dateBTaken;
+        $lt->dateBTaken = $request->dateBTaken;
 
-        $ut->dateLMTaken = $request->dateLMTaken;
-        $ut->TimeLMTaken = $request->TimeLMTaken;
-        $ut->describemeal = $request->describemeal;
+        $lt->dateLMTaken = $request->dateLMTaken;
+        $lt->TimeLMTaken = $request->TimeLMTaken;
+        $lt->describemeal = $request->describemeal;
 
         if ($BloodLab == 'Other') {
-            $ut->Blood_Laboratory = $request->Blood_Laboratory_Text;
+            $lt->Blood_Laboratory = $request->Blood_Laboratory_Text;
         } else
-            $ut->Blood_Laboratory = $request->Blood_Laboratory;
+            $lt->Blood_Laboratory = $request->Blood_Laboratory;
 
         //Check if Repeat Blood Test id Required
-        $ut->Blood_NAtest = $request->Blood_NAtest;
+        $lt->Blood_NAtest = $request->Blood_NAtest;
         if ($request->Blood_NAtest == true) {
-            $ut->Blood_RepeatTest = NULL;
-            $ut->Repeat_dateBCollected = NULL;
-            $ut->BloodRepeat_Laboratory = NULL;
+            $lt->Blood_RepeatTest = NULL;
+            $lt->Repeat_dateBCollected = NULL;
+            $lt->BloodRepeat_Laboratory = NULL;
+            $bloodvalidation = "";
         } else {
-            $ut->Blood_RepeatTest = $request->Blood_RepeatTest;
-            $ut->Repeat_dateBCollected = $request->Repeat_dateBCollected;
-            if ($BloodLabRepeat == 'Other')
-                $ut->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory_Text;
-            else
-                $ut->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory;
+            $lt->Blood_RepeatTest = $request->Blood_RepeatTest;
+            $lt->Repeat_dateBCollected = $request->Repeat_dateBCollected;
+            if ($BloodLabRepeat == 'Other'){
+                $lt->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory_Text;
+            }
+            else{
+                $lt->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory;
+            }
         }
 
-        $ut->dateUTaken = $request->dateUTaken;
+        $lt->dateUTaken = $request->dateUTaken;
 
         if ($UrineLab == 'Other')
-            $ut->Urine_Laboratory = $request->Urine_Laboratory_Text;
+            $lt->Urine_Laboratory = $request->Urine_Laboratory_Text;
         else
-            $ut->Urine_Laboratory = $request->Urine_Laboratory;
+            $lt->Urine_Laboratory = $request->Urine_Laboratory;
 
         //Check if Repeat Urine Test is Required
-        $ut->Urine_NAtest = $request->Urine_NAtest;
+        $lt->Urine_NAtest = $request->Urine_NAtest;
         if ($request->Urine_NAtest == true) {
-            $ut->Urine_RepeatTest = NULL;
-            $ut->Repeat_dateUCollected = NULL;
-            $ut->UrineRepeat_Laboratory = NULL;
+            $lt->Urine_RepeatTest = NULL;
+            $lt->Repeat_dateUCollected = NULL;
+            $lt->UrineRepeat_Laboratory = NULL;
+            $urinevalidation = "";
         } else {
-            $ut->Urine_RepeatTest = $request->Urine_RepeatTest;
-            $ut->Repeat_dateUCollected = $request->Repeat_dateUCollected;
-            if ($UrineLabRepeat == 'Other')
-                $ut->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory_txt;
-            else
-                $ut->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
+            $lt->Urine_RepeatTest = $request->Urine_RepeatTest;
+            $lt->Repeat_dateUCollected = $request->Repeat_dateUCollected;
+            if ($UrineLabRepeat == 'Other'){
+                $lt->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory_txt;
+            }else{
+                $lt->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
+            }
         }
 
         $validatedData=$this->validate($request,[
@@ -84,7 +88,7 @@ class Lab_Controller extends Controller
             'Urine_Laboratory' => 'required',
         ]);
 
-        $ut->save();
+        $lt->save();
 
         return redirect(route('details.create', $id));
     }

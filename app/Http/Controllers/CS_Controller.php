@@ -18,28 +18,29 @@ class CS_Controller extends Controller
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
 
+        // dd($request);
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
         {
             $cs->inclusionYesNo = $request->inclusionYesNo;
         }else{
-            $cs->inclusionYesNo = $request->NoDetails;
+            $cs->inclusionYesNo = $request->inclusionYesNo . $request->NoDetails;
         }
 
         $NAbnormality=$request->NAbnormality;
         if($NAbnormality=="Yes")
         {
-            $cs->NAbnormality="Yes";
+            $cs->NAbnormality=$request->NAbnormality;
         }elseif (($NAbnormality=="")){
-            $cs->NAbnormality="No";
+            $cs->NAbnormality=NULL;
         }
 
         $abnormality=$request->abnormality;
         if($abnormality=="Yes")
         {
-            $cs->abnormality="Yes";
+            $cs->abnormality=$request->abnormality;
         }elseif (($abnormality=="")){
-            $cs->abnormality="No";
+            $cs->abnormality=NULL;
         }
 
         $cs->physicianSign=$request->physicianSign;
@@ -48,6 +49,7 @@ class CS_Controller extends Controller
 
         $validatedData=$this->validate($request,[
             'inclusionYesNo' => 'required',
+            'NoDetails' => 'required_if:inclusionYesNo,==,No',
             'physicianSign' => 'required',
             'physicianName' => 'required',
             'dateTaken' => 'required',

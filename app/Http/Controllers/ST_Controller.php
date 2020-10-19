@@ -15,23 +15,24 @@ class ST_Controller extends Controller
     }
     public function storeST(Request $request,$id)
     {
-        $cs = new Patient_Serology_Test;
+        $st = new Patient_Serology_Test;
 
-        $cs->patient_id=$id;
-        $cs->dateCTaken=$request->dateCTaken;
-        $cs->dateBCollected=$request->dateBCollected;
+        $st->patient_id=$id;
+        $st->dateCTaken=$request->dateCTaken;
+        $st->dateBCollected=$request->dateBCollected;
 
-        if($request->Laboratory=='Other')
-            $cs->Laboratory=$request->Laboratory_txt;
-        else
-            $cs->Laboratory=$request->Laboratory;
-
-        $cs->save();
+        if($request->Laboratory=='Other'){
+            $st->Laboratory=$request->Laboratory.": ".$request->Laboratory_txt;
+        }else{
+            $st->Laboratory=$request->Laboratory;
+        }
 
         $validatedData=$this->validate($request,[
             'dateBCollected' => 'required',
             'Laboratory' => 'required',
         ]);
+
+        $st->save();
         return redirect(route('details.create',$id));
     }
     public function updateST(Request $request,$id)
