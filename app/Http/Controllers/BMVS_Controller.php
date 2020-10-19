@@ -28,9 +28,17 @@ class BMVS_Controller extends Controller
         $bmvs->patient_id=$id;
         $bmvs->dateTaken=$request->dateTaken;
         $bmvs->timeTaken=$request->timeTaken;
+
         $bmvs->weight=$request->weight;
+        $weight=$request->weight;
         $bmvs->height=$request->height;
-        $bmvs->bmi=$request->bmi;
+
+        //Calculation of the BMI
+        $height=$request->height/100;
+        $actual_height=$height*$height;
+        $bmi=$weight/$actual_height;
+
+        $bmvs->bmi=number_format($bmi,1);
         $bmvs->temperature=$request->temperature;
         $bmvs->Supine_ReadingTime=$request->Supine_ReadingTime;
         $bmvs->Supine_BP=$request->Supine_BP;
@@ -51,7 +59,6 @@ class BMVS_Controller extends Controller
             'timeTaken' => 'required',
             'weight' => 'required',
             'height' => 'required',
-            'bmi' => 'required',
             'temperature' => 'required',
             'Supine_ReadingTime' => 'required',
             'Supine_BP' => 'required',

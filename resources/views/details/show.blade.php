@@ -17,7 +17,7 @@
         <hr>
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
-                {!! Form::model($data,['url' => 'foo/bar']) !!}
+                {!! Form::model($data ?? '',['url' => 'foo/bar']) !!}
                 @csrf
             {{-- body measurements and vital signs --}}
             <h3>Body Measurements and Vital Signs</h3>

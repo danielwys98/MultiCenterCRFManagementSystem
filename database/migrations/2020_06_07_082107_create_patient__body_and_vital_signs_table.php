@@ -18,10 +18,10 @@ class CreatePatientBodyAndVitalSignsTable extends Migration
             $table->integer('patient_id');
             $table->date('dateTaken');
             $table->time('timeTaken');
-            $table->integer('weight');
-            $table->integer('height');
-            $table->integer('bmi');
-            $table->integer('temperature');
+            $table->decimal('weight');
+            $table->decimal('height');
+            $table->decimal('bmi');
+            $table->decimal('temperature');
             $table->integer('Supine_ReadingTime');
             $table->integer('Supine_BP');
             $table->integer('Supine_HR');

@@ -52,7 +52,7 @@
                         {!! Form::label('weight', 'Weight: ') !!}
                     </div>
                     <div class="col-md-1">
-                        {!! Form::number('weight','', ['class'=>'form-control','placeholder'=>'kg']) !!}
+                        {!! Form::text('weight','', ['class'=>'form-control','placeholder'=>'kg']) !!}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -60,16 +60,15 @@
                         {!! Form::label('height', 'Height: ') !!}
                     </div>
                     <div class="col-md-1">
-                        {!! Form::number('height', '', ['class'=> 'form-control','placeholder'=>'cm']) !!}
+                        {!! Form::text('height', '', ['class'=> 'form-control','placeholder'=>'cm']) !!}
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <div class="col-md-4">
                         {!! Form::label('bmi', 'Body Mass Index: ') !!}
                     </div>
                     <div class="col-md-1">
-                        {!! Form::number('bmi', '',['class'=>'form-control','placeholder'=>'kg/m2']) !!}
+                        {{--{!! Form::text('bmi', '',['class'=>'form-control','placeholder'=>'kg/m2']) !!}--}}
                     </div>
                 </div>
                 <div class="form-group row">
@@ -77,7 +76,7 @@
                         {!! Form::label('temperature', 'Temperature: ') !!}
                     </div>
                     <div class="col-md-1">
-                        {!! Form::number('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
+                        {!! Form::text('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
                     </div>
                 </div>
 
