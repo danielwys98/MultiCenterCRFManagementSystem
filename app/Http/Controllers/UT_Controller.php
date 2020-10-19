@@ -15,19 +15,20 @@ class UT_Controller extends Controller
     }
     public function storeUT(Request $request,$id)
     {
-    
+
         $ut = new Patient_UrineTest;
 
         // dd($request);
         $ut->patient_id=$id;
         // Urine Pregnancy
         $ut->UPreg_male=$request->UPreg_male;
-        
+
         // Urine Drug
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;
         $ut->UDrug_ReadTime=$request->UDrug_ReadTime;
         $UDrug_lab=$request->UDrug_Laboratory;
+
         if($UDrug_lab=='Other')
             $ut->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
         else
@@ -54,11 +55,20 @@ class UT_Controller extends Controller
                 'UDrug_Marijuana' => 'required',
                 'UDrug_Transcribedby' => 'required',
             ]);
+            $ut->UPreg_dateTaken=NULL;
+            $ut->UPreg_TestTime=NULL;
+            $ut->UPreg_ReadTime=NULL;
+            $ut->UPreg_Laboratory=NULL;
+            $ut->UPreg_hCG=NULL;
+            $ut->UPreg_hCG_Comment=NULL;
+            $ut->UPreg_Transcribedby=NULL;
+
         }else{
             $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
             $ut->UPreg_TestTime=$request->UPreg_TestTime;
             $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
             $UPreg_lab=$request->UPreg_Laboratory;
+
             if($UPreg_lab=='Other'){
                 $ut->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
             }else{
@@ -110,7 +120,7 @@ class UT_Controller extends Controller
                 'UDrug_Marijuana_Comment'=>$request->UDrug_Marijuana_Comment,
                 'UDrug_Transcribedby'=>$request->UDrug_Transcribedby
             ]);
-            
+
         $UPreg_male=$request->UPreg_male;
 
         //Check and Store Drug Test Lab
@@ -128,6 +138,16 @@ class UT_Controller extends Controller
                 ]);
         }
         if($UPreg_male == 1){
+            DB::table('patient_urine_tests')
+                ->where('patient_id',$id)
+                ->update([
+                    'UPreg_dateTaken'=>NULL,
+                    'UPreg_TestTime'=>NULL,
+                    'UPreg_ReadTime'=>NULL,
+                    'UPreg_Laboratory'=>NULL,
+                    'UPreg_hCG'=>NULL,
+                    'UPreg_hCG_Comment'=>NULL,
+                    'UPreg_Transcribedby'=>NULL]);
             $validatedData=$this->validate($request,[
                 'UDrug_Laboratory' => 'required',
                 'UDrug_dateTaken' => 'required',

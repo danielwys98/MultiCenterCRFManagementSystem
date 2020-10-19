@@ -5,7 +5,7 @@
     <h3>Urine Pregnancy Test</h3>
     <p>(Transcribed from Urine Logbook)</p>
     {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
-    {!! Form::checkbox('UPreg_male', '') !!}
+    {!! Form::checkbox('UPreg_male') !!}
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}

@@ -83,7 +83,6 @@ class Lab_Controller extends Controller
             'dateBTaken' => 'required',
             'dateLMTaken' => 'required',
             'TimeLMTaken' => 'required',
-            'describemeal' => 'required',
             'dateUTaken' => 'required',
             'Urine_Laboratory' => 'required',
         ]);
@@ -183,11 +182,10 @@ class Lab_Controller extends Controller
             'dateBTaken' => 'required',
             'dateLMTaken' => 'required',
             'TimeLMTaken' => 'required',
-            'describemeal' => 'required',
             'dateUTaken' => 'required',
             'Urine_Laboratory' => 'required',
         ]);
-        
+
         return redirect(route('details.edit', $id));
     }
 }

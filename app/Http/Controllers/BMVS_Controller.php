@@ -82,8 +82,15 @@ class BMVS_Controller extends Controller
 
     public function edit($id)
     {
-
-        $patient = Patient::find($id);
+       $checking = $this->testing($id);
+        if($checking==true) {
+            //do something here
+        }else
+        {
+            //do something here
+            echo "Not all data key in";
+        }
+/*        $patient = Patient::find($id);
         $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
@@ -105,7 +112,7 @@ class BMVS_Controller extends Controller
             'InclusionExclusion',
             'Conclu',
             'studies'
-            ))->with('patient',$patient);
+            ))->with('patient',$patient);*/
     }
 
     public function update(Request $request,$id)
@@ -155,7 +162,14 @@ class BMVS_Controller extends Controller
                             'Standing_RespiratoryRate' => 'required',
                             'Initial' => 'required',
                         ]);
-                        
+
         return redirect('preScreening/admin');
+    }
+
+    public function testing($id)
+    {
+        $patient=Patient::find($id);
+
+        return false;
     }
 }
