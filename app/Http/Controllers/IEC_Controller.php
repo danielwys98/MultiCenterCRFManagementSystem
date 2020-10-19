@@ -89,6 +89,7 @@ class IEC_Controller extends Controller
     }
     public function updateIEC(Request $request,$id)
     {
+        dd($request);
        DB::table('patient_inclusion_exclusion_criterias')
             ->where('patient_id',$id)
             ->update([

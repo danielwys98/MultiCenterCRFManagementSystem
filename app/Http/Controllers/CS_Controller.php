@@ -78,62 +78,63 @@ class CS_Controller extends Controller
             'physicianSign'=>$request->physicianSign,
             'physicianName'=>$request->physicianName,
             'dateTaken'=>$request->dateTaken
+            ]);
 
-        ]);
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
-            {
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'inclusionYesNo'=>$request->inclusionYesNo
-                    ]);
-            }else{
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'inclusionYesNo'=>$request->NoDetails
-                    ]);
-            }
+        {
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'inclusionYesNo'=>$request->inclusionYesNo
+                ]);
+        }else{
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'inclusionYesNo'=>$request->inclusionYesNo . $request->NoDetails
+                ]);
+        }
 
-            $NAbnormality=$request->NAbnormality;
-            if($NAbnormality=="Yes")
-            {
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'NAbnormality'=>"Yes"
-                    ]);
-            }elseif (($NAbnormality=="No")){
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'NAbnormality'=>"No"
-                    ]);
-            }
+        $NAbnormality=$request->NAbnormality;
+        if($NAbnormality=="Yes")
+        {
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'NAbnormality'=>$request->NAbnormality
+                ]);
+        }elseif (($NAbnormality=="No")){
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'NAbnormality'=>"No"
+                ]);
+        }
 
-            $abnormality=$request->abnormality;
-            if($abnormality=="Yes")
-            {
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'abnormality'=>"Yes"
-                    ]);
-            }elseif (($abnormality=="No")){
-                DB::table('patient_conclusion_signatures')
-                    ->where('patient_id',$id)
-                    ->update([
-                        'abnormality'=>"No"
-                    ]);
-            }
+        $abnormality=$request->abnormality;
+        if($abnormality=="Yes")
+        {
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'abnormality'=>$request->abnormality
+                ]);
+        }elseif (($abnormality=="No")){
+            DB::table('patient_conclusion_signatures')
+                ->where('patient_id',$id)
+                ->update([
+                    'abnormality'=>"No"
+                ]);
+        }
 
-            $validatedData=$this->validate($request,[
-                'inclusionYesNo' => 'required',
-                'physicianSign' => 'required',
-                'physicianName' => 'required',
-                'dateTaken' => 'required',
-            ]);
+        $validatedData=$this->validate($request,[
+            'inclusionYesNo' => 'required',
+            'NoDetails' => 'required_if:inclusionYesNo,==,No',
+            'physicianSign' => 'required',
+            'physicianName' => 'required',
+            'dateTaken' => 'required',
+        ]);
 
         return redirect(route('details.edit',$id));
     }
