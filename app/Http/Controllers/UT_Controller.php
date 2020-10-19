@@ -136,7 +136,7 @@ class UT_Controller extends Controller
                 ->update([
                     'UDrug_Laboratory'=>$request->UDrug_Laboratory
                 ]);
-        }
+        }/*
 
         $validatedData=$this->validate($request,[
             'UPreg_lab' => 'required',
@@ -153,7 +153,7 @@ class UT_Controller extends Controller
             'UDrug_Morphine' => 'required',
             'UDrug_Marijuana' => 'required',
             'UPreg_Transcribedby' => 'required',
-        ]);
+        ]);*/
 
         return redirect(route('details.edit',$id));
     }

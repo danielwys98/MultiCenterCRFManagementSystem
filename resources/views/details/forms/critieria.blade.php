@@ -1,4 +1,4 @@
-{!! Form::model($InclusionExclusion,['route' => ['update.urinetest',$patient->id]]) !!}
+{!! Form::model($InclusionExclusion,['route' => ['update.iecriteria',$patient->id]]) !!}
 @method('PUT')
 <div class="form-group">
         <h3>Inclusion and Exclusion Criteria</h3>

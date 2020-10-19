@@ -1,4 +1,4 @@
-{!! Form::model($Medical,['route' => ['update.labtest',$patient->id]]) !!}
+{!! Form::model($Medical,['route' => ['update.mhistory',$patient->id]]) !!}
 @method('PUT'){{--
 {{dd($Medical)}}--}}
 <div class="form-group">

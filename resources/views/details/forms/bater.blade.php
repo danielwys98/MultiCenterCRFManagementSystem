@@ -21,7 +21,7 @@
                 {!! Form::label('Laboratory', 'Laboratory:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Laboratory', 'z',(old('laboratory',$BATER->laboratoy)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+                {!! Form::radio('Laboratory', '',(old('laboratory',$BATER->laboratoy)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
                 {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
             </div>
             <div class="col-md-5">
