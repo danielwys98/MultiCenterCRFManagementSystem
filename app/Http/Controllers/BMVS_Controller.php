@@ -17,7 +17,8 @@ class BMVS_Controller extends Controller
     public function create($id)
     {
         $patient = Patient::find($id);
-        return view('details.create',compact('patient'));
+        $studies = studySpecific::all()->pluck('study_name','study_id');
+        return view('details.create',compact('patient'))->with('studies',$studies);
     }
     public function store(Request $request,$id)
     {
@@ -47,7 +48,7 @@ class BMVS_Controller extends Controller
 
         $bmvs->save();
 
-        return redirect('preScreening/admin');
+        return redirect(route('details.create',$id));
     }
 
     public function show($id)
@@ -61,7 +62,7 @@ class BMVS_Controller extends Controller
     {
 
         $patient = Patient::find($id);
-        $studies = studySpecific::all();
+        $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical=$patient->MedicalHistory;
@@ -81,7 +82,8 @@ class BMVS_Controller extends Controller
             'Serology',
             'InclusionExclusion',
             'Conclu',
-            'studies'))->with('patient',$patient);
+            'studies'
+            ))->with('patient',$patient);
     }
 
     public function update(Request $request,$id)

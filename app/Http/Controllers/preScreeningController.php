@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Patient;
+use App\studySpecific;
+use Gate;
 
 class preScreeningController extends Controller
 {
@@ -19,10 +21,9 @@ class preScreeningController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+            $patients = Patient::all();
 
-        return view('preScreening.index',compact('patients'));
-
+            return view('preScreening.index',compact('patients'));
     }
     public function admin()
     {
@@ -52,6 +53,7 @@ class preScreeningController extends Controller
      */
     public function create()
     {
+
         return view('preScreening.create');
     }
 

@@ -65,7 +65,7 @@ class studySpecificController extends Controller
     {
         $study = new studySpecific();
 
-        $study->studyName=$request->studyName;
+        $study->study_name=$request->study_name;
         $study->timeTaken = $request->timeTaken;
         $study->dateTaken=$request->dateTaken;
         $study->patient_Count=$request->patient_Count;
@@ -144,9 +144,12 @@ class studySpecificController extends Controller
     public function testing()
     {
         //for example getting patient id from request = 1
-        $id= 6;
+      /*  $id= 6;
         $findPatientStudy=Patient::findOrFail($id)->patientStudySpecific;
         $findStudy=studySpecific::findOrFail($findPatientStudy->study_id);
-        echo $findStudy->study_name;
+        echo $findStudy->study_name;*/
+        $studies=studySpecific::all()->pluck('study_name','study_id');
+
+      return view('studySpecificdb')->with('studies',$studies);
     }
 }

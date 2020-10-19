@@ -1414,10 +1414,11 @@
                     <p>If “Yes”, enroll the subject into the study.</p>
                     <p>If “No”, provide details. The subject may or may not be enrolled into the study, based on the
                         discretion of the research physician.</p>
-                    {!! Form::text('NoDetails', '') !!}
+                    {!! Form::text('NoDetails', '') !!} <br/>
                     <div>
                         {!! Form::checkbox('NAbnormality', 'Yes','',['id'=>'NAbnormality']) !!}
                         {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
+                        {!! Form::select('study', $studies, null, ['class' => 'form-control']) !!}
                     </div>
                     <div>
                         {!! Form::checkbox('abnormality', 'Yes','',['id'=>'abnormality']) !!}
@@ -1453,7 +1454,5 @@
             </div>
             {{--This ending div tag is for the "tab-content" div--}}
         </div>
-
-
     </div>
 @endsection
