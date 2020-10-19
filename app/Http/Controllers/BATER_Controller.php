@@ -63,10 +63,10 @@ class BATER_Controller extends Controller
             'breathalcoholResult'=>$request->breathalcoholResult,
             'Usertranscribed'=>$request->Usertranscribed,
             'ECGdateTaken'=>$request->ECGdateTaken,
-            'conclusion'=>$request->Conclusion
+            'conclusion'=>$request->conclusion
         ]);
 
-           if($lab==NULL)
+           if($lab=='Others')
             {
                 DB::table('patient_breath_alcohol_test_and_electrocardiograms')
                     ->where('patient_id',$id)
@@ -91,7 +91,7 @@ class BATER_Controller extends Controller
                 'Laboratory' => 'required',
                 'Laboratory_text' => 'required_if:Laboratory,==,Others',
                 'ECGdateTaken' => 'required',
-                'Conclusion' => 'required',
+                'conclusion' => 'required',
             ]);
             
         return redirect(route('details.edit',$id));

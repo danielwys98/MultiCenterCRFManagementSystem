@@ -150,7 +150,7 @@ class MH_Controller extends Controller
             'dateTaken'=>$request->dateTaken,
             'timeTaken'=>$request->timeTaken,
         ]);
-
+        $data =$request->except('_token','dateTaken','timeTaken');
         foreach($data as $key=>$value)
         {
             if($value =="Abnormal")
@@ -175,7 +175,7 @@ class MH_Controller extends Controller
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key],
+                    'RegularPeriods'=>$data[$key],
                     $key=>$value.",".$data[$RP_Yes]
                 ]);
             }else if($key == "RegularPeriods" and $value == "No")
@@ -184,16 +184,15 @@ class MH_Controller extends Controller
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key],
+                    'RegularPeriods'=>$data[$key],
                     $key=>$value.",".$data[$RP_No]
                 ]);
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
-                $mh->$key=$data[$key];
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key]
+                    'RegularPeriods'=>$data[$key]
                 ]); 
             }else if($key =="FertilityControl" and $value =="Yes")
             {
