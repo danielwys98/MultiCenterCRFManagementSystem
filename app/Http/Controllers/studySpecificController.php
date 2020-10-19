@@ -65,7 +65,7 @@ class studySpecificController extends Controller
     {
         $study = new studySpecific();
 
-        $study->studyName=$request->studyName;
+        $study->study_name=$request->study_name;
         $study->timeTaken = $request->timeTaken;
         $study->dateTaken=$request->dateTaken;
         $study->patient_Count=$request->patient_Count;

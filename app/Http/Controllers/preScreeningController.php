@@ -21,15 +21,9 @@ class preScreeningController extends Controller
      */
     public function index()
     {
-        if(Gate::denies('adminFunctions'))
-        {
-            return redirect()->route('users.index')->with('ErrorMessages','You had no access to this!');
-        }else{
             $patients = Patient::all();
 
             return view('preScreening.index',compact('patients'));
-        }
-
     }
     public function admin()
     {
