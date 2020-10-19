@@ -24,10 +24,10 @@
         </div>
         <div class="form-group row">
             <div class="col-md-2">
-                {!! Form::label('studyName', 'Please Enter the study name: ') !!}
+                {!! Form::label('study_name', 'Please Enter the study name: ') !!}
             </div>
             <div class="col-md-3">
-                {!! Form::text('studyName', '',['class'=>'form-control']) !!}
+                {!! Form::text('study_name', '',['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">

@@ -14,8 +14,8 @@ class CreateStudySpecificsTable extends Migration
     public function up()
     {
         Schema::create('study_specifics', function (Blueprint $table) {
-            $table->increments('studyID');
-            $table->string('studyName');
+            $table->increments('study_id');
+            $table->string('study_name');
             $table->integer('patient_Count');
             $table->time('timeTaken');
             $table->date('dateTaken');

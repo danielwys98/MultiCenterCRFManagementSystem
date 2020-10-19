@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\studySpecific;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -29,7 +30,8 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $data = studySpecific::all();
+        return view('dashboard')->with('studies',$data);
     }
     public function preScreening()
     {

@@ -12,7 +12,7 @@
         @foreach($studies as $study)
             <tr>
                 <td>
-                    <p>{{$study->studyName}}</p><br>
+                    <p>{{$study->study_name}}</p><br>
                 </td>
                 <td>
                     <p>{{$study->patient_Count}}</p>

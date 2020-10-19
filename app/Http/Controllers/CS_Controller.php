@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PatientStudySpecific;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_Conclusion_Signature;
@@ -15,6 +16,10 @@ class CS_Controller extends Controller
     }
     public function storeCS(Request $request,$id)
     {
+        $PSS = new PatientStudySpecific;
+        $PSS->study_id=$request->study;
+        $PSS->patient_id=$id;
+
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
 
@@ -56,12 +61,18 @@ class CS_Controller extends Controller
         ]);
 
         $cs->save();
+        $PSS->save();
 
         return redirect(route('details.create',$id));
     }
     public function updateCS(Request $request,$id)
     {
-       DB::table('patient_conclusion_signatures')
+        DB::table('patient_study_specifics')
+            ->where('patient_id',$id)
+            ->update([
+                'study_id'=>$request->study
+            ]);
+        DB::table('patient_conclusion_signatures')
             ->where('patient_id',$id)
             ->update([
             'physicianSign'=>$request->physicianSign,
