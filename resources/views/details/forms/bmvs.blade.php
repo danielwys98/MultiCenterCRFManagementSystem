@@ -41,7 +41,7 @@
             {!! Form::label('bmi', 'Body Mass Index: ') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::number('bmi',old('bmi'),['class'=>'form-control','placeholder'=>'kg/m2']) !!}
+            {!! Form::number('bmi',old('bmi'),['class'=>'form-control','placeholder'=>'kg/m2','readonly']) !!}
         </div>
     </div>
     <div class="form-group row">

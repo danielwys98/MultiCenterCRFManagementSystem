@@ -30,10 +30,10 @@ class BMVS_Controller extends Controller
         $bmvs->timeTaken=$request->timeTaken;
 
         $bmvs->weight=$request->weight;
-        $weight=$request->weight;
         $bmvs->height=$request->height;
 
         //Calculation of the BMI
+        $weight=$request->weight;
         $height=$request->height/100;
         $actual_height=$height*$height;
         $bmi=$weight/$actual_height;
@@ -88,7 +88,7 @@ class BMVS_Controller extends Controller
     }
 
     public function edit($id)
-    {
+    {/*
        $checking = $this->testing($id);
         if($checking==true) {
             //do something here
@@ -96,8 +96,8 @@ class BMVS_Controller extends Controller
         {
             //do something here
             echo "Not all data key in";
-        }
-/*        $patient = Patient::find($id);
+        }*/
+        $patient = Patient::find($id);
         $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
@@ -119,11 +119,16 @@ class BMVS_Controller extends Controller
             'InclusionExclusion',
             'Conclu',
             'studies'
-            ))->with('patient',$patient);*/
+            ))->with('patient',$patient);
     }
 
     public function update(Request $request,$id)
     {
+        //Calculation of the BMI
+        $weight=$request->weight;
+        $height=$request->height/100;
+        $actual_height=$height*$height;
+        $bmi=$weight/$actual_height;
        DB::table('patient_body_and_vital_signs')
                         ->where('patient_id',$id)
                         ->update([
@@ -131,7 +136,7 @@ class BMVS_Controller extends Controller
                                 'timeTaken'=>$request->timeTaken,
                                 'weight'=>$request->weight,
                                 'height'=>$request->height,
-                                'bmi'=>$request->bmi,
+                                'bmi'=>number_format($bmi,1),
                                 'temperature'=>$request->temperature,
                                 'Supine_ReadingTime'=>$request->Supine_ReadingTime,
                                 'Supine_BP'=>$request->Supine_BP,
