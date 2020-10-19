@@ -24,13 +24,13 @@
             <td>Allergy</td>
             <td>{!! Form::radio('Allergy', 'Normal') !!}</td>
             <td>{!! Form::radio('Allergy', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Allergy', '') !!}</td>
+            <td>{!! Form::text('Allergy_txt', '') !!}</td>
         </tr>
         <tr>
             <td>Eyes-Ears-Nose-Throat</td>
             <td>{!! Form::radio('EENT', 'Normal') !!}</td>
             <td>{!! Form::radio('EENT', 'Abnormal') !!}</td>
-            <td>{!! Form::text('EENT', '') !!}</td>
+            <td>{!! Form::text('EENT_txt', '') !!}</td>
         </tr>
         <tr>
             <td>Respiratory</td>
@@ -108,7 +108,7 @@
             <td>Previous Hospitalization</td>
             <td>{!! Form::radio('PrevHospitalization', 'Normal') !!}</td>
             <td>{!! Form::radio('PrevHospitalization', 'Abnormal') !!}</td>
-            <td>{!! Form::text('PrevHospitalization_txt', '') !!}</td>
+            <td>{!! Form::text('PrevHospitalization_txt', old('PrevHospitalization')) !!}</td>
         </tr>
     </table>
     <table class="table col-sm-9">

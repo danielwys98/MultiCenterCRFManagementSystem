@@ -16,7 +16,6 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
-     /* dd($request);*/
      $mh = new Patient_MedicalHistory();
         $data =$request->except('_token','dateTaken','timeTaken');
 
@@ -24,6 +23,7 @@ class MH_Controller extends Controller
         $mh->dateTaken=$request->dateTaken;
         $mh->timeTaken=$request->timeTaken;
 
+        // dd($request);
         //some key does not have the text box, therefore, those keys needed be checked individually.
         foreach($data as $key=>$value)
         {
@@ -38,28 +38,30 @@ class MH_Controller extends Controller
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
-                $mh->RegularPeriods_YesNo=$data[$key];
                 $mh->$key=$value.",".$data[$RP_Yes];
-                //echo $key = $value.", ".$data[$RP_Yes];
-
             }else if($key == "RegularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
-                $mh->RegularPeriods_YesNo=$data[$key];
                 $mh->$key=$value.",".$data[$RP_No];
-               /* echo $key = $value.", ".$data[$RP_No];*/
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
                 $mh->$key=$data[$key];
-                $mh->RegularPeriods_YesNo=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
-                $FC_Yes ="FertilityControl_Yes_txt";
-                $mh->$key=$data[$FC_Yes];
+                $FC_Yes = $key."_Yes_txt";
+                if(array_key_exists($FC_Yes, $data)){
+                    $mh->$key=$value.",".$data[$FC_Yes];
+                }else{
+                    $mh->$key="Yes";
+                }
             }else if($key =="FertilityControl" and $value=="No")
             {
-                $FC_No="FertilityControl_No_txt";
-                $mh->$key=$data[$FC_No];
+                $FC_No = $key."_No_txt";
+                if(array_key_exists($FC_No, $data)){
+                    $mh->$key=$value.",".$data[$FC_No];
+                }else{
+                    $mh->$key="No";
+                }
             }else if($key =="FertilityControl" and $value == "Not Applicable")
             {
                 $mh->$key=$data[$key];
@@ -77,8 +79,12 @@ class MH_Controller extends Controller
             }
             else if($value == "Yes")
             {
-                $yes_txt= $key."_txt";
-                $mh->$key=$data[$yes_txt];
+                $yes_txt = $key."_txt";
+                if(array_key_exists($yes_txt, $data)){
+                    $mh->$key=$value.",".$data[$yes_txt];
+                }else{
+                    $mh->$key=$data;
+                }
             }else if($value == "No")
             {
                 $no_txt = $key;
@@ -123,8 +129,8 @@ class MH_Controller extends Controller
             'RegularExercise'  => 'required',
             'BloodDonations'  => 'required',
             'RegularPeriods'  => 'required',
-            'RegularPeriods_No_txt' => 'required_if:PrevHospitalization,==,No',
-            'RegularPeriods_Yes_txt' => 'required_if:PrevHospitalization,==,Yes',
+            'RegularPeriods_No_txt' => 'required_if:RegularPeriods,==,No',
+            'RegularPeriods_Yes_txt' => 'required_if:RegularPeriods,==,Yes',
             'ActiveSexAct'  => 'required',
             'FertilityControl'  => 'required',
             'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
@@ -144,7 +150,7 @@ class MH_Controller extends Controller
             'dateTaken'=>$request->dateTaken,
             'timeTaken'=>$request->timeTaken,
         ]);
-
+        $data =$request->except('_token','dateTaken','timeTaken');
         foreach($data as $key=>$value)
         {
             if($value =="Abnormal")
@@ -166,55 +172,62 @@ class MH_Controller extends Controller
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
-                // $mh->RegularPeriods_YesNo=$data[$key];
-                // $mh->$key=$value.",".$data[$RP_Yes];
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key],
+                    'RegularPeriods'=>$data[$key],
                     $key=>$value.",".$data[$RP_Yes]
                 ]);
-                //echo $key = $value.", ".$data[$RP_Yes];
-
             }else if($key == "RegularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key],
+                    'RegularPeriods'=>$data[$key],
                     $key=>$value.",".$data[$RP_No]
                 ]);
-                // $mh->RegularPeriods_YesNo=$data[$key];
-                // $mh->$key=$value.",".$data[$RP_No];
-               /* echo $key = $value.", ".$data[$RP_No];*/
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
-                $mh->$key=$data[$key];
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods_YesNo'=>$data[$key]
+                    'RegularPeriods'=>$data[$key]
                 ]); 
-                // $mh->RegularPeriods_YesNo=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
-                $FC_Yes ="FertilityControl_Yes_txt";
-                DB::table('patient_medical_histories')
+                $FC_Yes = "FertilityControl_Yes_txt";
+                if(array_key_exists($FC_Yes, $data)){
+                    $mh->$key=$value.",".$data[$FC_Yes];
+                    DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
                     $key=>$data[$FC_Yes]
                 ]);
-                // $mh->$key=$data[$FC_Yes];
+                }else{
+                    DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>"Yes"
+                ]);
+                }
             }else if($key =="FertilityControl" and $value=="No")
             {
-                $FC_No="FertilityControl_No_txt";
-                DB::table('patient_medical_histories')
+                $FC_No = "FertilityControl_No_txt";
+                if(array_key_exists($FC_No, $data)){
+                    $mh->$key=$value.",".$data[$FC_No];
+                    DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
                     $key=>$data[$FC_No]
                 ]);
-                // $mh->$key=$data[$FC_No];
+                }else{
+                    DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>"No"
+                ]);
+                }
             }else if($key =="FertilityControl" and $value == "Not Applicable")
             {
                 DB::table('patient_medical_histories')
@@ -222,7 +235,6 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$key]
                 ]);
-                // $mh->$key=$data[$key];
             }
             else if($key == "ActiveSexAct")
             {
@@ -231,7 +243,6 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$key]
                 ]);
-                // $mh->$key=$data[$key];
             }
             else if($key == "Breastfeeding")
             {
@@ -240,7 +251,6 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$key]
                 ]);
-                // $mh->$key=$data[$key];
             }else if($key == "Conclusion")
             {
                 DB::table('patient_medical_histories')
@@ -248,17 +258,23 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$key]
                 ]);
-                // $mh->$key=$data[$key];
             }
             else if($value == "Yes")
             {
-                $yes_txt= $key."_txt";
-                DB::table('patient_medical_histories')
+                $yes_txt = $key."_txt";
+                if(array_key_exists($yes_txt, $data)){
+                    DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    $key=>$data[$yes_txt]
+                    $key=>$value.",".$data[$yes_txt]
                 ]);
-                // $mh->$key=$data[$yes_txt];
+                }else{
+                    DB::table('patient_medical_histories')
+                    ->where('patient_id',$id)
+                    ->update([
+                    $key=>$data
+                ]);
+                }
             }else if($value == "No")
             {
                 $no_txt = $key;
@@ -267,7 +283,6 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$no_txt]
                 ]);
-                // $mh->$key=$data[$no_txt];
             }
         }
 
@@ -308,8 +323,8 @@ class MH_Controller extends Controller
             'RegularExercise'  => 'required',
             'BloodDonations'  => 'required',
             'RegularPeriods'  => 'required',
-            'RegularPeriods_No_txt' => 'required_if:PrevHospitalization,==,No',
-            'RegularPeriods_Yes_txt' => 'required_if:PrevHospitalization,==,Yes',
+            'RegularPeriods_No_txt' => 'required_if:RegularPeriods,==,No',
+            'RegularPeriods_Yes_txt' => 'required_if:RegularPeriods,==,Yes',
             'ActiveSexAct'  => 'required',
             'FertilityControl'  => 'required',
             'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
@@ -320,5 +335,4 @@ class MH_Controller extends Controller
 
         return redirect(route('details.edit',$id));
     }
-
 }

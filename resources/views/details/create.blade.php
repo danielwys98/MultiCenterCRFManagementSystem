@@ -188,7 +188,7 @@
                                 {!! Form::label('Others', 'Others') !!}
                             </div>
                             <div class="col-md-3">
-                                {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                                {!! Form::text('Laboratory_text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                             </div>
                         </div>
                     </div>
@@ -873,7 +873,7 @@
                             {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
                             {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
-                            {!! Form::text('Blood_RepeatTest_Text', '') !!}
+                            {!! Form::text('Blood_RepeatTest', '') !!}
                         </div>
                     </div>
                     <div class="row">

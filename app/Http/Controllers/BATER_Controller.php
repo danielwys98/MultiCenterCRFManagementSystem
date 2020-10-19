@@ -17,8 +17,9 @@ class BATER_Controller extends Controller
     {
         $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;
 
+        // dd($request);
         $lab = $request->Laboratory;
-        if($lab==NULL)
+        if($lab == 'Others')
         {
             $bater->laboratory = $request->Laboratory_text;
         }else{
@@ -33,6 +34,17 @@ class BATER_Controller extends Controller
         $bater->ECGdateTaken=$request->ECGdateTaken;
         $bater->conclusion=$request->Conclusion;
 
+        $validatedData=$this->validate($request,[
+            'dateTaken' => 'required',
+            'timeTaken' => 'required',
+            'breathalcohol' => 'required',
+            'breathalcoholResult' => 'required',
+            'Usertranscribed' => 'required',
+            'Laboratory' => 'required',
+            'Laboratory_text' => 'required_if:Laboratory,==,Others',
+            'ECGdateTaken' => 'required',
+            'Conclusion' => 'required',
+        ]);
 
         $bater->save();
 
@@ -51,10 +63,10 @@ class BATER_Controller extends Controller
             'breathalcoholResult'=>$request->breathalcoholResult,
             'Usertranscribed'=>$request->Usertranscribed,
             'ECGdateTaken'=>$request->ECGdateTaken,
-            'conclusion'=>$request->Conclusion
+            'conclusion'=>$request->conclusion
         ]);
 
-           if($lab==NULL)
+           if($lab=='Others')
             {
                 DB::table('patient_breath_alcohol_test_and_electrocardiograms')
                     ->where('patient_id',$id)
@@ -70,6 +82,18 @@ class BATER_Controller extends Controller
                     ]);
             }
 
+            $validatedData=$this->validate($request,[
+                'dateTaken' => 'required',
+                'timeTaken' => 'required',
+                'breathalcohol' => 'required',
+                'breathalcoholResult' => 'required',
+                'Usertranscribed' => 'required',
+                'Laboratory' => 'required',
+                'Laboratory_text' => 'required_if:Laboratory,==,Others',
+                'ECGdateTaken' => 'required',
+                'conclusion' => 'required',
+            ]);
+            
         return redirect(route('details.edit',$id));
     }
 }
