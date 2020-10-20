@@ -329,7 +329,7 @@
                         <td>{!! Form::text('HaematopoieticL_txt', '',['class'=>'form-control']) !!}</td>
                     </tr>
                     <tr>
-                        <td>Endocrine-Metabolic</td>
+                        <th scope="row">Endocrine-Metabolic</th>
                         <td>{!! Form::radio('EndocrineM', 'Normal') !!}</td>
                         <td>{!! Form::radio('EndocrineM', 'Abnormal') !!}</td>
                         <td>{!! Form::text('EndocrineM_txt', '',['class'=>'form-control']) !!}</td>

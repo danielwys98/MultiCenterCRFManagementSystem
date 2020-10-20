@@ -16,8 +16,29 @@ class Lab_Controller extends Controller
     public function storeLT(Request $request, $id)
     {
         $lt = new Patient_LaboratoryTest;
-
         $lt->patient_id = $id;
+
+        $custom = [
+            'dateBTaken.required' => 'Please enter the date taken of Blood(Haematology and Chemistry)',
+            'dateLMTaken.required' => 'Please enter the date taken of last meal taken',
+            'TimeLMTaken.required' => 'Please enter the time of last meal taken',
+            'Blood_Laboratory.required' => 'Please select which laboratory does the Blood(Haematology and Chemistry) test conducted',
+            'Blood_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Blood(Haematology and Chemistry) test conducted',
+            'dateUTaken.required' => 'Please enter the date taken for Urine(Microbiology) test',
+            'Urine_Laboratory.required' => 'Please select which laboratory does the Urine(Microbiology) test conducted',
+            'Urine_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Urine(Microbiology) test conducted',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateBTaken' => 'required',
+            'dateLMTaken' => 'required',
+            'TimeLMTaken' => 'required',
+            'Blood_Laboratory' => 'required',
+            'Blood_Laboratory_Text' => 'required_if:Blood_Laboratory,==,Others',
+            'dateUTaken' => 'required',
+            'Urine_Laboratory' => 'required',
+            'Urine_Laboratory_Text' => 'required_if:Urine_Laboratory,==,Others',
+        ],$custom);
 
         $BloodLab = $request->Blood_Laboratory;
         $BloodLabRepeat = $request->BloodRepeat_Laboratory;
@@ -77,15 +98,6 @@ class Lab_Controller extends Controller
                 $lt->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
             }
         }
-
-        $validatedData=$this->validate($request,[
-            'Blood_Laboratory' => 'required',
-            'dateBTaken' => 'required',
-            'dateLMTaken' => 'required',
-            'TimeLMTaken' => 'required',
-            'dateUTaken' => 'required',
-            'Urine_Laboratory' => 'required',
-        ]);
 
         $lt->save();
 
