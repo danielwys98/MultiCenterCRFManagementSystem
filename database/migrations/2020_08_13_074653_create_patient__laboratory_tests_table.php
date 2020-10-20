@@ -21,7 +21,7 @@ class CreatePatientLaboratoryTestsTable extends Migration
             $table->date('dateBTaken');
             $table->date('dateLMTaken');
             $table->time('TimeLMTaken');
-            $table->string('describemeal');
+            $table->string('describemeal')->nullable();
             $table->string('Blood_Laboratory');
 
             //Blood Repeated Test
