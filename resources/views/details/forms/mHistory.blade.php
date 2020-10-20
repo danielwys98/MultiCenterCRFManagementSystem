@@ -1,6 +1,6 @@
 {!! Form::model($Medical,['route' => ['update.mhistory',$patient->id]]) !!}
-@method('PUT'){{--
-{{dd($Medical)}}--}}
+@method('PUT')
+@csrf
 <div class="form-group">
     <h3>Medical History</h3>
     <div class="row">

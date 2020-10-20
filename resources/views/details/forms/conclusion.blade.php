@@ -1,5 +1,6 @@
 {!! Form::model($Conclu,['route' => ['update.conclusion',$patient->id]]) !!}
-    @method('PUT')
+@method('PUT')
+@csrf
 <div class="form-group">
     <h3>Conclusion</h3>
     <div class="row">

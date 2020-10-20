@@ -1,5 +1,6 @@
  {!! Form::model($UrineTest,['route' => ['update.urinetest',$patient->id]]) !!}
 @method('PUT')
+@csrf
 <div class="form-group">
     {{--{{dd($UrineTest)}}--}}
     <h3>Urine Pregnancy Test</h3>

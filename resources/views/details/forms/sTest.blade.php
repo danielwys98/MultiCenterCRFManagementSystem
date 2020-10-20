@@ -1,5 +1,6 @@
 {!! Form::model($Serology,['route' => ['update.serology',$patient->id]]) !!}
 @method('PUT')
+@csrf
 <div class="form-group">
     <h3>Serology Test</h3>
     <p>(Laboratory Test Report attached in Appendix)</p>

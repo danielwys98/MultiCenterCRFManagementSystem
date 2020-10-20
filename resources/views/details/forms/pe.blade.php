@@ -1,5 +1,7 @@
 {!! Form::model($Physical,['route' => ['update.pexam',$patient->id]]) !!}
-@method('PUT')<div class="form-group">
+@method('PUT')
+@csrf
+<div class="form-group">
     <h3>Physical Examination</h3>
     <div class="row">
         <div class="col-sm-3">
