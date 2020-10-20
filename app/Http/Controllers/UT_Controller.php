@@ -18,11 +18,29 @@ class UT_Controller extends Controller
 
         $ut = new Patient_UrineTest;
 
+        $custom = [
+            'UDrug_dateTaken.required' => 'Please enter the date taken for urine drugs of abuse test',
+            'UDrug_TestTime.required' => 'Please enter the test time for urine drugs of abuse test',
+            'UDrug_ReadTime.required' => 'Please enter the read time for urine drugs of abuse test',
+            'UDrug_Laboratory.required' => 'Please select which laboratory does the urine drugs of abuse test conducted',
+            'UDrug_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine drugs of abuse test conducted',
+            'UDrug_Methamphetamine.required' => 'Please select the results of Methamphetamine for urine drugs of abuse test',
+            'UDrug_Morphine.required' => 'Please select the results of Morphine for urine drugs of abuse test',
+            'UDrug_Marijuana.required' => 'Please select the results of Marijuana for urine drugs of abuse test',
+            'UDrug_Transcribedby.required' => 'Please state the user transcribed for urine drugs of abuse test',
+            'UPreg_dateTaken.required' => 'Please enter the date taken for urine pregnancy test',
+            'UPreg_TestTime.required' => 'Please enter the test time for urine pregnancy test',
+            'UPreg_ReadTime.required' => 'Please enter the read time for urine pregnancy test',
+            'UPreg_Laboratory.required' => 'Please select which laboratory does the urine pregnancy test conducted',
+            'UPreg_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine pregnancy test conducted',
+            'UPreg_hCG.required' => 'Please select the results of hCG(Human chorionic gonadotropin) for urine pregnancy test',
+            'UPreg_Transcribedby.required' => 'Please state the user transcribed for urine pregnancy test',
+        ];
+
         // dd($request);
         $ut->patient_id=$id;
         // Urine Pregnancy
         $ut->UPreg_male=$request->UPreg_male;
-
         // Urine Drug
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;
@@ -47,6 +65,7 @@ class UT_Controller extends Controller
         if($request->UPreg_male == 1){
             $validatedData=$this->validate($request,[
                 'UDrug_Laboratory' => 'required',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
                 'UDrug_dateTaken' => 'required',
                 'UDrug_TestTime' => 'required',
                 'UDrug_ReadTime' => 'required',
@@ -54,7 +73,7 @@ class UT_Controller extends Controller
                 'UDrug_Morphine' => 'required',
                 'UDrug_Marijuana' => 'required',
                 'UDrug_Transcribedby' => 'required',
-            ]);
+            ],$custom);
             $ut->UPreg_dateTaken=NULL;
             $ut->UPreg_TestTime=NULL;
             $ut->UPreg_ReadTime=NULL;
@@ -80,7 +99,9 @@ class UT_Controller extends Controller
 
             $validatedData=$this->validate($request,[
                 'UPreg_Laboratory' => 'required',
+                'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Others',
                 'UDrug_Laboratory' => 'required',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
                 'UPreg_dateTaken' => 'required',
                 'UPreg_TestTime' => 'required',
                 'UPreg_ReadTime' => 'required',
@@ -93,7 +114,7 @@ class UT_Controller extends Controller
                 'UDrug_Morphine' => 'required',
                 'UDrug_Marijuana' => 'required',
                 'UDrug_Transcribedby' => 'required',
-            ]);
+            ],$custom);
         }
 
         $ut->save();

@@ -84,8 +84,8 @@ class preScreeningController extends Controller
         $patient->MRNno=$request->MRNno;
 
         $custom = [
-            'dateTaken.required' => 'Please input the date',
-            'timeTaken.required' => 'Please input the time',
+            'dateTaken.required' => 'Please input the date taken',
+            'timeTaken.required' => 'Please input the time taken',
             'NRIC.required' => 'NRIC field cannot be blank',
             'name.required' => 'Name field cannot be blank',
             'Gender.required' => 'Please choose between a gender',

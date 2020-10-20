@@ -23,7 +23,22 @@ class CS_Controller extends Controller
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
 
-        // dd($request);
+        $custom = [
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'NoDetails.required_if' => 'If the the subject does not fulfill all the inclusion criteria and none of the exclusion criteria, Please provide details on the given text field',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
+            'dateTaken.required' => 'Please enter the date taken',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'inclusionYesNo' => 'required',
+            'NoDetails' => 'required_if:inclusionYesNo,==,No',
+            'physicianSign' => 'required',
+            'physicianName' => 'required',
+            'dateTaken' => 'required',
+        ]);
+        
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
         {
@@ -51,14 +66,6 @@ class CS_Controller extends Controller
         $cs->physicianSign=$request->physicianSign;
         $cs->physicianName=$request->physicianName;
         $cs->dateTaken=$request->dateTaken;
-
-        $validatedData=$this->validate($request,[
-            'inclusionYesNo' => 'required',
-            'NoDetails' => 'required_if:inclusionYesNo,==,No',
-            'physicianSign' => 'required',
-            'physicianName' => 'required',
-            'dateTaken' => 'required',
-        ]);
 
         $cs->save();
         $PSS->save();

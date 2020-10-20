@@ -17,6 +17,20 @@ class ST_Controller extends Controller
     {
         $st = new Patient_Serology_Test;
 
+        $custom = [
+            'dateCTaken.required' => 'Please enter the date of consent taken',
+            'dateBCollected.required' => 'Please enter the date of blood taken',
+            'Laboratory.required' => 'Please select which laboratory does the serology test conducted',
+            'Laboratory_txt.required_if' => 'If other laboratory were selected, please state the name of the laboratory where serology test conducted',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateCTaken' => 'required',
+            'dateBCollected' => 'required',
+            'Laboratory' => 'required',
+            'Laboratory_txt' => 'required_if:Laboratory,==,Others',
+        ],$custom);
+
         $st->patient_id=$id;
         $st->dateCTaken=$request->dateCTaken;
         $st->dateBCollected=$request->dateBCollected;
