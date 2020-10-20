@@ -119,7 +119,7 @@ class IEC_Controller extends Controller
 
         $iec->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Inclusion and Exclusion Criteria detail for the subject!');
     }
     public function updateIEC(Request $request,$id)
     {
@@ -156,7 +156,7 @@ class IEC_Controller extends Controller
             'Exclusion23'=>$request->Exclusion23,
             'Exclusion24'=>$request->Exclusion24,
             'Exclusion25'=>$request->Exclusion25
-            
+
         ]);
         // $validatedData=$this->validate($request,[
         //     'Inclusion01' => 'required',
@@ -191,7 +191,7 @@ class IEC_Controller extends Controller
         //     'Exclusion25' => 'required',
         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Inclusion and Exclusion Criteria detail for the subject!');
     }
 
 }

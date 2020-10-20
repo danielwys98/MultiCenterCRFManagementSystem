@@ -60,7 +60,7 @@ class BATER_Controller extends Controller
 
         $bater->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
     public function updateBATER(Request $request,$id)
     {
@@ -105,7 +105,7 @@ class BATER_Controller extends Controller
             //     'ECGdateTaken' => 'required',
             //     'conclusion' => 'required',
             // ]);
-            
-        return redirect(route('details.edit',$id));
+
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
 }

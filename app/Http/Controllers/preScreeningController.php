@@ -113,8 +113,7 @@ class preScreeningController extends Controller
 
         $patient->save();
 
-        return redirect('preScreening');
-        //remember to change to other path as only admin can view index pages
+        return redirect('preScreening/admin')->with('Messages','You have added the subject into the system!');
     }
 
     /**
@@ -167,7 +166,7 @@ class preScreeningController extends Controller
 
         $patient->save();
 
-         return redirect('preScreening');
+         return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
     }
 
     /**
@@ -193,6 +192,6 @@ class preScreeningController extends Controller
         $patient->delete();
 
 
-         return redirect('preScreening');
+         return redirect('preScreening/admin')->with('ErrorMessages','The subject has been removed from the system!');
     }
 }

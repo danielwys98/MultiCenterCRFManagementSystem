@@ -101,7 +101,7 @@ class Lab_Controller extends Controller
 
         $lt->save();
 
-        return redirect(route('details.create', $id));
+        return redirect(route('details.create', $id))->with('Messages',"You have added the Blood and Urine test's detail for the subject!");
     }
 
     public function updateLT(Request $request, $id)
@@ -198,6 +198,6 @@ class Lab_Controller extends Controller
         //     'Urine_Laboratory' => 'required',
         // ]);
 
-        return redirect(route('details.edit', $id));
+        return redirect(route('details.edit', $id))->with('Messages',"You have added the Blood and Urine test's detail for the subject!");
     }
 }
