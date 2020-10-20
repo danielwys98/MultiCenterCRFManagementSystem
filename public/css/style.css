@@ -44,7 +44,10 @@
     border-bottom:0.25px solid #455A64;
     font-weight:bold;
 }
-
+.sidebar-navigation .dropdown-menu  a {
+    background-color:white;
+    color: #455A64;
+}
 .sidebar-container .sidebar-navigation li a.active {
     background-color: #0092DF;
 }

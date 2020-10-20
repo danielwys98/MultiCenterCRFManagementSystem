@@ -24,7 +24,7 @@
             {!! Form::label('weight', 'Weight: ') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::number('weight',old('weight'), ['class'=>'form-control','placeholder'=>'kg']) !!}
+            {!! Form::text('weight',old('weight'), ['class'=>'form-control','placeholder'=>'kg']) !!}
         </div>
     </div>
     <div class="form-group row">
@@ -32,7 +32,7 @@
             {!! Form::label('height', 'Height: ') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::number('height',old('height'), ['class'=> 'form-control','placeholder'=>'cm']) !!}
+            {!! Form::text('height',old('height'), ['class'=> 'form-control','placeholder'=>'cm']) !!}
         </div>
     </div>
 
@@ -49,7 +49,7 @@
             {!! Form::label('temperature', 'Temperature: ') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::number('temperature',old('temperature'),['class'=>'form-control','placeholder'=>'°C']) !!}
+            {!! Form::text('temperature',old('temperature'),['class'=>'form-control','placeholder'=>'°C']) !!}
         </div>
     </div>
 

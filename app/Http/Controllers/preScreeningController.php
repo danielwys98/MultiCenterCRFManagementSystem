@@ -19,13 +19,13 @@ class preScreeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+/*    public function index()
     {
             $patients = Patient::all();
 
-            return view('preScreening.index',compact('patients'));
-    }
-    public function admin()
+            return view('preScreening.admin',compact('patients'));
+    }*/
+    public function index()
     {
         $patients = Patient::all();
 
