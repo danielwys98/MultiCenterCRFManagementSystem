@@ -1,3 +1,4 @@
+{{--
 @extends('MasterLayout')
 
 @section('content')
@@ -6,7 +7,9 @@
         <hr>
 
         {!! Form::open(['url' => 'foo/bar']) !!}
-        {{-- general consent --}}
+        --}}
+{{-- general consent --}}{{--
+
         <h3>General Consent</h3>
         <hr>
         <div class="form-group row">
@@ -23,7 +26,9 @@
             </div>
         </div>
 
-        {{-- subject demographics --}}
+        --}}
+{{-- subject demographics --}}{{--
+
         <h3>Subject Demographics</h3>
         <hr>
         <div class="form-group row">
@@ -101,7 +106,9 @@
             </div>
         </div>
 
-        {{-- body measurements and vital signs --}}
+        --}}
+{{-- body measurements and vital signs --}}{{--
+
         <h3>Body Measurements and Vital Signs</h3>
         <hr>
         <div class="form-group row">
@@ -198,7 +205,9 @@
             {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
         </p>
 
-        {{-- breath alcohol test --}}
+        --}}
+{{-- breath alcohol test --}}{{--
+
         <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>
         <hr>
@@ -264,7 +273,9 @@
             </tr>
             </tbody>
         </table>
-        {{-- electrocardiogram recording --}}
+        --}}
+{{-- electrocardiogram recording --}}{{--
+
         <h3>Electrocardiogram Recording</h3>
         <p>(ECG Recording attached in Appendix)</p>
         <hr>
@@ -280,7 +291,9 @@
             <div class="col-md-3">
                 {!! Form::label('Conclusion', 'Conclusion: ') !!}
             </div>
-            {{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}
+            --}}
+{{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}{{--
+
             {!! Form::radio('Conclusion', 'Normal') !!}
             {!! Form::label('Conclusion', 'Normal') !!}
             {!! Form::radio('Conclusion', 'Abnormal but not clinically significant ') !!}
@@ -288,7 +301,9 @@
             {!! Form::radio('Conclusion', 'Abnormal and clinically significant') !!}
             {!! Form::label('Conclusion', 'Abnormal and clinically significant') !!}
         </div>
-        {{-- medical history --}}
+        --}}
+{{-- medical history --}}{{--
+
         <div class="form-group">
             <h3>Medical History</h3>
             <div class="row">
@@ -509,7 +524,9 @@
                 {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
             </div>
         </div>
-        {{-- physical examination --}}
+        --}}
+{{-- physical examination --}}{{--
+
         <div class="form-group">
             <h3>Physical Examination</h3>
             <div class="row">
@@ -635,7 +652,9 @@
                 {!! Form::text('Otherwise', '') !!}
             </div>
         </div>
-        {{-- urine pregnancy test --}}
+        --}}
+{{-- urine pregnancy test --}}{{--
+
         <div class="form-group">
             <h3>Urine Pregnancy Test</h3>
             <p>(Transcribed from Urine Logbook)</p>
@@ -695,7 +714,9 @@
                 </div>
             </div>
         </div>
-        {{-- urine drugs for abuse test --}}
+        --}}
+{{-- urine drugs for abuse test --}}{{--
+
         <div class="form-group">
             <h3>Urine Drugs of Abuse Test</h3>
             <p>(Transcribed from Urine Logbook)</p>
@@ -781,7 +802,9 @@
                 </div>
             </div>
         </div>
-        {{-- laboratory test --}}
+        --}}
+{{-- laboratory test --}}{{--
+
         <div class="form-group">
             <h3>Laboratory Tests</h3>
             <p>(Laboratory Test Report attached in Appendix)</p>
@@ -878,7 +901,9 @@
                 {!! Form::text('Laboratory', '') !!}
             </div>
         </div>
-        {{-- serology test --}}
+        --}}
+{{-- serology test --}}{{--
+
         <div class="form-group">
             <h3>Serology Test</h3>
             <p>(Laboratory Test Report attached in Appendix)</p>
@@ -906,7 +931,9 @@
             </div>
         </div>
 
-        {{-- inclusion and exclusion criteria --}}
+        --}}
+{{-- inclusion and exclusion criteria --}}{{--
+
         <div class="form-group">
             <h3>Inclusion and Exclusion Criteria</h3>
             <h5>Inclusion Criteria</h5>
@@ -1296,7 +1323,9 @@
             </div>
         </div>
 
-        {{-- conclusion --}}
+        --}}
+{{-- conclusion --}}{{--
+
         <div class="form-group">
             <h3>Conclusion</h3>
             <div class="row">
@@ -1326,7 +1355,9 @@
             </div>
         </div>
 
-        {{-- pre-study screening signature --}}
+        --}}
+{{-- pre-study screening signature --}}{{--
+
         <div class="form-group">
             <h3>Pre-study Screening Signature</h3>
             <div class="row">
@@ -1354,3 +1385,4 @@
 
 
 @endsection
+--}}
