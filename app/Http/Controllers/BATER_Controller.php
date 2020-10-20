@@ -82,17 +82,17 @@ class BATER_Controller extends Controller
                     ]);
             }
 
-            $validatedData=$this->validate($request,[
-                'dateTaken' => 'required',
-                'timeTaken' => 'required',
-                'breathalcohol' => 'required',
-                'breathalcoholResult' => 'required',
-                'Usertranscribed' => 'required',
-                'Laboratory' => 'required',
-                'Laboratory_text' => 'required_if:Laboratory,==,Others',
-                'ECGdateTaken' => 'required',
-                'conclusion' => 'required',
-            ]);
+            // $validatedData=$this->validate($request,[
+            //     'dateTaken' => 'required',
+            //     'timeTaken' => 'required',
+            //     'breathalcohol' => 'required',
+            //     'breathalcoholResult' => 'required',
+            //     'Usertranscribed' => 'required',
+            //     'Laboratory' => 'required',
+            //     'Laboratory_text' => 'required_if:Laboratory,==,Others',
+            //     'ECGdateTaken' => 'required',
+            //     'conclusion' => 'required',
+            // ]);
             
         return redirect(route('details.edit',$id));
     }

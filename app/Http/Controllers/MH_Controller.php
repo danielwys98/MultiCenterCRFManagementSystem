@@ -92,6 +92,8 @@ class MH_Controller extends Controller
             }
         }
 
+        $custom = ['required' => 'The :attribute field cannot be blank'];
+
         $validatedData=$this->validate($request,[
             'Allergy'  => 'required',
             'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
@@ -137,7 +139,7 @@ class MH_Controller extends Controller
             'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
             'Breastfeeding'  => 'required',
             'Conclusion' => 'required',
-        ]);
+        ], $custom);
 
             $mh->save();
        return redirect(route('details.create',$id));
@@ -286,52 +288,52 @@ class MH_Controller extends Controller
             }
         }
 
-        $validatedData=$this->validate($request,[
-            'Allergy'  => 'required',
-            'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
-            'EENT'  => 'required',
-            'EENT_txt' => 'required_if:EENT,==,Abnormal',
-            'Respiratory'  => 'required',
-            'Respiratory_txt' => 'required_if:Respiratory,==,Abnormal',
-            'Cardiovascular'  => 'required',
-            'Cardiovascular_txt' => 'required_if:Cardiovascular,==,Abnormal',
-            'Gastrointestinal'  => 'required',
-            'Gastrointestinal_txt' => 'required_if:Gastrointestinal,==,Abnormal',
-            'Genitourinary'  => 'required',
-            'Genitourinary_txt' => 'required_if:Genitourinary,==,Abnormal',
-            'Neurological'  => 'required',
-            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
-            'HaematopoieticL'  => 'required',
-            'HaematopoieticL_txt' => 'required_if:HaematopoieticL,==,Abnormal',
-            'EndocrineM'  => 'required',
-            'EndocrineM_txt' => 'required_if:EndocrineM,==,Abnormal',
-            'Dermatological'  => 'required',
-            'Dermatological_txt' => 'required_if:Dermatological,==,Abnormal',
-            'Musculoskeletal'  => 'required',
-            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
-            'Psychological'  => 'required',
-            'Psychological_txt' => 'required_if:Psychological,==,Abnormal',
-            'FamilyHistory'  => 'required',
-            'FamilyHistory_txt' => 'required_if:FamilyHistory,==,Abnormal',
-            'SurgicalHistory'  => 'required',
-            'SurgicalHistory_txt' => 'required_if:SurgicalHistory,==,Abnormal',
-            'PrevHospitalization'  => 'required',
-            'PrevHospitalization_txt' => 'required_if:PrevHospitalization,==,Abnormal',
-            'Smoker'  => 'required',
-            'RAI'  => 'required',
-            'RMS'  => 'required',
-            'RegularExercise'  => 'required',
-            'BloodDonations'  => 'required',
-            'RegularPeriods'  => 'required',
-            'RegularPeriods_No_txt' => 'required_if:RegularPeriods,==,No',
-            'RegularPeriods_Yes_txt' => 'required_if:RegularPeriods,==,Yes',
-            'ActiveSexAct'  => 'required',
-            'FertilityControl'  => 'required',
-            'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
-            'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
-            'Breastfeeding'  => 'required',
-            'Conclusion' => 'required',
-        ]);
+        // $validatedData=$this->validate($request,[
+        //     'Allergy'  => 'required',
+        //     'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
+        //     'EENT'  => 'required',
+        //     'EENT_txt' => 'required_if:EENT,==,Abnormal',
+        //     'Respiratory'  => 'required',
+        //     'Respiratory_txt' => 'required_if:Respiratory,==,Abnormal',
+        //     'Cardiovascular'  => 'required',
+        //     'Cardiovascular_txt' => 'required_if:Cardiovascular,==,Abnormal',
+        //     'Gastrointestinal'  => 'required',
+        //     'Gastrointestinal_txt' => 'required_if:Gastrointestinal,==,Abnormal',
+        //     'Genitourinary'  => 'required',
+        //     'Genitourinary_txt' => 'required_if:Genitourinary,==,Abnormal',
+        //     'Neurological'  => 'required',
+        //     'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
+        //     'HaematopoieticL'  => 'required',
+        //     'HaematopoieticL_txt' => 'required_if:HaematopoieticL,==,Abnormal',
+        //     'EndocrineM'  => 'required',
+        //     'EndocrineM_txt' => 'required_if:EndocrineM,==,Abnormal',
+        //     'Dermatological'  => 'required',
+        //     'Dermatological_txt' => 'required_if:Dermatological,==,Abnormal',
+        //     'Musculoskeletal'  => 'required',
+        //     'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+        //     'Psychological'  => 'required',
+        //     'Psychological_txt' => 'required_if:Psychological,==,Abnormal',
+        //     'FamilyHistory'  => 'required',
+        //     'FamilyHistory_txt' => 'required_if:FamilyHistory,==,Abnormal',
+        //     'SurgicalHistory'  => 'required',
+        //     'SurgicalHistory_txt' => 'required_if:SurgicalHistory,==,Abnormal',
+        //     'PrevHospitalization'  => 'required',
+        //     'PrevHospitalization_txt' => 'required_if:PrevHospitalization,==,Abnormal',
+        //     'Smoker'  => 'required',
+        //     'RAI'  => 'required',
+        //     'RMS'  => 'required',
+        //     'RegularExercise'  => 'required',
+        //     'BloodDonations'  => 'required',
+        //     'RegularPeriods'  => 'required',
+        //     'RegularPeriods_No_txt' => 'required_if:RegularPeriods,==,No',
+        //     'RegularPeriods_Yes_txt' => 'required_if:RegularPeriods,==,Yes',
+        //     'ActiveSexAct'  => 'required',
+        //     'FertilityControl'  => 'required',
+        //     'FertilityControl_No_txt' => 'required_if:FertilityControl,==,No',
+        //     'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
+        //     'Breastfeeding'  => 'required',
+        //     'Conclusion' => 'required',
+        // ]);
 
         return redirect(route('details.edit',$id));
     }

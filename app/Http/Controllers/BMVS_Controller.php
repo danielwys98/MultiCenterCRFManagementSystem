@@ -153,29 +153,29 @@ class BMVS_Controller extends Controller
                                 'Initial'=>$request->Initial
                         ]);
 
-                        $validatedData=$this->validate($request,[
-                            'dateTaken' => 'required',
-                            'timeTaken' => 'required',
-                            'weight' => 'required',
-                            'height' => 'required',
-                            'bmi' => 'required',
-                            'temperature' => 'required',
-                            'Supine_ReadingTime' => 'required',
-                            'Supine_BP' => 'required',
-                            'Supine_HR' => 'required',
-                            'Supine_RespiratoryRate' => 'required',
-                            'Sitting_ReadingTime' => 'required',
-                            'Sitting_BP' => 'required',
-                            'Sitting_HR' => 'required',
-                            'Sitting_RespiratoryRate' => 'required',
-                            'Standing_ReadingTime' => 'required',
-                            'Standing_BP' => 'required',
-                            'Standing_HR' => 'required',
-                            'Standing_RespiratoryRate' => 'required',
-                            'Initial' => 'required',
-                        ]);
+                        // $validatedData=$this->validate($request,[
+                        //     'dateTaken' => 'required',
+                        //     'timeTaken' => 'required',
+                        //     'weight' => 'required',
+                        //     'height' => 'required',
+                        //     'bmi' => 'required',
+                        //     'temperature' => 'required',
+                        //     'Supine_ReadingTime' => 'required',
+                        //     'Supine_BP' => 'required',
+                        //     'Supine_HR' => 'required',
+                        //     'Supine_RespiratoryRate' => 'required',
+                        //     'Sitting_ReadingTime' => 'required',
+                        //     'Sitting_BP' => 'required',
+                        //     'Sitting_HR' => 'required',
+                        //     'Sitting_RespiratoryRate' => 'required',
+                        //     'Standing_ReadingTime' => 'required',
+                        //     'Standing_BP' => 'required',
+                        //     'Standing_HR' => 'required',
+                        //     'Standing_RespiratoryRate' => 'required',
+                        //     'Initial' => 'required',
+                        // ]);
 
-        return redirect('preScreening/admin');
+        return redirect(route('details.edit',$id));
     }
 
     public function testing($id)

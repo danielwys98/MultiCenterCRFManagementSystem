@@ -128,14 +128,13 @@ class CS_Controller extends Controller
                 ]);
         }
 
-        $validatedData=$this->validate($request,[
-            'inclusionYesNo' => 'required',
-            'NoDetails' => 'required_if:inclusionYesNo,==,No',
-            'physicianSign' => 'required',
-            'physicianName' => 'required',
-            'dateTaken' => 'required',
-        ]);
-
+        // $validatedData=$this->validate($request,[
+        //     'inclusionYesNo' => 'required',
+        //     'NoDetails' => 'required_if:inclusionYesNo,==,No',
+        //     'physicianSign' => 'required',
+        //     'physicianName' => 'required',
+        //     'dateTaken' => 'required',
+        // ]);
         return redirect(route('details.edit',$id));
     }
 

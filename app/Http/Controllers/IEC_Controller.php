@@ -89,7 +89,6 @@ class IEC_Controller extends Controller
     }
     public function updateIEC(Request $request,$id)
     {
-        dd($request);
        DB::table('patient_inclusion_exclusion_criterias')
             ->where('patient_id',$id)
             ->update([
@@ -125,38 +124,38 @@ class IEC_Controller extends Controller
             'Exclusion25'=>$request->Exclusion25
             
         ]);
-        $validatedData=$this->validate($request,[
-            'Inclusion01' => 'required',
-            'Inclusion02' => 'required',
-            'Inclusion03' => 'required',
-            'Inclusion04' => 'required',
-            'Inclusion05' => 'required',
-            'Exclusion01' => 'required',
-            'Exclusion02' => 'required',
-            'Exclusion03' => 'required',
-            'Exclusion04' => 'required',
-            'Exclusion05' => 'required',
-            'Exclusion06' => 'required',
-            'Exclusion07' => 'required',
-            'Exclusion08' => 'required',
-            'Exclusion09' => 'required',
-            'Exclusion10' => 'required',
-            'Exclusion11' => 'required',
-            'Exclusion12' => 'required',
-            'Exclusion13' => 'required',
-            'Exclusion14' => 'required',
-            'Exclusion15' => 'required',
-            'Exclusion16' => 'required',
-            'Exclusion17' => 'required',
-            'Exclusion18' => 'required',
-            'Exclusion19' => 'required',
-            'Exclusion20' => 'required',
-            'Exclusion21' => 'required',
-            'Exclusion22' => 'required',
-            'Exclusion23' => 'required',
-            'Exclusion24' => 'required',
-            'Exclusion25' => 'required',
-        ]);
+        // $validatedData=$this->validate($request,[
+        //     'Inclusion01' => 'required',
+        //     'Inclusion02' => 'required',
+        //     'Inclusion03' => 'required',
+        //     'Inclusion04' => 'required',
+        //     'Inclusion05' => 'required',
+        //     'Exclusion01' => 'required',
+        //     'Exclusion02' => 'required',
+        //     'Exclusion03' => 'required',
+        //     'Exclusion04' => 'required',
+        //     'Exclusion05' => 'required',
+        //     'Exclusion06' => 'required',
+        //     'Exclusion07' => 'required',
+        //     'Exclusion08' => 'required',
+        //     'Exclusion09' => 'required',
+        //     'Exclusion10' => 'required',
+        //     'Exclusion11' => 'required',
+        //     'Exclusion12' => 'required',
+        //     'Exclusion13' => 'required',
+        //     'Exclusion14' => 'required',
+        //     'Exclusion15' => 'required',
+        //     'Exclusion16' => 'required',
+        //     'Exclusion17' => 'required',
+        //     'Exclusion18' => 'required',
+        //     'Exclusion19' => 'required',
+        //     'Exclusion20' => 'required',
+        //     'Exclusion21' => 'required',
+        //     'Exclusion22' => 'required',
+        //     'Exclusion23' => 'required',
+        //     'Exclusion24' => 'required',
+        //     'Exclusion25' => 'required',
+        // ]);
 
         return redirect(route('details.edit',$id));
     }

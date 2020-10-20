@@ -148,16 +148,16 @@ class UT_Controller extends Controller
                     'UPreg_hCG'=>NULL,
                     'UPreg_hCG_Comment'=>NULL,
                     'UPreg_Transcribedby'=>NULL]);
-            $validatedData=$this->validate($request,[
-                'UDrug_Laboratory' => 'required',
-                'UDrug_dateTaken' => 'required',
-                'UDrug_TestTime' => 'required',
-                'UDrug_ReadTime' => 'required',
-                'UDrug_Methamphetamine' => 'required',
-                'UDrug_Morphine' => 'required',
-                'UDrug_Marijuana' => 'required',
-                'UDrug_Transcribedby' => 'required',
-            ]);
+            // $validatedData=$this->validate($request,[
+            //     'UDrug_Laboratory' => 'required',
+            //     'UDrug_dateTaken' => 'required',
+            //     'UDrug_TestTime' => 'required',
+            //     'UDrug_ReadTime' => 'required',
+            //     'UDrug_Methamphetamine' => 'required',
+            //     'UDrug_Morphine' => 'required',
+            //     'UDrug_Marijuana' => 'required',
+            //     'UDrug_Transcribedby' => 'required',
+            // ]);
         }else{
             DB::table('patient_urine_tests')
             ->where('patient_id',$id)
@@ -184,22 +184,22 @@ class UT_Controller extends Controller
                     ]);
             }
 
-            $validatedData=$this->validate($request,[
-                'UPreg_Laboratory' => 'required',
-                'UDrug_Laboratory' => 'required',
-                'UPreg_dateTaken' => 'required',
-                'UPreg_TestTime' => 'required',
-                'UPreg_ReadTime' => 'required',
-                'UPreg_hCG' => 'required',
-                'UPreg_Transcribedby' => 'required',
-                'UDrug_dateTaken' => 'required',
-                'UDrug_TestTime' => 'required',
-                'UDrug_ReadTime' => 'required',
-                'UDrug_Methamphetamine' => 'required',
-                'UDrug_Morphine' => 'required',
-                'UDrug_Marijuana' => 'required',
-                'UDrug_Transcribedby' => 'required',
-            ]);
+            // $validatedData=$this->validate($request,[
+            //     'UPreg_Laboratory' => 'required',
+            //     'UDrug_Laboratory' => 'required',
+            //     'UPreg_dateTaken' => 'required',
+            //     'UPreg_TestTime' => 'required',
+            //     'UPreg_ReadTime' => 'required',
+            //     'UPreg_hCG' => 'required',
+            //     'UPreg_Transcribedby' => 'required',
+            //     'UDrug_dateTaken' => 'required',
+            //     'UDrug_TestTime' => 'required',
+            //     'UDrug_ReadTime' => 'required',
+            //     'UDrug_Methamphetamine' => 'required',
+            //     'UDrug_Morphine' => 'required',
+            //     'UDrug_Marijuana' => 'required',
+            //     'UDrug_Transcribedby' => 'required',
+            // ]);
         }
         return redirect(route('details.edit',$id));
     }

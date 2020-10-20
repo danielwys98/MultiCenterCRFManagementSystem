@@ -177,14 +177,14 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        $validatedData=$this->validate($request,[
-            'Blood_Laboratory' => 'required',
-            'dateBTaken' => 'required',
-            'dateLMTaken' => 'required',
-            'TimeLMTaken' => 'required',
-            'dateUTaken' => 'required',
-            'Urine_Laboratory' => 'required',
-        ]);
+        // $validatedData=$this->validate($request,[
+        //     'Blood_Laboratory' => 'required',
+        //     'dateBTaken' => 'required',
+        //     'dateLMTaken' => 'required',
+        //     'TimeLMTaken' => 'required',
+        //     'dateUTaken' => 'required',
+        //     'Urine_Laboratory' => 'required',
+        // ]);
 
         return redirect(route('details.edit', $id));
     }

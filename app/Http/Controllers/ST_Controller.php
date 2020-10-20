@@ -57,10 +57,10 @@ class ST_Controller extends Controller
                    'Laboratory'=>$request->Laboratory
                ]);
        }
-       $validatedData=$this->validate($request,[
-        'dateBCollected' => 'required',
-        'Laboratory' => 'required',
-        ]);
+    //    $validatedData=$this->validate($request,[
+    //     'dateBCollected' => 'required',
+    //     'Laboratory' => 'required',
+    //     ]);
         return redirect(route('details.edit',$id));
     }
 }
