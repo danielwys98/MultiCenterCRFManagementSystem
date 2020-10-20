@@ -23,23 +23,19 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
-            {!! Form::text('describemeal',
-old('describemeal', $LabTest->describemeal)) !!}
+            {!! Form::text('describemeal', old('describemeal'),$LabTest->describemeal) !!}
         </div>
     </div>
     <div>
         {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
 
-        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd',
-(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
+        {!! Form::radio('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd',(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
         {!! Form::label('Blood_Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-        {!! Form::radio('Blood_Laboratory',
-(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : true) !!}
+        {!! Form::radio('Blood_Laboratory',(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : true) !!}
         {!! Form::label('Blood_Laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Blood_Laboratory_Text',
-(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : $LabTest->Blood_Laboratory) !!}
+        {!! Form::text('Blood_Laboratory_Text',(old('Blood_Laboratory',$LabTest->Blood_Laboratory)=='B.P. Clinical Lab Sdn Bhd')? '' : $LabTest->Blood_Laboratory) !!}
     </div>
 
     <div class="row">

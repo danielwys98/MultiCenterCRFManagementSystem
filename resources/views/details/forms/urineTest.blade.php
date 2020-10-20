@@ -28,8 +28,7 @@
         {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',
-(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
+        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
 ['id'=>'testing']) !!}
         {!! Form::label('testing','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
