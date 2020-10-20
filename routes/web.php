@@ -21,7 +21,7 @@ Route::get('/dashboard', 'PagesController@index');
 
 Route::get('/studySpecific', 'PagesController@studySpecific');
 
-Route::get('/preScreening/admin','preScreeningController@admin');
+Route::get('/preScreening/admin','preScreeningController@index');
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
@@ -31,7 +31,7 @@ Route::get('/studySpecificdb/create','studySpecificController@create');
 
 Route::get('/studySpecificdb/test','studySpecificController@testing');
 
-Route::get('/preScreeningForm','PagesController@preScreeningForm');
+/*Route::get('/preScreeningForm','PagesController@preScreeningForm');*/
 
 Route::get('details/create/{id}','BMVS_Controller@create')->name('details.create');
 

@@ -14,6 +14,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
@@ -30,24 +31,26 @@
                     <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/preScreening" class="{{request()->is('preScreening')? 'active' :' '}}" >Pre-Screening</a>
-                </li>
-                <li>
                     <a href="/studySpecific" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
                 </li>
                 @can('adminFunctions')
-                <li>
+            {{--    <li>
                     <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
                 </li>
 
                 <li>
                     <a href="/studySpecificdb" class="{{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
-                </li>
-
+                </li>--}}
+               <div class="dropdown">
                 <li>
-                    <a href="/users" class="{{request()->is('users')? 'active' :' '}}"}}>Administration</a>
-
+                        <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Edit Users </a>
+                            <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
+                            <a href="/studySpecificdb" class="dropdown-item {{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
+                        </div>
                 </li>
+               </div>
                 @endcan
             </ul>
         </div>

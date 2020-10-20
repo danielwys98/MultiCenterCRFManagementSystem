@@ -83,6 +83,12 @@ class BMVS_Controller extends Controller
         // }
         $bmvs->bmi=number_format($bmi,1);
     
+        if($request->height>0 && $request->weight>0) {
+
+            $bmvs->bmi = $this->calculateBMI($request->height,$request->weight);
+        }else{
+            $bmvs->bmi=0;
+        }
         $bmvs->temperature=$request->temperature;
         $bmvs->Supine_ReadingTime=$request->Supine_ReadingTime;
         $bmvs->Supine_BP=$request->Supine_BP;
@@ -121,6 +127,7 @@ class BMVS_Controller extends Controller
             echo "Not all data key in";
         }*/
         $patient = Patient::find($id);
+
         $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
@@ -148,10 +155,11 @@ class BMVS_Controller extends Controller
     public function update(Request $request,$id)
     {
         //Calculation of the BMI
-        $weight=$request->weight;
-        $height=$request->height/100;
-        $actual_height=$height*$height;
-        $bmi=$weight/$actual_height;
+        if($request->height>0 && $request->weight>0) {
+            $bmi = $this->calculateBMI($request->height,$request->weight);
+        }else{
+            $bmi=0;
+        }
        DB::table('patient_body_and_vital_signs')
                         ->where('patient_id',$id)
                         ->update([
@@ -159,7 +167,7 @@ class BMVS_Controller extends Controller
                                 'timeTaken'=>$request->timeTaken,
                                 'weight'=>$request->weight,
                                 'height'=>$request->height,
-                                'bmi'=>number_format($bmi,1),
+                                'bmi'=>$bmi,
                                 'temperature'=>$request->temperature,
                                 'Supine_ReadingTime'=>$request->Supine_ReadingTime,
                                 'Supine_BP'=>$request->Supine_BP,
@@ -206,5 +214,13 @@ class BMVS_Controller extends Controller
         $patient=Patient::find($id);
 
         return false;
+    }
+
+    public function calculateBMI($height,$weight){
+        $m_height=$height/100;
+        $actual_height=$m_height*$m_height;
+        $bmi=$weight/$actual_height;
+        $final_bmi=number_format($bmi,1);
+        return $final_bmi;
     }
 }
