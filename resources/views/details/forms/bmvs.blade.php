@@ -68,21 +68,21 @@
         <tbody>
         <tr>
             <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-            <td>{!! Form::number('Supine_ReadingTime', old('Supine_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Supine_ReadingTime',old('Supine_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Supine_BP', old('Supine_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Supine_HR', old('Supine_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Supine_RespiratoryRate', old('Supine_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-            <td>{!! Form::number('Sitting_ReadingTime', old('Sitting_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Sitting_ReadingTime', old('Sitting_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Sitting_BP', old('Sitting_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Sitting_HR', old('Sitting_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
-            <td>{!! Form::number('Standing_ReadingTime', old('Standing_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Standing_ReadingTime',old('Standing_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Standing_BP', old('Standing_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Standing_HR', old('Standing_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Standing_RespiratoryRate', old('Standing_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>

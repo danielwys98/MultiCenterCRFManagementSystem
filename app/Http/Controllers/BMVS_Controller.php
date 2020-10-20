@@ -96,6 +96,20 @@ class BMVS_Controller extends Controller
             echo "Not all data key in";
         }*/
         $patient = Patient::find($id);
+        /*$patients = Patient::with('bodyandvitalsigns')->get();
+        foreach ($patients as $patient) {
+            //echo $patient->name;
+        }*/
+        /*,'BreathAlcoholTestAndElectrocardiogram','MedicalHistory','PhysicalExam','UrineTest','LabTest','SerologyTest','InclusionExclusion','Conclu'*/
+
+        //This can be used for future reference --> this get all patients that has BMVS form already and store their id into an array
+        /*$findBMVS=Patient_BodyAndVitalSigns::with('patient')->get();
+        foreach ($findBMVS as $findBMV) {
+            echo $findBMV->patient_id;
+            $BID[]=$findBMV->patient_id;
+        }*/
+        //var_dump($BID);
+        //dd($patient->load('Patient_BodyAndVitalSigns'));
 
         $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
@@ -107,6 +121,13 @@ class BMVS_Controller extends Controller
         $Serology=$patient->SerologyTest;
         $InclusionExclusion=$patient->InclusionExclusion;
         $Conclu=$patient->Conclu;
+
+        //This is to do checking for ensure all forms are available to allow users to enter edit page
+        /*if($BodyAndVitals!=NULL && $BATER!=NULL && $Medical!=NULL &&){
+            echo "This works";
+        }else{
+            echo"This does not work";
+        }*/
         return view('details.edit',compact(
             'BodyAndVitals',
             'BATER',
