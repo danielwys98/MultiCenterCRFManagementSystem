@@ -1,5 +1,6 @@
 {!! Form::model($LabTest,['route' => ['update.labtest',$patient->id]]) !!}
 @method('PUT')
+@csrf
 <div class="form-group">
     <h3>Laboratory Tests</h3>
     <p>(Laboratory Test Report attached in Appendix)</p>
