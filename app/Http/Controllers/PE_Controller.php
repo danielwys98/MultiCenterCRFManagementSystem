@@ -78,7 +78,7 @@ class PE_Controller extends Controller
             'Lymph_Nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
             'Other'  => 'required',
             'Other_txt' => 'required_if:Other,==,Abnormal',
-            
+
             'Cubital_Fossa_Veins' => 'required',
             'Comments' => 'required',
             'Comments_Physically_Healthy' => 'required_if:Comments,==,Physically Healthy',
@@ -87,7 +87,7 @@ class PE_Controller extends Controller
 
          $pe->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
     }
     public function updatePE(Request $request,$id)
     {
@@ -173,13 +173,13 @@ class PE_Controller extends Controller
         //     'Lymph_Nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
         //     'Other'  => 'required',
         //     'Other_txt' => 'required_if:Other,==,Abnormal',
-            
+
         //     'Cubital_Fossa_Veins' => 'required',
         //     'Comments' => 'required',
         //     'Comments_Physically_Healthy' => 'required_if:Comments,==,Physically Healthy',
         //     'Comments_Otherwise' => 'required_if:Comments,==,Otherwise',
         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
     }
 }

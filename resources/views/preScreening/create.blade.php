@@ -13,6 +13,16 @@
                 </ul>
             </div>
         @endif
+        @if (session('Messages'))
+            <div class="alert alert-success">
+                {{ session('Messages') }}
+            </div>
+        @endif
+        @if (session('ErrorMessages'))
+            <div class="alert alert-danger">
+                {{ session('ErrorMessages') }}
+            </div>
+        @endif
         <h3>General Consent</h3>
         <hr>
         {!! Form::open(['route'=>'preScreening.store']) !!}

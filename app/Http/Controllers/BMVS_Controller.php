@@ -32,7 +32,7 @@ class BMVS_Controller extends Controller
         $bmvs->weight=$request->weight;
         $bmvs->height=$request->height;
 
-        //Calculation of the BMI
+         //Calculation of the BMI
         $weight=$request->weight;
         $height=$request->height/100;
         $actual_height=$height*$height;
@@ -77,7 +77,7 @@ class BMVS_Controller extends Controller
 
         $bmvs->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function show($id)
@@ -175,7 +175,7 @@ class BMVS_Controller extends Controller
                         //     'Initial' => 'required',
                         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function testing($id)

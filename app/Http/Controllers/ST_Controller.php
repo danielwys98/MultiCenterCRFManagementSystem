@@ -33,7 +33,7 @@ class ST_Controller extends Controller
         ]);
 
         $st->save();
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Serology Test detail for the subject!');
     }
     public function updateST(Request $request,$id)
     {
@@ -61,6 +61,6 @@ class ST_Controller extends Controller
     //     'dateBCollected' => 'required',
     //     'Laboratory' => 'required',
     //     ]);
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Serology Test detail for the subject!');
     }
 }

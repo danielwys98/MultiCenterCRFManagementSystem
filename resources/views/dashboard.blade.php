@@ -23,6 +23,8 @@
             </div>
         </div>
     </div><br/>
+    @can('adminFunctions')
     <a href="{{ url('/studySpecificdb/create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
-    <a href="{{ url('/studySpecificdb/test') }}"><button class="btn btn-success" type="submit">test</button></a>
+    @endcan
+    {{--<a href="{{ url('/studySpecificdb/test') }}"><button class="btn btn-success" type="submit">test</button></a>--}}
 @endsection

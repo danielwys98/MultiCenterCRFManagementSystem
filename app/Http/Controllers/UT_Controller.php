@@ -98,7 +98,7 @@ class UT_Controller extends Controller
 
         $ut->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Urine Test for drugs and pregnancy detail for the subject!');
     }
 
     public function updateUT(Request $request,$id)
@@ -201,6 +201,6 @@ class UT_Controller extends Controller
             //     'UDrug_Transcribedby' => 'required',
             // ]);
         }
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Urine Test for drugs and pregnancy detail for the subject!');
     }
 }

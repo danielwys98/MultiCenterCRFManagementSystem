@@ -63,7 +63,7 @@ class CS_Controller extends Controller
         $cs->save();
         $PSS->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the conclusion detail for the subject!');
     }
     public function updateCS(Request $request,$id)
     {
@@ -135,7 +135,7 @@ class CS_Controller extends Controller
         //     'physicianName' => 'required',
         //     'dateTaken' => 'required',
         // ]);
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the conclusion detail for the subject!');
     }
 
 }

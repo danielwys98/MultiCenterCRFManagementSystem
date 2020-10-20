@@ -154,7 +154,7 @@ class MH_Controller extends Controller
         ], $custom);
 
             $mh->save();
-       return redirect(route('details.create',$id));
+       return redirect(route('details.create',$id))->with('Messages','You have added the Medical History detail for the subject!');
     }
     public function updateMH(Request $request,$id)
     {
@@ -182,7 +182,7 @@ class MH_Controller extends Controller
                     ->where('patient_id',$id)
                     ->update([
                     $key=>$data[$normal_txt]
-                ]);               
+                ]);
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
@@ -207,7 +207,7 @@ class MH_Controller extends Controller
                     ->where('patient_id',$id)
                     ->update([
                     'RegularPeriods'=>$data[$key]
-                ]); 
+                ]);
             }else if($key =="FertilityControl" and $value =="Yes")
             {
                 $FC_Yes = "FertilityControl_Yes_txt";
@@ -347,6 +347,6 @@ class MH_Controller extends Controller
         //     'Conclusion' => 'required',
         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have added the Medical History detail for the subject!');
     }
 }
