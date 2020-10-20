@@ -45,7 +45,7 @@
                 <li>
                         <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Edit Users </a>
+                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
                             <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
                             <a href="/studySpecificdb" class="dropdown-item {{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
                         </div>
