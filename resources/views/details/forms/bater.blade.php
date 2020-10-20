@@ -1,5 +1,6 @@
 {!! Form::model($BATER,['route' => ['update.bater',$patient->id]]) !!}
     @method('PUT')
+    @csrf
     <h3>Breath Alcohol Test</h3>
         <p>(Transcribed from Breath Alcohol Test Logbook)</p>
         <hr>

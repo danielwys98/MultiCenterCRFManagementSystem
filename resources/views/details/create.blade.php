@@ -25,6 +25,16 @@
                 </ul>
             </div>
         @endif
+        @if (session('Messages'))
+            <div class="alert alert-success">
+                {{ session('Messages') }}
+            </div>
+        @endif
+        @if (session('ErrorMessages'))
+            <div class="alert alert-danger">
+                {{ session('ErrorMessages') }}
+            </div>
+        @endif
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                 {!! Form::open(['route' => ['details.store',$patient->id]]) !!}
@@ -329,7 +339,7 @@
                         <td>{!! Form::text('HaematopoieticL_txt', '',['class'=>'form-control']) !!}</td>
                     </tr>
                     <tr>
-                        <td>Endocrine-Metabolic</td>
+                        <th scope="row">Endocrine-Metabolic</th>
                         <td>{!! Form::radio('EndocrineM', 'Normal') !!}</td>
                         <td>{!! Form::radio('EndocrineM', 'Abnormal') !!}</td>
                         <td>{!! Form::text('EndocrineM_txt', '',['class'=>'form-control']) !!}</td>

@@ -17,6 +17,30 @@ class BATER_Controller extends Controller
     {
         $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;
 
+        $custom = [
+            'dateTaken.required' => 'Please enter the date taken for breath alcohol test',
+            'timeTaken.required' => 'Please enter the time taken for breath alcohol test',
+            'breathalcohol.required' => 'Please enter the BAC%(Breath Alcohol Content)',
+            'breathalcoholResult.required' => 'Please select a result for BAC%(Breath Alcohol Content)',
+            'Usertranscribed.required' => 'Please state the user transcribed',
+            'Laboratory.required' => 'Please select which laboratory does the test conducted',
+            'Laboratory_text.required_if' => 'If other laboratory were selected, please state the name of the laboratory',
+            'ECGdateTaken.required' => 'Please enter the time taken for electrodiagram recording',
+            'Conclusion.required' => 'Please select a conclusion for the electrodiagram recording',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateTaken' => 'required',
+            'timeTaken' => 'required',
+            'breathalcohol' => 'required',
+            'breathalcoholResult' => 'required',
+            'Usertranscribed' => 'required',
+            'Laboratory' => 'required',
+            'Laboratory_text' => 'required_if:Laboratory,==,Others',
+            'ECGdateTaken' => 'required',
+            'Conclusion' => 'required',
+        ], $custom);
+
         // dd($request);
         $lab = $request->Laboratory;
         if($lab == 'Others')
@@ -34,21 +58,9 @@ class BATER_Controller extends Controller
         $bater->ECGdateTaken=$request->ECGdateTaken;
         $bater->conclusion=$request->Conclusion;
 
-        $validatedData=$this->validate($request,[
-            'dateTaken' => 'required',
-            'timeTaken' => 'required',
-            'breathalcohol' => 'required',
-            'breathalcoholResult' => 'required',
-            'Usertranscribed' => 'required',
-            'Laboratory' => 'required',
-            'Laboratory_text' => 'required_if:Laboratory,==,Others',
-            'ECGdateTaken' => 'required',
-            'Conclusion' => 'required',
-        ]);
-
         $bater->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
     public function updateBATER(Request $request,$id)
     {
@@ -93,7 +105,7 @@ class BATER_Controller extends Controller
             //     'ECGdateTaken' => 'required',
             //     'conclusion' => 'required',
             // ]);
-            
-        return redirect(route('details.edit',$id));
+
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
 }

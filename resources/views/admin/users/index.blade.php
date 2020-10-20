@@ -30,20 +30,18 @@
                             <tbody>
                             @foreach($users as $user)
                             <tr>
-                                <th scope="row"> {{$user->id}}</th>
-                                <td class="text-justify">{{$user->name}}</td>
-                                <td class="text-justify">{{$user->email}}</td>
-                                <td class="text-justify">{{$user->created_at}}</td>
-                                <td class="text-justify">{{implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
-                                <td>
-                                    <i class="fas fa-user-edit"></i>
-                                    <a href="{{route('users.edit',$user->id)}}"></a>
-
+                                <td class="text-justify col-md-1"> {{$user->id}}</td>
+                                <td class="text-justify col-md-2">{{$user->name}}</td>
+                                <td class="text-justify col-md-2">{{$user->email}}</td>
+                                <td class="text-justify col-md-2">{{$user->created_at}}</td>
+                                <td class="text-justify col-md-2">{{implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
+                                <td class="col-md-1">
+                                    <button class="btn btn-outline-primary float-md-left"><a href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a></button>
                                         {{--submit it as form to delete the users--}}
                                        <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                            @csrf
                                            {{method_field('DELETE')}}
-                                           <button type="submit" class="btn btn-danger">Delete</button>
+                                           <button type="submit" class="btn btn-outline-danger float-md-right"><i class="fas fa-trash"></i></button>
                                        </form>
                                 </td>
                             </tr>

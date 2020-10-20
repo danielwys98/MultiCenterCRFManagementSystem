@@ -84,8 +84,8 @@ class preScreeningController extends Controller
         $patient->MRNno=$request->MRNno;
 
         $custom = [
-            'dateTaken.required' => 'Please input the date',
-            'timeTaken.required' => 'Please input the time',
+            'dateTaken.required' => 'Please input the date taken',
+            'timeTaken.required' => 'Please input the time taken',
             'NRIC.required' => 'NRIC field cannot be blank',
             'name.required' => 'Name field cannot be blank',
             'Gender.required' => 'Please choose between a gender',
@@ -113,8 +113,7 @@ class preScreeningController extends Controller
 
         $patient->save();
 
-        return redirect('preScreening');
-        //remember to change to other path as only admin can view index pages
+        return redirect('preScreening/admin')->with('Messages','You have added the subject into the system!');
     }
 
     /**
@@ -167,7 +166,7 @@ class preScreeningController extends Controller
 
         $patient->save();
 
-         return redirect('preScreening');
+         return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
     }
 
     /**
@@ -193,6 +192,6 @@ class preScreeningController extends Controller
         $patient->delete();
 
 
-         return redirect('preScreening');
+         return redirect('preScreening/admin')->with('ErrorMessages','The subject has been removed from the system!');
     }
 }

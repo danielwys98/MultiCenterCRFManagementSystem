@@ -14,7 +14,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/37c6da2f33.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
@@ -45,7 +45,7 @@
                 <li>
                         <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Edit Users </a>
+                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
                             <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
                             <a href="/studySpecificdb" class="dropdown-item {{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
                         </div>

@@ -19,36 +19,39 @@ class IEC_Controller extends Controller
 
         $iec->patient_id=$id;
 
-        $iec->Inclusion01=$request->Inclusion01;
-        $iec->Inclusion02=$request->Inclusion02;
-        $iec->Inclusion03=$request->Inclusion03;
-        $iec->Inclusion04=$request->Inclusion04;
-        $iec->Inclusion05=$request->Inclusion05;
-        $iec->Exclusion01=$request->Exclusion01;
-        $iec->Exclusion02=$request->Exclusion02;
-        $iec->Exclusion03=$request->Exclusion03;
-        $iec->Exclusion04=$request->Exclusion04;
-        $iec->Exclusion05=$request->Exclusion05;
-        $iec->Exclusion06=$request->Exclusion06;
-        $iec->Exclusion07=$request->Exclusion07;
-        $iec->Exclusion08=$request->Exclusion08;
-        $iec->Exclusion09=$request->Exclusion09;
-        $iec->Exclusion10=$request->Exclusion10;
-        $iec->Exclusion11=$request->Exclusion11;
-        $iec->Exclusion12=$request->Exclusion12;
-        $iec->Exclusion13=$request->Exclusion13;
-        $iec->Exclusion14=$request->Exclusion14;
-        $iec->Exclusion15=$request->Exclusion15;
-        $iec->Exclusion16=$request->Exclusion16;
-        $iec->Exclusion17=$request->Exclusion17;
-        $iec->Exclusion18=$request->Exclusion18;
-        $iec->Exclusion19=$request->Exclusion19;
-        $iec->Exclusion20=$request->Exclusion20;
-        $iec->Exclusion21=$request->Exclusion21;
-        $iec->Exclusion22=$request->Exclusion22;
-        $iec->Exclusion23=$request->Exclusion23;
-        $iec->Exclusion24=$request->Exclusion24;
-        $iec->Exclusion25=$request->Exclusion25;
+        $custom = [
+            'Inclusion01.required' => 'Please select whether Yes or No on Inclusion 1',
+            'Inclusion02.required' => 'Please select whether Yes or No on Inclusion 2',
+            'Inclusion03.required' => 'Please select whether Yes or No on Inclusion 3',
+            'Inclusion04.required' => 'Please select whether Yes or No on Inclusion 4',
+            'Inclusion05.required' => 'Please select whether Yes or No on Inclusion 5',
+
+            'Exclusion01.required' => 'Please select whether Yes or No on Exclusion 1',
+            'Exclusion02.required' => 'Please select whether Yes or No on Exclusion 2',
+            'Exclusion03.required' => 'Please select whether Yes or No on Exclusion 3',
+            'Exclusion04.required' => 'Please select whether Yes or No on Exclusion 4',
+            'Exclusion05.required' => 'Please select whether Yes or No on Exclusion 5',
+            'Exclusion06.required' => 'Please select whether Yes or No on Exclusion 6',
+            'Exclusion07.required' => 'Please select whether Yes or No on Exclusion 7',
+            'Exclusion08.required' => 'Please select whether Yes or No on Exclusion 8',
+            'Exclusion09.required' => 'Please select whether Yes or No on Exclusion 9',
+            'Exclusion10.required' => 'Please select whether Yes or No on Exclusion 10',
+            'Exclusion11.required' => 'Please select whether Yes or No on Exclusion 11',
+            'Exclusion12.required' => 'Please select whether Yes or No on Exclusion 12',
+            'Exclusion13.required' => 'Please select whether Yes or No on Exclusion 13',
+            'Exclusion14.required' => 'Please select whether Yes or No on Exclusion 14',
+            'Exclusion15.required' => 'Please select whether Yes or No on Exclusion 15',
+            'Exclusion16.required' => 'Please select whether Yes or No on Exclusion 16',
+            'Exclusion17.required' => 'Please select whether Yes or No on Exclusion 17',
+            'Exclusion18.required' => 'Please select whether Yes or No on Exclusion 18',
+            'Exclusion19.required' => 'Please select whether Yes or No on Exclusion 19',
+            'Exclusion20.required' => 'Please select whether Yes or No on Exclusion 20',
+            'Exclusion21.required' => 'Please select whether Yes or No on Exclusion 21',
+            'Exclusion22.required' => 'Please select whether Yes or No on Exclusion 22',
+            'Exclusion23.required' => 'Please select whether Yes or No on Exclusion 23',
+            'Exclusion24.required' => 'Please select whether Yes or No on Exclusion 24',
+            'Exclusion25.required' => 'Please select whether Yes or No on Exclusion 25',
+        ];
 
         $validatedData=$this->validate($request,[
             'Inclusion01' => 'required',
@@ -81,11 +84,42 @@ class IEC_Controller extends Controller
             'Exclusion23' => 'required',
             'Exclusion24' => 'required',
             'Exclusion25' => 'required',
-        ]);
+        ],$custom);
+
+        $iec->Inclusion01=$request->Inclusion01;
+        $iec->Inclusion02=$request->Inclusion02;
+        $iec->Inclusion03=$request->Inclusion03;
+        $iec->Inclusion04=$request->Inclusion04;
+        $iec->Inclusion05=$request->Inclusion05;
+        $iec->Exclusion01=$request->Exclusion01;
+        $iec->Exclusion02=$request->Exclusion02;
+        $iec->Exclusion03=$request->Exclusion03;
+        $iec->Exclusion04=$request->Exclusion04;
+        $iec->Exclusion05=$request->Exclusion05;
+        $iec->Exclusion06=$request->Exclusion06;
+        $iec->Exclusion07=$request->Exclusion07;
+        $iec->Exclusion08=$request->Exclusion08;
+        $iec->Exclusion09=$request->Exclusion09;
+        $iec->Exclusion10=$request->Exclusion10;
+        $iec->Exclusion11=$request->Exclusion11;
+        $iec->Exclusion12=$request->Exclusion12;
+        $iec->Exclusion13=$request->Exclusion13;
+        $iec->Exclusion14=$request->Exclusion14;
+        $iec->Exclusion15=$request->Exclusion15;
+        $iec->Exclusion16=$request->Exclusion16;
+        $iec->Exclusion17=$request->Exclusion17;
+        $iec->Exclusion18=$request->Exclusion18;
+        $iec->Exclusion19=$request->Exclusion19;
+        $iec->Exclusion20=$request->Exclusion20;
+        $iec->Exclusion21=$request->Exclusion21;
+        $iec->Exclusion22=$request->Exclusion22;
+        $iec->Exclusion23=$request->Exclusion23;
+        $iec->Exclusion24=$request->Exclusion24;
+        $iec->Exclusion25=$request->Exclusion25;
 
         $iec->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the Inclusion and Exclusion Criteria detail for the subject!');
     }
     public function updateIEC(Request $request,$id)
     {
@@ -122,7 +156,7 @@ class IEC_Controller extends Controller
             'Exclusion23'=>$request->Exclusion23,
             'Exclusion24'=>$request->Exclusion24,
             'Exclusion25'=>$request->Exclusion25
-            
+
         ]);
         // $validatedData=$this->validate($request,[
         //     'Inclusion01' => 'required',
@@ -157,7 +191,7 @@ class IEC_Controller extends Controller
         //     'Exclusion25' => 'required',
         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Inclusion and Exclusion Criteria detail for the subject!');
     }
 
 }

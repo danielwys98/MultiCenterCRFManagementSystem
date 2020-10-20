@@ -23,14 +23,57 @@ class BMVS_Controller extends Controller
     public function store(Request $request,$id)
     {
 
-      $bmvs = new Patient_BodyAndVitalSigns;
+        $bmvs = new Patient_BodyAndVitalSigns;
+
+        $custom = [
+            'dateTaken.required' => 'Please enter the date taken',
+            'timeTaken.required' => 'Please enter the time taken',
+            'weight.required' => 'Please enter the weight',
+            'height.required' => 'Please enter the height',
+            'temperature.required' => 'Please enter the temperature',
+            'Supine_ReadingTime.required' => 'Please enter the Supine Reading Time',
+            'Supine_BP.required' => 'Please enter the Supine Blood Pressure',
+            'Supine_HR.required' => 'Please enter the Supine Heart Rate',
+            'Supine_RespiratoryRate.required' => 'Please enter the Supine Respiratory Rate',
+            'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
+            'Sitting_BP.required' => 'Please enter the Sitting Blood Pressure',
+            'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
+            'Sitting_RespiratoryRate.required' => 'Please enter the Sitting Respiratory Rate',
+            'Standing_ReadingTime.required' => 'Please enter the Standing Reading Time',
+            'Standing_BP.required' => 'Please enter the Standing Blood Pressure',
+            'Standing_HR.required' => 'Please enter the Standing Heart Rate',
+            'Standing_RespiratoryRate.required' => 'Please enter the Standing Respiratory Rate',
+            'Initial.required' => 'Initial of the physician’s is required',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateTaken' => 'required',
+            'timeTaken' => 'required',
+            'weight' => 'required',
+            'height' => 'required',
+            'temperature' => 'required',
+            'Supine_ReadingTime' => 'required',
+            'Supine_BP' => 'required',
+            'Supine_HR' => 'required',
+            'Supine_RespiratoryRate' => 'required',
+            'Sitting_ReadingTime' => 'required',
+            'Sitting_BP' => 'required',
+            'Sitting_HR' => 'required',
+            'Sitting_RespiratoryRate' => 'required',
+            'Standing_ReadingTime' => 'required',
+            'Standing_BP' => 'required',
+            'Standing_HR' => 'required',
+            'Standing_RespiratoryRate' => 'required',
+            'Initial' => 'required',
+        ], $custom);
 
         $bmvs->patient_id=$id;
         $bmvs->dateTaken=$request->dateTaken;
         $bmvs->timeTaken=$request->timeTaken;
-
+        
         $bmvs->weight=$request->weight;
         $bmvs->height=$request->height;
+
         if($request->height>0 && $request->weight>0) {
 
             $bmvs->bmi = $this->calculateBMI($request->height,$request->weight);
@@ -52,30 +95,9 @@ class BMVS_Controller extends Controller
         $bmvs->Standing_RespiratoryRate=$request->Standing_RespiratoryRate;
         $bmvs->Initial=$request->Initial;
 
-        $validatedData=$this->validate($request,[
-            'dateTaken' => 'required',
-            'timeTaken' => 'required',
-            'weight' => 'required',
-            'height' => 'required',
-            'temperature' => 'required',
-            'Supine_ReadingTime' => 'required',
-            'Supine_BP' => 'required',
-            'Supine_HR' => 'required',
-            'Supine_RespiratoryRate' => 'required',
-            'Sitting_ReadingTime' => 'required',
-            'Sitting_BP' => 'required',
-            'Sitting_HR' => 'required',
-            'Sitting_RespiratoryRate' => 'required',
-            'Standing_ReadingTime' => 'required',
-            'Standing_BP' => 'required',
-            'Standing_HR' => 'required',
-            'Standing_RespiratoryRate' => 'required',
-            'Initial' => 'required',
-        ]);
-
         $bmvs->save();
 
-        return redirect(route('details.create',$id));
+        return redirect(route('details.create',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function show($id)
@@ -196,7 +218,7 @@ class BMVS_Controller extends Controller
                         //     'Initial' => 'required',
                         // ]);
 
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the body measurement and vital signs detail for the subject!');
     }
 
     public function testing($id)

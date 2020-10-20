@@ -23,7 +23,22 @@ class CS_Controller extends Controller
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
 
-        // dd($request);
+        $custom = [
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'NoDetails.required_if' => 'If the the subject does not fulfill all the inclusion criteria and none of the exclusion criteria, Please provide details on the given text field',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
+            'dateTaken.required' => 'Please enter the date taken',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'inclusionYesNo' => 'required',
+            'NoDetails' => 'required_if:inclusionYesNo,==,No',
+            'physicianSign' => 'required',
+            'physicianName' => 'required',
+            'dateTaken' => 'required',
+        ]);
+
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
         {
@@ -52,6 +67,21 @@ class CS_Controller extends Controller
         $cs->physicianName=$request->physicianName;
         $cs->dateTaken=$request->dateTaken;
 
+        $cs->save();
+        $PSS->save();
+
+        return redirect(route('details.create',$id))->with('Messages','You have added the conclusion detail for the subject!');
+    }
+    public function updateCS(Request $request,$id)
+    {
+        $custom = [
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'NoDetails.required_if' => 'If the the subject does not fulfill all the inclusion criteria and none of the exclusion criteria, Please provide details on the given text field',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
+            'dateTaken.required' => 'Please enter the date taken',
+        ];
+
         $validatedData=$this->validate($request,[
             'inclusionYesNo' => 'required',
             'NoDetails' => 'required_if:inclusionYesNo,==,No',
@@ -60,13 +90,6 @@ class CS_Controller extends Controller
             'dateTaken' => 'required',
         ]);
 
-        $cs->save();
-        $PSS->save();
-
-        return redirect(route('details.create',$id));
-    }
-    public function updateCS(Request $request,$id)
-    {
         DB::table('patient_study_specifics')
             ->where('patient_id',$id)
             ->update([
@@ -128,14 +151,7 @@ class CS_Controller extends Controller
                 ]);
         }
 
-        // $validatedData=$this->validate($request,[
-        //     'inclusionYesNo' => 'required',
-        //     'NoDetails' => 'required_if:inclusionYesNo,==,No',
-        //     'physicianSign' => 'required',
-        //     'physicianName' => 'required',
-        //     'dateTaken' => 'required',
-        // ]);
-        return redirect(route('details.edit',$id));
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the conclusion detail for the subject!');
     }
 
 }

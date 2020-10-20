@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <a href="{{ route('preScreening.edit',$patient->id) }}" class="btn btn-primary float-right">Edit Profile</a>
+        <a href="{{ route('preScreening.edit',$patient->id) }}" class="btn btn-primary float-right"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
         <h4>General Consent</h4>
         {!! Form::model($patient,['route' => ['preScreening.update',$patient->id]]) !!}
         <div class="form-group row">

@@ -1,5 +1,6 @@
 {!! Form::model($InclusionExclusion,['route' => ['update.iecriteria',$patient->id]]) !!}
 @method('PUT')
+@csrf
 <div class="form-group">
         <h3>Inclusion and Exclusion Criteria</h3>
         <h5>Inclusion Criteria</h5>

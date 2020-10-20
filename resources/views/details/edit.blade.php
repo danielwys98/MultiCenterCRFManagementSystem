@@ -25,6 +25,16 @@
                 </ul>
             </div>
         @endif
+        @if (session('Messages'))
+            <div class="alert alert-success">
+                {{ session('Messages') }}
+            </div>
+        @endif
+        @if (session('ErrorMessages'))
+            <div class="alert alert-danger">
+                {{ session('ErrorMessages') }}
+            </div>
+        @endif
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                @include('details.forms.bmvs')
@@ -36,15 +46,13 @@
        <div id="MHistory" class="tab-pane fade">
            @include('details.forms.mHistory')
        </div>
-{{--
         <div id="PExam" class="tab-pane fade">
             @include('details.forms.pe')
        </div>
 
        <div id="UrineTest" class="tab-pane fade">
            @include('details.forms.urineTest')
-       </div>--}}
-{{--
+       </div>
        <div id="LabTest" class="tab-pane fade">
            @include('details.forms.labTest')
        </div>
@@ -59,7 +67,7 @@
 
        <div id="Conclude" class="tab-pane fade">
            @include('details.forms.conclusion')
-        </div>--}}
+        </div>
             {{--This ending div tag is for the "tab-content" div--}}
     </div>
 
