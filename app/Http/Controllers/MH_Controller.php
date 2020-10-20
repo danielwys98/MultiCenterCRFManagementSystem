@@ -92,7 +92,19 @@ class MH_Controller extends Controller
             }
         }
 
-        $custom = ['required' => 'The :attribute field cannot be blank'];
+        $custom = [
+            'dateTaken.required' => 'Please input the date',
+            'timeTaken.required' => 'Please input the time',
+            'NRIC.required' => 'NRIC field cannot be blank',
+            'name.required' => 'Name field cannot be blank',
+            'Gender.required' => 'Please choose between a gender',
+            'Ethnicity.required' => 'Please state the ethnicity',
+            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity',
+            'DoB.required' => 'Date of Birth field cannot be blank',
+            'age.required' => 'Age field cannot be blank',
+            'maritalstatus.required' => 'Please choose between a maritial status',
+            'MRNno.required' => 'MRN Hopsital Registration Number is required',
+        ];
 
         $validatedData=$this->validate($request,[
             'Allergy'  => 'required',

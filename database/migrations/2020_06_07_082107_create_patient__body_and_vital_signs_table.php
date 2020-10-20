@@ -22,15 +22,15 @@ class CreatePatientBodyAndVitalSignsTable extends Migration
             $table->decimal('height');
             $table->decimal('bmi');
             $table->decimal('temperature');
-            $table->integer('Supine_ReadingTime');
+            $table->time('Supine_ReadingTime');
             $table->integer('Supine_BP');
             $table->integer('Supine_HR');
             $table->integer('Supine_RespiratoryRate');
-            $table->integer('Sitting_ReadingTime');
+            $table->time('Sitting_ReadingTime');
             $table->integer('Sitting_BP');
             $table->integer('Sitting_HR');
             $table->integer('Sitting_RespiratoryRate');
-            $table->integer('Standing_ReadingTime');
+            $table->time('Standing_ReadingTime');
             $table->integer('Standing_BP');
             $table->integer('Standing_HR');
             $table->integer('Standing_RespiratoryRate');
