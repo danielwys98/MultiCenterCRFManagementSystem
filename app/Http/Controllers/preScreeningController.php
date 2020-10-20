@@ -74,7 +74,7 @@ class preScreeningController extends Controller
         $patient->name=$request->name;
         $patient->Gender=$request->Gender;
         if($request->Ethnicity=='Others'){
-            $patient->Ethnicity=$request->Ethnic_Text;
+            $patient->Ethnicity=$request->Ethnicity.$request->Ethnic_Text;
         }else
             $patient->Ethnicity=$request->Ethnicity;
 
@@ -82,6 +82,34 @@ class preScreeningController extends Controller
         $patient->age=$request->age;
         $patient->maritalstatus=$request->maritalstatus;
         $patient->MRNno=$request->MRNno;
+
+        $custom = [
+            'dateTaken.required' => 'Please input the date',
+            'timeTaken.required' => 'Please input the time',
+            'NRIC.required' => 'NRIC field cannot be blank',
+            'name.required' => 'Name field cannot be blank',
+            'Gender.required' => 'Please choose between a gender',
+            'Ethnicity.required' => 'Please state the ethnicity',
+            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity',
+            'DoB.required' => 'Date of Birth field cannot be blank',
+            'age.required' => 'Age field cannot be blank',
+            'maritalstatus.required' => 'Please choose between a maritial status',
+            'MRNno.required' => 'MRN Hopsital Registration Number is required',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateTaken'  => 'required',
+            'timeTaken' => 'required',
+            'NRIC'  => 'required',
+            'name' => 'required',
+            'Gender'  => 'required',
+            'Ethnicity' => 'required',
+            'Ethnic_Text' => 'required_if:Ethnicity,==,Others',
+            'DoB'  => 'required',
+            'age'  => 'required',
+            'maritalstatus'  => 'required',
+            'MRNno'  => 'required',
+        ], $custom);
 
         $patient->save();
 

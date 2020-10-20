@@ -3,6 +3,16 @@
 @section('content')
     <div>
         <h3>Please fill in the belows to start creating an Pre-Study Screening Form</h3>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h3>General Consent</h3>
         <hr>
         {!! Form::open(['route'=>'preScreening.store']) !!}
