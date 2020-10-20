@@ -79,10 +79,10 @@ class BMVS_Controller extends Controller
         $actual_height=$height*$height;
         // $bmi=$weight/$actual_height;
         // }else{
-        //     return redirect(route('details.create',$id));  
+        //     return redirect(route('details.create',$id));
         // }
         $bmvs->bmi=number_format($bmi,1);
-    
+
         if($request->height>0 && $request->weight>0) {
 
             $bmvs->bmi = $this->calculateBMI($request->height,$request->weight);
@@ -206,7 +206,7 @@ class BMVS_Controller extends Controller
                         //     'Initial' => 'required',
                         // ]);
 
-        return redirect(route('details.edit',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the body measurement and vital signs detail for the subject!');
     }
 
     public function testing($id)

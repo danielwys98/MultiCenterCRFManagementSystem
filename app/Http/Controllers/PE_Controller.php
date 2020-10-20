@@ -219,6 +219,6 @@ class PE_Controller extends Controller
         //     'Comments_Otherwise' => 'required_if:Comments,==,Otherwise',
         // ]);
 
-        return redirect(route('details.edit',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Physical Examination detail for the subject!');
     }
 }

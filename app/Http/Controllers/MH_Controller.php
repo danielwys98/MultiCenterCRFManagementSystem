@@ -445,6 +445,6 @@ class MH_Controller extends Controller
         //     'Conclusion' => 'required',
         // ]);
 
-        return redirect(route('details.edit',$id))->with('Messages','You have added the Medical History detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Medical History detail for the subject!');
     }
 }

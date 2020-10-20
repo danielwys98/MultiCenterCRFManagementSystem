@@ -75,6 +75,6 @@ class ST_Controller extends Controller
     //     'dateBCollected' => 'required',
     //     'Laboratory' => 'required',
     //     ]);
-        return redirect(route('details.edit',$id))->with('Messages','You have added the Serology Test detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Serology Test detail for the subject!');
     }
 }

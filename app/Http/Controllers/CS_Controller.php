@@ -38,7 +38,7 @@ class CS_Controller extends Controller
             'physicianName' => 'required',
             'dateTaken' => 'required',
         ]);
-        
+
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
         {
@@ -142,7 +142,7 @@ class CS_Controller extends Controller
         //     'physicianName' => 'required',
         //     'dateTaken' => 'required',
         // ]);
-        return redirect(route('details.edit',$id))->with('Messages','You have added the conclusion detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the conclusion detail for the subject!');
     }
 
 }

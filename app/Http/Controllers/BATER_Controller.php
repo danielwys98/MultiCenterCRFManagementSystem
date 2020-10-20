@@ -106,6 +106,6 @@ class BATER_Controller extends Controller
             //     'conclusion' => 'required',
             // ]);
 
-        return redirect(route('details.edit',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
 }

@@ -191,7 +191,7 @@ class IEC_Controller extends Controller
         //     'Exclusion25' => 'required',
         // ]);
 
-        return redirect(route('details.edit',$id))->with('Messages','You have added the Inclusion and Exclusion Criteria detail for the subject!');
+        return redirect(route('details.edit',$id))->with('Messages','You have updated the Inclusion and Exclusion Criteria detail for the subject!');
     }
 
 }

@@ -198,6 +198,6 @@ class Lab_Controller extends Controller
         //     'Urine_Laboratory' => 'required',
         // ]);
 
-        return redirect(route('details.edit', $id))->with('Messages',"You have added the Blood and Urine test's detail for the subject!");
+        return redirect(route('details.edit', $id))->with('Messages',"You have updated the Blood and Urine test's detail for the subject!");
     }
 }

@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
-            {!! Form::text('describemeal', old('describemeal'),$LabTest->describemeal) !!}
+            {!! Form::text('describemeal', old('describemeal')) !!}
         </div>
     </div>
     <div>
