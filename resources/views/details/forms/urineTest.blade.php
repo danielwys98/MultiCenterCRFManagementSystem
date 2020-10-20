@@ -29,20 +29,17 @@
         {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(old('UPreg_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '',
-['id'=>'testing']) !!}
+        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('testing','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
         <div class="col-md-5">
             <div class="row">
                 <div class="col-md-2">--}}
-        {!! Form::radio('UPreg_Laboratory')!!}
+        {!! Form::radio('UPreg_Laboratory', 'Other',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? 'checked' :'')!!}
         {!! Form::label('UPreg_Laboratory', 'Other') !!}
         {{--</div>
         <div class="col-md-3">--}}
-        {!! Form::text('UPreg_Laboratory_Text',
-(old('UPreg_Laboratory',$UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? '': $UrineTest->UPreg_Laboratory,
-['placeholder'=>'Please specify']) !!}
+        {!! Form::text('UPreg_Laboratory_Text',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UPreg_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
         {{--</div>
     </div>--}}
     </div>
@@ -99,13 +96,13 @@
     <div>
         {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
 
-        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(old('UDrug_Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
 
-        {!! Form::radio('UDrug_Laboratory', 'Other') !!}
+        {!! Form::radio('UDrug_Laboratory', 'Other',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? 'checked' :'') !!}
         {!! Form::label('UDrug_Laboratory', 'Other') !!}
 
-        {!! Form::text('UDrug_Laboratory_Text',(old('UDrug_Laboratory', $UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? '': $UrineTest->UDrug_Laboratory) !!}
+        {!! Form::text('UDrug_Laboratory_Text',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UDrug_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
     </div>
     <div class="row">
         <div class="col-sm-3">

@@ -70,18 +70,9 @@ class BMVS_Controller extends Controller
         $bmvs->patient_id=$id;
         $bmvs->dateTaken=$request->dateTaken;
         $bmvs->timeTaken=$request->timeTaken;
-
-        // if($request->weight != 0 && $request->height !=0){
+        
         $bmvs->weight=$request->weight;
         $bmvs->height=$request->height;
-        $weight=$request->weight;
-        $height=$request->height/100;
-        $actual_height=$height*$height;
-        // $bmi=$weight/$actual_height;
-        // }else{
-        //     return redirect(route('details.create',$id));
-        // }
-        $bmvs->bmi=number_format($bmi,1);
 
         if($request->height>0 && $request->weight>0) {
 
