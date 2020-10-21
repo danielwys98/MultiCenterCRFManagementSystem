@@ -75,7 +75,7 @@ class CS_Controller extends Controller
     public function updateCS(Request $request,$id)
     {
         $custom = [
-            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'inclusionyesno.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
             'NoDetails.required_if' => 'If the the subject does not fulfill all the inclusion criteria and none of the exclusion criteria, Please provide details on the given text field',
             'physicianSign.required' => 'Physician’s signature is required',
             'physicianName.required' => 'Physician’s name is required',
@@ -83,8 +83,8 @@ class CS_Controller extends Controller
         ];
 
         $validatedData=$this->validate($request,[
-            'inclusionYesNo' => 'required',
-            'NoDetails' => 'required_if:inclusionYesNo,==,No',
+            'inclusionyesno' => 'required',
+            'NoDetails' => 'required_if:inclusionyesno,==,No',
             'physicianSign' => 'required',
             'physicianName' => 'required',
             'dateTaken' => 'required',
@@ -103,19 +103,19 @@ class CS_Controller extends Controller
             'dateTaken'=>$request->dateTaken
             ]);
 
-        $inclusionYesNo = $request->inclusionYesNo;
+        $inclusionYesNo = $request->inclusionyesno;
         if($inclusionYesNo=="Yes")
         {
             DB::table('patient_conclusion_signatures')
                 ->where('patient_id',$id)
                 ->update([
-                    'inclusionYesNo'=>$request->inclusionYesNo
+                    'inclusionYesNo'=>$request->inclusionyesno
                 ]);
         }else{
             DB::table('patient_conclusion_signatures')
                 ->where('patient_id',$id)
                 ->update([
-                    'inclusionYesNo'=>$request->inclusionYesNo . $request->NoDetails
+                    'inclusionYesNo'=>$request->inclusionyesno . $request->NoDetails
                 ]);
         }
 

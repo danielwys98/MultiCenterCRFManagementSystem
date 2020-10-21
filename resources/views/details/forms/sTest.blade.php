@@ -19,14 +19,14 @@
         </div>
     </div>
     <div>
-        {!! Form::label('Laboratory', 'Laboratory: ') !!}
-        {!! Form::radio('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-        {!! Form::label('Laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        {!! Form::label('laboratory', 'Laboratory: ') !!}
+        {!! Form::radio('laboratory', 'B.P. Clinical Lab Sdn Bhd',(($Serology->Laboratory)=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
+        {!! Form::label('laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
 
-        {!! Form::radio('Laboratory', 'Other') !!}
-        {!! Form::label('Laboratory', 'Other, specify: ') !!}
+        {!! Form::radio('laboratory', 'Other',(($Serology->Laboratory)!='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
+        {!! Form::label('laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Laboratory_txt', '') !!}
+        {!! Form::text('laboratory_txt', (($Serology->Laboratory)!='B.P. Clinical Lab Sdn Bhd')? $Serology->Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
