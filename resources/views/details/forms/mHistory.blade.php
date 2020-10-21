@@ -23,8 +23,8 @@
         <tr>
             <td>Allergy</td>
             <td>{!! Form::radio('Allergy', 'Normal') !!}</td>
-            <td>{!! Form::radio('Allergy', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Allergy_txt', '') !!}</td>
+            <td>{!! Form::radio('Allergy','Abnormal',($Medical->Allergy!='Normal')? 'checked' :'') !!}</td>
+            <td>{!! Form::text('Allergy_txt',($Medical->Allergy!='Normal')? $Medical->Allergy :'') !!}</td>
         </tr>
         <tr>
             <td>Eyes-Ears-Nose-Throat</td>

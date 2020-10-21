@@ -123,7 +123,7 @@ class Lab_Controller extends Controller
                 'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
             ]);
 
-        if ($request->Blood_Laboratory != 'B.P. Clinical Lab Sdn Bhd') {
+        if ($request->blood_laboratory != 'B.P. Clinical Lab Sdn Bhd') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -133,7 +133,7 @@ class Lab_Controller extends Controller
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
-                    'Blood_Laboratory' => $request->Blood_Laboratory
+                    'Blood_Laboratory' => $request->blood_laboratory
                 ]);
         }
 
@@ -152,11 +152,11 @@ class Lab_Controller extends Controller
                 ->update([
                     'Blood_RepeatTest' => $request->Blood_RepeatTest,
                     'Repeat_dateBCollected' => $request->Repeat_dateBCollected,
-                    'BloodRepeat_Laboratory' => $request->BloodRepeat_Laboratory
+                    'BloodRepeat_Laboratory' => $request->bloodrepeat_laboratory
                 ]);
         }
 
-        if($request->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd'){
+        if($request->urine_laboratory!='B.P. Clinical Lab Sdn Bhd'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
@@ -166,7 +166,7 @@ class Lab_Controller extends Controller
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
-                    'Urine_Laboratory' => $request->Urine_Laboratory
+                    'Urine_Laboratory' => $request->urine_laboratory
                 ]);
         }
 
@@ -185,7 +185,7 @@ class Lab_Controller extends Controller
                 ->update([
                     'Urine_RepeatTest' => $request->Urine_RepeatTest,
                     'Repeat_dateUCollected' => $request->Repeat_dateUCollected,
-                    'UrineRepeat_Laboratory' => $request->UrineRepeat_Laboratory
+                    'UrineRepeat_Laboratory' => $request->urinerepeat_laboratory
                 ]);
         }
 
