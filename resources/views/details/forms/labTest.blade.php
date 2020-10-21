@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-sm-6">
             {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
-            {!! Form::text('describemeal', old('describemeal')) !!}
+            {!! Form::text('describemeal', $LabTest->describemeal) !!}
         </div>
     </div>
     <div>
@@ -36,7 +36,7 @@
         {!! Form::radio('blood_laboratory',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
         {!! Form::label('blood_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Blood_Laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? '' : $LabTest->Blood_Laboratory) !!}
+        {!! Form::text('Blood_Laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Blood_Laboratory : '') !!}
     </div>
 
     <div class="row">
@@ -62,7 +62,7 @@
         {!! Form::radio('bloodrepeat_laboratory', 'Other',($LabTest->BloodRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->BloodRepeat_Laboratory!=NULL)?'checked':'') !!}
         {!! Form::label('bloodrepeat_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Bloodrepeat_Laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '') !!}
+        {!! Form::text('Bloodrepeat_Laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '') !!}
     </div>
 
     <h5>Urine (Microbiology)</h5>
