@@ -34,6 +34,7 @@ class CreatePatientPhysicalExaminationsTable extends Migration
             $table->string('Other');
             $table->string('Cubital_Fossa_Veins');
             $table->string('Comments')->nullable();
+            $table->string('Comments_txt')->nullable();
 
             $table->timestamps();
         });

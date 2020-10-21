@@ -36,9 +36,9 @@ class ST_Controller extends Controller
         $st->dateBCollected=$request->dateBCollected;
 
         if($request->Laboratory=='Other'){
-            $st->Laboratory=$request->Laboratory.": ".$request->Laboratory_txt;
+            $st->Laboratory=$request->laboratory_txt;
         }else{
-            $st->Laboratory=$request->Laboratory;
+            $st->Laboratory=$request->laboratory;
         }
 
         $validatedData=$this->validate($request,[
@@ -62,19 +62,16 @@ class ST_Controller extends Controller
            DB::table('patient_serology_tests')
                ->where('patient_id',$id)
                ->update([
-                   'Laboratory'=>$request->Laboratory_txt
+                   'Laboratory'=>$request->laboratory_txt
                ]);
        }else{
            DB::table('patient_serology_tests')
                ->where('patient_id',$id)
                ->update([
-                   'Laboratory'=>$request->Laboratory
+                   'Laboratory'=>$request->laboratory
                ]);
        }
-    //    $validatedData=$this->validate($request,[
-    //     'dateBCollected' => 'required',
-    //     'Laboratory' => 'required',
-    //     ]);
+
         return redirect(route('details.edit',$id))->with('Messages','You have updated the Serology Test detail for the subject!');
     }
 }

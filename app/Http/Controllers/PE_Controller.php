@@ -116,11 +116,15 @@ class PE_Controller extends Controller
             }else if($value=="Physically Healthy")
             {
                 $Comments_Physically_Healthy=$key."_Physically_Healthy";
-                $pe->$key="Physically Healthy: ".$data[$Comments_Physically_Healthy];
+                $commentsSavePH=$key."_txt";
+                $pe->$key=$data[$key];
+                $pe->$commentsSavePH=$data[$Comments_Physically_Healthy];
             }else if($value=="Otherwise")
             {
                 $Comments_Otherwise=$key."_Otherwise";
-                $pe->$key="Otherwise: ".$data[$Comments_Otherwise];
+                $commentsSaveO=$key."_txt";
+                $pe->$key=$data[$key];
+                $pe->$commentsSaveO="Otherwise: ".$data[$Comments_Otherwise];
             }
         }
 
@@ -132,79 +136,79 @@ class PE_Controller extends Controller
     {
         $custom = [
             'dateTaken.required' => 'Please enter the date taken',
-            'GeneralAppearance.required' => 'Please state the General Appearance abnormalities of the subject',
-            'GeneralAppearance_txt.required_if' => 'If General Appearance field is abnormal, please give pertinent details',
-            'Skin.required' => 'Please state the Skin abnormalities of the subject',
-            'Skin_txt.required_if' => 'If Skin field is abnormal, please give pertinent details',
-            'Head_Neck.required' => 'Please state the Head Neck abnormalities of the subject',
-            'Head_Neck_txt.required_if' => 'If Head Neck field is abnormal, please give pertinent details',
+            'generalappearance.required' => 'Please state the General Appearance abnormalities of the subject',
+            'generalappearance_txt.required_if' => 'If General Appearance field is abnormal, please give pertinent details',
+            'skin.required' => 'Please state the Skin abnormalities of the subject',
+            'skin_txt.required_if' => 'If Skin field is abnormal, please give pertinent details',
+            'head_neck.required' => 'Please state the Head Neck abnormalities of the subject',
+            'head_neck_txt.required_if' => 'If Head Neck field is abnormal, please give pertinent details',
             'Eyes.required' => 'Please state the Eyes abnormalities of the subject',
-            'Eyes_txt.required_if' => 'If Eyes field is abnormal, please give pertinent details',
-            'Ears_Nose_Throat.required' => 'Please state the Ears Nose Throat abnormalities of the subject',
-            'Ears_Nose_Throat_txt.reqrequiredrequired_if_ifuired' => 'If Ears Nose Throat field is abnormal, please give pertinent details',
-            'Mouth.required' => 'Please state the Mouth abnormalities of the subject',
-            'Mouth_txt.required_if' => 'If Mouth field is abnormal, please give pertinent details',
-            'Chest_Lungs.required' => 'Please state the Chest Lungs abnormalities of the subject',
-            'Chest_Lungs_txt.required_if' => 'If Chest Lungs field is abnormal, please give pertinent details',
-            'Heart.required' => 'Please state the Heart abnormalities of the subject',
-            'Heart_txt.required_if' => 'If Heart field is abnormal, please give pertinent details',
-            'Abdomen.required' => 'Please state the Abdomen abnormalities of the subject',
-            'Abdomen_txt.required_if' => 'If Abdomen field is abnormal, please give pertinent details',
-            'Back_Spine.required' => 'Please state the Back Spine abnormalities of the subject',
-            'Back_Spine_txt.required_if' => 'If Back Spine field is abnormal, please give pertinent details',
-            'Musculoskeletal.required' => 'Please state the Musculoskeletal abnormalities of the subject',
-            'Musculoskeletal_txt.required_if' => 'If Musculoskeletal field is abnormal, please give pertinent details',
-            'Neurological.required' => 'Please state the Neurological abnormalities of the subject',
-            'Neurological_txt.required_if' => 'If Neurological field is abnormal, please give pertinent details',
-            'Extremities.required' => 'Please state the Extremities abnormalities of the subject',
-            'Extremities_txt.required_if' => 'If Extremities field is abnormal, please give pertinent details',
-            'Lymph_Nodes.required' => 'Please state the Lymph Nodes abnormalities of the subject',
-            'Lymph_Nodes_txt.required_if' => 'If Lymph Nodes field is abnormal, please give pertinent details',
-            'Other.required' => 'Please state the Other abnormalities of the subject',
-            'Other_txt.required_if' => 'If Other field is abnormal, please give pertinent details',
+            'eyes_txt.required_if' => 'If Eyes field is abnormal, please give pertinent details',
+            'ears_nose_throat.required' => 'Please state the Ears Nose Throat abnormalities of the subject',
+            'ears_nose_throat_txt.reqrequiredrequired_if_ifuired' => 'If Ears Nose Throat field is abnormal, please give pertinent details',
+            'mouth.required' => 'Please state the Mouth abnormalities of the subject',
+            'mouth_txt.required_if' => 'If Mouth field is abnormal, please give pertinent details',
+            'chest_lungs.required' => 'Please state the Chest Lungs abnormalities of the subject',
+            'chest_lungs_txt.required_if' => 'If Chest Lungs field is abnormal, please give pertinent details',
+            'heart.required' => 'Please state the Heart abnormalities of the subject',
+            'heart_txt.required_if' => 'If Heart field is abnormal, please give pertinent details',
+            'abdomen.required' => 'Please state the Abdomen abnormalities of the subject',
+            'abdomen_txt.required_if' => 'If Abdomen field is abnormal, please give pertinent details',
+            'back_spine.required' => 'Please state the Back Spine abnormalities of the subject',
+            'back_spine_txt.required_if' => 'If Back Spine field is abnormal, please give pertinent details',
+            'musculoskeletal.required' => 'Please state the Musculoskeletal abnormalities of the subject',
+            'musculoskeletal_txt.required_if' => 'If Musculoskeletal field is abnormal, please give pertinent details',
+            'neurological.required' => 'Please state the Neurological abnormalities of the subject',
+            'neurological_txt.required_if' => 'If Neurological field is abnormal, please give pertinent details',
+            'extremities.required' => 'Please state the Extremities abnormalities of the subject',
+            'extremities_txt.required_if' => 'If Extremities field is abnormal, please give pertinent details',
+            'lymph_nodes.required' => 'Please state the Lymph Nodes abnormalities of the subject',
+            'lymph_nodes_txt.required_if' => 'If Lymph Nodes field is abnormal, please give pertinent details',
+            'other.required' => 'Please state the Other abnormalities of the subject',
+            'other_txt.required_if' => 'If Other field is abnormal, please give pertinent details',
             'Cubital_Fossa_Veins.required' => 'Please select the condition of subject Cubital Fossa Veins',
-            'Comments.required' => 'Please select whether the subject is physically healthy or otherwise in the comments section',
-            'Comments_Physically_Healthy.required_if' => 'If the subject is physically healthy, please state any additional info',
-            'Comments_Otherwise.required_if' => 'If the subject is otherwise, please state any additional info',
+            'comments.required' => 'Please select whether the subject is physically healthy or otherwise in the comments section',
+            'comments_Physically_Healthy.required_if' => 'If the subject is physically healthy, please state any additional info',
+            'comments_Otherwise.required_if' => 'If the subject is otherwise, please state any additional info',
         ];
 
         $validatedData=$this->validate($request,[
             'dateTaken' => 'required',
-            'GeneralAppearance'  => 'required',
-            'GeneralAppearance_txt' => 'required_if:GeneralAppearance,==,Abnormal',
-            'Skin'  => 'required',
-            'Skin_txt' => 'required_if:Skin,==,Abnormal',
-            'Head_Neck'  => 'required',
-            'Head_Neck_txt' => 'required_if:Head_Neck,==,Abnormal',
-            'Eyes'  => 'required',
-            'Eyes_txt' => 'required_if:Eyes,==,Abnormal',
-            'Ears_Nose_Throat'  => 'required',
-            'Ears_Nose_Throat_txt' => 'required_if:Ears_Nose_Throat,==,Abnormal',
-            'Mouth'  => 'required',
-            'Mouth_txt' => 'required_if:Mouth,==,Abnormal',
-            'Chest_Lungs'  => 'required',
-            'Chest_Lungs_txt' => 'required_if:Chest_Lungs,==,Abnormal',
-            'Heart'  => 'required',
-            'Heart_txt' => 'required_if:Heart,==,Abnormal',
-            'Abdomen'  => 'required',
-            'Abdomen_txt' => 'required_if:Abdomen,==,Abnormal',
-            'Back_Spine'  => 'required',
-            'Back_Spine_txt' => 'required_if:Back_Spine,==,Abnormal',
-            'Musculoskeletal'  => 'required',
-            'Musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
-            'Neurological'  => 'required',
-            'Neurological_txt' => 'required_if:Neurological,==,Abnormal',
-            'Extremities'  => 'required',
-            'Extremities_txt' => 'required_if:Extremities,==,Abnormal',
-            'Lymph_Nodes'  => 'required',
-            'Lymph_Nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
-            'Other'  => 'required',
-            'Other_txt' => 'required_if:Other,==,Abnormal',
+            'generalappearance'  => 'required',
+            'generalappearance_txt' => 'required_if:generalappearance,==,Abnormal',
+            'skin'  => 'required',
+            'skin_txt' => 'required_if:Skin,==,Abnormal',
+            'head_neck'  => 'required',
+            'head_neck_txt' => 'required_if:Head_Neck,==,Abnormal',
+            'eyes'  => 'required',
+            'eyes_txt' => 'required_if:Eyes,==,Abnormal',
+            'ears_nose_throat'  => 'required',
+            'ears_nose_throat_txt' => 'required_if:Ears_Nose_Throat,==,Abnormal',
+            'mouth'  => 'required',
+            'mouth_txt' => 'required_if:Mouth,==,Abnormal',
+            'chest_lungs'  => 'required',
+            'chest_lungs_txt' => 'required_if:Chest_Lungs,==,Abnormal',
+            'heart'  => 'required',
+            'heart_txt' => 'required_if:Heart,==,Abnormal',
+            'abdomen'  => 'required',
+            'abdomen_txt' => 'required_if:Abdomen,==,Abnormal',
+            'back_spine'  => 'required',
+            'back_spine_txt' => 'required_if:Back_Spine,==,Abnormal',
+            'musculoskeletal'  => 'required',
+            'musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'neurological'  => 'required',
+            'neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'extremities'  => 'required',
+            'extremities_txt' => 'required_if:Extremities,==,Abnormal',
+            'lymph_nodes'  => 'required',
+            'lymph_nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
+            'other'  => 'required',
+            'other_txt' => 'required_if:Other,==,Abnormal',
 
             'Cubital_Fossa_Veins' => 'required',
-            'Comments' => 'required',
-            'Comments_Physically_Healthy' => 'required_if:Comments,==,Physically Healthy',
-            'Comments_Otherwise' => 'required_if:Comments,==,Otherwise',
+            'comments' => 'required',
+            'comments_Physically_Healthy' => 'required_if:comments,==,Physically Healthy',
+            'comments_Otherwise' => 'required_if:comments,==,Otherwise',
         ],$custom);
         
        DB::table('patient_physical_examinations')
@@ -245,7 +249,8 @@ class PE_Controller extends Controller
                 DB::table('patient_physical_examinations')
                 ->where('patient_id', $id)
                 ->update([
-                    $key => "Physically Healthy: ".$data[$Comments_Physically_Healthy]
+                    $key=>$data[$key],
+                    $key."_txt" => $data[$Comments_Physically_Healthy]
                 ]);
             }else if($value=="Otherwise")
             {
@@ -253,7 +258,8 @@ class PE_Controller extends Controller
                 DB::table('patient_physical_examinations')
                 ->where('patient_id', $id)
                 ->update([
-                    $key => "Otherwise: ".$data[$Comments_Otherwise]
+                    $key=>$data[$key],
+                    $key."_txt" => $data[$Comments_Otherwise]
                 ]);
             }
         }
