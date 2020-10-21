@@ -95,7 +95,7 @@
     </div>
     <div>
         {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
-
+       
         {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
 
