@@ -39,8 +39,12 @@ class CreatePatientMedicalHistoriesTable extends Migration
             $table->string('RegularExercise');
             $table->string('BloodDonations');
             $table->string('RegularPeriods');
+            $table->text('RegularPeriods_No_txt')->nullable();
+            $table->text('RegularPeriods_Yes_txt')->nullable();
             $table->string('ActiveSexAct');
             $table->string('FertilityControl');
+            $table->string('FertilityControl_No_txt')->nullable();
+            $table->string('FertilityControl_Yes_txt')->nullable();
             $table->string('Breastfeeding');
             $table->string('Conclusion');
             $table->timestamps();

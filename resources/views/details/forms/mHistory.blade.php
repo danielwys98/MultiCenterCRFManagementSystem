@@ -169,13 +169,13 @@
                 {!! Form::radio('regularPeriods', 'Not Applicable',(($Medical->RegularPeriods) == 'Not Applicable')? 'checked': '') !!}
                 {!! Form::label('regularPeriods', 'Not Applicable') !!}
             </td>
-            <td>{!! Form::radio('regularPeriods', 'No',(str_split($Medical->RegularPeriods,3) == 'No')? 'checked': '') !!}</td>
-            <td>{!! Form::radio('regularPeriods', 'Yes',(str_split($Medical->RegularPeriods,4) == 'Yes')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('regularPeriods', 'No',(($Medical->RegularPeriods) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('regularPeriods', 'Yes',(($Medical->RegularPeriods) == 'Yes')? 'checked': '') !!}</td>
             <td>
                 {!! Form::label('regularPeriods_No_txt', 'If No, describe: ') !!}
-                {!! Form::text('regularPeriods_No_txt', '') !!}
-                {!! Form::label('regularPeriods_No_txt', 'If Yes, please state last menstrual period: ') !!}
-                {!! Form::text('regularPeriods_No_txt', '') !!}
+                {!! Form::text('regularPeriods_No_txt', (($Medical->RegularPeriods)=='No')? $Medical->RegularPeriods_No_txt: '') !!}
+                {!! Form::label('regularPeriods_Yes_txt', 'If Yes, please state last menstrual period: ') !!}
+                {!! Form::text('regularPeriods_Yes_txt', (($Medical->RegularPeriods)=='Yes')? $Medical->RegularPeriods_Yes_txt: '') !!}
             </td>
         </tr>
         <tr>
@@ -188,32 +188,37 @@
         <tr>
             <td>
                 Fertility Control
-                {!! Form::radio('FertilityControl', 'Not Applicable','',['id'=>'NA_F']) !!}
+                {!! Form::radio('fertilityControl', 'Not Applicable',(($Medical->FertilityControl)=='Not Applicable')?'checked': '',['id'=>'NA_F']) !!}
                 {!! Form::label('NA_F', 'Not Applicable') !!}
             </td>
-            <td>{!! Form::radio('FertilityControl', 'No') !!}</td>
-            <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
+            <td>{!! Form::radio('fertilityControl', 'No',(($Medical->FertilityControl)=='No')?'checked': '') !!}</td>
+            <td>{!! Form::radio('fertilityControl', 'Yes',(($Medical->FertilityControl)=='Yes')?'checked': '') !!}</td>
             <td>
-                {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                {!! Form::radio('FertilityControl_No_txt', 'Counseling not given','',['id'=>'CounselingNo']) !!}
+                {!! Form::label('fertilityControlCounseling', 'If No, advice and counseling given: ') !!}
+                {!! Form::radio('fertilityControl_No_txt', 'Counseling not given',(($Medical->FertilityControl_No_txt)=='Counseling not given')?'checked': '',['id'=>'CounselingNo']) !!}
                 {!! Form::label('CounselingNo', 'Counseling not given') !!}
                 <br>
-                {!! Form::radio('FertilityControl_No_txt', 'Counseling given','',['id'=>'CounselingYes']) !!}
+                {!! Form::radio('fertilityControl_No_txt', 'Counseling given',(($Medical->FertilityControl_No_txt)=='Counseling given')?'checked': '',['id'=>'CounselingYes']) !!}
                 {!! Form::label('CounselingYes', 'Counseling given') !!}
             </td>
             <td>
-                {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
+                {!! Form::label('fertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
                 <br>
-                {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature','',['id'=>'CounselingYes1']) !!}
+                {!! Form::radio('fertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature',
+                               (($Medical->FertilityControl_Yes_txt)=='The Natural Method (rhythm, withdrawal, mucus, body temperature')?'checked': '',['id'=>'CounselingYes1']) !!}
+
                 {!! Form::label('CounselingYes1', 'The Natural Method (rhythm, withdrawal, mucus, body temperature  ') !!}
                 <br>
-                {!! Form::radio('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)','',['id'=>'CounselingYes2']) !!}
+                {!! Form::radio('fertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)',
+                                (($Medical->FertilityControl_Yes_txt)=='The Barrier Method (condom, spermicides, diaphragm etc)')?'checked': '',['id'=>'CounselingYes2']) !!}
                 {!! Form::label('CounselingYes2', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
                 <br>
-                {!! Form::radio('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)','',['id'=>'CounselingYes3']) !!}
+                {!! Form::radio('fertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)',
+                                (($Medical->FertilityControl_Yes_txt)=='Hormonal Method (OCP, depot, implant, IUD)')?'checked': '',['id'=>'CounselingYes3']) !!}
                 {!! Form::label('CounselingYes3','Hormonal Method (OCP, depot, implant, IUD)') !!}
                 <br>
-                {!! Form::radio('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)','',['id'=>'Long term (tubal ligation, vasectomy)']) !!}
+                {!! Form::radio('fertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)',
+                                (($Medical->FertilityControl_Yes_txt)=='Long term (tubal ligation, vasectomy)')?'checked': '',['id'=>'Long term (tubal ligation, vasectomy)']) !!}
                 {!! Form::label('CounselingYes4','Long term (tubal ligation, vasectomy)')!!}
             </td>
         </tr>
@@ -226,11 +231,11 @@
     </table>
     <div>
         {!! Form::label('conclusion', 'Conclusion: ') !!}
-        {!! Form::radio('conclusion', 'Normal medical listing') !!}
+        {!! Form::radio('conclusion', 'Normal medical listing',(($Medical->Conclusion)== 'Normal medical listing')? 'checked': '') !!}
         {!! Form::label('conclusion', 'Normal medical listing') !!}
-        {!! Form::radio('conclusion', 'Abnormal but not clinically significant medical history ') !!}
-        {!! Form::label('conclusion', 'Abnormal but not clinically significant medical history ') !!}
-        {!! Form::radio('conclusion', 'Abnormal and clinically significant medical history') !!}
+        {!! Form::radio('conclusion', 'Abnormal but not clinically significant medical history',(($Medical->Conclusion)== 'Abnormal but not clinically significant medical history')? 'checked': '') !!}
+        {!! Form::label('conclusion', 'Abnormal but not clinically significant medical history') !!}
+        {!! Form::radio('conclusion', 'Abnormal and clinically significant medical history',(($Medical->Conclusion)== 'Abnormal and clinically significant medical history')? 'checked': '') !!}
         {!! Form::label('conclusion', 'Abnormal and clinically significant medical history') !!}
     </div>
     </div>

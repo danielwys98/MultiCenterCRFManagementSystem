@@ -121,7 +121,7 @@ class MH_Controller extends Controller
         $mh->dateTaken=$request->dateTaken;
         $mh->timeTaken=$request->timeTaken;
 
-       dd($request);
+   /*    dd($request);*/
         //some key does not have the text box, therefore, those keys needed be checked individually.
         foreach($data as $key=>$value)
         {
@@ -136,30 +136,26 @@ class MH_Controller extends Controller
             }else if($key == "RegularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
-                $mh->$key=$value.",".$data[$RP_Yes];
+                $mh->$key= $value;
+                $mh->$RP_Yes=$data[$RP_Yes];
             }else if($key == "RegularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
-                $mh->$key=$value.",".$data[$RP_No];
+                $mh->$key= $value;
+                $mh->$RP_No=$data[$RP_No];
             }else if($key == "RegularPeriods" and $value =="Not Applicable")
             {
                 $mh->$key=$data[$key];
             }else if($key =="FertilityControl" and $value =="Yes")
             {
-                $FC_Yes = $key."_Yes_txt";
-                if(array_key_exists($FC_Yes, $data)){
-                    $mh->$key=$value.",".$data[$FC_Yes];
-                }else{
-                    $mh->$key="Yes";
-                }
+                    $FC_Yes = $key."_Yes_txt";
+                    $mh->$key=$value;
+                    $mh->$FC_Yes=$data[$FC_Yes];
             }else if($key =="FertilityControl" and $value=="No")
             {
                 $FC_No = $key."_No_txt";
-                if(array_key_exists($FC_No, $data)){
-                    $mh->$key=$value.",".$data[$FC_No];
-                }else{
-                    $mh->$key="No";
-                }
+                $mh->$key=$value;
+                $mh->$FC_No=$data[$FC_No];
             }else if($key =="FertilityControl" and $value == "Not Applicable")
             {
                 $mh->$key=$data[$key];
@@ -178,11 +174,7 @@ class MH_Controller extends Controller
             else if($value == "Yes")
             {
                 $yes_txt = $key."_txt";
-                if(array_key_exists($yes_txt, $data)){
-                    $mh->$key=$value.",".$data[$yes_txt];
-                }else{
-                    $mh->$key=$data;
-                }
+                    $mh->$key=$data[$yes_txt];
             }else if($value == "No")
             {
                 $no_txt = $key;
@@ -302,6 +294,7 @@ class MH_Controller extends Controller
         ]);
 
         $data =$request->except('_token','dateTaken','timeTaken');
+    /*    dd($data);*/
         foreach($data as $key=>$value)
         {
             if($value =="Abnormal")
@@ -320,64 +313,56 @@ class MH_Controller extends Controller
                     ->update([
                     $key=>$data[$normal_txt]
                 ]);
-            }else if($key == "RegularPeriods" and $value == "Yes")
+            }else if($key == "regularPeriods" and $value == "Yes")
             {
                 $RP_Yes = $key."_Yes_txt";
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods'=>$data[$key],
-                    $key=>$value.",".$data[$RP_Yes]
+                    $key=>$data[$key],
+                    'RegularPeriods_Yes_txt'=>$data[$RP_Yes],
+                    'RegularPeriods_No_txt'=>NULL
                 ]);
-            }else if($key == "RegularPeriods" and $value == "No")
+            }else if($key == "regularPeriods" and $value == "No")
             {
                 $RP_No= $key."_No_txt";
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods'=>$data[$key],
-                    $key=>$value.",".$data[$RP_No]
+                    $key=>$data[$key],
+                    'RegularPeriods_No_txt'=>$data[$RP_No],
+                    'RegularPeriods_Yes_txt'=>NULL
                 ]);
-            }else if($key == "RegularPeriods" and $value =="Not Applicable")
+            }else if($key == "regularPeriods" and $value =="Not Applicable")
             {
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    'RegularPeriods'=>$data[$key]
+                    $key=>$data[$key],
+                    'RegularPeriods_Yes_txt'=>NULL,
+                    'RegularPeriods_No_txt'=>NULL
                 ]);
-            }else if($key =="FertilityControl" and $value =="Yes")
+            }else if($key =="fertilityControl" and $value =="Yes")
             {
-                $FC_Yes = "FertilityControl_Yes_txt";
-                if(array_key_exists($FC_Yes, $data)){
+                    $FC_Yes = $key."_Yes_txt";
                     DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    $key=>$data[$FC_Yes]
+                    $key=>$data[$key],
+                    'FertilityControl_Yes_txt'=>$data[$FC_Yes],
+                    'FertilityControl_No_txt'=>NULL
                 ]);
-                }else{
-                    DB::table('patient_medical_histories')
-                    ->where('patient_id',$id)
-                    ->update([
-                    $key=>"Yes"
-                ]);
-                }
-            }else if($key =="FertilityControl" and $value=="No")
+            }else if($key =="fertilityControl" and $value=="No")
             {
-                $FC_No = "FertilityControl_No_txt";
-                if(array_key_exists($FC_No, $data)){
+                $FC_No = $key."_No_txt";
                     DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    $key=>$data[$FC_No]
+                    $key=>$data[$key],
+                    'FertilityControl_No_txt'=>$data[$FC_No],
+                    'FertilityControl_Yes_txt'=>NULL
                 ]);
-                }else{
-                    DB::table('patient_medical_histories')
-                    ->where('patient_id',$id)
-                    ->update([
-                    $key=>"No"
-                ]);
-                }
-            }else if($key =="FertilityControl" and $value == "Not Applicable")
+            }else if($key =="fertilityControl" and $value == "Not Applicable")
             {
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
@@ -385,7 +370,7 @@ class MH_Controller extends Controller
                     $key=>$data[$key]
                 ]);
             }
-            else if($key == "ActiveSexAct")
+            else if($key == "activeSexAct")
             {
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
@@ -393,14 +378,14 @@ class MH_Controller extends Controller
                     $key=>$data[$key]
                 ]);
             }
-            else if($key == "Breastfeeding")
+            else if($key == "breastfeeding")
             {
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
                     $key=>$data[$key]
                 ]);
-            }else if($key == "Conclusion")
+            }else if($key == "conclusion")
             {
                 DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
@@ -411,19 +396,11 @@ class MH_Controller extends Controller
             else if($value == "Yes")
             {
                 $yes_txt = $key."_txt";
-                if(array_key_exists($yes_txt, $data)){
                     DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
-                    $key=>$value.",".$data[$yes_txt]
+                    $key=>$data[$yes_txt]
                 ]);
-                }else{
-                    DB::table('patient_medical_histories')
-                    ->where('patient_id',$id)
-                    ->update([
-                    $key=>$data
-                ]);
-                }
             }else if($value == "No")
             {
                 $no_txt = $key;

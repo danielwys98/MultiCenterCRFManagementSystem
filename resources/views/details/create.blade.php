@@ -520,11 +520,11 @@
                     {!! Form::radio('Conclusion', 'Normal medical listing','',['id'=>'Normal_MH']) !!}
                     {!! Form::label('Normal_MH', 'Normal medical listing') !!}
 
-                    {!! Form::radio('Conclusion', 'Abnormal but not clinically significant medical history ','',['id'=>'AbnormalN_MH']) !!}
-                    {!! Form::label('AbnormalN_MH', 'Abnormal but not clinically significant medical history ') !!}
+                    {!! Form::radio('Conclusion', 'Abnormal but not clinically significant medical history','',['id'=>'AbnormalN_MH']) !!}
+                    {!! Form::label('AbnormalN_MH','Abnormal but not clinically significant medical history') !!}
 
                     {!! Form::radio('Conclusion', 'Abnormal and clinically significant medical history','',['id'=>'Abnormal_MH']) !!}
-                    {!! Form::label('Abnormal_MH', 'Abnormal and clinically significant medical history') !!}
+                    {!! Form::label('Abnormal_MH','Abnormal and clinically significant medical history') !!}
                 </div>
                 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
                 {!! Form::close() !!}
