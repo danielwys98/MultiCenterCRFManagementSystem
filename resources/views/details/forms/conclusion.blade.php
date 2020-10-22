@@ -9,19 +9,17 @@
         </div>
         <div class="col-sm-3">
             <p>{!! Form::label('Yes', 'Yes') !!}</p>
-            <p>{!! Form::radio('inclusionYesNo','Yes',(old('inclusionYesNo',$Conclu->inlcusionYesNo)=='Yes')? 'checked' : '',
-['id'=>'Yes']) !!}</p>
+            <p>{!! Form::radio('inclusionyesno','Yes',(($Conclu->inclusionYesNo)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-sm-3">
             <p>{!! Form::label('No', 'No') !!}</p>
-            <p>{!! Form::radio('inclusionYesNo','No',(old('inclusionYesNo', $Conclu->inclusionYesNo)=='No ')? 'checked' : '',
-['id'=>'No']) !!}</p>
+            <p>{!! Form::radio('inclusionyesno','No',(($Conclu->inclusionYesNo)!='Yes')? 'checked' : '') !!}</p>
         </div>
     </div>
     <p>If “Yes”, enroll the subject into the study.</p>
     <p>If “No”, provide details. The subject may or may not be enrolled into the study, based on the
         discretion of the research physician.</p>
-    {!! Form::text('NoDetails', old('inclusionYesNo'),['class'=>'form-control','placeholder'=>'Please specify']) !!}<br/>
+    {!! Form::text('NoDetails',(($Conclu->inclusionyesno)!='Yes')? $Conclu->inclusionYesNo : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}<br/>
     <div>
         {!! Form::checkbox('NAbnormality ', 'NAbnormality ') !!}
         {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}

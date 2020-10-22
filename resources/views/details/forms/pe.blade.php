@@ -18,93 +18,93 @@
         </tr>
         <tr>
             <td>General Appearance</td>
-            <td>{!! Form::radio('GeneralAppearance', 'Normal') !!}</td>
-            <td>{!! Form::radio('GeneralAppearance', 'Abnormal') !!}</td>
-            <td>{!! Form::text('GeneralAppearance_txt', '') !!}</td>
+            <td>{!! Form::radio('generalappearance', 'Normal',(($Physical->GeneralAppearance)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('generalappearance', 'Abnormal',(($Physical->GeneralAppearance)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('generalappearance_txt',(($Physical->GeneralAppearance)!='Normal')? $Physical->GeneralAppearance : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Skin</td>
-            <td>{!! Form::radio('Skin', 'Normal') !!}</td>
-            <td>{!! Form::radio('Skin', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Skin_txt', '') !!}</td>
+            <td>{!! Form::radio('skin', 'Normal',(($Physical->Skin)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('skin', 'Abnormal',(($Physical->Skin)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('skin_txt',(($Physical->Skin)!='Normal')? $Physical->Skin : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Head-Neck</td>
-            <td>{!! Form::radio('Head_Neck', 'Normal') !!}</td>
-            <td>{!! Form::radio('Head_Neck', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Head_Neck_txt', '') !!}</td>
+            <td>{!! Form::radio('head_neck', 'Normal',(($Physical->Head_Neck)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('head_neck', 'Abnormal',(($Physical->Head_Neck)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('head_neck_txt',(($Physical->Head_Neck)!='Normal')? $Physical->Head_Neck : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Eyes</td>
-            <td>{!! Form::radio('Eyes', 'Normal') !!}</td>
-            <td>{!! Form::radio('Eyes', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Eyes_txt', '') !!}</td>
+            <td>{!! Form::radio('eyes', 'Normal',(($Physical->Eyes)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('eyes', 'Abnormal',(($Physical->Eyes)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('eyes_txt',(($Physical->Eyes)!='Normal')? $Physical->Eyes : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Ears / Nose / Throat</td>
-            <td>{!! Form::radio('Ears_Nose_Throat', 'Normal') !!}</td>
-            <td>{!! Form::radio('Ears_Nose_Throat', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Ears_Nose_Throat_txt', '') !!}</td>
+            <td>{!! Form::radio('ears_nose_throat', 'Normal',(($Physical->Ears_Nose_Throat)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('ears_nose_throat', 'Abnormal',(($Physical->Ears_Nose_Throat)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('ears_nose_throat_txt',(($Physical->Ears_Nose_Throat)!='Normal')? $Physical->Ears_Nose_Throat : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Mouth</td>
-            <td>{!! Form::radio('Mouth', 'Normal') !!}</td>
-            <td>{!! Form::radio('Mouth', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Mouth_txt', '') !!}</td>
+            <td>{!! Form::radio('mouth', 'Normal',(($Physical->Mouth)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('mouth', 'Abnormal',(($Physical->Mouth)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('mouth_txt',(($Physical->Mouth)!='Normal')? $Physical->Mouth : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Chest / Lungs</td>
-            <td>{!! Form::radio('Chest_Lungs', 'Normal') !!}</td>
-            <td>{!! Form::radio('Chest_Lungs', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Chest_Lungs_txt', '') !!}</td>
+            <td>{!! Form::radio('chest_lungs', 'Normal',(($Physical->Chest_Lungs)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('chest_lungs', 'Abnormal',(($Physical->Chest_Lungs)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('chest_lungs_txt',(($Physical->Chest_Lungs)!='Normal')? $Physical->Chest_Lungs : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Heart</td>
-            <td>{!! Form::radio('Heart', 'Normal') !!}</td>
-            <td>{!! Form::radio('Heart', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Heart_txt', '') !!}</td>
+            <td>{!! Form::radio('heart', 'Normal',(($Physical->Heart)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('heart', 'Abnormal',(($Physical->Heart)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('heart_txt',(($Physical->Heart)!='Normal')? $Physical->Heart : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Abdomen</td>
-            <td>{!! Form::radio('Abdomen', 'Normal') !!}</td>
-            <td>{!! Form::radio('Abdomen', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Abdomen_txt', '') !!}</td>
+            <td>{!! Form::radio('abdomen', 'Normal',(($Physical->Abdomen)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('abdomen', 'Abnormal',(($Physical->Abdomen)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('abdomen_txt',(($Physical->Abdomen)!='Normal')? $Physical->Abdomen : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Back-Spine</td>
-            <td>{!! Form::radio('Back_Spine', 'Normal') !!}</td>
-            <td>{!! Form::radio('Back_Spine', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Back_Spine_txt', '') !!}</td>
+            <td>{!! Form::radio('back_spine', 'Normal',(($Physical->Back_Spine)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('back_spine', 'Abnormal',(($Physical->Back_Spine)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('back_spine_txt',(($Physical->Back_Spine)!='Normal')? $Physical->Back_Spine : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Musculoskeletal</td>
-            <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
-            <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Musculoskeletal_txt', '') !!}</td>
+            <td>{!! Form::radio('musculoskeletal', 'Normal',(($Physical->Musculoskeletal)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('musculoskeletal', 'Abnormal',(($Physical->Musculoskeletal)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('musculoskeletal_txt',(($Physical->Musculoskeletal)!='Normal')? $Physical->Musculoskeletal : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Neurological</td>
-            <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
-            <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Neurological_txt', '') !!}</td>
+            <td>{!! Form::radio('neurological', 'Normal',(($Physical->Neurological)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('neurological', 'Abnormal',(($Physical->Neurological)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('neurological_txt',(($Physical->Neurological)!='Normal')? $Physical->Neurological : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Extremities</td>
-            <td>{!! Form::radio('Extremities', 'Normal') !!}</td>
-            <td>{!! Form::radio('Extremities', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Extremities_txt', '') !!}</td>
+            <td>{!! Form::radio('extremities', 'Normal',(($Physical->Extremities)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('extremities', 'Abnormal',(($Physical->Extremities)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('extremities_txt',(($Physical->Extremities)!='Normal')? $Physical->Extremities : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Lymph Nodes</td>
-            <td>{!! Form::radio('Lymph_Nodes', 'Normal') !!}</td>
-            <td>{!! Form::radio('Lymph_Nodes', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Lymph_Nodes_txt', '') !!}</td>
+            <td>{!! Form::radio('lymph_nodes', 'Normal',(($Physical->Lymph_Nodes)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('lymph_nodes', 'Abnormal',(($Physical->Lymph_Nodes)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('lymph_nodes_txt',(($Physical->Lymph_Nodes)!='Normal')? $Physical->Lymph_Nodes : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
         <tr>
             <td>Other</td>
-            <td>{!! Form::radio('Other', 'Normal') !!}</td>
-            <td>{!! Form::radio('Other', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Other_txt', '') !!}</td>
+            <td>{!! Form::radio('other', 'Normal',(($Physical->Other)=='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::radio('other', 'Abnormal',(($Physical->Other)!='Normal')? 'checked' : '') !!}</td>
+            <td>{!! Form::text('other_txt',(($Physical->Other)!='Normal')? $Physical->Other : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}</td>
         </tr>
     </table>
     <div>
@@ -117,15 +117,14 @@
         {!! Form::label('Cubital_Fossa_Veins', 'Poorly visible') !!}
     </div>
     <div>
-        {!! Form::label('Comments', 'Comments: ') !!}
-        {!! Form::radio('Comments', 'Physically Healthy',
-(old('Comments',$Physical->Comments)=='Healthy')? 'checked':'')!!}
-        {!! Form::label('Comments', 'Physically Healthy') !!}
-        {!! Form::text('Comments_Physically_Healthy', '') !!}
+        {!! Form::label('comments', 'Comments: ') !!}
+        {!! Form::radio('comments', 'Physically Healthy',(($Physical->Comments)=='Physically Healthy')? 'checked' : '')!!}
+        {!! Form::label('comments', 'Physically Healthy') !!}
+        {!! Form::text('comments_Physically_Healthy',(($Physical->Comments)=='Physically Healthy')? $Physical->Comments_txt : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
 
-        {!! Form::radio('Comments', 'Otherwise') !!}
-        {!! Form::label('Comments', 'Otherwise') !!}
-        {!! Form::text('Comments_Otherwise', '') !!}
+        {!! Form::radio('comments', 'Otherwise',(($Physical->Comments)=='Otherwise')? 'checked' : '') !!}
+        {!! Form::label('comments', 'Otherwise') !!}
+        {!! Form::text('comments_Otherwise',(($Physical->Comments)=='Otherwise')? $Physical->Comments_txt : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>

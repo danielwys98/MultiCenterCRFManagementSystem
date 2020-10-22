@@ -155,7 +155,7 @@ class UT_Controller extends Controller
             DB::table('patient_urine_tests')
                 ->where('patient_id',$id)
                 ->update([
-                    'UDrug_Laboratory'=>$request->UDrug_Laboratory
+                    'UDrug_Laboratory'=>$request->udrug_laboratory
                 ]);
         }
         if($UPreg_male == 1){
@@ -191,7 +191,7 @@ class UT_Controller extends Controller
                 'UPreg_Transcribedby'=>$request->UPreg_Transcribedby,
             ]);
             //Check and Store Urine Test Lab
-            if($request->UPreg_Laboratory!='Sarawak General Hospital Heart Centre'){
+            if($request->upreg_laboratory!='Sarawak General Hospital Heart Centre'){
                 DB::table('patient_urine_tests')
                     ->where('patient_id',$id)
                     ->update([
@@ -201,7 +201,7 @@ class UT_Controller extends Controller
                 DB::table('patient_urine_tests')
                     ->where('patient_id',$id)
                     ->update([
-                        'UPreg_Laboratory'=>$request->UPreg_Laboratory
+                        'UPreg_Laboratory'=>$request->upreg_laboratory
                     ]);
             }
 

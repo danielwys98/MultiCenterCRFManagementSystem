@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('UPreg_dateTaken', old('UPreg_dateTaken'))!!}
+            {!! Form::date('UPreg_dateTaken', $UrineTest->UPreg_dateTaken)!!}
         </div>
     </div>
     <div class="row">
@@ -26,20 +26,20 @@
     <div>
         {{--<div class="form-group row">
             <div class="col-md-2">--}}
-        {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('upreg_laboratory', 'Laboratory: ') !!}
         {{--</div>
         <div class="col-md-1">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::radio('upreg_laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('testing','Sarawak General Hospital Heart Centre') !!}
         {{--</div>
         <div class="col-md-5">
             <div class="row">
                 <div class="col-md-2">--}}
-        {!! Form::radio('UPreg_Laboratory', 'Other',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? 'checked' :'')!!}
-        {!! Form::label('UPreg_Laboratory', 'Other') !!}
+        {!! Form::radio('upreg_laboratory', 'Other',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre' && ($UrineTest->UPreg_Laboratory!=NULL))? 'checked' :'')!!}
+        {!! Form::label('upreg_laboratory', 'Other') !!}
         {{--</div>
         <div class="col-md-3">--}}
-        {!! Form::text('UPreg_Laboratory_Text',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UPreg_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+        {!! Form::text('UPreg_Laboratory_Text',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UPreg_Laboratory : '',['placeholder'=>'Please specify']) !!}
         {{--</div>
     </div>--}}
     </div>
@@ -65,7 +65,7 @@
             {!! Form::label('UPreg_hCG', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('UPreg_hCG_Comment', '') !!}
+            {!! Form::text('UPreg_hCG_Comment',($UrineTest->UPreg_hCG_Comment!=NULL)? $UrineTest->UPreg_hCG_Comment:'') !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('UPreg_Transcribedby', 'Transcribed by (initial): ') !!}
@@ -80,7 +80,7 @@
     <div class="row">
         <div class="col-sm-3">
             {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
-            {!! Form::date('UDrug_dateTaken', old('UDrug_dateTaken')) !!}
+            {!! Form::date('UDrug_dateTaken', $UrineTest->UDrug_dateTaken) !!}
         </div>
     </div>
     <div class="row">
@@ -94,13 +94,13 @@
         </div>
     </div>
     <div>
-        {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('udrug_laboratory', 'Laboratory: ') !!}
 
-        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
-        {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('udrug_laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::label('udrug_laboratory', 'Sarawak General Hospital Heart Centre') !!}
 
-        {!! Form::radio('UDrug_Laboratory', 'Other',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? 'checked' :'') !!}
-        {!! Form::label('UDrug_Laboratory', 'Other') !!}
+        {!! Form::radio('udrug_laboratory', 'Other',($UrineTest->UDrug_Laboratory!='Sarawak General Hospital Heart Centre')? 'checked' :'') !!}
+        {!! Form::label('udrug_laboratory', 'Other') !!}
 
         {!! Form::text('UDrug_Laboratory_Text',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UDrug_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
     </div>
@@ -126,7 +126,7 @@
             {!! Form::label('UDrug_Methamphetamine', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('UDrug_Methamphetamine_Comment') !!}
+            {!! Form::text('UDrug_Methamphetamine_Comment',($UrineTest->UDrug_Methamphetamine_Comment!=NULL)? $UrineTest->UDrug_Methamphetamine_Comment:'') !!}
         </div>
     </div>
     <div class="row">
@@ -140,7 +140,7 @@
             {!! Form::label('UDrug_Morphine', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('UDrug_Morphine_Comment') !!}
+            {!! Form::text('UDrug_Morphine_Comment',($UrineTest->UDrug_Morphine_Comment!=NULL)? $UrineTest->UDrug_Morphine_Comment:'') !!}
         </div>
     </div>
     <div class="row">
@@ -154,11 +154,11 @@
             {!! Form::label('UDrug_Marijuana', 'Negative ') !!}
         </div>
         <div class="col-sm-3">
-            {!! Form::text('UDrug_Marijuana_Comment') !!}
+            {!! Form::text('UDrug_Marijuana_Comment',($UrineTest->UDrug_Marijuana_Comment!=NULL)? $UrineTest->UDrug_Marijuana_Comment:'') !!}
         </div>
         <div class="col-sm-3">
             {!! Form::label('UDrug_Transcribedby', 'Transcribed by (initial): ') !!}
-            {!! Form::text('UDrug_Transcribedby', old('UDrug_Transcribedby')) !!}
+            {!! Form::text('UDrug_Transcribedby', $UrineTest->UDrug_Transcribedby) !!}
         </div>
     </div>
 </div>
