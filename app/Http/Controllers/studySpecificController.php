@@ -27,13 +27,6 @@ class studySpecificController extends Controller
 
 
     }
-    public function admin()
-    {
-        /*$patients = Patient::all();
-
-        return view('preScreening.admin',compact('patients'));*/
-
-    }
 
     public function search(Request $request){
     /*    if($request->search_patient==NULL){
@@ -69,8 +62,9 @@ class studySpecificController extends Controller
         $study->timeTaken = $request->timeTaken;
         $study->dateTaken=$request->dateTaken;
         $study->patient_Count=$request->patient_Count;
+        $study->studyPeriod_Count=$request->studyPeriod_Count;
         $study->save();
-        return redirect('studySpecificdb');
+        return redirect(route('studySpecific.index'))->with('Messages','You have successfully added the study into the system!');
     }
 
     /**
@@ -94,9 +88,9 @@ class studySpecificController extends Controller
      */
     public function edit($id)
     {
-      /*  $patient = Patient::find($id);
+        $study = studySpecific::find($id);
 
-         return view('preScreening.edit',compact('patient'));*/
+         return view('studySpecific.edit',compact('study'));
     }
 
     /**
@@ -108,22 +102,16 @@ class studySpecificController extends Controller
      */
     public function update(Request $request, $id)
     {
-   /*     $patient = Patient::find($id);
+        $study = studySpecific::find($id);
 
-        $patient->dateTaken=$request->dateTaken;
-        $patient->timeTaken=$request->timeTaken;
-        $patient->NRIC=$request->NRIC;
-        $patient->name=$request->name;
-        $patient->Gender=$request->Gender;
-        $patient->Ethnicity=$request->Ethnicity;
-        $patient->DoB=$request->DoB;
-        $patient->age=$request->age;
-        $patient->maritalstatus=$request->maritalstatus;
-        $patient->MRNno=$request->MRNno;
+        $study->study_name=$request->study_name;
+        $study->timeTaken = $request->timeTaken;
+        $study->dateTaken=$request->dateTaken;
+        $study->patient_Count=$request->patient_Count;
+        $study->studyPeriod_Count=$request->studyPeriod_Count;
+        $study->save();
 
-        $patient->save();
-
-         return redirect('preScreening');*/
+         return redirect(route('studySpecific.index'))->with('Messages','You updated the study details!');
     }
 
     /**
@@ -134,11 +122,11 @@ class studySpecificController extends Controller
      */
     public function destroy($id)
     {
-     /*   $patient = Patient::find($id);
+        $study = studySpecific::find($id);
 
-        $patient->delete();
+        $study->delete();
 
-         return redirect('preScreening');*/
+         return redirect(route('studySpecific.index'));
     }
 
     public function testing()

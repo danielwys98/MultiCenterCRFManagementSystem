@@ -4,9 +4,10 @@
 
 
     <div class="container-fluid">
-        <h3>Please fill in the belows to start creating a Study-Specific</h3>
+        <h3>Edit {{$study->study_name}}'s Details</h3>
         <hr>
-        {!! Form::open(['route'=>'studySpecific.store']) !!}
+        {!! Form::model($study,['route' => ['studySpecific.update',$study->study_id]]) !!}
+        @method('PUT')
         @csrf
         <div class="form-group row">
             <div class="col-md-1">
@@ -60,7 +61,7 @@
             </div>
         </div>
         <br>
-        {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+        {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
         {!! Form::close() !!}
     </div>
 @endsection

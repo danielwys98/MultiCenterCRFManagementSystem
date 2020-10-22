@@ -17,6 +17,7 @@ class CreateStudySpecificsTable extends Migration
             $table->increments('study_id');
             $table->string('study_name');
             $table->integer('patient_Count');
+            $table->integer('studyPeriod_Count');
             $table->time('timeTaken');
             $table->date('dateTaken');
             $table->timestamps();

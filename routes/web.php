@@ -25,13 +25,15 @@ Route::get('/preScreening/admin','preScreeningController@index');
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-Route::get('/studySpecificdb','studySpecificController@index');
+/*Route::get('/studySpecificdb','studySpecificController@index');
 
 Route::get('/studySpecificdb/create','studySpecificController@create');
 
-Route::get('/studySpecificdb/test','studySpecificController@testing');
+Route::get('/studySpecificdb/test','studySpecificController@testing');*/
 
 /*Route::get('/preScreeningForm','PagesController@preScreeningForm');*/
+
+/*Route::put('studySpecific/edit/{id}','studySpecificController@update')->name('studySpecific.update');*/
 
 Route::get('details/create/{id}','BMVS_Controller@create')->name('details.create');
 
@@ -79,10 +81,8 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 
 Auth::routes();
 
-
-
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);
 
 Route::resource('preScreening','preScreeningController');
 
-Route::resource('studySpecificdb','studySpecificController');
+Route::resource('studySpecific','studySpecificController');

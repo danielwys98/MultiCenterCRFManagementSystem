@@ -47,7 +47,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
                             <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
-                            <a href="/studySpecificdb" class="dropdown-item {{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
+                            <a href="/studySpecific" class="dropdown-item {{request()->is('studySpecific')? 'active' :' '}}" >Study Specific Database</a>
                         </div>
                 </li>
                </div>
