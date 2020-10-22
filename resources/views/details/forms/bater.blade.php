@@ -28,7 +28,7 @@
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-2">
-                        {!! Form::radio('Laboratory','Others',(($BATER->laboratory)!='Sarawak General Hospital Heart Centre')? 'checked' :'') !!}
+                        {!! Form::radio('Laboratory','Others',(($BATER->laboratory)!=='Sarawak General Hospital Heart Centre')? 'checked' :'') !!}
                         {!! Form::label('Laboratory', 'Others') !!}
                     </div>
                     <div class="col-md-3">

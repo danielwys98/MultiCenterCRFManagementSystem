@@ -46,7 +46,7 @@
             {!! Form::label('NRIC', 'Please Fill In Your NRIC: ') !!}
             </div>
             <div class="col-md-3">
-            {!! Form::text('NRIC', '',['class'=>'form-control', 'placeholder'=>'e.g. 110101-13-5227']) !!}
+            {!! Form::text('NRIC', '',['class'=>'form-control', 'placeholder'=>'e.g. 110101135227']) !!}
             </div>
         </div>
         <div class="form-group row">

@@ -121,7 +121,7 @@ class MH_Controller extends Controller
         $mh->dateTaken=$request->dateTaken;
         $mh->timeTaken=$request->timeTaken;
 
-        // dd($request);
+       dd($request);
         //some key does not have the text box, therefore, those keys needed be checked individually.
         foreach($data as $key=>$value)
         {
@@ -189,13 +189,14 @@ class MH_Controller extends Controller
                 $mh->$key=$data[$no_txt];
             }
         }
-        
+
         $mh->save();
        return redirect(route('details.create',$id))->with('Messages','You have added the Medical History detail for the subject!');
     }
     public function updateMH(Request $request,$id)
     {
-       $custom = [
+
+/*       $custom = [
             'dateTaken.required' => 'Please input the date taken',
             'timeTaken.required' => 'Please input the time taken',
             'Allergy.required' => 'Please state the Allergy abnormalities of the subject',
@@ -247,8 +248,8 @@ class MH_Controller extends Controller
         $validatedData=$this->validate($request,[
             'dateTaken' => 'required',
             'timeTaken' => 'required',
-            'Allergy'  => 'required',
-            'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
+            'allergy'  => 'required',
+            'allergy_txt' => 'required_if:allergy,==,Abnormal',
             'EENT'  => 'required',
             'EENT_txt' => 'required_if:EENT,==,Abnormal',
             'Respiratory'  => 'required',
@@ -291,7 +292,7 @@ class MH_Controller extends Controller
             'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
             'Breastfeeding'  => 'required',
             'Conclusion' => 'required',
-        ], $custom);
+        ], $custom);*/
 
         DB::table('patient_medical_histories')
             ->where('patient_id',$id)
@@ -348,7 +349,6 @@ class MH_Controller extends Controller
             {
                 $FC_Yes = "FertilityControl_Yes_txt";
                 if(array_key_exists($FC_Yes, $data)){
-                    $mh->$key=$value.",".$data[$FC_Yes];
                     DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
@@ -365,7 +365,6 @@ class MH_Controller extends Controller
             {
                 $FC_No = "FertilityControl_No_txt";
                 if(array_key_exists($FC_No, $data)){
-                    $mh->$key=$value.",".$data[$FC_No];
                     DB::table('patient_medical_histories')
                     ->where('patient_id',$id)
                     ->update([
@@ -435,7 +434,7 @@ class MH_Controller extends Controller
                 ]);
             }
         }
-        
+
         return redirect(route('details.edit',$id))->with('Messages','You have updated the Medical History detail for the subject!');
     }
 }

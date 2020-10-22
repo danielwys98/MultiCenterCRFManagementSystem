@@ -22,93 +22,93 @@
         </tr>
         <tr>
             <td>Allergy</td>
-            <td>{!! Form::radio('Allergy', 'Normal') !!}</td>
-            <td>{!! Form::radio('Allergy', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Allergy_txt', '') !!}</td>
+            <td>{!! Form::radio('allergy','Normal',(($Medical->Allergy) == 'Normal')? 'checked': '')!!}</td>
+            <td>{!! Form::radio('allergy', 'Abnormal',(($Medical->Allergy)!='Normal')? 'checked' : '')!!}</td>
+            <td>{!! Form::text('allergy_txt', (($Medical->Allergy)!='Normal')? $Medical->Allergy : '') !!}</td>
         </tr>
         <tr>
             <td>Eyes-Ears-Nose-Throat</td>
-            <td>{!! Form::radio('EENT', 'Normal') !!}</td>
-            <td>{!! Form::radio('EENT', 'Abnormal') !!}</td>
-            <td>{!! Form::text('EENT_txt', '') !!}</td>
+            <td>{!! Form::radio('eent', 'Normal',(($Medical->EENT) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('eent', 'Abnormal',(($Medical->EENT) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('eent_txt',(($Medical->EENT)!='Normal')? $Medical->EENT : '') !!}</td>
         </tr>
         <tr>
             <td>Respiratory</td>
-            <td>{!! Form::radio('Respiratory', 'Normal') !!}</td>
-            <td>{!! Form::radio('Respiratory', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Respiratory_txt', '') !!}</td>
+            <td>{!! Form::radio('respiratory', 'Normal',(($Medical->Respiratory) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('respiratory', 'Abnormal',(($Medical->Respiratory) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('respiratory_txt',(($Medical->Respiratory)!='Normal')? $Medical->Respiratory : '') !!}</td>
         <tr>
         <tr>
             <td>Cardiovascular</td>
-            <td>{!! Form::radio('Cardiovascular', 'Normal') !!}</td>
-            <td>{!! Form::radio('Cardiovascular', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Cardiovascular_txt', '') !!}</td>
+            <td>{!! Form::radio('cardiovascular', 'Normal',(($Medical->Cardiovascular) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('cardiovascular', 'Abnormal',(($Medical->Cardiovascular) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('cardiovascular_txt',(($Medical->Cardiovascular)!='Normal')? $Medical->Cardiovascular : '') !!}</td>
         </tr>
         <tr>
             <td>Gastrointestinal</td>
-            <td>{!! Form::radio('Gastrointestinal', 'Normal') !!}</td>
-            <td>{!! Form::radio('Gastrointestinal', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Gastrointestinal_txt', '') !!}</td>
+            <td>{!! Form::radio('gastrointestinal', 'Normal',(($Medical->Gastrointestinal) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('gastrointestinal', 'Abnormal',(($Medical->Gastrointestinal) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('gastrointestinal_txt',(($Medical->Gastrointestinal)!='Normal')? $Medical->Gastrointestinal : '') !!}</td>
         </tr>
         <tr>
             <td>Genitourinary</td>
-            <td>{!! Form::radio('Genitourinary', 'Normal') !!}</td>
-            <td>{!! Form::radio('Genitourinary', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Genitourinary_txt', '') !!}</td>
+            <td>{!! Form::radio('genitourinary', 'Normal',(($Medical->Genitourinary) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('genitourinary', 'Abnormal',(($Medical->Genitourinary) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('genitourinary_txt',(($Medical->Genitourinary)!='Normal')? $Medical->Genitourinary : '') !!}</td>
         </tr>
         <tr>
             <td>Neurological</td>
-            <td>{!! Form::radio('Neurological', 'Normal') !!}</td>
-            <td>{!! Form::radio('Neurological', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Neurological_txt', '') !!}</td>
+            <td>{!! Form::radio('neurological', 'Normal',(($Medical->Respiratory) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('neurological', 'Abnormal',(($Medical->Respiratory) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('neurological_txt',(($Medical->Respiratory)!='Normal')? $Medical->Respiratory : '') !!}</td>
         </tr>
         <tr>
             <td>Haematopoietic-Lymphatic</td>
-            <td>{!! Form::radio('HaematopoieticL', 'Normal') !!}</td>
-            <td>{!! Form::radio('HaematopoieticL', 'Abnormal') !!}</td>
-            <td>{!! Form::text('HaematopoieticL_txt', '') !!}</td>
+            <td>{!! Form::radio('haematopoieticL', 'Normal',(($Medical->HaematopoieticL) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('haematopoieticL', 'Abnormal',(($Medical->HaematopoieticL) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('haematopoieticL_txt',(($Medical->HaematopoieticL)!='Normal')? $Medical->HaematopoieticL : '') !!}</td>
         </tr>
         <tr>
             <td>Endocrine-Metabolic</td>
-            <td>{!! Form::radio('EndocrineM', 'Normal') !!}</td>
-            <td>{!! Form::radio('EndocrineM', 'Abnormal') !!}</td>
-            <td>{!! Form::text('EndocrineM_txt', '') !!}</td>
+            <td>{!! Form::radio('endocrineM', 'Normal',(($Medical->EndocrineM) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('endocrineM', 'Abnormal',(($Medical->EndocrineM) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('endocrineM_txt',(($Medical->EndocrineM)!='Normal')? $Medical->EndocrineM : '') !!}</td>
         </tr>
         <tr>
             <td>Dermatological</td>
-            <td>{!! Form::radio('Dermatological', 'Normal') !!}</td>
-            <td>{!! Form::radio('Dermatological', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Dermatological_txt', '') !!}</td>
+            <td>{!! Form::radio('dermatological', 'Normal',(($Medical->Respiratory) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('dermatological', 'Abnormal',(($Medical->Respiratory) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('dermatological_txt',(($Medical->Respiratory)!='Normal')? $Medical->Respiratory : '') !!}</td>
         </tr>
         <tr>
             <td>Musculoskeletal</td>
-            <td>{!! Form::radio('Musculoskeletal', 'Normal') !!}</td>
-            <td>{!! Form::radio('Musculoskeletal', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Musculoskeletal_txt', '') !!}</td>
+            <td>{!! Form::radio('musculoskeletal', 'Normal',(($Medical->Musculoskeletal) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('musculoskeletal', 'Abnormal',(($Medical->Musculoskeletal) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('musculoskeletal_txt',(($Medical->Musculoskeletal)!='Normal')? $Medical->Musculoskeletal : '') !!}</td>
         </tr>
         <tr>
             <td>Psychological</td>
-            <td>{!! Form::radio('Psychological', 'Normal') !!}</td>
-            <td>{!! Form::radio('Psychological', 'Abnormal') !!}</td>
-            <td>{!! Form::text('Psychological_txt', '') !!}</td>
+            <td>{!! Form::radio('psychological', 'Normal',(($Medical->Psychological) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('psychological', 'Abnormal',(($Medical->Psychological) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('psychological_txt',(($Medical->Psychological)!='Normal')? $Medical->Psychological : '') !!}</td>
         </tr>
         <tr>
             <td>Family History</td>
-            <td>{!! Form::radio('FamilyHistory', 'Normal') !!}</td>
-            <td>{!! Form::radio('FamilyHistory', 'Abnormal') !!}</td>
-            <td>{!! Form::text('FamilyHistory_txt', '') !!}</td>
+            <td>{!! Form::radio('familyHistory', 'Normal',(($Medical->FamilyHistory) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('familyHistory', 'Abnormal',(($Medical->FamilyHistory) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('familyHistory_txt',(($Medical->FamilyHistory)!='Normal')? $Medical->FamilyHistory : '') !!}</td>
         </tr>
         <tr>
             <td>Surgical History</td>
-            <td>{!! Form::radio('SurgicalHistory', 'Normal') !!}</td>
-            <td>{!! Form::radio('SurgicalHistory', 'Abnormal') !!}</td>
-            <td>{!! Form::text('SurgicalHistory_txt', '') !!}</td>
+            <td>{!! Form::radio('surgicalHistory', 'Normal',(($Medical->SurgicalHistory) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('surgicalHistory', 'Abnormal',(($Medical->SurgicalHistory) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('surgicalHistory_txt',(($Medical->SurgicalHistory)!='Normal')? $Medical->SurgicalHistory : '') !!}</td>
         </tr>
         <tr>
             <td>Previous Hospitalization</td>
-            <td>{!! Form::radio('PrevHospitalization', 'Normal') !!}</td>
-            <td>{!! Form::radio('PrevHospitalization', 'Abnormal') !!}</td>
-            <td>{!! Form::text('PrevHospitalization_txt', old('PrevHospitalization')) !!}</td>
+            <td>{!! Form::radio('prevHospitalization', 'Normal',(($Medical->PrevHospitalization) == 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('prevHospitalization', 'Abnormal',(($Medical->PrevHospitalization) != 'Normal')? 'checked': '') !!}</td>
+            <td>{!! Form::text('prevHospitalization_txt',(($Medical->PrevHospitalization)!='Normal')? $Medical->PrevHospitalization : '') !!}</td>
         </tr>
     </table>
     <table class="table col-sm-9">
@@ -120,105 +120,118 @@
         </tr>
         <tr>
             <td>Smoker</td>
-            <td>{!! Form::radio('Smoker', 'No') !!}</td>
-            <td>{!! Form::radio('Smoker', 'Yes') !!}</td>
+            <td>{!! Form::radio('smoker', 'No',(($Medical->Smoker) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('smoker', 'Yes',(($Medical->Smoker) != 'No')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('Smoker_txt', 'number of sticks a day: ') !!}
-                {!! Form::text('Smoker_txt', '') !!}
+                {!! Form::label('smoker_txt', 'number of sticks a day: ') !!}
+                {!! Form::text('smoker_txt',(($Medical->Smoker)!='No')? $Medical->Smoker : '') !!}
             </td>
         </tr>
         <tr>
             <td>Regular Alcohol Intake</td>
-            <td>{!! Form::radio('RAI', 'No') !!}</td>
-            <td>{!! Form::radio('RAI', 'Yes') !!}</td>
+            <td>{!! Form::radio('rai', 'No',(($Medical->RAI) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('rai', 'Yes',(($Medical->RAI) != 'No')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('RAI_txt', 'amount and frequency: ') !!}
-                {!! Form::text('RAI_txt', '') !!}
+                {!! Form::label('rai_txt', 'amount and frequency: ') !!}
+                {!! Form::text('rai_txt',(($Medical->RAI)!='No')? $Medical->RAI : '') !!}
             </td>
         </tr>
         <tr>
             <td>Regular Medications or Supplements</td>
-            <td>{!! Form::radio('RMS', 'No') !!}</td>
-            <td>{!! Form::radio('RMS', 'Yes') !!}</td>
+            <td>{!! Form::radio('rms', 'No',(($Medical->RMS) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('rms', 'Yes',(($Medical->RMS) != 'No')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('RMS_txt', 'describe: ') !!}
-                {!! Form::text('RMS_txt', '') !!}
+                {!! Form::label('rms_txt', 'describe: ') !!}
+                {!! Form::text('rms_txt',(($Medical->RMS)!='No')? $Medical->RMS : '') !!}
             </td>
         </tr>
         <tr>
             <td>Regular Exercise</td>
-            <td>{!! Form::radio('RegularExercise', 'No') !!}</td>
-            <td>{!! Form::radio('RegularExercise', 'Yes') !!}</td>
+            <td>{!! Form::radio('regularExercise', 'No',(($Medical->RegularExercise) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('regularExercise', 'Yes',(($Medical->RegularExercise) != 'No')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('RegularExercise_txt', 'activity and frequency: ') !!}
-                {!! Form::text('RegularExercise_txt', '') !!}
+                {!! Form::label('regularExercise_txt', 'activity and frequency: ') !!}
+                {!! Form::text('regularExercise_txt',(($Medical->RegularExercise)!='No')? $Medical->RegularExercise : '') !!}
             </td>
         </tr>
         <tr>
             <td>Blood Donations</td>
-            <td>{!! Form::radio('BloodDonations', 'No') !!}</td>
-            <td>{!! Form::radio('BloodDonations', 'Yes') !!}</td>
+            <td>{!! Form::radio('bloodDonations', 'No',(($Medical->BloodDonations) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('bloodDonations', 'Yes',(($Medical->BloodDonations) != 'No')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('BloodDonations_txt', 'date and blood volume: ') !!}
-                {!! Form::text('BloodDonations_txt', '') !!}
+                {!! Form::label('bloodDonations_txt', 'date and blood volume: ') !!}
+                {!! Form::text('bloodDonations_txt',(($Medical->BloodDonations)!='No')? $Medical->BloodDonations : '') !!}
             </td>
         </tr>
         <tr>
             <td>
                 Regular Periods
-                {!! Form::radio('RegularPeriods', 'Not Applicable') !!}
-                {!! Form::label('RegularPeriods', 'Not Applicable') !!}
+                {!! Form::radio('regularPeriods', 'Not Applicable',(($Medical->RegularPeriods) == 'Not Applicable')? 'checked': '') !!}
+                {!! Form::label('regularPeriods', 'Not Applicable') !!}
             </td>
-            <td>{!! Form::radio('RegularPeriods', 'No') !!}</td>
-            <td>{!! Form::radio('RegularPeriods', 'Yes') !!}</td>
+            <td>{!! Form::radio('regularPeriods', 'No',(str_split($Medical->RegularPeriods,3) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('regularPeriods', 'Yes',(str_split($Medical->RegularPeriods,4) == 'Yes')? 'checked': '') !!}</td>
             <td>
-                {!! Form::label('RegularPeriods_No_txt', 'If No, describe: ') !!}
-                {!! Form::text('RegularPeriods_No_txt', '') !!}
-                {!! Form::label('RegularPeriods_No_txt', 'If Yes, please state last menstrual period: ') !!}
-                {!! Form::text('RegularPeriods_No_txt', '') !!}
+                {!! Form::label('regularPeriods_No_txt', 'If No, describe: ') !!}
+                {!! Form::text('regularPeriods_No_txt', '') !!}
+                {!! Form::label('regularPeriods_No_txt', 'If Yes, please state last menstrual period: ') !!}
+                {!! Form::text('regularPeriods_No_txt', '') !!}
             </td>
         </tr>
         <tr>
             <td>Active Sexual Activities</td>
-            <td>{!! Form::radio('ActiveSexAct', 'No') !!}</td>
-            <td>{!! Form::radio('ActiveSexAct', 'Yes') !!}</td>
+            <td>{!! Form::radio('activeSexAct', 'No',(($Medical->ActiveSexAct) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('activeSexAct', 'Yes',(($Medical->ActiveSexAct) != 'No')? 'checked': '') !!}</td>
+            <td></td>
             <td></td>
         </tr>
         <tr>
             <td>
                 Fertility Control
-                {!! Form::radio('FertilityControl', 'Not Applicable') !!}
-                {!! Form::label('FertilityControl', 'Not Applicable') !!}
+                {!! Form::radio('FertilityControl', 'Not Applicable','',['id'=>'NA_F']) !!}
+                {!! Form::label('NA_F', 'Not Applicable') !!}
             </td>
             <td>{!! Form::radio('FertilityControl', 'No') !!}</td>
             <td>{!! Form::radio('FertilityControl', 'Yes') !!}</td>
             <td>
                 {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                {!! Form::radio('FertilityControlCounseling_No_txt', 'No') !!}
-                {!! Form::radio('FertilityControlCounseling_No_txt', 'Yes') !!}
-
-                {!! Form::label('FertilityControlCounseling', 'If No, advice and counseling given: ') !!}
-                {!! Form::checkbox('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature') !!}
-                {!! Form::checkbox('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
-                {!! Form::checkbox('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)') !!}
-                {!! Form::checkbox('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)') !!}
+                {!! Form::radio('FertilityControl_No_txt', 'Counseling not given','',['id'=>'CounselingNo']) !!}
+                {!! Form::label('CounselingNo', 'Counseling not given') !!}
+                <br>
+                {!! Form::radio('FertilityControl_No_txt', 'Counseling given','',['id'=>'CounselingYes']) !!}
+                {!! Form::label('CounselingYes', 'Counseling given') !!}
+            </td>
+            <td>
+                {!! Form::label('FertilityControlCounseling', 'If Yes, advice and counseling given: ') !!}
+                <br>
+                {!! Form::radio('FertilityControl_Yes_txt', 'The Natural Method (rhythm, withdrawal, mucus, body temperature','',['id'=>'CounselingYes1']) !!}
+                {!! Form::label('CounselingYes1', 'The Natural Method (rhythm, withdrawal, mucus, body temperature  ') !!}
+                <br>
+                {!! Form::radio('FertilityControl_Yes_txt', 'The Barrier Method (condom, spermicides, diaphragm etc)','',['id'=>'CounselingYes2']) !!}
+                {!! Form::label('CounselingYes2', 'The Barrier Method (condom, spermicides, diaphragm etc)') !!}
+                <br>
+                {!! Form::radio('FertilityControl_Yes_txt', 'Hormonal Method (OCP, depot, implant, IUD)','',['id'=>'CounselingYes3']) !!}
+                {!! Form::label('CounselingYes3','Hormonal Method (OCP, depot, implant, IUD)') !!}
+                <br>
+                {!! Form::radio('FertilityControl_Yes_txt', 'Long term (tubal ligation, vasectomy)','',['id'=>'Long term (tubal ligation, vasectomy)']) !!}
+                {!! Form::label('CounselingYes4','Long term (tubal ligation, vasectomy)')!!}
             </td>
         </tr>
         <tr>
             <td>Breastfeeding Female</td>
-            <td>{!! Form::radio('Breastfeeding', 'No') !!}</td>
-            <td>{!! Form::radio('Breastfeeding', 'Yes') !!}</td>
+            <td>{!! Form::radio('breastfeeding', 'No',(($Medical->Breastfeeding) == 'No')? 'checked': '') !!}</td>
+            <td>{!! Form::radio('breastfeeding', 'Yes',(($Medical->Breastfeeding) != 'No')? 'checked': '') !!}</td>
             <td></td>
         </tr>
     </table>
     <div>
-        {!! Form::label('Conclusion', 'Conclusion: ') !!}
-        {!! Form::radio('Conclusion', 'Normal medical listing') !!}
-        {!! Form::label('Conclusion', 'Normal medical listing') !!}
-        {!! Form::radio('Conclusion', 'Abnormal but not clinically significant medical history ') !!}
-        {!! Form::label('Conclusion', 'Abnormal but not clinically significant medical history ') !!}
-        {!! Form::radio('Conclusion', 'Abnormal and clinically significant medical history') !!}
-        {!! Form::label('Conclusion', 'Abnormal and clinically significant medical history') !!}
+        {!! Form::label('conclusion', 'Conclusion: ') !!}
+        {!! Form::radio('conclusion', 'Normal medical listing') !!}
+        {!! Form::label('conclusion', 'Normal medical listing') !!}
+        {!! Form::radio('conclusion', 'Abnormal but not clinically significant medical history ') !!}
+        {!! Form::label('conclusion', 'Abnormal but not clinically significant medical history ') !!}
+        {!! Form::radio('conclusion', 'Abnormal and clinically significant medical history') !!}
+        {!! Form::label('conclusion', 'Abnormal and clinically significant medical history') !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
