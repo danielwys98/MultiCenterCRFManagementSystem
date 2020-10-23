@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
 use App\PatientStudySpecific;
+use DB;
 
 class studySpecificController extends Controller
 {
@@ -19,13 +20,18 @@ class studySpecificController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function admin()
     {
         $studies=studySpecific::all();
 
         return view('studySpecific.index',compact('studies'));
 
 
+    }
+
+    public function studies()
+    {
+        return view('studySpecific');
     }
 
     public function search(Request $request){
@@ -63,6 +69,7 @@ class studySpecificController extends Controller
         $study->dateTaken=$request->dateTaken;
         $study->patient_Count=$request->patient_Count;
         $study->studyPeriod_Count=$request->studyPeriod_Count;
+        $study->MRNno=$request->MRNno;
         $study->save();
         return redirect(route('studySpecific.index'))->with('Messages','You have successfully added the study into the system!');
     }
@@ -103,15 +110,18 @@ class studySpecificController extends Controller
     public function update(Request $request, $id)
     {
         $study = studySpecific::find($id);
-
-        $study->study_name=$request->study_name;
-        $study->timeTaken = $request->timeTaken;
-        $study->dateTaken=$request->dateTaken;
-        $study->patient_Count=$request->patient_Count;
-        $study->studyPeriod_Count=$request->studyPeriod_Count;
-        $study->save();
-
-         return redirect(route('studySpecific.index'))->with('Messages','You updated the study details!');
+        $data = $request->except('_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value!=NULL){
+                DB::table('study_specifics')
+                ->where('study_id', $id)
+                ->update([
+                    $key => $data[$key]
+                ]);
+            }
+        }
+        return redirect(route('studySpecific.index'))->with('Messages','You updated the study details!');
     }
 
     /**
@@ -126,7 +136,7 @@ class studySpecificController extends Controller
 
         $study->delete();
 
-         return redirect(route('studySpecific.index'));
+         return redirect(route('studySpecific.index'))->with('ErrorMessages','You removed the study from the system!');
     }
 
     public function testing()
@@ -138,6 +148,6 @@ class studySpecificController extends Controller
         echo $findStudy->study_name;*/
         $studies=studySpecific::all()->pluck('study_name','study_id');
 
-      return view('studySpecificdb')->with('studies',$studies);
+      return view('studySpecific')->with('studies',$studies);
     }
 }

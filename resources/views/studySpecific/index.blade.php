@@ -47,7 +47,6 @@
     </table>
         @else
                 <h1>You dont have studies! add study!</h1>
-             <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
         @endif
             <td><a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a></td>
 

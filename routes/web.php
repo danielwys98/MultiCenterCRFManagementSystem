@@ -19,15 +19,15 @@ Route::get('/dashboard', 'PagesController@index');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 
-Route::get('/studySpecific', 'PagesController@studySpecific');
+Route::get('/studySpecific/admin', 'studySpecificController@admin');
 
 Route::get('/preScreening/admin','preScreeningController@index');
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-/*Route::get('/studySpecificdb','studySpecificController@index');
+Route::get('/studySpecific/input','studySpecificController@studies');
 
-Route::get('/studySpecificdb/create','studySpecificController@create');
+/*Route::get('/studySpecificdb/create','studySpecificController@create');
 
 Route::get('/studySpecificdb/test','studySpecificController@testing');*/
 
