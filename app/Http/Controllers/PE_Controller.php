@@ -99,7 +99,6 @@ class PE_Controller extends Controller
         $pe->patient_id=$id;
         $pe->dateTaken=$request->dateTaken;
 
-        // dd($request);
         foreach($data as $key=>$value)
         {
             if($value=="Abnormal")
@@ -130,7 +129,7 @@ class PE_Controller extends Controller
 
         $pe->save();
 
-        return redirect(route('details.create',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
     }
     public function updatePE(Request $request,$id)
     {
@@ -264,6 +263,6 @@ class PE_Controller extends Controller
             }
         }
 
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the Physical Examination detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Physical Examination detail for the subject!');
     }
 }

@@ -37,10 +37,68 @@ class UT_Controller extends Controller
             'UPreg_Transcribedby.required' => 'Please state the user transcribed for urine pregnancy test',
         ];
 
-        // dd($request);
         $ut->patient_id=$id;
         // Urine Pregnancy
         $ut->UPreg_male=$request->UPreg_male;
+        // if subject is male
+        if($request->UPreg_male == 1){
+            $validatedData=$this->validate($request,[
+                'UDrug_Laboratory' => 'required',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                'UDrug_dateTaken' => 'required',
+                'UDrug_TestTime' => 'required',
+                'UDrug_ReadTime' => 'required',
+                'UDrug_Methamphetamine' => 'required',
+                'UDrug_Morphine' => 'required',
+                'UDrug_Marijuana' => 'required',
+                'UDrug_Transcribedby' => 'required',
+            ],$custom);
+
+            $ut->UPreg_dateTaken=NULL;
+            $ut->UPreg_TestTime=NULL;
+            $ut->UPreg_ReadTime=NULL;
+            $ut->UPreg_Laboratory=NULL;
+            $ut->UPreg_hCG=NULL;
+            $ut->UPreg_hCG_Comment=NULL;
+            $ut->UPreg_Transcribedby=NULL;
+
+        }else{
+            //if subject is female
+            $validatedData=$this->validate($request,[
+                'UPreg_Laboratory' => 'required',
+                'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Others',
+                'UDrug_Laboratory' => 'required',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                'UPreg_dateTaken' => 'required',
+                'UPreg_TestTime' => 'required',
+                'UPreg_ReadTime' => 'required',
+                'UPreg_hCG' => 'required',
+                'UPreg_Transcribedby' => 'required',
+                'UDrug_dateTaken' => 'required',
+                'UDrug_TestTime' => 'required',
+                'UDrug_ReadTime' => 'required',
+                'UDrug_Methamphetamine' => 'required',
+                'UDrug_Morphine' => 'required',
+                'UDrug_Marijuana' => 'required',
+                'UDrug_Transcribedby' => 'required',
+            ],$custom);
+
+            $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
+            $ut->UPreg_TestTime=$request->UPreg_TestTime;
+            $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
+            $UPreg_lab=$request->UPreg_Laboratory;
+
+            if($UPreg_lab=='Other'){
+                $ut->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
+            }else{
+                $ut->UPreg_Laboratory=$UPreg_lab;
+            }
+            $ut->UPreg_hCG=$request->UPreg_hCG;
+            $ut->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
+            $ut->UPreg_Transcribedby=$request->UPreg_Transcribedby;
+        }
+        // end if
+        
         // Urine Drug
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;
@@ -62,69 +120,12 @@ class UT_Controller extends Controller
         $ut->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
         $ut->UDrug_Transcribedby=$request->UDrug_Transcribedby;
 
-        if($request->UPreg_male == 1){
-            $validatedData=$this->validate($request,[
-                'UDrug_Laboratory' => 'required',
-                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
-                'UDrug_dateTaken' => 'required',
-                'UDrug_TestTime' => 'required',
-                'UDrug_ReadTime' => 'required',
-                'UDrug_Methamphetamine' => 'required',
-                'UDrug_Morphine' => 'required',
-                'UDrug_Marijuana' => 'required',
-                'UDrug_Transcribedby' => 'required',
-            ],$custom);
-            $ut->UPreg_dateTaken=NULL;
-            $ut->UPreg_TestTime=NULL;
-            $ut->UPreg_ReadTime=NULL;
-            $ut->UPreg_Laboratory=NULL;
-            $ut->UPreg_hCG=NULL;
-            $ut->UPreg_hCG_Comment=NULL;
-            $ut->UPreg_Transcribedby=NULL;
-
-        }else{
-            $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
-            $ut->UPreg_TestTime=$request->UPreg_TestTime;
-            $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
-            $UPreg_lab=$request->UPreg_Laboratory;
-
-            if($UPreg_lab=='Other'){
-                $ut->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
-            }else{
-                $ut->UPreg_Laboratory=$UPreg_lab;
-            }
-            $ut->UPreg_hCG=$request->UPreg_hCG;
-            $ut->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
-            $ut->UPreg_Transcribedby=$request->UPreg_Transcribedby;
-
-            $validatedData=$this->validate($request,[
-                'UPreg_Laboratory' => 'required',
-                'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Others',
-                'UDrug_Laboratory' => 'required',
-                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
-                'UPreg_dateTaken' => 'required',
-                'UPreg_TestTime' => 'required',
-                'UPreg_ReadTime' => 'required',
-                'UPreg_hCG' => 'required',
-                'UPreg_Transcribedby' => 'required',
-                'UDrug_dateTaken' => 'required',
-                'UDrug_TestTime' => 'required',
-                'UDrug_ReadTime' => 'required',
-                'UDrug_Methamphetamine' => 'required',
-                'UDrug_Morphine' => 'required',
-                'UDrug_Marijuana' => 'required',
-                'UDrug_Transcribedby' => 'required',
-            ],$custom);
-        }
-
         $ut->save();
-
-        return redirect(route('details.create',$id))->with('Messages','You have added the Urine Test for pregnancy and drugs detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Urine Test for pregnancy and drugs detail for the subject!');
     }
 
     public function updateUT(Request $request,$id)
     {
-        //dd($request);
         DB::table('patient_urine_tests')
             ->where('patient_id',$id)
             ->update([
@@ -169,16 +170,6 @@ class UT_Controller extends Controller
                     'UPreg_hCG'=>NULL,
                     'UPreg_hCG_Comment'=>NULL,
                     'UPreg_Transcribedby'=>NULL]);
-            // $validatedData=$this->validate($request,[
-            //     'UDrug_Laboratory' => 'required',
-            //     'UDrug_dateTaken' => 'required',
-            //     'UDrug_TestTime' => 'required',
-            //     'UDrug_ReadTime' => 'required',
-            //     'UDrug_Methamphetamine' => 'required',
-            //     'UDrug_Morphine' => 'required',
-            //     'UDrug_Marijuana' => 'required',
-            //     'UDrug_Transcribedby' => 'required',
-            // ]);
         }else{
             DB::table('patient_urine_tests')
             ->where('patient_id',$id)
@@ -204,24 +195,7 @@ class UT_Controller extends Controller
                         'UPreg_Laboratory'=>$request->upreg_laboratory
                     ]);
             }
-
-            // $validatedData=$this->validate($request,[
-            //     'UPreg_Laboratory' => 'required',
-            //     'UDrug_Laboratory' => 'required',
-            //     'UPreg_dateTaken' => 'required',
-            //     'UPreg_TestTime' => 'required',
-            //     'UPreg_ReadTime' => 'required',
-            //     'UPreg_hCG' => 'required',
-            //     'UPreg_Transcribedby' => 'required',
-            //     'UDrug_dateTaken' => 'required',
-            //     'UDrug_TestTime' => 'required',
-            //     'UDrug_ReadTime' => 'required',
-            //     'UDrug_Methamphetamine' => 'required',
-            //     'UDrug_Morphine' => 'required',
-            //     'UDrug_Marijuana' => 'required',
-            //     'UDrug_Transcribedby' => 'required',
-            // ]);
         }
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the Urine Test for pregnancy and drugs detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Urine Test for pregnancy and drugs detail for the subject!');
     }
 }

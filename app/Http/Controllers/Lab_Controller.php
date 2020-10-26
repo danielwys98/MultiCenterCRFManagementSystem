@@ -101,7 +101,7 @@ class Lab_Controller extends Controller
 
         $lt->save();
 
-        return redirect(route('details.create', $id))->with('Messages',"You have added the Blood and Urine test's detail for the subject!");
+        return redirect(route('preScreeningForms.create', $id))->with('Messages',"You have added the Blood and Urine test's detail for the subject!");
     }
 
     public function updateLT(Request $request, $id)
@@ -189,15 +189,6 @@ class Lab_Controller extends Controller
                 ]);
         }
 
-        // $validatedData=$this->validate($request,[
-        //     'Blood_Laboratory' => 'required',
-        //     'dateBTaken' => 'required',
-        //     'dateLMTaken' => 'required',
-        //     'TimeLMTaken' => 'required',
-        //     'dateUTaken' => 'required',
-        //     'Urine_Laboratory' => 'required',
-        // ]);
-
-        return redirect(route('details.edit', $id))->with('Messages',"You have updated the Blood and Urine test's detail for the subject!");
+        return redirect(route('preScreeningForms.edit', $id))->with('Messages',"You have updated the Blood and Urine test's detail for the subject!");
     }
 }

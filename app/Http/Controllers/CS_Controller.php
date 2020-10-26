@@ -44,7 +44,7 @@ class CS_Controller extends Controller
         {
             $cs->inclusionYesNo = $request->inclusionYesNo;
         }else{
-            $cs->inclusionYesNo = $request->inclusionYesNo . $request->NoDetails;
+            $cs->inclusionYesNo = $request->NoDetails;
         }
 
         $NAbnormality=$request->NAbnormality;
@@ -70,7 +70,7 @@ class CS_Controller extends Controller
         $cs->save();
         $PSS->save();
 
-        return redirect(route('details.create',$id))->with('Messages','You have added the conclusion detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the conclusion detail for the subject!');
     }
     public function updateCS(Request $request,$id)
     {
@@ -115,7 +115,7 @@ class CS_Controller extends Controller
             DB::table('patient_conclusion_signatures')
                 ->where('patient_id',$id)
                 ->update([
-                    'inclusionYesNo'=>$request->inclusionyesno . $request->NoDetails
+                    'inclusionYesNo'=>$request->NoDetails
                 ]);
         }
 
@@ -151,7 +151,7 @@ class CS_Controller extends Controller
                 ]);
         }
 
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the conclusion detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the conclusion detail for the subject!');
     }
 
 }

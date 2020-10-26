@@ -35,15 +35,15 @@ Route::get('/studySpecificdb/test','studySpecificController@testing');*/
 
 /*Route::put('studySpecific/edit/{id}','studySpecificController@update')->name('studySpecific.update');*/
 
-Route::get('details/create/{id}','BMVS_Controller@create')->name('details.create');
+Route::get('preScreeningForms/create/{id}','BMVS_Controller@create')->name('preScreeningForms.create');
 
-Route::post('details/{id}','BMVS_Controller@store')->name('details.store');
+Route::post('preScreeningForms/{id}','BMVS_Controller@store')->name('preScreeningForms.store');
 
-Route::get('details/show/{id}','BMVS_Controller@show')->name('details.show');
+Route::get('preScreeningForms/show/{id}','BMVS_Controller@show')->name('preScreeningForms.show');
 
-Route::get('details/edit/{id}','BMVS_Controller@edit')->name('details.edit');
+Route::get('preScreeningForms/edit/{id}','BMVS_Controller@edit')->name('preScreeningForms.edit');
 
-Route::put('details/{details}','BMVS_Controller@update')->name('details.update');
+Route::put('preScreeningForms/{details}','BMVS_Controller@update')->name('preScreeningForms.update');
 
 Route::post('bater/{id}','BATER_Controller@storeBATER')->name('store.bater');
 
