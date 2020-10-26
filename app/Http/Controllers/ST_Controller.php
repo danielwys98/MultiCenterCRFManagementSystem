@@ -20,15 +20,15 @@ class ST_Controller extends Controller
         $custom = [
             'dateCTaken.required' => 'Please enter the date of consent taken',
             'dateBCollected.required' => 'Please enter the date of blood taken',
-            'Laboratory.required' => 'Please select which laboratory does the serology test conducted',
-            'Laboratory_txt.required_if' => 'If other laboratory were selected, please state the name of the laboratory where serology test conducted',
+            'laboratory.required' => 'Please select which laboratory does the serology test conducted',
+            'laboratory_txt.required_if' => 'If other laboratory were selected, please state the name of the laboratory where serology test conducted',
         ];
 
         $validatedData=$this->validate($request,[
             'dateCTaken' => 'required',
             'dateBCollected' => 'required',
-            'Laboratory' => 'required',
-            'Laboratory_txt' => 'required_if:Laboratory,==,Others',
+            'laboratory' => 'required',
+            'laboratory_txt' => 'required_if:laboratory,==,Other',
         ],$custom);
 
         $st->patient_id=$id;
@@ -41,13 +41,8 @@ class ST_Controller extends Controller
             $st->Laboratory=$request->laboratory;
         }
 
-        $validatedData=$this->validate($request,[
-            'dateBCollected' => 'required',
-            'Laboratory' => 'required',
-        ]);
-
         $st->save();
-        return redirect(route('details.create',$id))->with('Messages','You have added the Serology Test detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Serology Test detail for the subject!');
     }
     public function updateST(Request $request,$id)
     {
@@ -72,6 +67,6 @@ class ST_Controller extends Controller
                ]);
        }
 
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the Serology Test detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Serology Test detail for the subject!');
     }
 }

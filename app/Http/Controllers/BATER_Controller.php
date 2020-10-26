@@ -41,7 +41,6 @@ class BATER_Controller extends Controller
             'Conclusion' => 'required',
         ], $custom);
 
-        // dd($request);
         $lab = $request->Laboratory;
         if($lab == 'Others')
         {
@@ -60,13 +59,13 @@ class BATER_Controller extends Controller
 
         $bater->save();
 
-        return redirect(route('details.create',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
     public function updateBATER(Request $request,$id)
     {
         $lab=$request->Laboratory;
 
-       DB::table('patient_breath_alcohol_test_and_electrocardiograms')
+        DB::table('patient_breath_alcohol_test_and_electrocardiograms')
             ->where('patient_id',$id)
             ->update([
             'dateTaken'=>$request->dateTaken,
@@ -94,18 +93,6 @@ class BATER_Controller extends Controller
                     ]);
             }
 
-            // $validatedData=$this->validate($request,[
-            //     'dateTaken' => 'required',
-            //     'timeTaken' => 'required',
-            //     'breathalcohol' => 'required',
-            //     'breathalcoholResult' => 'required',
-            //     'Usertranscribed' => 'required',
-            //     'Laboratory' => 'required',
-            //     'Laboratory_text' => 'required_if:Laboratory,==,Others',
-            //     'ECGdateTaken' => 'required',
-            //     'conclusion' => 'required',
-            // ]);
-
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
 }
