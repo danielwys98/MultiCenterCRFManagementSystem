@@ -70,7 +70,7 @@ class BMVS_Controller extends Controller
         $bmvs->patient_id=$id;
         $bmvs->dateTaken=$request->dateTaken;
         $bmvs->timeTaken=$request->timeTaken;
-        
+
         $bmvs->weight=$request->weight;
         $bmvs->height=$request->height;
 
@@ -138,6 +138,7 @@ class BMVS_Controller extends Controller
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical=$patient->MedicalHistory;
         $Physical=$patient->PhysicalExam;
+        dd($BATER);
         $UrineTest=$patient->UrineTest;
         $LabTest=$patient->LabTest;
         $Serology=$patient->SerologyTest;
