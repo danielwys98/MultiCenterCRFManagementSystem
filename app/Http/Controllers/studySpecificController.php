@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
+use App\Patient_Conclusion_Signature;
 use App\PatientStudySpecific;
+use App\StudyPeriod1;
 use DB;
 
 class studySpecificController extends Controller
@@ -20,7 +22,7 @@ class studySpecificController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin()
+    public function index()
     {
         $studies=studySpecific::all();
 
@@ -141,13 +143,23 @@ class studySpecificController extends Controller
 
     public function testing()
     {
-        //for example getting patient id from request = 1
-      /*  $id= 6;
-        $findPatientStudy=Patient::findOrFail($id)->patientStudySpecific;
-        $findStudy=studySpecific::findOrFail($findPatientStudy->study_id);
-        echo $findStudy->study_name;*/
-        $studies=studySpecific::all()->pluck('study_name','study_id');
+      //Enroll a study id of 1=covid into the study
+     //Create child first then save the child's ID into PSS
+        $sp1 = new StudyPeriod1;
+        /*$sp1->save();*/
 
-      return view('studySpecific')->with('studies',$studies);
+        $PSS = new PatientStudySpecific;
+        $PSS->study_id=2;
+        $PSS->patient_id=7;
+        $PSS->SP1_ID=$sp1->SP1_ID;
+        /*$PSS->save();*/
+        $findSP= $sp1->where('SP1_ID',7)->first();
+        if($findSP->SP1_Admission == NULL)
+        {
+            $findSP->SP1_BATER = 2;
+            $findSP->SP1_UrineTest=1;
+            $findSP->save();
+        }
+        echo "saved!";
     }
 }

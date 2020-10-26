@@ -27,6 +27,8 @@ Route::get('/preScreening/admin/search','preScreeningController@search');
 
 Route::get('/studySpecific/input','studySpecificController@studies');
 
+Route::get('/testing','studySpecificController@testing');
+
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 
 Route::get('/studySpecificdb/test','studySpecificController@testing');*/
