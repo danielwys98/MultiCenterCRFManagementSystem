@@ -19,7 +19,7 @@ class CreatePatientBreathAlcoholTestAndElectrocardiogramsTable extends Migration
             $table->date('dateTaken');
             $table->time('timeTaken');
             $table->string('laboratory');
-            $table->integer('breathalcohol');
+            $table->decimal('breathalcohol');
             $table->string('breathalcoholResult');
             $table->string('Usertranscribed');
             //ECG starts from here

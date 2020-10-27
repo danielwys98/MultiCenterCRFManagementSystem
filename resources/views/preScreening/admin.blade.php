@@ -21,6 +21,16 @@
             </div>
         </div>
     </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                <p>The following forms have not been filled. Please add them first in order to proceed to edit:</p>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="card-body">
         @if (session('Messages'))
             <div class="alert alert-success">

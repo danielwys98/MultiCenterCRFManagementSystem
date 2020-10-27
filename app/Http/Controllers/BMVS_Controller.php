@@ -108,16 +108,8 @@ class BMVS_Controller extends Controller
     }
 
     public function edit($id)
-    {/*
-       $checking = $this->testing($id);
-        if($checking==true) {
-            //do something here
-        }else
-        {
-            //do something here
-            echo "Not all data key in";
-        }*/
-        $patient = Patient::find($id);
+    {
+
         /*$patients = Patient::with('bodyandvitalsigns')->get();
         foreach ($patients as $patient) {
             //echo $patient->name;
@@ -130,39 +122,74 @@ class BMVS_Controller extends Controller
             echo $findBMV->patient_id;
             $BID[]=$findBMV->patient_id;
         }*/
-        //var_dump($BID);
-        //dd($patient->load('Patient_BodyAndVitalSigns'));
+
+
+        $patient = Patient::find($id);
 
         $studies = studySpecific::all()->pluck('study_name','study_id');
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical=$patient->MedicalHistory;
         $Physical=$patient->PhysicalExam;
-        dd($BATER);
         $UrineTest=$patient->UrineTest;
         $LabTest=$patient->LabTest;
         $Serology=$patient->SerologyTest;
         $InclusionExclusion=$patient->InclusionExclusion;
         $Conclu=$patient->Conclu;
 
+        $Not_Complete=false;
+
+        $arrFormsName = array('Body Measurements and Vital Signs',
+            'Breath Alcohol Test and Electrocardiogram',
+            'Medical History',
+            'Physical Examination',
+            'Urine Test',
+            'Laboratory Test',
+            'Serology Test',
+            'Inclusion and Exclusion Criteria',
+            'Conclusion');
+        $arrForms= array($BodyAndVitals,
+            $BATER,
+            $Medical,
+            $Physical,
+            $UrineTest,
+            $LabTest,
+            $Serology,
+            $InclusionExclusion,
+            $Conclu);
+        $newArr=array_combine($arrFormsName,$arrForms);
+
+        foreach($newArr as $key=>$value)
+        {
+            if($value == NULL){
+                $errors[]=$key;
+                $Not_Complete=true;
+            }else{
+                $Not_Complete=false;
+            }
+        }
+        if($Not_Complete){
+            return redirect(route('preScreening.admin', $id))->withErrors($errors);
+        }else{
+            return view('details.edit', compact(
+                'BodyAndVitals',
+                'BATER',
+                'Medical',
+                'Physical',
+                'UrineTest',
+                'LabTest',
+                'Serology',
+                'InclusionExclusion',
+                'Conclu',
+                'studies'
+            ))->with('patient', $patient);
+        }
         //This is to do checking for ensure all forms are available to allow users to enter edit page
         /*if($BodyAndVitals!=NULL && $BATER!=NULL && $Medical!=NULL &&){
             echo "This works";
         }else{
             echo"This does not work";
         }*/
-        return view('details.edit',compact(
-            'BodyAndVitals',
-            'BATER',
-            'Medical',
-            'Physical',
-            'UrineTest',
-            'LabTest',
-            'Serology',
-            'InclusionExclusion',
-            'Conclu',
-            'studies'
-            ))->with('patient',$patient);
     }
 
     public function update(Request $request,$id)

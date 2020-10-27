@@ -36,9 +36,9 @@ class ST_Controller extends Controller
         $st->dateBCollected=$request->dateBCollected;
 
         if($request->Laboratory=='Other'){
-            $st->Laboratory=$request->laboratory_txt;
+            $st->Laboratory=$request->Laboratory_txt;
         }else{
-            $st->Laboratory=$request->laboratory;
+            $st->Laboratory=$request->Laboratory;
         }
 
         $validatedData=$this->validate($request,[
