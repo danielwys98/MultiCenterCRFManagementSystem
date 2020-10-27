@@ -121,7 +121,6 @@ class MH_Controller extends Controller
         $mh->dateTaken=$request->dateTaken;
         $mh->timeTaken=$request->timeTaken;
 
-   /*    dd($request);*/
         //some key does not have the text box, therefore, those keys needed be checked individually.
         foreach($data as $key=>$value)
         {
@@ -183,12 +182,11 @@ class MH_Controller extends Controller
         }
 
         $mh->save();
-       return redirect(route('details.create',$id))->with('Messages','You have added the Medical History detail for the subject!');
+       return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Medical History detail for the subject!');
     }
     public function updateMH(Request $request,$id)
     {
-
-/*       $custom = [
+        $custom = [
             'dateTaken.required' => 'Please input the date taken',
             'timeTaken.required' => 'Please input the time taken',
             'Allergy.required' => 'Please state the Allergy abnormalities of the subject',
@@ -240,8 +238,8 @@ class MH_Controller extends Controller
         $validatedData=$this->validate($request,[
             'dateTaken' => 'required',
             'timeTaken' => 'required',
-            'allergy'  => 'required',
-            'allergy_txt' => 'required_if:allergy,==,Abnormal',
+            'Allergy'  => 'required',
+            'Allergy_txt' => 'required_if:Allergy,==,Abnormal',
             'EENT'  => 'required',
             'EENT_txt' => 'required_if:EENT,==,Abnormal',
             'Respiratory'  => 'required',
@@ -284,8 +282,8 @@ class MH_Controller extends Controller
             'FertilityControl_Yes_txt' => 'required_if:FertilityControl,==,Yes',
             'Breastfeeding'  => 'required',
             'Conclusion' => 'required',
-        ], $custom);*/
-
+        ], $custom);
+        
         DB::table('patient_medical_histories')
             ->where('patient_id',$id)
             ->update([
@@ -294,7 +292,7 @@ class MH_Controller extends Controller
         ]);
 
         $data =$request->except('_token','dateTaken','timeTaken');
-    /*    dd($data);*/
+
         foreach($data as $key=>$value)
         {
             if($value =="Abnormal")
@@ -412,6 +410,6 @@ class MH_Controller extends Controller
             }
         }
 
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the Medical History detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Medical History detail for the subject!');
     }
 }

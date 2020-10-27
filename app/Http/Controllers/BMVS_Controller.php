@@ -18,7 +18,7 @@ class BMVS_Controller extends Controller
     {
         $patient = Patient::find($id);
         $studies = studySpecific::all()->pluck('study_name','study_id');
-        return view('details.create',compact('patient'))->with('studies',$studies);
+        return view('preScreeningForms.create',compact('patient'))->with('studies',$studies);
     }
     public function store(Request $request,$id)
     {
@@ -97,14 +97,14 @@ class BMVS_Controller extends Controller
 
         $bmvs->save();
 
-        return redirect(route('details.create',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function show($id)
     {
         $patient = Patient::find($id);
         $BodyAndVitals =$patient->bodyandvitalsigns;
-        return view('details.show',compact('BodyAndVitals'))->with('patient',$patient);
+        return view('preScreeningForms.show',compact('BodyAndVitals'))->with('patient',$patient);
     }
 
     public function edit($id)
@@ -224,29 +224,7 @@ class BMVS_Controller extends Controller
                                 'Initial'=>$request->Initial
                         ]);
 
-                        // $validatedData=$this->validate($request,[
-                        //     'dateTaken' => 'required',
-                        //     'timeTaken' => 'required',
-                        //     'weight' => 'required',
-                        //     'height' => 'required',
-                        //     'bmi' => 'required',
-                        //     'temperature' => 'required',
-                        //     'Supine_ReadingTime' => 'required',
-                        //     'Supine_BP' => 'required',
-                        //     'Supine_HR' => 'required',
-                        //     'Supine_RespiratoryRate' => 'required',
-                        //     'Sitting_ReadingTime' => 'required',
-                        //     'Sitting_BP' => 'required',
-                        //     'Sitting_HR' => 'required',
-                        //     'Sitting_RespiratoryRate' => 'required',
-                        //     'Standing_ReadingTime' => 'required',
-                        //     'Standing_BP' => 'required',
-                        //     'Standing_HR' => 'required',
-                        //     'Standing_RespiratoryRate' => 'required',
-                        //     'Initial' => 'required',
-                        // ]);
-
-        return redirect(route('details.edit',$id))->with('Messages','You have updated the body measurement and vital signs detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the body measurement and vital signs detail for the subject!');
     }
 
     public function testing($id)

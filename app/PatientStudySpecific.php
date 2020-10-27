@@ -16,4 +16,9 @@ class PatientStudySpecific extends Model
     {
         return $this->belongsTo('App\Patient','patient_id','id');
     }
+
+    public function StudyPeriod1()
+    {
+       return $this->hasOne('App\StudyPeriod1','SP1_ID','SP1_ID');
+    }
 }

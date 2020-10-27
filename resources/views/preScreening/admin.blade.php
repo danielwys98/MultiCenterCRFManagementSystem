@@ -66,10 +66,10 @@
                         {{method_field('GET')}}
                         <button type="submit" class="btn btn-primary">Add Details</button>
                     </form>--}}
-                    <a href="{{route('details.create',$patient->id)}}" class="btn btn-primary">Add Details</a>
+                    <a href="{{route('preScreeningForms.create',$patient->id)}}" class="btn btn-primary">Add Details</a>
                 </td>
                 <td>
-                    <a href="{{route('details.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
+                    <a href="{{route('preScreeningForms.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
                 </td>
                 {{--  <td>
                       <form action="{{route('details.delete',$patient->id)}}" method="POST">
