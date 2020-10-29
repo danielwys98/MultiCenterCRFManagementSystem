@@ -9,7 +9,7 @@
             <li><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
             <li><a data-toggle="tab" href="#BAT">Breath Alcohol Test</a></li>
             <li><a data-toggle="tab" href="#AQuestionnaire">Admission Questionnaire</a></li>
-            <li><a data-toggle="tab" href="#UrineTest">Urine Drugs of Abuse Test</a></li>
+            <li><a data-toggle="tab" href="#UrineTest">Urine Tests & Conclusion</a></li>
             <li><a data-toggle="tab" href="#Pharmacokinetic">Pharmacokinetic Blood Sampling</a></li>
             <li><a data-toggle="tab" href="#Pharmacodynamic">Pharmacodynamic Blood Sampling</a></li>
             <li><a data-toggle="tab" href="#PharmacodynamicPD">Pharmacodynamic(PD)Analysis</a></li>
@@ -42,63 +42,63 @@
         <div class="tab-content">
             <div id="Admission" class="tab-pane fade in active">
                @include('studySpecificForms.Admission')
-                
+
             </div>
 
             <div id="BMVS" class="tab-pane fade">
                 @include('studySpecificForms.BMVS')
-                
+
             </div>
 
             <div id="BAT" class="tab-pane fade">
                 @include('studySpecificForms.BAT')
-                 
+
              </div>
- 
+
              <div id="AQuestionnaire" class="tab-pane fade">
                  @include('studySpecificForms.AQuestionnaire')
-                 
+
              </div>
 
              <div id="UrineTest" class="tab-pane fade">
                 @include('studySpecificForms.UrineTest')
-                 
+
              </div>
- 
+
              <div id="Pharmacokinetic" class="tab-pane fade">
                  @include('studySpecificForms.Pharmacokinetic')
-                 
+
              </div>
 
              <div id="Pharmacodynamic" class="tab-pane fade">
                 @include('studySpecificForms.Pharmacodynamic')
-                 
+
              </div>
- 
+
              <div id="PharmacodynamicPD" class="tab-pane fade">
                  @include('studySpecificForms.PharmacodynamicPD')
-                 
+
              </div>
 
              <div id="Discharge" class="tab-pane fade">
                 @include('studySpecificForms.Discharge')
-                 
+
              </div>
- 
+
              <div id="DischargeQuestionnaire" class="tab-pane fade">
                  @include('studySpecificForms.DischargeQuestionnaire')
-                 
+
              </div>
 
              <div id="IQuestionnaire36" class="tab-pane fade">
                 @include('studySpecificForms.IQuestionnaire36')
-                 
-             </div>
- 
-             <div id="IQuestionnaire48" class="tab-pane fade">
-                 @include('studySpecificForms.IQuestionnaire48')
-                 
+
              </div>
 
+             <div id="IQuestionnaire48" class="tab-pane fade">
+                 @include('studySpecificForms.IQuestionnaire48')
+
+             </div>
+    </div>
     </div>
 @endsection
