@@ -25,9 +25,19 @@ Route::get('/preScreening/admin','preScreeningController@index')->name('preScree
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-Route::get('/studySpecific/input','studySpecificController@studies');
+Route::get('/chooseStudy','PagesController@chooseStudy');
 
-Route::get('/testing','studySpecificController@testing');
+/*Route::get('/studySpecific/input','studySpecificController@studies');*/
+
+Route::get('/studySpecific/index','studySpecificController@index');
+
+Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('testing');
+
+//route for testing
+Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
+
+/*Route::get('/testing/{id}','studySpecificController@testing');*/
+//route for testing ends here
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 

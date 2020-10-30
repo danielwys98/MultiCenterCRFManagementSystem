@@ -9,7 +9,7 @@
         </div>
         <div class="card-body">
             @foreach($studies as $s)
-                    <a href="#">{{$s->study_name}},</a>
+                    <a href={{ url('studySpecific/input/'.$s->study_id) }}>{{$s->study_name}},</a>
             @endforeach
         </div>
         <div class="card">

@@ -10,6 +10,6 @@ class studySpecific extends Model
     protected $primaryKey="study_id";
   public function patientStudySpecific()
     {
-        return $this->hasOne('App\PatientStudySpecific','studyID');
+        return $this->hasOne('App\PatientStudySpecific','study_id');
     }
 }
