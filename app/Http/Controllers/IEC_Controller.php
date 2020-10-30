@@ -121,7 +121,7 @@ class IEC_Controller extends Controller
 
         $iec->save();
 
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Inclusion and Exclusion Criteria detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Inclusion and Exclusion Criteria detail for the subject!');
     }
     public function updateIEC(Request $request,$id)
     {
@@ -162,7 +162,7 @@ class IEC_Controller extends Controller
 
         ]);
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Inclusion and Exclusion Criteria detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the Inclusion and Exclusion Criteria detail for the subject!');
     }
 
 }

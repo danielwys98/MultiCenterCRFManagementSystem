@@ -58,31 +58,19 @@
                 </td>
                 <td>
                     <a href="{{ route('preScreening.show',$patient->id) }}" class="btn btn-dark">View Profile</a>
-
                 </td>
                 <td>
-                    {{--<form action="{{route('details.create',$patient->id)}}" method="POST">
-                        @csrf
-                        {{method_field('GET')}}
-                        <button type="submit" class="btn btn-primary">Add Details</button>
-                    </form>--}}
                     <a href="{{route('preScreeningForms.create',$patient->id)}}" class="btn btn-primary">Add Details</a>
                 </td>
                 <td>
                     <a href="{{route('preScreeningForms.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
                 </td>
-                {{--  <td>
-                      <form action="{{route('details.delete',$patient->id)}}" method="POST">
-                          @csrf
-                          @method('DELETE')
-                          <button type="submit" class="btn btn-danger">Delete Details</button>
-                      </form>
-                  </td>--}}
                 <td>
                     <form action="{{route('preScreening.destroy',$patient->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete Subject</button>
+                        <button type="submit" onclick="return confirm('Are you sure to delete this subject?')" class="btn btn-danger">Delete Subject</button>
+                        {{-- <a class="btn btn-danger" onclick="return confirm('Are you sure?')" href="{{route('preScreening.destroy',$patient->id)}}"><i class="fa fa-trash"></i></a> --}}
                     </form>
                 </td>
             </tr>
@@ -90,5 +78,4 @@
         </tbody>
     </table>
     <a href="{{ route('preScreening.create') }}" class="btn btn-primary">Add a new Subject</a>
-
 @endsection

@@ -36,7 +36,7 @@
         {!! Form::radio('blood_laboratory',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
         {!! Form::label('blood_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Blood_Laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Blood_Laboratory : '') !!}
+        {!! Form::text('blood_laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Blood_Laboratory : '') !!}
     </div>
 
     <div class="row">
@@ -62,7 +62,7 @@
         {!! Form::radio('bloodrepeat_laboratory', 'Other',($LabTest->BloodRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->BloodRepeat_Laboratory!=NULL)?'checked':'') !!}
         {!! Form::label('bloodrepeat_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Bloodrepeat_Laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '') !!}
+        {!! Form::text('bloodrepeat_laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '') !!}
     </div>
 
     <h5>Urine (Microbiology)</h5>
@@ -81,7 +81,7 @@
         {!! Form::radio('urine_laboratory','Other',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd' &&  $LabTest->Urine_Laboratory!=NULL)? 'checked' : '') !!}
         {!! Form::label('urine_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('Urine_Laboratory_Text',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Urine_Laboratory : '') !!}
+        {!! Form::text('urine_laboratory_Text',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Urine_Laboratory : '') !!}
     </div>
     <div class="row">
         <div class="col-sm-6">
@@ -106,7 +106,7 @@
         {!! Form::radio('urinerepeat_laboratory', 'Other',($LabTest->UrineRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->UrineRepeat_Laboratory!=NULL)?'checked':'') !!}
         {!! Form::label('urinerepeat_laboratory', 'Other, specify: ') !!}
 
-        {!! Form::text('UrineRepeat_Laboratory_Text',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->UrineRepeat_Laboratory : '') !!}
+        {!! Form::text('urinerepeat_laboratory_Text',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->UrineRepeat_Laboratory : '') !!}
     </div>
     </div>
         <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>

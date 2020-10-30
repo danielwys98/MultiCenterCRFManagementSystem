@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
 use Gate;
+use App\PatientStudySpecific;
+use App\StudyPeriod1;
+use App\SP1_Admission;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class preScreeningController extends Controller
 {
@@ -41,9 +45,6 @@ class preScreeningController extends Controller
             $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
             return view('preScreening.admin',compact('patients'));
         }
-
-
-
     }
 
     /**
@@ -67,6 +68,35 @@ class preScreeningController extends Controller
     {
         $patient = new Patient;
 
+        $custom = [
+            'dateTaken.required' => 'Please input the date taken',
+            'timeTaken.required' => 'Please input the time taken',
+            'NRIC.required' => 'NRIC field cannot be blank',
+            'NRIC.regex' => 'Please only enter the NRIC correctly without dashes',
+            'name.required' => 'Name field cannot be blank',
+            'Gender.required' => 'Please choose between a gender',
+            'Ethnicity.required' => 'Please state the ethnicity',
+            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity',
+            'DoB.required' => 'Date of Birth field cannot be blank',
+            'age.required' => 'Age field cannot be blank',
+            'maritalstatus.required' => 'Please choose between a maritial status',
+            'MRNno.required' => 'MRN Hopsital Registration Number is required',
+        ];
+
+        $validatedData=$this->validate($request,[
+            'dateTaken'  => 'required',
+            'timeTaken' => 'required',
+            'NRIC'  => 'required|regex:"\d{6}\d{2}\d{4}"',
+            'name' => 'required',
+            'Gender'  => 'required',
+            'Ethnicity' => 'required',
+            'Ethnic_Text' => 'required_if:Ethnicity,==,Others',
+            'DoB'  => 'required',
+            'age'  => 'required',
+            'maritalstatus'  => 'required',
+            'MRNno'  => 'required',
+        ], $custom);
+
         $patient->id=$request->id;
         $patient->dateTaken=$request->dateTaken;
         $patient->timeTaken=$request->timeTaken;
@@ -83,37 +113,8 @@ class preScreeningController extends Controller
         $patient->maritalstatus=$request->maritalstatus;
         $patient->MRNno=$request->MRNno;
 
-        $custom = [
-            'dateTaken.required' => 'Please input the date taken',
-            'timeTaken.required' => 'Please input the time taken',
-            'NRIC.required' => 'NRIC field cannot be blank',
-            'name.required' => 'Name field cannot be blank',
-            'Gender.required' => 'Please choose between a gender',
-            'Ethnicity.required' => 'Please state the ethnicity',
-            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity',
-            'DoB.required' => 'Date of Birth field cannot be blank',
-            'age.required' => 'Age field cannot be blank',
-            'maritalstatus.required' => 'Please choose between a maritial status',
-            'MRNno.required' => 'MRN Hopsital Registration Number is required',
-        ];
-
-        $validatedData=$this->validate($request,[
-            'dateTaken'  => 'required',
-            'timeTaken' => 'required',
-            'NRIC'  => 'required',
-            'name' => 'required',
-            'Gender'  => 'required',
-            'Ethnicity' => 'required',
-            'Ethnic_Text' => 'required_if:Ethnicity,==,Others',
-            'DoB'  => 'required',
-            'age'  => 'required',
-            'maritalstatus'  => 'required',
-            'MRNno'  => 'required',
-        ], $custom);
-
         $patient->save();
-
-        return redirect('preScreening/admin')->with('Messages','You have added the subject into the system!');
+        return redirect('preScreening/admin')->with('success','You have added '.$request->name.' into the system!');
     }
 
     /**
@@ -165,8 +166,8 @@ class preScreeningController extends Controller
         $patient->MRNno=$request->MRNno;
 
         $patient->save();
-
-         return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
+        Alert::success('Updated', 'The subject details has been updated from the system!');
+        return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
     }
 
     /**
@@ -179,6 +180,14 @@ class preScreeningController extends Controller
     {
         $patient = Patient::find($id);
 
+        // Alert::warning('Deleting user -<br/>are you sure?')
+        // ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
+        // ->showConfirmButton(
+        //     $btnText = '<a class="add-padding" href="/admin/users/'. $id .'/delete">Yes</a>', // here is class for link
+        //     $btnColor = '#38c177',
+        //     ['className'  => 'no-padding'], // add class to button
+        // )->autoClose(false);
+
         $patient->bodyandvitalsigns()->delete();
         $patient->BreathAlcoholTestAndElectrocardiogram()->delete();
         $patient->MedicalHistory()->delete();
@@ -189,9 +198,10 @@ class preScreeningController extends Controller
         $patient->InclusionExclusion()->delete();
         $patient->Conclu()->delete();
 
+        //TODO: DELETE STUDY SPECIFIC STUFF ONCE SUBJECT IS DELETED AS WELL!
         $patient->delete();
 
-
-         return redirect('preScreening/admin')->with('ErrorMessages','The subject has been removed from the system!');
+        Alert::success('Deleted', 'The subject has been removed from the system!');
+        return redirect('preScreening/admin')->with('ErrorMessages','The subject has been removed from the system!');
     }
 }

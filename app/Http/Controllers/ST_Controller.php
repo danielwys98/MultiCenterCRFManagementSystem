@@ -36,13 +36,13 @@ class ST_Controller extends Controller
         $st->dateBCollected=$request->dateBCollected;
 
         if($request->Laboratory=='Other'){
-            $st->Laboratory=$request->Laboratory_txt;
+            $st->Laboratory=$request->laboratory_txt;
         }else{
-            $st->Laboratory=$request->Laboratory;
+            $st->Laboratory=$request->laboratory;
         }
 
         $st->save();
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Serology Test detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Serology Test detail for the subject!');
     }
     public function updateST(Request $request,$id)
     {
@@ -67,6 +67,6 @@ class ST_Controller extends Controller
                ]);
        }
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Serology Test detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the Serology Test detail for the subject!');
     }
 }

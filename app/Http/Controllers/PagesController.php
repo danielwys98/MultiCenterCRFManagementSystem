@@ -22,7 +22,6 @@ class PagesController extends Controller
         return redirect('/login');
     }
 
-
     /**
      * Show the application dashboard.
      *
@@ -31,6 +30,7 @@ class PagesController extends Controller
     public function index()
     {
         $data = studySpecific::all();
+
         return view('dashboard')->with('studies',$data);
     }
     public function preScreening()
@@ -49,8 +49,11 @@ class PagesController extends Controller
     {
         return view('preScreeningdb');
     }
-    public function studySpecificDB()
+    public function chooseStudy()
     {
-        return view('studySpecific.index');
+        $studies=studySpecific::get();
+
+        $data = $studies->pluck('name','id');
+        return view('chooseStudy',compact('studies'));
     }
 }

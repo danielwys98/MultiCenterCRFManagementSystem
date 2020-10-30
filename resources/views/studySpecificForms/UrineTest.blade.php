@@ -131,7 +131,7 @@
                 {!! Form::label('UDrug_Laboratory', 'Others') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UDrug_Laboratory', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('UDrug_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
@@ -156,7 +156,7 @@
             {!! Form::label('UDrug_Methamphetamine_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Methamphetamine', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Methamphetamine_Comment', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -170,7 +170,7 @@
             {!! Form::label('UDrug_Morphine_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Morphine', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Morphine_Comment', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -184,7 +184,7 @@
             {!! Form::label('UDrug_Marijuana_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Marijuana', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Marijuana_Comment', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>

@@ -19,15 +19,29 @@ Route::get('/dashboard', 'PagesController@index');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 
-Route::get('/studySpecific/admin', 'studySpecificController@admin');
+Route::get('/studySpecific/admin', 'studySpecificController@index');
 
 Route::get('/preScreening/admin','preScreeningController@index')->name('preScreening.admin');
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-Route::get('/studySpecific/input','studySpecificController@studies');
+Route::get('/chooseStudy','PagesController@chooseStudy');
 
-Route::get('/testing','studySpecificController@testing');
+/*Route::get('/studySpecific/input','studySpecificController@studies');*/
+
+Route::get('/studySpecific/index','studySpecificController@index');
+
+Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('studySpecific.input');
+
+Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
+
+Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
+
+//route for testing
+Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
+
+/*Route::get('/testing/{id}','studySpecificController@testing');*/
+//route for testing ends here
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 
@@ -45,7 +59,7 @@ Route::get('preScreeningForms/show/{id}','BMVS_Controller@show')->name('preScree
 
 Route::get('preScreeningForms/edit/{id}','BMVS_Controller@edit')->name('preScreeningForms.edit');
 
-Route::put('preScreeningForms/{details}','BMVS_Controller@update')->name('preScreeningForms.update');
+Route::put('preScreeningForms/{preScreeningForms}','BMVS_Controller@update')->name('preScreeningForms.update');
 
 Route::post('bater/{id}','BATER_Controller@storeBATER')->name('store.bater');
 
