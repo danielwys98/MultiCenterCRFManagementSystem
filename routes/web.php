@@ -19,7 +19,7 @@ Route::get('/dashboard', 'PagesController@index');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 
-Route::get('/studySpecific/admin', 'studySpecificController@admin');
+Route::get('/studySpecific/admin', 'studySpecificController@index');
 
 Route::get('/preScreening/admin','preScreeningController@index')->name('preScreening.admin');
 

@@ -29,7 +29,7 @@
                 <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
             </li>
             <li>
-                <a href="/studySpecific/input" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
+                <a href="/chooseStudy" class="{{request()->is('chooseStudy')? 'active' :' '}}" >Study Specific</a>
             </li>
             @can('adminFunctions')
         {{--    <li>
@@ -45,7 +45,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
                         <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
-                        <a href="/studySpecific/admin" class="dropdown-item {{request()->is('studySpecific')? 'active' :' '}}" >Study Specific Database</a>
+                        <a href="/studySpecific/admin" class="dropdown-item {{request()->is(' studySpecific/admin')? 'active' :' '}}" >Study Specific Database</a>
                     </div>
             </li>
             </div>
@@ -71,11 +71,11 @@
             {{--//main content starts here--}}
             <div class="container-fluid">
                 @yield('content')
-                
+
             </div>
         </div>
     </div>
-        
+
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 </html>
