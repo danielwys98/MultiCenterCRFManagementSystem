@@ -211,11 +211,11 @@ class studySpecificController extends Controller
 
     }
 
-    public function testingPost(Request $request,$study_id)
+    public function AdmissionCreate(Request $request,$study_id)
     {
         //assuming request inside has Patient ID of 5 and update study details (admission) of patient 5
 
-        $PID = 4;
+        $PID = $request->patient_id;
         //find Patient Study Specific table
         $findPSS =PatientStudySpecific::with('StudyPeriod1')->where('patient_id',$PID)->first();
 

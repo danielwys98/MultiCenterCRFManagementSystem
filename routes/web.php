@@ -19,7 +19,7 @@ Route::get('/dashboard', 'PagesController@index');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 
-Route::get('/studySpecific/admin', 'studySpecificController@admin');
+Route::get('/studySpecific/admin', 'studySpecificController@index');
 
 Route::get('/preScreening/admin','preScreeningController@index')->name('preScreening.admin');
 
@@ -31,7 +31,9 @@ Route::get('/chooseStudy','PagesController@chooseStudy');
 
 Route::get('/studySpecific/index','studySpecificController@index');
 
-Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('testing');
+Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('studySpecific.input');
+
+Route::post('admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
 
 //route for testing
 Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');

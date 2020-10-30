@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
 use Gate;
+use App\PatientStudySpecific;
+use App\StudyPeriod1;
+use App\SP1_Admission;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class preScreeningController extends Controller
@@ -174,9 +177,9 @@ class preScreeningController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {        
+    {
         $patient = Patient::find($id);
-        
+
         // Alert::warning('Deleting user -<br/>are you sure?')
         // ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
         // ->showConfirmButton(
@@ -195,6 +198,7 @@ class preScreeningController extends Controller
         $patient->InclusionExclusion()->delete();
         $patient->Conclu()->delete();
 
+        //TODO: DELETE STUDY SPECIFIC STUFF ONCE SUBJECT IS DELETED AS WELL!
         $patient->delete();
 
         Alert::success('Deleted', 'The subject has been removed from the system!');
