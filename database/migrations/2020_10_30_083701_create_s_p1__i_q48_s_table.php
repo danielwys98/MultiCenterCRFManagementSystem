@@ -15,6 +15,24 @@ class CreateSP1IQ48STable extends Migration
     {
         Schema::create('SP1_IQ48s', function (Blueprint $table) {
             $table->increments('SP1_IQ48_ID');
+            //date and time for interim questionnaire
+            $table->date('dateTaken')->nullable();
+            $table->time('timeTaken')->nullable();
+
+            //interim questionnaire
+            $table->string('interim48hrs01')->nullable();
+            $table->string('interim48hrs02')->nullable();
+            $table->string('interim48hrs03')->nullable();
+            $table->string('interim48hrs04')->nullable();
+            $table->string('interim48hrs05')->nullable();
+            $table->string('interim48hrs06')->nullable();
+            $table->string('interim48hrs07')->nullable();
+            $table->string('interim48hrs08')->nullable();
+
+            //interviewed and checked by
+            $table->string('Interim48hrsInterviewedby')->nullable();
+            $table->string('Interim48hrsCheckedby')->nullable();
+
             $table->timestamps();
         });
     }

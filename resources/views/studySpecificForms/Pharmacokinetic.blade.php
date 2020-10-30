@@ -105,7 +105,7 @@
     <tbody>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_PD', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">PD</td>
         <td class="text-center">______</td>
@@ -125,7 +125,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">S1</td>
         <td class="text-center">0.50</td>
@@ -147,7 +147,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>S2</p>
@@ -173,7 +173,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S3', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S3
@@ -199,7 +199,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S4', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S4
@@ -225,7 +225,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S5', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S5
@@ -251,7 +251,7 @@
     </tr>
     <tr>
         <td class="col-sm-2">
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S6', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S6
@@ -277,7 +277,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S7', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S7
@@ -303,7 +303,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S8', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S8
@@ -329,7 +329,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S9', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S9
@@ -355,7 +355,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S10', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S10
@@ -381,7 +381,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S11', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S11
@@ -407,7 +407,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S12', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>S12</p>
@@ -433,7 +433,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S13', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S13
@@ -459,7 +459,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S14', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S14
@@ -485,7 +485,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S15', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S15
@@ -511,7 +511,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S16', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S16
@@ -537,7 +537,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S17', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S17
@@ -563,7 +563,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S18', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S18
@@ -589,7 +589,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S19', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             S19
@@ -615,7 +615,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S20', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">S20</td>
         <td class="text-center">36</td>
@@ -637,7 +637,7 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('Pharmacokinetic_Date_Day_3', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Pharmacokinetic_Date_Day_S21', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">S21</td>
         <td class="text-center">48</td>
