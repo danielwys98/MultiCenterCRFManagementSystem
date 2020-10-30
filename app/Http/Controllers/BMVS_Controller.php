@@ -228,12 +228,6 @@ class BMVS_Controller extends Controller
         return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the body measurement and vital signs detail for the subject!');
     }
 
-    public function testing($id)
-    {
-        $patient=Patient::find($id);
-
-        return false;
-    }
 
     public function calculateBMI($height,$weight){
         $m_height=$height/100;

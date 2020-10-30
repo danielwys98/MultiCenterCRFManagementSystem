@@ -33,7 +33,9 @@ Route::get('/studySpecific/index','studySpecificController@index');
 
 Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('studySpecific.input');
 
-Route::post('admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
+Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
+
+Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
 
 //route for testing
 Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
