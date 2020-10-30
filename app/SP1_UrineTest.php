@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SP1_UrineTest extends Model
 {
-    protected $table="sp1_urinetests";
+    protected $table="sp1_urinetest";
     protected $primaryKey='SP1_UrineTest_ID';
     public function StudyPeriod1()
     {

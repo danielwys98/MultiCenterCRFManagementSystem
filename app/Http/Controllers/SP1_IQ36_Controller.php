@@ -46,7 +46,6 @@ class SP1_IQ36_Controller extends Controller
                 $findSP1_IQ36->Interim36hrsInterviewedby=$request->Interim36hrsInterviewedby;
                 $findSP1_IQ36->Interim36hrsCheckedby=$request->Interim36hrsCheckedby;
                 $findSP1_IQ36->save();
-                dd($request);
                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Interim Questionnaire(36 hours Post Dose Visit)!');
             }else{
                 alert()->error('Error!','This subject is not enrolled into this study!');

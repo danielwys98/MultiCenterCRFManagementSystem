@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\PatientStudySpecific;
 use App\SP1_Admission;
 use App\SP1_BMVS;
+use App\SP1_UrineTest;
+use App\SP1_PKineticSampling;
 use App\SP1_IQ36;
 use App\SP1_IQ48;
 use App\StudyPeriod1;
@@ -197,6 +199,14 @@ class CS_Controller extends Controller
             $BMVS = new SP1_BMVS;
             $BMVS->save();
 
+            //Initialise SP1_UrineTest
+            $UrineTest = new SP1_UrineTest;
+            $UrineTest->save();
+
+            //Initialise SP1_PKineticSampling
+            $PKineticSampling = new SP1_PKineticSampling;
+            $PKineticSampling->save();
+
             //Initialise SP1_IQ36
             $IQ36 = new SP1_IQ36;
             $IQ36->save();
@@ -212,6 +222,8 @@ class CS_Controller extends Controller
             //bind SP1's form into SP1
             $SP1->SP1_Admission=$Admission->SP1_Admission_ID;
             $SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
+            $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
+            $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
             $SP1->save();
