@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
 use App\SP1_Admission;
+use App\SP1_BMVS;
 use App\StudyPeriod1;
 use Illuminate\Http\Request;
 use App\Patient;
@@ -83,33 +84,9 @@ class CS_Controller extends Controller
 
         if($savedData)
         {
-            //Initialise a new SP1 once the subject enroll into the study
-            $SP1 = new StudyPeriod1;
-            $SP1->save();
-
-            //Initialise SP1_Admission
-            $SP1_Admission = new SP1_Admission;
-            $SP1_Admission->details1="A";
-            $SP1_Admission->details2 ="B";
-            $SP1_Admission->save();
-
-            //Look for this subject patient study specific row
-            // and assign the new study period 1's id into the row
-            $findPSS=$PSS->where('patient_id',$id)->first();
-            if($findPSS->study_id == $request->study)
-            { //Save(update) the patient study specific row with SP1's id
-                $findPSS->SP1_ID = $SP1->SP1_ID;
-                $findPSS->save();
-            }else
-            {
-                echo "wrong study!";
-            }
-            $SP1->SP1_Admission= $SP1_Admission->SP1_Admission_ID;
-            $SP1->save();
+            $this->initaliseForms($id,$request->study);
+            return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
         }
-
-
-        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
     }
     public function updateCS(Request $request,$id)
     {
@@ -194,14 +171,43 @@ class CS_Controller extends Controller
     }
 
 
-  /*  public function initaliseForms($id, $study_id)
+    public function initaliseForms($id, $study_id)
     {
-       $SP1= new StudyPeriod1();
-       $SP1_Admission = new SP1_Admission();
-       $findPSS = PatientStudySpecific::where('patient_id',$id)->first();
-       if($findPSS->study_id == $study_id)
-       {
+        //find PSS of the subject
+        $findPSS = PatientStudySpecific::where('patient_id',$id)
+                                         ->where('study_id',$study_id)
+                                         ->first();
 
-       }
-    }*/
+        if($findPSS !=NULL)
+        {
+            $foundPSS = true;
+            //Initialise a new SP1 once the subject enroll into the study
+            $SP1 = new StudyPeriod1;
+            $SP1->save();
+
+            //Initialise SP1_Admission
+            $Admission = new SP1_Admission;
+            $Admission->details1="A";
+            $Admission->details2 ="B";
+            $Admission->save();
+
+            //Initialise SP1_BMVS
+            $BMVS = new SP1_BMVS;
+            $BMVS->save();
+
+            //Bind SP1's ID into PSS
+            $findPSS->SP1_ID = $SP1->SP1_ID;
+            $findPSS->save();
+
+            //bind SP1's form into SP1
+            $SP1->SP1_Admission=$Admission->SP1_Admission_ID;
+            $SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
+            $SP1->save();
+        }else
+        {
+            $foundPSS = false;
+        }
+
+        return $foundPSS;
+    }
 }

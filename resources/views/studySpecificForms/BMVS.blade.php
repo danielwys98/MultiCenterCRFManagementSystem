@@ -1,5 +1,19 @@
+{!! Form::open(['route' => ['sp1bmvs.store',$study->study_id]]) !!}
 {{-- body measurements and vital signs --}}
-<h3>Body Measurements and Vital Signs</h3>
+    <div class="form-group row">
+                @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                    <div>
+                        {!! Form::label('SubjectName', 'Subject') !!}
+                        {!! Form::select('patient_id',$oriPatientName,null) !!}
+                    </div>
+                @else
+                    <div>
+                        {!! Form::label('Admin view of name', 'Subject') !!}
+                        {!! Form::select('patient_id',$newName,null) !!}
+                    </div>
+                @endif
+    </div>
+    <h3>Body Measurements and Vital Signs</h3>
 <hr>
 <div class="form-group row">
     <div class="col-md-1">
@@ -45,7 +59,7 @@
         {!! Form::label('temperature', 'Temperature: ') !!}
     </div>
     <div class="col-md-1">
-        {!! Form::number('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
+        {!! Form::text('temperature', '',['class'=>'form-control','placeholder'=>'°C']) !!}
     </div>
 </div>
 
@@ -113,3 +127,5 @@
     {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
 </p>
 {{-- Body measurements and vital signs ends--}}
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}
