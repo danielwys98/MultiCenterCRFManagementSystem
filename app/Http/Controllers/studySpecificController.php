@@ -39,7 +39,7 @@ class studySpecificController extends Controller
 
         $study = studySpecific::find($id);
 
-        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',1)->get();
+        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
 
         foreach($findPatient as $p)
         {
