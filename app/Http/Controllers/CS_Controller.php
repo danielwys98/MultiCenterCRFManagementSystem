@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
+use App\SP1_Admission;
+use App\StudyPeriod1;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_Conclusion_Signature;
@@ -16,10 +18,12 @@ class CS_Controller extends Controller
     }
     public function storeCS(Request $request,$id)
     {
+        //Initialise Patient Study Specific column for this subject
         $PSS = new PatientStudySpecific;
         $PSS->study_id=$request->study;
         $PSS->patient_id=$id;
 
+        //Insert this conclusion under this subject
         $cs = new Patient_Conclusion_Signature;
         $cs->patient_id=$id;
 
@@ -39,36 +43,71 @@ class CS_Controller extends Controller
             'dateTaken' => 'required',
         ],$custom);
 
-        $inclusionYesNo = $request->inclusionYesNo;
-        if($inclusionYesNo=="Yes")
-        {
-            $cs->inclusionYesNo = $request->inclusionYesNo;
-        }else{
-            $cs->inclusionYesNo = $request->NoDetails;
+
+        if($validatedData){
+            $inclusionYesNo = $request->inclusionYesNo;
+            if($inclusionYesNo=="Yes")
+            {
+                $cs->inclusionYesNo = $request->inclusionYesNo;
+            }else{
+                $cs->inclusionYesNo = $request->NoDetails;
+            }
+
+            $NAbnormality=$request->NAbnormality;
+            if($NAbnormality=="Yes")
+            {
+                $cs->NAbnormality=$request->NAbnormality;
+            }elseif (($NAbnormality=="")){
+                $cs->NAbnormality=NULL;
+            }
+
+            $abnormality=$request->abnormality;
+            if($abnormality=="Yes")
+            {
+                $cs->abnormality=$request->abnormality;
+            }elseif (($abnormality=="")){
+                $cs->abnormality=NULL;
+            }
+
+            $cs->physicianSign=$request->physicianSign;
+            $cs->physicianName=$request->physicianName;
+            $cs->dateTaken=$request->dateTaken;
+
+            $cs->save();
+            $PSS->save();
+            $savedData=true;
+        }
+        else{
+            $savedData=false;
         }
 
-        $NAbnormality=$request->NAbnormality;
-        if($NAbnormality=="Yes")
+        if($savedData)
         {
-            $cs->NAbnormality=$request->NAbnormality;
-        }elseif (($NAbnormality=="")){
-            $cs->NAbnormality=NULL;
+            //Initialise a new SP1 once the subject enroll into the study
+            $SP1 = new StudyPeriod1;
+            $SP1->save();
+
+            //Initialise SP1_Admission
+            $SP1_Admission = new SP1_Admission;
+            $SP1_Admission->details1="A";
+            $SP1_Admission->details2 ="B";
+            $SP1_Admission->save();
+
+            //Look for this subject patient study specific row
+            // and assign the new study period 1's id into the row
+            $findPSS=$PSS->where('patient_id',$id)->first();
+            if($findPSS->study_id == $request->study)
+            { //Save(update) the patient study specific row with SP1's id
+                $findPSS->SP1_ID = $SP1->SP1_ID;
+                $findPSS->save();
+            }else
+            {
+                echo "wrong study!";
+            }
+            $SP1->SP1_Admission= $SP1_Admission->SP1_Admission_ID;
+            $SP1->save();
         }
 
-        $abnormality=$request->abnormality;
-        if($abnormality=="Yes")
-        {
-            $cs->abnormality=$request->abnormality;
-        }elseif (($abnormality=="")){
-            $cs->abnormality=NULL;
-        }
-
-        $cs->physicianSign=$request->physicianSign;
-        $cs->physicianName=$request->physicianName;
-        $cs->dateTaken=$request->dateTaken;
-
-        $cs->save();
-        $PSS->save();
 
         return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
     }
@@ -154,4 +193,15 @@ class CS_Controller extends Controller
         return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the conclusion detail for the subject!');
     }
 
+
+  /*  public function initaliseForms($id, $study_id)
+    {
+       $SP1= new StudyPeriod1();
+       $SP1_Admission = new SP1_Admission();
+       $findPSS = PatientStudySpecific::where('patient_id',$id)->first();
+       if($findPSS->study_id == $study_id)
+       {
+
+       }
+    }*/
 }
