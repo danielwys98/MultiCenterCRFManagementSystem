@@ -13,6 +13,7 @@
             <li><a data-toggle="tab" href="#Pharmacokinetic">Pharmacokinetic Blood Sampling</a></li>
             <li><a data-toggle="tab" href="#Pharmacodynamic">Pharmacodynamic Blood Sampling</a></li>
             <li><a data-toggle="tab" href="#PharmacodynamicPD">Pharmacodynamic(PD)Analysis</a></li>
+            <li><a data-toggle="tab" href="#VitalSigns">Vital Signs</a></li>
             <li><a data-toggle="tab" href="#Discharge">Discharge</a></li>
             <li><a data-toggle="tab" href="#DischargeQuestionnaire">Discharge Questionnaire</a></li>
             <li><a data-toggle="tab" href="#IQuestionnaire36">Interim Questionnaire(36 hours Post Dose Visit)</a></li>
@@ -79,6 +80,9 @@
                  @include('studySpecificForms.PharmacodynamicPD')
 
              </div>
+            <div id="VitalSigns" class="tab-pane fade">
+                @include('studySpecificForms.VitalSigns')
+            </div>
 
              <div id="Discharge" class="tab-pane fade">
                 @include('studySpecificForms.Discharge')
