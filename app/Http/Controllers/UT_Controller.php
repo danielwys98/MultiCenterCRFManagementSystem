@@ -121,7 +121,7 @@ class UT_Controller extends Controller
         $ut->UDrug_Transcribedby=$request->UDrug_Transcribedby;
 
         $ut->save();
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Urine Test for pregnancy and drugs detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Urine Test for pregnancy and drugs detail for the subject!');
     }
 
     public function updateUT(Request $request,$id)
@@ -196,6 +196,6 @@ class UT_Controller extends Controller
                     ]);
             }
         }
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Urine Test for pregnancy and drugs detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the Urine Test for pregnancy and drugs detail for the subject!');
     }
 }

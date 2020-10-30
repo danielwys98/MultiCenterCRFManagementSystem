@@ -59,11 +59,20 @@ class BATER_Controller extends Controller
 
         $bater->save();
 
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
     public function updateBATER(Request $request,$id)
     {
         $lab=$request->Laboratory;
+
+        $custom = [
+            'Laboratory.required' => 'Please select which laboratory does the test conducted',
+            'Laboratory_text.required_if' => 'If other laboratory were selected, please state the name of the laboratory',
+        ];
+        $validatedData=$this->validate($request,[
+            'Laboratory' => 'required',
+            'Laboratory_text' => 'required_if:Laboratory,==,Others',
+        ], $custom);
 
         DB::table('patient_breath_alcohol_test_and_electrocardiograms')
             ->where('patient_id',$id)
@@ -84,7 +93,6 @@ class BATER_Controller extends Controller
                     ->update([
                         'laboratory'=>$request->Laboratory_text
                     ]);
-
             }else{
                 DB::table('patient_breath_alcohol_test_and_electrocardiograms')
                     ->where('patient_id',$id)
@@ -93,6 +101,6 @@ class BATER_Controller extends Controller
                     ]);
             }
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the Breath Alcohol Test and Electrocardiogram detail for the subject!');
     }
 }

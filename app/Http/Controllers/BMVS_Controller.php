@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_BodyAndVitalSigns;
 use App\studySpecific;
+use RealRashid\SweetAlert\Facades\Alert;
 use DB;
 
 class BMVS_Controller extends Controller
@@ -97,7 +98,7 @@ class BMVS_Controller extends Controller
 
         $bmvs->save();
 
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the body measurement and vital signs detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function show($id)
@@ -224,7 +225,7 @@ class BMVS_Controller extends Controller
                                 'Initial'=>$request->Initial
                         ]);
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the body measurement and vital signs detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the body measurement and vital signs detail for the subject!');
     }
 
     public function testing($id)

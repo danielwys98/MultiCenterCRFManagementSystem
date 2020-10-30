@@ -129,7 +129,7 @@ class PE_Controller extends Controller
 
         $pe->save();
 
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the Physical Examination detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Physical Examination detail for the subject!');
     }
     public function updatePE(Request $request,$id)
     {
@@ -141,7 +141,7 @@ class PE_Controller extends Controller
             'skin_txt.required_if' => 'If Skin field is abnormal, please give pertinent details',
             'head_neck.required' => 'Please state the Head Neck abnormalities of the subject',
             'head_neck_txt.required_if' => 'If Head Neck field is abnormal, please give pertinent details',
-            'Eyes.required' => 'Please state the Eyes abnormalities of the subject',
+            'eyes.required' => 'Please state the Eyes abnormalities of the subject',
             'eyes_txt.required_if' => 'If Eyes field is abnormal, please give pertinent details',
             'ears_nose_throat.required' => 'Please state the Ears Nose Throat abnormalities of the subject',
             'ears_nose_throat_txt.reqrequiredrequired_if_ifuired' => 'If Ears Nose Throat field is abnormal, please give pertinent details',
@@ -176,33 +176,33 @@ class PE_Controller extends Controller
             'generalappearance'  => 'required',
             'generalappearance_txt' => 'required_if:generalappearance,==,Abnormal',
             'skin'  => 'required',
-            'skin_txt' => 'required_if:Skin,==,Abnormal',
+            'skin_txt' => 'required_if:skin,==,Abnormal',
             'head_neck'  => 'required',
-            'head_neck_txt' => 'required_if:Head_Neck,==,Abnormal',
+            'head_neck_txt' => 'required_if:head_neck,==,Abnormal',
             'eyes'  => 'required',
-            'eyes_txt' => 'required_if:Eyes,==,Abnormal',
+            'eyes_txt' => 'required_if:eyes,==,Abnormal',
             'ears_nose_throat'  => 'required',
-            'ears_nose_throat_txt' => 'required_if:Ears_Nose_Throat,==,Abnormal',
+            'ears_nose_throat_txt' => 'required_if:ears_nose_throat,==,Abnormal',
             'mouth'  => 'required',
-            'mouth_txt' => 'required_if:Mouth,==,Abnormal',
+            'mouth_txt' => 'required_if:mouth,==,Abnormal',
             'chest_lungs'  => 'required',
-            'chest_lungs_txt' => 'required_if:Chest_Lungs,==,Abnormal',
+            'chest_lungs_txt' => 'required_if:chest_lungs,==,Abnormal',
             'heart'  => 'required',
-            'heart_txt' => 'required_if:Heart,==,Abnormal',
+            'heart_txt' => 'required_if:heart,==,Abnormal',
             'abdomen'  => 'required',
-            'abdomen_txt' => 'required_if:Abdomen,==,Abnormal',
+            'abdomen_txt' => 'required_if:abdomen,==,Abnormal',
             'back_spine'  => 'required',
-            'back_spine_txt' => 'required_if:Back_Spine,==,Abnormal',
+            'back_spine_txt' => 'required_if:back_spine,==,Abnormal',
             'musculoskeletal'  => 'required',
-            'musculoskeletal_txt' => 'required_if:Musculoskeletal,==,Abnormal',
+            'musculoskeletal_txt' => 'required_if:musculoskeletal,==,Abnormal',
             'neurological'  => 'required',
-            'neurological_txt' => 'required_if:Neurological,==,Abnormal',
+            'neurological_txt' => 'required_if:neurological,==,Abnormal',
             'extremities'  => 'required',
-            'extremities_txt' => 'required_if:Extremities,==,Abnormal',
+            'extremities_txt' => 'required_if:extremities,==,Abnormal',
             'lymph_nodes'  => 'required',
-            'lymph_nodes_txt' => 'required_if:Lymph_Nodes,==,Abnormal',
+            'lymph_nodes_txt' => 'required_if:lymph_nodes,==,Abnormal',
             'other'  => 'required',
-            'other_txt' => 'required_if:Other,==,Abnormal',
+            'other_txt' => 'required_if:other,==,Abnormal',
 
             'Cubital_Fossa_Veins' => 'required',
             'comments' => 'required',
@@ -263,6 +263,6 @@ class PE_Controller extends Controller
             }
         }
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the Physical Examination detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the Physical Examination detail for the subject!');
     }
 }

@@ -17,44 +17,41 @@
     <script src="https://kit.fontawesome.com/37c6da2f33.js" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
-
 </head>
 <body>
-        <div class="sidebar-container">
-            <div class="sidebar-logo">
-                      <h6>MultiCentre-CRF Management System</h6>
-            </div>
-            <ul class="sidebar-navigation">
-                <li class="header">Menu</li>
-                <li>
-                    <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
-                </li>
-                <li>
-                    <a href="/studySpecific/input" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
-                </li>
-                @can('adminFunctions')
-            {{--    <li>
-                    <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
-                </li>
-
-                <li>
-                    <a href="/studySpecificdb" class="{{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
-                </li>--}}
-               <div class="dropdown">
-                <li>
-                        <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
-                            <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
-                            <a href="/studySpecific/admin" class="dropdown-item {{request()->is('studySpecific')? 'active' :' '}}" >Study Specific Database</a>
-                        </div>
-                </li>
-               </div>
-                @endcan
-            </ul>
+    <div class="sidebar-container">
+        <div class="sidebar-logo">
+            <h6>MultiCentre-CRF Management System</h6>
         </div>
+        <ul class="sidebar-navigation">
+            <li class="header">Menu</li>
+            <li>
+                <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
+            </li>
+            <li>
+                <a href="/studySpecific/input" class="{{request()->is('studySpecific')? 'active' :' '}}" >Study Specific</a>
+            </li>
+            @can('adminFunctions')
+        {{--    <li>
+                <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
+            </li>
 
+            <li>
+                <a href="/studySpecificdb" class="{{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
+            </li>--}}
+            <div class="dropdown">
+            <li>
+                    <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a href="/users" class="dropdown-item {{request()->is('users')? 'active' :' '}}"}}>Users Management </a>
+                        <a href="/preScreening/admin" class="dropdown-item {{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
+                        <a href="/studySpecific/admin" class="dropdown-item {{request()->is('studySpecific')? 'active' :' '}}" >Study Specific Database</a>
+                    </div>
+            </li>
+            </div>
+            @endcan
+        </ul>
+    </div>
         <div class="content-container">
             <div class="HeaderInContent">
                 <div class="row">
@@ -71,12 +68,14 @@
                 </div>
                 <hr/>
             </div>
-
-                {{--//main content starts here--}}
-                <div class="container-fluid">
-                    @yield('content')
-                </div>
+            {{--//main content starts here--}}
+            <div class="container-fluid">
+                @yield('content')
+                
             </div>
         </div>
+    </div>
+        
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 </html>

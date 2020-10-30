@@ -48,7 +48,7 @@
             <tbody>
             <tr>
                 <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
-                <td>{!! Form::number('breathalcohol', old('breathalcohol'),['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
+                <td>{!! Form::text('breathalcohol', old('breathalcohol'),['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
                 <td>
                     {!! Form::radio('breathalcoholResult', 'Positive',(old('breathalcoholResult')=='Positive')? 'checked' : '') !!}
                     {!! Form::label('breathalcoholResult', 'Positive') !!}

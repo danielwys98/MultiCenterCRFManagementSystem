@@ -45,7 +45,7 @@ Route::get('preScreeningForms/show/{id}','BMVS_Controller@show')->name('preScree
 
 Route::get('preScreeningForms/edit/{id}','BMVS_Controller@edit')->name('preScreeningForms.edit');
 
-Route::put('preScreeningForms/{details}','BMVS_Controller@update')->name('preScreeningForms.update');
+Route::put('preScreeningForms/{preScreeningForms}','BMVS_Controller@update')->name('preScreeningForms.update');
 
 Route::post('bater/{id}','BATER_Controller@storeBATER')->name('store.bater');
 

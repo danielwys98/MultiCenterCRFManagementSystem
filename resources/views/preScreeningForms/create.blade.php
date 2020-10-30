@@ -15,7 +15,7 @@
             <li><a data-toggle="tab" href="#Conclude">Conclusion and Signature</a></li>
         </ul>
         <hr>
-    
+        
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -27,15 +27,19 @@
             </div>
         @endif
         @if (session('Messages'))
-            <div class="alert alert-success">
+            {{-- <div class="alert alert-success">
                 {{ session('Messages') }}
-            </div>
+            </div> --}}
+            <script>
+                toast('Your Post as been submited!','success');
+            </script>
         @endif
         @if (session('ErrorMessages'))
             <div class="alert alert-danger">
                 {{ session('ErrorMessages') }}
             </div>
         @endif
+
         <div class="tab-content">
             <div id="BMVS" class="tab-pane fade in active">
                 @include('preScreeningForms.createForms.bmvs')

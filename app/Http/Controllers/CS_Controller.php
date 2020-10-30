@@ -37,7 +37,7 @@ class CS_Controller extends Controller
             'physicianSign' => 'required',
             'physicianName' => 'required',
             'dateTaken' => 'required',
-        ]);
+        ],$custom);
 
         $inclusionYesNo = $request->inclusionYesNo;
         if($inclusionYesNo=="Yes")
@@ -70,7 +70,7 @@ class CS_Controller extends Controller
         $cs->save();
         $PSS->save();
 
-        return redirect(route('preScreeningForms.create',$id))->with('Messages','You have added the conclusion detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
     }
     public function updateCS(Request $request,$id)
     {
@@ -88,7 +88,7 @@ class CS_Controller extends Controller
             'physicianSign' => 'required',
             'physicianName' => 'required',
             'dateTaken' => 'required',
-        ]);
+        ],$custom);
 
         DB::table('patient_study_specifics')
             ->where('patient_id',$id)
@@ -151,7 +151,7 @@ class CS_Controller extends Controller
                 ]);
         }
 
-        return redirect(route('preScreeningForms.edit',$id))->with('Messages','You have updated the conclusion detail for the subject!');
+        return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the conclusion detail for the subject!');
     }
 
 }
