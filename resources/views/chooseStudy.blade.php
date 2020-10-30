@@ -26,7 +26,7 @@
                         <p>{{$study->study_name}}</p><br>
                     </td>
                     <td>
-                        <button class="btn btn-outline-primary float-md-left"><a href="{{route('testing',$study->study_id) }}"><i class="fas fa-user-edit"></i></a></button>
+                        <button class="btn btn-outline-primary float-md-left"><a href="{{route('studySpecific.input',$study->study_id) }}"><i class="fas fa-user-edit"></i></a></button>
                     </td>
                 </tr>
             @endforeach

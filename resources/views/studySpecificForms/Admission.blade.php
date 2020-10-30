@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['testing.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp1Admission.store',$study->study_id]]) !!}
 {{-- admission --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">
