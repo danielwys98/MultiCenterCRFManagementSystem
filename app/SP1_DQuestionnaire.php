@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SP1_UrineTest extends Model
+class SP1_DQuestionnaire extends Model
 {
     protected $table="sp1_dquestionnaires";
     protected $primaryKey='SP1_DQuestionnaire_ID';
