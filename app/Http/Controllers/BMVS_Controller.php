@@ -172,7 +172,7 @@ class BMVS_Controller extends Controller
         if($Not_Complete){
             return redirect(route('preScreening.admin', $id))->withErrors($errors);
         }else{
-            return view('details.edit', compact(
+            return view('preScreeningForms.edit', compact(
                 'BodyAndVitals',
                 'BATER',
                 'Medical',

@@ -100,6 +100,6 @@
         </div>
     </div>
     {{-- end breath alcohol test conculsion --}}
-    
+
 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
 {!! Form::close() !!}
