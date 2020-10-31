@@ -39,7 +39,17 @@ Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
 
 Route::post('sp_bat/{id}','SP1BATController@store')->name('sp1bat.store');
 
+
 Route::post('sp_pdynamicsampling/{id}','SP1PDynamicSamplingController@store')->name('sp1pdynamicsampling.store');
+
+Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('sp1IQuestionnaire36.store');
+
+Route::post('sp_iq48/{id}','SP1_IQ48_Controller@store')->name('sp1IQuestionnaire48.store');
+
+Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1UrineTest.store');
+
+Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
+
 
 //route for testing
 Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
@@ -98,6 +108,10 @@ Route::post('serology/{id}','ST_Controller@storeST')->name('store.serology');
 Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serology');
 
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
+
+//TCH
+Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
+
 
 Auth::routes();
 

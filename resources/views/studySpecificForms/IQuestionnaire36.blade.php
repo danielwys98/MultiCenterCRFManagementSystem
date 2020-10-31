@@ -1,4 +1,22 @@
+{!! Form::open(['route' => ['sp1IQuestionnaire36.store',$study->study_id]]) !!}
 {{-- Interim Questionnaire(36 hours Post Dose Visit) --}}
+<div class="form-group row">
+    <div id="Admission" class="tab-pane fade in active">
+                <div class="col">
+                    @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                        <div>
+                            {!! Form::label('SubjectName', 'Subject') !!}
+                            {!! Form::select('patient_id',$oriPatientName,null) !!}
+                        </div>
+                    @else
+                        <div>
+                            {!! Form::label('Admin view of name', 'Subject') !!}
+                            {!! Form::select('patient_id',$newName,null) !!}
+                        </div>
+                    @endif
+                </div>
+    </div>
+</div>
 <h3>Interim Questionnaire(36 hours Post Dose Visit)</h3>
 <hr>
 <div class="form-group row">
@@ -215,3 +233,6 @@
         {!! Form::text('Interim36hrsCheckedby', '',['class'=>'form-control']) !!}
     </div>
 </div>
+
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}
