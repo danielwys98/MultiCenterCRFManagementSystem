@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
 use App\SP1_Admission;
+use App\SP1_BAT;
 use App\SP1_BMVS;
 use App\SP1_PDynamicAnalysis;
 use App\SP1_UrineTest;
@@ -16,11 +17,13 @@ use App\Patient;
 use App\Patient_Conclusion_Signature;
 use DB;
 
-class CS_Controller extends Controller
+class
+CS_Controller extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin');
     }
     public function storeCS(Request $request,$id)
     {
@@ -192,14 +195,16 @@ class CS_Controller extends Controller
 
             //Initialise SP1_Admission
             $Admission = new SP1_Admission;
-            $Admission->details1="A";
-            $Admission->details2 ="B";
             $Admission->save();
 
             //Initialise SP1_BMVS
             $BMVS = new SP1_BMVS;
             $BMVS->save();
 
+            //Initialise SP1_BAT
+            $BAT=new SP1_BAT;
+            $BAT->save();
+            
             //Initialise SP1_UrineTest
             $UrineTest = new SP1_UrineTest;
             $UrineTest->save();
@@ -220,6 +225,7 @@ class CS_Controller extends Controller
             $IQ48 = new SP1_IQ48;
             $IQ48->save();
 
+
             //Bind SP1's ID into PSS
             $findPSS->SP1_ID = $SP1->SP1_ID;
             $findPSS->save();
@@ -227,11 +233,13 @@ class CS_Controller extends Controller
             //bind SP1's form into SP1
             $SP1->SP1_Admission=$Admission->SP1_Admission_ID;
             $SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
+            $SP1->SP1_BATER = $BAT->SP1_BAT_ID;
             $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
             $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
             $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
+
             $SP1->save();
         }else
         {

@@ -15,8 +15,10 @@ class CreateSP1AdmissionsTable extends Migration
     {
         Schema::create('SP1_Admissions', function (Blueprint $table) {
             $table->increments('SP1_Admission_ID');
-            $table->text('details1');
-            $table->text('details2');
+            $table->date('AdmissionDateTaken')->nullable();
+            $table->time('AdmissionTimeTaken')->nullable();
+            $table->date('ConsentDateTaken')->nullable();
+            $table->time('ConsentTimeTaken')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','PagesController@loginPage');
 
-Route::get('/dashboard', 'PagesController@index');
+Route::get('/dashboard', 'PagesController@index')->name('dashboard');
 
 /*Route::get('/preScreening', 'PagesController@preScreening');*/
 
@@ -36,6 +36,8 @@ Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name(
 Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
 
 Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
+
+Route::post('sp_bat/{id}','SP1BATController@store')->name('sp1bat.store');
 
 //route for testing
 Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');

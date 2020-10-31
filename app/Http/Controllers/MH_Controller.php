@@ -13,6 +13,7 @@ class MH_Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin');
     }
     public function storeMH(Request $request,$id)
     {
@@ -62,7 +63,7 @@ class MH_Controller extends Controller
             'RegularExercise_txt.required_if' => 'Please state the subject activity and frequency of exercise',
             'BloodDonations.required' => 'Please state whether the subject have blood donations',
             'BloodDonations_txt.required_if' => 'Please state the subject date and volume of blood donation',
-            
+
             'RegularPeriods.required' => 'Please state whether the subject have regular periods',
             'RegularPeriods_No_txt.required_if' => 'If the subject do not have regular periods, please describe the condition',
             'RegularPeriods_Yes_txt.required_if' => 'If the subject have regular periods, please state the last menstrual period',
@@ -305,7 +306,7 @@ class MH_Controller extends Controller
             'breastfeeding'  => 'required',
             'conclusion' => 'required',
         ], $custom);
-        
+
         DB::table('patient_medical_histories')
             ->where('patient_id',$id)
             ->update([

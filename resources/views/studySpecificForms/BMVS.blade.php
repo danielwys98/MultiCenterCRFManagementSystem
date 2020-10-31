@@ -99,10 +99,10 @@
             {!! Form::radio('SittingRepeat1', '','',['id'=>'SittingRepeat1']) !!}
             {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
         </th>
-        <td>{!! Form::time('SittingRepeat1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat1_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat1_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat1_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_BP_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_HR_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_RespiratoryRate_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
     <tr>
         <th scope="row">
@@ -111,10 +111,10 @@
             {!! Form::radio('SittingRepeat2', '','',['id'=>'SittingRepeat2']) !!}
             {!! Form::label('SittingRepeat2','Sitting Repeated') !!}
         </th>
-        <td>{!! Form::time('SittingRepeat2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat2_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat2_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat2_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_BP_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_HR_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('Sitting_RespiratoryRate_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
     <tr>
         <th scope="row" colspan="4"

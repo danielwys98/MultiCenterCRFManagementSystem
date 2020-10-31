@@ -13,3 +13,5 @@ class SP1_PKineticSampling extends Model
         return $this->belongsTo('App\StudyPeriod1','SP1_PKineticSampling','SP1_PKineticSampling_ID');
     }
 }
+
+

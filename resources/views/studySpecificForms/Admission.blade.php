@@ -21,16 +21,16 @@
 <hr>
     <div class="form-group row">
         <div class="col-md-1">
-            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+            {!! Form::label('AdmissionDateTaken', 'Date Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('AdmissionDateTaken',\Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </div>
         <div class=" offset-3 col-md-1">
-            {!! Form::label('timeTaken', 'Time Taken: ') !!}
+            {!! Form::label('AdmissionTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('AdmissionTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </div>
     </div>
 
@@ -39,16 +39,16 @@
     <hr>
     <div class="form-group row">
         <div class="col-md-1">
-            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+            {!! Form::label('ConsentDateTaken', 'Date Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('ConsentDateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </div>
         <div class=" offset-3 col-md-1">
-            {!! Form::label('timeTaken', 'Time Taken: ') !!}
+            {!! Form::label('ConsentTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('ConsentTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </div>
     </div>
 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
