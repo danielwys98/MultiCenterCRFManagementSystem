@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SP1_PDynamicAnalysis extends Model
 {
-    protected $table="SP1_PDynamicAnalysis";
+    protected $table="sp1_pdynamicanalysis";
     protected $primaryKey="SP1_PDynamicAnalysis_ID";
 
     public function StudyPeriod1()
