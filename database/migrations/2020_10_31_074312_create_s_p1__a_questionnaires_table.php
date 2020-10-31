@@ -14,9 +14,23 @@ class CreateSP1AQuestionnairesTable extends Migration
     public function up()
     {
         Schema::create('sp1_AQuestionnaires', function (Blueprint $table) {
-            $table->id();
+            $table->increments('SP1_AQuestionnaire_ID');
 
-            
+            $table->date('AQuestionnaireDateTaken')->nullable();
+            $table->time('AQuestionnaireTimeTaken')->nullable();
+
+            $table->text('MedicalProblem')->nullable();
+            $table->text('Medication')->nullable();
+            $table->text('Hospitalized')->nullable();
+            $table->text('AlcoholXanthine')->nullable();
+            $table->text('PoppySeeds')->nullable();
+            $table->text('GrapefruitPomelo')->nullable();
+            $table->text('OtherDrugStudies')->nullable();
+            $table->text('BloodDono')->nullable();
+            $table->text('Contraception')->nullable();
+
+            $table->text('PhysicianInitial')->nullable();
+
 
             $table->timestamps();
         });

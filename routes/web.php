@@ -28,6 +28,7 @@ Route::get('/preScreening/admin/search','preScreeningController@search');
 Route::get('/chooseStudy','PagesController@chooseStudy');
 
 /*Route::get('/studySpecific/input','studySpecificController@studies');*/
+Route::get('/studySpecific/admin','studySpecificController@index')->name('studySpecific.admin');
 
 Route::get('/studySpecific/index','studySpecificController@index');
 
@@ -50,12 +51,8 @@ Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1Urin
 
 Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
 
+Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
-//route for testing
-Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
-
-/*Route::get('/testing/{id}','studySpecificController@testing');*/
-//route for testing ends here
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 
@@ -111,6 +108,10 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 
 //TCH
 Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
+
+Route::post('sp1_AQuestionnaire/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
+
+Route::post('sp1_Discharge/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
 
 
 Auth::routes();
