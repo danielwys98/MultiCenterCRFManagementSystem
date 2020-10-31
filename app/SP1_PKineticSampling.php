@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SP1_UrineTest extends Model
+class SP1_PKineticSampling extends Model
 {
     protected $table="sp1_pkineticsamplings";
     protected $primaryKey='SP1_PKineticSampling_ID';
@@ -13,3 +13,5 @@ class SP1_UrineTest extends Model
         return $this->belongsTo('App\StudyPeriod1','SP1_PKineticSampling','SP1_PKineticSampling_ID');
     }
 }
+
+
