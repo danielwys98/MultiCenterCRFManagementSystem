@@ -1,5 +1,22 @@
 {!! Form::open(['route' => ['sp1Pharmocokinetic.store',$study->study_id]]) !!}
 {{-- Pharmacokinetic Blood Sampling --}}
+<div class="form-group row">
+    <div id="Admission" class="tab-pane fade in active">
+                <div class="col">
+                    @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                        <div>
+                            {!! Form::label('SubjectName', 'Subject') !!}
+                            {!! Form::select('patient_id',$oriPatientName,null) !!}
+                        </div>
+                    @else
+                        <div>
+                            {!! Form::label('Admin view of name', 'Subject') !!}
+                            {!! Form::select('patient_id',$newName,null) !!}
+                        </div>
+                    @endif
+                </div>
+    </div>
+</div>
 <h3>Pharmacokinetic Blood Sampling</h3>
 <div class="form-group row">
     <div class="col-md-2">

@@ -1,5 +1,22 @@
 {!! Form::open(['route' => ['sp1UrineTest.store',$study->study_id]]) !!}
 {{-- urine drugs for abuse test --}}
+<div class="form-group row">
+    <div id="Admission" class="tab-pane fade in active">
+                <div class="col">
+                    @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                        <div>
+                            {!! Form::label('SubjectName', 'Subject') !!}
+                            {!! Form::select('patient_id',$oriPatientName,null) !!}
+                        </div>
+                    @else
+                        <div>
+                            {!! Form::label('Admin view of name', 'Subject') !!}
+                            {!! Form::select('patient_id',$newName,null) !!}
+                        </div>
+                    @endif
+                </div>
+    </div>
+</div>
 <h3>Urine Pregnancy Test</h3>
 <p>(Transcribed from Urine Logbook)</p>
 <div class=" form-group row">

@@ -56,7 +56,7 @@ class SP1_UrineTest_Controller extends Controller
                 //validation for required fields
                 $validatedData=$this->validate($request,[
                     'UDrug_Laboratory' => 'required',
-                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
                     'UDrug_dateTaken' => 'required',
                     'UDrug_TestTime' => 'required',
                     'UDrug_ReadTime' => 'required',
@@ -77,9 +77,9 @@ class SP1_UrineTest_Controller extends Controller
                 //validation for required fields
                 $validatedData=$this->validate($request,[
                     'UPreg_Laboratory' => 'required',
-                    'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Others',
+                    'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Other',
                     'UDrug_Laboratory' => 'required',
-                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
                     'UPreg_dateTaken' => 'required',
                     'UPreg_TestTime' => 'required',
                     'UPreg_ReadTime' => 'required',
