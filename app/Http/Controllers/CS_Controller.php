@@ -9,6 +9,7 @@ use App\SP1_BAT;
 use App\SP1_BMVS;
 use App\SP1_Discharge;
 use App\SP1_PDynamicAnalysis;
+use App\SP1_PDynamicSampling;
 use App\SP1_UrineTest;
 use App\SP1_PKineticSampling;
 use App\SP1_IQ36;
@@ -210,7 +211,7 @@ CS_Controller extends Controller
             //Initialise SP1_AQuestionnaire
             $AQuestionnaire=new SP1_AQuestionnaire;
             $AQuestionnaire->save();
-
+			
             //Initialise SP1_UrineTest
             $UrineTest = new SP1_UrineTest;
             $UrineTest->save();
@@ -219,13 +220,19 @@ CS_Controller extends Controller
             $PKineticSampling = new SP1_PKineticSampling;
             $PKineticSampling->save();
 
+            //Initialise SP1_PDynamicSampling
+            $PDynamicSampling = new SP1_PDynamicSampling();
+            $PDynamicSampling->save();
+
             //Initialise SP1_PDynamicAnalysis
             $PDynamicAnalysis=new SP1_PDynamicAnalysis;
             $PDynamicAnalysis->save();
 
+
             //Initialise SP1_Discharge
             $Discharge=new SP1_Discharge;
             $Discharge->save();
+
 
             //Initialise SP1_IQ36
             $IQ36 = new SP1_IQ36;
@@ -249,6 +256,8 @@ CS_Controller extends Controller
             $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
             $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
             $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
+            $SP1->SP1_PDynamicSampling=$PDynamicSampling->SP1_PDynamicSampling_ID;
+
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
 

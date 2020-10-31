@@ -104,7 +104,7 @@ class studySpecificController extends Controller
         $study->studyPeriod_Count=$request->studyPeriod_Count;
         $study->MRNno=$request->MRNno;
         $study->save();
-        return redirect(route('studySpecific.index'))->with('Messages','You have successfully added the study into the system!');
+        return redirect(route('studySpecific.index'))->with('success','You have successfully added the study into the system!');
     }
 
     /**
@@ -144,7 +144,7 @@ class studySpecificController extends Controller
                 ]);
             }
         }
-        return redirect(route('studySpecific.index'))->with('Messages','You updated the study details!');
+        return redirect(route('studySpecific.index'))->with('success','You updated the study details!');
     }
 
     /**
