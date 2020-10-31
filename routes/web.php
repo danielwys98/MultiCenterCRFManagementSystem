@@ -110,6 +110,10 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 //TCH
 Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
 
+Route::post('sp1_AQuestionnaire/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
+
+Route::post('sp1_Discharge/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
+
 
 Auth::routes();
 
