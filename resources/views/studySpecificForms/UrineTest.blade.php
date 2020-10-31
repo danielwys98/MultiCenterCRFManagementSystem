@@ -1,3 +1,4 @@
+{!! Form::open(['route' => ['sp1UrineTest.store',$study->study_id]]) !!}
 {{-- urine drugs for abuse test --}}
 <h3>Urine Pregnancy Test</h3>
 <p>(Transcribed from Urine Logbook)</p>
@@ -270,3 +271,6 @@
         {!! Form::text('physicianName', '',['class'=>'form-control']) !!}
     </div>
 </div>
+
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}

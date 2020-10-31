@@ -1,3 +1,4 @@
+{!! Form::open(['route' => ['sp1Pharmocokinetic.store',$study->study_id]]) !!}
 {{-- Pharmacokinetic Blood Sampling --}}
 <h3>Pharmacokinetic Blood Sampling</h3>
 <div class="form-group row">
@@ -680,3 +681,6 @@
         <li>6- Other (specify)</li>
     </ul>
 </div>
+
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}

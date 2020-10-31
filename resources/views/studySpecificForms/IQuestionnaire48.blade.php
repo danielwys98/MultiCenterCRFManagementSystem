@@ -1,3 +1,4 @@
+{!! Form::open(['route' => ['sp1IQuestionnaire48.store',$study->study_id]]) !!}
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}
 <h3>Interim Questionnaire(48 hours Post Dose Visit)</h3>
 <hr>
@@ -215,3 +216,6 @@
         {!! Form::text('Interim48hrsCheckedby', '',['class'=>'form-control']) !!}
     </div>
 </div>
+
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}
