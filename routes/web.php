@@ -114,7 +114,11 @@ Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name
 
 Route::post('sp1_AQuestionnaire/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
 
-Route::post('sp1_Discharge/{id}','SP1AQuestionnaireController@store')->name('sp1_AQuestionnaire.store');
+Route::post('sp1_Discharge/{id}','SP1_Discharge_Controller@store')->name('sp1_Discharge.store');
+
+Route::post('SP1_DQuestionnaire/{id}','SP1_DQuestionnaire_Controller@store')->name('sp1_DQuestionnaire.store');
+
+Route::post('SP1_VitalSign/{id}','SP1_VitalSign_Controller@store')->name('sp1_VitalSign.store');
 
 
 Auth::routes();

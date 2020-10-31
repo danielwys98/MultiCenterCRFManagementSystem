@@ -15,6 +15,15 @@ class CreateSP1DQuestionnairesTable extends Migration
     {
         Schema::create('SP1_DQuestionnaires', function (Blueprint $table) {
             $table->increments('SP1_DQuestionnaire_ID');
+            $table->time('DQtimeTaken')->nullable();
+
+            $table->text('Oriented')->nullable();
+            $table->text('ReadyDischarge')->nullable();
+            $table->text('AdditionalRemarks')->nullable();
+
+            $table->text('PhysicianSign')->nullable();
+            $table->text('PhysicianName')->nullable();
+
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ class CreateSP1DQuestionnairesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_p1__d_questionnaires');
+        Schema::dropIfExists('SP1_DQuestionnaires');
     }
 }

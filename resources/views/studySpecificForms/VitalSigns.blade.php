@@ -1,20 +1,24 @@
+{!! Form::open(['route' => ['sp1_VitalSign.store',$study->study_id]]) !!}
+<div class="form-group row">
+    <div id="Admission" class="tab-pane fade in active">
+        <div class="col">
+            @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                <div>
+                    {!! Form::label('SubjectName', 'Subject') !!}
+                    {!! Form::select('patient_id',$oriPatientName,null) !!}
+                </div>
+            @else
+                <div>
+                    {!! Form::label('Admin view of name', 'Subject') !!}
+                    {!! Form::select('patient_id',$newName,null) !!}
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
 {{-- Vital Signs --}}
 <h3 xmlns="http://www.w3.org/1999/html">Vital Signs</h3>
 <hr>
-<div class="form-group row">
-    <div class="col-md-1">
-        {!! Form::label('Day1', 'Day 1: ') !!}
-    </div>
-    <div class="col-md-2">
-        {!! Form::date('Day1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
-    </div>
-    <div class="col-md-1">
-        {!! Form::label('Day2', 'Day 2: ') !!}
-    </div>
-    <div class="col-md-2">
-        {!! Form::date('Day2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
-    </div>
-</div>
 <div class="row col">
     <p>During the confinement period, vital signs should be measured within ± 30 minutes of the scheduled measurement
         time (i.e vital signs to be taken within 30 minutes of 09:00 – time post dose 1 hour etc)</p>
@@ -55,122 +59,122 @@
     <tbody>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_1_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             1
         </td>
         <td>
-            {!! Form::time('VitalSigns_1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_1_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_1_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_1_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_1_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_2_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>2</p>
         </td>
         <td>
-            {!! Form::time('VitalSigns_2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_2_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_2_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_2_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_2_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_5_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             5
         </td>
         <td>
-            {!! Form::time('VitalSigns_3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_3_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_3_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_3_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_3_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_8_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             8
         </td>
         <td>
-            {!! Form::time('VitalSigns_4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_4_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_4_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_4_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_4_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_12_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             12
         </td>
         <td>
-            {!! Form::time('VitalSigns_5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_12_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_5_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_5_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_5_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_5_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_24_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>24</p>
@@ -181,48 +185,48 @@
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_36_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>36</p>
         </td>
         <td>
-            {!! Form::time('VitalSigns_7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_36_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_7_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_7_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_7_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_7_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td>
-            {!! Form::date('VitalSigns_Date_Day_3', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('TPD_48_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td class="text-center">
             <p>48</p>
         </td>
         <td>
-            {!! Form::time('VitalSigns_8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_48_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_8_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_8_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_8_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_8_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -232,186 +236,186 @@
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra1_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra1_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra1_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra1_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra1_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra1_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra2_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra2_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra2_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra2_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra2_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra2_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra3', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra3_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra3_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra3_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra3_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra3_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra3_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra4', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra4_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra4_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra4_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra4_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra4_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra4_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra5', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra5_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra5_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra5_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra5_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra5_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSign_Extra5_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra6', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra6_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra6_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra6_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra6_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra6_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra6_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra6_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra6_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra7', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra7_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra7_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra7_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra7_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra7_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra7_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
         <td >
-            {!! Form::date('VitalSigns_Date_Day_Extra8', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('Extra8_Date', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra8_TPD', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('VitalSigns_Extra8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra8_SBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_SittingBP', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra8_Pulse', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_Pulse', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra8_Respiration', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_Respiration', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('VitalSigns_Extra8_TakenBy', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_TakenBy', '',['class'=>'form-control']) !!}
         </td>
     </tr>
 
@@ -420,3 +424,6 @@
 <div class="row col">
     <p>Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100 (latest reading only).</p>
 </div>
+
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}

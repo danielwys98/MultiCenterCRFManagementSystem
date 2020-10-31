@@ -24,6 +24,7 @@ class CreateStudyPeriod1sTable extends Migration
             $table->bigInteger('SP1_PKineticSampling')->unsigned()->nullable();
             $table->bigInteger('SP1_PDynamicSampling')->unsigned()->nullable();
             $table->bigInteger('SP1_PDynamicAnalysis')->unsigned()->nullable();
+            $table->bigInteger('SP1_VitalSign')->unsigned()->nullable();
             $table->bigInteger('SP1_Discharge')->unsigned()->nullable();
             $table->bigInteger('SP1_DQuestionnaire')->unsigned()->nullable();
             $table->bigInteger('SP1_IQ36')->unsigned()->nullable();

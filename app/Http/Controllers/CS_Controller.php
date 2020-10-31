@@ -8,12 +8,14 @@ use App\SP1_AQuestionnaire;
 use App\SP1_BAT;
 use App\SP1_BMVS;
 use App\SP1_Discharge;
+use App\SP1_DQuestionnaire;
 use App\SP1_PDynamicAnalysis;
 use App\SP1_PDynamicSampling;
 use App\SP1_UrineTest;
 use App\SP1_PKineticSampling;
 use App\SP1_IQ36;
 use App\SP1_IQ48;
+use App\SP1_VitalSigns;
 use App\StudyPeriod1;
 use Illuminate\Http\Request;
 use App\Patient;
@@ -211,7 +213,7 @@ CS_Controller extends Controller
             //Initialise SP1_AQuestionnaire
             $AQuestionnaire=new SP1_AQuestionnaire;
             $AQuestionnaire->save();
-			
+
             //Initialise SP1_UrineTest
             $UrineTest = new SP1_UrineTest;
             $UrineTest->save();
@@ -228,11 +230,17 @@ CS_Controller extends Controller
             $PDynamicAnalysis=new SP1_PDynamicAnalysis;
             $PDynamicAnalysis->save();
 
+            //Initialise SP1_VitalSign
+            $VitalSign=new SP1_VitalSigns;
+            $VitalSign->save();
 
             //Initialise SP1_Discharge
             $Discharge=new SP1_Discharge;
             $Discharge->save();
 
+            //Initialise SP1_DQuestionnaire
+            $DQuestionnaire=new SP1_DQuestionnaire;
+            $DQuestionnaire->save();
 
             //Initialise SP1_IQ36
             $IQ36 = new SP1_IQ36;
@@ -256,8 +264,9 @@ CS_Controller extends Controller
             $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
             $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
             $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
+            $SP1->Sp1_DQuestionnaire=$DQuestionnaire->SP1_DQuestionnaire_ID;
             $SP1->SP1_PDynamicSampling=$PDynamicSampling->SP1_PDynamicSampling_ID;
-
+            $SP1->SP1_VitalSign=$VitalSign->SP1_VitalSign_ID;
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
 
