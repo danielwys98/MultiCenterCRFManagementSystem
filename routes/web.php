@@ -35,12 +35,12 @@ Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name(
 
 Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
 
-Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
+Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp1bmvs.store');
 
-Route::post('sp_bat/{id}','SP1BATController@store')->name('sp1bat.store');
+Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp1bat.store');
 
 
-Route::post('sp_pdynamicsampling/{id}','SP1PDynamicSamplingController@store')->name('sp1pdynamicsampling.store');
+Route::post('sp_pdynamicsampling/{id}','SP1_PDynamicSampling_Controller@store')->name('sp1pdynamicsampling.store');
 
 Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('sp1IQuestionnaire36.store');
 

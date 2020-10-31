@@ -21,26 +21,42 @@ class SP1_Admission_Controller extends Controller
     public function store(Request $request,$study_id)
     {
         $PID = $request->patient_id;
-
-     //assuming request inside has Patient ID of 2 and update study details (admission) of patient 5 (testing purpose)
-      /*  $PID = 2;*/
         //find Patient Study Specific table
-        $findPSS =PatientStudySpecific::with('StudyPeriod1')->where('patient_id',$PID)
-            ->where('study_id',$study_id)->first();
-
+        $findPSS =PatientStudySpecific::with('StudyPeriod1')
+                                        ->where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
        if($findPSS !=NULL){
-               //find SP1_ID to access the SP1_Admission
-               //find admission table and update it
-               $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
-               $findSP1_Admission = SP1_Admission::where('SP1_Admission_ID',$findSP1->SP1_Admission)->first();
-               $findSP1_Admission->AdmissionDateTaken = $request->AdmissionDateTaken;
-               $findSP1_Admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
-               $findSP1_Admission->ConsentDateTaken = $request->ConsentDateTaken;
-               $findSP1_Admission->ConsentTimeTaken = $request->ConsentTimeTaken;
+           //find SP1_ID to access the SP1_Admission
+           //find admission table and update it
+           $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+           $findSP1_Admission = SP1_Admission::where('SP1_Admission_ID',$findSP1->SP1_Admission)->first();
+           //custom messages load for validation
+           $custom = [
+            'AdmissionDateTaken.required' => 'Please enter the admission date taken',
+            'AdmissionTimeTaken.required' => 'Please enter the admission time taken',
+            'ConsentDateTaken.required' => 'Please enter the consent date taken',
+            'ConsentTimeTaken.required' => 'Please enter the consent time taken',
+           ];
 
-               $findSP1_Admission->save();
+           //validation for required fields
+           $validatedData=$this->validate($request,[
+            'AdmissionDateTaken' => 'required',
+            'AdmissionTimeTaken' => 'required',
+            'ConsentDateTaken' => 'required',
+            'ConsentTimeTaken' => 'required',
+        ],$custom);
 
-               return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Admission!');
+            //admission date and time
+           $findSP1_Admission->AdmissionDateTaken = $request->AdmissionDateTaken;
+           $findSP1_Admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
+            //consent date and time
+           $findSP1_Admission->ConsentDateTaken = $request->ConsentDateTaken;
+           $findSP1_Admission->ConsentTimeTaken = $request->ConsentTimeTaken;
+
+           $findSP1_Admission->save();
+
+           return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Admission!');
        }else{
            alert()->error('Error!','This subject is not enrolled into any study!');
            return redirect(route('studySpecific.input',$study_id));

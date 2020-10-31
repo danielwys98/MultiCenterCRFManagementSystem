@@ -94,9 +94,9 @@
     </tr>
     <tr>
         <th scope="row">
-            {!! Form::radio('SittingRepeat1', '','checked',['id'=>'SittingRepeat1NA']) !!}
+            {!! Form::radio('SittingRepeat1', 'Not Applicable','checked',['id'=>'SittingRepeat1NA']) !!}
             {!! Form::label('SittingRepeat1NA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat1', '','',['id'=>'SittingRepeat1']) !!}
+            {!! Form::radio('SittingRepeat1', 'Sitting Repeated','',['id'=>'SittingRepeat1']) !!}
             {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
@@ -106,9 +106,9 @@
     </tr>
     <tr>
         <th scope="row">
-            {!! Form::radio('SittingRepeat2', '','checked',['id'=>'SittingRepeat2NA']) !!}
+            {!! Form::radio('SittingRepeat2', 'Not Applicable','checked',['id'=>'SittingRepeat2NA']) !!}
             {!! Form::label('SittingRepeat2NA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat2', '','',['id'=>'SittingRepeat2']) !!}
+            {!! Form::radio('SittingRepeat2', 'Sitting Repeated','',['id'=>'SittingRepeat2']) !!}
             {!! Form::label('SittingRepeat2','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
