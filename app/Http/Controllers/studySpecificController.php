@@ -40,7 +40,7 @@ class studySpecificController extends Controller
         $study = studySpecific::find($id);
 
         $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
-        
+
           if(count($findPatient)>0){
               foreach($findPatient as $p)
               {
@@ -48,12 +48,12 @@ class studySpecificController extends Controller
               }
               $oriPatientName =Patient::whereIn('id',$PatientList)->get()->pluck('name','id');
               //increasing 0 until count of Subjects in the study
-              $test=1;
+              $subject_count=1;
               foreach($oriPatientName as $id=>$name)
               {
                   /*echo $id.'='.$name.'<br/>';*/
                   $PatientID[] = $id;
-                  $PatientName[] = str_replace($name,$test++,$name);
+                  $PatientName[] = str_replace($name,$subject_count++,$name);
                   $newName = array_combine($PatientID,$PatientName);
               }
               return view('studySpecific',compact('oriPatientName','newName','study'));

@@ -105,6 +105,10 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
+//TCH
+Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
+
+
 Auth::routes();
 
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);

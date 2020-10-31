@@ -1,3 +1,21 @@
+{!! Form::open(['route' => ['sp1PDAnalysis.store',$study->study_id]]) !!}
+<div class="form-group row">
+    <div id="Admission" class="tab-pane fade in active">
+        <div class="col">
+            @if(Auth::check() && Auth::user()->hasRole('Admin'))
+                <div>
+                    {!! Form::label('SubjectName', 'Subject') !!}
+                    {!! Form::select('patient_id',$oriPatientName,null) !!}
+                </div>
+            @else
+                <div>
+                    {!! Form::label('Admin view of name', 'Subject') !!}
+                    {!! Form::select('patient_id',$newName,null) !!}
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
 {{-- Pharmacodynamic (PD) Analysis --}}
 <h3>Pharmacodynamic (PD) Analysis</h3>
 <div class="form-group row">
@@ -55,7 +73,7 @@
 
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_PD', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         PD
@@ -67,21 +85,21 @@
         ______
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_PD_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_PD_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_PD_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_PD_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_PD_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_PD_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td class="col-md-3">
-        {!! Form::text('PharmacodynamicAnalysis_PD_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_PD_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S1
@@ -90,24 +108,24 @@
         1
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S1_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S1_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S1_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S1_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S1_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S1_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S1_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S1_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S1_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S1_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S2
@@ -116,24 +134,24 @@
         2
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S2_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S2_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S2_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S2_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S2_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S2_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S2_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S2_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S2_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S2_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S3', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S3
@@ -142,24 +160,24 @@
         3
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S3_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S3_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S3_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S3_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S3_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S3_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S3_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S3_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S3_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S3_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S4', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S4
@@ -168,24 +186,24 @@
         4
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S4_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S4_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S4_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S4_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S4_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S4_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S4_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S4_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S4_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S4_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S5', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S5
@@ -194,24 +212,24 @@
         5
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S5_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S5_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S5_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S5_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S5_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S5_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S5_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S5_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S5_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S5_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S6', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S6
@@ -220,24 +238,24 @@
         8
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S6_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S6_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S6_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S6_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S6_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S6_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S6_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S6_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S6_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S6_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S7', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S7
@@ -246,24 +264,24 @@
         12
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S7_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S7_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S7_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S7_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S7_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S7_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S7_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S7_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S7_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S7_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_1', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S8', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S8
@@ -272,24 +290,24 @@
         16
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S8_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S8_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S8_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S8_Result', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S8_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S8_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S8_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S8_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S8_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S8_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 <tr>
     <td>
-        {!! Form::date('PharmacodynamicAnalysis_Date_Day_2', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('pda_Date_Day_S9', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </td>
     <td class="text-center">
         S9
@@ -298,20 +316,22 @@
         24
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S9_TimePDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('pda_S9_Time', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::time('PharmacodynamicAnalysis_S9_ResultsPDAnalysis', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::text('pda_S9_Result','',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S9_Collected', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S9_Conducted', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S9_Checked', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S9_Checked', '',['class'=>'form-control']) !!}
     </td>
     <td>
-        {!! Form::text('PharmacodynamicAnalysis_S9_Comments', '',['class'=>'form-control']) !!}
+        {!! Form::text('pda_S9_Comments', '',['class'=>'form-control']) !!}
     </td>
 </tr>
 </tbody>
 </table>
+{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}

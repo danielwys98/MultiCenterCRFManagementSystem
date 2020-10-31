@@ -25,11 +25,10 @@ class SP1_Admission_Controller extends Controller
      //assuming request inside has Patient ID of 2 and update study details (admission) of patient 5 (testing purpose)
       /*  $PID = 2;*/
         //find Patient Study Specific table
-        $findPSS =PatientStudySpecific::with('StudyPeriod1')->where('patient_id',$PID)->first();
+        $findPSS =PatientStudySpecific::with('StudyPeriod1')->where('patient_id',$PID)
+            ->where('study_id',$study_id)->first();
 
        if($findPSS !=NULL){
-           if($findPSS->study_id == $study_id)
-           {
                //find SP1_ID to access the SP1_Admission
                //find admission table and update it
                $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
@@ -42,13 +41,6 @@ class SP1_Admission_Controller extends Controller
                $findSP1_Admission->save();
 
                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Admission!');
-           }
-           else
-           {
-               alert()->error('Error!','This subject is not enrolled into this study!');
-               return redirect(route('studySpecific.input',$study_id));
-           }
-
        }else{
            alert()->error('Error!','This subject is not enrolled into any study!');
            return redirect(route('studySpecific.input',$study_id));

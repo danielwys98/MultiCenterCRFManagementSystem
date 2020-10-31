@@ -193,7 +193,6 @@ class MH_Controller extends Controller
                 $mh->$key=$data[$no_txt];
             }
         }
-
         $mh->save();
        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Medical History detail for the subject!');
     }
