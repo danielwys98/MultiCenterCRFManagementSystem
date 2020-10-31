@@ -39,6 +39,8 @@ Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
 
 Route::post('sp_bat/{id}','SP1BATController@store')->name('sp1bat.store');
 
+Route::post('sp_pdynamicsampling/{id}','SP1PDynamicSamplingController@store')->name('sp1pdynamicsampling.store');
+
 //route for testing
 Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
 

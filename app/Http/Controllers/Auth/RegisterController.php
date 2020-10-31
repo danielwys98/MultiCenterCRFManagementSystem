@@ -77,7 +77,7 @@ class RegisterController extends Controller
 
         //attach the default role which is users to new user upon creation
         $user->roles()->attach($role);
-
+        alert()->success('Success!','You have registered into the system!');
         return $user;
     }
 }
