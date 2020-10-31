@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
 use App\SP1_Admission;
+use App\SP1_AQuestionnaire;
 use App\SP1_BAT;
 use App\SP1_BMVS;
+use App\SP1_Discharge;
 use App\SP1_PDynamicAnalysis;
 use App\SP1_UrineTest;
 use App\SP1_PKineticSampling;
@@ -204,7 +206,11 @@ CS_Controller extends Controller
             //Initialise SP1_BAT
             $BAT=new SP1_BAT;
             $BAT->save();
-            
+
+            //Initialise SP1_AQuestionnaire
+            $AQuestionnaire=new SP1_AQuestionnaire;
+            $AQuestionnaire->save();
+
             //Initialise SP1_UrineTest
             $UrineTest = new SP1_UrineTest;
             $UrineTest->save();
@@ -216,6 +222,10 @@ CS_Controller extends Controller
             //Initialise SP1_PDynamicAnalysis
             $PDynamicAnalysis=new SP1_PDynamicAnalysis;
             $PDynamicAnalysis->save();
+
+            //Initialise SP1_Discharge
+            $Discharge=new SP1_Discharge;
+            $Discharge->save();
 
             //Initialise SP1_IQ36
             $IQ36 = new SP1_IQ36;
@@ -234,9 +244,11 @@ CS_Controller extends Controller
             $SP1->SP1_Admission=$Admission->SP1_Admission_ID;
             $SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
             $SP1->SP1_BATER = $BAT->SP1_BAT_ID;
+            $SP1->SP1_AQuestionnaire=$AQuestionnaire->SP1_AQuestionnaire_ID;
             $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
             $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
             $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
+            $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
 
