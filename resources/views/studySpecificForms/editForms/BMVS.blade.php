@@ -1,18 +1,5 @@
-{!! Form::open(['route' => ['sp1bmvs.store',$study->study_id]]) !!}
+{{--{!! Form::open(['route' => ['sp1bmvs.store',$study->study_id]]) !!}--}}
 {{-- body measurements and vital signs --}}
-    <div class="form-group row">
-                @if(Auth::check() && Auth::user()->hasRole('Admin'))
-                    <div>
-                        {!! Form::label('SubjectName', 'Subject') !!}
-                        {!! Form::select('patient_id',$oriPatientName,null) !!}
-                    </div>
-                @else
-                    <div>
-                        {!! Form::label('Admin view of name', 'Subject') !!}
-                        {!! Form::select('patient_id',$newName,null) !!}
-                    </div>
-                @endif
-    </div>
     <h3>Body Measurements and Vital Signs</h3>
 <hr>
 <div class="form-group row">
@@ -94,9 +81,9 @@
     </tr>
     <tr>
         <th scope="row">
-            {!! Form::radio('SittingRepeat1', 'Not Applicable','checked',['id'=>'SittingRepeat1NA']) !!}
+            {!! Form::radio('SittingRepeat1', '','checked',['id'=>'SittingRepeat1NA']) !!}
             {!! Form::label('SittingRepeat1NA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat1', 'Sitting Repeated','',['id'=>'SittingRepeat1']) !!}
+            {!! Form::radio('SittingRepeat1', '','',['id'=>'SittingRepeat1']) !!}
             {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
@@ -106,9 +93,9 @@
     </tr>
     <tr>
         <th scope="row">
-            {!! Form::radio('SittingRepeat2', 'Not Applicable','checked',['id'=>'SittingRepeat2NA']) !!}
+            {!! Form::radio('SittingRepeat2', '','checked',['id'=>'SittingRepeat2NA']) !!}
             {!! Form::label('SittingRepeat2NA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat2', 'Sitting Repeated','',['id'=>'SittingRepeat2']) !!}
+            {!! Form::radio('SittingRepeat2', '','',['id'=>'SittingRepeat2']) !!}
             {!! Form::label('SittingRepeat2','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
@@ -127,5 +114,5 @@
     {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
 </p>
 {{-- Body measurements and vital signs ends--}}
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
-{!! Form::close() !!}
+{{--{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::close() !!}--}}

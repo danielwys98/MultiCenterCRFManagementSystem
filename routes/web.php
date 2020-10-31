@@ -28,6 +28,7 @@ Route::get('/preScreening/admin/search','preScreeningController@search');
 Route::get('/chooseStudy','PagesController@chooseStudy');
 
 /*Route::get('/studySpecific/input','studySpecificController@studies');*/
+Route::get('/studySpecific/admin','studySpecificController@index')->name('studySpecific.admin');
 
 Route::get('/studySpecific/index','studySpecificController@index');
 
@@ -35,12 +36,14 @@ Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name(
 
 Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
 
-Route::post('sp_bmvs/{id}','SP1BMVSController@store')->name('sp1bmvs.store');
+Route::put('sp_admisison/{patient_id}/update/{study_id}','SP1_Admission_Controller@update')->name('sp1Admission.update');
 
-Route::post('sp_bat/{id}','SP1BATController@store')->name('sp1bat.store');
+Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp1bmvs.store');
+
+Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp1bat.store');
 
 
-Route::post('sp_pdynamicsampling/{id}','SP1PDynamicSamplingController@store')->name('sp1pdynamicsampling.store');
+Route::post('sp_pdynamicsampling/{id}','SP1_PDynamicSampling_Controller@store')->name('sp1pdynamicsampling.store');
 
 Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('sp1IQuestionnaire36.store');
 
@@ -50,12 +53,8 @@ Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1Urin
 
 Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
 
+Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
-//route for testing
-Route::post('testing/{id}','studySpecificController@testingPost')->name('testing.store');
-
-/*Route::get('/testing/{id}','studySpecificController@testing');*/
-//route for testing ends here
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 

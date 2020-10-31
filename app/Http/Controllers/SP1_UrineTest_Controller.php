@@ -106,7 +106,6 @@ class SP1_UrineTest_Controller extends Controller
                 $findSP1_UrineTest->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
                 $findSP1_UrineTest->UPreg_Transcribedby=$request->UPreg_Transcribedby;
             }
-
             //Urine Drug
             $findSP1_UrineTest->UDrug_dateTaken=$request->UDrug_dateTaken;
             $findSP1_UrineTest->UDrug_TestTime=$request->UDrug_TestTime;
@@ -124,7 +123,6 @@ class SP1_UrineTest_Controller extends Controller
             $findSP1_UrineTest->UDrug_Marijuana=$request->UDrug_Marijuana;
             $findSP1_UrineTest->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
             $findSP1_UrineTest->UDrug_Transcribedby=$request->UDrug_Transcribedby;
-
             //Conclusion
             $findSP1_UrineTest->inclusionYesNo=$request->inclusionYesNo;
             $findSP1_UrineTest->Comments=$request->Comments;
