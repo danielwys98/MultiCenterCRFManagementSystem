@@ -13,4 +13,3 @@ class SP1_UrineTest extends Model
         return $this->belongsTo('App\StudyPeriod1','SP1_PKineticSampling','SP1_PKineticSampling_ID');
     }
 }
-//Ayye lmao Im Marcus 

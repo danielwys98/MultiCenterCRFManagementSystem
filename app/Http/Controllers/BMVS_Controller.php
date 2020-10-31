@@ -14,6 +14,7 @@ class BMVS_Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin');
     }
     public function create($id)
     {
@@ -138,8 +139,6 @@ class BMVS_Controller extends Controller
         $InclusionExclusion=$patient->InclusionExclusion;
         $Conclu=$patient->Conclu;
 
-        $Not_Complete=false;
-
         $arrFormsName = array('Body Measurements and Vital Signs',
             'Breath Alcohol Test and Electrocardiogram',
             'Medical History',
@@ -164,12 +163,9 @@ class BMVS_Controller extends Controller
         {
             if($value == NULL){
                 $errors[]=$key;
-                $Not_Complete=true;
-            }else{
-                $Not_Complete=false;
             }
         }
-        if($Not_Complete){
+        if(!empty($errors)){
             return redirect(route('preScreening.admin', $id))->withErrors($errors);
         }else{
             return view('preScreeningForms.edit', compact(

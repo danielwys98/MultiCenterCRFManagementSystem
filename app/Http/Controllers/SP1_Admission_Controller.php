@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Patient;
-use App\studySpecific;
-use App\Patient_Conclusion_Signature;
 use App\PatientStudySpecific;
 use App\StudyPeriod1;
 use App\SP1_Admission;
 use DB;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 
 class SP1_Admission_Controller extends Controller
 {
@@ -24,6 +21,7 @@ class SP1_Admission_Controller extends Controller
     public function store(Request $request,$study_id)
     {
         $PID = $request->patient_id;
+
      //assuming request inside has Patient ID of 2 and update study details (admission) of patient 5 (testing purpose)
       /*  $PID = 2;*/
         //find Patient Study Specific table
@@ -36,8 +34,10 @@ class SP1_Admission_Controller extends Controller
                //find admission table and update it
                $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
                $findSP1_Admission = SP1_Admission::where('SP1_Admission_ID',$findSP1->SP1_Admission)->first();
-               $findSP1_Admission->details1= "X";
-               $findSP1_Admission->details2= "Z";
+               $findSP1_Admission->AdmissionDateTaken = $request->AdmissionDateTaken;
+               $findSP1_Admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
+               $findSP1_Admission->ConsentDateTaken = $request->ConsentDateTaken;
+               $findSP1_Admission->ConsentTimeTaken = $request->ConsentTimeTaken;
 
                $findSP1_Admission->save();
 

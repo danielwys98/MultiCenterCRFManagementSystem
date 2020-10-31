@@ -17,6 +17,7 @@ class studySpecificController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin',['except'=>'studies']);
     }
     /**
      * Display a listing of the resource.
@@ -36,26 +37,30 @@ class studySpecificController extends Controller
     //This return to the studySpecific forms
     public function studies($id)
     {
-
         $study = studySpecific::find($id);
 
-        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',1)->get();
-
-        foreach($findPatient as $p)
-        {
-            $PatientList[] = $p->patient_id;
-        }
-        $oriPatientName =Patient::whereIn('id',$PatientList)->get()->pluck('name','id');
-        //increasing 0 until count of Subjects in the study
-        $test=1;
-        foreach($oriPatientName as $id=>$name)
-        {
-            /*echo $id.'='.$name.'<br/>';*/
-            $PatientID[] = $id;
-            $PatientName[] = str_replace($name,$test++,$name);
-            $newName = array_combine($PatientID,$PatientName);
-        }
-        return view('studySpecific',compact('oriPatientName','newName','study'));
+        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
+          if(count($findPatient)>0){
+              foreach($findPatient as $p)
+              {
+                  $PatientList[] = $p->patient_id;
+              }
+              $oriPatientName =Patient::whereIn('id',$PatientList)->get()->pluck('name','id');
+              //increasing 0 until count of Subjects in the study
+              $test=1;
+              foreach($oriPatientName as $id=>$name)
+              {
+                  /*echo $id.'='.$name.'<br/>';*/
+                  $PatientID[] = $id;
+                  $PatientName[] = str_replace($name,$test++,$name);
+                  $newName = array_combine($PatientID,$PatientName);
+              }
+              return view('studySpecific',compact('oriPatientName','newName','study'));
+          }
+          else{
+              alert()->error('Error!','No subject enrolled into this study!');
+              return back();
+          }
 
     }
 

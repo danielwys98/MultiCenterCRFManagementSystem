@@ -12,6 +12,7 @@ class PE_Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin');
     }
     public function storePE(Request $request,$id)
     {
@@ -209,7 +210,7 @@ class PE_Controller extends Controller
             'comments_Physically_Healthy' => 'required_if:comments,==,Physically Healthy',
             'comments_Otherwise' => 'required_if:comments,==,Otherwise',
         ],$custom);
-        
+
        DB::table('patient_physical_examinations')
             ->where('patient_id',$id)
             ->update([

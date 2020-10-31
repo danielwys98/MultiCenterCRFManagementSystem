@@ -12,6 +12,7 @@ class UT_Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('checkAdmin');
     }
     public function storeUT(Request $request,$id)
     {
@@ -98,7 +99,7 @@ class UT_Controller extends Controller
             $ut->UPreg_Transcribedby=$request->UPreg_Transcribedby;
         }
         // end if
-        
+
         // Urine Drug
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;

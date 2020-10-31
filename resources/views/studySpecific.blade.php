@@ -3,7 +3,7 @@
 @section('content')
     <h1>This is the Study Specific Page</h1>
     <div class="container-fluid">
-        <h3>Study Period 1</h3>
+        <h3>Study Period 1 for {{$study->study_name}}</h3>
         <ul class="nav nav-pills sticky-top bg-light">
             <li class="active"><a data-toggle="tab" href="#Admission">Admission</a></li>
             <li><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
@@ -19,7 +19,7 @@
             <li><a data-toggle="tab" href="#IQuestionnaire48">Interim Questionnaire(48 hours Post Dose Visit)</a></li>
         </ul>
             <hr/>
-        <div class="form-group row">
+  {{--      <div class="form-group row">
           <div class="col-md-4">
                 {!! Form::checkbox('Absent', '') !!}
                 {!! Form::label('Absent','Subject absent. Page _ to _ of CRF will be cancelled/removed') !!}
@@ -36,8 +36,8 @@
             <div class="col-md-2">
                 {!! Form::date('DischargeDate', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
-        </div>
-        <hr>
+        </div>--}}
+        {{--<hr>--}}
 
         <div class="tab-content">
             <div id="Admission" class="tab-pane fade in active">
