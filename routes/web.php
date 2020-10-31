@@ -36,6 +36,8 @@ Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name(
 
 Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admission.store');
 
+Route::put('sp_admisison/{patient_id}/update/{study_id}','SP1_Admission_Controller@update')->name('sp1Admission.update');
+
 Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp1bmvs.store');
 
 Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp1bat.store');
