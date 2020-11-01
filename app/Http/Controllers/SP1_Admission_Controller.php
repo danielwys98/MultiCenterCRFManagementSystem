@@ -85,7 +85,6 @@ class SP1_Admission_Controller extends Controller
 
     public function update(Request $request,$patient_id,$study_id)
     {
-        $patient = Patient::find($patient_id,'id')->first();
         $flag=false;
         $findPSS = PatientStudySpecific::with('StudyPeriod1')
                                         ->where('patient_id',$patient_id)
