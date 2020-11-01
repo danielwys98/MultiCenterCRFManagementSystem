@@ -201,7 +201,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim48hrs03txt', '',['class'=>'form-control']) !!}
+        {!! Form::text('Interim48hrs07txt', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>

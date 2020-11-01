@@ -90,7 +90,7 @@ class SP1_PDynamicSampling_Controller extends Controller
                     'S8_Collected.required' => 'Please enter the person collected for S8 Pharmacodynamic Blood Sampling',
                     'S8_Checked.required' => 'Please enter the person checked for S8 Pharmacodynamic Blood Sampling',
 
-                    'S9_Date_Day_1.required' => 'Please enter the S9 date for Pharmacodynamic Blood Sampling',
+                    'S9_Date_Day_2.required' => 'Please enter the S9 date for Pharmacodynamic Blood Sampling',
                     'S9_SST.required' => 'Please enter the S9 Scheduled Sampling Time for Pharmacodynamic Blood Sampling',
                     'S9_AST.required' => 'Please enter the S9 Actual Sampling Time for Pharmacodynamic Blood Sampling',
                     'S9_Collected.required' => 'Please enter the person collected for S9 Pharmacodynamic Blood Sampling',
@@ -154,7 +154,7 @@ class SP1_PDynamicSampling_Controller extends Controller
                     'S8_Collected' => 'required',
                     'S8_Checked' => 'required',
 
-                    'S9_Date_Day_1' => 'required',
+                    'S9_Date_Day_2' => 'required',
                     'S9_SST' => 'required',
                     'S9_AST' => 'required',
                     'S9_Collected' => 'required',
@@ -231,7 +231,7 @@ class SP1_PDynamicSampling_Controller extends Controller
                     $findSP1_PDS->S8_Comments = $request->S8_Comments;
                     //Actual Day 2 of Sample Code
                     //S9
-                    $findSP1_PDS->S9_Date_Day_1 = $request->S9_Date_Day_1;
+                    $findSP1_PDS->S9_Date_Day_1 = $request->S9_Date_Day_2;
                     $findSP1_PDS->S9_SST = $request->S9_SST;
                     $findSP1_PDS->S9_AST = $request->S9_AST;
                     $findSP1_PDS->S9_Collected = $request->S9_Collected;
@@ -240,7 +240,7 @@ class SP1_PDynamicSampling_Controller extends Controller
 
                     $findSP1_PDS->save();
 
-                    return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Body Measurement and Vital Signs!');
+                    return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Pharmacodynamic Blood Sampling!');
                 }
                 else
                 {
