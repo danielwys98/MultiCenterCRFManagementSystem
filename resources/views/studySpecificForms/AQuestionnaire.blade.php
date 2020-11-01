@@ -178,10 +178,10 @@
             dosing?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('AlcoholXanthine', 'Yes') !!}</p>
+        <p>{!! Form::radio('alcoholXanthine', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('AlcoholXanthine', 'No') !!}</p>
+        <p>{!! Form::radio('alcoholXanthine', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -192,7 +192,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('AlcoholXanthine_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('alcoholXanthine_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -216,10 +216,10 @@
             test? </p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('PoppySeeds', 'Yes') !!}</p>
+        <p>{!! Form::radio('poppySeeds', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('PoppySeeds', 'No') !!}</p>
+        <p>{!! Form::radio('poppySeeds', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -234,7 +234,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('PoppySeeds_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('poppySeeds_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -258,10 +258,10 @@
             within 7 days before dosing?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('GrapefruitPomelo', 'Yes') !!}</p>
+        <p>{!! Form::radio('grapefruitPomelo', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('GrapefruitPomelo', 'No') !!}</p>
+        <p>{!! Form::radio('grapefruitPomelo', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -272,7 +272,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('GrapefruitPomelo_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('grapefruitPomelo_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -296,10 +296,10 @@
         <p>7. Has the subject participated in other experimental drug studies within 4 weeks before dosing?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('OtherDrugStudies', 'Yes') !!}</p>
+        <p>{!! Form::radio('otherDrugStudies', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('OtherDrugStudies', 'No') !!}</p>
+        <p>{!! Form::radio('otherDrugStudies', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -310,7 +310,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('OtherDrugStudies_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('otherDrugStudies_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -351,10 +351,10 @@
         </ul>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('BloodDono', 'Yes') !!}</p>
+        <p>{!! Form::radio('bloodDono', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('BloodDono', 'No') !!}</p>
+        <p>{!! Form::radio('bloodDono', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -365,7 +365,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('BloodDono_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('bloodDono_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -388,10 +388,10 @@
         <p>9. Has the subject use of non-acceptable methods of contraception within 14 days before dosing?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Contraception', 'Yes') !!}</p>
+        <p>{!! Form::radio('contraception', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Contraception', 'No') !!}</p>
+        <p>{!! Form::radio('contraception', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -402,7 +402,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Contraception_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('contraception_Yes', '',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
