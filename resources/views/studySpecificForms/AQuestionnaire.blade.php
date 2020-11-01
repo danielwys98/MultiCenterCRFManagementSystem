@@ -67,10 +67,10 @@
         <p>Can the medical problem significantly increase the subject’s risk if enrolled in the study?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0101', 'Yes') !!}</p>
+        <p>{!! Form::radio('MP_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0101', 'No') !!}</p>
+        <p>{!! Form::radio('MP_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -78,10 +78,10 @@
         <p>Can the medical problem potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0102', 'Yes') !!}</p>
+        <p>{!! Form::radio('MP_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0102', 'No') !!}</p>
+        <p>{!! Form::radio('MP_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -110,10 +110,10 @@
         <p>Can the use of medication significantly increase the subject’s risk if enrolled in the study?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0201', 'Yes') !!}</p>
+        <p>{!! Form::radio('Medi_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0201', 'No') !!}</p>
+        <p>{!! Form::radio('Medi_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -121,10 +121,10 @@
         <p>Can the use of medication potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0202', 'Yes') !!}</p>
+        <p>{!! Form::radio('Medi_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0202', 'No') !!}</p>
+        <p>{!! Form::radio('Medi_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -152,10 +152,10 @@
         <p>Can the hospitalization significantly increase the subject’s risk if enrolled in the study?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0301', 'Yes') !!}</p>
+        <p>{!! Form::radio('H_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0301', 'No') !!}</p>
+        <p>{!! Form::radio('H_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -163,10 +163,10 @@
         <p>Can the hospitalization potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0302', 'Yes') !!}</p>
+        <p>{!! Form::radio('H_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0302', 'No') !!}</p>
+        <p>{!! Form::radio('H_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -200,10 +200,10 @@
         <p>Can the use of alcohol or xanthine potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0401', 'Yes') !!}</p>
+        <p>{!! Form::radio('AX_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0401', 'No') !!}</p>
+        <p>{!! Form::radio('AX_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -242,10 +242,10 @@
         <p>Can the use of poppy seeds potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0501', 'Yes') !!}</p>
+        <p>{!! Form::radio('PS_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0501', 'No') !!}</p>
+        <p>{!! Form::radio('PS_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -281,10 +281,10 @@
             of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0601', 'Yes') !!}</p>
+        <p>{!! Form::radio('Grapefruit_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0601', 'No') !!}</p>
+        <p>{!! Form::radio('Grapefruit_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -318,10 +318,10 @@
         <p>Can the participation significantly increase the subject’s risk if enrolled in the study</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0701', 'Yes') !!}</p>
+        <p>{!! Form::radio('Other_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0701', 'No') !!}</p>
+        <p>{!! Form::radio('Other_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -329,10 +329,10 @@
         <p>Can the participation potentially influence the pharmacokinetic profile of the study drug?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0702', 'Yes') !!}</p>
+        <p>{!! Form::radio('Other_InfluencePKinetic', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0702', 'No') !!}</p>
+        <p>{!! Form::radio('Other_InfluencePKinetic', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -373,10 +373,10 @@
         <p>Can the donation potentially increase the subject’s risk if enrolled in the study?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0801', 'Yes') !!}</p>
+        <p>{!! Form::radio('Blood_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0801', 'No') !!}</p>
+        <p>{!! Form::radio('Blood_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <hr>
@@ -410,10 +410,10 @@
         <p>Can the use of this method potentially increase the subject’s risk if enrolled in the study?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0901', 'Yes') !!}</p>
+        <p>{!! Form::radio('Contraception_IncreaseRisk', 'Yes') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Admission0901', 'No') !!}</p>
+        <p>{!! Form::radio('Contraception_IncreaseRisk', 'No') !!}</p>
     </div>
 </div>
 <hr>

@@ -20,14 +20,35 @@ class CreateSP1AQuestionnairesTable extends Migration
             $table->time('AQuestionnaireTimeTaken')->nullable();
 
             $table->text('MedicalProblem')->nullable();
+            $table->text('MP_IncreaseRisk')->nullable();
+            $table->text('MP_InfluencePKinetic')->nullable();
+
             $table->text('Medication')->nullable();
+            $table->text('Medi_IncreaseRisk')->nullable();
+            $table->text('Medi_InfluencePKinetic')->nullable();
+
             $table->text('Hospitalized')->nullable();
+            $table->text('H_IncreaseRisk')->nullable();
+            $table->text('H_InfluencePKinetic')->nullable();
+
             $table->text('AlcoholXanthine')->nullable();
+            $table->text('AX_InfluencePKinetic')->nullable();
+
             $table->text('PoppySeeds')->nullable();
+            $table->text('PS_InfluencePKinetic')->nullable();
+
             $table->text('GrapefruitPomelo')->nullable();
+            $table->text('Grapefruit_InfluencePKinetic')->nullable();
+
             $table->text('OtherDrugStudies')->nullable();
+            $table->text('Other_IncreaseRisk')->nullable();
+            $table->text('Other_InfluencePKinetic')->nullable();
+
             $table->text('BloodDono')->nullable();
+            $table->text('Blood_IncreaseRisk')->nullable();
+
             $table->text('Contraception')->nullable();
+            $table->text('Contraception_IncreaseRisk')->nullable();
 
             $table->text('PhysicianInitial')->nullable();
 

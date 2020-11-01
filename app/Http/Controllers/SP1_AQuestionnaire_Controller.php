@@ -39,22 +39,43 @@ class SP1_AQuestionnaire_Controller extends Controller
             //admission questionnaire
             //question 1
             $findSP1_AQuestionnaire->MedicalProblem = $request->MedicalProblem;
+            $findSP1_AQuestionnaire->MP_IncreaseRisk = $request->MP_IncreaseRisk;
+            $findSP1_AQuestionnaire->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
+
             //question 2
             $findSP1_AQuestionnaire->Medication = $request->Medication;
+            $findSP1_AQuestionnaire->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
+            $findSP1_AQuestionnaire->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
+
             //question 3
             $findSP1_AQuestionnaire->Hospitalized = $request->Hospitalized;
+            $findSP1_AQuestionnaire->H_IncreaseRisk = $request->H_IncreaseRisk;
+            $findSP1_AQuestionnaire->H_InfluencePKinetic = $request->H_InfluencePKinetic;
+
             //question 4
             $findSP1_AQuestionnaire->AlcoholXanthine = $request->AlcoholXanthine;
+            $findSP1_AQuestionnaire->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
+
             //question 5
             $findSP1_AQuestionnaire->PoppySeeds = $request->PoppySeeds;
+            $findSP1_AQuestionnaire->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
+
             //question 6
             $findSP1_AQuestionnaire->GrapefruitPomelo = $request->GrapefruitPomelo;
+            $findSP1_AQuestionnaire->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
+
             //question 7
             $findSP1_AQuestionnaire->OtherDrugStudies = $request->OtherDrugStudies;
+            $findSP1_AQuestionnaire->Other_IncreaseRisk = $request->Other_IncreaseRisk;
+            $findSP1_AQuestionnaire->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
+
             //question 8
             $findSP1_AQuestionnaire->BloodDono = $request->BloodDono;
+            $findSP1_AQuestionnaire->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
+
             //question 9
             $findSP1_AQuestionnaire->Contraception = $request->Contraception;
+            $findSP1_AQuestionnaire->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
 
             //physician initial
             $findSP1_AQuestionnaire->PhysicianInitial = $request->PhysicianInitial;
