@@ -29,20 +29,20 @@
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::label('UnscheduledDischarge', 'Is this an unscheduled discharge? ') !!}
+        {!! Form::label('unscheduledDischarge', 'Is this an unscheduled discharge? ') !!}
     </div>
     <div class="col-md-2">
-            {!! Form::radio('UnscheduledDischarge', 'No','',['id'=>'No']) !!}
+            {!! Form::radio('unscheduledDischarge', 'No','',['id'=>'No']) !!}
             {!! Form::label('No', 'No') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-            {!! Form::radio('UnscheduledDischarge', 'Yes','',['id'=>'Yes']) !!}
+            {!! Form::radio('unscheduledDischarge', 'Yes','',['id'=>'Yes']) !!}
             {!! Form::label('Yes', 'Yes ') !!}
             </div>
             <div class="col-md-7">
-            {!! Form::text('UnscheduledDischarge_Text', '',['class'=>'form-control','placeholder'=>'If yes, please explain']) !!}
+            {!! Form::text('unscheduledDischarge_Text', '',['class'=>'form-control','placeholder'=>'If yes, please explain']) !!}
             </div>
         </div>
     </div>
@@ -71,7 +71,7 @@
         <th scope="row">
             {!! Form::radio('SittingRepeat', 'NA','checked',['id'=>'SittingRepeatNA']) !!}
             {!! Form::label('SittingRepeatNA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat', 'Repeated','',['id'=>'SittingRepeatYes']) !!}
+            {!! Form::radio('SittingRepeat', 'Sitting Repeated','',['id'=>'SittingRepeatYes']) !!}
             {!! Form::label('SittingRepeatYes','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('SittingRepeat_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>

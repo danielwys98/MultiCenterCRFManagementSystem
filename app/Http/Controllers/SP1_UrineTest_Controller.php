@@ -47,6 +47,10 @@ class SP1_UrineTest_Controller extends Controller
             'UDrug_Morphine.required' => 'Please select the results of Morphine for urine drugs of abuse test',
             'UDrug_Marijuana.required' => 'Please select the results of Marijuana for urine drugs of abuse test',
             'UDrug_Transcribedby.required' => 'Please state the user transcribed for urine drugs of abuse test',
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'subjectFit.required' => 'Please select whether the subject is fit for dosing',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
            ];
 
             //Urine Pregnancy
@@ -64,6 +68,10 @@ class SP1_UrineTest_Controller extends Controller
                     'UDrug_Morphine' => 'required',
                     'UDrug_Marijuana' => 'required',
                     'UDrug_Transcribedby' => 'required',
+                    'inclusionYesNo' => 'required',
+                    'subjectFit' => 'required',
+                    'physicianSign' => 'required',
+                    'physicianName' => 'required',
                 ],$custom);
                 $findSP1_UrineTest->UPreg_dateTaken=NULL;
                 $findSP1_UrineTest->UPreg_TestTime=NULL;
@@ -92,6 +100,10 @@ class SP1_UrineTest_Controller extends Controller
                     'UDrug_Morphine' => 'required',
                     'UDrug_Marijuana' => 'required',
                     'UDrug_Transcribedby' => 'required',
+                    'inclusionYesNo' => 'required',
+                    'subjectFit' => 'required',
+                    'physicianSign' => 'required',
+                    'physicianName' => 'required',
                 ],$custom);
                 $findSP1_UrineTest->UPreg_dateTaken=$request->UPreg_dateTaken;
                 $findSP1_UrineTest->UPreg_TestTime=$request->UPreg_TestTime;

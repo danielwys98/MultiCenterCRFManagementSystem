@@ -18,19 +18,33 @@ class SP1_DQuestionnaire_Controller extends Controller
     public function store(Request $request,$study_id)
     {
         $PID = $request->patient_id;
-
-        //assuming request inside has Patient ID of 2 and update study details (admission) of patient 5 (testing purpose)
-        /*  $PID = 2;*/
         //find Patient Study Specific table
         $findPSS =PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id',$PID)
-            ->where('study_id',$study_id)->first();
-
+                                        ->where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
         if($findPSS !=NULL){
-            //find SP1_ID to access the SP1_Discharge
-            //find Discharge table and update it
+            //find SP1_ID to access the SP1_DQuestionnaire
+            //find table and update it
             $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $findSP1_DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID',$findSP1->SP1_DQuestionnaire)->first();
+            //custom messages load for validation
+            $custom = [
+                'DQtimeTaken.required' => 'Please enter the discharge time taken',
+                'Oriented.required' => 'Please select the subject oriented',
+                'ReadyDischarge.required' => 'Please select whether the subject is fit for discharge',
+                'PhysicianSign.required' => 'Physician’s signature is required',
+                'PhysicianName.required' => 'Physician’s name is required',
+            ];
+
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'DQtimeTaken' => 'required',
+                'Oriented' => 'required',
+                'ReadyDischarge' => 'required',
+                'PhysicianSign' => 'required',
+                'PhysicianName' => 'required',
+            ],$custom);
 
             $findSP1_DQuestionnaire->DQtimeTaken = $request->DQtimeTaken;
 

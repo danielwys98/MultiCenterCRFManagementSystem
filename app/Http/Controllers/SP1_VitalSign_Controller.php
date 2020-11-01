@@ -16,19 +16,119 @@ class SP1_VitalSign_Controller extends Controller
     public function store(Request $request,$study_id)
     {
         $PID = $request->patient_id;
-
-        //assuming request inside has Patient ID of 2 and update study details (admission) of patient 5 (testing purpose)
-        /*  $PID = 2;*/
         //find Patient Study Specific table
         $findPSS =PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id',$PID)
-            ->where('study_id',$study_id)->first();
-
+                                        ->where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
         if($findPSS !=NULL){
-            //find SP1_ID to access the SP1_Discharge
-            //find Discharge table and update it
+            //find SP1_ID to access the SP1_VitalSigns
+            //find table and update it
             $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $findSP1_VitalSign =SP1_VitalSigns::where('SP1_VitalSign_ID',$findSP1->SP1_VitalSign)->first();
+            //custom messages load for validation
+            $custom = [
+                'TPD_1_Date.required' => 'Please enter the vital signs date of 1hr time post dose',
+                'TPD_1_ReadingTime.required' => 'Please enter the vital signs reading time of 1hr time post dose',
+                'TPD_1_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 1hr time post dose',
+                'TPD_1_Pulse.required' => 'Please enter the vital signs pulse rate of 1hr time post dose',
+                'TPD_1_Respiration.required' => 'Please enter the vital signs respiration rate of 1hr time post dose',
+                'TPD_1_TakenBy.required' => 'Please enter the vital signs physician name of 1hr time post dose',
+
+                'TPD_2_Date.required' => 'Please enter the vital signs date of 2hr time post dose',
+                'TPD_2_ReadingTime.required' => 'Please enter the vital signs reading time of 2hr time post dose',
+                'TPD_2_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 2hr time post dose',
+                'TPD_2_Pulse.required' => 'Please enter the vital signs pulse rate of 2hr time post dose',
+                'TPD_2_Respiration.required' => 'Please enter the vital signs respiration rate of 2hr time post dose',
+                'TPD_2_TakenBy.required' => 'Please enter the vital signs physician name of 2hr time post dose',
+
+                'TPD_5_Date.required' => 'Please enter the vital signs date of 5hr time post dose',
+                'TPD_5_ReadingTime.required' => 'Please enter the vital signs reading time of 5hr time post dose',
+                'TPD_5_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 5hr time post dose',
+                'TPD_5_Pulse.required' => 'Please enter the vital signs pulse rate of 5hr time post dose',
+                'TPD_5_Respiration.required' => 'Please enter the vital signs respiration rate of 5hr time post dose',
+                'TPD_5_TakenBy.required' => 'Please enter the vital signs physician name of 5hr time post dose',
+
+                'TPD_8_Date.required' => 'Please enter the vital signs date of 8hr time post dose',
+                'TPD_8_ReadingTime.required' => 'Please enter the vital signs reading time of 8hr time post dose',
+                'TPD_8_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 8hr time post dose',
+                'TPD_8_Pulse.required' => 'Please enter the vital signs pulse rate of 8hr time post dose',
+                'TPD_8_Respiration.required' => 'Please enter the vital signs respiration rate of 8hr time post dose',
+                'TPD_8_TakenBy.required' => 'Please enter the vital signs physician name of 8hr time post dose',
+
+                'TPD_12_Date.required' => 'Please enter the vital signs date of 12hr time post dose',
+                'TPD_12_ReadingTime.required' => 'Please enter the vital signs reading time of 12hr time post dose',
+                'TPD_12_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 12hr time post dose',
+                'TPD_12_Pulse.required' => 'Please enter the vital signs pulse rate of 12hr time post dose',
+                'TPD_12_Respiration.required' => 'Please enter the vital signs respiration rate of 12hr time post dose',
+                'TPD_12_TakenBy.required' => 'Please enter the vital signs physician name of 12hr time post dose',
+
+                'TPD_36_Date.required' => 'Please enter the vital signs date of 36hr time post dose',
+                'TPD_36_ReadingTime.required' => 'Please enter the vital signs reading time of 36hr time post dose',
+                'TPD_36_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 36hr time post dose',
+                'TPD_36_Pulse.required' => 'Please enter the vital signs pulse rate of 36hr time post dose',
+                'TPD_36_Respiration.required' => 'Please enter the vital signs respiration rate of 36hr time post dose',
+                'TPD_36_TakenBy.required' => 'Please enter the vital signs physician name of 36hr time post dose',
+
+                'TPD_48_Date.required' => 'Please enter the vital signs date of 48hr time post dose',
+                'TPD_48_ReadingTime.required' => 'Please enter the vital signs reading time of 48hr time post dose',
+                'TPD_48_SittingBP.required' => 'Please enter the vital signs sitting blood pressure of 48hr time post dose',
+                'TPD_48_Pulse.required' => 'Please enter the vital signs pulse rate of 48hr time post dose',
+                'TPD_48_Respiration.required' => 'Please enter the vital signs respiration rate of 48hr time post dose',
+                'TPD_48_TakenBy.required' => 'Please enter the vital signs physician name of 48hr time post dose',
+            ];
+
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'TPD_1_Date' => 'required',
+                'TPD_1_ReadingTime' => 'required',
+                'TPD_1_SittingBP' => 'required',
+                'TPD_1_Pulse' => 'required',
+                'TPD_1_Respiration' => 'required',
+                'TPD_1_TakenBy' => 'required',
+
+                'TPD_2_Date' => 'required',
+                'TPD_2_ReadingTime' => 'required',
+                'TPD_2_SittingBP' => 'required',
+                'TPD_2_Pulse' => 'required',
+                'TPD_2_Respiration' => 'required',
+                'TPD_2_TakenBy' => 'required',
+
+                'TPD_5_Date' => 'required',
+                'TPD_5_ReadingTime' => 'required',
+                'TPD_5_SittingBP' => 'required',
+                'TPD_5_Pulse' => 'required',
+                'TPD_5_Respiration' => 'required',
+                'TPD_5_TakenBy' => 'required',
+
+                'TPD_8_Date' => 'required',
+                'TPD_8_ReadingTime' => 'required',
+                'TPD_8_SittingBP' => 'required',
+                'TPD_8_Pulse' => 'required',
+                'TPD_8_Respiration' => 'required',
+                'TPD_8_TakenBy' => 'required',
+
+                'TPD_12_Date' => 'required',
+                'TPD_12_ReadingTime' => 'required',
+                'TPD_12_SittingBP' => 'required',
+                'TPD_12_Pulse' => 'required',
+                'TPD_12_Respiration' => 'required',
+                'TPD_12_TakenBy' => 'required',
+
+                'TPD_36_Date' => 'required',
+                'TPD_36_ReadingTime' => 'required',
+                'TPD_36_SittingBP' => 'required',
+                'TPD_36_Pulse' => 'required',
+                'TPD_36_Respiration' => 'required',
+                'TPD_36_TakenBy' => 'required',
+
+                'TPD_48_Date' => 'required',
+                'TPD_48_ReadingTime' => 'required',
+                'TPD_48_SittingBP' => 'required',
+                'TPD_48_Pulse' => 'required',
+                'TPD_48_Respiration' => 'required',
+                'TPD_48_TakenBy' => 'required',
+            ],$custom);
 
             //TPD 1hr
             $findSP1_VitalSign->TPD_1_Date = $request->TPD_1_Date;
