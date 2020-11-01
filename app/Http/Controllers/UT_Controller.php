@@ -45,7 +45,7 @@ class UT_Controller extends Controller
         if($request->UPreg_male == 1){
             $validatedData=$this->validate($request,[
                 'UDrug_Laboratory' => 'required',
-                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
                 'UDrug_dateTaken' => 'required',
                 'UDrug_TestTime' => 'required',
                 'UDrug_ReadTime' => 'required',
@@ -67,9 +67,9 @@ class UT_Controller extends Controller
             //if subject is female
             $validatedData=$this->validate($request,[
                 'UPreg_Laboratory' => 'required',
-                'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Others',
+                'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Other',
                 'UDrug_Laboratory' => 'required',
-                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Others',
+                'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
                 'UPreg_dateTaken' => 'required',
                 'UPreg_TestTime' => 'required',
                 'UPreg_ReadTime' => 'required',

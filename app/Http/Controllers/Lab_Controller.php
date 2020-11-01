@@ -23,10 +23,10 @@ class Lab_Controller extends Controller
             'dateBTaken.required' => 'Please enter the date taken of Blood(Haematology and Chemistry)',
             'dateLMTaken.required' => 'Please enter the date taken of last meal taken',
             'TimeLMTaken.required' => 'Please enter the time of last meal taken',
-            'blood_laboratory.required' => 'Please select which laboratory does the Blood(Haematology and Chemistry) test conducted',
-            'blood_laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Blood(Haematology and Chemistry) test conducted',
+            'Blood_Laboratory.required' => 'Please select which laboratory does the Blood(Haematology and Chemistry) test conducted',
+            'Blood_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Blood(Haematology and Chemistry) test conducted',
             'dateUTaken.required' => 'Please enter the date taken for Urine(Microbiology) test',
-            'urine_laboratory.required' => 'Please select which laboratory does the Urine(Microbiology) test conducted',
+            'Urine_Laboratory.required' => 'Please select which laboratory does the Urine(Microbiology) test conducted',
             'urine_laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Urine(Microbiology) test conducted',
         ];
 
@@ -34,18 +34,18 @@ class Lab_Controller extends Controller
             'dateBTaken' => 'required',
             'dateLMTaken' => 'required',
             'TimeLMTaken' => 'required',
-            'blood_laboratory' => 'required',
-            'blood_laboratory_Text' => 'required_if:blood_laboratory,==,Others',
+            'Blood_Laboratory' => 'required',
+            'Blood_Laboratory_Text' => 'required_if:Blood_Laboratory,==,Other',
             'dateUTaken' => 'required',
-            'urine_laboratory' => 'required',
-            'urine_laboratory_Text' => 'required_if:urine_laboratory,==,Others',
+            'Urine_Laboratory' => 'required',
+            'Urine_Laboratory_Text' => 'required_if:Urine_Laboratory,==,Other',
         ],$custom);
 
-        $BloodLab = $request->blood_laboratory;
-        $BloodLabRepeat = $request->bloodrepeat_laboratory;
+        $BloodLab = $request->Blood_Laboratory;
+        $BloodLabRepeat = $request->BloodRepeat_Laboratory;
 
-        $UrineLab = $request->urine_laboratory;
-        $UrineLabRepeat = $request->urinerepeat_laboratory;
+        $UrineLab = $request->Urine_Laboratory;
+        $UrineLabRepeat = $request->UrineRepeat_Laboratory;
 
         $lt->dateBTaken = $request->dateBTaken;
 
@@ -54,9 +54,9 @@ class Lab_Controller extends Controller
         $lt->describemeal = $request->describemeal;
 
         if ($BloodLab == 'Other') {
-            $lt->Blood_Laboratory = $request->blood_laboratory_Text;
+            $lt->Blood_Laboratory = $request->Blood_Laboratory_Text;
         } else
-            $lt->Blood_Laboratory = $request->blood_laboratory;
+            $lt->Blood_Laboratory = $request->Blood_Laboratory;
 
         //Check if Repeat Blood Test id Required
         $lt->Blood_NAtest = $request->Blood_NAtest;
@@ -69,19 +69,19 @@ class Lab_Controller extends Controller
             $lt->Blood_RepeatTest = $request->Blood_RepeatTest;
             $lt->Repeat_dateBCollected = $request->Repeat_dateBCollected;
             if ($BloodLabRepeat == 'Other'){
-                $lt->BloodRepeat_Laboratory = $request->bloodrepeat_laboratory_Text;
+                $lt->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory_Text;
             }
             else{
-                $lt->BloodRepeat_Laboratory = $request->bloodrepeat_laboratory;
+                $lt->BloodRepeat_Laboratory = $request->BloodRepeat_Laboratory;
             }
         }
 
         $lt->dateUTaken = $request->dateUTaken;
 
         if ($UrineLab == 'Other')
-            $lt->Urine_Laboratory = $request->urine_laboratory_Text;
+            $lt->Urine_Laboratory = $request->Urine_Laboratory_Text;
         else
-            $lt->Urine_Laboratory = $request->urine_laboratory;
+            $lt->Urine_Laboratory = $request->Urine_Laboratory;
 
         //Check if Repeat Urine Test is Required
         $lt->Urine_NAtest = $request->Urine_NAtest;
@@ -94,9 +94,9 @@ class Lab_Controller extends Controller
             $lt->Urine_RepeatTest = $request->Urine_RepeatTest;
             $lt->Repeat_dateUCollected = $request->Repeat_dateUCollected;
             if ($UrineLabRepeat == 'Other'){
-                $lt->UrineRepeat_Laboratory = $request->urinerepeat_laboratory_txt;
+                $lt->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory_txt;
             }else{
-                $lt->UrineRepeat_Laboratory = $request->urinerepeat_laboratory;
+                $lt->UrineRepeat_Laboratory = $request->UrineRepeat_Laboratory;
             }
         }
 

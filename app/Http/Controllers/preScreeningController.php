@@ -68,7 +68,7 @@ class preScreeningController extends Controller
     public function store(Request $request)
     {
         $patient = new Patient;
-
+        //custom messages load for validation
         $custom = [
             'dateTaken.required' => 'Please input the date taken',
             'timeTaken.required' => 'Please input the time taken',
@@ -83,7 +83,7 @@ class preScreeningController extends Controller
             'maritalstatus.required' => 'Please choose between a maritial status',
             'MRNno.required' => 'MRN Hopsital Registration Number is required',
         ];
-
+        //validation for required fields
         $validatedData=$this->validate($request,[
             'dateTaken'  => 'required',
             'timeTaken' => 'required',
@@ -98,6 +98,7 @@ class preScreeningController extends Controller
             'MRNno'  => 'required',
         ], $custom);
 
+        //save subject pre-Screening details 
         $patient->id=$request->id;
         $patient->dateTaken=$request->dateTaken;
         $patient->timeTaken=$request->timeTaken;
