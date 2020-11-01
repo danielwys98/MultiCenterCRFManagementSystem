@@ -102,25 +102,21 @@ class studySpecificController extends Controller
         $study = studySpecific::find($id);
 
         //check if the studies is found
-        if($study != NULL)
-        {
+        if($study != NULL) {
             //find the subject who enrolled into this studies
-            $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
+            $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id', $id)->get();
 
-            if(count($findPatient)>0){
-                foreach($findPatient as $p)
-                {
+            if (count($findPatient) > 0) {
+                foreach ($findPatient as $p) {
                     $PatientList[] = $p->patient_id;
                 }
-                $oriPatientName =Patient::whereIn('id',$PatientList)->get()->pluck('name','id');
-
-
+                $oriPatientName = Patient::whereIn('id', $PatientList)->get()->pluck('name', 'id');
+            } else
+            {
+                $oriPatientName = NULL;
+            }
                 return view('studySpecific.edit',compact('study','oriPatientName'));
-            }
-            else{
-                alert()->error('Error!','No subject enrolled into this study!');
-                return back();
-            }
+
         }else
         {
             alert()->error('Error!','Study is not found in the database!');
