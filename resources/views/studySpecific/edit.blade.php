@@ -69,8 +69,13 @@
         <div class="form-group row">
             <div class="col-md-2">
                 <div>
+                    @if($oriPatientName != NULL)
                     {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
                     {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
+                    @else
+                        {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
+                        {!! Form::select('patient_id',['---'],null,['class'=>'form-control']) !!}
+                    @endif
                 </div>
             </div>
         </div>
