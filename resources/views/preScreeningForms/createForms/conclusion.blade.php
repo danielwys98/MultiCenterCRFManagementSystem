@@ -24,7 +24,7 @@
         <div>
             {!! Form::checkbox('NAbnormality', 'Yes','',['id'=>'NAbnormality']) !!}
             {!! Form::label('NAbnormality', 'The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive ……………………………, the study medication. ') !!}
-            {!! Form::select('study', $studies, null, ['class' => 'form-control']) !!}
+            {!! Form::select('study_id', $studies, null, ['class' => 'form-control']) !!}
         </div>
         <div>
             {!! Form::checkbox('abnormality', 'Yes','',['id'=>'abnormality']) !!}

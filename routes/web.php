@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Testing route
+Route::get('/testing','studySpecificController@testing')->name('testing');
+
+Route::post('/testing/{id}','studySpecificController@testPost')->name('testPost');
+//Testing route ends here
+
 Route::get('/','PagesController@loginPage');
 
 Route::get('/dashboard', 'PagesController@index')->name('dashboard');
