@@ -292,7 +292,7 @@
                 {!! Form::label('Conclusion', 'Conclusion: ') !!}
             </div>
             --}}
-{{--            TODO: Continue from here tomorrow try work with form-check bootstrap--}}{{--
+{{--
 
             {!! Form::radio('Conclusion', 'Normal') !!}
             {!! Form::label('Conclusion', 'Normal') !!}

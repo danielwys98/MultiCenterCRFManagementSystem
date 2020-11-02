@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['sp1PDAnalysis.store',$study->study_id]]) !!}
+{!! Form::open([$PDAnalysis,'route' => ['sp1PDAnalysis.update',$patient->id,$study_id]]) !!}
 {{-- Pharmacodynamic (PD) Analysis --}}
 <h3>Pharmacodynamic (PD) Analysis</h3>
 <div class="form-group row">
@@ -316,5 +316,5 @@
 </tr>
 </tbody>
 </table>
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
 {!! Form::close() !!}
