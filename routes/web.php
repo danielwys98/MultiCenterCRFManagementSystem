@@ -59,6 +59,7 @@ Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1Urin
 
 Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
 
+//this is to edit the studies detail and the subject study details
 Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
 

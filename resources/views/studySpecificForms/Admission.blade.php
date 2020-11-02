@@ -1,7 +1,6 @@
 {!! Form::open(['route' => ['sp1Admission.store',$study->study_id]]) !!}
 {{-- admission --}}
 <div class="form-group row">
-    <div id="Admission" class="tab-pane fade in active">
                 <div class="col">
                     @if(Auth::check() && Auth::user()->hasRole('Admin'))
                         <div>
@@ -15,7 +14,14 @@
                         </div>
                     @endif
                 </div>
-    </div>
+                <div class="col">
+                    <div class="col-md-1">
+                        <h4> {!! Form::label('studyPeriod', 'Study Period') !!}</h4>
+                    </div>
+                    <div class="col-md-1">
+                        <h4>{!! Form::select('studyPeriod',$studyPeriod,null) !!}</h4>
+                    </div>
+                </div>
 </div>
 <h3>Admission</h3>
 <hr>

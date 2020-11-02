@@ -31,14 +31,25 @@ class studySpecificController extends Controller
     }
 
     //This return to the studySpecific forms
-    public function studies($id)
+    public function studies($study_id)
     {
-        $study = studySpecific::find($id);
 
-        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
+        $study = studySpecific::find($study_id);
+        //find the amount of period of this study
+        $studyPeriodLimit = $study->studyPeriod_Count;
+        $period = 0;
+        $studyPeriod[0]='---';
 
-          if(count($findPatient)>0){
-              foreach($findPatient as $p)
+        for($i = 0; $i < $studyPeriodLimit; $i++)
+        {
+            $period++;
+            $studyPeriod[] =$period;
+        }
+
+        $findPSS = PatientStudySpecific::with(['Patient'])->where('study_id',$study_id)->get();
+
+          if(count($findPSS)>0){
+              foreach($findPSS as $p)
               {
                   $PatientList[] = $p->patient_id;
               }
@@ -52,7 +63,7 @@ class studySpecificController extends Controller
                   $PatientName[] = str_replace($name,$subject_count++,$name);
                   $newName = array_combine($PatientID,$PatientName);
               }
-              return view('studySpecific',compact('oriPatientName','newName','study'));
+              return view('studySpecific',compact('oriPatientName','newName','study','studyPeriod'));
           }
           else{
               alert()->error('Error!','No subject enrolled into this study!');
