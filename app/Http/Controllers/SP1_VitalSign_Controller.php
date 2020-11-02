@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Patient;
 use App\PatientStudySpecific;
 use App\SP1_VitalSigns;
 use App\StudyPeriod1;
@@ -17,15 +18,15 @@ class SP1_VitalSign_Controller extends Controller
     {
         $PID = $request->patient_id;
         //find Patient Study Specific table
-        $findPSS =PatientStudySpecific::with('StudyPeriod1')
-                                        ->where('patient_id',$PID)
-                                        ->where('study_id',$study_id)
-                                        ->first();
-        if($findPSS !=NULL){
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $PID)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
             //find SP1_ID to access the SP1_VitalSigns
             //find table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
-            $findSP1_VitalSign =SP1_VitalSigns::where('SP1_VitalSign_ID',$findSP1->SP1_VitalSign)->first();
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $findSP1_VitalSign = SP1_VitalSigns::where('SP1_VitalSign_ID', $findSP1->SP1_VitalSign)->first();
             //custom messages load for validation
             $custom = [
                 'TPD_1_Date.required' => 'Please enter the vital signs date of 1hr time post dose',
@@ -79,7 +80,7 @@ class SP1_VitalSign_Controller extends Controller
             ];
 
             //validation for required fields
-            $validatedData=$this->validate($request,[
+            $validatedData = $this->validate($request, [
                 'TPD_1_Date' => 'required',
                 'TPD_1_ReadingTime' => 'required',
                 'TPD_1_SittingBP' => 'required',
@@ -128,7 +129,7 @@ class SP1_VitalSign_Controller extends Controller
                 'TPD_48_Pulse' => 'required',
                 'TPD_48_Respiration' => 'required',
                 'TPD_48_TakenBy' => 'required',
-            ],$custom);
+            ], $custom);
 
             //TPD 1hr
             $findSP1_VitalSign->TPD_1_Date = $request->TPD_1_Date;
@@ -254,11 +255,37 @@ class SP1_VitalSign_Controller extends Controller
 
             $findSP1_VitalSign->save();
 
-            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Vital Signs!');
-        }else{
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input',$study_id));
+            return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Vital Signs!');
+        } else {
+            alert()->error('Error!', 'This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input', $study_id));
         }
+    }
 
+    public function update(Request $request,$patient_id,$study_id){
+        $flag=false;
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $VitalSign= SP1_VitalSigns::where('SP1_VitalSign_ID',$findSP1->SP1_VitalSign)->first();
+        }
+        $data = $request->except('_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $VitalSign[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag)
+        {
+            $VitalSign->save();
+            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+        }
     }
 }

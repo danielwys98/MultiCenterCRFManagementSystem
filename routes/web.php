@@ -115,7 +115,7 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
-//TCH
+//<<<<TCH
 Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
 
 Route::post('sp1_AQuestionnaire/{id}','SP1_AQuestionnaire_Controller@store')->name('sp1_AQuestionnaire.store');
@@ -126,7 +126,8 @@ Route::post('SP1_DQuestionnaire/{id}','SP1_DQuestionnaire_Controller@store')->na
 
 Route::post('SP1_VitalSign/{id}','SP1_VitalSign_Controller@store')->name('sp1_VitalSign.store');
 
-
+Route::put('SP1_VitalSign/{patient_id}/update/{study_id}','SP1_VitalSign_Controller@update')->name('sp1_VitalSign.update');
+//>>>>End
 Auth::routes();
 
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);
