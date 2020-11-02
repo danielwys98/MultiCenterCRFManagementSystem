@@ -45,10 +45,10 @@ Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp1Admi
 Route::put('sp_admisison/{patient_id}/update/{study_id}','SP1_Admission_Controller@update')->name('sp1Admission.update');
 //study specific Body Measurements and Vital Signs
 Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp1bmvs.store');
-Route::post('sp_bmvs/{patient_id}/update/{study_id}','SP1_BMVS_Controller@update')->name('sp1bmvs.update');
+Route::put('sp_bmvs/{patient_id}/update/{study_id}','SP1_BMVS_Controller@update')->name('sp1bmvs.update');
 //study specific Breath Alcohol Test
 Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp1bat.store');
-Route::post('sp_bat/{patient_id}/update/{study_id}','SP1_BAT_Controller@update')->name('sp1bat.update');
+Route::put('sp_bat/{patient_id}/update/{study_id}','SP1_BAT_Controller@update')->name('sp1bat.update');
 //study specific Admission Questionnaire
 
 //study specific Urine Pregnancy Test

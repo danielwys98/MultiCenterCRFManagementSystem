@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
-use App\SP1_Admission;
 use App\SP1_BMVS;
 use App\StudyPeriod1;
 use Illuminate\Http\Request;
@@ -86,7 +85,14 @@ class SP1_BMVS_Controller extends Controller
             $findSP1_BMVS->timeTaken=$request->timeTaken;
             $findSP1_BMVS->weight=$request->weight;
             $findSP1_BMVS->height=$request->height;
-            $findSP1_BMVS->bmi=$request->bmi;
+
+            if($request->height>0 && $request->weight>0) {
+
+                $findSP1_BMVS->bmi = $this->calculateBMI($request->height,$request->weight);
+            }else{
+                $findSP1_BMVS->bmi=0;
+            }
+
             $findSP1_BMVS->temperature=$request->temperature;
             //supine record
             $findSP1_BMVS->Supine_ReadingTime=$request->Supine_ReadingTime;
@@ -98,7 +104,7 @@ class SP1_BMVS_Controller extends Controller
             $findSP1_BMVS->Sitting_BP=$request->Sitting_BP;
             $findSP1_BMVS->Sitting_HR=$request->Sitting_HR;
             $findSP1_BMVS->Sitting_RespiratoryRate=$request->Sitting_RespiratoryRate;
-            //first repeated sitting record 
+            //first repeated sitting record
             $repeat1 = $request->SittingRepeat1;
             if($repeat1=='Sitting Repeated'){
                 //if sitting is repeated for the first time
@@ -138,5 +144,85 @@ class SP1_BMVS_Controller extends Controller
             return redirect(route('studySpecific.input',$study_id));
         }
 
+    }
+
+    public function update(Request $request, $patient_id, $study_id){
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $BMVS= SP1_BMVS::where('SP1_BMVS_ID',$findSP1->SP1_BMVS)->first();
+        }
+        //date, time, weight, height, bmi will be auto calculate, temperature
+        $BMVS->dateTaken=$request->dateTaken;
+        $BMVS->timeTaken=$request->timeTaken;
+        $BMVS->weight=$request->weight;
+        $BMVS->height=$request->height;
+
+        if($request->height>0 && $request->weight>0) {
+
+            $BMVS->bmi = $this->calculateBMI($request->height,$request->weight);
+        }else{
+            $BMVS->bmi=0;
+        }
+
+        $BMVS->temperature=$request->temperature;
+        //supine record
+        $BMVS->Supine_ReadingTime=$request->Supine_ReadingTime;
+        $BMVS->Supine_BP=$request->Supine_BP;
+        $BMVS->Supine_HR=$request->Supine_HR;
+        $BMVS->Supine_RespiratoryRate=$request->Supine_RespiratoryRate;
+        //sitting record
+        $BMVS->Sitting_ReadingTime=$request->Sitting_ReadingTime;
+        $BMVS->Sitting_BP=$request->Sitting_BP;
+        $BMVS->Sitting_HR=$request->Sitting_HR;
+        $BMVS->Sitting_RespiratoryRate=$request->Sitting_RespiratoryRate;
+        //first repeated sitting record
+        $repeat1 = $request->SittingRepeat1;
+        if($repeat1=='Sitting Repeated'){
+            //if sitting is repeated for the first time
+            $BMVS->Sitting_ReadingTime_Repeat1=$request->Sitting_ReadingTime_Repeat1;
+            $BMVS->Sitting_BP_Repeat1=$request->Sitting_BP_Repeat1;
+            $BMVS->Sitting_HR_Repeat1=$request->Sitting_HR_Repeat1;
+            $BMVS->Sitting_RespiratoryRate_Repeat1=$request->Sitting_RespiratoryRate_Repeat1;
+        }else{
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat1=NULL;
+            $BMVS->Sitting_BP_Repeat1=NULL;
+            $BMVS->Sitting_HR_Repeat1=NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat1=NULL;
+        }
+
+        $repeat2 = $request->SittingRepeat2;
+        if($repeat2=='Sitting Repeated'){
+            //if sitting is repeated for the second time
+            $BMVS->Sitting_ReadingTime_Repeat2=$request->Sitting_ReadingTime_Repeat2;
+            $BMVS->Sitting_BP_Repeat2=$request->Sitting_BP_Repeat2;
+            $BMVS->Sitting_HR_Repeat2=$request->Sitting_HR_Repeat2;
+            $BMVS->Sitting_RespiratoryRate_Repeat2=$request->Sitting_RespiratoryRate_Repeat2;
+        }else{
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat2=NULL;
+            $BMVS->Sitting_BP_Repeat2=NULL;
+            $BMVS->Sitting_HR_Repeat2=NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat2=NULL;
+        }
+        //physician's initial
+        $BMVS->Initial=$request->Initial;
+
+        $BMVS->save();
+        return redirect(route('studySpecific.admin'))->with('success','You have successfully save the study period details for Body Measurement and Vital Signs!');
+    }
+
+    public function calculateBMI($height,$weight){
+        $m_height=$height/100;
+        $actual_height=$m_height*$m_height;
+        $bmi=$weight/$actual_height;
+        $final_bmi=number_format($bmi,1);
+        return $final_bmi;
     }
 }

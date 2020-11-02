@@ -38,17 +38,17 @@
         {!! Form::label('Laboratory', 'Laboratory:') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre',(old('Laboratory')=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
-        {!! Form::label('Laboratory','Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'GH']) !!}
+        {!! Form::label('GH','Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('Laboratory','Others') !!}
-                {!! Form::label('Laboratory', 'Others') !!}
+                {!! Form::radio('Laboratory','Others','',['id'=>'Others']) !!}
+                {!! Form::label('Others', 'Others') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('Laboratory_text', old('laboratory'),['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('Laboratory_text','',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
@@ -64,17 +64,17 @@
     <tbody>
     <tr>
         <th scope="row">{!! Form::label('breathalcohol', 'Breath Alcohol: ') !!}</th>
-        <td>{!! Form::text('breathalcohol', old('breathalcohol'),['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
+        <td>{!! Form::text('breathalcohol','',['class'=>'form-control','placeholder'=>'0.000']) !!}</td>
         <td>
-            {!! Form::radio('breathalcoholResult', 'Positive',(old('breathalcoholResult')=='Positive')? 'checked' : '') !!}
+            {!! Form::radio('breathalcoholResult', 'Positive') !!}
             {!! Form::label('breathalcoholResult', 'Positive') !!}
-            {!! Form::radio('breathalcoholResult', 'Negative',(old('breathalcoholResult')=='Negative')? 'checked' : '') !!}
+            {!! Form::radio('breathalcoholResult', 'Negative') !!}
             {!! Form::label('breathalcoholResult', 'Negative') !!}
         </td>
     <tr>
         <th scope="row" colspan="2"
             class="text-lg-right">{!! Form::label('Transcribedby', 'Transcribed by: ') !!}</th>
-        <td>{!! Form::text('Usertranscribed', old('Usertranscribed'),['class'=>'form-control']) !!}</td>
+        <td>{!! Form::text('Usertranscribed','',['class'=>'form-control']) !!}</td>
     </tr>
     </tbody>
 </table>

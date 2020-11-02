@@ -16,20 +16,20 @@ class SP1_BAT_Controller extends Controller
     }
 
 
-    public function store(Request $request,$study_id)
+    public function store(Request $request, $study_id)
     {
         $PID = $request->patient_id;
         //find Patient Study Specific table
-        $findPSS =PatientStudySpecific::with('StudyPeriod1')
-                                        ->where('patient_id',$PID)
-                                        ->where('study_id',$study_id)
-                                        ->first();
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $PID)
+            ->where('study_id', $study_id)
+            ->first();
 
-        if($findPSS !=NULL){
+        if ($findPSS != NULL) {
             //find SP1_ID to access the SP1_Admission
             //find admission table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
-            $findSP1_BAT = SP1_BAT::where('SP1_BAT_ID',$findSP1->SP1_BATER)->first();
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $findSP1_BAT = SP1_BAT::where('SP1_BAT_ID', $findSP1->SP1_BATER)->first();
             //custom messages load for validation
             $custom = [
                 'dateTaken.required' => 'Please enter the date taken for breath alcohol test',
@@ -41,7 +41,7 @@ class SP1_BAT_Controller extends Controller
                 'Usertranscribed.required' => 'Please state the user transcribed',
             ];
             //validation for required fields
-            $validatedData=$this->validate($request,[
+            $validatedData = $this->validate($request, [
                 'dateTaken' => 'required',
                 'timeTaken' => 'required',
                 'Laboratory' => 'required',
@@ -49,16 +49,15 @@ class SP1_BAT_Controller extends Controller
                 'breathalcohol' => 'required',
                 'breathalcoholResult' => 'required',
                 'Usertranscribed' => 'required',
-            ],$custom);
+            ], $custom);
 
             //date and time
             $findSP1_BAT->dateTaken = $request->dateTaken;
             $findSP1_BAT->timeTaken = $request->timeTaken;
             //laboratory
-            if($request->Laboratory == 'Others')
-            {//if lab is others, save text
+            if ($request->Laboratory == 'Others') {//if lab is others, save text
                 $findSP1_BAT->laboratory = $request->Laboratory_text;
-            }else{//if lab is selected
+            } else {//if lab is selected
                 $findSP1_BAT->laboratory = $request->Laboratory;
             }
             //breath alcohol record and user transcribed
@@ -68,12 +67,41 @@ class SP1_BAT_Controller extends Controller
 
             $findSP1_BAT->save();
 
-            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Breath Alcohol Test!');
-        }else{
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input',$study_id));
+            return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Breath Alcohol Test!');
+        } else {
+            alert()->error('Error!', 'This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input', $study_id));
         }
 
+    }
+
+    public function update(Request $request, $patient_id, $study_id)
+    {
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $patient_id)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $BAT = SP1_BAT::where('SP1_BAT_ID', $findSP1->SP1_BATER)->first();
+        }
+        //date and time
+        $BAT->dateTaken = $request->dateTaken;
+        $BAT->timeTaken = $request->timeTaken;
+        //laboratory
+        if ($request->Laboratory == 'Others') {
+            //if lab is others, save text
+            $BAT->laboratory = $request->Laboratory_text;
+        } else {//if lab is selected
+            $BAT->laboratory = $request->Laboratory;
+        }
+        //breath alcohol record and user transcribed
+        $BAT->breathalcohol = $request->breathalcohol;
+        $BAT->breathalcoholResult = $request->breathalcoholResult;
+        $BAT->Usertranscribed = $request->Usertranscribed;
+
+        $BAT->save();
+        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
     }
 
 }
