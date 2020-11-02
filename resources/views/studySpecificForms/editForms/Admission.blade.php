@@ -1,4 +1,4 @@
-{!! Form::model($admission,['route' => ['sp1Admission.update',$patient->id,$study_id]]) !!}
+{!! Form::model($Admission,['route' => ['sp1Admission.update',$patient->id,$study_id]]) !!}
     @method('PUT')
     @csrf
 <h3>Admission</h3>

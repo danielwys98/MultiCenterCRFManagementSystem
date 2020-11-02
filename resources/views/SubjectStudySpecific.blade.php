@@ -83,12 +83,12 @@
              <div id="PharmacodynamicPD" class="tab-pane fade">
                  @include('studySpecificForms.editForms.PharmacodynamicPD')
 
-             </div>
+             </div>--}}
             <div id="VitalSigns" class="tab-pane fade">
                 @include('studySpecificForms.editForms.VitalSigns')
             </div>
 
-             <div id="Discharge" class="tab-pane fade">
+            {{-- <div id="Discharge" class="tab-pane fade">
                 @include('studySpecificForms.editForms.Discharge')
 
              </div>
