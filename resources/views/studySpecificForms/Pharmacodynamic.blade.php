@@ -349,5 +349,6 @@
             <li>6- Other (specify)</li>
         </ul>
     </div>
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
 {!! Form::close() !!}

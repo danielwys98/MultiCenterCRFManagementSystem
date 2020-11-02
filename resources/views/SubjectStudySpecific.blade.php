@@ -55,35 +55,35 @@
 
             </div>
 
-           {{-- <div id="BAT" class="tab-pane fade">
+            <div id="BAT" class="tab-pane fade">
                 @include('studySpecificForms.editForms.BAT')
 
-             </div>
+            </div>
 
-             <div id="AQuestionnaire" class="tab-pane fade">
-                 @include('studySpecificForms.editForms.AQuestionnaire')
+            <div id="AQuestionnaire" class="tab-pane fade">
+                @include('studySpecificForms.editForms.AQuestionnaire')
 
-             </div>
+            </div>
 
-             <div id="UrineTest" class="tab-pane fade">
-                @include('studySpecificForms.editForms.UrineTest')
+            <div id="UrineTest" class="tab-pane fade">
+               @include('studySpecificForms.editForms.UrineTest')
 
-             </div>
+            </div>
 
-             <div id="Pharmacokinetic" class="tab-pane fade">
-                 @include('studySpecificForms.editForms.Pharmacokinetic')
+            <div id="Pharmacokinetic" class="tab-pane fade">
+                @include('studySpecificForms.editForms.Pharmacokinetic')
 
-             </div>
+            </div>
 
-             <div id="Pharmacodynamic" class="tab-pane fade">
-                @include('studySpecificForms.editForms.Pharmacodynamic')
+            <div id="Pharmacodynamic" class="tab-pane fade">
+               @include('studySpecificForms.editForms.Pharmacodynamic')
 
-             </div> --}}
+            </div>
 
-             <div id="PharmacodynamicPD" class="tab-pane fade">
-                 @include('studySpecificForms.editForms.PharmacodynamicPD')
+            <div id="PharmacodynamicPD" class="tab-pane fade">
+                @include('studySpecificForms.editForms.PharmacodynamicPD')
 
-             </div>
+            </div>
             <div id="VitalSigns" class="tab-pane fade">
                 @include('studySpecificForms.editForms.VitalSigns')
             </div>
@@ -91,22 +91,22 @@
             <div id="Discharge" class="tab-pane fade">
                 @include('studySpecificForms.editForms.Discharge')
 
-             </div>
+            </div>
 
-            {{-- <div id="DischargeQuestionnaire" class="tab-pane fade">
-                 @include('studySpecificForms.editForms.DischargeQuestionnaire')
+            <div id="DischargeQuestionnaire" class="tab-pane fade">
+                @include('studySpecificForms.editForms.DischargeQuestionnaire')
 
-             </div>
+            </div>
 
-             <div id="IQuestionnaire36" class="tab-pane fade">
-                @include('studySpecificForms.editForms.IQuestionnaire36')
+            <div id="IQuestionnaire36" class="tab-pane fade">
+               @include('studySpecificForms.editForms.IQuestionnaire36')
 
-             </div>
+            </div>
 
-             <div id="IQuestionnaire48" class="tab-pane fade">
-                 @include('studySpecificForms.editForms.IQuestionnaire48')
+            <div id="IQuestionnaire48" class="tab-pane fade">
+                @include('studySpecificForms.editForms.IQuestionnaire48')
 
-             </div>--}}
+            </div>
     </div>
     </div>
 @endsection
