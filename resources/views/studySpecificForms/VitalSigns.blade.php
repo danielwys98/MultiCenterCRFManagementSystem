@@ -1,4 +1,6 @@
 {!! Form::open(['route' => ['sp1_VitalSign.store',$study->study_id]]) !!}
+@method('POST')
+@csrf
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">
         <div class="col">

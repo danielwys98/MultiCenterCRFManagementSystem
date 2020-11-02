@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['sp1Pharmocokinetic.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp1Pharmocokinetic.update',$study->study_id]]) !!}
 {{-- Pharmacokinetic Blood Sampling --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">
