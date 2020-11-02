@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['sp1IQuestionnaire48.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['spIQuestionnaire48.store',$study->study_id]]) !!}
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

@@ -15,7 +15,7 @@
                     @endif
                 </div>
                 <div class="col">
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                         <h4> {!! Form::label('studyPeriod', 'Study Period') !!}</h4>
                     </div>
                     <div class="col-md-1">

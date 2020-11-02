@@ -92,13 +92,26 @@ CS_Controller extends Controller
 
         if($savedData)
         {
-            //Initialise Patient Study Specific column for this subject
-            $PSS = new PatientStudySpecific;
-            $PSS->study_id=$request->study_id;
-            $PSS->patient_id=$id;
-            $PSS->save();
+            //Find study's subject count, need to check whether the study is full or not
+            $findStudy = studySpecific::where('study_id',$request->study_id)->first();
+            $studySubjectCount = $findStudy->patient_Count;
 
-            return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
+            //count how many subject has enroll into the unit
+            $PSS = PatientStudySpecific::where('study_id',$request->study_id)->get();
+
+            if(count($PSS)<$studySubjectCount)
+            {
+                //Initialise Patient Study Specific column for this subject
+                $PSS = new PatientStudySpecific;
+                $PSS->study_id=$request->study_id;
+                $PSS->patient_id=$id;
+                $PSS->save();
+                return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
+            }else
+            {
+                alert()->error('Error!','This study has reached the limit of subject!');
+                return redirect(route('preScreeningForms.create',$id));
+            }
         }
     }
     public function updateCS(Request $request,$id)
