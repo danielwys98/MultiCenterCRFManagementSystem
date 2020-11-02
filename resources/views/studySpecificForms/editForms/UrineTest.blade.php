@@ -17,7 +17,7 @@
         {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::date('UPreg_dateTaken', old("UPreg_ReadTime",$UrineTest->UPreg_dateTaken)) !!}
+        {!! Form::date('UPreg_dateTaken', old('UPreg_dateTaken',$UrineTest->UPreg_dateTaken)) !!}
     </div>
 </div>
 <div class=" form-group row">
@@ -25,7 +25,7 @@
         {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UPreg_TestTime', old("UPreg_ReadTime",$UrineTest->UPreg_TestTime)) !!}
+        {!! Form::time('UPreg_TestTime', old("UPreg_TestTime",$UrineTest->UPreg_TestTime)) !!}
     </div>
     <div class="offset-3 col-md-1">
         {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
@@ -45,11 +45,11 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('uPreg_Laboratory', 'Other',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre' && ($UrineTest->UPreg_Laboratory!=NULL))? 'checked' :''),['id'=>'Other'] !!}
+                {!! Form::radio('uPreg_Laboratory', 'Other',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre' && ($UrineTest->UPreg_Laboratory!=NULL))? 'checked' :'',['id'=>'Other']) !!}
                 {!! Form::label('Other', 'Other: ') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('uPreg_Laboratory_Text',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UPreg_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('uPreg_Laboratory_Text',(($UrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UPreg_Laboratory : '',['placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>

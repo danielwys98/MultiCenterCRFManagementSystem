@@ -150,4 +150,8 @@ class SP1_UrineTest_Controller extends Controller
         }
     }
 
+    public function update(Request $request,$study_id)
+    {
+        echo"HI";
+    }
 }
