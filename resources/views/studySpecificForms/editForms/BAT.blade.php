@@ -1,22 +1,7 @@
-{!! Form::open(['route' => ['sp1bat.store',$study->study_id]]) !!}
+{!! Form::model($BAT,['route' => ['sp1bat.update',$patient->id,$study_id]]) !!}
+    @method('PUT')
+    @csrf
 {{--breath alcohol test starts here--}}
-<div class="form-group row">
-    <div id="Admission" class="tab-pane fade in active">
-        <div class="col">
-            @if(Auth::check() && Auth::user()->hasRole('Admin'))
-                <div>
-                    {!! Form::label('SubjectName', 'Subject') !!}
-                    {!! Form::select('patient_id',$oriPatientName,null) !!}
-                </div>
-            @else
-                <div>
-                    {!! Form::label('Admin view of name', 'Subject') !!}
-                    {!! Form::select('patient_id',$newName,null) !!}
-                </div>
-            @endif
-        </div>
-    </div>
-</div>
 <h3>Breath Alcohol Test</h3>
 <p>(Transcribed from Breath Alcohol Test Logbook)</p>
 <hr>

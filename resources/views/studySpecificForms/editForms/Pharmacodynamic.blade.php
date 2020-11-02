@@ -1,4 +1,7 @@
-{!! Form::open(['route' => ['sp1pdynamicsampling.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sppdynamicsampling.store',$study->study_id]]) !!}
+{!! Form::model($IQ48,['route' => ['sppdynamicsampling.update',$patient->id,$study_id]]) !!}
+    @method('PUT')
+    @csrf
 {{-- Pharmacodynamic Blood Sampling --}}
 <div class="form-group row">
     @if(Auth::check() && Auth::user()->hasRole('Admin'))
