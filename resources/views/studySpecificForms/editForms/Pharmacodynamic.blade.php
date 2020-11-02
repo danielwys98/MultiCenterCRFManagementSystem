@@ -1,6 +1,6 @@
-{!! Form::model($IQ48,['route' => ['sppdynamicsampling.update',$patient->id,$study_id]]) !!}
-    @method('PUT')
-    @csrf
+{!! Form::model($PDynamic,['route' => ['sp_Pdynamicsampling.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 {{-- Pharmacodynamic Blood Sampling --}}
 <h3>Pharmacodynamic Blood Sampling</h3>
 <hr/>
@@ -338,5 +338,5 @@
             <li>6- Other (specify)</li>
         </ul>
     </div>
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
-{!! Form::close() !!}
+    {{Form::submit('Update',['class'=>'btn btn-primary'])}}
+    {!! Form::close() !!}

@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1bat.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_Bat.store',$study->study_id]]) !!}
+@csrf
 {{--breath alcohol test starts here--}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

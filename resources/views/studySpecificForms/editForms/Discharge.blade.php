@@ -1,4 +1,6 @@
-{!! Form::open([$Discharge,'route' => ['sp1_Discharge.update',$patient->id,$study_id]]) !!}
+{!! Form::model($Discharge,['route' => ['sp_Discharge.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 {{-- Discharge --}}
 <h3>Discharge</h3>
 <hr>

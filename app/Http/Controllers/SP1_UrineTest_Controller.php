@@ -150,8 +150,67 @@ class SP1_UrineTest_Controller extends Controller
         }
     }
 
-    public function update(Request $request,$study_id)
+    public function update(Request $request, $patient_id, $study_id)
     {
-        echo"HI";
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $patient_id)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
+        }
+        
+        $UT->UPreg_male=$request->UPreg_male;
+        if($request->UPreg_male == 1){
+            //if subject is male
+            $UT->UPreg_dateTaken=NULL;
+            $UT->UPreg_TestTime=NULL;
+            $UT->UPreg_ReadTime=NULL;
+            $UT->UPreg_Laboratory=NULL;
+            $UT->UPreg_hCG=NULL;
+            $UT->UPreg_hCG_Comment=NULL;
+            $UT->UPreg_Transcribedby=NULL;
+        }else{
+            //if subject is female
+            $UT->UPreg_dateTaken=$request->UPreg_dateTaken;
+            $UT->UPreg_TestTime=$request->UPreg_TestTime;
+            $UT->UPreg_ReadTime=$request->UPreg_ReadTime;
+            $upreglab = $request->UPreg_Laboratory;
+            if ($upreglab == 'Other') {
+                $UT->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
+            } else{
+                $UT->UPreg_Laboratory=$request->UPreg_Laboratory;
+            }
+            $UT->UPreg_hCG=$request->UPreg_hCG;
+            $UT->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
+            $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
+        }
+        //Urine Drug
+        $UT->UDrug_dateTaken=$request->UDrug_dateTaken;
+        $UT->UDrug_TestTime=$request->UDrug_TestTime;
+        $UT->UDrug_ReadTime=$request->UDrug_ReadTime;
+        $udruglab = $request->UDrug_Laboratory;
+        if ($udruglab == 'Other') {
+            $UT->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
+        } else{
+            $UT->UDrug_Laboratory=$request->UDrug_Laboratory;
+        }
+        $UT->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
+        $UT->UDrug_Methamphetamine_Comment=$request->UDrug_Methamphetamine_Comment;
+        $UT->UDrug_Morphine=$request->UDrug_Morphine;
+        $UT->UDrug_Morphine_Comment=$request->UDrug_Morphine_Comment;
+        $UT->UDrug_Marijuana=$request->UDrug_Marijuana;
+        $UT->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
+        $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
+        //Conclusion
+        $UT->inclusionYesNo=$request->inclusionYesNo;
+        $UT->Comments=$request->Comments;
+        $UT->subjectFit=$request->subjectFit;
+        $UT->physicianSign=$request->physicianSign;
+        $UT->physicianName=$request->physicianName;
+        
+        $UT->save();
+        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Urine Test!');
     }
 }

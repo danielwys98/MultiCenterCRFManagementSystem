@@ -1,5 +1,4 @@
-{!! Form::open(['route' => ['sp1_VitalSign.store',$study->study_id]]) !!}
-@method('POST')
+{!! Form::open(['route' => ['sp_VitalSign.store',$study->study_id]]) !!}
 @csrf
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

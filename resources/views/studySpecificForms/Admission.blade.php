@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1Admission.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_Admission.store',$study->study_id]]) !!}
+@csrf
 {{-- admission --}}
 <div class="form-group row">
                 <div class="col">

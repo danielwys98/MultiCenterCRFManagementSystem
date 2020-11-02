@@ -1,4 +1,4 @@
-{!! Form::model($BMVS,['route' => ['sp1bmvs.update',$patient->id,$study_id]]) !!}
+{!! Form::model($BMVS,['route' => ['sp_Bmvs.update',$patient->id,$study_id]]) !!}
 @method('PUT')
 @csrf
 {{-- body measurements and vital signs --}}

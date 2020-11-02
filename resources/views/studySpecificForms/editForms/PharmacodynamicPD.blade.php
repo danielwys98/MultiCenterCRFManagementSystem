@@ -1,4 +1,6 @@
-{!! Form::open([$PDAnalysis,'route' => ['sp1PDAnalysis.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PDAnalysis,['route' => ['sp_PDAnalysis.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 {{-- Pharmacodynamic (PD) Analysis --}}
 <h3>Pharmacodynamic (PD) Analysis</h3>
 <div class="form-group row">
@@ -316,5 +318,5 @@
 </tr>
 </tbody>
 </table>
-{!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
 {!! Form::close() !!}

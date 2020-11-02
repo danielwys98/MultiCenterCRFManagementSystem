@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['spIQuestionnaire48.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_IQuestionnaire48.store',$study->study_id]]) !!}
+@csrf
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

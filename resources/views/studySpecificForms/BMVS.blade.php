@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1bmvs.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_Bmvs.store',$study->study_id]]) !!}
+@csrf
 {{-- body measurements and vital signs --}}
     <div class="form-group row">
                 @if(Auth::check() && Auth::user()->hasRole('Admin'))

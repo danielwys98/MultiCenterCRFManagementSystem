@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1_Discharge.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_Discharge.store',$study->study_id]]) !!}
+@csrf
 {{-- Discharge --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

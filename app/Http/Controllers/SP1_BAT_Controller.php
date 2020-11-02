@@ -101,7 +101,7 @@ class SP1_BAT_Controller extends Controller
         $BAT->Usertranscribed = $request->Usertranscribed;
 
         $BAT->save();
-        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
+        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Breath Alcohol Test!');
     }
 
 }

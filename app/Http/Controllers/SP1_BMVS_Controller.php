@@ -215,7 +215,7 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial=$request->Initial;
 
         $BMVS->save();
-        return redirect(route('studySpecific.admin'))->with('success','You have successfully save the study period details for Body Measurement and Vital Signs!');
+        return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details for Body Measurement and Vital Signs!');
     }
 
     public function calculateBMI($height,$weight){

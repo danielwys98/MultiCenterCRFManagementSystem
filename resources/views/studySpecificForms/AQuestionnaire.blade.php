@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1_AQuestionnaire.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_AQuestionnaire.store',$study->study_id]]) !!}
+@csrf
 <div class="form-group row">
         <div class="col">
             @if(Auth::check() && Auth::user()->hasRole('Admin'))

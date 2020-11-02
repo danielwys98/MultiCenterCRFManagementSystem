@@ -1,6 +1,6 @@
-{!! Form::model($IQ36,['route' => ['spIQuestionnaire36.update',$patient->id,$study_id]]) !!}
-    @method('PUT')
-    @csrf
+{!! Form::model($IQ36,['route' => ['sp_IQuestionnaire36.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 {{-- Interim Questionnaire(36 hours Post Dose Visit) --}}
 <h3>Interim Questionnaire(36 hours Post Dose Visit)</h3>
 <hr>
@@ -36,10 +36,10 @@
         <p>1. Has the subject had any medical problems since last visit?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs01', 'Yes',(($IQ36->Interim36hrs01)=='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs01', 'Yes',(old('Interim36hrs01',$IQ36->interim36hrs01)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs01', 'No',(($IQ36->Interim36hrs01)=='No')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs01', 'No',(old('Interim36hrs01',$IQ36->interim36hrs01)!='Yes')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -57,10 +57,10 @@
             other medications deemed acceptable by the Investigator other than study drug since last visit?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs02', 'Yes',(($IQ36->Interim36hrs02)=='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs02', 'Yes',(old('Interim36hrs02',$IQ36->interim36hrs02)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs02', 'No',(($IQ36->Interim36hrs02)=='No')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs02', 'No',(old('Interim36hrs02',$IQ36->interim36hrs02)!='Yes')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -77,10 +77,10 @@
         <p>3. Has the subject consumed any alcohol or xanthine-containing food or beverage since last visit?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs03', 'Yes',(($IQ36->Interim36hrs03)=='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs03', 'Yes',(old('Interim36hrs03',$IQ36->nterim36hrs03)=='Yes' && ($IQ36->interim36hrs03!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs03', 'No',(($IQ36->Interim36hrs03)!='Yes' && ($IQ36->Interim36hrs03!=NULL))? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs03', 'No',(old('Interim36hrs03',$IQ36->interim36hrs03)!='Yes')? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -91,7 +91,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-    {!! Form::text('Interim36hrs03txt',(($IQ36->Interim36hrs03)!='Yes')? $IQ36->Interim36hrs03 : '',['class'=>'form-control']) !!}
+    {!! Form::text('Interim36hrs03txt',(old('Interim36hrs03', $IQ36->interim36hrs03)=='Yes')? $IQ36->interim36hrs03 : '',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -102,10 +102,10 @@
             last visit?/p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs04', 'Yes',(($IQ36->Interim36hrs04)=='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs04', 'Yes',(old('interim36hrs04',$IQ36->interim36hrs04)!='No' && ($IQ36->interim36hrs04!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs04', 'No',(($IQ36->Interim36hrs04)!='Yes' && ($IQ36->Interim36hrs04!=NULL))? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs04', 'No',(old('interim36hrs04',$IQ36->interim36hrs04)=='No')? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -113,7 +113,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        <p>If “Yes”, specify amount and time taken{!! Form::text('Interim36hrs04txt',(($IQ36->Interim36hrs04)!='Yes' && ($IQ36->Interim36hrs04!=NULL))? 'checked' :'',['class'=>'form-control']) !!}</p>
+        <p>If “Yes”, specify amount and time taken{!! Form::text('Interim36hrs04txt',(old('interim36hrs04',$IQ36->interim36hrs04)!='No' && ($IQ36->interim36hrs04!=NULL))? 'checked' :'',['class'=>'form-control']) !!}</p>
     </div>
 </div>
 <hr>

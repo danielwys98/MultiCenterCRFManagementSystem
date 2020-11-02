@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['spUrineTest.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_UrineTest.store',$study->study_id]]) !!}
+@csrf
 {{-- urine drugs for abuse test --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

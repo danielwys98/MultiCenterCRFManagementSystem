@@ -1,4 +1,6 @@
-{{--{!! Form::open(['route' => ['sp1AQuestionnaire.store',$study->study_id]]) !!}--}}
+{!! Form::model($AQuestionnaire,['route' => ['sp_AQuestionnaire.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 <h3>Admission Questionnaire</h3>
 <hr>
     <div class="form-group row">
@@ -410,7 +412,7 @@
             {!! Form::text('PhysicianInitial','',['class'=>'form-control']) !!}
         </div>
     </div>
-{{--{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
-{!! Form::close() !!}--}}
+    {{Form::submit('Update',['class'=>'btn btn-primary'])}}
+    {!! Form::close() !!}
 <br>
 

@@ -90,7 +90,7 @@ class CreateSP1PDynamicSamplingsTable extends Migration
             $table->text('S8_Comments')->nullable();
 
             //S9
-            $table->date('S9_Date_Day_1')->nullable();
+            $table->date('S9_Date_Day_2')->nullable();
             $table->time('S9_SST')->nullable();
             $table->time('S9_AST')->nullable();
             $table->text('S9_Collected')->nullable();

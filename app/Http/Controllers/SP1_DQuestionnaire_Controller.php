@@ -62,6 +62,32 @@ class SP1_DQuestionnaire_Controller extends Controller
             alert()->error('Error!','This subject is not enrolled into any study!');
             return redirect(route('studySpecific.input',$study_id));
         }
+    }
 
+    public function update(Request $request,$patient_id,$study_id){
+        $flag=false;
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $DQuestionnaire= SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID',$findSP1->SP1_DQuestionnaire)->first();
+        }
+        $data = $request->except('_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $DQuestionnaire[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag)
+        {
+            $DQuestionnaire->save();
+            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details for Discharge Questionnaire!');
+        }
     }
 }

@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sppdynamicsampling.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_Pdynamicsampling.store',$study->study_id]]) !!}
+@csrf
 {{-- Pharmacodynamic Blood Sampling --}}
 <div class="form-group row">
     @if(Auth::check() && Auth::user()->hasRole('Admin'))

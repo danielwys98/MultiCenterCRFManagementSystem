@@ -231,7 +231,7 @@ class SP1_PDynamicSampling_Controller extends Controller
                     $findSP1_PDS->S8_Comments = $request->S8_Comments;
                     //Actual Day 2 of Sample Code
                     //S9
-                    $findSP1_PDS->S9_Date_Day_1 = $request->S9_Date_Day_2;
+                    $findSP1_PDS->S9_Date_Day_2 = $request->S9_Date_Day_2;
                     $findSP1_PDS->S9_SST = $request->S9_SST;
                     $findSP1_PDS->S9_AST = $request->S9_AST;
                     $findSP1_PDS->S9_Collected = $request->S9_Collected;
@@ -253,5 +253,32 @@ class SP1_PDynamicSampling_Controller extends Controller
             return redirect(route('studySpecific.input',$study_id));
         }
 
+    }
+
+    public function update(Request $request,$patient_id,$study_id){
+        $flag=false;
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PDSampling= SP1_PDynamicSampling::where('SP1_PDynamicSampling_ID',$findSP1->SP1_PDynamicSampling)->first();
+        }
+        $data = $request->except('_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $PDSampling[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag)
+        {
+            $PDSampling->save();
+            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details for Pharmacodynamic Blood Sampling!');
+        }
     }
 }

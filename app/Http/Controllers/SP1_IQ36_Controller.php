@@ -121,4 +121,60 @@ class SP1_IQ36_Controller extends Controller
         }
     }
 
+    public function update(Request $request, $patient_id, $study_id)
+    {
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $patient_id)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
+        }
+        //date and time for interim questionnaire
+        $IQ36->dateTaken=$request->dateTaken;
+        $IQ36->timeTaken=$request->timeTaken;
+
+        //interim questionnaire
+        $IQ36->interim36hrs01=$request->Interim36hrs01;
+        $IQ36->interim36hrs02=$request->Interim36hrs02;
+        $iq03 = $request->Interim36hrs03;
+        if ($iq03 == 'No') {
+            $IQ36->interim36hrs03=$request->Interim36hrs03;
+        } else{
+            $IQ36->interim36hrs03=$request->Interim36hrs03txt;
+        }
+        $iq04 = $request->Interim36hrs04;
+        if ($iq04 == 'No') {
+            $IQ36->interim36hrs04=$request->Interim36hrs04;
+        } else{
+            $IQ36->interim36hrs04=$request->Interim36hrs04txt;
+        }
+        $iq05 = $request->Interim36hrs05;
+        if ($iq05 == 'No') {
+            $IQ36->interim36hrs05=$request->Interim36hrs05;
+        } else{
+            $IQ36->interim36hrs05=$request->Interim36hrs05txt;
+        }
+        $iq06 = $request->Interim36hrs06;
+        if ($iq06 == 'No') {
+            $IQ36->interim36hrs06=$request->Interim36hrs06;
+        } else{
+            $IQ36->interim36hrs06=$request->Interim36hrs06txt;
+        }
+        $iq07 = $request->Interim36hrs07;
+        if ($iq07 == 'No') {
+            $IQ36->interim36hrs07=$request->Interim36hrs07;
+        } else{
+            $IQ36->interim36hrs07=$request->Interim36hrs07txt;
+        }
+        $IQ36->interim36hrs08=$request->Interim36hrs08;
+
+        //interviewed and checked by
+        $IQ36->Interim36hrsInterviewedby=$request->Interim36hrsInterviewedby;
+        $IQ36->Interim36hrsCheckedby=$request->Interim36hrsCheckedby;
+
+        $IQ36->save();
+        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Interim Questionnaire(36 hours Post Dose Visit)!');
+    }
 }

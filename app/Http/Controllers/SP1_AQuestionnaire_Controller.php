@@ -184,6 +184,103 @@ class SP1_AQuestionnaire_Controller extends Controller
             alert()->error('Error!','This subject is not enrolled into any study!');
             return redirect(route('studySpecific.input',$study_id));
         }
+    }
 
+    public function update(Request $request, $patient_id, $study_id)
+    {
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $patient_id)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $AQ = SP1_AQuestionnaire::where('SP1_AQuestionnaire_ID', $findSP1->SP1_AQuestionnaire)->first();
+        }
+         //date and time for admission questionnaire
+         $AQ->AQuestionnaireDateTaken = $request->AQuestionnaireDateTaken;
+         $AQ->AQuestionnaireTimeTaken = $request->AQuestionnaireTimeTaken;
+
+         //admission questionnaire
+         //question 1
+         $AQ->MedicalProblem = $request->MedicalProblem;
+         if($request->MedicalProblem=='Yes') {
+             $AQ->MP_IncreaseRisk = $request->MP_IncreaseRisk;
+             $AQ->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
+         }
+
+         //question 2
+         $AQ->Medication = $request->Medication;
+         if($request->Medication=='Yes') {
+             $AQ->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
+             $AQ->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
+         }
+
+         //question 3
+         $AQ->Hospitalized = $request->Hospitalized;
+         if($request->Hospitalized=='Yes') {
+             $AQ->H_IncreaseRisk = $request->H_IncreaseRisk;
+             $AQ->H_InfluencePKinetic = $request->H_InfluencePKinetic;
+         }
+
+         //question 4
+         $q4=$request->alcoholXanthine;
+         if ($q4 == 'Yes') {
+             $AQ->AlcoholXanthine = $request->alcoholXanthine_Yes;
+             $AQ->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
+         } else{
+             $AQ->AlcoholXanthine = $request->alcoholXanthine;
+         }
+
+         //question 5
+         $q5=$request->poppySeeds;
+         if ($q5 == 'Yes') {
+             $AQ->PoppySeeds = $request->poppySeeds_Yes;
+             $AQ->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
+         } else{
+             $AQ->PoppySeeds = $request->poppySeeds;
+         }
+
+         //question 6
+         $q6=$request->grapefruitPomelo;
+         if ($q6 == 'Yes') {
+             $AQ->GrapefruitPomelo = $request->grapefruitPomelo_Yes;
+             $AQ->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
+         } else{
+             $AQ->GrapefruitPomelo = $request->grapefruitPomelo;
+         }
+
+         //question 7
+         $q7=$request->otherDrugStudies;
+         if ($q7 == 'Yes') {
+             $AQ->OtherDrugStudies = $request->otherDrugStudies_Yes;
+             $AQ->Other_IncreaseRisk = $request->Other_IncreaseRisk;
+             $AQ->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
+         } else{
+             $AQ->OtherDrugStudies = $request->otherDrugStudies;
+         }
+
+         //question 8
+         $q8=$request->bloodDono;
+         if ($q8 == 'Yes') {
+             $AQ->BloodDono = $request->bloodDono_Yes;
+             $AQ->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
+         } else{
+             $AQ->BloodDono = $request->bloodDono;
+         }
+
+         //question 9
+         $q9=$request->contraception;
+         if ($q9 == 'Yes') {
+             $AQ->Contraception = $request->contraception_Yes;
+             $AQ->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
+         } else{
+             $AQ->Contraception = $request->contraception;
+         }
+
+         //physician initial
+         $AQ->PhysicianInitial = $request->PhysicianInitial;
+
+         $AQ->save();
+        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Admission Questionnaire!');
     }
 }

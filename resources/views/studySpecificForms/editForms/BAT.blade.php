@@ -1,6 +1,6 @@
-{!! Form::model($BAT,['route' => ['sp1bat.update',$patient->id,$study_id]]) !!}
+{!! Form::model($BAT,['route' => ['sp_Bat.update',$patient->id,$study_id]]) !!}
 @method('PUT')
-    @csrf
+@csrf
 {{--breath alcohol test starts here--}}
 <h3>Breath Alcohol Test</h3>
 <p>(Transcribed from Breath Alcohol Test Logbook)</p>

@@ -1,6 +1,6 @@
-{!! Form::model($UrineTest,['route' => ['spUrineTest.update',$patient->id,$study_id]]) !!}
-    @method('PUT')
-    @csrf
+{!! Form::model($UrineTest,['route' => ['sp_UrineTest.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 {{-- urine drugs for abuse test --}}
 <h3>Urine Pregnancy Test</h3>
 <p>(Transcribed from Urine Logbook)</p>

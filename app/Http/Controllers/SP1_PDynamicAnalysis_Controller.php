@@ -263,7 +263,7 @@ class SP1_PDynamicAnalysis_Controller extends Controller
         if($flag)
         {
             $PDAnalysis->save();
-            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details for Pharmacodynamic Blood Analysis!');
         }
     }
 }

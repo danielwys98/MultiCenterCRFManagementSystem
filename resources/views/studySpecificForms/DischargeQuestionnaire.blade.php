@@ -1,4 +1,5 @@
-{!! Form::open(['route' => ['sp1_DQuestionnaire.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['sp_DQuestionnaire.store',$study->study_id]]) !!}
+@csrf
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">
         <div class="col">

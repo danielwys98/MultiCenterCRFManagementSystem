@@ -1,3 +1,6 @@
+{!! Form::model($DQuestionnaire,['route' => ['sp_DQuestionnaire.update',$patient->id,$study_id]]) !!}
+@method('PUT')
+@csrf
 <h3>Discharge Questionnaire</h3>
 <div class="form-group row">
     <div class="col-md-1">
@@ -69,3 +72,6 @@
         {!! Form::text('physicianName', '',['class'=>'form-control']) !!}
     </div>
 </div>
+
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
+{!! Form::close() !!}

@@ -1,4 +1,4 @@
-{!! Form::open([$VitalSign,'route' => ['sp1_VitalSign.update',$patient->id,$study_id]]) !!}
+{!! Form::open([$VitalSign,'route' => ['sp_VitalSign.update',$patient->id,$study_id]]) !!}
 @method('PUT')
 @csrf
 {{-- Vital Signs --}}
