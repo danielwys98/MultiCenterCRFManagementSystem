@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['sp1UrineTest.store',$study->study_id]]) !!}
+{!! Form::open(['route' => ['spUrineTest.store',$study->study_id]]) !!}
 {{-- urine drugs for abuse test --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">

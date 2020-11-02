@@ -51,13 +51,13 @@ Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp1bat.store');
 
 Route::post('sp_pdynamicsampling/{id}','SP1_PDynamicSampling_Controller@store')->name('sp1pdynamicsampling.store');
 
-Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('sp1IQuestionnaire36.store');
+Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('spIQuestionnaire36.store');
 
-Route::post('sp_iq48/{id}','SP1_IQ48_Controller@store')->name('sp1IQuestionnaire48.store');
+Route::post('sp_iq48/{id}','SP1_IQ48_Controller@store')->name('spIQuestionnaire48.store');
 
-Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1UrineTest.store');
+Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('spUrineTest.store');
 
-Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
+Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('spPharmocokinetic.store');
 
 //this is to edit the studies detail and the subject study details
 Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');

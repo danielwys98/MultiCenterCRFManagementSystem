@@ -1,4 +1,6 @@
-{!! Form::open(['route' => ['sp1UrineTest.store',$study->study_id]]) !!}
+{!! Form::model($spUrineTest,['route' => ['spUrineTest.update',$patient->id,$study_id]]) !!}
+    @method('PUT')
+    @csrf
 {{-- urine drugs for abuse test --}}
 <div class="form-group row">
     <div id="Admission" class="tab-pane fade in active">
@@ -32,7 +34,7 @@
         {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::date('UPreg_dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('UPreg_dateTaken', $spUrineTest->UPreg_dateTaken) !!}
     </div>
 </div>
 <div class=" form-group row">
@@ -40,31 +42,31 @@
         {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UPreg_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UPreg_TestTime', old("UPreg_ReadTime",$spUrineTest->UPreg_TestTime)) !!}
     </div>
     <div class="offset-3 col-md-1">
         {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UPreg_ReadTime', old("UPreg_ReadTime",$spUrineTest->UPreg_ReadTime)) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('uPreg_Laboratory', 'Laboratory: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'Sarawak General Hospital Heart Centre']) !!}
+        {!! Form::radio('uPreg_Laboratory', 'Sarawak General Hospital Heart Centre',(($spUrineTest->UPreg_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '',['id'=>'Sarawak General Hospital Heart Centre']) !!}
         {!! Form::label('Sarawak General Hospital Heart Centre', 'Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('UPreg_Laboratory', 'Other','',['id'=>'Other']) !!}
+                {!! Form::radio('uPreg_Laboratory', 'Other',(($spUrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre' && ($spUrineTest->UPreg_Laboratory!=NULL))? 'checked' :''),['id'=>'Other']) !!}
                 {!! Form::label('Other', 'Other: ') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UPreg_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('uPreg_Laboratory_Text',(($spUrineTest->UPreg_Laboratory)!='Sarawak General Hospital Heart Centre')? $spUrineTest->UPreg_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
@@ -95,7 +97,7 @@
             {!! Form::label('hCG_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UPreg_hCG_Comment', '',['class'=>'form-control']) !!}
+            {!! Form::text('UPreg_hCG_Comment',($spUrineTest->UPreg_hCG_Comment!=NULL)? $spUrineTest->UPreg_hCG_Comment:'',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -103,7 +105,7 @@
             {!! Form::label('UPreg_Transcribedby', 'Transcribed by (initial): ') !!}
         </th>
         <td>
-            {!! Form::text('UPreg_Transcribedby', '',['class'=>'form-control']) !!}
+            {!! Form::text('UPreg_Transcribedby',$spUrineTest->UPreg_Transcribedby,['class'=>'form-control']) !!}
         </td>
     </tr>
     </tbody>
@@ -116,7 +118,7 @@
         {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::date('UDrug_dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('UDrug_dateTaken',$spUrineTest->UDrug_dateTaken) !!}
     </div>
 </div>
 
@@ -125,13 +127,13 @@
         {!! Form::label('UDrug_TestTime', 'Test Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UDrug_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UDrug_TestTime',old("UPreg_ReadTime",$spUrineTest->UDrug_TestTime),['class'=>'form-control']) !!}
     </div>
     <div class=" offset-3 col-md-1">
         {!! Form::label('UDrug_ReadTime', 'Read Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UDrug_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UDrug_ReadTime',old("UPreg_ReadTime",$spUrineTest->UDrug_ReadTime),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
@@ -139,17 +141,17 @@
         {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($spUrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
         {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('UDrug_Laboratory', 'Other') !!}
+                {!! Form::radio('UDrug_Laboratory', 'Other',(($spUrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre' && ($spUrineTest->UDrug_Laboratory!=NULL))? 'checked' :'')) !!}
                 {!! Form::label('UDrug_Laboratory', 'Others') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UDrug_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('UDrug_Laboratory_Text',(($spUrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? $spUrineTest->UDrug_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
@@ -174,7 +176,7 @@
             {!! Form::label('UDrug_Methamphetamine_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Methamphetamine_Comment', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Methamphetamine_Comment',($spUrineTest->UDrug_Methamphetamine_Comment!=NULL)? $spUrineTest->UDrug_Methamphetamine_Comment:'',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -188,7 +190,7 @@
             {!! Form::label('UDrug_Morphine_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Morphine_Comment', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Morphine_Comment',($spUrineTest->UDrug_Morphine_Comment!=NULL)? $spUrineTest->UDrug_Morphine_Comment:'',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -202,7 +204,7 @@
             {!! Form::label('UDrug_Marijuana_N', 'Negative ') !!}
         </td>
         <td>
-            {!! Form::text('UDrug_Marijuana_Comment', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Marijuana_Comment',($spUrineTest->UDrug_Marijuana_Comment!=NULL)? $spUrineTest->UDrug_Marijuana_Comment:'',['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -210,7 +212,7 @@
             {!! Form::label('UDrug_Transcribedby', 'Transcribed by (initial): ') !!}
         </th>
         <td>
-            {!! Form::text('UDrug_Transcribedby', '',['class'=>'form-control']) !!}
+            {!! Form::text('UDrug_Transcribedby',$spUrineTest->UDrug_Transcribedby,['class'=>'form-control']) !!}
         </td>
     </tr>
     </tbody>
@@ -252,7 +254,7 @@
     </div>
     <div class="row">
         <div class="col-md-7">
-            {!! Form::textarea('Comments', '',['class'=>'form-control']) !!}
+            {!! Form::textarea('Comments',$spUrineTest->Comments,['class'=>'form-control']) !!}
         </div>
     </div>
 </div>
@@ -279,15 +281,15 @@
 <div class="form-group">
     <div class=" offset-5 col-md-3">
         {!! Form::label('physicianSign', 'Physician/Investigator’s Signature: ') !!}
-        {!! Form::text('physicianSign', '',['class'=>'form-control']) !!}
+        {!! Form::text('physicianSign',$spUrineTest->physicianSign,['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
     <div class=" offset-5 col-md-3">
         {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-        {!! Form::text('physicianName', '',['class'=>'form-control']) !!}
+        {!! Form::text('physicianName',$spUrineTest->physicianName,['class'=>'form-control']) !!}
     </div>
 </div>
 
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
 {!! Form::close() !!}
