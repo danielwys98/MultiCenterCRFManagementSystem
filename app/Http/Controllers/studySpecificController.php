@@ -31,14 +31,25 @@ class studySpecificController extends Controller
     }
 
     //This return to the studySpecific forms
-    public function studies($id)
+    public function studies($study_id)
     {
-        $study = studySpecific::find($id);
 
-        $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id',$id)->get();
+        $study = studySpecific::find($study_id);
+        //find the amount of period of this study
+        $studyPeriodLimit = $study->studyPeriod_Count;
+        $period = 0;
+        $studyPeriod[0]='---';
 
-          if(count($findPatient)>0){
-              foreach($findPatient as $p)
+        for($i = 0; $i < $studyPeriodLimit; $i++)
+        {
+            $period++;
+            $studyPeriod[] =$period;
+        }
+
+        $findPSS = PatientStudySpecific::with(['Patient'])->where('study_id',$study_id)->get();
+
+          if(count($findPSS)>0){
+              foreach($findPSS as $p)
               {
                   $PatientList[] = $p->patient_id;
               }
@@ -52,7 +63,7 @@ class studySpecificController extends Controller
                   $PatientName[] = str_replace($name,$subject_count++,$name);
                   $newName = array_combine($PatientID,$PatientName);
               }
-              return view('studySpecific',compact('oriPatientName','newName','study'));
+              return view('studySpecific',compact('oriPatientName','newName','study','studyPeriod'));
           }
           else{
               alert()->error('Error!','No subject enrolled into this study!');
@@ -82,8 +93,25 @@ class studySpecificController extends Controller
     //store studies' details
     public function store(Request $request)
     {
-        $study = new studySpecific();
+        $custom = [
+            'study_name.required' => 'Please enter the name of the study',
+            'timeTaken.required' => 'Please enter the time taken for study',
+            'dateTaken.required' => 'Please enter the date taken for the study',
+            'patient_Count.required' => 'Please enter the amount of subject can be enroll in the study',
+            'studyPeriod_Count.required' => 'Please enter amount of study period needed to be done in this study',
+            'MRNno.required' => 'Please enter the MRN number',
+        ];
+        //validation for required fields
+        $validatedData=$this->validate($request,[
+            'study_name' => 'required',
+            'timeTaken' => 'required',
+            'dateTaken' => 'required',
+            'patient_Count' => 'required',
+            'studyPeriod_Count' => 'required|numeric|min:1|max:4',
+            'MRNno' => 'required',
+        ],$custom);
 
+        $study = new studySpecific();
         $study->study_name=$request->study_name;
         $study->timeTaken = $request->timeTaken;
         $study->dateTaken=$request->dateTaken;
@@ -157,9 +185,51 @@ class studySpecificController extends Controller
 
 
     //Will be delete. just for testing purpose.
-    public function testing(Request $request,$study_id)
+    public function testing()
     {
-       dd($request);
+        //assuming the study_id is 4
+        $study_id = 4;
+
+        //get study's study period count
+        $study = studySpecific::where('study_id',$study_id)->first();
+        $studyPeriodLimit = $study->studyPeriod_Count;
+
+        $period = 0;
+      /*  $studyPeriod = array();
+        array_unshift($studyPeriod,"");*/
+        $studyPeriod[0]='---';
+
+        for($i = 0; $i < $studyPeriodLimit; $i++)
+        {
+            $period++;
+            $studyPeriod[] =$period;
+        }
+         return view('test',compact('study','studyPeriod'));
+    }
+
+    public function testPost(Request $request,$study_id)
+    {
+        $study = studySpecific::where('study_id',$study_id)->first();
+        $studyPeriodLimit = $study->studyPeriod_Count;
+        if($request->studyPeriod <= $studyPeriodLimit)
+        {
+           if($request->studyPeriod == 1)
+           {
+               echo "save SP1";
+           }else if($request->studyPeriod == 2)
+           {
+               echo "save SP2";
+           }else if($request->studyPeriod == 3)
+           {
+               echo "save SP3";
+           }else if($request->studyPeriod == 4)
+           {
+               echo "save SP4";
+           }else
+           {
+               echo "You did not select a study period";
+           }
+        }
 
     }
 

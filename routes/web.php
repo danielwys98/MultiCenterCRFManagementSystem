@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Testing route
+Route::get('/testing','studySpecificController@testing')->name('testing');
+
+Route::post('/testing/{id}','studySpecificController@testPost')->name('testPost');
+//Testing route ends here
+
 Route::get('/','PagesController@loginPage');
 
 Route::get('/dashboard', 'PagesController@index')->name('dashboard');
@@ -53,6 +59,7 @@ Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp1Urin
 
 Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp1Pharmocokinetic.store');
 
+//this is to edit the studies detail and the subject study details
 Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
 

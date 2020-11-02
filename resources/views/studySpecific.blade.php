@@ -54,16 +54,13 @@
             {{-- <div class="alert alert-success">
                 {{ session('Messages') }}
             </div> --}}
-            <script>
-                toast('Your Post as been submited!','success');
-            </script>
         @endif
         @if (session('ErrorMessages'))
             <div class="alert alert-danger">
                 {{ session('ErrorMessages') }}
             </div>
         @endif
-        
+
         <div class="tab-content">
             <div id="Admission" class="tab-pane fade in active">
                @include('studySpecificForms.Admission')

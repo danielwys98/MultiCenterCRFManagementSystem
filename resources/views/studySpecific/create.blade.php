@@ -1,8 +1,29 @@
  @extends('MasterLayout')
 
 @section('content')
-
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (session('Messages'))
+        {{-- <div class="alert alert-success">
+            {{ session('Messages') }}
+        </div> --}}
+        <script>
+            toast('Your Post as been submited!','success');
+        </script>
+    @endif
+    @if (session('ErrorMessages'))
+        <div class="alert alert-danger">
+            {{ session('ErrorMessages') }}
+        </div>
+    @endif
     <div class="container-fluid">
         <h3>Please fill in the belows to start creating a Study-Specific</h3>
         <hr>
