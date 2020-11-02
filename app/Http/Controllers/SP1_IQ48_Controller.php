@@ -78,31 +78,31 @@ class SP1_IQ48_Controller extends Controller
             $findSP1_IQ48->interim48hrs01=$request->Interim48hrs01;
             $findSP1_IQ48->interim48hrs02=$request->Interim48hrs02;
             $iq03 = $request->Interim48hrs03;
-            if ($iq03 == 'Yes') {
+            if ($iq03 == 'No') {
                 $findSP1_IQ48->interim48hrs03=$request->Interim48hrs03;
             } else{
                 $findSP1_IQ48->interim48hrs03=$request->Interim48hrs03txt;
             }
             $iq04 = $request->Interim48hrs04;
-            if ($iq04 == 'Yes') {
+            if ($iq04 == 'No') {
                 $findSP1_IQ48->interim48hrs04=$request->Interim48hrs04;
             } else{
                 $findSP1_IQ48->interim48hrs04=$request->Interim48hrs04txt;
             }
             $iq05 = $request->Interim48hrs05;
-            if ($iq05 == 'Yes') {
+            if ($iq05 == 'No') {
                 $findSP1_IQ48->interim48hrs05=$request->Interim48hrs05;
             } else{
                 $findSP1_IQ48->interim48hrs05=$request->Interim48hrs05txt;
             }
             $iq06 = $request->Interim48hrs06;
-            if ($iq06 == 'Yes') {
+            if ($iq06 == 'No') {
                 $findSP1_IQ48->interim48hrs06=$request->Interim48hrs06;
             } else{
                 $findSP1_IQ48->interim48hrs06=$request->Interim48hrs06txt;
             }
             $iq07 = $request->Interim48hrs07;
-            if ($iq07 == 'Yes') {
+            if ($iq07 == 'No') {
                 $findSP1_IQ48->interim48hrs07=$request->Interim48hrs07;
             } else{
                 $findSP1_IQ48->interim48hrs07=$request->Interim48hrs07txt;

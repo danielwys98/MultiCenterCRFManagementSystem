@@ -254,7 +254,7 @@ class SP1_VitalSign_Controller extends Controller
 
             $findSP1_VitalSign->save();
 
-            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Admission!');
+            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Vital Signs!');
         }else{
             alert()->error('Error!','This subject is not enrolled into any study!');
             return redirect(route('studySpecific.input',$study_id));

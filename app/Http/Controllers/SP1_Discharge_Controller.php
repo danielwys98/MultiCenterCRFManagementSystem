@@ -94,7 +94,7 @@ class SP1_Discharge_Controller extends Controller
 
             $findSP1_Discharge->save();
 
-            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Admission!');
+            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Discharge!');
         }else{
             alert()->error('Error!','This subject is not enrolled into any study!');
             return redirect(route('studySpecific.input',$study_id));
