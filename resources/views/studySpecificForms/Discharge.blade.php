@@ -69,9 +69,9 @@
     </tr>
     <tr>
         <th scope="row">
-            {!! Form::radio('SittingRepeat', 'NA','checked',['id'=>'SittingRepeatNA']) !!}
+            {!! Form::radio('SittingRepeat', 'No','checked',['id'=>'SittingRepeatNA']) !!}
             {!! Form::label('SittingRepeatNA','Not Applicable') !!}
-            {!! Form::radio('SittingRepeat', 'Sitting Repeated','',['id'=>'SittingRepeatYes']) !!}
+            {!! Form::radio('SittingRepeat', 'Yes','',['id'=>'SittingRepeatYes']) !!}
             {!! Form::label('SittingRepeatYes','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('SittingRepeat_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>

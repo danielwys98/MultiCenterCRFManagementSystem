@@ -73,17 +73,17 @@ class SP1_Discharge_Controller extends Controller
             $findSP1_Discharge->Sitting_HR = $request->Sitting_HR;
             $findSP1_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
 
-            //repeated sitting record 
+            //repeated sitting record
             $repeat = $request->SittingRepeat;
             $findSP1_Discharge->SittingRepeat = $request->SittingRepeat;
-            if($repeat=='Sitting Repeated'){
+            if($repeat=='Yes'){
                 //if sitting is repeated
                 $findSP1_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
                 $findSP1_Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
                 $findSP1_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
                 $findSP1_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
             }else{
-                //if sitting is repeated is non
+                //if sitting is repeated is NA
                 $findSP1_Discharge->SittingRepeat_ReadingTime = NULL;
                 $findSP1_Discharge->SittingRepeat_BP = NULL;
                 $findSP1_Discharge->SittingRepeat_HR = NULL;
@@ -100,6 +100,53 @@ class SP1_Discharge_Controller extends Controller
             return redirect(route('studySpecific.input',$study_id));
         }
 
+    }
+
+    public function update(Request $request,$patient_id,$study_id){
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $Discharge= SP1_Discharge::where('SP1_Discharge_ID',$findSP1->SP1_Discharge)->first();
+        }
+        $Discharge->DischargeDate = $request->DischargeDate;
+
+        $ud = $request->unscheduledDischarge;
+        if ($ud == 'Yes') {
+            $Discharge->UnscheduledDischarge=$request->unscheduledDischarge_Text;
+        } else{
+            $Discharge->UnscheduledDischarge=$request->unscheduledDischarge;
+        }
+        //sitting record
+        $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+        $Discharge->Sitting_BP = $request->Sitting_BP;
+        $Discharge->Sitting_HR = $request->Sitting_HR;
+        $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+
+        //repeated sitting record
+        $repeat = $request->SittingRepeat;
+        $Discharge->SittingRepeat = $request->sittingRepeat;
+        if($repeat=='Yes'){
+            //if sitting is repeated
+            $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
+            $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+            $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
+            $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
+        }else{
+            //if sitting is repeated is NA
+            $Discharge->SittingRepeat_ReadingTime = NULL;
+            $Discharge->SittingRepeat_BP = NULL;
+            $Discharge->SittingRepeat_HR = NULL;
+            $Discharge->SittingRepeat_RespiratoryRate = NULL;
+        }
+
+        $Discharge->Initial = $request->Initial;
+
+        $Discharge->save();
+        return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
     }
 
 }

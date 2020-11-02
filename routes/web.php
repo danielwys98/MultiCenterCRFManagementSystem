@@ -118,9 +118,13 @@ Route::put('serology/{serology}','ST_Controller@updateST')->name('update.serolog
 //<<<<TCH
 Route::post('sp1_PDAnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp1PDAnalysis.store');
 
+Route::post('sp1_PDAnalysis/{patient_id}/update/{study_id}','SP1_PDynamicAnalysis_Controller@update')->name('sp1PDAnalysis.update');
+
 Route::post('sp1_AQuestionnaire/{id}','SP1_AQuestionnaire_Controller@store')->name('sp1_AQuestionnaire.store');
 
 Route::post('sp1_Discharge/{id}','SP1_Discharge_Controller@store')->name('sp1_Discharge.store');
+
+Route::post('sp1_Discharge/{patient_id}/update/{study_id}','SP1_Discharge_Controller@update')->name('sp1_Discharge.update');
 
 Route::post('SP1_DQuestionnaire/{id}','SP1_DQuestionnaire_Controller@store')->name('sp1_DQuestionnaire.store');
 

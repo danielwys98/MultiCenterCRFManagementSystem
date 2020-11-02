@@ -100,7 +100,7 @@ class SP1_PDynamicAnalysis_Controller extends Controller
                 'pda_PD_Result' => 'required',
                 'pda_PD_Conducted' => 'required',
                 'pda_PD_Checked' => 'required',
-                
+
                 'pda_Date_Day_S1' => 'required',
                 'pda_S1_Time' => 'required',
                 'pda_S1_Result' => 'required',
@@ -238,6 +238,32 @@ class SP1_PDynamicAnalysis_Controller extends Controller
         } else {
             alert()->error('Error!', 'This subject is not enrolled into any study!');
             return redirect(route('studySpecific.input', $study_id));
+        }
+    }
+    public function update(Request $request,$patient_id,$study_id){
+        $flag=false;
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id',$patient_id)
+            ->where('study_id',$study_id)
+            ->first();
+        if($findPSS !=NULL)
+        {
+            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PDAnalysis= SP1_PDynamicAnalysis::where('SP1_PDynamicAnalysis_ID',$findSP1->SP1_PDynamicAnalysis)->first();
+        }
+        $data = $request->except('_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $PDAnalysis[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag)
+        {
+            $PDAnalysis->save();
+            return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
         }
     }
 }
