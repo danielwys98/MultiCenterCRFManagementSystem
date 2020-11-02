@@ -158,6 +158,24 @@ class studySpecificController extends Controller
     public function update(Request $request, $id)
     {
         $study = studySpecific::find($id);
+        $custom = [
+            'study_name.required' => 'Please enter the name of the study',
+            'timeTaken.required' => 'Please enter the time taken for study',
+            'dateTaken.required' => 'Please enter the date taken for the study',
+            'patient_Count.required' => 'Please enter the amount of subject can be enroll in the study',
+            'studyPeriod_Count.required' => 'Please enter amount of study period needed to be done in this study',
+            'MRNno.required' => 'Please enter the MRN number',
+        ];
+        //validation for required fields
+        $validatedData=$this->validate($request,[
+            'study_name' => 'required',
+            'timeTaken' => 'required',
+            'dateTaken' => 'required',
+            'patient_Count' => 'required',
+            'studyPeriod_Count' => 'required|numeric|min:1|max:4',
+            'MRNno' => 'required',
+        ],$custom);
+
         $data = $request->except('_token','_method');
         foreach($data as $key=>$value)
         {
@@ -169,7 +187,7 @@ class studySpecificController extends Controller
                 ]);
             }
         }
-        return redirect(route('studySpecific.index'))->with('success','You updated the study details!');
+        return redirect(route('studySpecific.edit',$study->study_id))->with('success','You updated the study details!');
     }
 
 

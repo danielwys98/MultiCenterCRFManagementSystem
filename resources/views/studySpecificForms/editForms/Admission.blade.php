@@ -8,13 +8,13 @@
             {!! Form::label('AdmissionDateTaken', 'Date Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::date('AdmissionDateTaken',old('AdmissionDateTaken',$admission->AdmissionDateTaken),['class'=>'form-control']) !!}
+            {!! Form::date('AdmissionDateTaken',old('AdmissionDateTaken',$Admission->AdmissionDateTaken),['class'=>'form-control']) !!}
         </div>
         <div class=" offset-3 col-md-1">
             {!! Form::label('AdmissionTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('AdmissionTimeTaken', old('AdmissionTimeTaken',$admission->AdmissionTimeTaken),['class'=>'form-control']) !!}
+            {!! Form::time('AdmissionTimeTaken', old('AdmissionTimeTaken',$Admission->AdmissionTimeTaken),['class'=>'form-control']) !!}
         </div>
     </div>
 
@@ -26,13 +26,13 @@
             {!! Form::label('ConsentDateTaken', 'Date Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::date('ConsentDateTaken',old('ConsentDateTaken',$admission->ConsentDateTaken),['class'=>'form-control']) !!}
+            {!! Form::date('ConsentDateTaken',old('ConsentDateTaken',$Admission->ConsentDateTaken),['class'=>'form-control']) !!}
         </div>
         <div class=" offset-3 col-md-1">
             {!! Form::label('ConsentTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('ConsentTimeTaken',old('ConsentTimeTaken',$admission->ConsentTimeTaken),['class'=>'form-control']) !!}
+            {!! Form::time('ConsentTimeTaken',old('ConsentTimeTaken',$Admission->ConsentTimeTaken),['class'=>'form-control']) !!}
         </div>
     </div>
 {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
