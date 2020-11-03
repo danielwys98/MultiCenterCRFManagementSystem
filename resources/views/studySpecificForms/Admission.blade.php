@@ -2,27 +2,37 @@
 @csrf
 {{-- admission --}}
 <div class="form-group row">
-                <div class="col">
-                    @if(Auth::check() && Auth::user()->hasRole('Admin'))
-                        <div>
-                            {!! Form::label('SubjectName', 'Subject') !!}
-                            {!! Form::select('patient_id',$oriPatientName,null) !!}
-                        </div>
-                    @else
-                        <div>
-                            {!! Form::label('Admin view of name', 'Subject') !!}
-                            {!! Form::select('patient_id',$newName,null) !!}
-                        </div>
-                    @endif
+    <div class="col-md-5">
+        @if(Auth::check() && Auth::user()->hasRole('Admin'))
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>{!! Form::label('SubjectName', 'Subject: ') !!}</h4>
                 </div>
-                <div class="col">
-                    <div class="col-md-2">
-                        <h4> {!! Form::label('studyPeriod', 'Study Period') !!}</h4>
-                    </div>
-                    <div class="col-md-1">
-                        <h4>{!! Form::select('studyPeriod',$studyPeriod,null) !!}</h4>
-                    </div>
+                <div class="col-md-6">
+                    {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
                 </div>
+            </div>
+        @else
+            <div class="row">
+                <div class="col-md-2">
+                    {!! Form::label('Admin view of name', 'Subject: ') !!}
+                </div>
+                <div class="col-md-8">
+                    {!! Form::select('patient_id',$newName,null,['class'=>'form-control']) !!}
+                </div>
+            </div>
+        @endif
+    </div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-md-4">
+                <h4> {!! Form::label('studyPeriod', 'Study Period: ') !!}</h4>
+            </div>
+            <div class="col-md-3">
+                <h4>{!! Form::select('studyPeriod',$studyPeriod,null,['class'=>'form-control']) !!}</h4>
+            </div>
+        </div>
+    </div>
 </div>
 <h3>Admission</h3>
 <hr>
