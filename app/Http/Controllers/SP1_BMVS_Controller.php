@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\PatientStudySpecific;
 use App\SP1_BMVS;
+use App\SP2_BMVS;
+use App\SP3_BMVS;
 use App\SP4_BMVS;
 use App\StudyPeriod1;
 use App\StudyPeriod2;
@@ -109,7 +111,7 @@ class SP1_BMVS_Controller extends Controller
                 return redirect(route('studySpecific.input', $study_id));
             }
         } elseif ($study_period == 4) {
-            if($this->storeSP3($findPSS,$request)){
+            if($this->storeSP4($findPSS,$request)){
                 return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Body Measurement and Vital Signs!');
             }else {
                 alert()->error('Error!', 'You have already key the data for this subject!');
@@ -123,11 +125,49 @@ class SP1_BMVS_Controller extends Controller
 
     public function update(Request $request, $patient_id, $study_id)
     {
-        $findPSS = PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id', $patient_id)
+        $study_period=$request->studyPeriod;
+        $findPSS = PatientStudySpecific::where('patient_id', $patient_id)
             ->where('study_id', $study_id)
             ->first();
+        if ($study_period == '---') {
+            alert()->error('Error!', 'This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input', $study_id));
 
+        } elseif ($study_period == 1) {
+            if($this->updateSP1($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
+              }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        } elseif ($study_period == 2) {
+            if($this->updateSP2($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        } elseif ($study_period == 3) {
+            if($this->updateSP3($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
+            }else {
+                alert()->error('Error!', 'You have already key the data for this subject!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        } elseif ($study_period == 4) {
+            if($this->updateSP4($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
+            }else {
+                alert()->error('Error!', 'You have already key the data for this subject!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        }else {
+            alert()->error('Error!', 'You did not select the study period!');
+            return redirect(route('studySpecific.input', $study_id));
+        }
+    }
+
+    public function updateSP1($findPSS, $request){
         if ($findPSS != NULL) {
             $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
             $BMVS = SP1_BMVS::where('SP1_BMVS_ID', $findSP1->SP1_BMVS)->first();
@@ -190,12 +230,209 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial = $request->Initial;
 
         $BMVS->save();
-        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
+    }
+
+    public function updateSP2($findPSS, $request)
+    {
+        if ($findPSS != NULL) {
+            $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
+            $BMVS = SP2_BMVS::where('SP2_BMVS_ID', $findSP2->SP2_BMVS)->first();
+        }
+        //date, time, weight, height, bmi will be auto calculate, temperature
+        $BMVS->dateTaken = $request->dateTaken;
+        $BMVS->timeTaken = $request->timeTaken;
+        $BMVS->weight = $request->weight;
+        $BMVS->height = $request->height;
+
+        if ($request->height > 0 && $request->weight > 0) {
+
+            $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
+        } else {
+            $BMVS->bmi = 0;
+        }
+
+        $BMVS->temperature = $request->temperature;
+        //supine record
+        $BMVS->Supine_ReadingTime = $request->Supine_ReadingTime;
+        $BMVS->Supine_BP = $request->Supine_BP;
+        $BMVS->Supine_HR = $request->Supine_HR;
+        $BMVS->Supine_RespiratoryRate = $request->Supine_RespiratoryRate;
+        //sitting record
+        $BMVS->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+        $BMVS->Sitting_BP = $request->Sitting_BP;
+        $BMVS->Sitting_HR = $request->Sitting_HR;
+        $BMVS->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+        //first repeated sitting record
+        $repeat1 = $request->SittingRepeat1;
+        if ($repeat1 == 'Sitting Repeated') {
+            //if sitting is repeated for the first time
+            $BMVS->Sitting_ReadingTime_Repeat1 = $request->Sitting_ReadingTime_Repeat1;
+            $BMVS->Sitting_BP_Repeat1 = $request->Sitting_BP_Repeat1;
+            $BMVS->Sitting_HR_Repeat1 = $request->Sitting_HR_Repeat1;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = $request->Sitting_RespiratoryRate_Repeat1;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+            $BMVS->Sitting_BP_Repeat1 = NULL;
+            $BMVS->Sitting_HR_Repeat1 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+        }
+
+        $repeat2 = $request->SittingRepeat2;
+        if ($repeat2 == 'Sitting Repeated') {
+            //if sitting is repeated for the second time
+            $BMVS->Sitting_ReadingTime_Repeat2 = $request->Sitting_ReadingTime_Repeat2;
+            $BMVS->Sitting_BP_Repeat2 = $request->Sitting_BP_Repeat2;
+            $BMVS->Sitting_HR_Repeat2 = $request->Sitting_HR_Repeat2;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = $request->Sitting_RespiratoryRate_Repeat2;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+            $BMVS->Sitting_BP_Repeat2 = NULL;
+            $BMVS->Sitting_HR_Repeat2 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+        }
+        //physician's initial
+        $BMVS->Initial = $request->Initial;
+
+        $BMVS->save();
+    }
+
+    public function updateSP3($findPSS, $request)
+    {
+        if ($findPSS != NULL) {
+            $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
+            $BMVS = SP3_BMVS::where('SP3_BMVS_ID', $findSP3->SP3_BMVS)->first();
+        }
+        //date, time, weight, height, bmi will be auto calculate, temperature
+        $BMVS->dateTaken = $request->dateTaken;
+        $BMVS->timeTaken = $request->timeTaken;
+        $BMVS->weight = $request->weight;
+        $BMVS->height = $request->height;
+
+        if ($request->height > 0 && $request->weight > 0) {
+
+            $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
+        } else {
+            $BMVS->bmi = 0;
+        }
+
+        $BMVS->temperature = $request->temperature;
+        //supine record
+        $BMVS->Supine_ReadingTime = $request->Supine_ReadingTime;
+        $BMVS->Supine_BP = $request->Supine_BP;
+        $BMVS->Supine_HR = $request->Supine_HR;
+        $BMVS->Supine_RespiratoryRate = $request->Supine_RespiratoryRate;
+        //sitting record
+        $BMVS->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+        $BMVS->Sitting_BP = $request->Sitting_BP;
+        $BMVS->Sitting_HR = $request->Sitting_HR;
+        $BMVS->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+        //first repeated sitting record
+        $repeat1 = $request->SittingRepeat1;
+        if ($repeat1 == 'Sitting Repeated') {
+            //if sitting is repeated for the first time
+            $BMVS->Sitting_ReadingTime_Repeat1 = $request->Sitting_ReadingTime_Repeat1;
+            $BMVS->Sitting_BP_Repeat1 = $request->Sitting_BP_Repeat1;
+            $BMVS->Sitting_HR_Repeat1 = $request->Sitting_HR_Repeat1;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = $request->Sitting_RespiratoryRate_Repeat1;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+            $BMVS->Sitting_BP_Repeat1 = NULL;
+            $BMVS->Sitting_HR_Repeat1 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+        }
+
+        $repeat2 = $request->SittingRepeat2;
+        if ($repeat2 == 'Sitting Repeated') {
+            //if sitting is repeated for the second time
+            $BMVS->Sitting_ReadingTime_Repeat2 = $request->Sitting_ReadingTime_Repeat2;
+            $BMVS->Sitting_BP_Repeat2 = $request->Sitting_BP_Repeat2;
+            $BMVS->Sitting_HR_Repeat2 = $request->Sitting_HR_Repeat2;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = $request->Sitting_RespiratoryRate_Repeat2;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+            $BMVS->Sitting_BP_Repeat2 = NULL;
+            $BMVS->Sitting_HR_Repeat2 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+        }
+        //physician's initial
+        $BMVS->Initial = $request->Initial;
+
+        $BMVS->save();
+    }
+
+    public function updateSP4($findPSS, $request)
+    {
+        if ($findPSS != NULL) {
+            $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
+            $BMVS = SP4_BMVS::where('SP4_BMVS_ID', $findSP4->SP4_BMVS)->first();
+        }
+        //date, time, weight, height, bmi will be auto calculate, temperature
+        $BMVS->dateTaken = $request->dateTaken;
+        $BMVS->timeTaken = $request->timeTaken;
+        $BMVS->weight = $request->weight;
+        $BMVS->height = $request->height;
+
+        if ($request->height > 0 && $request->weight > 0) {
+
+            $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
+        } else {
+            $BMVS->bmi = 0;
+        }
+
+        $BMVS->temperature = $request->temperature;
+        //supine record
+        $BMVS->Supine_ReadingTime = $request->Supine_ReadingTime;
+        $BMVS->Supine_BP = $request->Supine_BP;
+        $BMVS->Supine_HR = $request->Supine_HR;
+        $BMVS->Supine_RespiratoryRate = $request->Supine_RespiratoryRate;
+        //sitting record
+        $BMVS->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+        $BMVS->Sitting_BP = $request->Sitting_BP;
+        $BMVS->Sitting_HR = $request->Sitting_HR;
+        $BMVS->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+        //first repeated sitting record
+        $repeat1 = $request->SittingRepeat1;
+        if ($repeat1 == 'Sitting Repeated') {
+            //if sitting is repeated for the first time
+            $BMVS->Sitting_ReadingTime_Repeat1 = $request->Sitting_ReadingTime_Repeat1;
+            $BMVS->Sitting_BP_Repeat1 = $request->Sitting_BP_Repeat1;
+            $BMVS->Sitting_HR_Repeat1 = $request->Sitting_HR_Repeat1;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = $request->Sitting_RespiratoryRate_Repeat1;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+            $BMVS->Sitting_BP_Repeat1 = NULL;
+            $BMVS->Sitting_HR_Repeat1 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+        }
+
+        $repeat2 = $request->SittingRepeat2;
+        if ($repeat2 == 'Sitting Repeated') {
+            //if sitting is repeated for the second time
+            $BMVS->Sitting_ReadingTime_Repeat2 = $request->Sitting_ReadingTime_Repeat2;
+            $BMVS->Sitting_BP_Repeat2 = $request->Sitting_BP_Repeat2;
+            $BMVS->Sitting_HR_Repeat2 = $request->Sitting_HR_Repeat2;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = $request->Sitting_RespiratoryRate_Repeat2;
+        } else {
+            //if sitting is repeated is non
+            $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+            $BMVS->Sitting_BP_Repeat2 = NULL;
+            $BMVS->Sitting_HR_Repeat2 = NULL;
+            $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+        }
+        //physician's initial
+        $BMVS->Initial = $request->Initial;
+
+        $BMVS->save();
     }
 
     public function storeSP1($findPSS, $request)
     {
-        if ($findPSS != NULL && $findPSS->SP2_ID != NULL) {
+        if ($findPSS != NULL && $findPSS->SP1_ID != NULL) {
             //find SP1_ID to access the SP1_BMVS
             //find table and update it
             $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
@@ -274,7 +511,7 @@ class SP1_BMVS_Controller extends Controller
         if ($findPSS != NULL && $findPSS->SP2_ID != NULL) {
             //find SP2_ID to access the SP2_BMVS
             $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
-            $findSP2_BMVS = SP2_BMVS::where('SP1_BMVS_ID', $findSP2->SP2_BMVS)->first();
+            $findSP2_BMVS = SP2_BMVS::where('SP2_BMVS_ID', $findSP2->SP2_BMVS)->first();
 
 
             if ($findSP2_BMVS->dateTaken == NULL) {
@@ -346,7 +583,7 @@ class SP1_BMVS_Controller extends Controller
     }
 
     public function storeSP3($findPSS,$request){
-        if ($findPSS != NULL && $findPSS->SP2_ID != NULL) {
+        if ($findPSS != NULL && $findPSS->SP3_ID != NULL) {
             //find SP1_ID to access the SP1_BMVS
             //find table and update it
             $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
@@ -422,11 +659,11 @@ class SP1_BMVS_Controller extends Controller
     }
 
     public function storeSP4($findPSS,$request){
-        if ($findPSS != NULL && $findPSS->SP2_ID != NULL) {
+        if ($findPSS != NULL && $findPSS->SP4_ID != NULL) {
             //find SP1_ID to access the SP1_BMVS
             //find table and update it
             $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
-            $findSP4_BMVS = SP4_BMVS::where('SP3_BMVS_ID', $findSP4->SP4_BMVS)->first();
+            $findSP4_BMVS = SP4_BMVS::where('SP4_BMVS_ID', $findSP4->SP4_BMVS)->first();
 
 
             if ($findSP4_BMVS->dateTaken == NULL) {
@@ -505,4 +742,6 @@ class SP1_BMVS_Controller extends Controller
         $final_bmi = number_format($bmi, 1);
         return $final_bmi;
     }
+
+
 }

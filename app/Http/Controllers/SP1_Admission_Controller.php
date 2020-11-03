@@ -198,17 +198,57 @@ class SP1_Admission_Controller extends Controller
 
     public function update(Request $request,$patient_id,$study_id)
     {
-        $flag=false;
-        $findPSS = PatientStudySpecific::with('StudyPeriod1')
-                                        ->where('patient_id',$patient_id)
+        $study_period=$request->studyPeriod;
+        $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)
                                         ->first();
+        if ($study_period == '---') {
+            alert()->error('Error!', 'This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input', $study_id));
+
+        } elseif ($study_period == 1) {
+            if($this->updateSP1($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        } elseif ($study_period == 2) {
+            if($this->updateSP2($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        } elseif ($study_period == 3) {
+            if($this->updateSP3($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            }else {
+                alert()->error('Error!', 'You have already key the data for this subject!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        } elseif ($study_period == 4) {
+            if($this->updateSP4($findPSS,$request)){
+                return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            }else {
+                alert()->error('Error!', 'You have already key the data for this subject!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        }else {
+            alert()->error('Error!', 'You did not select the study period!');
+            return redirect(route('studySpecific.input', $study_id));
+        }
+
+    }
+
+    public function updateSP1($findPSS, $request){
+        $flag=false;
         if($findPSS !=NULL)
         {
             $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $admission = SP1_Admission::where('SP1_Admission_ID',$findSP1->SP1_Admission)->first();
         }
-        $data = $request->except('_token','_method');
+        $data = $request->except('patient_id','studyPeriod','_token','_method');
         foreach($data as $key=>$value)
         {
             if($value != NULL)
@@ -217,13 +257,85 @@ class SP1_Admission_Controller extends Controller
                 $flag=true;
             }
         }
-        if($flag)
-        {
+        if($flag) {
             $admission->save();
-          return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
+            return true;
         }
+        else{
+            return false;
+        }
+    }
 
+    public function updateSP2($findPSS, $request){
+        if($findPSS !=NULL)
+        {
+            $findSP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+            $admission = SP2_Admission::where('SP2_Admission_ID',$findSP2->SP2_Admission)->first();
+        }
+        $data = $request->except('patient_id','studyPeriod','_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $admission[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag) {
+            $admission->save();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
+    public function updateSP3($findPSS, $request){
+        if($findPSS !=NULL)
+        {
+            $findSP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+            $admission = SP3_Admission::where('SP3_Admission_ID',$findSP3->SP3_Admission)->first();
+        }
+        $data = $request->except('patient_id','studyPeriod','_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $admission[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag) {
+            $admission->save();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function updateSP4($findPSS, $request){
+        if($findPSS !=NULL)
+        {
+            $findSP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+            $admission = SP4_Admission::where('SP4_Admission_ID',$findSP4->SP4_Admission)->first();
+        }
+        $data = $request->except('patient_id','studyPeriod','_token','_method');
+        foreach($data as $key=>$value)
+        {
+            if($value != NULL)
+            {
+                $admission[$key]=$value;
+                $flag=true;
+            }
+        }
+        if($flag) {
+            $admission->save();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function bindingSP($pss,$study_period)
@@ -458,68 +570,68 @@ class SP1_Admission_Controller extends Controller
         $Admission = new SP3_Admission;
         $Admission->save();
 
-        /*//Initialise SP1_BMVS
-        $BMVS = new SP1_BMVS;
+        //Initialise SP1_BMVS
+        $BMVS = new SP3_BMVS;
         $BMVS->save();
 
         //Initialise SP1_BAT
-        $BAT=new SP1_BAT;
+        $BAT=new SP3_BAT;
         $BAT->save();
 
         //Initialise SP1_AQuestionnaire
-        $AQuestionnaire=new SP1_AQuestionnaire;
+        $AQuestionnaire=new SP3_AQuestionnaire;
         $AQuestionnaire->save();
 
         //Initialise SP1_UrineTest
-        $UrineTest = new SP1_UrineTest;
+        $UrineTest = new SP3_UrineTest;
         $UrineTest->save();
 
         //Initialise SP1_PKineticSampling
-        $PKineticSampling = new SP1_PKineticSampling;
+        $PKineticSampling = new SP3_PKineticSampling;
         $PKineticSampling->save();
 
         //Initialise SP1_PDynamicSampling
-        $PDynamicSampling = new SP1_PDynamicSampling();
+        $PDynamicSampling = new SP3_PDynamicSampling();
         $PDynamicSampling->save();
 
         //Initialise SP1_PDynamicAnalysis
-        $PDynamicAnalysis=new SP1_PDynamicAnalysis;
+        $PDynamicAnalysis=new SP3_PDynamicAnalysis;
         $PDynamicAnalysis->save();
 
         //Initialise SP1_VitalSign
-        $VitalSign=new SP1_VitalSigns;
+        $VitalSign=new SP3_VitalSigns;
         $VitalSign->save();
 
         //Initialise SP1_Discharge
-        $Discharge=new SP1_Discharge;
+        $Discharge=new SP3_Discharge;
         $Discharge->save();
 
         //Initialise SP1_DQuestionnaire
-        $DQuestionnaire=new SP1_DQuestionnaire;
+        $DQuestionnaire=new SP3_DQuestionnaire;
         $DQuestionnaire->save();
 
         //Initialise SP1_IQ36
-        $IQ36 = new SP1_IQ36;
+        $IQ36 = new SP3_IQ36;
         $IQ36->save();
 
         //Initialise SP1_IQ48
-        $IQ48 = new SP1_IQ48;
-        $IQ48->save();*/
+        $IQ48 = new SP3_IQ48;
+        $IQ48->save();
 
         //bind SP1's form into SP1
-        $SP3->SP3_Admission=$Admission->SP3_Admission_ID;
-        /*$SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
-        $SP1->SP1_BATER = $BAT->SP1_BAT_ID;
-        $SP1->SP1_AQuestionnaire=$AQuestionnaire->SP1_AQuestionnaire_ID;
-        $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
-        $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
-        $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
-        $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
-        $SP1->Sp1_DQuestionnaire=$DQuestionnaire->SP1_DQuestionnaire_ID;
-        $SP1->SP1_PDynamicSampling=$PDynamicSampling->SP1_PDynamicSampling_ID;
-        $SP1->SP1_VitalSign=$VitalSign->SP1_VitalSign_ID;
-        $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
-        $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;*/
+            $SP3->SP3_Admission=$Admission->SP3_Admission_ID;
+            $SP3->SP3_BMVS = $BMVS->SP3_BMVS_ID;
+            $SP3->SP3_BATER = $BAT->SP3_BAT_ID;
+            $SP3->SP3_AQuestionnaire=$AQuestionnaire->SP3_AQuestionnaire_ID;
+            $SP3->SP3_UrineTest = $UrineTest->SP3_UrineTest_ID;
+            $SP3->SP3_PKineticSampling = $PKineticSampling->SP3_PKineticSampling_ID;
+            $SP3->SP3_PDynamicAnalysis=$PDynamicAnalysis->SP3_PDynamicAnalysis_ID;
+            $SP3->SP3_Discharge=$Discharge->SP3_Discharge_ID;
+            $SP3->Sp3_DQuestionnaire=$DQuestionnaire->SP3_DQuestionnaire_ID;
+            $SP3->SP3_PDynamicSampling=$PDynamicSampling->SP3_PDynamicSampling_ID;
+            $SP3->SP3_VitalSign=$VitalSign->SP3_VitalSign_ID;
+            $SP3->SP3_IQ36 = $IQ36->SP3_IQ36_ID;
+            $SP3->SP3_IQ48 = $IQ48->SP3_IQ48_ID;
 
         $SP3->save();
 
@@ -540,68 +652,68 @@ class SP1_Admission_Controller extends Controller
             $Admission = new SP4_Admission;
             $Admission->save();
 
-            /*//Initialise SP1_BMVS
-            $BMVS = new SP1_BMVS;
+            //Initialise SP1_BMVS
+            $BMVS = new SP4_BMVS;
             $BMVS->save();
 
             //Initialise SP1_BAT
-            $BAT=new SP1_BAT;
+            $BAT=new SP4_BAT;
             $BAT->save();
 
             //Initialise SP1_AQuestionnaire
-            $AQuestionnaire=new SP1_AQuestionnaire;
+            $AQuestionnaire=new SP4_AQuestionnaire;
             $AQuestionnaire->save();
 
             //Initialise SP1_UrineTest
-            $UrineTest = new SP1_UrineTest;
+            $UrineTest = new SP4_UrineTest;
             $UrineTest->save();
 
             //Initialise SP1_PKineticSampling
-            $PKineticSampling = new SP1_PKineticSampling;
+            $PKineticSampling = new SP4_PKineticSampling;
             $PKineticSampling->save();
 
             //Initialise SP1_PDynamicSampling
-            $PDynamicSampling = new SP1_PDynamicSampling();
+            $PDynamicSampling = new SP4_PDynamicSampling();
             $PDynamicSampling->save();
 
             //Initialise SP1_PDynamicAnalysis
-            $PDynamicAnalysis=new SP1_PDynamicAnalysis;
+            $PDynamicAnalysis=new SP4_PDynamicAnalysis;
             $PDynamicAnalysis->save();
 
             //Initialise SP1_VitalSign
-            $VitalSign=new SP1_VitalSigns;
+            $VitalSign=new SP4_VitalSigns;
             $VitalSign->save();
 
             //Initialise SP1_Discharge
-            $Discharge=new SP1_Discharge;
+            $Discharge=new SP4_Discharge;
             $Discharge->save();
 
             //Initialise SP1_DQuestionnaire
-            $DQuestionnaire=new SP1_DQuestionnaire;
+            $DQuestionnaire=new SP4_DQuestionnaire;
             $DQuestionnaire->save();
 
             //Initialise SP1_IQ36
-            $IQ36 = new SP1_IQ36;
+            $IQ36 = new SP4_IQ36;
             $IQ36->save();
 
             //Initialise SP1_IQ48
-            $IQ48 = new SP1_IQ48;
-            $IQ48->save();*/
+            $IQ48 = new SP4_IQ48;
+            $IQ48->save();
 
             //bind SP1's form into SP1
             $SP4->SP4_Admission = $Admission->SP4_Admission_ID;
-            /*$SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
-            $SP1->SP1_BATER = $BAT->SP1_BAT_ID;
-            $SP1->SP1_AQuestionnaire=$AQuestionnaire->SP1_AQuestionnaire_ID;
-            $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
-            $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
-            $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
-            $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
-            $SP1->Sp1_DQuestionnaire=$DQuestionnaire->SP1_DQuestionnaire_ID;
-            $SP1->SP1_PDynamicSampling=$PDynamicSampling->SP1_PDynamicSampling_ID;
-            $SP1->SP1_VitalSign=$VitalSign->SP1_VitalSign_ID;
-            $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
-            $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;*/
+            $SP4->SP4_BMVS = $BMVS->SP4_BMVS_ID;
+            $SP4->SP4_BATER = $BAT->SP4_BAT_ID;
+            $SP4->SP4_AQuestionnaire=$AQuestionnaire->SP4_AQuestionnaire_ID;
+            $SP4->SP4_UrineTest = $UrineTest->SP4_UrineTest_ID;
+            $SP4->SP4_PKineticSampling = $PKineticSampling->SP4_PKineticSampling_ID;
+            $SP4->SP4_PDynamicAnalysis=$PDynamicAnalysis->SP4_PDynamicAnalysis_ID;
+            $SP4->SP4_Discharge=$Discharge->SP4_Discharge_ID;
+            $SP4->Sp4_DQuestionnaire=$DQuestionnaire->SP4_DQuestionnaire_ID;
+            $SP4->SP4_PDynamicSampling=$PDynamicSampling->SP4_PDynamicSampling_ID;
+            $SP4->SP4_VitalSign=$VitalSign->SP4_VitalSign_ID;
+            $SP4->SP4_IQ36 = $IQ36->SP4_IQ36_ID;
+            $SP4->SP4_IQ48 = $IQ48->SP4_IQ48_ID;
 
             $SP4->save();
 
