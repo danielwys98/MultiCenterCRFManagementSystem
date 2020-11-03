@@ -214,7 +214,7 @@ class SP1_VitalSign_Controller extends Controller
         }
     }
 
-    //store SP1_BAT
+    //store SP1_VitalSigns
     public function storeSP1($PSS,$request){
         if($PSS !=NULL && $PSS->SP1_ID != NULL){
             //find admission table and update it
@@ -223,7 +223,7 @@ class SP1_VitalSign_Controller extends Controller
 
             if($VitalSign->TPD_1_Date == NULL){
                 $flag=false;
-                $data = $request->except('_token','_method');
+                $data = $request->except('patient_id','studyPeriod','_token','_method');
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
@@ -242,7 +242,7 @@ class SP1_VitalSign_Controller extends Controller
         return false;
     }
 
-    //store SP2_BAT
+    //store SP2_VitalSigns
     public function storeSP2($PSS,$request){
         if($PSS !=NULL && $PSS->SP2_ID != NULL){
             //find admission table and update it
@@ -251,7 +251,7 @@ class SP1_VitalSign_Controller extends Controller
 
             if($VitalSign->TPD_1_Date == NULL){
                 $flag=false;
-                $data = $request->except('_token','_method');
+                $data = $request->except('patient_id','studyPeriod','_token','_method');
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
@@ -270,7 +270,7 @@ class SP1_VitalSign_Controller extends Controller
         return false;
     }
 
-    //store SP3_BAT
+    //store SP3_VitalSigns
     public function storeSP3($PSS,$request){
         if($PSS !=NULL && $PSS->SP3_ID != NULL){
             //find admission table and update it
@@ -279,7 +279,7 @@ class SP1_VitalSign_Controller extends Controller
 
             if($VitalSign->TPD_1_Date == NULL){
                 $flag=false;
-                $data = $request->except('_token','_method');
+                $data = $request->except('patient_id','studyPeriod','_token','_method');
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
@@ -298,7 +298,7 @@ class SP1_VitalSign_Controller extends Controller
         return false;
     }
 
-    //store SP4_BAT
+    //store SP4_VitalSigns
     public function storeSP4($PSS,$request){
         if($PSS !=NULL && $PSS->SP4_ID != NULL){
             //find admission table and update it
@@ -307,7 +307,7 @@ class SP1_VitalSign_Controller extends Controller
 
             if($VitalSign->TPD_1_Date == NULL){
                 $flag=false;
-                $data = $request->except('_token','_method');
+                $data = $request->except('patient_id','studyPeriod','_token','_method');
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
@@ -326,7 +326,7 @@ class SP1_VitalSign_Controller extends Controller
         return false;
     }
 
-    //update SP1_BAT
+    //update SP1_VitalSigns
     public function updateSP1($PSS,$request){
         if($PSS !=NULL){
             //find admission table and update it
@@ -334,7 +334,7 @@ class SP1_VitalSign_Controller extends Controller
             $VitalSign = SP1_VitalSigns::where('SP1_VitalSign_ID', $findSP1->SP1_VitalSign)->first();
 
             $flag=false;
-            $data = $request->except('_token','_method');
+            $data = $request->except('patient_id','studyPeriod','_token','_method');
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {
@@ -351,7 +351,7 @@ class SP1_VitalSign_Controller extends Controller
         }
     }
 
-    //update SP2_BAT
+    //update SP2_VitalSigns
     public function updateSP2($PSS,$request){
         if($PSS !=NULL){
             //find admission table and update it
@@ -359,7 +359,7 @@ class SP1_VitalSign_Controller extends Controller
             $VitalSign = SP2_VitalSigns::where('SP2_VitalSign_ID', $findSP2->SP2_VitalSign)->first();
 
             $flag=false;
-            $data = $request->except('_token','_method');
+            $data = $request->except('patient_id','studyPeriod','_token','_method');
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {
@@ -376,7 +376,7 @@ class SP1_VitalSign_Controller extends Controller
         }
     }
 
-    //update SP3_BAT
+    //update SP3_VitalSigns
     public function updateSP3($PSS,$request){
         if($PSS !=NULL){
             //find admission table and update it
@@ -384,7 +384,7 @@ class SP1_VitalSign_Controller extends Controller
             $VitalSign = SP3_VitalSigns::where('SP3_VitalSign_ID', $findSP3->SP3_VitalSign)->first();
 
             $flag=false;
-            $data = $request->except('_token','_method');
+            $data = $request->except('patient_id','studyPeriod','_token','_method');
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {
@@ -401,7 +401,7 @@ class SP1_VitalSign_Controller extends Controller
         }
     }
 
-    //update SP4_BAT
+    //update SP4_VitalSigns
     public function updateSP4($PSS,$request){
         if($PSS !=NULL){
             //find admission table and update it
@@ -409,7 +409,7 @@ class SP1_VitalSign_Controller extends Controller
             $VitalSign = SP4_VitalSigns::where('SP4_VitalSign_ID', $findSP4->SP4_VitalSign)->first();
 
             $flag=false;
-            $data = $request->except('_token','_method');
+            $data = $request->except('patient_id','studyPeriod','_token','_method');
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {
