@@ -2,7 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Patient;
+use App\studySpecific;
+use App\PatientStudySpecific;
+use DB;
+//study period model
+use App\StudyPeriod1;
+use App\StudyPeriod2;
+use App\StudyPeriod3;
+use App\StudyPeriod4;
+//sp1 model
+use App\SP1_Admission;
 use App\SP1_AQuestionnaire;
 use App\SP1_BAT;
 use App\SP1_BMVS;
@@ -15,18 +26,49 @@ use App\SP1_PDynamicSampling;
 use App\SP1_PKineticSampling;
 use App\SP1_UrineTest;
 use App\SP1_VitalSigns;
+//sp2 model
 use App\SP2_Admission;
+use App\SP2_AQuestionnaire;
+use App\SP2_BAT;
+use App\SP2_BMVS;
+use App\SP2_Discharge;
+use App\SP2_DQuestionnaire;
+use App\SP2_IQ36;
+use App\SP2_IQ48;
+use App\SP2_PDynamicAnalysis;
+use App\SP2_PDynamicSampling;
+use App\SP2_PKineticSampling;
+use App\SP2_UrineTest;
+use App\SP2_VitalSigns;
+//sp3 model
 use App\SP3_Admission;
+use App\SP3_AQuestionnaire;
+use App\SP3_BAT;
+use App\SP3_BMVS;
+use App\SP3_Discharge;
+use App\SP3_DQuestionnaire;
+use App\SP3_IQ36;
+use App\SP3_IQ48;
+use App\SP3_PDynamicAnalysis;
+use App\SP3_PDynamicSampling;
+use App\SP3_PKineticSampling;
+use App\SP3_UrineTest;
+use App\SP3_VitalSigns;
+//sp4 model
 use App\SP4_Admission;
-use App\StudyPeriod2;
-use App\StudyPeriod3;
-use App\StudyPeriod4;
-use App\studySpecific;
-use Illuminate\Http\Request;
-use App\PatientStudySpecific;
-use App\StudyPeriod1;
-use App\SP1_Admission;
-use DB;
+use App\SP4_AQuestionnaire;
+use App\SP4_BAT;
+use App\SP4_BMVS;
+use App\SP4_Discharge;
+use App\SP4_DQuestionnaire;
+use App\SP4_IQ36;
+use App\SP4_IQ48;
+use App\SP4_PDynamicAnalysis;
+use App\SP4_PDynamicSampling;
+use App\SP4_PKineticSampling;
+use App\SP4_UrineTest;
+use App\SP4_VitalSigns;
+
 use Alert;
 use Psr\Log\NullLogger;
 
