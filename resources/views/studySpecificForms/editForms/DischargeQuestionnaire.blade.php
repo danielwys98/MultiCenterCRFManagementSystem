@@ -7,7 +7,7 @@
         {!! Form::label('time', 'Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->timeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -25,10 +25,10 @@
         <p>1. Is the subject oriented and has steady gait?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('DischargeQues1', 'Yes') !!}</p>
+        <p>{!! Form::radio('Oriented', 'Yes',(($DQuestionnaire->Oriented)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('DischargeQues1', 'No') !!}</p>
+        <p>{!! Form::radio('Oriented', 'No',(($DQuestionnaire->Oriented)=='No')? 'checked' : '') !!}</p>
     </div>
 </div>
 <hr>
@@ -37,10 +37,10 @@
         <p>2. Is the subject fit for discharge?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('DischargeQues1', 'Yes') !!}</p>
+        <p>{!! Form::radio('ReadyDischarge', 'Yes',(($DQuestionnaire->ReadyDischarge)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('DischargeQues1', 'No') !!}</p>
+        <p>{!! Form::radio('ReadyDischarge', 'No',(($DQuestionnaire->ReadyDischarge)=='Yes')? 'checked' : '') !!}</p>
     </div>
 </div>
 <hr>
@@ -57,19 +57,19 @@
 </div>
 <div class="row">
     <div class="col-md-8">
-        {!! Form::textarea('Remarks', '',['class'=>'form-control']) !!}
+        {!! Form::textarea('Remarks',old("Remarks",$DQuestionnaire->Remarks),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianSign', 'Physician/Investigator’s Signature: ') !!}
-        {!! Form::text('physicianSign', '',['class'=>'form-control']) !!}
+        {!! Form::text('physicianSign',old("physicianSign",$DQuestionnaire->PhysicianSign),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-        {!! Form::text('physicianName', '',['class'=>'form-control']) !!}
+        {!! Form::text('physicianName',old("physicianName",$DQuestionnaire->PhysicianName),['class'=>'form-control']) !!}
     </div>
 </div>
 

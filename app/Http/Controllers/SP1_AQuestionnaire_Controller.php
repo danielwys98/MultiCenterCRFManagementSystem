@@ -104,6 +104,9 @@ class SP1_AQuestionnaire_Controller extends Controller
             if($request->MedicalProblem=='Yes') {
                 $findSP1_AQuestionnaire->MP_IncreaseRisk = $request->MP_IncreaseRisk;
                 $findSP1_AQuestionnaire->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
+            }else{
+                $findSP1_AQuestionnaire->MP_IncreaseRisk = NULL;
+                $findSP1_AQuestionnaire->MP_InfluencePKinetic = NULL;
             }
 
             //question 2
@@ -111,6 +114,9 @@ class SP1_AQuestionnaire_Controller extends Controller
             if($request->Medication=='Yes') {
                 $findSP1_AQuestionnaire->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
                 $findSP1_AQuestionnaire->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
+            }else{
+                $findSP1_AQuestionnaire->Medi_IncreaseRisk = NULL;
+                $findSP1_AQuestionnaire->Medi_InfluencePKinetic = NULL;
             }
 
             //question 3
@@ -118,6 +124,9 @@ class SP1_AQuestionnaire_Controller extends Controller
             if($request->Hospitalized=='Yes') {
                 $findSP1_AQuestionnaire->H_IncreaseRisk = $request->H_IncreaseRisk;
                 $findSP1_AQuestionnaire->H_InfluencePKinetic = $request->H_InfluencePKinetic;
+            }else{
+                $findSP1_AQuestionnaire->H_IncreaseRisk = NULL;
+                $findSP1_AQuestionnaire->H_InfluencePKinetic = NULL;
             }
 
             //question 4
@@ -127,6 +136,7 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
             } else{
                 $findSP1_AQuestionnaire->AlcoholXanthine = $request->alcoholXanthine;
+                $findSP1_AQuestionnaire->AX_InfluencePKinetic = NULL;
             }
 
             //question 5
@@ -136,6 +146,7 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
             } else{
                 $findSP1_AQuestionnaire->PoppySeeds = $request->poppySeeds;
+                $findSP1_AQuestionnaire->PS_InfluencePKinetic = NULL;
             }
 
             //question 6
@@ -145,6 +156,7 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
             } else{
                 $findSP1_AQuestionnaire->GrapefruitPomelo = $request->grapefruitPomelo;
+                $findSP1_AQuestionnaire->Grapefruit_InfluencePKinetic = NULL;
             }
 
             //question 7
@@ -155,6 +167,9 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
             } else{
                 $findSP1_AQuestionnaire->OtherDrugStudies = $request->otherDrugStudies;
+
+                $findSP1_AQuestionnaire->Other_IncreaseRisk = NULL;
+                $findSP1_AQuestionnaire->Other_InfluencePKinetic = NULL;
             }
 
             //question 8
@@ -164,6 +179,7 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
             } else{
                 $findSP1_AQuestionnaire->BloodDono = $request->bloodDono;
+                $findSP1_AQuestionnaire->Blood_IncreaseRisk = NULL;
             }
 
             //question 9
@@ -173,6 +189,7 @@ class SP1_AQuestionnaire_Controller extends Controller
                 $findSP1_AQuestionnaire->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
             } else{
                 $findSP1_AQuestionnaire->Contraception = $request->contraception;
+                $findSP1_AQuestionnaire->Contraception_IncreaseRisk = NULL;
             }
 
             //physician initial
@@ -206,6 +223,9 @@ class SP1_AQuestionnaire_Controller extends Controller
          if($request->MedicalProblem=='Yes') {
              $AQ->MP_IncreaseRisk = $request->MP_IncreaseRisk;
              $AQ->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
+         }else{
+             $AQ->MP_IncreaseRisk = NULL;
+             $AQ->MP_InfluencePKinetic = NULL;
          }
 
          //question 2
@@ -213,6 +233,10 @@ class SP1_AQuestionnaire_Controller extends Controller
          if($request->Medication=='Yes') {
              $AQ->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
              $AQ->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
+         }else{
+             $AQ->Medi_IncreaseRisk = NULL;
+             $AQ->Medi_InfluencePKinetic = NULL;
+
          }
 
          //question 3
@@ -220,6 +244,10 @@ class SP1_AQuestionnaire_Controller extends Controller
          if($request->Hospitalized=='Yes') {
              $AQ->H_IncreaseRisk = $request->H_IncreaseRisk;
              $AQ->H_InfluencePKinetic = $request->H_InfluencePKinetic;
+         }else{
+             $AQ->H_IncreaseRisk = NULL;
+             $AQ->H_InfluencePKinetic = NULL;
+
          }
 
          //question 4
@@ -229,6 +257,7 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
          } else{
              $AQ->AlcoholXanthine = $request->alcoholXanthine;
+             $AQ->AX_InfluencePKinetic = NULL;
          }
 
          //question 5
@@ -238,6 +267,7 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
          } else{
              $AQ->PoppySeeds = $request->poppySeeds;
+             $AQ->PS_InfluencePKinetic = NULL;
          }
 
          //question 6
@@ -247,6 +277,7 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
          } else{
              $AQ->GrapefruitPomelo = $request->grapefruitPomelo;
+             $AQ->Grapefruit_InfluencePKinetic = NULL;
          }
 
          //question 7
@@ -257,6 +288,8 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
          } else{
              $AQ->OtherDrugStudies = $request->otherDrugStudies;
+             $AQ->Other_IncreaseRisk = NULL;
+             $AQ->Other_InfluencePKinetic = NULL;
          }
 
          //question 8
@@ -266,6 +299,8 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
          } else{
              $AQ->BloodDono = $request->bloodDono;
+             $AQ->Blood_IncreaseRisk = NULL;
+
          }
 
          //question 9
@@ -275,6 +310,7 @@ class SP1_AQuestionnaire_Controller extends Controller
              $AQ->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
          } else{
              $AQ->Contraception = $request->contraception;
+             $AQ->Contraception_IncreaseRisk = NULL;
          }
 
          //physician initial

@@ -60,14 +60,14 @@
             {!! Form::label('SittingRepeatYes','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('SittingRepeat_ReadingTime', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('SittingRepeat_BP',old('SittingRepeat_BP',$Discharge->SittingRepeat_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('SittingRepeat_HR',old('SittingRepeat_HR',$Discharge->SittingRepeat_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::number('SittingRepeat_RespiratoryRate',old('SittingRepeat_RespiratoryRate',$Discharge->SittingRepeat_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
     <tr>
         <th scope="row" colspan="4"
             class="text-lg-right">{!! Form::label('Initial','Initial: ',['class'=>'text-md-left']) !!}</th>
-        <td>{!! Form::text('Initial', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::text('Initial',old('Initial',$Discharge->Initial),['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
     </tbody>
 </table>

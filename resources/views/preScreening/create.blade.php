@@ -90,13 +90,13 @@
                 {!! Form::radio('Ethnicity', 'Indian','',['id'=>'Indian']) !!}
                 {!! Form::label('Indian', 'Indian') !!}
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-2">
                         {!! Form::radio('Ethnicity', 'Others','',['id'=>'otherRaces']) !!}
                         {!! Form::label('otherRaces', 'Others') !!}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         {!! Form::text('Ethnic_Text','',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
