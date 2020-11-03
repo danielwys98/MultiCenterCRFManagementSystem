@@ -10,7 +10,7 @@ class SP3_Admission extends Model
     protected $primaryKey='SP3_Admission_ID';
     public function StudyPeriod1()
     {
-        return $this->belongsTo('App\StudyPeriod1','SP3_Admission','SP3_Admission_ID');
+        return $this->belongsTo('App\StudyPeriod3','SP3_Admission','SP3_Admission_ID');
 
     }
 }
