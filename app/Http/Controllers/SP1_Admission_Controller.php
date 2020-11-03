@@ -375,68 +375,68 @@ class SP1_Admission_Controller extends Controller
             $Admission = new SP2_Admission;
             $Admission->save();
 
-            /*//Initialise SP1_BMVS
-            $BMVS = new SP1_BMVS;
+            //Initialise SP1_BMVS
+            $BMVS = new SP2_BMVS;
             $BMVS->save();
 
             //Initialise SP1_BAT
-            $BAT=new SP1_BAT;
+            $BAT=new SP2_BAT;
             $BAT->save();
 
             //Initialise SP1_AQuestionnaire
-            $AQuestionnaire=new SP1_AQuestionnaire;
+            $AQuestionnaire=new SP2_AQuestionnaire;
             $AQuestionnaire->save();
 
             //Initialise SP1_UrineTest
-            $UrineTest = new SP1_UrineTest;
+            $UrineTest = new SP2_UrineTest;
             $UrineTest->save();
 
             //Initialise SP1_PKineticSampling
-            $PKineticSampling = new SP1_PKineticSampling;
+            $PKineticSampling = new SP2_PKineticSampling;
             $PKineticSampling->save();
 
             //Initialise SP1_PDynamicSampling
-            $PDynamicSampling = new SP1_PDynamicSampling();
+            $PDynamicSampling = new SP2_PDynamicSampling;
             $PDynamicSampling->save();
 
             //Initialise SP1_PDynamicAnalysis
-            $PDynamicAnalysis=new SP1_PDynamicAnalysis;
+            $PDynamicAnalysis=new SP2_PDynamicAnalysis;
             $PDynamicAnalysis->save();
 
             //Initialise SP1_VitalSign
-            $VitalSign=new SP1_VitalSigns;
+            $VitalSign=new SP2_VitalSigns;
             $VitalSign->save();
 
             //Initialise SP1_Discharge
-            $Discharge=new SP1_Discharge;
+            $Discharge=new SP2_Discharge;
             $Discharge->save();
 
             //Initialise SP1_DQuestionnaire
-            $DQuestionnaire=new SP1_DQuestionnaire;
+            $DQuestionnaire=new SP2_DQuestionnaire;
             $DQuestionnaire->save();
 
             //Initialise SP1_IQ36
-            $IQ36 = new SP1_IQ36;
+            $IQ36 = new SP2_IQ36;
             $IQ36->save();
 
             //Initialise SP1_IQ48
-            $IQ48 = new SP1_IQ48;
-            $IQ48->save();*/
+            $IQ48 = new SP2_IQ48;
+            $IQ48->save();
 
             //bind SP1's form into SP1
             $SP2->SP2_Admission=$Admission->SP2_Admission_ID;
-            /*$SP1->SP1_BMVS = $BMVS->SP1_BMVS_ID;
-            $SP1->SP1_BATER = $BAT->SP1_BAT_ID;
-            $SP1->SP1_AQuestionnaire=$AQuestionnaire->SP1_AQuestionnaire_ID;
-            $SP1->SP1_UrineTest = $UrineTest->SP1_UrineTest_ID;
-            $SP1->SP1_PKineticSampling = $PKineticSampling->SP1_PKineticSampling_ID;
-            $SP1->SP1_PDynamicAnalysis=$PDynamicAnalysis->SP1_PDynamicAnalysis_ID;
-            $SP1->SP1_Discharge=$Discharge->SP1_Discharge_ID;
-            $SP1->Sp1_DQuestionnaire=$DQuestionnaire->SP1_DQuestionnaire_ID;
-            $SP1->SP1_PDynamicSampling=$PDynamicSampling->SP1_PDynamicSampling_ID;
-            $SP1->SP1_VitalSign=$VitalSign->SP1_VitalSign_ID;
-            $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
-            $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;*/
+            $SP2->SP2_BMVS = $BMVS->SP2_BMVS_ID;
+            $SP2->SP2_BATER = $BAT->SP2_BAT_ID;
+            $SP2->SP2_AQuestionnaire=$AQuestionnaire->SP2_AQuestionnaire_ID;
+            $SP2->SP2_UrineTest = $UrineTest->SP2_UrineTest_ID;
+            $SP2->SP2_PKineticSampling = $PKineticSampling->SP2_PKineticSampling_ID;
+            $SP2->SP2_PDynamicAnalysis=$PDynamicAnalysis->SP2_PDynamicAnalysis_ID;
+            $SP2->SP2_Discharge=$Discharge->SP2_Discharge_ID;
+            $SP2->Sp2_DQuestionnaire=$DQuestionnaire->SP2_DQuestionnaire_ID;
+            $SP2->SP2_PDynamicSampling=$PDynamicSampling->SP2_PDynamicSampling_ID;
+            $SP2->SP2_VitalSign=$VitalSign->SP2_VitalSign_ID;
+            $SP2->SP2_IQ36 = $IQ36->SP2_IQ36_ID;
+            $SP2->SP2_IQ48 = $IQ48->SP2_IQ48_ID;
 
             $SP2->save();
 
