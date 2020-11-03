@@ -34,15 +34,15 @@ class SP1_UrineTest_Controller extends Controller
             'UPreg_dateTaken.required' => 'Please enter the date taken for urine pregnancy test',
             'UPreg_TestTime.required' => 'Please enter the test time for urine pregnancy test',
             'UPreg_ReadTime.required' => 'Please enter the read time for urine pregnancy test',
-            'UPreg_Laboratory.required' => 'Please select which laboratory does the urine pregnancy test conducted',
-            'UPreg_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine pregnancy test conducted',
+            'uPreg_Laboratory.required' => 'Please select which laboratory does the urine pregnancy test conducted',
+            'uPreg_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine pregnancy test conducted',
             'UPreg_hCG.required' => 'Please select the results of hCG(Human chorionic gonadotropin) for urine pregnancy test',
             'UPreg_Transcribedby.required' => 'Please state the user transcribed for urine pregnancy test',
             'UDrug_dateTaken.required' => 'Please enter the date taken for urine drugs of abuse test',
             'UDrug_TestTime.required' => 'Please enter the test time for urine drugs of abuse test',
             'UDrug_ReadTime.required' => 'Please enter the read time for urine drugs of abuse test',
-            'UDrug_Laboratory.required' => 'Please select which laboratory does the urine drugs of abuse test conducted',
-            'UDrug_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine drugs of abuse test conducted',
+            'uDrug_Laboratory.required' => 'Please select which laboratory does the urine drugs of abuse test conducted',
+            'uDrug_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine drugs of abuse test conducted',
             'UDrug_Methamphetamine.required' => 'Please select the results of Methamphetamine for urine drugs of abuse test',
             'UDrug_Morphine.required' => 'Please select the results of Morphine for urine drugs of abuse test',
             'UDrug_Marijuana.required' => 'Please select the results of Marijuana for urine drugs of abuse test',
@@ -59,8 +59,8 @@ class SP1_UrineTest_Controller extends Controller
                 //if subject is male
                 //validation for required fields
                 $validatedData=$this->validate($request,[
-                    'UDrug_Laboratory' => 'required',
-                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
+                    'uDrug_Laboratory' => 'required',
+                    'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
                     'UDrug_dateTaken' => 'required',
                     'UDrug_TestTime' => 'required',
                     'UDrug_ReadTime' => 'required',
@@ -84,10 +84,10 @@ class SP1_UrineTest_Controller extends Controller
                 //if subject is female
                 //validation for required fields
                 $validatedData=$this->validate($request,[
-                    'UPreg_Laboratory' => 'required',
-                    'UPreg_Laboratory_Text' => 'required_if:UPreg_Laboratory,==,Other',
-                    'UDrug_Laboratory' => 'required',
-                    'UDrug_Laboratory_Text' => 'required_if:UDrug_Laboratory,==,Other',
+                    'uPreg_Laboratory' => 'required',
+                    'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
+                    'uDrug_Laboratory' => 'required',
+                    'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
                     'UPreg_dateTaken' => 'required',
                     'UPreg_TestTime' => 'required',
                     'UPreg_ReadTime' => 'required',
@@ -108,11 +108,11 @@ class SP1_UrineTest_Controller extends Controller
                 $findSP1_UrineTest->UPreg_dateTaken=$request->UPreg_dateTaken;
                 $findSP1_UrineTest->UPreg_TestTime=$request->UPreg_TestTime;
                 $findSP1_UrineTest->UPreg_ReadTime=$request->UPreg_ReadTime;
-                $upreglab = $request->UPreg_Laboratory;
+                $upreglab = $request->uPreg_Laboratory;
                 if ($upreglab == 'Other') {
-                    $findSP1_UrineTest->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
+                    $findSP1_UrineTest->UPreg_Laboratory=$request->uPreg_Laboratory_Text;
                 } else{
-                    $findSP1_UrineTest->UPreg_Laboratory=$request->UPreg_Laboratory;
+                    $findSP1_UrineTest->UPreg_Laboratory=$request->uPreg_Laboratory;
                 }
                 $findSP1_UrineTest->UPreg_hCG=$request->UPreg_hCG;
                 $findSP1_UrineTest->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
@@ -122,11 +122,11 @@ class SP1_UrineTest_Controller extends Controller
             $findSP1_UrineTest->UDrug_dateTaken=$request->UDrug_dateTaken;
             $findSP1_UrineTest->UDrug_TestTime=$request->UDrug_TestTime;
             $findSP1_UrineTest->UDrug_ReadTime=$request->UDrug_ReadTime;
-            $udruglab = $request->UDrug_Laboratory;
+            $udruglab = $request->uDrug_Laboratory;
             if ($udruglab == 'Other') {
-                $findSP1_UrineTest->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
+                $findSP1_UrineTest->UDrug_Laboratory=$request->uDrug_Laboratory_Text;
             } else{
-                $findSP1_UrineTest->UDrug_Laboratory=$request->UDrug_Laboratory;
+                $findSP1_UrineTest->UDrug_Laboratory=$request->uDrug_Laboratory;
             }
             $findSP1_UrineTest->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
             $findSP1_UrineTest->UDrug_Methamphetamine_Comment=$request->UDrug_Methamphetamine_Comment;
@@ -176,11 +176,11 @@ class SP1_UrineTest_Controller extends Controller
             $UT->UPreg_dateTaken=$request->UPreg_dateTaken;
             $UT->UPreg_TestTime=$request->UPreg_TestTime;
             $UT->UPreg_ReadTime=$request->UPreg_ReadTime;
-            $upreglab = $request->UPreg_Laboratory;
+            $upreglab = $request->uPreg_Laboratory;
             if ($upreglab == 'Other') {
-                $UT->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
+                $UT->UPreg_Laboratory=$request->uPreg_Laboratory_Text;
             } else{
-                $UT->UPreg_Laboratory=$request->UPreg_Laboratory;
+                $UT->UPreg_Laboratory=$request->uPreg_Laboratory;
             }
             $UT->UPreg_hCG=$request->UPreg_hCG;
             $UT->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
@@ -190,11 +190,11 @@ class SP1_UrineTest_Controller extends Controller
         $UT->UDrug_dateTaken=$request->UDrug_dateTaken;
         $UT->UDrug_TestTime=$request->UDrug_TestTime;
         $UT->UDrug_ReadTime=$request->UDrug_ReadTime;
-        $udruglab = $request->UDrug_Laboratory;
+        $udruglab = $request->uDrug_Laboratory;
         if ($udruglab == 'Other') {
-            $UT->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
+            $UT->UDrug_Laboratory=$request->uDrug_Laboratory_Text;
         } else{
-            $UT->UDrug_Laboratory=$request->UDrug_Laboratory;
+            $UT->UDrug_Laboratory=$request->uDrug_Laboratory;
         }
         $UT->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
         $UT->UDrug_Methamphetamine_Comment=$request->UDrug_Methamphetamine_Comment;

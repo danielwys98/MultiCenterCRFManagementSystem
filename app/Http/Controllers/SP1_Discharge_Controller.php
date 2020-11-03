@@ -61,7 +61,7 @@ class SP1_Discharge_Controller extends Controller
 
             //discharge date and unscheduled discharge
             $findSP1_Discharge->DischargeDate = $request->DischargeDate;
-            $ud = $request->UnscheduledDischarge;
+            $ud = $request->unscheduledDischarge;
             if ($ud == 'Yes') {
                 $findSP1_Discharge->UnscheduledDischarge=$request->unscheduledDischarge_Text;
             } else{

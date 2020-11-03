@@ -5,16 +5,16 @@
 <hr>
     <div class="form-group row">
         <div class="col-md-1">
-            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+            {!! Form::label('AQuestionnaireDateTaken', 'Date Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+            {!! Form::date('AQuestionnaireDateTaken',old('AQuestionnaireDateTaken',$AQuestionnaire->AQuestionnaireDateTaken),['class'=>'form-control']) !!}
         </div>
         <div class=" offset-3 col-md-1">
-            {!! Form::label('timeTaken', 'Time Taken: ') !!}
+            {!! Form::label('AQuestionnaireTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('AQuestionnaireTimeTaken',old('AQuestionnaireTimeTaken',$AQuestionnaire->AQuestionnaireTimeTaken),['class'=>'form-control']) !!}
         </div>
     </div>
     <div class=" form-group row">
@@ -35,10 +35,10 @@
             <p>1. Has the subject had any medical problems within the last 7 days before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission01', 'Yes') !!}</p>
+            <p>{!! Form::radio('MedicalProblem', 'Yes',(($AQuestionnaire->MedicalProblem)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission01', 'No') !!}</p>
+            <p>{!! Form::radio('MedicalProblem', 'No',(($AQuestionnaire->MedicalProblem)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -52,10 +52,10 @@
             <p>Can the medical problem significantly increase the subject’s risk if enrolled in the study?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0101', 'Yes') !!}</p>
+            <p>{!! Form::radio('MP_IncreaseRisk', 'Yes',(($AQuestionnaire->MP_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0101', 'No') !!}</p>
+            <p>{!! Form::radio('MP_IncreaseRisk', 'No',(($AQuestionnaire->MP_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -63,10 +63,10 @@
             <p>Can the medical problem potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0102', 'Yes') !!}</p>
+            <p>{!! Form::radio('MP_InfluencePKinetic', 'Yes',(($AQuestionnaire->MP_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0102', 'No') !!}</p>
+            <p>{!! Form::radio('MP_InfluencePKinetic', 'No',(($AQuestionnaire->MP_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -78,10 +78,10 @@
                 medications) within 7 days before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission02', 'Yes') !!}</p>
+            <p>{!! Form::radio('Medication', 'Yes',(($AQuestionnaire->Medication)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission02', 'No') !!}</p>
+            <p>{!! Form::radio('Medication', 'No',(($AQuestionnaire->Medication)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -95,10 +95,10 @@
             <p>Can the use of medication significantly increase the subject’s risk if enrolled in the study?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0201', 'Yes') !!}</p>
+            <p>{!! Form::radio('Medi_IncreaseRisk', 'Yes',(($AQuestionnaire->Medi_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0201', 'No') !!}</p>
+            <p>{!! Form::radio('Medi_IncreaseRisk', 'No',(($AQuestionnaire->Medi_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -106,10 +106,10 @@
             <p>Can the use of medication potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0202', 'Yes') !!}</p>
+            <p>{!! Form::radio('Medi_InfluencePKinetic', 'Yes',(($AQuestionnaire->Medi_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0202', 'No') !!}</p>
+            <p>{!! Form::radio('Medi_InfluencePKinetic', 'No',(($AQuestionnaire->Medi_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -120,10 +120,10 @@
             <p>3. Has the subject been hospitalized within 4 weeks before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission03', 'Yes') !!}</p>
+            <p>{!! Form::radio('Hospitalized', 'Yes',(($AQuestionnaire->Hospitalized)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission03', 'No') !!}</p>
+            <p>{!! Form::radio('Hospitalized', 'No',(($AQuestionnaire->Hospitalized)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -137,10 +137,10 @@
             <p>Can the hospitalization significantly increase the subject’s risk if enrolled in the study?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0301', 'Yes') !!}</p>
+            <p>{!! Form::radio('H_IncreaseRisk', 'Yes',(($AQuestionnaire->H_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0301', 'No') !!}</p>
+            <p>{!! Form::radio('H_IncreaseRisk', 'No',(($AQuestionnaire->H_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -148,10 +148,10 @@
             <p>Can the hospitalization potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0302', 'Yes') !!}</p>
+            <p>{!! Form::radio('H_InfluencePKinetic', 'Yes',(($AQuestionnaire->H_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0302', 'No') !!}</p>
+            <p>{!! Form::radio('H_InfluencePKinetic', 'No',(($AQuestionnaire->H_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -163,10 +163,10 @@
                 dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission04', 'Yes') !!}</p>
+            <p>{!! Form::radio('alcoholXanthine', 'Yes',(old('alcoholXanthine',$AQuestionnaire->AlcoholXanthine)!='No' && ($AQuestionnaire->AlcoholXanthine!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission04', 'No') !!}</p>
+            <p>{!! Form::radio('alcoholXanthine', 'No',(old('alcoholXanthine',$AQuestionnaire->AlcoholXanthine)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -177,7 +177,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission04yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('alcoholXanthine_Yes',(old('alcoholXanthine',$AQuestionnaire->AlcoholXanthine)!='No' && ($AQuestionnaire->AlcoholXanthine!=NULL))? $AQuestionnaire->AlcoholXanthine :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -185,10 +185,10 @@
             <p>Can the use of alcohol or xanthine potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0401', 'Yes') !!}</p>
+            <p>{!! Form::radio('AX_InfluencePKinetic', 'Yes',(($AQuestionnaire->AX_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0401', 'No') !!}</p>
+            <p>{!! Form::radio('AX_InfluencePKinetic', 'No',(($AQuestionnaire->AX_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -201,10 +201,10 @@
                 test? </p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission05', 'Yes') !!}</p>
+            <p>{!! Form::radio('poppySeeds', 'Yes',(old('poppySeeds',$AQuestionnaire->PoppySeeds)!='No' && ($AQuestionnaire->PoppySeeds!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission05', 'No') !!}</p>
+            <p>{!! Form::radio('poppySeeds', 'No',(old('poppySeeds',$AQuestionnaire->PoppySeeds)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -219,7 +219,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission05yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('poppySeeds_Yes',(old('poppySeeds',$AQuestionnaire->PoppySeeds)!='No' && ($AQuestionnaire->PoppySeeds!=NULL))? $AQuestionnaire->PoppySeeds :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -227,10 +227,10 @@
             <p>Can the use of poppy seeds potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0501', 'Yes') !!}</p>
+            <p>{!! Form::radio('PS_InfluencePKinetic', 'Yes',(($AQuestionnaire->PS_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0501', 'No') !!}</p>
+            <p>{!! Form::radio('PS_InfluencePKinetic', 'No',(($AQuestionnaire->PS_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -243,10 +243,10 @@
                 within 7 days before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission06', 'Yes') !!}</p>
+            <p>{!! Form::radio('grapefruitPomelo', 'Yes',(old('grapefruitPomelo',$AQuestionnaire->GrapefruitPomelo)!='No' && ($AQuestionnaire->GrapefruitPomelo!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission06', 'No') !!}</p>
+            <p>{!! Form::radio('grapefruitPomelo', 'No',(old('grapefruitPomelo',$AQuestionnaire->GrapefruitPomelo)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -257,7 +257,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission06yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('grapefruitPomelo_Yes',(old('grapefruitPomelo',$AQuestionnaire->GrapefruitPomelo)!='No' && ($AQuestionnaire->GrapefruitPomelo!=NULL))? $AQuestionnaire->GrapefruitPomelo :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -266,10 +266,10 @@
                 of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0601', 'Yes') !!}</p>
+            <p>{!! Form::radio('Grapefruit_InfluencePKinetic', 'Yes',(($AQuestionnaire->Grapefruit_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0601', 'No') !!}</p>
+            <p>{!! Form::radio('Grapefruit_InfluencePKinetic', 'No',(($AQuestionnaire->Grapefruit_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -281,10 +281,10 @@
             <p>7. Has the subject participated in other experimental drug studies within 4 weeks before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission07', 'Yes') !!}</p>
+            <p>{!! Form::radio('otherDrugStudies', 'Yes',(old('otherDrugStudies',$AQuestionnaire->OtherDrugStudies)!='No' && ($AQuestionnaire->OtherDrugStudies!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission07', 'No') !!}</p>
+            <p>{!! Form::radio('otherDrugStudies', 'No',(old('otherDrugStudies',$AQuestionnaire->OtherDrugStudies)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -295,7 +295,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission07yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('otherDrugStudies_Yes',(old('otherDrugStudies',$AQuestionnaire->OtherDrugStudies)!='No' && ($AQuestionnaire->OtherDrugStudies!=NULL))? $AQuestionnaire->OtherDrugStudies :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -303,10 +303,10 @@
             <p>Can the participation significantly increase the subject’s risk if enrolled in the study</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0701', 'Yes') !!}</p>
+            <p>{!! Form::radio('Other_IncreaseRisk', 'Yes',(($AQuestionnaire->Other_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0701', 'No') !!}</p>
+            <p>{!! Form::radio('Other_IncreaseRisk', 'No',(($AQuestionnaire->Other_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -314,10 +314,10 @@
             <p>Can the participation potentially influence the pharmacokinetic profile of the study drug?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0702', 'Yes') !!}</p>
+            <p>{!! Form::radio('Other_InfluencePKinetic', 'Yes',(($AQuestionnaire->Other_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0702', 'No') !!}</p>
+            <p>{!! Form::radio('Other_InfluencePKinetic', 'No',(($AQuestionnaire->Other_InfluencePKinetic)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -336,10 +336,10 @@
             </ul>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission08', 'Yes') !!}</p>
+            <p>{!! Form::radio('bloodDono', 'Yes',(old('bloodDono',$AQuestionnaire->BloodDono)!='No' && ($AQuestionnaire->BloodDono!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission08', 'No') !!}</p>
+            <p>{!! Form::radio('bloodDono', 'No',(old('bloodDono',$AQuestionnaire->BloodDono)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -350,7 +350,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission08yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('bloodDono_Yes',(old('bloodDono',$AQuestionnaire->BloodDono)!='No' && ($AQuestionnaire->BloodDono!=NULL))? $AQuestionnaire->BloodDono :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -358,10 +358,10 @@
             <p>Can the donation potentially increase the subject’s risk if enrolled in the study?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0801', 'Yes') !!}</p>
+            <p>{!! Form::radio('Blood_IncreaseRisk', 'Yes',(($AQuestionnaire->Blood_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0801', 'No') !!}</p>
+            <p>{!! Form::radio('Blood_IncreaseRisk', 'No',(($AQuestionnaire->Blood_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -373,10 +373,10 @@
             <p>9. Has the subject use of non-acceptable methods of contraception within 14 days before dosing?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission09', 'Yes') !!}</p>
+            <p>{!! Form::radio('contraception', 'Yes',(old('contraception',$AQuestionnaire->Contraception)!='No' && ($AQuestionnaire->Contraception!=NULL))? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission09', 'No') !!}</p>
+            <p>{!! Form::radio('contraception', 'No',(old('contraception',$AQuestionnaire->Contraception)=='No')? 'checked' :'') !!}</p>
         </div>
     </div>
     <div class="row">
@@ -387,7 +387,7 @@
     </div>
     <div class="row">
         <div class="col-md-5">
-            {!! Form::text('Admission09yes', '',['class'=>'form-control']) !!}
+            {!! Form::text('contraception_Yes',(old('contraception',$AQuestionnaire->Contraception)!='No' && ($AQuestionnaire->Contraception!=NULL))? $AQuestionnaire->Contraception :'',['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row">
@@ -395,10 +395,10 @@
             <p>Can the use of this method potentially increase the subject’s risk if enrolled in the study?</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0901', 'Yes') !!}</p>
+            <p>{!! Form::radio('Contraception_IncreaseRisk', 'Yes',(($AQuestionnaire->Contraception_IncreaseRisk)=='Yes')? 'checked' : '') !!}</p>
         </div>
         <div class="col-md-1">
-            <p>{!! Form::radio('Admission0901', 'No') !!}</p>
+            <p>{!! Form::radio('Contraception_IncreaseRisk', 'No',(($AQuestionnaire->Contraception_IncreaseRisk)=='No')? 'checked' : '') !!}</p>
         </div>
     </div>
     <hr>
@@ -409,7 +409,7 @@
             {!! Form::label('PhysicianInitial', 'Physician’s Initial: ') !!}
         </div>
         <div class="col-md-3">
-            {!! Form::text('PhysicianInitial','',['class'=>'form-control']) !!}
+            {!! Form::text('PhysicianInitial',old('PhysicianInitial',$AQuestionnaire->PhysicianInitial),['class'=>'form-control']) !!}
         </div>
     </div>
     {{Form::submit('Update',['class'=>'btn btn-primary'])}}
