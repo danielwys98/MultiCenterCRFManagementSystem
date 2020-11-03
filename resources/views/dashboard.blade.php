@@ -26,5 +26,5 @@
     @can('adminFunctions')
     <a href="{{ url('/studySpecific/create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
     @endcan
-    <a href="{{ route('testing') }}"><button class="btn btn-success" type="submit">test</button></a>
+    <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
 @endsection

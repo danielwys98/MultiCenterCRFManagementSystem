@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/testing','studySpecificController@testing')->name('testing');
 
 Route::post('/testing/{id}','studySpecificController@testPost')->name('testPost');
+
+Route::get('/downloadPDF/','studySpecificController@testPDF')->name('test.PDF');
 //Testing route ends here
 
 Route::get('/','PagesController@loginPage');

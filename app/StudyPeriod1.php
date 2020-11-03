@@ -13,8 +13,8 @@ class StudyPeriod1 extends Model
     {
         return $this->belongsTo('App\PatientStudySpecific','SP1_ID','SP1_ID');
     }
-  /*  public function SP1_Admission ()
+    public function SP1_Admission ()
     {
         return $this->hasOne('App\SP1_Admission','SP1_Admission','SP1_Admission_ID');
-    }*/
+    }
 }

@@ -2,6 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\SP1_AQuestionnaire;
+use App\SP1_BAT;
+use App\SP1_BMVS;
+use App\SP1_Discharge;
+use App\SP1_DQuestionnaire;
+use App\SP1_IQ36;
+use App\SP1_IQ48;
+use App\SP1_PDynamicAnalysis;
+use App\SP1_PDynamicSampling;
+use App\SP1_PKineticSampling;
+use App\SP1_UrineTest;
+use App\SP1_VitalSigns;
+use PDF;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
@@ -223,6 +236,53 @@ class studySpecificController extends Controller
             $studyPeriod[] =$period;
         }
          return view('test',compact('study','studyPeriod'));
+    }
+    public function testPDF()
+    {
+        $PID = 22;
+        $study_id=4;
+        $patient = Patient::where('id', $PID)->first();
+        $study = studySpecific::where('study_id',$study_id)->first();
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $PID)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($findPSS != NULL) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+            $Admission = SP1_Admission::where('SP1_Admission_ID', $findSP1->SP1_Admission)->first();
+            $BMVS = SP1_BMVS::where('SP1_BMVS_ID', $findSP1->SP1_BMVS)->first();
+            $BAT = SP1_BAT::where('SP1_BAT_ID', $findSP1->SP1_BATER)->first();
+            $AQuestionnaire = SP1_AQuestionnaire::where('SP1_AQuestionnaire_ID', $findSP1->SP1_AQuestionnaire)->first();
+            $UrineTest = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
+            $PKinetic = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $findSP1->SP1_PKineticSampling)->first();
+            $PDynamic = SP1_PDynamicSampling::where('SP1_PDynamicSampling_ID', $findSP1->SP1_PDynamicSampling)->first();
+            $PDAnalysis = SP1_PDynamicAnalysis::where('SP1_PDynamicAnalysis_ID', $findSP1->SP1_PDynamiAnalysis)->first();
+            $VitalSign = SP1_VitalSigns::where('SP1_VitalSign_ID', $findSP1->SP1_VitalSign)->first();
+            $Discharge = SP1_Discharge::where('SP1_Discharge_ID', $findSP1->SP1_Discharge)->first();
+            $DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID', $findSP1->SP1_DQuestionnaire)->first();
+            $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
+            $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+            //ask PDF to find 'test' blade file and compact with those data.
+            $pdf = PDF::loadview('test', compact('Admission',
+                'BMVS',
+                'BAT',
+                'AQuestionnaire',
+                'UrineTest',
+                'PKinetic',
+                'PDynamic',
+                'PDAnalysis',
+                'VitalSign',
+                'Discharge',
+                'DQuestionnaire',
+                'IQ36',
+                'IQ48',
+                'study',
+                'patient'));
+        }
+        $pdf->setPaper('A4','portrait');
+        return $pdf->stream('test.pdf');
+
+       /* return view('test',compact('study','studyPeriod'));*/
     }
 
     public function testPost(Request $request,$study_id)
