@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PatientStudySpecific;
 use App\StudyPeriod1;
+use App\StudyPeriod2;
+use App\StudyPeriod3;
+use App\StudyPeriod4;
 use App\SP1_IQ48;
+use App\SP2_IQ48;
+use App\SP3_IQ48;
+use App\SP4_IQ48;
 use DB;
 
 class SP1_IQ48_Controller extends Controller
@@ -17,20 +23,8 @@ class SP1_IQ48_Controller extends Controller
 
     public function store(Request $request,$study_id)
     {
-        $PID = $request->patient_id;
-        //find Patient Study Specific table
-        $findPSS =PatientStudySpecific::with('StudyPeriod1')
-                                        ->where('patient_id',$PID)
-                                        ->where('study_id',$study_id)
-                                        ->first();
-        if($findPSS !=NULL){
-            //find SP1_ID to access the SP1_IQ48
-            //find table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
-            $findSP1_IQ48 = SP1_IQ48::where('SP1_IQ48_ID',$findSP1->SP1_IQ48)->first();
-           //SAVE SP1_IQ48 stuffs
-           //custom messages load for validation
-           $custom = [
+        //custom messages load for validation
+        $custom = [
             'dateTaken.required' => 'Please enter the date taken for Interim Questionnaire(48hrs pose dose vist)',
             'timeTaken.required' => 'Please enter the time taken for Interim Questionnaire(48hrs pose dose vist)',
             'Interim48hrs01.required' => 'Please choose a selection for number 1 in Interim Questionnaire(48hrs pose dose vist)',
@@ -70,111 +64,561 @@ class SP1_IQ48_Controller extends Controller
             'Interim48hrsCheckedby' => 'required',
         ],$custom);
 
-           //date and time for interim questionnaire
-            $findSP1_IQ48->dateTaken=$request->dateTaken;
-            $findSP1_IQ48->timeTaken=$request->timeTaken;
-
-            //interim questionnaire
-            $findSP1_IQ48->interim48hrs01=$request->Interim48hrs01;
-            $findSP1_IQ48->interim48hrs02=$request->Interim48hrs02;
-            $iq03 = $request->Interim48hrs03;
-            if ($iq03 == 'No') {
-                $findSP1_IQ48->interim48hrs03=$request->Interim48hrs03;
-            } else{
-                $findSP1_IQ48->interim48hrs03=$request->Interim48hrs03txt;
-            }
-            $iq04 = $request->Interim48hrs04;
-            if ($iq04 == 'No') {
-                $findSP1_IQ48->interim48hrs04=$request->Interim48hrs04;
-            } else{
-                $findSP1_IQ48->interim48hrs04=$request->Interim48hrs04txt;
-            }
-            $iq05 = $request->Interim48hrs05;
-            if ($iq05 == 'No') {
-                $findSP1_IQ48->interim48hrs05=$request->Interim48hrs05;
-            } else{
-                $findSP1_IQ48->interim48hrs05=$request->Interim48hrs05txt;
-            }
-            $iq06 = $request->Interim48hrs06;
-            if ($iq06 == 'No') {
-                $findSP1_IQ48->interim48hrs06=$request->Interim48hrs06;
-            } else{
-                $findSP1_IQ48->interim48hrs06=$request->Interim48hrs06txt;
-            }
-            $iq07 = $request->Interim48hrs07;
-            if ($iq07 == 'No') {
-                $findSP1_IQ48->interim48hrs07=$request->Interim48hrs07;
-            } else{
-                $findSP1_IQ48->interim48hrs07=$request->Interim48hrs07txt;
-            }
-            $findSP1_IQ48->interim48hrs08=$request->Interim48hrs08;
-
-            //interviewed and checked by
-            $findSP1_IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
-            $findSP1_IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
-
-            $findSP1_IQ48->save();
-            return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period details for Interim Questionnaire(48 hours Post Dose Visit)!');
-        }else{
+        $PID = $request->patient_id;
+        $study_period = $request->studyPeriod;
+        //find Patient Study Specific table
+        $findPSS = PatientStudySpecific::where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
+        //check study period and save
+        if($study_period == '---'){
             alert()->error('Error!','This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input',$study_id));
+        }elseif($study_period == 1){
+            if($this->storeSP1($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 2){
+            if($this->storeSP2($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 3){
+            if($this->storeSP3($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 3 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 4){
+            if($this->storeSP4($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 4 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }else{
+            alert()->error('Error!','You did not select the study period!');
             return redirect(route('studySpecific.input',$study_id));
         }
     }
 
     public function update(Request $request, $patient_id, $study_id)
     {
-        $findPSS = PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id', $patient_id)
-            ->where('study_id', $study_id)
-            ->first();
-        if ($findPSS != NULL) {
-            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
-            $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+        $study_period = $request->studyPeriod;
+        //find Patient Study Specific table
+        $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
+                                        ->where('study_id',$study_id)
+                                        ->first();
+        //check study period and save
+        if($study_period == '---'){
+            alert()->error('Error!','This subject is not enrolled into any study!');
+            return redirect(route('studySpecific.input',$study_id));
+        }elseif($study_period == 1){
+            if($this->updateSP1($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 1 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 2){
+            if($this->updateSP2($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 2 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 3){
+            if($this->updateSP3($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 3 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 4){
+            if($this->updateSP4($findPSS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 4 details for Interim Questionnaire(48 hours Post Dose Visit)!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }else{
+            alert()->error('Error!','You did not select the study period!');
+            return redirect(route('studySpecific.input',$study_id));
         }
-        //date and time for interim questionnaire
-        $IQ48->dateTaken=$request->dateTaken;
-        $IQ48->timeTaken=$request->timeTaken;
-
-        //interim questionnaire
-        $IQ48->interim48hrs01=$request->Interim48hrs01;
-        $IQ48->interim48hrs02=$request->Interim48hrs02;
-        $iq03 = $request->Interim48hrs03;
-        if ($iq03 == 'No') {
-            $IQ48->interim48hrs03=$request->Interim48hrs03;
-        } else{
-            $IQ48->interim48hrs03=$request->Interim48hrs03txt;
-        }
-        $iq04 = $request->Interim48hrs04;
-        if ($iq04 == 'No') {
-            $IQ48->interim48hrs04=$request->Interim48hrs04;
-        } else{
-            $IQ48->interim48hrs04=$request->Interim48hrs04txt;
-        }
-        $iq05 = $request->Interim48hrs05;
-        if ($iq05 == 'No') {
-            $IQ48->interim48hrs05=$request->Interim48hrs05;
-        } else{
-            $IQ48->interim48hrs05=$request->Interim48hrs05txt;
-        }
-        $iq06 = $request->Interim48hrs06;
-        if ($iq06 == 'No') {
-            $IQ48->interim48hrs06=$request->Interim48hrs06;
-        } else{
-            $IQ48->interim48hrs06=$request->Interim48hrs06txt;
-        }
-        $iq07 = $request->Interim48hrs07;
-        if ($iq07 == 'No') {
-            $IQ48->interim48hrs07=$request->Interim48hrs07;
-        } else{
-            $IQ48->interim48hrs07=$request->Interim48hrs07txt;
-        }
-        $IQ48->interim48hrs08=$request->Interim48hrs08;
-
-        //interviewed and checked by
-        $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
-        $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
-
-        $IQ48->save();
-        return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Interim Questionnaire(48 hours Post Dose Visit)!');
     }
+
+    //store SP1_IQ48
+    public function storeSP1($PSS,$request){
+        if($PSS !=NULL && $PSS->SP1_ID != NULL){
+            //find admission table and update it
+            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
+            $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+
+            if($IQ48->dateTaken == NULL){
+                //date and time for interim questionnaire
+                $IQ48->dateTaken=$request->dateTaken;
+                $IQ48->timeTaken=$request->timeTaken;
+
+                //interim questionnaire
+                $IQ48->interim48hrs01=$request->Interim48hrs01;
+                $IQ48->interim48hrs02=$request->Interim48hrs02;
+                $iq03 = $request->Interim48hrs03;
+                if ($iq03 == 'No') {
+                    $IQ48->interim48hrs03=$request->Interim48hrs03;
+                } else{
+                    $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+                }
+                $iq04 = $request->Interim48hrs04;
+                if ($iq04 == 'No') {
+                    $IQ48->interim48hrs04=$request->Interim48hrs04;
+                } else{
+                    $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+                }
+                $iq05 = $request->Interim48hrs05;
+                if ($iq05 == 'No') {
+                    $IQ48->interim48hrs05=$request->Interim48hrs05;
+                } else{
+                    $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+                }
+                $iq06 = $request->Interim48hrs06;
+                if ($iq06 == 'No') {
+                    $IQ48->interim48hrs06=$request->Interim48hrs06;
+                } else{
+                    $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+                }
+                $iq07 = $request->Interim48hrs07;
+                if ($iq07 == 'No') {
+                    $IQ48->interim48hrs07=$request->Interim48hrs07;
+                } else{
+                    $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+                }
+                $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+                //interviewed and checked by
+                $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+                $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+                $IQ48->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //store SP2_IQ48
+    public function storeSP2($PSS,$request){
+        if($PSS !=NULL && $PSS->SP2_ID != NULL){
+            //find admission table and update it
+            $findSP2 = StudyPeriod2::where('SP2_ID',$PSS->SP2_ID)->first();
+            $IQ48 = SP2_IQ48::where('SP2_IQ48_ID', $findSP2->SP2_IQ48)->first();
+
+            if($IQ48->dateTaken == NULL){
+                //date and time for interim questionnaire
+                $IQ48->dateTaken=$request->dateTaken;
+                $IQ48->timeTaken=$request->timeTaken;
+
+                //interim questionnaire
+                $IQ48->interim48hrs01=$request->Interim48hrs01;
+                $IQ48->interim48hrs02=$request->Interim48hrs02;
+                $iq03 = $request->Interim48hrs03;
+                if ($iq03 == 'No') {
+                    $IQ48->interim48hrs03=$request->Interim48hrs03;
+                } else{
+                    $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+                }
+                $iq04 = $request->Interim48hrs04;
+                if ($iq04 == 'No') {
+                    $IQ48->interim48hrs04=$request->Interim48hrs04;
+                } else{
+                    $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+                }
+                $iq05 = $request->Interim48hrs05;
+                if ($iq05 == 'No') {
+                    $IQ48->interim48hrs05=$request->Interim48hrs05;
+                } else{
+                    $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+                }
+                $iq06 = $request->Interim48hrs06;
+                if ($iq06 == 'No') {
+                    $IQ48->interim48hrs06=$request->Interim48hrs06;
+                } else{
+                    $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+                }
+                $iq07 = $request->Interim48hrs07;
+                if ($iq07 == 'No') {
+                    $IQ48->interim48hrs07=$request->Interim48hrs07;
+                } else{
+                    $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+                }
+                $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+                //interviewed and checked by
+                $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+                $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+                $IQ48->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //store SP3_IQ48
+    public function storeSP3($PSS,$request){
+        if($PSS !=NULL && $PSS->SP3_ID != NULL){
+            //find admission table and update it
+            $findSP3 = StudyPeriod3::where('SP3_ID',$PSS->SP3_ID)->first();
+            $IQ48 = SP3_IQ48::where('SP3_IQ48_ID', $findSP3->SP3_IQ48)->first();
+
+            if($IQ48->dateTaken == NULL){
+                //date and time for interim questionnaire
+                $IQ48->dateTaken=$request->dateTaken;
+                $IQ48->timeTaken=$request->timeTaken;
+
+                //interim questionnaire
+                $IQ48->interim48hrs01=$request->Interim48hrs01;
+                $IQ48->interim48hrs02=$request->Interim48hrs02;
+                $iq03 = $request->Interim48hrs03;
+                if ($iq03 == 'No') {
+                    $IQ48->interim48hrs03=$request->Interim48hrs03;
+                } else{
+                    $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+                }
+                $iq04 = $request->Interim48hrs04;
+                if ($iq04 == 'No') {
+                    $IQ48->interim48hrs04=$request->Interim48hrs04;
+                } else{
+                    $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+                }
+                $iq05 = $request->Interim48hrs05;
+                if ($iq05 == 'No') {
+                    $IQ48->interim48hrs05=$request->Interim48hrs05;
+                } else{
+                    $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+                }
+                $iq06 = $request->Interim48hrs06;
+                if ($iq06 == 'No') {
+                    $IQ48->interim48hrs06=$request->Interim48hrs06;
+                } else{
+                    $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+                }
+                $iq07 = $request->Interim48hrs07;
+                if ($iq07 == 'No') {
+                    $IQ48->interim48hrs07=$request->Interim48hrs07;
+                } else{
+                    $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+                }
+                $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+                //interviewed and checked by
+                $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+                $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+                $IQ48->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //store SP4_IQ48
+    public function storeSP4($PSS,$request){
+        if($PSS !=NULL && $PSS->SP4_ID != NULL){
+            //find admission table and update it
+            $findSP4 = StudyPeriod1::where('SP4_ID',$PSS->SP4_ID)->first();
+            $IQ48 = SP4_IQ48::where('SP4_IQ48_ID', $findSP4->S4_IQ48)->first();
+
+            if($IQ48->dateTaken == NULL){
+                //date and time for interim questionnaire
+                $IQ48->dateTaken=$request->dateTaken;
+                $IQ48->timeTaken=$request->timeTaken;
+
+                //interim questionnaire
+                $IQ48->interim48hrs01=$request->Interim48hrs01;
+                $IQ48->interim48hrs02=$request->Interim48hrs02;
+                $iq03 = $request->Interim48hrs03;
+                if ($iq03 == 'No') {
+                    $IQ48->interim48hrs03=$request->Interim48hrs03;
+                } else{
+                    $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+                }
+                $iq04 = $request->Interim48hrs04;
+                if ($iq04 == 'No') {
+                    $IQ48->interim48hrs04=$request->Interim48hrs04;
+                } else{
+                    $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+                }
+                $iq05 = $request->Interim48hrs05;
+                if ($iq05 == 'No') {
+                    $IQ48->interim48hrs05=$request->Interim48hrs05;
+                } else{
+                    $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+                }
+                $iq06 = $request->Interim48hrs06;
+                if ($iq06 == 'No') {
+                    $IQ48->interim48hrs06=$request->Interim48hrs06;
+                } else{
+                    $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+                }
+                $iq07 = $request->Interim48hrs07;
+                if ($iq07 == 'No') {
+                    $IQ48->interim48hrs07=$request->Interim48hrs07;
+                } else{
+                    $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+                }
+                $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+                //interviewed and checked by
+                $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+                $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+                $IQ48->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+    
+    //update SP1_IQ48
+    public function updateSP1($PSS,$request){
+        if($PSS !=NULL){
+            //find admission table and update it
+            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
+            $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+
+            //date and time for interim questionnaire
+            $IQ48->dateTaken=$request->dateTaken;
+            $IQ48->timeTaken=$request->timeTaken;
+
+            //interim questionnaire
+            $IQ48->interim48hrs01=$request->Interim48hrs01;
+            $IQ48->interim48hrs02=$request->Interim48hrs02;
+            $iq03 = $request->Interim48hrs03;
+            if ($iq03 == 'No') {
+                $IQ48->interim48hrs03=$request->Interim48hrs03;
+            } else{
+                $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+            }
+            $iq04 = $request->Interim48hrs04;
+            if ($iq04 == 'No') {
+                $IQ48->interim48hrs04=$request->Interim48hrs04;
+            } else{
+                $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+            }
+            $iq05 = $request->Interim48hrs05;
+            if ($iq05 == 'No') {
+                $IQ48->interim48hrs05=$request->Interim48hrs05;
+            } else{
+                $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+            }
+            $iq06 = $request->Interim48hrs06;
+            if ($iq06 == 'No') {
+                $IQ48->interim48hrs06=$request->Interim48hrs06;
+            } else{
+                $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+            }
+            $iq07 = $request->Interim48hrs07;
+            if ($iq07 == 'No') {
+                $IQ48->interim48hrs07=$request->Interim48hrs07;
+            } else{
+                $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+            }
+            $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+            //interviewed and checked by
+            $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+            $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+            $IQ48->save();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //update SP2_IQ48
+    public function updateSP2($PSS,$request){
+        if($PSS !=NULL){
+            //find admission table and update it
+            $findSP2 = StudyPeriod2::where('SP2_ID',$PSS->SP2_ID)->first();
+            $IQ48 = SP2_IQ48::where('SP2_IQ48_ID', $findSP2->SP2_IQ48)->first();
+
+            //date and time for interim questionnaire
+            $IQ48->dateTaken=$request->dateTaken;
+            $IQ48->timeTaken=$request->timeTaken;
+
+            //interim questionnaire
+            $IQ48->interim48hrs01=$request->Interim48hrs01;
+            $IQ48->interim48hrs02=$request->Interim48hrs02;
+            $iq03 = $request->Interim48hrs03;
+            if ($iq03 == 'No') {
+                $IQ48->interim48hrs03=$request->Interim48hrs03;
+            } else{
+                $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+            }
+            $iq04 = $request->Interim48hrs04;
+            if ($iq04 == 'No') {
+                $IQ48->interim48hrs04=$request->Interim48hrs04;
+            } else{
+                $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+            }
+            $iq05 = $request->Interim48hrs05;
+            if ($iq05 == 'No') {
+                $IQ48->interim48hrs05=$request->Interim48hrs05;
+            } else{
+                $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+            }
+            $iq06 = $request->Interim48hrs06;
+            if ($iq06 == 'No') {
+                $IQ48->interim48hrs06=$request->Interim48hrs06;
+            } else{
+                $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+            }
+            $iq07 = $request->Interim48hrs07;
+            if ($iq07 == 'No') {
+                $IQ48->interim48hrs07=$request->Interim48hrs07;
+            } else{
+                $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+            }
+            $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+            //interviewed and checked by
+            $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+            $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+            $IQ48->save();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //update SP3_IQ48
+    public function updateSP3($PSS,$request){
+        if($PSS !=NULL){
+            //find admission table and update it
+            $findSP3 = StudyPeriod3::where('SP3_ID',$PSS->SP3_ID)->first();
+            $IQ48 = SP3_IQ48::where('SP3_IQ48_ID', $findSP3->SP3_IQ48)->first();
+
+            //date and time for interim questionnaire
+            $IQ48->dateTaken=$request->dateTaken;
+            $IQ48->timeTaken=$request->timeTaken;
+
+            //interim questionnaire
+            $IQ48->interim48hrs01=$request->Interim48hrs01;
+            $IQ48->interim48hrs02=$request->Interim48hrs02;
+            $iq03 = $request->Interim48hrs03;
+            if ($iq03 == 'No') {
+                $IQ48->interim48hrs03=$request->Interim48hrs03;
+            } else{
+                $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+            }
+            $iq04 = $request->Interim48hrs04;
+            if ($iq04 == 'No') {
+                $IQ48->interim48hrs04=$request->Interim48hrs04;
+            } else{
+                $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+            }
+            $iq05 = $request->Interim48hrs05;
+            if ($iq05 == 'No') {
+                $IQ48->interim48hrs05=$request->Interim48hrs05;
+            } else{
+                $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+            }
+            $iq06 = $request->Interim48hrs06;
+            if ($iq06 == 'No') {
+                $IQ48->interim48hrs06=$request->Interim48hrs06;
+            } else{
+                $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+            }
+            $iq07 = $request->Interim48hrs07;
+            if ($iq07 == 'No') {
+                $IQ48->interim48hrs07=$request->Interim48hrs07;
+            } else{
+                $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+            }
+            $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+            //interviewed and checked by
+            $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+            $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+            $IQ48->save();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //update SP4_IQ48
+    public function updateSP4($PSS,$request){
+        if($PSS !=NULL){
+            //find admission table and update it
+            $findSP4 = StudyPeriod4::where('SP4_ID',$PSS->SP4_ID)->first();
+            $IQ48 = SP4_IQ48::where('SP4_IQ48_ID', $findSP4->SP4_IQ48)->first();
+
+            //date and time for interim questionnaire
+            $IQ48->dateTaken=$request->dateTaken;
+            $IQ48->timeTaken=$request->timeTaken;
+
+            //interim questionnaire
+            $IQ48->interim48hrs01=$request->Interim48hrs01;
+            $IQ48->interim48hrs02=$request->Interim48hrs02;
+            $iq03 = $request->Interim48hrs03;
+            if ($iq03 == 'No') {
+                $IQ48->interim48hrs03=$request->Interim48hrs03;
+            } else{
+                $IQ48->interim48hrs03=$request->Interim48hrs03txt;
+            }
+            $iq04 = $request->Interim48hrs04;
+            if ($iq04 == 'No') {
+                $IQ48->interim48hrs04=$request->Interim48hrs04;
+            } else{
+                $IQ48->interim48hrs04=$request->Interim48hrs04txt;
+            }
+            $iq05 = $request->Interim48hrs05;
+            if ($iq05 == 'No') {
+                $IQ48->interim48hrs05=$request->Interim48hrs05;
+            } else{
+                $IQ48->interim48hrs05=$request->Interim48hrs05txt;
+            }
+            $iq06 = $request->Interim48hrs06;
+            if ($iq06 == 'No') {
+                $IQ48->interim48hrs06=$request->Interim48hrs06;
+            } else{
+                $IQ48->interim48hrs06=$request->Interim48hrs06txt;
+            }
+            $iq07 = $request->Interim48hrs07;
+            if ($iq07 == 'No') {
+                $IQ48->interim48hrs07=$request->Interim48hrs07;
+            } else{
+                $IQ48->interim48hrs07=$request->Interim48hrs07txt;
+            }
+            $IQ48->interim48hrs08=$request->Interim48hrs08;
+
+            //interviewed and checked by
+            $IQ48->Interim48hrsInterviewedby=$request->Interim48hrsInterviewedby;
+            $IQ48->Interim48hrsCheckedby=$request->Interim48hrsCheckedby;
+
+            $IQ48->save();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
