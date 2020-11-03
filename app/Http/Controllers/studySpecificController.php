@@ -239,8 +239,8 @@ class studySpecificController extends Controller
     }
     public function testPDF()
     {
-        $PID = 22;
-        $study_id=4;
+        $PID = 18;
+        $study_id = 4;
         $patient = Patient::where('id', $PID)->first();
         $study = studySpecific::where('study_id',$study_id)->first();
         $findPSS = PatientStudySpecific::with('StudyPeriod1')
@@ -262,8 +262,8 @@ class studySpecificController extends Controller
             $DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID', $findSP1->SP1_DQuestionnaire)->first();
             $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
             $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
-            //ask PDF to find 'test' blade file and compact with those data.
-            $pdf = PDF::loadview('test', compact('Admission',
+
+            $pdf = PDF::loadView('test', compact('Admission',
                 'BMVS',
                 'BAT',
                 'AQuestionnaire',
@@ -278,11 +278,9 @@ class studySpecificController extends Controller
                 'IQ48',
                 'study',
                 'patient'));
-        }
-        $pdf->setPaper('A4','portrait');
-        return $pdf->stream('test.pdf');
 
-       /* return view('test',compact('study','studyPeriod'));*/
+            return $pdf->stream('test.pdf');
+        }
     }
 
     public function testPost(Request $request,$study_id)
