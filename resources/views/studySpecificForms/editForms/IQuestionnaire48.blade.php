@@ -1,4 +1,4 @@
-{!! Form::model($IQ48,['route' => ['sp_IQuestionnaire48.update',$patient->id,$study_id]]) !!}
+{!! Form::model($IQ48,['route' => ['sp_IQuestionnaire48.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}

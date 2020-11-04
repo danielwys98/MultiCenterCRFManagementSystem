@@ -1,4 +1,4 @@
-{!! Form::model($PDAnalysis,['route' => ['sp_PDAnalysis.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PDAnalysis,['route' => ['sp_PDAnalysis.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Pharmacodynamic (PD) Analysis --}}

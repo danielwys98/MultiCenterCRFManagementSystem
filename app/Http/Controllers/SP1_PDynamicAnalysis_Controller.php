@@ -202,10 +202,7 @@ class SP1_PDynamicAnalysis_Controller extends Controller
                                         ->where('study_id',$study_id)
                                         ->first();
         //check study period and save
-        if($study_period == '---'){
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.edit',$study_id));
-        }elseif($study_period == 1){
+        if($study_period == 1){
             if($this->updateSP1($findPSS,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{

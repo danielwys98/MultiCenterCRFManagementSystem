@@ -1,4 +1,4 @@
-{!! Form::model($PDynamic,['route' => ['sp_Pdynamicsampling.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PDynamic,['route' => ['sp_Pdynamicsampling.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Pharmacodynamic Blood Sampling --}}

@@ -129,11 +129,7 @@ class SP1_BMVS_Controller extends Controller
         $findPSS = PatientStudySpecific::where('patient_id', $patient_id)
             ->where('study_id', $study_id)
             ->first();
-        if ($study_period == '---') {
-            alert()->error('Error!', 'This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input', $study_id));
-
-        } elseif ($study_period == 1) {
+        if ($study_period == 1) {
             if($this->updateSP1($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
               }else{
