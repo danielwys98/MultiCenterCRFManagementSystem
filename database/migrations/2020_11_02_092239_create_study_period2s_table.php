@@ -29,6 +29,8 @@ class CreateStudyPeriod2sTable extends Migration
             $table->bigInteger('SP2_DQuestionnaire')->unsigned()->nullable();
             $table->bigInteger('SP2_IQ36')->unsigned()->nullable();
             $table->bigInteger('SP2_IQ48')->unsigned()->nullable();
+            $table->bigInteger('SP2_IQ72')->unsigned()->nullable();
+            $table->bigInteger('SP2_IQ96')->unsigned()->nullable();
 
             $table->timestamps();
         });

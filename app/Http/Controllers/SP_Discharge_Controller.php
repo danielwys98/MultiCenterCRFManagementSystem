@@ -14,7 +14,7 @@ use App\StudyPeriod4;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class SP1_Discharge_Controller extends Controller
+class SP_Discharge_Controller extends Controller
 {
     public function __construct()
     {

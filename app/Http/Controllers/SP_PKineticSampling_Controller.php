@@ -14,7 +14,7 @@ use App\SP3_PKineticSampling;
 use App\SP4_PKineticSampling;
 use DB;
 
-class SP1_PKineticSampling_Controller extends Controller
+class SP_PKineticSampling_Controller extends Controller
 {
     public function __construct()
     {

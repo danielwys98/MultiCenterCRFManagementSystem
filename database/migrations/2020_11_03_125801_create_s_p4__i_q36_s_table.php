@@ -15,6 +15,8 @@ class CreateSP4IQ36STable extends Migration
     {
         Schema::create('SP4_IQ36s', function (Blueprint $table) {
             $table->increments('SP4_IQ36_ID');
+
+            $table->boolean('NApplicable')->nullable();
             //date and time for interim questionnaire
             $table->date('dateTaken')->nullable();
             $table->time('timeTaken')->nullable();
@@ -44,6 +46,6 @@ class CreateSP4IQ36STable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_p4__i_q36_s');
+        Schema::dropIfExists('SP4_IQ36s');
     }
 }

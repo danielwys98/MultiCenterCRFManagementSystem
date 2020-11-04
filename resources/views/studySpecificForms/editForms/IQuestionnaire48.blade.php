@@ -3,6 +3,14 @@
 @csrf
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}
 <h3>Interim Questionnaire(48 hours Post Dose Visit)</h3>
+<div class=" form-group row">
+    <div class="col-md-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <hr>
 <div class="form-group row">
     <div class="col-md-1">
