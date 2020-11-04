@@ -34,11 +34,11 @@ class SP1_BMVS_Controller extends Controller
             'dateTaken.required' => 'Please enter the date taken for body measurement vital signs',
             'timeTaken.required' => 'Please enter the time taken for body measurement vital signs',
             'weight.required' => 'Please enter the weight for body measurement vital signs',
-            'height.required' => 'Please enter the height for body measurement vital signs',
+            'height.required' => 'Please enter the height for body measurement vital signs',/*
             'Supine_ReadingTime.required' => 'Please enter the Supine Reading Time',
             'Supine_BP.required' => 'Please enter the Supine Blood Pressure',
             'Supine_HR.required' => 'Please enter the Supine Heart Rate',
-            'Supine_RespiratoryRate.required' => 'Please enter the Supine Respiratory Rate',
+            'Supine_RespiratoryRate.required' => 'Please enter the Supine Respiratory Rate',*/
             'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
             'Sitting_BP.required' => 'Please enter the Sitting Blood Pressure',
             'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
@@ -59,11 +59,11 @@ class SP1_BMVS_Controller extends Controller
             'timeTaken' => 'required',
             'weight' => 'required',
             'height' => 'required',
-            'temperature' => 'required',
+            'temperature' => 'required',/*
             'Supine_ReadingTime' => 'required',
             'Supine_BP' => 'required',
             'Supine_HR' => 'required',
-            'Supine_RespiratoryRate' => 'required',
+            'Supine_RespiratoryRate' => 'required',*/
             'Sitting_ReadingTime' => 'required',
             'Sitting_BP' => 'required',
             'Sitting_HR' => 'required',
@@ -123,9 +123,8 @@ class SP1_BMVS_Controller extends Controller
         }
     }
 
-    public function update(Request $request, $patient_id, $study_id)
+    public function update(Request $request, $patient_id, $study_id,$study_period)
     {
-        $study_period=$request->studyPeriod;
         $findPSS = PatientStudySpecific::where('patient_id', $patient_id)
             ->where('study_id', $study_id)
             ->first();
@@ -226,6 +225,7 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial = $request->Initial;
 
         $BMVS->save();
+        return true;
     }
 
     public function updateSP2($findPSS, $request)
@@ -292,6 +292,7 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial = $request->Initial;
 
         $BMVS->save();
+        return true;
     }
 
     public function updateSP3($findPSS, $request)
@@ -358,6 +359,7 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial = $request->Initial;
 
         $BMVS->save();
+        return true;
     }
 
     public function updateSP4($findPSS, $request)
@@ -424,6 +426,7 @@ class SP1_BMVS_Controller extends Controller
         $BMVS->Initial = $request->Initial;
 
         $BMVS->save();
+        return true;
     }
 
     public function storeSP1($findPSS, $request)
