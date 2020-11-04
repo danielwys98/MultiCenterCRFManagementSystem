@@ -96,6 +96,14 @@
 <hr>
 <h3>Urine Drugs of Abuse Test</h3>
 <p>(Transcribed from Urine Logbook)</p>
+<div class=" form-group row">
+    <div class="col-md-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <div class="form-group row">
     <div class="col-md-1">
         {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}

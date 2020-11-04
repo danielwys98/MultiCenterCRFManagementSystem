@@ -29,6 +29,8 @@ class CreateStudyPeriod3sTable extends Migration
             $table->bigInteger('SP3_DQuestionnaire')->unsigned()->nullable();
             $table->bigInteger('SP3_IQ36')->unsigned()->nullable();
             $table->bigInteger('SP3_IQ48')->unsigned()->nullable();
+            $table->bigInteger('SP3_IQ72')->unsigned()->nullable();
+            $table->bigInteger('SP3_IQ96')->unsigned()->nullable();
 
             $table->timestamps();
         });

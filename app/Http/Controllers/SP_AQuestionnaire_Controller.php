@@ -13,7 +13,7 @@ use App\StudyPeriod3;
 use App\StudyPeriod4;
 use Illuminate\Http\Request;
 
-class SP1_AQuestionnaire_Controller extends Controller
+class SP_AQuestionnaire_Controller extends Controller
 {
     public function __construct()
     {
