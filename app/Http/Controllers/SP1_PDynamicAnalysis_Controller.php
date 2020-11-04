@@ -195,8 +195,8 @@ class SP1_PDynamicAnalysis_Controller extends Controller
         }
     }
 
-    public function update(Request $request,$patient_id,$study_id){
-        $study_period = $request->studyPeriod;
+    public function update(Request $request,$patient_id,$study_id,$study_period)
+    {
         //find Patient Study Specific table
         $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)

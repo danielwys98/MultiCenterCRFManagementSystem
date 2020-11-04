@@ -7,7 +7,7 @@
         {!! Form::label('time', 'Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->timeTaken),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->DQtimeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
