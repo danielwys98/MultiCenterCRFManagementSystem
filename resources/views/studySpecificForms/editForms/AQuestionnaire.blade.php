@@ -1,4 +1,4 @@
-{!! Form::model($AQuestionnaire,['route' => ['sp_AQuestionnaire.update',$patient->id,$study_id]]) !!}
+{!! Form::model($AQuestionnaire,['route' => ['sp_AQuestionnaire.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 <h3>Admission Questionnaire</h3>

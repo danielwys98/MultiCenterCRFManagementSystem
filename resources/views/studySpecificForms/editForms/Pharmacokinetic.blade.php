@@ -1,4 +1,4 @@
-{!! Form::model($PKinetic,['route' => ['sp_Pharmocokinetic.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PKinetic,['route' => ['sp_Pharmocokinetic.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Pharmacokinetic Blood Sampling --}}
