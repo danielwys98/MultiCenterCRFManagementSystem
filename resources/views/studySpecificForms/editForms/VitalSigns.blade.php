@@ -111,7 +111,7 @@
             {!! Form::text('TPD_5_Respiration', old('TPD_5_Respiration',$VitalSign->TPD_5_Respiration),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_5_TakenBy', old('TPD_5_TakenBy',$VitalSign->TPD_8_Date),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_TakenBy', old('TPD_5_TakenBy',$VitalSign->TPD_5_TakenBy),['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
