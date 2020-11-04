@@ -55,7 +55,7 @@
         {!! Form::label('weight', 'Weight: ') !!}
     </div>
     <div class="col-md-1">
-        {!! Form::number('weight','', ['class'=>'form-control','placeholder'=>'kg']) !!}
+        {!! Form::text('weight','', ['class'=>'form-control','placeholder'=>'kg']) !!}
     </div>
 </div>
 <div class="form-group row">
@@ -63,7 +63,7 @@
         {!! Form::label('height', 'Height: ') !!}
     </div>
     <div class="col-md-1">
-        {!! Form::number('height', '', ['class'=> 'form-control','placeholder'=>'cm']) !!}
+        {!! Form::text('height', '', ['class'=> 'form-control','placeholder'=>'cm']) !!}
     </div>
 </div>
 
@@ -93,25 +93,19 @@
     <tr>
         <th scope="col">Position</th>
         <th scope="col">Reading Time (24-hour clock)</th>
-        <th scope="col">Blood Pressure (systolic/diastolic) (mmHg)</th>
+        <th scope="col" class="col-md-3">Blood Pressure (systolic/diastolic) (mmHg)</th>
         <th scope="col">Heart Rate (beats per min)</th>
         <th scope="col">Respiratory Rate (breaths per min)</th>
     </tr>
     </thead>
     <tbody>
-    {{--TODO: Remove Supine columns from database and migration file for SP1-4--}}
-    {{--
-    <tr>
-        <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-        <td>{!! Form::time('Supine_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Supine_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Supine_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Supine_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-    </tr>--}}
     <tr>
         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
         <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Sitting_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>
+            {!! Form::number('Sitting_BP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::number('Sitting_BP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+        </td>
         <td>{!! Form::number('Sitting_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Sitting_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
@@ -123,7 +117,9 @@
             {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Sitting_BP_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{{--{!! Form::number('Sitting_BP_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}--}}
+            {!! Form::number('Sitting_BP_S_Repeat1', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::number('Sitting_BP_D_Repeat1', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}</td>
         <td>{!! Form::number('Sitting_HR_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Sitting_RespiratoryRate_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
@@ -135,7 +131,9 @@
             {!! Form::label('SittingRepeat2','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Sitting_BP_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{{--{!! Form::number('Sitting_BP_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}--}}
+            {!! Form::number('Sitting_BP_S_Repeat2', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::number('Sitting_BP_D_Repeat2', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}</td>
         <td>{!! Form::number('Sitting_HR_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Sitting_RespiratoryRate_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
@@ -147,8 +145,14 @@
     </tbody>
 </table>
 <p>
-    {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
+    {!! Form::label('note1', 'Only latest reading is transcribed.Comment below if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
 </p>
+<div class="form-group row col-md-6">
+    {!! Form::label('Comment','Comments/ Remarks: ') !!}
+{!! Form::text('Comment','',['class'=>'form-control']) !!}
+</div>
 {{-- Body measurements and vital signs ends--}}
+<div class="row col">
 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+</div>
 {!! Form::close() !!}
