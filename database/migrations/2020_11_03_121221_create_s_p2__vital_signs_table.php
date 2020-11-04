@@ -152,6 +152,8 @@ class CreateSP2VitalSignsTable extends Migration
             $table->text('Extra8_Respiration')->nullable();
             $table->text('Extra8_TakenBy')->nullable();
 
+            $table->text('Comment')->nullable();
+
             $table->timestamps();
         });
     }
