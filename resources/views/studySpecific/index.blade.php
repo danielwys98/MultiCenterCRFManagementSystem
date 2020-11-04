@@ -26,7 +26,7 @@
                     <p>{{$study->study_name}}</p><br>
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary float-md-left"><a href="{{route('studySpecific.edit',$study->study_id)}}"><i class="fas fa-user-edit"></i></a></button>
+                    <a href="{{route('studySpecific.edit',$study->study_id)}}"><button class="btn btn-outline-primary float-md-left">{{--<i class="fas fa-user-edit"></i>--}}Update</button></a>
                     <form action="{{route('studySpecific.destroy',$study->study_id)}}" method="POST">
                         @csrf
                         {{method_field('DELETE')}}

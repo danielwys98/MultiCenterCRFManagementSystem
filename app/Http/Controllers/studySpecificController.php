@@ -137,15 +137,26 @@ class studySpecificController extends Controller
 
 
     //Show specific studies details
-    public function edit($id)
+    public function edit($study_id)
     {
         //find the details of the studies.
-        $study = studySpecific::find($id);
+        $study = studySpecific::find($study_id);
+
+        //find the amount of period of this study
+        $studyPeriodLimit = $study->studyPeriod_Count;
+        $period = 0;
+        $studyPeriod[0]='---';
+
+        for($i = 0; $i < $studyPeriodLimit; $i++)
+        {
+            $period++;
+            $studyPeriod[] =$period;
+        }
 
         //check if the studies is found
         if($study != NULL) {
             //find the subject who enrolled into this studies
-            $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id', $id)->get();
+            $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id', $study_id)->get();
 
             if (count($findPatient) > 0) {
                 foreach ($findPatient as $p) {
@@ -156,7 +167,7 @@ class studySpecificController extends Controller
             {
                 $oriPatientName = NULL;
             }
-                return view('studySpecific.edit',compact('study','oriPatientName'));
+                return view('studySpecific.edit',compact('study','oriPatientName','studyPeriod'));
 
         }else
         {
@@ -239,7 +250,7 @@ class studySpecificController extends Controller
     }
     public function testPDF()
     {
-        $PID = 18;
+        $PID = 22;
         $study_id = 4;
         $patient = Patient::where('id', $PID)->first();
         $study = studySpecific::where('study_id',$study_id)->first();

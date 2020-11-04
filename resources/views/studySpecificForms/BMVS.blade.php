@@ -99,13 +99,15 @@
     </tr>
     </thead>
     <tbody>
+    {{--TODO: Remove Supine columns from database and migration file for SP1-4--}}
+    {{--
     <tr>
         <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
         <td>{!! Form::time('Supine_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_BP', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_HR', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_RespiratoryRate', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-    </tr>
+    </tr>--}}
     <tr>
         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
         <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>

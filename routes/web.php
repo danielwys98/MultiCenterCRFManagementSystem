@@ -44,13 +44,13 @@ Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name(
 
 //study specific Admission
 Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp_Admission.store');
-Route::put('sp_admisison/{patient_id}/update/{study_id}','SP1_Admission_Controller@update')->name('sp_Admission.update');
+Route::put('sp_admisison/{patient_id}/update/{study_id}/{study_period}','SP1_Admission_Controller@update')->name('sp_Admission.update');
 //study specific Body Measurements and Vital Signs
 Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp_Bmvs.store');
 Route::put('sp_bmvs/{patient_id}/update/{study_id}','SP1_BMVS_Controller@update')->name('sp_Bmvs.update');
 //study specific Breath Alcohol Test
 Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp_Bat.store');
-Route::put('sp_bat/{patient_id}/update/{study_id}','SP1_BAT_Controller@update')->name('sp_Bat.update');
+Route::put('sp_bat/{patient_id}/update/{study_id}/{study_period}','SP1_BAT_Controller@update')->name('sp_Bat.update');
 //study specific Admission Questionnaire
 Route::post('sp_aquestionnaire/{id}','SP1_AQuestionnaire_Controller@store')->name('sp_AQuestionnaire.store');
 Route::put('sp_aquestionnaire/{patient_id}/update/{study_id}','SP1_AQuestionnaire_Controller@update')->name('sp_AQuestionnaire.update');

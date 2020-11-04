@@ -87,6 +87,18 @@
                     @endif
                 </div>
             </div>
+            <div class="col-md-2">
+                <div>
+                    @if($oriPatientName != NULL)
+                        {!! Form::label('Study Period', 'Study Period') !!}
+                        {!! Form::select('study_period',$studyPeriod,null,['class'=>'form-control']) !!}
+                    @else
+                        {!! Form::label('Study Period', 'Study Period') !!}
+                        {!! Form::select('study_period',['---'],null,['class'=>'form-control']) !!}
+                    @endif
+                </div>
+            </div>
+
         </div>
 
         {!! Form::submit('View subject study period details',['class'=>'btn btn-success'])!!}

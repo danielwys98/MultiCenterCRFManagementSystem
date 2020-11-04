@@ -95,14 +95,9 @@ class SP1_Admission_Controller extends Controller
                                         ->where('study_id',$study_id)
                                         ->first();
         $this->bindingSP($findPSS,$study_period);
-
-        if($study_period == '---')
-        {
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input',$study_id));
-        }
+        
         //PSS found and SP1_ID is bind
-        elseif($study_period == 1)
+        if($study_period == 1)
         {
             if($this->initaliseForms($findPSS,$PID,$study_id) AND $this->storeSP1($findPSS,$request))
             {
@@ -159,6 +154,7 @@ class SP1_Admission_Controller extends Controller
     {
         $PID = $request->patient_id;
         $patient = Patient::where('id', $PID)->first();
+        $study_period = $request->study_period;
         $findPSS = PatientStudySpecific::with('StudyPeriod1')
             ->where('patient_id', $PID)
             ->where('study_id', $study_id)
@@ -192,40 +188,41 @@ class SP1_Admission_Controller extends Controller
                 'IQ36',
                 'IQ48',
                 'study_id',
+                'study_period',
                 'patient'));
         }
     }
 
-    public function update(Request $request,$patient_id,$study_id)
+    public function update(Request $request,$patient_id,$study_id,$study_period)
     {
-        $study_period=$request->studyPeriod;
+        /*$study_period=$request->studyPeriod;*/
         $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)
                                         ->first();
         if ($study_period == '---') {
             alert()->error('Error!', 'This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input', $study_id));
+            /*return redirect(route('studySpecific.input', $study_id));*/
 
         } elseif ($study_period == 1) {
             if($this->updateSP1($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+              /*  return redirect(route('studySpecific.input',$study_id));*/
             }
         } elseif ($study_period == 2) {
             if($this->updateSP2($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+                /*return redirect(route('studySpecific.input',$study_id));*/
             }
         } elseif ($study_period == 3) {
             if($this->updateSP3($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else {
                 alert()->error('Error!', 'You have already key the data for this subject!');
-                return redirect(route('studySpecific.input', $study_id));
+                /*return redirect(route('studySpecific.input', $study_id));*/
             }
         } elseif ($study_period == 4) {
             if($this->updateSP4($findPSS,$request)){

@@ -67,13 +67,14 @@
     </tr>
     </thead>
     <tbody>
+    {{--TODO: Remove Supine columns from database and migration file for SP1-4
     <tr>
         <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
         <td>{!! Form::time('Supine_ReadingTime', old('Supine_ReadingTime',$BMVS->Supine_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_BP', old('Supine_BP',$BMVS->Supine_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_HR', old('Supine_HR',$BMVS->Supine_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Supine_RespiratoryRate', old('Supine_RespiratoryRate',$BMVS->Supine_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
-    </tr>
+    </tr>--}}
     <tr>
         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
         <td>{!! Form::time('Sitting_ReadingTime',old('Sitting_ReadingTime',$BMVS->Sitting_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
