@@ -47,40 +47,40 @@ Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp_Admi
 Route::put('sp_admisison/{patient_id}/update/{study_id}/{study_period}','SP1_Admission_Controller@update')->name('sp_Admission.update');
 //study specific Body Measurements and Vital Signs
 Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp_Bmvs.store');
-Route::put('sp_bmvs/{patient_id}/update/{study_id}','SP1_BMVS_Controller@update')->name('sp_Bmvs.update');
+Route::put('sp_bmvs/{patient_id}/update/{study_id}/{study_period}','SP1_BMVS_Controller@update')->name('sp_Bmvs.update');
 //study specific Breath Alcohol Test
 Route::post('sp_bat/{id}','SP1_BAT_Controller@store')->name('sp_Bat.store');
 Route::put('sp_bat/{patient_id}/update/{study_id}/{study_period}','SP1_BAT_Controller@update')->name('sp_Bat.update');
 //study specific Admission Questionnaire
 Route::post('sp_aquestionnaire/{id}','SP1_AQuestionnaire_Controller@store')->name('sp_AQuestionnaire.store');
-Route::put('sp_aquestionnaire/{patient_id}/update/{study_id}','SP1_AQuestionnaire_Controller@update')->name('sp_AQuestionnaire.update');
+Route::put('sp_aquestionnaire/{patient_id}/update/{study_id}/{study_period}','SP1_AQuestionnaire_Controller@update')->name('sp_AQuestionnaire.update');
 //study specific Urine Pregnancy Test
 Route::post('sp_urinetest/{id}','SP1_UrineTest_Controller@store')->name('sp_UrineTest.store');
-Route::put('sp_urinetest/{patient_id}/update/{study_id}','SP1_UrineTest_Controller@update')->name('sp_UrineTest.update');
+Route::put('sp_urinetest/{patient_id}/update/{study_id}/{study_period}','SP1_UrineTest_Controller@update')->name('sp_UrineTest.update');
 //study specific Pharmacokinetic Blood Sampling
 Route::post('sp_pharmocokinetic/{id}','SP1_PKineticSampling_Controller@store')->name('sp_Pharmocokinetic.store');
-Route::put('sp_pharmocokinetic/{patient_id}/update/{study_id}','SP1_PKineticSampling_Controller@update')->name('sp_Pharmocokinetic.update');
+Route::put('sp_pharmocokinetic/{patient_id}/update/{study_id}/{study_period}','SP1_PKineticSampling_Controller@update')->name('sp_Pharmocokinetic.update');
 //study specific Pharmacodynamic Blood Sampling
 Route::post('sp_pdynamicsampling/{id}','SP1_PDynamicSampling_Controller@store')->name('sp_Pdynamicsampling.store');
-Route::put('sp_pdynamicsampling/{patient_id}/update/{study_id}','SP1_PDynamicSampling_Controller@update')->name('sp_Pdynamicsampling.update');
+Route::put('sp_pdynamicsampling/{patient_id}/update/{study_id}/{study_period}','SP1_PDynamicSampling_Controller@update')->name('sp_Pdynamicsampling.update');
 //study specific Pharmacodynamic (PD) Analysis
 Route::post('sp_padnalysis/{id}','SP1_PDynamicAnalysis_Controller@store')->name('sp_PDAnalysis.store');
-Route::put('sp_padnalysis/{patient_id}/update/{study_id}','SP1_PDynamicAnalysis_Controller@update')->name('sp_PDAnalysis.update');
+Route::put('sp_padnalysis/{patient_id}/update/{study_id}/{study_period}','SP1_PDynamicAnalysis_Controller@update')->name('sp_PDAnalysis.update');
 //study specific Vital Signs
 Route::post('sp_vitalsign/{id}','SP1_VitalSign_Controller@store')->name('sp_VitalSign.store');
-Route::put('sp_vitalsign/{patient_id}/update/{study_id}','SP1_VitalSign_Controller@update')->name('sp_VitalSign.update');
+Route::put('sp_vitalsign/{patient_id}/update/{study_id}/{study_period}','SP1_VitalSign_Controller@update')->name('sp_VitalSign.update');
 //study specific Discharge
 Route::post('sp_discharge/{id}','SP1_Discharge_Controller@store')->name('sp_Discharge.store');
-Route::put('sp_discharge/{patient_id}/update/{study_id}','SP1_Discharge_Controller@update')->name('sp_Discharge.update');
+Route::put('sp_discharge/{patient_id}/update/{study_id}/{study_period}','SP1_Discharge_Controller@update')->name('sp_Discharge.update');
 //study specific Discharge Questionnaire
 Route::post('sp_dquestionnaire/{id}','SP1_DQuestionnaire_Controller@store')->name('sp_DQuestionnaire.store');
-Route::put('sp_dquestionnaire/{patient_id}/update/{study_id}','SP1_DQuestionnaire_Controller@update')->name('sp_DQuestionnaire.update');
+Route::put('sp_dquestionnaire/{patient_id}/update/{study_id}/{study_period}','SP1_DQuestionnaire_Controller@update')->name('sp_DQuestionnaire.update');
 //study specific Interim Questionnaire(36 hours Post Dose Visit)
 Route::post('sp_iq36/{id}','SP1_IQ36_Controller@store')->name('sp_IQuestionnaire36.store');
-Route::put('sp_iq36/{patient_id}/update/{study_id}','SP1_IQ36_Controller@update')->name('sp_IQuestionnaire36.update');
+Route::put('sp_iq36/{patient_id}/update/{study_id}/{study_period}','SP1_IQ36_Controller@update')->name('sp_IQuestionnaire36.update');
 //study specific Interim Questionnaire(48 hours Post Dose Visit)
 Route::post('sp_iq48/{id}','SP1_IQ48_Controller@store')->name('sp_IQuestionnaire48.store');
-Route::put('sp_iq48/{patient_id}/update/{study_id}','SP1_IQ48_Controller@update')->name('sp_IQuestionnaire48.update');
+Route::put('sp_iq48/{patient_id}/update/{study_id}/{study_period}','SP1_IQ48_Controller@update')->name('sp_IQuestionnaire48.update');
 
 
 //this is to edit the studies detail and the subject study details
@@ -129,9 +129,6 @@ Route::put('conclusion/{conclusion}','CS_Controller@updateCS')->name('update.con
 
 /*Route::delete('details/{details}','BMVS_Controller@delete')->name('details.delete');*/
 
-//<<<<TCH
-
-//>>>>End
 Auth::routes();
 
 Route::resource('users','Admin\UsersController',['except'=>['show','create','store']]);
