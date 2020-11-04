@@ -18,6 +18,8 @@
             <li><a data-toggle="tab" href="#DischargeQuestionnaire">Discharge Questionnaire</a></li>
             <li><a data-toggle="tab" href="#IQuestionnaire36">Interim Questionnaire(36 hours Post Dose Visit)</a></li>
             <li><a data-toggle="tab" href="#IQuestionnaire48">Interim Questionnaire(48 hours Post Dose Visit)</a></li>
+            <li><a data-toggle="tab" href="#IQuestionnaire72">Interim Questionnaire(72 hours Post Dose Visit)</a></li>
+            <li><a data-toggle="tab" href="#IQuestionnaire96">Interim Questionnaire(96 hours Post Dose Visit)</a></li>
         </ul>
             <hr/>
   {{--      <div class="form-group row">
@@ -122,6 +124,16 @@
 
              <div id="IQuestionnaire48" class="tab-pane fade">
                  @include('studySpecificForms.IQuestionnaire48')
+
+             </div>
+
+             <div id="IQuestionnaire72" class="tab-pane fade">
+                @include('studySpecificForms.IQuestionnaire72')
+
+             </div>
+
+             <div id="IQuestionnaire96" class="tab-pane fade">
+                 @include('studySpecificForms.IQuestionnaire96')
 
              </div>
     </div>
