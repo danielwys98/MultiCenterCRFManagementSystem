@@ -55,7 +55,7 @@
             <p>Reading Time</p>
             <p>(24-hour clock)</p>
         </th>
-        <th scope="col" class="text-center">
+        <th scope="col" class="text-center col-md-2">
             <p>Sitting Blood Pressure</p>
             <p>(systolic/diastolic) (mmHg)</p>
         </th>
@@ -85,7 +85,8 @@
             {!! Form::time('TPD_1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_1_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_1_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_1_Pulse', '',['class'=>'form-control']) !!}
@@ -108,7 +109,8 @@
             {!! Form::time('TPD_2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_2_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_2_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_2_Pulse', '',['class'=>'form-control']) !!}
@@ -131,7 +133,8 @@
             {!! Form::time('TPD_5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_5_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_5_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_5_Pulse', '',['class'=>'form-control']) !!}
@@ -154,7 +157,8 @@
             {!! Form::time('TPD_8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_8_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_8_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_8_Pulse', '',['class'=>'form-control']) !!}
@@ -177,7 +181,8 @@
             {!! Form::time('TPD_12_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_12_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_12_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_12_Pulse', '',['class'=>'form-control']) !!}
@@ -211,7 +216,8 @@
             {!! Form::time('TPD_36_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_36_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_36_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_36_Pulse', '',['class'=>'form-control']) !!}
@@ -234,7 +240,8 @@
             {!! Form::time('TPD_48_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_48_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_48_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_48_Pulse', '',['class'=>'form-control']) !!}
@@ -262,7 +269,8 @@
             {!! Form::time('Extra1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra1_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra1_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra1_Pulse', '',['class'=>'form-control']) !!}
@@ -285,7 +293,8 @@
             {!! Form::time('Extra2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra2_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra2_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra2_Pulse', '',['class'=>'form-control']) !!}
@@ -308,7 +317,8 @@
             {!! Form::time('Extra3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra3_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra3_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra3_Pulse', '',['class'=>'form-control']) !!}
@@ -331,7 +341,8 @@
             {!! Form::time('Extra4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra4_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra4_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra4_Pulse', '',['class'=>'form-control']) !!}
@@ -354,7 +365,8 @@
             {!! Form::time('Extra5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra5_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra5_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra5_Pulse', '',['class'=>'form-control']) !!}
@@ -377,7 +389,8 @@
             {!! Form::time('Extra6_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra6_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra6_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra6_Pulse', '',['class'=>'form-control']) !!}
@@ -400,7 +413,8 @@
             {!! Form::time('Extra7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra7_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra7_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra7_Pulse', '',['class'=>'form-control']) !!}
@@ -423,7 +437,8 @@
             {!! Form::time('Extra8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra8_SittingBP', '',['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra8_SittingBP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra8_Pulse', '',['class'=>'form-control']) !!}
@@ -442,5 +457,12 @@
     <p>Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100 (latest reading only).</p>
 </div>
 
-{!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+<div class="form-group row col-md-6">
+    {!! Form::label('Comment','Comments/ Remarks: ') !!}
+    {!! Form::text('Comment','',['class'=>'form-control']) !!}
+</div>
+{{-- Body measurements and vital signs ends--}}
+<div class="row col">
+    {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+</div>
 {!! Form::close() !!}
