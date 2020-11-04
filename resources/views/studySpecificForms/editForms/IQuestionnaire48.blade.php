@@ -15,7 +15,7 @@
         {!! Form::label('timeTaken', 'Time Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken',old("dateTaken",$IQ48->dateTaken),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken',old("timeTaken",$IQ48->timeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">

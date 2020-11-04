@@ -108,9 +108,8 @@ class SP1_IQ48_Controller extends Controller
         }
     }
 
-    public function update(Request $request, $patient_id, $study_id)
+    public function update(Request $request, $patient_id, $study_id,$study_period)
     {
-        $study_period = $request->studyPeriod;
         //find Patient Study Specific table
         $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)
