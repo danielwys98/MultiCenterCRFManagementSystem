@@ -167,25 +167,24 @@ class SP_UrineTest_Controller extends Controller
             $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
             $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
 
-            // dd($request);
             //validation for required fields
             $validatedData=$this->validate($request,[
-                'uPreg_Laboratory' => 'required_if:UPreg_male,!=1',
+                'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
                 'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
-                'uDrug_Laboratory' => 'required_if:UPreg_male,!=1',
+                'uDrug_Laboratory' => 'required_if:UPreg_male,==,',
                 'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
-                'UPreg_dateTaken' => 'required_if:UPreg_male,!=1',
-                'UPreg_TestTime' => 'required_if:UPreg_male,!=1',
-                'UPreg_ReadTime' => 'required_if:UPreg_male,!=1',
-                'UPreg_hCG' => 'required_if:UPreg_male,!=1',
-                'UPreg_Transcribedby' => 'required_if:UPreg_male,!=1',
-                'UDrug_dateTaken' => 'required_if:NApplicable,!=1',
-                'UDrug_TestTime' => 'required_if:NApplicable,!=1',
-                'UDrug_ReadTime' => 'required_if:NApplicable,!=1',
-                'UDrug_Methamphetamine' => 'required_if:NApplicable,!=1',
-                'UDrug_Morphine' => 'required_if:NApplicable,!=1',
-                'UDrug_Marijuana' => 'required_if:NApplicable,!=1',
-                'UDrug_Transcribedby' => 'required_if:NApplicable,!=1',
+                'UPreg_dateTaken' => 'required_if:UPreg_male,==,',
+                'UPreg_TestTime' => 'required_if:UPreg_male,==,',
+                'UPreg_ReadTime' => 'required_if:UPreg_male,==,',
+                'UPreg_hCG' => 'required_if:UPreg_male,==,',
+                'UPreg_Transcribedby' => 'required_if:UPreg_male,==,',
+                'UDrug_dateTaken' => 'required_if:NApplicable,==,',
+                'UDrug_TestTime' => 'required_if:NApplicable,==,',
+                'UDrug_ReadTime' => 'required_if:NApplicable,==,',
+                'UDrug_Methamphetamine' => 'required_if:NApplicable,==,',
+                'UDrug_Morphine' => 'required_if:NApplicable,==,',
+                'UDrug_Marijuana' => 'required_if:NApplicable,==,',
+                'UDrug_Transcribedby' => 'required_if:NApplicable,==,',
                 'inclusionYesNo' => 'required',
                 'subjectFit' => 'required',
                 'physicianSign' => 'required',
@@ -266,7 +265,6 @@ class SP_UrineTest_Controller extends Controller
         }else
         return false;
     }
-
 
     //update
     public function updateSP($PSS,$request){

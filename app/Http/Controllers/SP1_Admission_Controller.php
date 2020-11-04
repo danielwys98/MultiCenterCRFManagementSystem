@@ -21,6 +21,8 @@ use App\SP1_Discharge;
 use App\SP1_DQuestionnaire;
 use App\SP1_IQ36;
 use App\SP1_IQ48;
+use App\SP1_IQ72;
+use App\SP1_IQ96;
 use App\SP1_PDynamicAnalysis;
 use App\SP1_PDynamicSampling;
 use App\SP1_PKineticSampling;
@@ -35,6 +37,8 @@ use App\SP2_Discharge;
 use App\SP2_DQuestionnaire;
 use App\SP2_IQ36;
 use App\SP2_IQ48;
+use App\SP2_IQ72;
+use App\SP2_IQ96;
 use App\SP2_PDynamicAnalysis;
 use App\SP2_PDynamicSampling;
 use App\SP2_PKineticSampling;
@@ -49,6 +53,8 @@ use App\SP3_Discharge;
 use App\SP3_DQuestionnaire;
 use App\SP3_IQ36;
 use App\SP3_IQ48;
+use App\SP3_IQ72;
+use App\SP3_IQ96;
 use App\SP3_PDynamicAnalysis;
 use App\SP3_PDynamicSampling;
 use App\SP3_PKineticSampling;
@@ -63,6 +69,8 @@ use App\SP4_Discharge;
 use App\SP4_DQuestionnaire;
 use App\SP4_IQ36;
 use App\SP4_IQ48;
+use App\SP4_IQ72;
+use App\SP4_IQ96;
 use App\SP4_PDynamicAnalysis;
 use App\SP4_PDynamicSampling;
 use App\SP4_PKineticSampling;
@@ -175,6 +183,8 @@ class SP1_Admission_Controller extends Controller
                 $DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID', $findSP1->SP1_DQuestionnaire)->first();
                 $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
                 $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+                $IQ72 = SP1_IQ72::where('SP1_IQ72_ID', $findSP1->SP1_IQ72)->first();
+                $IQ96 = SP1_IQ96::where('SP1_IQ96_ID', $findSP1->SP1_IQ96)->first();
                 return view('SubjectStudySpecific', compact('Admission',
                     'BMVS',
                     'BAT',
@@ -188,6 +198,8 @@ class SP1_Admission_Controller extends Controller
                     'DQuestionnaire',
                     'IQ36',
                     'IQ48',
+                    'IQ72',
+                    'IQ96',
                     'study_id',
                     'study_period',
                     'patient'));
@@ -209,6 +221,8 @@ class SP1_Admission_Controller extends Controller
                 $DQuestionnaire = SP2_DQuestionnaire::where('SP2_DQuestionnaire_ID', $findSP2->SP2_DQuestionnaire)->first();
                 $IQ36 = SP2_IQ36::where('SP2_IQ36_ID', $findSP2->SP2_IQ36)->first();
                 $IQ48 = SP2_IQ48::where('SP2_IQ48_ID', $findSP2->SP2_IQ48)->first();
+                $IQ72 = SP2_IQ72::where('SP2_IQ72_ID', $findSP2->SP2_IQ72)->first();
+                $IQ96 = SP2_IQ96::where('SP2_IQ96_ID', $findSP2->SP2_IQ96)->first();
                 return view('SubjectStudySpecific', compact('Admission',
                     'BMVS',
                     'BAT',
@@ -222,6 +236,8 @@ class SP1_Admission_Controller extends Controller
                     'DQuestionnaire',
                     'IQ36',
                     'IQ48',
+                    'IQ72',
+                    'IQ96',
                     'study_id',
                     'study_period',
                     'patient'));
@@ -243,6 +259,8 @@ class SP1_Admission_Controller extends Controller
                 $DQuestionnaire = SP3_DQuestionnaire::where('SP3_DQuestionnaire_ID', $findSP3->SP3_DQuestionnaire)->first();
                 $IQ36 = SP3_IQ36::where('SP3_IQ36_ID', $findSP3->SP3_IQ36)->first();
                 $IQ48 = SP3_IQ48::where('SP3_IQ48_ID', $findSP3->SP3_IQ48)->first();
+                $IQ72 = SP3_IQ72::where('SP3_IQ72_ID', $findSP3->SP3_IQ72)->first();
+                $IQ96 = SP3_IQ96::where('SP3_IQ96_ID', $findSP3->SP3_IQ96)->first();
                 return view('SubjectStudySpecific', compact('Admission',
                     'BMVS',
                     'BAT',
@@ -256,6 +274,8 @@ class SP1_Admission_Controller extends Controller
                     'DQuestionnaire',
                     'IQ36',
                     'IQ48',
+                    'IQ72',
+                    'IQ96',
                     'study_id',
                     'study_period',
                     'patient'));
@@ -277,6 +297,8 @@ class SP1_Admission_Controller extends Controller
                 $DQuestionnaire = SP4_DQuestionnaire::where('SP4_DQuestionnaire_ID', $findSP4->SP4_DQuestionnaire)->first();
                 $IQ36 = SP4_IQ36::where('SP4_IQ36_ID', $findSP4->SP4_IQ36)->first();
                 $IQ48 = SP4_IQ48::where('SP4_IQ48_ID', $findSP4->SP4_IQ48)->first();
+                $IQ72 = SP4_IQ72::where('SP4_IQ72_ID', $findSP4->SP4_IQ72)->first();
+                $IQ96 = SP4_IQ96::where('SP4_IQ96_ID', $findSP4->SP4_IQ96)->first();
                 return view('SubjectStudySpecific', compact('Admission',
                     'BMVS',
                     'BAT',
@@ -290,6 +312,8 @@ class SP1_Admission_Controller extends Controller
                     'DQuestionnaire',
                     'IQ36',
                     'IQ48',
+                    'IQ72',
+                    'IQ96',
                     'study_id',
                     'study_period',
                     'patient'));
@@ -553,6 +577,13 @@ class SP1_Admission_Controller extends Controller
             $IQ48 = new SP1_IQ48;
             $IQ48->save();
 
+            //Initialise SP1_IQ72
+            $IQ72 = new SP1_IQ72;
+            $IQ72->save();
+
+            //Initialise SP1_IQ96
+            $IQ96 = new SP1_IQ96;
+            $IQ96->save();
 
             //bind SP1's form into SP1
             $SP1->SP1_Admission=$Admission->SP1_Admission_ID;
@@ -568,6 +599,8 @@ class SP1_Admission_Controller extends Controller
             $SP1->SP1_VitalSign=$VitalSign->SP1_VitalSign_ID;
             $SP1->SP1_IQ36 = $IQ36->SP1_IQ36_ID;
             $SP1->SP1_IQ48 = $IQ48->SP1_IQ48_ID;
+            $SP1->SP1_IQ72 = $IQ72->SP1_IQ72_ID;
+            $SP1->SP1_IQ96 = $IQ96->SP1_IQ96_ID;
 
             $SP1->save();
             return true;
@@ -638,6 +671,14 @@ class SP1_Admission_Controller extends Controller
             $IQ48 = new SP2_IQ48;
             $IQ48->save();
 
+            //Initialise SP2_IQ72
+            $IQ72 = new SP2_IQ72;
+            $IQ72->save();
+
+            //Initialise SP2_IQ96
+            $IQ96 = new SP2_IQ96;
+            $IQ96->save();
+
             //bind SP1's form into SP1
             $SP2->SP2_Admission=$Admission->SP2_Admission_ID;
             $SP2->SP2_BMVS = $BMVS->SP2_BMVS_ID;
@@ -652,6 +693,8 @@ class SP1_Admission_Controller extends Controller
             $SP2->SP2_VitalSign=$VitalSign->SP2_VitalSign_ID;
             $SP2->SP2_IQ36 = $IQ36->SP2_IQ36_ID;
             $SP2->SP2_IQ48 = $IQ48->SP2_IQ48_ID;
+            $SP2->SP1_IQ72 = $IQ72->SP2_IQ72_ID;
+            $SP2->SP1_IQ96 = $IQ96->SP2_IQ96_ID;
 
             $SP2->save();
 
@@ -721,6 +764,14 @@ class SP1_Admission_Controller extends Controller
         $IQ48 = new SP3_IQ48;
         $IQ48->save();
 
+        //Initialise SP3_IQ72
+        $IQ72 = new SP3_IQ72;
+        $IQ72->save();
+
+        //Initialise SP3_IQ96
+        $IQ96 = new SP3_IQ96;
+        $IQ96->save();
+
         //bind SP1's form into SP1
             $SP3->SP3_Admission=$Admission->SP3_Admission_ID;
             $SP3->SP3_BMVS = $BMVS->SP3_BMVS_ID;
@@ -735,6 +786,8 @@ class SP1_Admission_Controller extends Controller
             $SP3->SP3_VitalSign=$VitalSign->SP3_VitalSign_ID;
             $SP3->SP3_IQ36 = $IQ36->SP3_IQ36_ID;
             $SP3->SP3_IQ48 = $IQ48->SP3_IQ48_ID;
+            $SP3->SP1_IQ72 = $IQ72->SP3_IQ72_ID;
+            $SP3->SP1_IQ96 = $IQ96->SP3_IQ96_ID;
 
         $SP3->save();
 
@@ -803,6 +856,14 @@ class SP1_Admission_Controller extends Controller
             $IQ48 = new SP4_IQ48;
             $IQ48->save();
 
+            //Initialise SP4_IQ72
+            $IQ72 = new SP4_IQ72;
+            $IQ72->save();
+
+            //Initialise SP4_IQ96
+            $IQ96 = new SP4_IQ96;
+            $IQ96->save();
+
             //bind SP1's form into SP1
             $SP4->SP4_Admission = $Admission->SP4_Admission_ID;
             $SP4->SP4_BMVS = $BMVS->SP4_BMVS_ID;
@@ -817,6 +878,8 @@ class SP1_Admission_Controller extends Controller
             $SP4->SP4_VitalSign=$VitalSign->SP4_VitalSign_ID;
             $SP4->SP4_IQ36 = $IQ36->SP4_IQ36_ID;
             $SP4->SP4_IQ48 = $IQ48->SP4_IQ48_ID;
+            $SP4->SP1_IQ72 = $IQ72->SP4_IQ72_ID;
+            $SP4->SP1_IQ96 = $IQ96->SP4_IQ96_ID;
 
             $SP4->save();
 
