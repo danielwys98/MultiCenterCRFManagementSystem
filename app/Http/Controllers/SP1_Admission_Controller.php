@@ -201,39 +201,41 @@ class SP1_Admission_Controller extends Controller
                                         ->first();
         if ($study_period == '---') {
             alert()->error('Error!', 'This subject is not enrolled into any study!');
-            /*return redirect(route('studySpecific.input', $study_id));*/
+            return redirect(route('studySpecific.edit', $study_id));
+
 
         } elseif ($study_period == 1) {
             if($this->updateSP1($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-              /*  return redirect(route('studySpecific.input',$study_id));*/
+                return redirect(route('studySpecific.edit',$study_id));
+
             }
         } elseif ($study_period == 2) {
             if($this->updateSP2($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                /*return redirect(route('studySpecific.input',$study_id));*/
+                return redirect(route('studySpecific.edit',$study_id));
             }
         } elseif ($study_period == 3) {
             if($this->updateSP3($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else {
                 alert()->error('Error!', 'You have already key the data for this subject!');
-                /*return redirect(route('studySpecific.input', $study_id));*/
+                return redirect(route('studySpecific.edit', $study_id));
             }
         } elseif ($study_period == 4) {
             if($this->updateSP4($findPSS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success','You updated the subject study period details!');
             }else {
                 alert()->error('Error!', 'You have already key the data for this subject!');
-                return redirect(route('studySpecific.input', $study_id));
+                return redirect(route('studySpecific.edit', $study_id));
             }
         }else {
             alert()->error('Error!', 'You did not select the study period!');
-            return redirect(route('studySpecific.input', $study_id));
+            return redirect(route('studySpecific.edit', $study_id));
         }
 
     }

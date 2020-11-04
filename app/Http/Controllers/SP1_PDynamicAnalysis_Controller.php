@@ -204,38 +204,38 @@ class SP1_PDynamicAnalysis_Controller extends Controller
         //check study period and save
         if($study_period == '---'){
             alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input',$study_id));
+            return redirect(route('studySpecific.edit',$study_id));
         }elseif($study_period == 1){
             if($this->updateSP1($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+                return redirect(route('studySpecific.edit',$study_id));
             }
         }elseif($study_period == 2){
             if($this->updateSP2($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+                return redirect(route('studySpecific.edit',$study_id));
             }
         }elseif($study_period == 3){
             if($this->updateSP3($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+                return redirect(route('studySpecific.edit',$study_id));
             }
         }elseif($study_period == 4){
             if($this->updateSP4($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully update the study period 4 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 4 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
+                return redirect(route('studySpecific.edit',$study_id));
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            return redirect(route('studySpecific.edit',$study_id));
         }
     }
 
