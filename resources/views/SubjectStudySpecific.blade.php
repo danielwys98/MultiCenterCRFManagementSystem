@@ -111,12 +111,12 @@
 
             <div id="IQuestionnaire72" class="tab-pane fade">
                 @include('studySpecificForms.editForms.IQuestionnaire72')
- 
+
              </div>
- 
+
              <div id="IQuestionnaire96" class="tab-pane fade">
                  @include('studySpecificForms.editForms.IQuestionnaire96')
- 
+
              </div>
     </div>
     </div>
