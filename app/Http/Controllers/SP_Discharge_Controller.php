@@ -12,7 +12,6 @@ use App\StudyPeriod2;
 use App\StudyPeriod3;
 use App\StudyPeriod4;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class SP_Discharge_Controller extends Controller
 {
@@ -24,7 +23,113 @@ class SP_Discharge_Controller extends Controller
     public function store(Request $request, $study_id)
     {
         $PID = $request->patient_id;
+        $study_period = $request->studyPeriod;
+        //find Patient Study Specific table
+        $findPSS = PatientStudySpecific::where('patient_id', $PID)
+                                        ->where('study_id', $study_id)
+                                        ->first();
+        //check study period and save
+        if ($study_period == 1) {
+            //SP1 query
+            $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PSS = $findPSS->SP1_ID;
+            $Discharge = SP1_Discharge::where('SP1_Discharge_ID', $SP1->SP1_Discharge)->first();
+            if ($this->storeSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+            } else {
+                alert()->error('Error!', 'This subject is not enrolled into any study!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        } elseif ($study_period == 2) {
+            //SP2 query
+            $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+            $PSS = $findPSS->SP2_ID;
+            $Discharge = SP2_Discharge::where('SP2_Discharge_ID', $SP2->SP2_Discharge)->first();
+            if ($this->storeSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+            } else {
+                alert()->error('Error!', 'This subject is not enrolled into any study!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        } elseif ($study_period == 3) {
+            //SP3 query
+            $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+            $PSS = $findPSS->SP3_ID;
+            $Discharge = SP3_Discharge::where('SP3_Discharge_ID', $SP3->SP3_Discharge)->first();
+            if ($this->storeSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+            } else {
+                alert()->error('Error!', 'This subject is not enrolled into any study!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        } elseif ($study_period == 4) {
+            //SP4 query
+            $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+            $PSS = $findPSS->SP4_ID;
+            $Discharge = SP4_Discharge::where('SP4_Discharge_ID', $SP4->SP4_Discharge)->first();
+            if ($this->storeSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+            } else {
+                alert()->error('Error!', 'This subject is not enrolled into any study!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
+        }
+    }
 
+    public function update(Request $request, $patient_id, $study_id,$study_period)
+    {
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $patient_id)
+            ->where('study_id', $study_id)
+            ->first();
+        if ($study_period == 1) {
+            //SP1 query
+            $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PSS = $findPSS->SP1_ID;
+            $Discharge = SP1_Discharge::where('SP1_Discharge_ID', $SP1->SP1_Discharge)->first();
+            if($this->updateSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif ($study_period == 2) {
+            //SP2 query
+            $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+            $PSS = $findPSS->SP2_ID;
+            $Discharge = SP2_Discharge::where('SP2_Discharge_ID', $SP2->SP2_Discharge)->first();
+            if($this->updateSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif ($study_period == 3) {
+            //SP3 query
+            $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+            $PSS = $findPSS->SP3_ID;
+            $Discharge = SP3_Discharge::where('SP3_Discharge_ID', $SP3->SP3_Discharge)->first();
+            if($this->updateSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif ($study_period == 4) {
+            //SP4 query
+            $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+            $PSS = $findPSS->SP4_ID;
+            $Discharge = SP4_Discharge::where('SP4_Discharge_ID', $SP4->SP4_Discharge)->first();
+            if($this->updateSP($findPSS,$PSS,$Discharge,$request)) {
+                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }
+    }
+
+    public function storeSP($findPSS,$PSS,$Discharge,$request){
         //custom messages load for validation
         $custom = [
             'DischargeDate.required' => 'Please enter the discharge date',
@@ -42,7 +147,6 @@ class SP_Discharge_Controller extends Controller
             'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
             'Initial.required' => 'Initial of the physician’s is required',
         ];
-
         //validation for required fields
         $validatedData = $this->validate($request, [
             'DischargeDate' => 'required',
@@ -61,489 +165,93 @@ class SP_Discharge_Controller extends Controller
             'Initial' => 'required',
         ], $custom);
 
-        $study_period = $request->studyPeriod;
-        //find Patient Study Specific table
-        $findPSS = PatientStudySpecific::where('patient_id', $PID)
-            ->where('study_id', $study_id)
-            ->first();
-
-        if ($study_period == '---') {
-            alert()->error('Error!', 'This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input', $study_id));
-        } elseif ($study_period == 1) {
-            if ($this->storeSP1($findPSS, $request)) {
-                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+        if ($findPSS != NULL && $PSS != NULL) {
+            $flag = false;
+            $Discharge->DischargeDate = $request->DischargeDate;
+            $ud = $request->unscheduledDischarge;
+            if ($ud == 'Yes') {
+                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
             } else {
-                alert()->error('Error!', 'This subject is not enrolled into any study!');
-                return redirect(route('studySpecific.input', $study_id));
+                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
             }
-        } elseif ($study_period == 2) {
-            if ($this->storeSP2($findPSS, $request)) {
-                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
+            //sitting record
+            $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+            $Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+            $Discharge->Sitting_BP_D = $request->Sitting_BP_D;
+            $Discharge->Sitting_HR = $request->Sitting_HR;
+            $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+            //repeated sitting record
+            $repeat = $request->SittingRepeat;
+            $Discharge->SittingRepeat = $request->sittingRepeat;
+            if ($repeat == 'Yes') {
+                //if sitting is repeated
+                $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
+                $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+                $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
+                $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
+                $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
             } else {
-                alert()->error('Error!', 'This subject is not enrolled into any study!');
-                return redirect(route('studySpecific.input', $study_id));
+                //if sitting is repeated is NA
+                $Discharge->SittingRepeat_ReadingTime = NULL;
+                $Discharge->SittingRepeat_BP = NULL;
+                $Discharge->SittingRepeat_BP_S = NULL;
+                $Discharge->SittingRepeat_BP_D = NULL;
+                $Discharge->SittingRepeat_HR = NULL;
+                $Discharge->SittingRepeat_RespiratoryRate = NULL;
             }
-        } elseif ($study_period == 3) {
-            if ($this->storeSP3($findPSS, $request)) {
-                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
-            } else {
-                alert()->error('Error!', 'This subject is not enrolled into any study!');
-                return redirect(route('studySpecific.input', $study_id));
+            $Discharge->Initial = $request->Initial;
+            if ($flag) {
+                $Discharge->save();
             }
-        } elseif ($study_period == 4) {
-            if ($this->storeSP4($findPSS, $request)) {
-                return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Discharge!');
-            } else {
-                alert()->error('Error!', 'This subject is not enrolled into any study!');
-                return redirect(route('studySpecific.input', $study_id));
-            }
-        }
-    }
-
-    public function storeSP1($findPSS, $request)
-    {
-        if ($findPSS != NULL && $findPSS->SP1_ID != NULL) {
-            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
-            $findSP1_Discharge = SP1_Discharge::where('SP1_Discharge_ID', $findSP1->SP1_Discharge)->first();
-            //discharge date and unscheduled discharge
-            if ($findSP1_Discharge->DischargeDate == NULL) {
-                $findSP1_Discharge->DischargeDate = $request->DischargeDate;
-                $ud = $request->unscheduledDischarge;
-                if ($ud == 'Yes') {
-                    $findSP1_Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-                } else {
-                    $findSP1_Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-                }
-                //sitting record
-                $findSP1_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP1_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
-                $findSP1_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
-                $findSP1_Discharge->Sitting_HR = $request->Sitting_HR;
-                $findSP1_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-                //repeated sitting record
-                $repeat = $request->SittingRepeat;
-                $findSP1_Discharge->SittingRepeat = $request->SittingRepeat;
-                if ($repeat == 'Yes') {
-                    //if sitting is repeated
-                    $findSP1_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP1_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
-                    $findSP1_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
-                    $findSP1_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-                    $findSP1_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-                } else {
-                    //if sitting is repeated is NA
-                    $findSP1_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP1_Discharge->SittingRepeat_BP_S = NULL;
-                    $findSP1_Discharge->SittingRepeat_BP_D = NULL;
-                    $findSP1_Discharge->SittingRepeat_HR = NULL;
-                    $findSP1_Discharge->SittingRepeat_RespiratoryRate = NULL;
-                }
-
-                $findSP1_Discharge->Initial = $request->Initial;
-                $findSP1_Discharge->Comment = $request->Comment;
-
-                $findSP1_Discharge->save();
-                return true;
-            } else {
-                return false;
-            }
-        } else {
+        }else{
             return false;
         }
     }
 
-    public function storeSP2($findPSS, $request)
+    public function updateSP($findPSS,$PSS,$Discharge,$request)
     {
-        if ($findPSS != NULL && $findPSS->SP1_ID != NULL) {
-            $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
-            $findSP2_Discharge = SP2_Discharge::where('SP2_Discharge_ID', $findSP2->SP2_Discharge)->first();
-            //discharge date and unscheduled discharge
-            if ($findSP2_Discharge->DischargeDate == NULL) {
-                $findSP2_Discharge->DischargeDate = $request->DischargeDate;
-                $ud = $request->unscheduledDischarge;
-                if ($ud == 'Yes') {
-                    $findSP2_Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-                } else {
-                    $findSP2_Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-                }
-                //sitting record
-                $findSP2_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP2_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
-                $findSP2_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
-                $findSP2_Discharge->Sitting_HR = $request->Sitting_HR;
-                $findSP2_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-                //repeated sitting record
-                $repeat = $request->SittingRepeat;
-                $findSP2_Discharge->SittingRepeat = $request->SittingRepeat;
-                if ($repeat == 'Yes') {
-                    //if sitting is repeated
-                    $findSP2_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP2_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
-                    $findSP2_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
-                    $findSP2_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-                    $findSP2_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-                } else {
-                    //if sitting is repeated is NA
-                    $findSP2_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP2_Discharge->SittingRepeat_BP_S = NULL;
-                    $findSP2_Discharge->SittingRepeat_BP_D = NULL;
-                    $findSP2_Discharge->SittingRepeat_HR = NULL;
-                    $findSP2_Discharge->SittingRepeat_RespiratoryRate = NULL;
-                }
-
-                $findSP2_Discharge->Initial = $request->Initial;
-                $findSP2_Discharge->Comment = $request->Comment;
-
-
-
-                $findSP2_Discharge->save();
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function storeSP3($findPSS, $request)
-    {
-        if ($findPSS != NULL && $findPSS->SP3_ID != NULL) {
-            $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
-            $findSP3_Discharge = SP3_Discharge::where('SP3_Discharge_ID', $findSP3->SP3_Discharge)->first();
-            //discharge date and unscheduled discharge
-            if ($findSP3_Discharge->DischargeDate == NULL) {
-                $findSP3_Discharge->DischargeDate = $request->DischargeDate;
-                $ud = $request->unscheduledDischarge;
-                if ($ud == 'Yes') {
-                    $findSP3_Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-                } else {
-                    $findSP3_Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-                }
-                //sitting record
-                $findSP3_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP3_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
-                $findSP3_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
-                $findSP3_Discharge->Sitting_HR = $request->Sitting_HR;
-                $findSP3_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-                //repeated sitting record
-                $repeat = $request->SittingRepeat;
-                $findSP3_Discharge->SittingRepeat = $request->SittingRepeat;
-                if ($repeat == 'Yes') {
-                    //if sitting is repeated
-                    $findSP3_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP3_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
-                    $findSP3_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
-                    $findSP3_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-                    $findSP3_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-                } else {
-                    //if sitting is repeated is NA
-                    $findSP3_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP3_Discharge->SittingRepeat_BP_S = NULL;
-                    $findSP3_Discharge->SittingRepeat_BP_D = NULL;
-                    $findSP3_Discharge->SittingRepeat_HR = NULL;
-                    $findSP3_Discharge->SittingRepeat_RespiratoryRate = NULL;
-                }
-
-                $findSP3_Discharge->Initial = $request->Initial;
-                $findSP3_Discharge->Comment = $request->Comment;
-
-
-                $findSP3_Discharge->save();
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function storeSP4($findPSS, $request)
-    {
-        if ($findPSS != NULL && $findPSS->SP4_ID != NULL) {
-            $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
-            $findSP4_Discharge = SP4_Discharge::where('SP4_Discharge_ID', $findSP4->SP4_Discharge)->first();
-            //discharge date and unscheduled discharge
-            if ($findSP4_Discharge->DischargeDate == NULL) {
-                $findSP4_Discharge->DischargeDate = $request->DischargeDate;
-                $ud = $request->unscheduledDischarge;
-                if ($ud == 'Yes') {
-                    $findSP4_Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-                } else {
-                    $findSP4_Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-                }
-                //sitting record
-                $findSP4_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP4_Discharge->Sitting_BP = $request->Sitting_BP;
-                $findSP4_Discharge->Sitting_HR = $request->Sitting_HR;
-                $findSP4_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-                //repeated sitting record
-                $repeat = $request->SittingRepeat;
-                $findSP4_Discharge->SittingRepeat = $request->SittingRepeat;
-                if ($repeat == 'Yes') {
-                    //if sitting is repeated
-                    $findSP4_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP4_Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
-                    $findSP4_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-                    $findSP4_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-                } else {
-                    //if sitting is repeated is NA
-                    $findSP4_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP4_Discharge->SittingRepeat_BP = NULL;
-                    $findSP4_Discharge->SittingRepeat_HR = NULL;
-                    $findSP4_Discharge->SittingRepeat_RespiratoryRate = NULL;
-                }
-
-                $findSP4_Discharge->Initial = $request->Initial;
-                $findSP4_Discharge->Comment = $request->Comment;
-
-
-                $findSP4_Discharge->save();
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-
-    public function update(Request $request, $patient_id, $study_id,$study_period)
-    {
-        $findPSS = PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id', $patient_id)
-            ->where('study_id', $study_id)
-            ->first();
-        if ($study_period == 1) {
-            if($this->updateSP1($findPSS,$request)) {
-                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif ($study_period == 2) {
-            if($this->updateSP2($findPSS,$request)) {
-                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif ($study_period == 3) {
-            if($this->updateSP3($findPSS,$request)) {
-                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif ($study_period == 4) {
-            if($this->updateSP4($findPSS,$request)) {
-                return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }
-    }
-
-    public function updateSP1($findPSS, $request)
-    {
-        $flag = false;
         if ($findPSS != NULL) {
-            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
-            $Discharge = SP1_Discharge::where('SP1_Discharge_ID', $findSP1->SP1_Discharge)->first();
-        }
-        $Discharge->DischargeDate = $request->DischargeDate;
-
-        $ud = $request->unscheduledDischarge;
-        if ($ud == 'Yes') {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-        } else {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-        }
-        //sitting record
-        $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-        $Discharge->Sitting_BP = $request->Sitting_BP;
-        $Discharge->Sitting_HR = $request->Sitting_HR;
-        $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-        //repeated sitting record
-        $repeat = $request->SittingRepeat;
-        $Discharge->SittingRepeat = $request->sittingRepeat;
-        if ($repeat == 'Yes') {
-            //if sitting is repeated
-            $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-            $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
-            $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-            $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-        } else {
-            //if sitting is repeated is NA
-            $Discharge->SittingRepeat_ReadingTime = NULL;
-            $Discharge->SittingRepeat_BP = NULL;
-            $Discharge->SittingRepeat_HR = NULL;
-            $Discharge->SittingRepeat_RespiratoryRate = NULL;
-        }
-
-        $Discharge->Initial = $request->Initial;
-        $Discharge->Comment = $request->Comment;
-
-
-        if ($flag) {
-            $Discharge->save();
+            $flag = false;
+            $Discharge->DischargeDate = $request->DischargeDate;
+            $ud = $request->unscheduledDischarge;
+            if ($ud == 'Yes') {
+                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
+            } else {
+                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
+            }
+            //sitting record
+            $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+            $Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+            $Discharge->Sitting_BP_D = $request->Sitting_BP_D;
+            $Discharge->Sitting_HR = $request->Sitting_HR;
+            $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+            //repeated sitting record
+            $repeat = $request->SittingRepeat;
+            $Discharge->SittingRepeat = $request->sittingRepeat;
+            if ($repeat == 'Yes') {
+                //if sitting is repeated
+                $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
+                $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+                $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
+                $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
+                $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
+            } else {
+                //if sitting is repeated is NA
+                $Discharge->SittingRepeat_ReadingTime = NULL;
+                $Discharge->SittingRepeat_BP = NULL;
+                $Discharge->SittingRepeat_BP_S = NULL;
+                $Discharge->SittingRepeat_BP_D = NULL;
+                $Discharge->SittingRepeat_HR = NULL;
+                $Discharge->SittingRepeat_RespiratoryRate = NULL;
+            }
+            $Discharge->Initial = $request->Initial;
+            if ($flag) {
+                $Discharge->save();
+            }
             return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function updateSP2($findPSS, $request)
-    {
-        $flag = false;
-        if ($findPSS != NULL) {
-            $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
-            $Discharge = SP2_Discharge::where('SP2_Discharge_ID', $findSP2->SP2_Discharge)->first();
-        }
-        $Discharge->DischargeDate = $request->DischargeDate;
-
-        $ud = $request->unscheduledDischarge;
-        if ($ud == 'Yes') {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-        } else {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-        }
-        //sitting record
-        $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-        $Discharge->Sitting_BP = $request->Sitting_BP;
-        $Discharge->Sitting_HR = $request->Sitting_HR;
-        $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-        //repeated sitting record
-        $repeat = $request->SittingRepeat;
-        $Discharge->SittingRepeat = $request->sittingRepeat;
-        if ($repeat == 'Yes') {
-            //if sitting is repeated
-            $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-            $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
-            $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-            $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-        } else {
-            //if sitting is repeated is NA
-            $Discharge->SittingRepeat_ReadingTime = NULL;
-            $Discharge->SittingRepeat_BP = NULL;
-            $Discharge->SittingRepeat_HR = NULL;
-            $Discharge->SittingRepeat_RespiratoryRate = NULL;
-        }
-
-        $Discharge->Initial = $request->Initial;
-        $Discharge->Comment = $request->Comment;
-
-        if ($flag) {
-            $Discharge->save();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function updateSP3($findPSS, $request)
-    {
-        $flag = false;
-        if ($findPSS != NULL) {
-            $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
-            $Discharge = SP3_Discharge::where('SP3_Discharge_ID', $findSP3->SP3_Discharge)->first();
-        }
-        $Discharge->DischargeDate = $request->DischargeDate;
-
-        $ud = $request->unscheduledDischarge;
-        if ($ud == 'Yes') {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-        } else {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-        }
-        //sitting record
-        $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-        $Discharge->Sitting_BP = $request->Sitting_BP;
-        $Discharge->Sitting_HR = $request->Sitting_HR;
-        $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-        //repeated sitting record
-        $repeat = $request->SittingRepeat;
-        $Discharge->SittingRepeat = $request->sittingRepeat;
-        if ($repeat == 'Yes') {
-            //if sitting is repeated
-            $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-            $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
-            $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-            $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-        } else {
-            //if sitting is repeated is NA
-            $Discharge->SittingRepeat_ReadingTime = NULL;
-            $Discharge->SittingRepeat_BP = NULL;
-            $Discharge->SittingRepeat_HR = NULL;
-            $Discharge->SittingRepeat_RespiratoryRate = NULL;
-        }
-
-        $Discharge->Initial = $request->Initial;
-        $Discharge->Comment = $request->Comment;
-
-        if ($flag) {
-            $Discharge->save();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function updateSP4($findPSS, $request)
-    {
-        $flag = false;
-        if ($findPSS != NULL) {
-            $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
-            $Discharge = SP4_Discharge::where('SP4_Discharge_ID', $findSP4->SP4_Discharge)->first();
-        }
-        $Discharge->DischargeDate = $request->DischargeDate;
-
-        $ud = $request->unscheduledDischarge;
-        if ($ud == 'Yes') {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-        } else {
-            $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-        }
-        //sitting record
-        $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-        $Discharge->Sitting_BP = $request->Sitting_BP;
-        $Discharge->Sitting_HR = $request->Sitting_HR;
-        $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-
-        //repeated sitting record
-        $repeat = $request->SittingRepeat;
-        $Discharge->SittingRepeat = $request->sittingRepeat;
-        if ($repeat == 'Yes') {
-            //if sitting is repeated
-            $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-            $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
-            $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-            $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-        } else {
-            //if sitting is repeated is NA
-            $Discharge->SittingRepeat_ReadingTime = NULL;
-            $Discharge->SittingRepeat_BP = NULL;
-            $Discharge->SittingRepeat_HR = NULL;
-            $Discharge->SittingRepeat_RespiratoryRate = NULL;
-        }
-
-        $Discharge->Initial = $request->Initial;
-        $Discharge->Comment = $request->Comment;
-
-        if ($flag) {
-            $Discharge->save();
-            return true;
-        } else {
+        }else{
             return false;
         }
     }
