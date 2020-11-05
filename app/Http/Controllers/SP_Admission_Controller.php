@@ -834,12 +834,12 @@ class SP_Admission_Controller extends Controller
         ];
         if($findPSS !=NULL){
             //validation for required fields
-            $validatedData=$this->validate($request,[
-                'AdmissionDateTaken' => 'required',
-                'AdmissionTimeTaken' => 'required',
-                'ConsentDateTaken' => 'required',
-                'ConsentTimeTaken' => 'required',
-            ],$custom);
+            // $validatedData=$this->validate($request,[
+            //     'AdmissionDateTaken' => 'required',
+            //     'AdmissionTimeTaken' => 'required',
+            //     'ConsentDateTaken' => 'required',
+            //     'ConsentTimeTaken' => 'required',
+            // ],$custom);
             //admission date and time
             $admission->AdmissionDateTaken = $request->AdmissionDateTaken;
             $admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;

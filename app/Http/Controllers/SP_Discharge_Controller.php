@@ -233,22 +233,22 @@ class SP_Discharge_Controller extends Controller
 
         if ($findPSS != NULL) {
             //validation for required fields
-            $validatedData = $this->validate($request, [
-                'DischargeDate' => 'required',
-                'unscheduledDischarge' => 'required',
-                'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
-                'Sitting_ReadingTime' => 'required',
-                'Sitting_BP_S' => 'required',
-                'Sitting_BP_D' => 'required',
-                'Sitting_HR' => 'required',
-                'Sitting_RespiratoryRate' => 'required',
-                'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
-                'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
-                'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
-                'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
-                'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
-                'Initial' => 'required',
-            ], $custom);
+            // $validatedData = $this->validate($request, [
+            //     'DischargeDate' => 'required',
+            //     'unscheduledDischarge' => 'required',
+            //     'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+            //     'Sitting_ReadingTime' => 'required',
+            //     'Sitting_BP_S' => 'required',
+            //     'Sitting_BP_D' => 'required',
+            //     'Sitting_HR' => 'required',
+            //     'Sitting_RespiratoryRate' => 'required',
+            //     'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
+            //     'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
+            //     'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
+            //     'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
+            //     'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
+            //     'Initial' => 'required',
+            // ], $custom);
             $Discharge->DischargeDate = $request->DischargeDate;
             $ud = $request->unscheduledDischarge;
             if ($ud == 'Yes') {

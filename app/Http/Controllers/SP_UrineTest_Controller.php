@@ -80,8 +80,7 @@ class SP_UrineTest_Controller extends Controller
 
     }
 
-    public function update(Request $request, $patient_id, $study_id,$study_period)
-    {        
+    public function update(Request $request, $patient_id, $study_id,$study_period){
         //find Patient Study Specific table
         $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)
@@ -187,7 +186,7 @@ class SP_UrineTest_Controller extends Controller
                 'physicianName' => 'required',
             ],$custom);
 
-            if($UT->UDrug_dateTaken == NULL){
+            if($UT->inclusionYesNo == NULL){
                 //Urine Pregnacy
                 $UT->UPreg_male=$request->UPreg_male;
                 if($request->UPreg_male == 1){
@@ -216,7 +215,7 @@ class SP_UrineTest_Controller extends Controller
                 }
                 $UT->NApplicable=$request->NApplicable;
                 //Urine Drug
-                if($request->UPreg_male == 1){
+                if($request->NApplicable == 1){
                     $UT->UDrug_dateTaken=NULL;
                     $UT->UDrug_TestTime=NULL;
                     $UT->UDrug_ReadTime=NULL;
@@ -263,7 +262,7 @@ class SP_UrineTest_Controller extends Controller
     }
 
     //update
-    public function updateSP($findPSS,$PSS,$UT,$request){
+    public function updateSP($findPSS,$PSS,$UT,$request){ 
         //custom messages load for validation
         $custom = [
             'UPreg_dateTaken.required_if' => 'Please enter the date taken for urine pregnancy test',
@@ -287,30 +286,31 @@ class SP_UrineTest_Controller extends Controller
             'physicianSign.required' => 'Physician’s signature is required',
             'physicianName.required' => 'Physician’s name is required',
            ];
+        //validation for required fields
+        // $validatedData=$this->validate($request,[
+        //     'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
+        //     'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
+        //     'uDrug_Laboratory' => 'required_if:UPreg_male,==,',
+        //     'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
+        //     'UPreg_dateTaken' => 'required_if:UPreg_male,==,',
+        //     'UPreg_TestTime' => 'required_if:UPreg_male,==,',
+        //     'UPreg_ReadTime' => 'required_if:UPreg_male,==,',
+        //     'UPreg_hCG' => 'required_if:UPreg_male,==,',
+        //     'UPreg_Transcribedby' => 'required_if:UPreg_male,==,',
+        //     'UDrug_dateTaken' => 'required_if:NApplicable,==,',
+        //     'UDrug_TestTime' => 'required_if:NApplicable,==,',
+        //     'UDrug_ReadTime' => 'required_if:NApplicable,==,',
+        //     'UDrug_Methamphetamine' => 'required_if:NApplicable,==,',
+        //     'UDrug_Morphine' => 'required_if:NApplicable,==,',
+        //     'UDrug_Marijuana' => 'required_if:NApplicable,==,',
+        //     'UDrug_Transcribedby' => 'required_if:NApplicable,==,',
+        //     'inclusionYesNo' => 'required',
+        //     'subjectFit' => 'required',
+        //     'physicianSign' => 'required',
+        //     'physicianName' => 'required',
+        // ],$custom);
+
         if($findPSS !=NULL){
-            //validation for required fields
-            $validatedData=$this->validate($request,[
-                'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
-                'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
-                'uDrug_Laboratory' => 'required_if:UPreg_male,==,',
-                'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
-                'UPreg_dateTaken' => 'required_if:UPreg_male,==,',
-                'UPreg_TestTime' => 'required_if:UPreg_male,==,',
-                'UPreg_ReadTime' => 'required_if:UPreg_male,==,',
-                'UPreg_hCG' => 'required_if:UPreg_male,==,',
-                'UPreg_Transcribedby' => 'required_if:UPreg_male,==,',
-                'UDrug_dateTaken' => 'required_if:NApplicable,==,',
-                'UDrug_TestTime' => 'required_if:NApplicable,==,',
-                'UDrug_ReadTime' => 'required_if:NApplicable,==,',
-                'UDrug_Methamphetamine' => 'required_if:NApplicable,==,',
-                'UDrug_Morphine' => 'required_if:NApplicable,==,',
-                'UDrug_Marijuana' => 'required_if:NApplicable,==,',
-                'UDrug_Transcribedby' => 'required_if:NApplicable,==,',
-                'inclusionYesNo' => 'required',
-                'subjectFit' => 'required',
-                'physicianSign' => 'required',
-                'physicianName' => 'required',
-            ],$custom);
             //Urine Pregnacy
             $UT->UPreg_male=$request->UPreg_male;
             if($request->UPreg_male == 1){
@@ -339,7 +339,7 @@ class SP_UrineTest_Controller extends Controller
             }
             $UT->NApplicable=$request->NApplicable;
             //Urine Drug
-            if($request->UPreg_male == 1){
+            if($request->NApplicable == 1){
                 $UT->UDrug_dateTaken=NULL;
                 $UT->UDrug_TestTime=NULL;
                 $UT->UDrug_ReadTime=NULL;

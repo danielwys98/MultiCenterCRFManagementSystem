@@ -192,13 +192,13 @@ class SP_DQuestionnaire_Controller extends Controller
             $flag=false;
             $data = $request->except('_token','_method');
             //validation for required fields
-            $validatedData=$this->validate($request,[
-                'DQtimeTaken' => 'required',
-                'Oriented' => 'required',
-                'ReadyDischarge' => 'required',
-                'PhysicianSign' => 'required',
-                'PhysicianName' => 'required',
-            ],$custom);
+            // $validatedData=$this->validate($request,[
+            //     'DQtimeTaken' => 'required',
+            //     'Oriented' => 'required',
+            //     'ReadyDischarge' => 'required',
+            //     'PhysicianSign' => 'required',
+            //     'PhysicianName' => 'required',
+            // ],$custom);
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {
