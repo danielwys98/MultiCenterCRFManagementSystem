@@ -36,7 +36,6 @@
             <div class="col-md-2">
                 {!! Form::date('startDate', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
-            {{--TODO:create end date for study--}}
             <div class=" offset-3 col-md-1">
                 {!! Form::label('endDate', 'End Date: ') !!}
             </div>

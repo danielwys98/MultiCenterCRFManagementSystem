@@ -2,7 +2,7 @@
 @method('PUT')
 @csrf
 {{-- Vital Signs --}}
-<h3 xmlns="http://www.w3.org/1999/html">Vital Signs</h3>
+<h3>Vital Signs</h3>
 <hr>
 <div class="row col">
     <p>During the confinement period, vital signs should be measured within ± 30 minutes of the scheduled measurement

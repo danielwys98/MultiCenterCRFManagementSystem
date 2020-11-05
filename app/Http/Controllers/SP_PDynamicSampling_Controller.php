@@ -202,10 +202,9 @@ class SP_PDynamicSampling_Controller extends Controller
             'S9_Collected.required' => 'Please enter the person collected for S9 Pharmacodynamic Blood Sampling',
             'S9_Checked.required' => 'Please enter the person checked for S9 Pharmacodynamic Blood Sampling',
         ];
-        
+
         if($findPSS !=NULL && $PSS != NULL){
             if($PDSampling->day1 == NULL){
-                $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
                 if($request->NApplicable == 1){
                     foreach($data as $key=>$value){
@@ -225,7 +224,7 @@ class SP_PDynamicSampling_Controller extends Controller
                         'PD_AST' => 'required',
                         'PD_Collected' => 'required',
                         'PD_Checked' => 'required',
-                        
+
                         'S1_Date_Day_1' => 'required',
                         'S1_SST' => 'required',
                         'S1_AST' => 'required',
@@ -289,9 +288,7 @@ class SP_PDynamicSampling_Controller extends Controller
                     }
                 }
                 $PDSampling->NApplicable=$request->NApplicable;
-                if($flag){
                     $PDSampling->save();
-                }
                 return true;
             }else{
                 return false;
@@ -304,7 +301,6 @@ class SP_PDynamicSampling_Controller extends Controller
     //update
     public function updateSP($findPSS,$PSS,$PDSampling,$request){
         if($findPSS !=NULL){
-            $flag=false;
             $data = $request->except('_token','_method');
             if($request->NApplicable == 1){
                 foreach($data as $key=>$value){
@@ -324,9 +320,7 @@ class SP_PDynamicSampling_Controller extends Controller
                 }
             }
             $PDSampling->NApplicable=$request->NApplicable;
-            if($flag){
                 $PDSampling->save();
-            }
             return true;
         }else{
             return false;

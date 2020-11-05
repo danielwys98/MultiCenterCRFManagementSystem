@@ -47,14 +47,14 @@
         <p>{!! Form::radio('Interim96hrs01', 'Yes',(old('Interim96hrs01',$IQ96->interim96hrs01)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs01', 'No',(old('Interim96hrs01',$IQ96->interim96hrs01)!='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim96hrs01', 'No',(old('Interim96hrs01',$IQ96->interim96hrs01)=='No')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
-        <p>If “No”, proceed to Question 2</p>
+    <p>If “No”, proceed to Question 2</p>
 </div>
 <div class="row col">
-        <p>If “Yes”, record in Adverse Event and Concomitant Medication Log.</p>
+    <p>If “Yes”, record in Adverse Event and Concomitant Medication Log.</p>
 </div>
 <hr>
 
@@ -68,14 +68,14 @@
         <p>{!! Form::radio('Interim96hrs02', 'Yes',(old('Interim96hrs02',$IQ96->interim96hrs02)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs02', 'No',(old('Interim96hrs02',$IQ96->interim96hrs02)!='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim96hrs02', 'No',(old('Interim96hrs02',$IQ96->interim96hrs02)=='No')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
-        <p>If “No”, proceed to Question 3</p>
+    <p>If “No”, proceed to Question 3</p>
 </div>
 <div class="row col">
-        <p>If “Yes”, record in Adverse Event and Concomitant Medication Log.</p>
+    <p>If “Yes”, record in Adverse Event and Concomitant Medication Log.</p>
 </div>
 <hr>
 
@@ -88,7 +88,7 @@
         <p>{!! Form::radio('Interim96hrs03', 'Yes',(old('Interim96hrs03',$IQ96->nterim96hrs03)=='Yes' && ($IQ96->interim96hrs03!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs03', 'No',(old('Interim96hrs03',$IQ96->interim96hrs03)!='Yes')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim96hrs03', 'No',(old('Interim96hrs03',$IQ96->interim96hrs03)!='Yes' && ($IQ96->interim96hrs03!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -99,7 +99,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-    {!! Form::text('Interim96hrs03txt',(old('Interim96hrs03', $IQ96->interim96hrs03)=='Yes')? $IQ96->interim96hrs03 : '',['class'=>'form-control']) !!}
+        {!! Form::text('Interim96hrs03txt',(old('Interim96hrs03', $IQ96->interim96hrs03)=='Yes')? $IQ96->interim96hrs03 : '',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -110,14 +110,14 @@
             last visit?/p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs04', 'Yes',(old('interim96hrs04',$IQ96->interim96hrs04)!='No' && ($IQ96->interim96hrs04!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim96hrs04', 'Yes',(old('interim96hrs04',$IQ96->interim96hrs04)=='Yes' && ($IQ96->interim96hrs04!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs04', 'No',(old('interim96hrs04',$IQ96->interim96hrs04)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim96hrs04', 'No',(old('interim96hrs04',$IQ96->interim96hrs04)!='Yes' && ($IQ96->interim96hrs04!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
-        <p>If “No”, proceed to Question 5</p>
+    <p>If “No”, proceed to Question 5</p>
 </div>
 <div class="row">
     <div class="col-md-5">
@@ -131,10 +131,10 @@
         <p>5. Has the subject participated in other experimental drug studies since last visit?</p>
     </div>
     <div class="col-md-1">
-        {!! Form::radio('Interim96hrs05', 'Yes',(old('interim96hrs05',$IQ96->interim96hrs05)!='No' && ($IQ96->interim96hrs05!=NULL))? 'checked' : '') !!}
+        {!! Form::radio('Interim96hrs05', 'Yes',(old('interim96hrs05',$IQ96->interim96hrs05)=='Yes' && ($IQ96->interim96hrs05!=NULL))? 'checked' : '') !!}
     </div>
     <div class="col-md-1">
-        {!! Form::radio('Interim96hrs05', 'No',(old('interim96hrs05',$IQ96->interim96hrs05)=='No')? 'checked' :'') !!}
+        {!! Form::radio('Interim96hrs05', 'No',(old('interim96hrs05',$IQ96->interim96hrs05)!='Yes' && ($IQ96->interim96hrs05!=NULL))? 'checked' :'') !!}
     </div>
 </div>
 <div class="row">
@@ -145,7 +145,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim96hrs05txt',(old('interim96hrs05',$IQ96->interim96hrs05)!='No' && ($IQ96->interim96hrs05!=NULL))? $IQ96->interim96hrs05 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim96hrs05txt',(old('interim96hrs05',$IQ96->interim96hrs05)!='Yes' && ($IQ96->interim96hrs05!=NULL))? $IQ96->interim96hrs05 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -156,10 +156,10 @@
             the procedures of this study) since last visit:</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs06', 'Yes',(old('interim96hrs06',$IQ96->interim96hrs06)!='No' && ($IQ96->interim96hrs06!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim96hrs06', 'Yes',(old('interim96hrs06',$IQ96->interim96hrs06)=='Yes' && ($IQ96->interim96hrs06!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs06', 'No',(old('interim96hrs06',$IQ96->interim96hrs06)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim96hrs06', 'No',(old('interim96hrs06',$IQ96->interim96hrs06)!='Yes' && ($IQ96->interim96hrs06!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -170,7 +170,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim96hrs06txt',(old('interim96hrs06',$IQ96->interim96hrs06)!='No' && ($IQ96->interim96hrs06!=NULL))? $IQ96->interim96hrs06 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim96hrs06txt',(old('interim96hrs06',$IQ96->interim96hrs06)!='Yes' && ($IQ96->interim96hrs06!=NULL))? $IQ96->interim96hrs06 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -181,10 +181,10 @@
             contraception since last visit?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs07', 'Yes',(old('interim96hrs07',$IQ96->interim96hrs07)!='No' && ($IQ96->interim96hrs07!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim96hrs07', 'Yes',(old('interim96hrs07',$IQ96->interim96hrs07)=='Yes' && ($IQ96->interim96hrs07!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim96hrs07', 'No',(old('interim96hrs07',$IQ96->interim96hrs07)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim96hrs07', 'No',(old('interim96hrs07',$IQ96->interim96hrs07)!='Yes' && ($IQ96->interim96hrs07!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -194,7 +194,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim96hrs07txt',(old('interim96hrs07',$IQ96->interim96hrs07)!='No' && ($IQ96->interim96hrs07!=NULL))? $IQ96->interim96hrs07 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim96hrs07txt',(old('interim96hrs07',$IQ96->interim96hrs07)!='Yes' && ($IQ96->interim96hrs07!=NULL))? $IQ96->interim96hrs07 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>

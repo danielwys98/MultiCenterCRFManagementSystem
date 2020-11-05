@@ -26,7 +26,11 @@
         {!! Form::label('AdmissionTimeTaken', old('AdmissionTimeTaken',$Admission->AdmissionTimeTaken)) !!}
     </div>
 </div>
+
 {{-- consent --}}
+
+
+
 <h3>Study-Specific Consent Taken</h3>
 <hr>
 <div class="form-group row">
@@ -78,7 +82,10 @@
             </div>
         </div>
 
+
+
         {{-- Body measurement ends here--}}
+
 
         <h4>Vital Signs</h4>
         <hr>
@@ -94,16 +101,12 @@
             </thead>
             <tbody>
             <tr>
-                <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-                <td>{!! Form::label('Supine_ReadingTime', old('Supine_ReadingTime',$BMVS->Supine_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::label('Supine_BP', old('Supine_BP',$BMVS->Supine_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::label('Supine_HR', old('Supine_HR',$BMVS->Supine_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::label('Supine_RespiratoryRate', old('Supine_RespiratoryRate',$BMVS->Supine_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
-            </tr>
-            <tr>
                 <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
                 <td>{!! Form::label('Sitting_ReadingTime',old('Sitting_ReadingTime',$BMVS->Sitting_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                <td>{!! Form::label('Sitting_BP', old('Sitting_BP',$BMVS->Sitting_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                <td>
+                    Systolic: {!! Form::label('Sitting_BP_S', old('Sitting_BP_S',$BMVS->Sitting_BP_S),['class'=>'form-control','placeholder'=>'']) !!} /
+                    Diastolic: {!! Form::label('Sitting_BP_D', old('Sitting_BP_D',$BMVS->Sitting_BP_D),['class'=>'form-control','placeholder'=>'']) !!}
+                </td>
                 <td>{!! Form::label('Sitting_HR', old('Sitting_HR',$BMVS->Sitting_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
                 <td>{!! Form::label('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate',$BMVS->Sitting_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
             </tr>
@@ -122,7 +125,10 @@
                         {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
                     </th>
                     <td>{!! Form::label('Sitting_ReadingTime_Repeat1',old('Sitting_ReadingTime_Repeat1',$BMVS->Sitting_ReadingTime_Repeat1),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                    <td>{!! Form::label('Sitting_BP_Repeat1', old('Sitting_BP_Repeat1',$BMVS->Sitting_BP_Repeat1),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                    <td>
+                        Systolic: {!! Form::label('Sitting_BP_S_Repeat1', old('Sitting_BP_S_Repeat1',$BMVS->Sitting_BP_S_Repeat1),['class'=>'form-control','placeholder'=>'']) !!} /
+                        Diastolic: {!! Form::label('Sitting_BP_D_Repeat1', old('Sitting_BP_D_Repeat1',$BMVS->Sitting_BP_D_Repeat1),['class'=>'form-control','placeholder'=>'']) !!}
+                    </td>
                     <td>{!! Form::label('Sitting_HR_Repeat1', old('Sitting_HR_Repeat1',$BMVS->Sitting_HR_Repeat1),['class'=>'form-control','placeholder'=>'']) !!}</td>
                     <td>{!! Form::label('Sitting_RespiratoryRate_Repeat1', old('Sitting_RespiratoryRate_Repeat1',$BMVS->Sitting_RespiratoryRate_Repeat1),['class'=>'form-control','placeholder'=>'']) !!}</td>
                 @endif
@@ -139,7 +145,10 @@
                 @else
                     <th scope="row">{!! Form::label('SittingRepeat2', 'Sitting Repeated') !!}</th>
                     <td>{!! Form::label('Sitting_ReadingTime_Repeat2',old('Sitting_ReadingTime_Repeat2',$BMVS->Sitting_ReadingTime_Repeat2),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                    <td>{!! Form::label('Sitting_BP_Repeat2', old('Sitting_BP_Repeat2',$BMVS->Sitting_BP_Repeat2),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                    <td>
+                        Systolic: {!! Form::label('Sitting_BP_S_Repeat2', old('Sitting_BP_S_Repeat2',$BMVS->Sitting_BP_S_Repeat2),['class'=>'form-control','placeholder'=>'']) !!} /
+                        Diastolic: {!! Form::label('Sitting_BP_D_Repeat2', old('Sitting_BP_D_Repeat2',$BMVS->Sitting_BP_D_Repeat2),['class'=>'form-control','placeholder'=>'']) !!}
+                    </td>
                     <td>{!! Form::label('Sitting_HR_Repeat2', old('Sitting_HR_Repeat2',$BMVS->Sitting_HR_Repeat2),['class'=>'form-control','placeholder'=>'']) !!}</td>
                     <td>{!! Form::label('Sitting_RespiratoryRate_Repeat2', old('Sitting_RespiratoryRate_Repeat2',$BMVS->Sitting_RespiratoryRate_Repeat2),['class'=>'form-control','placeholder'=>'']) !!}</td>
                 @endif
@@ -156,7 +165,11 @@
         </p>
     </div>
 </div>
+
 {{--BREATH ALCOHOL TEST STARTS HERE--}}
+
+
+
 <h3>Breath Alcohol Test</h3>
 <p>(Transcribed from Breath Alcohol Test Logbook)</p>
 <hr>
@@ -198,6 +211,8 @@
     </tr>
     </tbody>
 </table>
+
+
 {{--Admission Questionnaire starts here--}}
 
 <h3>Admission Questionnaire</h3>
@@ -213,7 +228,10 @@
     </div>
 </div>
 <hr>
+
 {{-- Admission Question 1 --}}
+
+
 <div class="row">
     <div class="col-md-6">
         <p>1. Has the subject had any medical problems within the last 7 days before dosing?</p>
@@ -235,7 +253,10 @@
     </div>
 @endif
 <hr>
+
 {{-- Admission Question 2 --}}
+
+
 <div class="row">
     <div class="col-sm-6">
         <p>2. Has the subject taken any medication (including herbal remedies, with the exception of birth control
@@ -260,6 +281,8 @@
 <hr>
 
 {{-- Admission Question 3 --}}
+
+
 <div class="page-break">
     <div class="row">
         <div class="col-sm-6">
@@ -284,7 +307,10 @@
     <hr>
 </div>
 <hr>
+
 {{-- Admission Question 4 --}}
+
+
 <div class="row">
     <div class="col-md-6">
         <p>4. Has the subject consumed any alcohol or xanthine-containing food or beverage within 24 hours before
@@ -303,7 +329,10 @@
     @endif
     </div>
     <hr>
+
     {{-- Admission Question 5 --}}
+
+
     <div class="row">
         <div class="col-sm-6">
             <p>5. Has the subject consumed any food or beverage containing poppy seeds within 48 hours before drugs of
@@ -320,7 +349,10 @@
             </div>
             @endif
             <hr>
+
             {{-- Admission Question 6 --}}
+
+
             <div class="row">
                 <div class="col-sm-6">
                     <p>6. Has the subject consumed any food or beverage containing grapefruit (including marmalade) and
@@ -342,6 +374,8 @@
             <hr>
 
             {{-- Admission Question 7 --}}
+
+
             <div class="page-break">
                 <div class="row">
                     <div class="col-sm-6">
@@ -385,7 +419,7 @@
                     @if($AQuestionnaire->BloodDono != "No")
                         <div class="row">
                             <div class="col-md-5">
-                                {!! Form::text('bloodDono_Yes',(old('bloodDono',$AQuestionnaire->BloodDono)!='No' && ($AQuestionnaire->BloodDono!=NULL))? $AQuestionnaire->BloodDono :'',['class'=>'form-control']) !!}
+                                {!! Form::label('bloodDono_Yes',(old('bloodDono',$AQuestionnaire->BloodDono)!='No' && ($AQuestionnaire->BloodDono!=NULL))? $AQuestionnaire->BloodDono :'',['class'=>'form-control']) !!}
                             </div>
                         </div>
                         <div class="row">
@@ -623,7 +657,7 @@
                         <p>Is the subject fit for dosing?</p>
                     </div>
                     <div class="col-md-1">
-                        <p>{!! Form::label('subjectFit', (($UrineTest->subjectFit)=='Yes')) !!}</p>
+                        <p>{!! Form::label('subjectFit', (($UrineTest->subjectFit))) !!}</p>
                     </div>
                 </div>
                 <div class="form-group">
@@ -641,17 +675,1805 @@
              </div>
             <div class="page-break">
                 <h3>Pharmacokinetic Blood Sampling</h3>
+                {{-- Pharmacokinetic Blood Sampling --}}
+                <div class="form-group row">
+                    <div class="col-md-2">
+                        {!! Form::label('Day1',($PKinetic->Day1)) !!}
+                    </div>
+                    <div class="col-md-1">
+                        <p class="text-center">to</p>
+                    </div>
+                    <div class="col-md-2">
+                        {!! Form::label('Day3',($PKinetic->Day3)) !!}
+                    </div>
+                </div>
+                <hr>
+                <div class="row col">
+                    <p><strong>Tube Type and Volume Required:</strong> Heparin, 3mL</p>
+                </div>
+                <div class="row col">
+                    <p><strong>Processing and Storage Instructions:</strong> Centrifuge at 4˚C for 10 minutes at 3000 rpm within 45
+                        minutes, store below
+                        -20˚C.</p>
+                </div>
+
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th scope="col">
+                        </th>
+                        <th scope="col">
+                            <p>Last Food Intake</p>
+                        </th>
+                        <th scope="col">
+                            <p>Last Water Intake</p>
+                        </th>
+                        <th scope="col">
+                            <p>Study Drug Dosing</p>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>
+                            {!! Form::label('LastFoodDate',old("LastFoodDate",$PKinetic->LastFoodDate),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('LastWaterDate',old("LastWaterDate",$PKinetic->LastWaterDate),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('StudyDrugDate',old("StudyDrugDate",$PKinetic->StudyDrugDate),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <p>Time</p>
+                            <p>(24-hour clock)</p>
+                        </th>
+                        <td>
+                            {!! Form::label('LastFoodTime',old("LastFoodTime",$PKinetic->LastFoodTime),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('LastWaterTime',old("LastWaterTime",$PKinetic->LastWaterTime),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('StudyDrugTime',old("StudyDrugTime",$PKinetic->StudyDrugTime),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <br>
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center">
+                            <p>Date</p>
+                            <p>(yyyy/mm/dd)</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Sample Code</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Time Post Dose</p>
+                            <p>(hour)</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Scheduled Sampling Time</p>
+                            <p>(24-hour clock)</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Actual Sampling Time</p>
+                            <p>(24-hour clock)</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Collected by</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Checked by</p>
+                        </th>
+                        <th scope="col" class="text-center">
+                            <p>Comments</p>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_PD',old('pk_Date_Day_PD',$PKinetic->pk_Date_Day_PD),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">PD</td>
+                        <td class="text-center">______</td>
+                        <td class="text-center">______</td>
+                        <td>
+                            {!! Form::label('pk_PD_AST',old('pk_PD_AST',$PKinetic->pk_PD_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_PD_Collected',old('pk_PD_Collected',$PKinetic->pk_PD_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_PD_Checked',old('pk_PD_Checked',$PKinetic->pk_PD_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="col-md-3">
+                            {!! Form::label('pk_PD_Comments',old('pk_PD_Comments',$PKinetic->pk_PD_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S1',old('pk_Date_Day_S1',$PKinetic->pk_Date_Day_S1),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">S1</td>
+                        <td class="text-center">0.50</td>
+                        <td>
+                            {!! Form::label('pk_S1_SST',old('pk_S1_SST',$PKinetic->pk_S1_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S1_AST',old('pk_S1_AST',$PKinetic->pk_S1_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S1_Collected',old('pk_S1_Collected',$PKinetic->pk_S1_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S1_Checked',old('pk_S1_Checked',$PKinetic->pk_S1_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S1_Comments',old('pk_S1_Comments',$PKinetic->pk_S1_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S2',old('pk_Date_Day_S2',$PKinetic->pk_Date_Day_S2),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            <p>S2</p>
+                        </td>
+                        <td class="text-center">
+                            <p>1</p>
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S2_SST',old('pk_S2_SST',$PKinetic->pk_S2_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S2_AST',old('pk_S2_AST',$PKinetic->pk_S2_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S2_Collected',old('pk_S2_Collected',$PKinetic->pk_S2_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S2_Checked',old('pk_S2_Checked',$PKinetic->pk_S2_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S2_Comments',old('pk_S2_Comments',$PKinetic->pk_S2_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S3',old('pk_Date_Day_S3',$PKinetic->pk_Date_Day_S3),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S3
+                        </td>
+                        <td class="text-center">
+                            1.5
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S3_SST',old('pk_S3_SST',$PKinetic->pk_S3_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S3_AST',old('pk_S3_AST',$PKinetic->pk_S3_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S3_Collected',old('pk_S3_Collected',$PKinetic->pk_S3_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S3_Checked',old('pk_S3_Checked',$PKinetic->pk_S3_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S3_Comments',old('pk_S3_Comments',$PKinetic->pk_S3_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S4',old('pk_Date_Day_S4',$PKinetic->pk_PD_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S4
+                        </td>
+                        <td class="text-center">
+                            2
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S4_SST',old('pk_S4_SST',$PKinetic->pk_S4_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S4_AST',old('pk_S4_AST',$PKinetic->pk_S4_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S4_Collected',old('pk_S4_Collected',$PKinetic->pk_S4_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S4_Checked',old('pk_S4_Checked',$PKinetic->pk_S4_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S4_Comments',old('pk_S4_Comments',$PKinetic->pk_S4_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S5',old('pk_Date_Day_S5',$PKinetic->pk_Date_Day_S5),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S5
+                        </td>
+                        <td class="text-center">
+                            2.5
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S5_SST',old('pk_S5_SST',$PKinetic->pk_S5_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S5_AST',old('pk_S5_AST',$PKinetic->pk_S5_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S5_Collected',old('pk_S5_Collected',$PKinetic->pk_S5_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S5_Checked',old('pk_S5_Checked',$PKinetic->pk_S5_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S5_Comments',old('pk_S5_Comments',$PKinetic->pk_S5_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-sm-2">
+                            {!! Form::label('pk_Date_Day_S6',old('pk_Date_Day_S6',$PKinetic->pk_Date_Day_S6),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S6
+                        </td>
+                        <td class="text-center">
+                            3
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S6_SST',old('pk_S6_SST',$PKinetic->pk_S6_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S6_AST',old('pk_S6_AST',$PKinetic->pk_S6_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S6_Collected',old('pk_S6_Collected',$PKinetic->pk_S6_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S6_Checked',old('pk_S6_Checked',$PKinetic->pk_S6_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S6_Comments',old('pk_S6_Comments',$PKinetic->pk_S6_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S7',old('pk_Date_Day_S7',$PKinetic->pk_Date_Day_S7),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S7
+                        </td>
+                        <td class="text-center">
+                            3.5
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S7_SST',old('pk_S7_SST',$PKinetic->pk_S7_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S7_AST',old('pk_S7_AST',$PKinetic->pk_S7_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S7_Collected',old('pk_S7_Collected',$PKinetic->pk_S7_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S7_Checked',old('pk_S7_Checked',$PKinetic->pk_S7_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S7_Comments',old('pk_S7_Comments',$PKinetic->pk_S7_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S8',old('pk_Date_Day_S8',$PKinetic->pk_Date_Day_S8),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S8
+                        </td>
+                        <td class="text-center">
+                            4
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S8_SST',old('pk_S8_SST',$PKinetic->pk_S8_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S8_AST',old('pk_S8_AST',$PKinetic->pk_S8_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S8_Collected',old('pk_S8_Collected',$PKinetic->pk_S8_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S8_Checked',old('pk_S8_Checked',$PKinetic->pk_S8_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S8_Comments',old('pk_S8_Comments',$PKinetic->pk_S8_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S9',old('pk_Date_Day_S9',$PKinetic->pk_Date_Day_S9),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S9
+                        </td>
+                        <td class="text-center">
+                            4.5
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S9_SST',old('pk_S9_SST',$PKinetic->pk_S9_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S9_AST',old('pk_S9_AST',$PKinetic->pk_S9_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S9_Collected',old('pk_S9_Collected',$PKinetic->pk_S9_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S9_Checked',old('pk_S9_Checked',$PKinetic->pk_S9_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S9_Comments',old('pk_S9_Comments',$PKinetic->pk_S9_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S10',old('pk_Date_Day_S10',$PKinetic->pk_Date_Day_S10),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S10
+                        </td>
+                        <td class="text-center">
+                            5
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S10_SST',old('pk_S10_SST',$PKinetic->pk_S10_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S10_AST',old('pk_S10_AST',$PKinetic->pk_S10_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S10_Collected',old('pk_S10_Collected',$PKinetic->pk_S10_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S10_Checked',old('pk_S10_Checked',$PKinetic->pk_S10_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S10_Comments',old('pk_S10_Comments',$PKinetic->pk_S10_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S11',old('pk_Date_Day_S11',$PKinetic->pk_Date_Day_S11),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S11
+                        </td>
+                        <td class="text-center">
+                            6
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S11_SST',old('pk_S11_SST',$PKinetic->pk_S11_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S11_AST',old('pk_S11_AST',$PKinetic->pk_S11_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S11_Collected',old('pk_S11_Collected',$PKinetic->pk_S11_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S11_Checked',old('pk_S11_Checked',$PKinetic->pk_S11_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S11_Comments',old('pk_S11_Comments',$PKinetic->pk_S11_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S12',old('pk_Date_Day_S12',$PKinetic->pk_Date_Day_S12),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            <p>S12</p>
+                        </td>
+                        <td class="text-center">
+                            <p>7</p>
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S12_SST',old('pk_S12_SST',$PKinetic->pk_S12_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S12_AST',old('pk_S12_AST',$PKinetic->pk_S12_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S12_Collected',old('pk_S12_Collected',$PKinetic->pk_S12_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S12_Checked',old('pk_S12_Checked',$PKinetic->pk_S12_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S12_Comments',old('pk_S12_Comments',$PKinetic->pk_S12_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S13',old('pk_Date_Day_S13',$PKinetic->pk_Date_Day_S13),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S13
+                        </td>
+                        <td class="text-center">
+                            8
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S13_SST',old('pk_S13_SST',$PKinetic->pk_S13_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S13_AST',old('pk_S13_AST',$PKinetic->pk_S13_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S13_Collected',old('pk_S13_Collected',$PKinetic->pk_S13_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S13_Checked',old('pk_S13_Checked',$PKinetic->pk_S13_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S13_Comments',old('pk_S13_Comments',$PKinetic->pk_S13_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S14',old('pk_Date_Day_S14',$PKinetic->pk_Date_Day_S14),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S14
+                        </td>
+                        <td class="text-center">
+                            10
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S14_SST',old('pk_S14_SST',$PKinetic->pk_S14_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S14_AST',old('pk_S14_AST',$PKinetic->pk_S14_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S14_Collected',old('pk_S14_Collected',$PKinetic->pk_S14_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S14_Checked',old('pk_S14_Checked',$PKinetic->pk_S14_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S14_Comments',old('pk_S14_Comments',$PKinetic->pk_S14_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S15',old('pk_Date_Day_S15',$PKinetic->pk_Date_Day_S15),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S15
+                        </td>
+                        <td class="text-center">
+                            12
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S15_SST',old('pk_S15_SST',$PKinetic->pk_S15_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S15_AST',old('pk_S15_AST',$PKinetic->pk_S15_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S15_Collected',old('pk_S15_Collected',$PKinetic->pk_S15_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S15_Checked',old('pk_S15_Checked',$PKinetic->pk_S15_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S15_Comments',old('pk_S15_Comments',$PKinetic->pk_S15_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S16',old('pk_Date_Day_S16',$PKinetic->pk_Date_Day_S16),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S16
+                        </td>
+                        <td class="text-center">
+                            14
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S16_SST',old('pk_S16_SST',$PKinetic->pk_S16_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S16_AST',old('pk_S16_AST',$PKinetic->pk_S16_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S16_Collected',old('pk_S16_Collected',$PKinetic->pk_S16_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S16_Checked',old('pk_S16_Checked',$PKinetic->pk_S16_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S16_Comments',old('pk_S16_Comments',$PKinetic->pk_S16_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S17',old('pk_Date_Day_S17',$PKinetic->pk_Date_Day_S17),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S17
+                        </td>
+                        <td class="text-center">
+                            16
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S17_SST',old('pk_S17_SST',$PKinetic->pk_S17_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S17_AST',old('pk_S17_AST',$PKinetic->pk_S17_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S17_Collected',old('pk_S17_Collected',$PKinetic->pk_S17_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S17_Checked',old('pk_S17_Checked',$PKinetic->pk_S17_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S17_Comments',old('pk_S17_Comments',$PKinetic->pk_S17_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S18',old('pk_Date_Day_S18',$PKinetic->pk_Date_Day_S18),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S18
+                        </td>
+                        <td class="text-center">
+                            18
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S18_SST',old('pk_S18_SST',$PKinetic->pk_S18_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S18_AST',old('pk_S18_AST',$PKinetic->pk_S18_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S18_Collected',old('pk_S18_Collected',$PKinetic->pk_S18_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S18_Checked',old('pk_S18_Checked',$PKinetic->pk_S18_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S18_Comments',old('pk_S18_Comments',$PKinetic->pk_S18_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S19',old('pk_Date_Day_S19',$PKinetic->pk_Date_Day_S19),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">
+                            S19
+                        </td>
+                        <td class="text-center">
+                            24
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S19_SST',old('pk_S19_SST',$PKinetic->pk_S19_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S19_AST',old('pk_S19_AST',$PKinetic->pk_S19_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S19_Collected',old('pk_S19_Collected',$PKinetic->pk_S19_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S19_Checked',old('pk_S19_Checked',$PKinetic->pk_S19_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S19_Comments',old('pk_S19_Comments',$PKinetic->pk_S19_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S20',old('pk_Date_Day_S20',$PKinetic->pk_Date_Day_S20),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">S20</td>
+                        <td class="text-center">36</td>
+                        <td>
+                            {!! Form::label('pk_S20_SST',old('pk_S20_SST',$PKinetic->pk_S20_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S20_AST',old('pk_S20_AST',$PKinetic->pk_S20_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S20_Collected',old('pk_S20_Collected',$PKinetic->pk_S20_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S20_Checked',old('pk_S20_Checked',$PKinetic->pk_S20_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S20_Comments',old('pk_S20_Comments',$PKinetic->pk_S20_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {!! Form::label('pk_Date_Day_S21',old('pk_Date_Day_S21',$PKinetic->pk_Date_Day_S21),['class'=>'form-control']) !!}
+                        </td>
+                        <td class="text-center">S21</td>
+                        <td class="text-center">48</td>
+                        <td>
+                            {!! Form::label('pk_S21_SST',old('pk_S21_SST',$PKinetic->pk_S21_SST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S21_AST',old('pk_S21_AST',$PKinetic->pk_S21_AST),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S21_Collected',old('pk_S21_Collected',$PKinetic->pk_S21_Collected),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S21_Checked',old('pk_S21_Checked',$PKinetic->pk_S21_Checked),['class'=>'form-control']) !!}
+                        </td>
+                        <td>
+                            {!! Form::label('pk_S21_Comments',old('pk_S21_Comments',$PKinetic->pk_S21_Comments),['class'=>'form-control']) !!}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p>NS = Not statistically significant</p>
+                    </div>
+                    <div class="col-md-3">
+                        <p>NA = Not available (state reason)</p>
+                    </div>
+                </div>
+                <div class="row col">
+                    <p>Reasons for significant time deviation and / or sample not available:</p>
+                </div>
+                <div class="row col">
+                    <ul>
+                        <li>1- Problematic blood sampling</li>
+                        <li>2- No blood collected due to no venous access</li>
+                        <li>3- Early/late sampling</li>
+                        <li>4- Sample tube breakage</li>
+                        <li>5- Re-cannulation</li>
+                        <li>6- Other (specify)</li>
+                    </ul>
+                </div>
             </div>
                 <div class="page-break">
+                   {{-- Pharmacodynamic Blood Sampling starts here--}}
                     <h3>Pharmacodynamic Blood Sampling</h3>
+                    @if($PDynamic->NApplicable== 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                               <h3>Not applicable for this study</h3>
+                            </div>
+                        </div>
+                    @else
+                    <div class=" form-group row">
+                        <div class="col-md-2">
+                            {!! Form::label('NApplicable', 'Not Applicable:') !!}
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            {!! Form::label('day1',old("day1",$PDynamic->Day1),['class'=>'form-control']) !!}
+                        </div>
+                        <div class="col-md-1">
+                            <p class="text-center">to</p>
+                        </div>
+                        <div class="col-md-2">
+                            {!! Form::label('day2',old("day2",$PDynamic->Day2),['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="row col">
+                        <p><strong>Tube Type and Volume Required:</strong> Hirudin, 1.6mL</p>
+                    </div>
+                    <div class="row col">
+                        <p><strong>Processing and Storage Instructions:</strong> To send the whole blood directly after collection for PD analysis.</p>
+                    </div>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">
+                                <p>Date</p>
+                                <p>(yyyy/mm/dd)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Sample Code</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Time Post Dose</p>
+                                <p>(hour)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Scheduled Sampling Time</p>
+                                <p>(24-hour clock)</p>
+                            </th>
+                            <th  scope="col" class="text-center">
+                                <p>Actual Sampling Time</p>
+                                <p>(24-hour clock)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Collected by</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Checked by</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Comments</p>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                {!! Form::label('PD_Date_Day_1',old("PD_Date_Day_1",$PDynamic->PD_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                <p>PD</p>
+                            </td>
+                            <td class="text-center">
+                                <p>______</p>
+                            </td>
+                            <td class="text-center">
+                                <p>______</p>
+                            </td>
+                            <td>
+                                {!! Form::label('PD_AST',old("PD_AST",$PDynamic->PD_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('PD_Collected',old("PD_Collected",$PDynamic->PD_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('PD_Checked',old("PD_Checked",$PDynamic->PD_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="col-md-3">
+                                {!! Form::label('PD_Comments',old("PD_Comments",$PDynamic->PD_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S1_Date_Day_1',old("S1_Date_Day_1",$PDynamic->S1_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S1
+                            </td>
+                            <td class="text-center">
+                                1
+                            </td>
+                            <td>
+                                {!! Form::label('S1_SST',old("S1_SST",$PDynamic->S1_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S1_AST',old("S1_AST",$PDynamic->S1_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S1_Collected',old("S1_Collected",$PDynamic->S1_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S1_Checked',old("S1_Checked",$PDynamic->S1_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S1_Comments',old("S1_Comments",$PDynamic->S1_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S2_Date_Day_1',old("S2_Date_Day_1",$PDynamic->S2_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S2
+                            </td>
+                            <td class="text-center">
+                                2
+                            </td>
+                            <td>
+                                {!! Form::label('S2_SST',old("S2_SST",$PDynamic->S2_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S2_AST',old("S2_AST",$PDynamic->S2_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S2_Collected',old("S2_Collected",$PDynamic->S2_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S2_Checked',old("S2_Checked",$PDynamic->S2_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S2_Comments',old("S2_Comments",$PDynamic->S2_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S3_Date_Day_1',old("S3_Date_Day_1",$PDynamic->S3_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S3
+                            </td>
+                            <td class="text-center">
+                                3
+                            </td>
+                            <td>
+                                {!! Form::label('S3_SST',old("S3_SST",$PDynamic->S3_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S3_AST',old("S3_AST",$PDynamic->S3_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S3_Collected',old("S3_Collected",$PDynamic->S3_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S3_Checked',old("S3_Checked",$PDynamic->S3_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S3_Comments',old("S3_Comments",$PDynamic->S3_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S4_Date_Day_1',old("S4_Date_Day_1",$PDynamic->S4_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S4
+                            </td>
+                            <td class="text-center">
+                                4
+                            </td>
+                            <td>
+                                {!! Form::label('S4_SST',old("S4_SST",$PDynamic->S4_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S4_AST',old("S4_AST",$PDynamic->S4_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S4_Collected',old("S4_Collected",$PDynamic->S4_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S4_Checked',old("S4_Checked",$PDynamic->S4_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S4_Comments',old("S4_Comments",$PDynamic->S4_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-sm-2">
+                                {!! Form::label('S5_Date_Day_1',old("S5_Date_Day_1",$PDynamic->S5_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S5
+                            </td>
+                            <td class="text-center">
+                                5
+                            </td>
+                            <td>
+                                {!! Form::label('S5_SST',old("S5_SST",$PDynamic->S5_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S5_AST',old("S5_AST",$PDynamic->S5_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S5_Collected',old("S5_Collected",$PDynamic->S5_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S5_Checked',old("S5_Checked",$PDynamic->S5_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S5_Comments',old("S5_Comments",$PDynamic->S5_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">
+                                {!! Form::label('S6_Date_Day_1',old("S6_Date_Day_1",$PDynamic->S6_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S6
+                            </td>
+                            <td class="text-center">
+                                8
+                            </td>
+                            <td>
+                                {!! Form::label('S6_SST',old("S6_SST",$PDynamic->S6_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S6_AST',old("S6_AST",$PDynamic->S6_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S6_Collected',old("S6_Collected",$PDynamic->S6_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S6_Checked',old("S6_Checked",$PDynamic->S6_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S6_Comments',old("S6_Comments",$PDynamic->S6_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S7_Date_Day_1',old("S7_Date_Day_1",$PDynamic->S7_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S7
+                            </td>
+                            <td class="text-center">
+                                12
+                            </td>
+                            <td>
+                                {!! Form::label('S7_SST',old("S7_SST",$PDynamic->S7_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S7_AST',old("S7_AST",$PDynamic->S7_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S7_Collected',old("S7_Collected",$PDynamic->S7_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S7_Checked',old("S7_Checked",$PDynamic->S7_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S7_Comments',old("S7_Comments",$PDynamic->S7_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S8_Date_Day_1',old("S8_Date_Day_1",$PDynamic->S8_Date_Day_1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S8
+                            </td>
+                            <td class="text-center">
+                                16
+                            </td>
+                            <td>
+                                {!! Form::label('S8_SST',old("S8_SST",$PDynamic->S8_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S8_AST',old("S8_AST",$PDynamic->S8_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S8_Collected',old("S8_Collected",$PDynamic->S8_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S8_Checked',old("S8_Checked",$PDynamic->S8_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S8_Comments',old("S8_Comments",$PDynamic->S8_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('S9_Date_Day_2',old("S9_Date_Day_2",$PDynamic->S9_Date_Day_2),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S9
+                            </td>
+                            <td class="text-center">
+                                24
+                            </td>
+                            <td>
+                                {!! Form::label('S9_SST',old("S9_SST",$PDynamic->S9_SST),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="col-sm-1">
+                                {!! Form::label('S9_AST',old("S9_AST",$PDynamic->S9_AST),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S9_Collected',old("S9_Collected",$PDynamic->S9_Collected),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S9_Checked',old("S9_Checked",$PDynamic->S9_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('S9_Comments',old("S9_Comments",$PDynamic->S9_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p>NS = Not statistically significant</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>NA = Not available (state reason)</p>
+                        </div>
+                    </div>
+                    <div class="row col">
+                        <p>Reasons for significant time deviation and / or sample not available:</p>
+                    </div>
+                    <div class="row col">
+                        <ul>
+                            <li>1- Problematic blood sampling</li>
+                            <li>2- No blood collected due to no venous access</li>
+                            <li>3- Early/late sampling</li>
+                            <li>4- Sample tube breakage</li>
+                            <li>5- Re-cannulation</li>
+                            <li>6- Other (specify)</li>
+                        </ul>
+                    </div>
+                    @endif
                 </div>
                 <div class="page-break">
+
+                    {{-- Pharmacodynamic (PD) Analysis STARTS HERE--}}
+
                     <h3>Pharmacodynamic (PD) Analysis</h3>
+                    @if($PDAnalysis->NApplicable == 1)
+                    <div class=" form-group row">
+                        <div class="col-md-2">
+                            <h3>Not applicable for this study</h3>
+                        </div>
+                    </div>
+                    @else
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            {!! Form::label('Day1', 'Day 1: ') !!}
+                        </div>
+                        <div class="col-md-2">
+                            {!! Form::label('Day1', old('Day1',$PDAnalysis->Day1),['class'=>'form-control']) !!}
+                        </div>
+                        <div class="col-md-1">
+                            {!! Form::label('Day2', 'Day 2: ') !!}
+                        </div>
+                        <div class="col-md-2">
+                            {!! Form::label('Day2',old('Day2',$PDAnalysis->Day2),['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                    <div class="row col">
+                        <p>Analysis Instructions: Stand whole blood for 30 minutes at room temperature before PD analysis. PD analysis has
+                            to be completed within 3 hours.</p>
+                    </div>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">
+                                <p>Date</p>
+                                <p>(yyyy/mm/dd)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Sample Code</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Time Post Dose</p>
+                                <p>(hour)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Time of PD analysis</p>
+                                <p>(24-hour clock)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Results for PD analysis</p>
+                                <p>(AU*min)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Analysis conducted by</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Checked by</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Comments</p>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_PD',old('pda_Date_Day_PD',$PDAnalysis->pda_Date_Day_PD),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                PD
+                            </td>
+                            <td class="text-center">
+                                ______
+                            </td>
+                            <td class="text-center">
+                                ______
+                            </td>
+                            <td>
+                                {!! Form::label('pda_PD_Result',old('pda_PD_Result',$PDAnalysis->pda_PD_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_PD_Conducted',old('pda_PD_Conducted',$PDAnalysis->pda_PD_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_PD_Checked',old('pda_PD_Checked',$PDAnalysis->pda_PD_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="col-md-3">
+                                {!! Form::label('pda_PD_Comments',old('pda_PD_Comments',$PDAnalysis->pda_PD_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S1', old('pda_Date_Day_S1',$PDAnalysis->pda_Date_Day_S1),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S1
+                            </td>
+                            <td class="text-center">
+                                1
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S1_Time', old('pda_S1_Time',$PDAnalysis->pda_S1_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S1_Result',old('pda_S1_Result',$PDAnalysis->pda_S1_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S1_Conducted',old('pda_S1_Conducted',$PDAnalysis->pda_S1_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S1_Checked',old('pda_S1_Checked',$PDAnalysis->pda_S1_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S1_Comments',old('pda_S1_Comments',$PDAnalysis->pda_S1_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S2', old('pda_Date_Day_S2',$PDAnalysis->pda_Date_Day_S2),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S2
+                            </td>
+                            <td class="text-center">
+                                2
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S2_Time',old('pda_S2_Time',$PDAnalysis->pda_S2_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S2_Result',old('pda_S2_Result',$PDAnalysis->pda_S2_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S2_Conducted',old('pda_S2_Conducted',$PDAnalysis->pda_S2_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S2_Checked',old('pda_S2_Checked',$PDAnalysis->pda_S2_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S2_Comments',old('pda_S2_Comments',$PDAnalysis->pda_S2_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S3',old('pda_Date_Day_S3',$PDAnalysis->pda_Date_Day_S3),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S3
+                            </td>
+                            <td class="text-center">
+                                3
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S3_Time',old('pda_S3_Time',$PDAnalysis->pda_S3_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S3_Result',old('pda_S3_Result',$PDAnalysis->pda_S3_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S3_Conducted',old('pda_S3_Conducted',$PDAnalysis->pda_S3_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S3_Checked',old('pda_S3_Checked',$PDAnalysis->pda_S3_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S3_Comments',old('pda_S3_Comments',$PDAnalysis->pda_S3_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S4',old('pda_Date_Day_S4',$PDAnalysis->pda_Date_Day_S4),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S4
+                            </td>
+                            <td class="text-center">
+                                4
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S4_Time',old('pda_S4_Time',$PDAnalysis->pda_S4_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S4_Result',old('pda_S4_Result',$PDAnalysis->pda_S4_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S4_Conducted',old('pda_S4_Conducted',$PDAnalysis->pda_S4_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S4_Checked', old('pda_S4_Checked',$PDAnalysis->pda_S4_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S4_Comments', old('pda_S4_Comments',$PDAnalysis->pda_S4_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S5',old('pda_Date_Day_S5',$PDAnalysis->pda_Date_Day_S5),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S5
+                            </td>
+                            <td class="text-center">
+                                5
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S5_Time',old('pda_S5_Time',$PDAnalysis->pda_S5_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S5_Result',old('pda_S5_Result',$PDAnalysis->pda_S5_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S5_Conducted',old('pda_S5_Conducted',$PDAnalysis->pda_S5_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S5_Checked',old('pda_S5_Checked',$PDAnalysis->pda_S5_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S5_Comments',old('pda_S5_Comments',$PDAnalysis->pda_S5_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S6',old('pda_Date_Day_S6',$PDAnalysis->pda_Date_Day_S6),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S6
+                            </td>
+                            <td class="text-center">
+                                8
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S6_Time',old('pda_S6_Time',$PDAnalysis->pda_S6_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S6_Result',old('pda_S6_Result',$PDAnalysis->pda_S6_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S6_Conducted',old('pda_S6_Conducted',$PDAnalysis->pda_S6_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S6_Checked',old('pda_S6_Checked',$PDAnalysis->pda_S6_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S6_Comments',old('pda_S6_Comments',$PDAnalysis->pda_S6_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S7',old('pda_Date_Day_S7',$PDAnalysis->pda_Date_Day_S7),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S7
+                            </td>
+                            <td class="text-center">
+                                12
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S7_Time',old('pda_S7_Time',$PDAnalysis->pda_S7_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S7_Result',old('pda_S7_Result',$PDAnalysis->pda_S7_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S7_Conducted',old('pda_S7_Conducted',$PDAnalysis->pda_S7_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S7_Checked',old('pda_S7_Checked',$PDAnalysis->pda_S7_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S7_Comments',old('pda_S7_Comments',$PDAnalysis->pda_S7_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S8',old('pda_Date_Day_S8',$PDAnalysis->pda_Date_Day_S8),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S8
+                            </td>
+                            <td class="text-center">
+                                16
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S8_Time',old('pda_S8_Time',$PDAnalysis->pda_S8_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S8_Result',old('pda_S8_Result',$PDAnalysis->pda_S8_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S8_Conducted',old('pda_S8_Conducted',$PDAnalysis->pda_S8_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S8_Checked',old('pda_S8_Checked',$PDAnalysis->pda_S8_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S8_Comments',old('pda_S8_Comments',$PDAnalysis->pda_S8_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('pda_Date_Day_S9',old('pda_Date_Day_S9',$PDAnalysis->pda_Date_Day_S9),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                S9
+                            </td>
+                            <td class="text-center">
+                                24
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S9_Time',old('pda_S9_Time',$PDAnalysis->pda_S9_Time),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S9_Result',old('pda_S9_Result',$PDAnalysis->pda_S9_Result),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S9_Conducted',old('pda_S9_Conducted',$PDAnalysis->pda_S9_Conducted),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S9_Checked',old('pda_S9_Checked',$PDAnalysis->pda_S9_Checked),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('pda_S9_Comments',old('pda_S9_Comments',$PDAnalysis->pda_S9_Comments),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
                 <div class="page-break">
+
+
+                    {{-- Vital Signs STARTS HERE--}}
+
+
                     <h3>Vital Signs</h3>
+                    <hr>
+                    <div class="row col">
+                        <p>During the confinement period, vital signs should be measured within ± 30 minutes of the scheduled measurement
+                            time (i.e vital signs to be taken within 30 minutes of 09:00 – time post dose 1 hour etc)</p>
+                    </div>
+                    <table border="1">
+                        <thead>
+                        <tr>
+                            <th scope="col" class="text-center">
+                                <p>Date</p>
+                                <p>(yyyy/mm/dd)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Time Post Dose</p>
+                                <p>(hour)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Reading Time</p>
+                                <p>(24-hour clock)</p>
+                            </th>
+                            <th scope="col" class="text-center col-md-2">
+                                <p>Sitting Blood Pressure</p>
+                                <p>(systolic/diastolic) (mmHg)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Pulse Rate</p>
+                                <p>(beats per min.)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Respiration Rate</p>
+                                <p>(breaths per min.)</p>
+                            </th>
+                            <th scope="col" class="text-center">
+                                <p>Taken by</p>
+                                <p>(Initial)</p>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_1_Date', old('TPD_1_Date',$VitalSign->TPD_1_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                1
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_1_ReadingTime', old('TPD_1_ReadingTime',$VitalSign->TPD_1_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_1_SittingBP_S', old('TPD_1_SittingBP_S',$VitalSign->TPD_1_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_1_SittingBP_D', old('TPD_1_SittingBP_D',$VitalSign->TPD_1_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_1_Pulse', old('TPD_1_Pulse',$VitalSign->TPD_1_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_1_Respiration', old('TPD_1_Respiration',$VitalSign->TPD_1_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_1_TakenBy', old('TPD_1_TakenBy',$VitalSign->TPD_1_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_2_Date', old('TPD_2_Date',$VitalSign->TPD_2_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                <p>2</p>
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_2_ReadingTime',old('TPD_2_ReadingTime',$VitalSign->TPD_2_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_2_SittingBP_S', old('TPD_2_SittingBP_S',$VitalSign->TPD_2_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_2_SittingBP_D', old('TPD_2_SittingBP_D',$VitalSign->TPD_2_SittingBP_D),['class'=>'form-control col-md-6', 'placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_2_Pulse', old('TPD_2_Pulse',$VitalSign->TPD_2_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_2_Respiration', old('TPD_2_Respiration',$VitalSign->TPD_2_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_2_TakenBy', old('TPD_2_TakenBy',$VitalSign->TPD_2_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_5_Date', old('TPD_5_Date',$VitalSign->TPD_5_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                5
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_5_ReadingTime', old('TPD_5_ReadingTime',$VitalSign->TPD_5_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_5_SittingBP_S', old('TPD_5_SittingBP_S',$VitalSign->TPD_5_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_5_SittingBP_D', old('TPD_5_SittingBP_D',$VitalSign->TPD_5_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_5_Pulse', old('TPD_5_Pulse',$VitalSign->TPD_5_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_5_Respiration', old('TPD_5_Respiration',$VitalSign->TPD_5_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_5_TakenBy', old('TPD_5_TakenBy',$VitalSign->TPD_5_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_8_Date', old('TPD_8_Date',$VitalSign->TPD_8_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                8
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_8_ReadingTime', old('TPD_8_ReadingTime',$VitalSign->TPD_8_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_8_SittingBP_S', old('TPD_8_SittingBP_S',$VitalSign->TPD_8_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_8_SittingBP_D', old('TPD_8_SittingBP_D',$VitalSign->TPD_8_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_8_Pulse', old('TPD_8_Pulse',$VitalSign->TPD_8_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_8_Respiration', old('TPD_8_Respiration',$VitalSign->TPD_8_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_8_TakenBy', old('TPD_8_TakenBy',$VitalSign->TPD_8_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_12_Date',old('TPD_12_Date',$VitalSign->TPD_12_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                12
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_12_ReadingTime', old('TPD_12_ReadingTime',$VitalSign->TPD_12_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_12_SittingBP_S', old('TPD_12_SittingBP_S',$VitalSign->TPD_12_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_12_SittingBP_D', old('TPD_12_SittingBP_D',$VitalSign->TPD_12_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_12_Pulse', old('TPD_12_Pulse',$VitalSign->TPD_12_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_12_Respiration', old('TPD_12_Respiration',$VitalSign->TPD_12_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_12_TakenBy', old('TPD_12_TakenBy',$VitalSign->TPD_12_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_24_Date', old('TPD_24_Date',$VitalSign->TPD_24_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                <p>24</p>
+                            </td>
+                            <td colspan="5" class="text-center">
+                                <p>Refer to Discharge Page</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_36_Date', old('TPD_36_Date',$VitalSign->TPD_36_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                <p>36</p>
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_36_ReadingTime', old('TPD_36_ReadingTime',$VitalSign->TPD_36_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_36_SittingBP_S', old('TPD_36_SittingBP_S',$VitalSign->TPD_36_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_36_SittingBP_D', old('TPD_36_SittingBP_D',$VitalSign->TPD_36_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_36_Pulse', old('TPD_36_Pulse',$VitalSign->TPD_36_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_36_Respiration', old('TPD_36_Respiration',$VitalSign->TPD_36_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_36_TakenBy', old('TPD_36_TakenBy',$VitalSign->TPD_36_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {!! Form::label('TPD_48_Date', old('TPD_48_Date',$VitalSign->TPD_48_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td class="text-center">
+                                <p>48</p>
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_48_ReadingTime', old('TPD_48_ReadingTime',$VitalSign->TPD_48_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_48_SittingBP_S', old('TPD_48_SittingBP_S',$VitalSign->TPD_48_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('TPD_48_SittingBP_D', old('TPD_48_SittingBP_D',$VitalSign->TPD_48_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_48_Pulse', old('TPD_48_Pulse',$VitalSign->TPD_48_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_48_Respiration', old('TPD_48_Respiration',$VitalSign->TPD_48_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('TPD_48_TakenBy', old('TPD_48_TakenBy',$VitalSign->TPD_48_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="7" class="font-weight-bold">
+                                For repeat/extra vital signs
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra1_Date', old('Extra1_Date',$VitalSign->Extra1_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_TPD',old('Extra1_TPD',$VitalSign->Extra1_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_ReadingTime', old('Extra1_ReadingTime',$VitalSign->Extra1_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_SittingBP_S', old('Extra1_SittingBP_S',$VitalSign->Extra1_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra1_SittingBP_D', old('Extra1_SittingBP_D',$VitalSign->Extra1_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_Pulse', old('Extra1_Pulse',$VitalSign->Extra1_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_Respiration', old('Extra1_Respiration',$VitalSign->Extra1_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra1_TakenBy', old('Extra1_TakenBy',$VitalSign->Extra1_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra2_Date', old('Extra2_Date',$VitalSign->Extra2_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_TPD', old('Extra2_TPD',$VitalSign->Extra2_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_ReadingTime', old('Extra2_ReadingTime',$VitalSign->Extra2_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_SittingBP_S', old('Extra2_SittingBP_S',$VitalSign->Extra2_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra2_SittingBP_D', old('Extra2_SittingBP_D',$VitalSign->Extra2_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_Pulse', old('Extra2_Pulse',$VitalSign->Extra2_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_Respiration', old('Extra2_Respiration',$VitalSign->Extra2_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra2_TakenBy', old('Extra2_TakenBy',$VitalSign->Extra2_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra3_Date', old('Extra3_Date',$VitalSign->Extra3_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_TPD', old('Extra3_TPD',$VitalSign->Extra3_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_ReadingTime', old('Extra3_ReadingTime',$VitalSign->Extra3_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_SittingBP_S', old('Extra3_SittingBP_S',$VitalSign->Extra3_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra3_SittingBP_D', old('Extra3_SittingBP_D',$VitalSign->Extra3_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_Pulse', old('Extra3_Pulse',$VitalSign->Extra3_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_Respiration', old('Extra3_Respiration',$VitalSign->Extra3_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra3_TakenBy', old('Extra3_TakenBy',$VitalSign->Extra3_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra4_Date',old('Extra4_Date',$VitalSign->Extra4_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_TPD', old('Extra4_TPD',$VitalSign->Extra4_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_ReadingTime', old('Extra4_ReadingTime',$VitalSign->Extra4_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_SittingBP_S', old('Extra4_SittingBP_S',$VitalSign->Extra4_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra4_SittingBP_D', old('Extra4_SittingBP_D',$VitalSign->Extra4_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_Pulse', old('Extra4_Pulse',$VitalSign->Extra4_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_Respiration', old('Extra4_Respiration',$VitalSign->Extra4_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra4_TakenBy', old('Extra4_TakenBy',$VitalSign->Extra4_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra5_Date', old('Extra5_Date',$VitalSign->Extra5_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_TPD', old('Extra5_TPD',$VitalSign->Extra5_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_ReadingTime', old('Extra5_ReadingTime',$VitalSign->Extra5_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_SittingBP_S', old('Extra5_SittingBP_S',$VitalSign->Extra5_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra5_SittingBP_D', old('Extra5_SittingBP_D',$VitalSign->Extra5_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_Pulse', old('Extra5_Pulse',$VitalSign->Extra5_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_Respiration', old('Extra5_Respiration',$VitalSign->Extra5_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra5_TakenBy', old('Extra5_TakenBy',$VitalSign->Extra5_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra6_Date', old('Extra6_Date',$VitalSign->Extra6_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_TPD', old('Extra6_TPD',$VitalSign->Extra6_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_ReadingTime', old('Extra6_ReadingTime',$VitalSign->Extra6_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_SittingBP_S', old('Extra6_SittingBP_S',$VitalSign->Extra6_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra6_SittingBP_D', old('Extra6_SittingBP_D',$VitalSign->Extra6_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_Pulse', old('Extra6_Pulse',$VitalSign->Extra6_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_Respiration', old('Extra6_Respiration',$VitalSign->Extra6_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra6_TakenBy', old('Extra6_TakenBy',$VitalSign->Extra6_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra7_Date', old('Extra7_Date',$VitalSign->Extra7_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_TPD', old('Extra7_TPD',$VitalSign->Extra7_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_ReadingTime',old('Extra7_ReadingTime',$VitalSign->Extra7_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_SittingBP_S', old('Extra7_SittingBP_S',$VitalSign->Extra7_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra7_SittingBP_D', old('Extra7_SittingBP_D',$VitalSign->Extra7_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_Pulse', old('Extra7_Pulse',$VitalSign->Extra7_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_Respiration', old('Extra7_Respiration',$VitalSign->Extra7_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra7_TakenBy', old('Extra7_TakenBy',$VitalSign->Extra7_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td >
+                                {!! Form::label('Extra8_Date', old('Extra8_Date',$VitalSign->Extra8_Date),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_TPD', old('Extra8_TPD',$VitalSign->Extra8_TPD),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_ReadingTime', old('Extra8_ReadingTime',$VitalSign->Extra8_ReadingTime),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_SittingBP_S', old('Extra8_SittingBP_S',$VitalSign->Extra8_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                                {!! Form::label('Extra8_SittingBP_D', old('Extra8_SittingBP_D',$VitalSign->Extra8_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_Pulse', old('Extra8_Pulse',$VitalSign->Extra8_Pulse),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_Respiration', old('Extra8_Respiration',$VitalSign->Extra8_Respiration),['class'=>'form-control']) !!}
+                            </td>
+                            <td>
+                                {!! Form::label('Extra8_TakenBy', old('Extra8_TakenBy',$VitalSign->Extra8_TakenBy),['class'=>'form-control']) !!}
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="row col">
+                        <p>Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100 (latest reading only).</p>
+                    </div>
+                    <div class="form-group row col-md-6">
+                        {!! Form::label('Comment','Comments/ Remarks: ') !!}
+                        {!! Form::label('Comment',old('Comment',$VitalSign->Comment),['class'=>'form-control']) !!}
+                    </div>
+
                 </div>
-                {{-- Discharge --}}
+                {{-- Discharge STARTS HERE--}}
+
                 <div class="page-break">
                 <h3>Discharge</h3>
                 <hr>
@@ -688,10 +2510,13 @@
                     <tbody>
                     <tr>
                         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-                        <td>{!! Form::time('Sitting_ReadingTime', old('Sitting_ReadingTime',$Discharge->Sitting_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                        <td>{!! Form::number('Sitting_BP', old('Sitting_BP',$Discharge->Sitting_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                        <td>{!! Form::number('Sitting_HR', old('Sitting_HR',$Discharge->Sitting_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
-                        <td>{!! Form::number('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate',$Discharge->Sitting_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                        <td>{!! Form::label('Sitting_ReadingTime', old('Sitting_ReadingTime',$Discharge->Sitting_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                        <td>
+                            Systolic: {!! Form::label('Sitting_BP_S', old('Sitting_BP_S',$Discharge->Sitting_BP_S),['class'=>'form-control','placeholder'=>'']) !!} /
+                            Diastolic: {!! Form::label('Sitting_BP_D', old('Sitting_BP_D',$Discharge->Sitting_BP_D),['class'=>'form-control','placeholder'=>'']) !!}
+                        </td>
+                        <td>{!! Form::label('Sitting_HR', old('Sitting_HR',$Discharge->Sitting_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
+                        <td>{!! Form::label('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate',$Discharge->Sitting_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
                     </tr>
                     <tr>
                         <th scope="row">
@@ -702,7 +2527,10 @@
                             @endif
                         </th>
                         <td>{!! Form::label('SittingRepeat_ReadingTime', ($Discharge->SittingRepeat_ReadingTime)) !!}</td>
-                        <td>{!! Form::label('SittingRepeat_BP',($Discharge->SittingRepeat_BP)) !!}</td>
+                        <td>
+                            Systolic: {!! Form::label('SittingRepeat_BP_S',($Discharge->SittingRepeat_BP_S)) !!} /
+                            Diastolic: {!! Form::label('SittingRepeat_BP_D',($Discharge->SittingRepeat_BP_D)) !!}
+                        </td>
                         <td>{!! Form::label('SittingRepeat_HR',($Discharge->SittingRepeat_HR)) !!}</td>
                         <td>{!! Form::label('SittingRepeat_RespiratoryRate',($Discharge->SittingRepeat_RespiratoryRate)) !!}</td>
                     </tr>
@@ -715,7 +2543,10 @@
                 </table>
                 </div>
                 <hr>
+
                 {{--Discharge Questionnaire starts here--}}
+
+
                 <div class="page-break">
                 <h3>Discharge Questionnaire</h3>
                 <div class="form-group row">
@@ -766,7 +2597,10 @@
                     </div>
                 </div>
                 </div>
+
                 {{-- Interim Questionnaire(36 hours Post Dose Visit) --}}
+
+
                 <h3>Interim Questionnaire(36 hours Post Dose Visit)</h3>
                 <div class=" form-group row">
                     <div class="col-md-2">
@@ -788,7 +2622,10 @@
                         {!! Form::label('timeTaken',($IQ36->timeTaken)) !!}
                     </div>
                 </div>
+
                 {{-- Interim Question 1 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>1. Has the subject had any medical problems since last visit?</p>
@@ -796,7 +2633,10 @@
                     </div>
                 </div>
                 <hr>
+
                 {{-- Interim Question 2 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>2. Has the subject taken any medication (including herbal remedies), except birth control medications and
@@ -805,7 +2645,10 @@
                     </div>
                 </div>
                 <hr>
+
                 {{-- Interim Question 3 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>3. Has the subject consumed any alcohol or xanthine-containing food or beverage since last visit?</p>
@@ -820,7 +2663,10 @@
                 </div>
                     @endif
                 <hr>
+
                 {{-- Interim Question 4 --}}
+
+
                     <div class="page-break">
                 <div class="row">
                     <div class="col-md-6">
@@ -838,7 +2684,10 @@
                 @endif
                 </div>
                 <hr>
+
                 {{-- Interim Question 5 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>5. Has the subject participated in other experimental drug studies since last visit?</p>
@@ -853,7 +2702,10 @@
                 </div>
                     @endif
                 <hr>
+
                 {{-- Interim Question 6 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>6. Has the subject participated in donation of blood (excluding the volume of whole blood that drawn during
@@ -869,7 +2721,9 @@
                     </div>
                     @endif
                 <hr>
+
                 {{-- Interim Question 7 --}}
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>7. For female subjects of childbearing potential only: Has the subject use of non-acceptable methods of
@@ -885,7 +2739,10 @@
                 </div>
                     @endif
                 <hr>
+
                 {{-- Interim Question 8 --}}
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <p>8. Does any event above potentially influence the PK or PD profile of study drug, or increase the subject’s
@@ -894,7 +2751,10 @@
                     </div>
                 </div>
                 <hr>
+
                     {{--Interviewed and physician signature--}}
+
+
                 <div class="form-group row">
                     <div class="offset-5 col-md-3">
                         {!! Form::label('Interim36hrsInterviewedby', 'Interviewed by (initial): ') !!}

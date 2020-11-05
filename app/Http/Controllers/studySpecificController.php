@@ -183,7 +183,6 @@ class studySpecificController extends Controller
     public function update(Request $request, $id)
     {
         $study = studySpecific::find($id);
-
         $data = $request->except('_token','_method');
         foreach($data as $key=>$value)
         {
@@ -234,7 +233,7 @@ class studySpecificController extends Controller
     }
     public function testPDF()
     {
-        $PID = 34;
+        $PID = 1;
         $study_id = 1;
         $patient = Patient::where('id', $PID)->first();
         $study = studySpecific::where('study_id',$study_id)->first();
@@ -251,13 +250,12 @@ class studySpecificController extends Controller
             $UrineTest = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
             $PKinetic = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $findSP1->SP1_PKineticSampling)->first();
             $PDynamic = SP1_PDynamicSampling::where('SP1_PDynamicSampling_ID', $findSP1->SP1_PDynamicSampling)->first();
-            $PDAnalysis = SP1_PDynamicAnalysis::where('SP1_PDynamicAnalysis_ID', $findSP1->SP1_PDynamiAnalysis)->first();
+            $PDAnalysis = SP1_PDynamicAnalysis::where('SP1_PDynamicAnalysis_ID', $findSP1->SP1_PDynamicAnalysis)->first();
             $VitalSign = SP1_VitalSigns::where('SP1_VitalSign_ID', $findSP1->SP1_VitalSign)->first();
             $Discharge = SP1_Discharge::where('SP1_Discharge_ID', $findSP1->SP1_Discharge)->first();
             $DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID', $findSP1->SP1_DQuestionnaire)->first();
             $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
             $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
-
             $pdf = PDF::loadView('test', compact('Admission',
                 'BMVS',
                 'BAT',
@@ -272,35 +270,32 @@ class studySpecificController extends Controller
                 'IQ36',
                 'IQ48',
                 'study',
-                'patient'));
+                'patient'))
+            ->setPaper('A4','landscape');
 
             return $pdf->stream('test.pdf');
         }
     }
 
-    public function testPost(Request $request,$study_id)
+    public function testPDFPreScreening()
     {
+        $PID = 1;
+        $study_id = 1;
+        $patient = Patient::where('id', $PID)->first();
         $study = studySpecific::where('study_id',$study_id)->first();
-        $studyPeriodLimit = $study->studyPeriod_Count;
-        if($request->studyPeriod <= $studyPeriodLimit)
-        {
-           if($request->studyPeriod == 1)
-           {
-               echo "save SP1";
-           }else if($request->studyPeriod == 2)
-           {
-               echo "save SP2";
-           }else if($request->studyPeriod == 3)
-           {
-               echo "save SP3";
-           }else if($request->studyPeriod == 4)
-           {
-               echo "save SP4";
-           }else
-           {
-               echo "You did not select a study period";
-           }
-        }
+        $findPSS = PatientStudySpecific::with('StudyPeriod1')
+            ->where('patient_id', $PID)
+            ->where('study_id', $study_id)
+            ->first();
+
+            $pdf = PDF::loadView('TestPreScreeningReport');
+            //PDF::loadView('bladefilename',compact('variable')) something like return view.
+            /*$pdf = PDF::loadView('test', compact('Admission'))->setPaper('A4','landscape');*/
+
+            //if want view in google use $filename->stream
+            //if want test download use $file->download('filename')
+            return $pdf->stream('preScreeningTest.pdf');
+
 
     }
 

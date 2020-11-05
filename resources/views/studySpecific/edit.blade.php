@@ -13,7 +13,7 @@
         </div>
     @endif
     <div class="container-fluid">
-        <h3>Edit {{$study->study_name}}'s Details</h3>
+        <h3>Edit <strong>{{$study->study_name}}</strong>'s Details</h3>
         <hr>
         {!! Form::model($study,['route' => ['studySpecific.update',$study->study_id]]) !!}
         @method('PUT')
@@ -26,10 +26,10 @@
                 {!! Form::date('startDate', old('startDate',$study->startDate),['class'=>'form-control']) !!}
             </div>
             <div class=" offset-3 col-md-1">
-                {!! Form::label('startDate', 'End Date: ') !!}
+                {!! Form::label('endDate', 'End Date: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::date('startDate', old('endDate',$study->endDate),['class'=>'form-control']) !!}
+                {!! Form::date('endDate', old('endDate',$study->endDate),['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -80,6 +80,7 @@
         {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
         {!! Form::close() !!}
         <br>
+        <h3>View Subjects' study period details for {{$study->study_name}}</h3>
         <hr/>
         {{--new forms to select the subject and view their study periods details--}}
         {!! Form::open(['route' => ['SubjectStudySpecific.edit',$study->study_id]]) !!}
