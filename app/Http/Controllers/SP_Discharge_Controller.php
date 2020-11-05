@@ -147,25 +147,25 @@ class SP_Discharge_Controller extends Controller
             'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
             'Initial.required' => 'Initial of the physician’s is required',
         ];
-        //validation for required fields
-        $validatedData = $this->validate($request, [
-            'DischargeDate' => 'required',
-            'unscheduledDischarge' => 'required',
-            'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
-            'Sitting_ReadingTime' => 'required',
-            'Sitting_BP_S' => 'required',
-            'Sitting_BP_D' => 'required',
-            'Sitting_HR' => 'required',
-            'Sitting_RespiratoryRate' => 'required',
-            'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Others',
-            'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'Initial' => 'required',
-        ], $custom);
 
         if ($findPSS != NULL && $PSS != NULL) {
+            //validation for required fields
+            $validatedData = $this->validate($request, [
+                'DischargeDate' => 'required',
+                'unscheduledDischarge' => 'required',
+                'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+                'Sitting_ReadingTime' => 'required',
+                'Sitting_BP_S' => 'required',
+                'Sitting_BP_D' => 'required',
+                'Sitting_HR' => 'required',
+                'Sitting_RespiratoryRate' => 'required',
+                'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Others',
+                'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'Initial' => 'required',
+            ], $custom);
             $flag = false;
             $Discharge->DischargeDate = $request->DischargeDate;
             $ud = $request->unscheduledDischarge;
@@ -209,9 +209,43 @@ class SP_Discharge_Controller extends Controller
         }
     }
 
-    public function updateSP($findPSS,$PSS,$Discharge,$request)
-    {
+    public function updateSP($findPSS,$PSS,$Discharge,$request){
+        //custom messages load for validation
+        $custom = [
+            'DischargeDate.required' => 'Please enter the discharge date',
+            'unscheduledDischarge.required' => 'Please state whether is it an unscheduled discharge',
+            'unscheduledDischarge_Text.required_if' => 'If it is an unscheduled discharge, please state why',
+            'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
+            'Sitting_BP_S.required' => 'Please enter the systolic for Blood Pressure',
+            'Sitting_BP_D.required' => 'Please enter the diastolic for Blood Pressure',
+            'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
+            'Sitting_RespiratoryRate.required' => 'Please enter the Sitting Respiratory Rate',
+            'SittingRepeat_ReadingTime.required_if' => 'Please enter the Sitting Reading Time for the repeated test',
+            'SittingRepeat_BP_S.required_if' => 'Please enter the systolic for Blood Pressure for the repeated test',
+            'SittingRepeat_BP_D.required_if' => 'Please enter the diastolic for Blood Pressure for the repeated test',
+            'SittingRepeat_HR.required_if' => 'Please enter the Sitting Heart Rate for the repeated test',
+            'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
+            'Initial.required' => 'Initial of the physician’s is required',
+        ];
+        
         if ($findPSS != NULL) {
+            //validation for required fields
+            $validatedData = $this->validate($request, [
+                'DischargeDate' => 'required',
+                'unscheduledDischarge' => 'required',
+                'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+                'Sitting_ReadingTime' => 'required',
+                'Sitting_BP_S' => 'required',
+                'Sitting_BP_D' => 'required',
+                'Sitting_HR' => 'required',
+                'Sitting_RespiratoryRate' => 'required',
+                'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Others',
+                'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Sitting Repeated',
+                'Initial' => 'required',
+            ], $custom);
             $flag = false;
             $Discharge->DischargeDate = $request->DischargeDate;
             $ud = $request->unscheduledDischarge;

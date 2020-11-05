@@ -777,15 +777,16 @@ class SP_Admission_Controller extends Controller
             'ConsentDateTaken.required' => 'Please enter the consent date taken',
             'ConsentTimeTaken.required' => 'Please enter the consent time taken',
         ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'AdmissionDateTaken' => 'required',
-            'AdmissionTimeTaken' => 'required',
-            'ConsentDateTaken' => 'required',
-            'ConsentTimeTaken' => 'required',
-        ],$custom);
+        
         if($findPSS !=NULL && $PSS!= NULL){
             if($admission->AdmisisonDateTaken == NULL){
+                //validation for required fields
+                $validatedData=$this->validate($request,[
+                    'AdmissionDateTaken' => 'required',
+                    'AdmissionTimeTaken' => 'required',
+                    'ConsentDateTaken' => 'required',
+                    'ConsentTimeTaken' => 'required',
+                ],$custom);
                 //admission date and time
                 $admission->AdmissionDateTaken = $request->AdmissionDateTaken;
                 $admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
@@ -803,7 +804,21 @@ class SP_Admission_Controller extends Controller
     }
 
     public function updateSP($findPSS,$PSS,$admission,$request){
+        //custom messages load for validation
+        $custom = [
+            'AdmissionDateTaken.required' => 'Please enter the admission date taken',
+            'AdmissionTimeTaken.required' => 'Please enter the admission time taken',
+            'ConsentDateTaken.required' => 'Please enter the consent date taken',
+            'ConsentTimeTaken.required' => 'Please enter the consent time taken',
+        ];
         if($findPSS !=NULL){
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'AdmissionDateTaken' => 'required',
+                'AdmissionTimeTaken' => 'required',
+                'ConsentDateTaken' => 'required',
+                'ConsentTimeTaken' => 'required',
+            ],$custom);
             $flag=false;
             //admission date and time
             $admission->AdmissionDateTaken = $request->AdmissionDateTaken;

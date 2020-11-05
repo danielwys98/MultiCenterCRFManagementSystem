@@ -199,8 +199,13 @@ class SP_BAT_Controller extends Controller
     public function updateSP($findPSS,$PSS,$BAT,$request){
         //custom messages load for validation
         $custom = [
+            'dateTaken.required' => 'Please enter the date taken for breath alcohol test',
+            'timeTaken.required' => 'Please enter the time taken for breath alcohol test',
             'Laboratory.required' => 'Please select which laboratory does the test conducted',
             'Laboratory_text.required_if' => 'If other laboratory were selected, please state the name of the laboratory',
+            'breathalcohol.required' => 'Please enter the BAC%(Breath Alcohol Content)',
+            'breathalcoholResult.required' => 'Please select a result for BAC%(Breath Alcohol Content)',
+            'Usertranscribed.required' => 'Please state the user transcribed',
         ];
         if($findPSS !=NULL){
             $BAT->NApplicable=$request->NApplicable;
@@ -214,8 +219,13 @@ class SP_BAT_Controller extends Controller
             }else{
                 //validation for required fields
                 $validatedData = $this->validate($request, [
+                    'dateTaken' => 'required',
+                    'timeTaken' => 'required',
                     'Laboratory' => 'required',
                     'Laboratory_text' => 'required_if:Laboratory,==,Others',
+                    'breathalcohol' => 'required',
+                    'breathalcoholResult' => 'required',
+                    'Usertranscribed' => 'required',
                 ], $custom);
                 //date and time
                 $BAT->dateTaken = $request->dateTaken;
