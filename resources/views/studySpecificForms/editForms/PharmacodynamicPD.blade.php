@@ -1,8 +1,16 @@
-{!! Form::model($PDAnalysis,['route' => ['sp_PDAnalysis.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PDAnalysis,['route' => ['sp_PDAnalysis.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Pharmacodynamic (PD) Analysis --}}
 <h3>Pharmacodynamic (PD) Analysis</h3>
+<div class=" form-group row">
+    <div class="col-md-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <div class="form-group row">
     <div class="col-md-1">
         {!! Form::label('Day1', 'Day 1: ') !!}

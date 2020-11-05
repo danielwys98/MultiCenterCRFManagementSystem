@@ -27,6 +27,7 @@ class CreateSP2UrineTestsTable extends Migration
             $table->string('UPreg_Transcribedby')->nullable();
 
              //Urine Drug
+             $table->boolean('NApplicable')->nullable();
              $table->date('UDrug_dateTaken')->nullable();
              $table->time('UDrug_TestTime')->nullable();
              $table->time('UDrug_ReadTime')->nullable();

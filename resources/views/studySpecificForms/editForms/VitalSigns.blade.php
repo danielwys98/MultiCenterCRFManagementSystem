@@ -1,4 +1,4 @@
-{!! Form::open([$VitalSign,'route' => ['sp_VitalSign.update',$patient->id,$study_id]]) !!}
+{!! Form::open([$VitalSign,'route' => ['sp_VitalSign.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Vital Signs --}}
@@ -23,7 +23,7 @@
             <p>Reading Time</p>
             <p>(24-hour clock)</p>
         </th>
-        <th scope="col" class="text-center">
+        <th scope="col" class="text-center col-md-2">
             <p>Sitting Blood Pressure</p>
             <p>(systolic/diastolic) (mmHg)</p>
         </th>
@@ -53,7 +53,8 @@
             {!! Form::time('TPD_1_ReadingTime', old('TPD_1_ReadingTime',$VitalSign->TPD_1_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_1_SittingBP', old('TPD_1_SittingBP',$VitalSign->TPD_1_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_1_SittingBP_S', old('TPD_1_SittingBP_S',$VitalSign->TPD_1_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_1_SittingBP_D', old('TPD_1_SittingBP_D',$VitalSign->TPD_1_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_1_Pulse', old('TPD_1_Pulse',$VitalSign->TPD_1_Pulse),['class'=>'form-control']) !!}
@@ -76,7 +77,8 @@
             {!! Form::time('TPD_2_ReadingTime',old('TPD_2_ReadingTime',$VitalSign->TPD_2_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_2_SittingBP', old('TPD_2_SittingBP',$VitalSign->TPD_2_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_2_SittingBP_S', old('TPD_2_SittingBP_S',$VitalSign->TPD_2_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_2_SittingBP_D', old('TPD_2_SittingBP_D',$VitalSign->TPD_2_SittingBP_D),['class'=>'form-control col-md-6', 'placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_2_Pulse', old('TPD_2_Pulse',$VitalSign->TPD_2_Pulse),['class'=>'form-control']) !!}
@@ -99,7 +101,8 @@
             {!! Form::time('TPD_5_ReadingTime', old('TPD_5_ReadingTime',$VitalSign->TPD_5_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_5_SittingBP', old('TPD_5_SittingBP',$VitalSign->TPD_5_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_SittingBP_S', old('TPD_5_SittingBP_S',$VitalSign->TPD_5_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_5_SittingBP_D', old('TPD_5_SittingBP_D',$VitalSign->TPD_5_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_5_Pulse', old('TPD_5_Pulse',$VitalSign->TPD_5_Pulse),['class'=>'form-control']) !!}
@@ -108,7 +111,7 @@
             {!! Form::text('TPD_5_Respiration', old('TPD_5_Respiration',$VitalSign->TPD_5_Respiration),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_5_TakenBy', old('TPD_5_TakenBy',$VitalSign->TPD_8_Date),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_5_TakenBy', old('TPD_5_TakenBy',$VitalSign->TPD_5_TakenBy),['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>
@@ -122,7 +125,8 @@
             {!! Form::time('TPD_8_ReadingTime', old('TPD_8_ReadingTime',$VitalSign->TPD_8_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_8_SittingBP', old('TPD_8_SittingBP',$VitalSign->TPD_8_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_8_SittingBP_S', old('TPD_8_SittingBP_S',$VitalSign->TPD_8_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_8_SittingBP_D', old('TPD_8_SittingBP_D',$VitalSign->TPD_8_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_8_Pulse', old('TPD_8_Pulse',$VitalSign->TPD_8_Pulse),['class'=>'form-control']) !!}
@@ -145,7 +149,8 @@
             {!! Form::time('TPD_12_ReadingTime', old('TPD_12_ReadingTime',$VitalSign->TPD_12_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_12_SittingBP', old('TPD_12_SittingBP',$VitalSign->TPD_12_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_12_SittingBP_S', old('TPD_12_SittingBP_S',$VitalSign->TPD_12_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_12_SittingBP_D', old('TPD_12_SittingBP_D',$VitalSign->TPD_12_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_12_Pulse', old('TPD_12_Pulse',$VitalSign->TPD_12_Pulse),['class'=>'form-control']) !!}
@@ -179,7 +184,8 @@
             {!! Form::time('TPD_36_ReadingTime', old('TPD_36_ReadingTime',$VitalSign->TPD_36_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_36_SittingBP', old('TPD_36_SittingBP',$VitalSign->TPD_36_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_36_SittingBP_S', old('TPD_36_SittingBP_S',$VitalSign->TPD_36_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_36_SittingBP_D', old('TPD_36_SittingBP_D',$VitalSign->TPD_36_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_36_Pulse', old('TPD_36_Pulse',$VitalSign->TPD_36_Pulse),['class'=>'form-control']) !!}
@@ -202,7 +208,8 @@
             {!! Form::time('TPD_48_ReadingTime', old('TPD_48_ReadingTime',$VitalSign->TPD_48_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('TPD_48_SittingBP', old('TPD_48_SittingBP',$VitalSign->TPD_48_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('TPD_48_SittingBP_S', old('TPD_48_SittingBP_S',$VitalSign->TPD_48_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('TPD_48_SittingBP_D', old('TPD_48_SittingBP_D',$VitalSign->TPD_48_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('TPD_48_Pulse', old('TPD_48_Pulse',$VitalSign->TPD_48_Pulse),['class'=>'form-control']) !!}
@@ -230,7 +237,8 @@
             {!! Form::time('Extra1_ReadingTime', old('Extra1_ReadingTime',$VitalSign->Extra1_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra1_SittingBP', old('Extra1_SittingBP',$VitalSign->Extra1_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra1_SittingBP_S', old('Extra1_SittingBP_S',$VitalSign->Extra1_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra1_SittingBP_D', old('Extra1_SittingBP_D',$VitalSign->Extra1_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra1_Pulse', old('Extra1_Pulse',$VitalSign->Extra1_Pulse),['class'=>'form-control']) !!}
@@ -253,7 +261,8 @@
             {!! Form::time('Extra2_ReadingTime', old('Extra2_ReadingTime',$VitalSign->Extra2_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra2_SittingBP', old('Extra2_SittingBP',$VitalSign->Extra2_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra2_SittingBP_S', old('Extra2_SittingBP_S',$VitalSign->Extra2_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra2_SittingBP_D', old('Extra2_SittingBP_D',$VitalSign->Extra2_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra2_Pulse', old('Extra2_Pulse',$VitalSign->Extra2_Pulse),['class'=>'form-control']) !!}
@@ -276,7 +285,8 @@
             {!! Form::time('Extra3_ReadingTime', old('Extra3_ReadingTime',$VitalSign->Extra3_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra3_SittingBP', old('Extra3_SittingBP',$VitalSign->Extra3_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra3_SittingBP_S', old('Extra3_SittingBP_S',$VitalSign->Extra3_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra3_SittingBP_D', old('Extra3_SittingBP_D',$VitalSign->Extra3_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra3_Pulse', old('Extra3_Pulse',$VitalSign->Extra3_Pulse),['class'=>'form-control']) !!}
@@ -299,7 +309,8 @@
             {!! Form::time('Extra4_ReadingTime', old('Extra4_ReadingTime',$VitalSign->Extra4_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra4_SittingBP', old('Extra4_SittingBP',$VitalSign->Extra4_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra4_SittingBP_S', old('Extra4_SittingBP_S',$VitalSign->Extra4_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra4_SittingBP_D', old('Extra4_SittingBP_D',$VitalSign->Extra4_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra4_Pulse', old('Extra4_Pulse',$VitalSign->Extra4_Pulse),['class'=>'form-control']) !!}
@@ -322,7 +333,8 @@
             {!! Form::time('Extra5_ReadingTime', old('Extra5_ReadingTime',$VitalSign->Extra5_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra5_SittingBP', old('Extra5_SittingBP',$VitalSign->Extra5_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra5_SittingBP_S', old('Extra5_SittingBP_S',$VitalSign->Extra5_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra5_SittingBP_D', old('Extra5_SittingBP_D',$VitalSign->Extra5_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra5_Pulse', old('Extra5_Pulse',$VitalSign->Extra5_Pulse),['class'=>'form-control']) !!}
@@ -345,7 +357,8 @@
             {!! Form::time('Extra6_ReadingTime', old('Extra6_ReadingTime',$VitalSign->Extra6_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra6_SittingBP', old('Extra6_SittingBP',$VitalSign->Extra6_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra6_SittingBP_S', old('Extra6_SittingBP_S',$VitalSign->Extra6_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra6_SittingBP_D', old('Extra6_SittingBP_D',$VitalSign->Extra6_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra6_Pulse', old('Extra6_Pulse',$VitalSign->Extra6_Pulse),['class'=>'form-control']) !!}
@@ -368,7 +381,8 @@
             {!! Form::time('Extra7_ReadingTime',old('Extra7_ReadingTime',$VitalSign->Extra7_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra7_SittingBP', old('Extra7_SittingBP',$VitalSign->Extra7_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra7_SittingBP_S', old('Extra7_SittingBP_S',$VitalSign->Extra7_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra7_SittingBP_D', old('Extra7_SittingBP_D',$VitalSign->Extra7_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra7_Pulse', old('Extra7_Pulse',$VitalSign->Extra7_Pulse),['class'=>'form-control']) !!}
@@ -391,7 +405,8 @@
             {!! Form::time('Extra8_ReadingTime', old('Extra8_ReadingTime',$VitalSign->Extra8_ReadingTime),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('Extra8_SittingBP', old('Extra8_SittingBP',$VitalSign->Extra8_SittingBP),['class'=>'form-control']) !!}
+            {!! Form::text('Extra8_SittingBP_S', old('Extra8_SittingBP_S',$VitalSign->Extra8_SittingBP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::text('Extra8_SittingBP_D', old('Extra8_SittingBP_D',$VitalSign->Extra8_SittingBP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
         </td>
         <td>
             {!! Form::text('Extra8_Pulse', old('Extra8_Pulse',$VitalSign->Extra8_Pulse),['class'=>'form-control']) !!}
@@ -409,6 +424,13 @@
 <div class="row col">
     <p>Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100 (latest reading only).</p>
 </div>
-{!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+<div class="form-group row col-md-6">
+    {!! Form::label('Comment','Comments/ Remarks: ') !!}
+    {!! Form::text('Comment','',['class'=>'form-control']) !!}
+</div>
+{{-- Body measurements and vital signs ends--}}
+<div class="row col">
+    {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+</div>
 {!! Form::close() !!}
 

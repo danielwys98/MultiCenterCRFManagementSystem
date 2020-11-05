@@ -14,7 +14,7 @@ use App\StudyPeriod4;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class SP1_Discharge_Controller extends Controller
+class SP_Discharge_Controller extends Controller
 {
     public function __construct()
     {
@@ -293,17 +293,13 @@ class SP1_Discharge_Controller extends Controller
         }
     }
 
-    public function update(Request $request, $patient_id, $study_id)
+    public function update(Request $request, $patient_id, $study_id,$study_period)
     {
-        $study_period = $request->studyPeriod;
         $findPSS = PatientStudySpecific::with('StudyPeriod1')
             ->where('patient_id', $patient_id)
             ->where('study_id', $study_id)
             ->first();
-        if ($study_period == '---') {
-            alert()->error('Error!', 'This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.edit', $study_id));
-        } elseif ($study_period == 1) {
+        if ($study_period == 1) {
             if($this->updateSP1($findPSS,$request)) {
                 return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details!');
             }else{

@@ -1,4 +1,4 @@
-{!! Form::model($DQuestionnaire,['route' => ['sp_DQuestionnaire.update',$patient->id,$study_id]]) !!}
+{!! Form::model($DQuestionnaire,['route' => ['sp_DQuestionnaire.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 <h3>Discharge Questionnaire</h3>
@@ -7,7 +7,7 @@
         {!! Form::label('time', 'Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->timeTaken),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->DQtimeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">

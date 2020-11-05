@@ -1,8 +1,16 @@
-{!! Form::model($IQ48,['route' => ['sp_IQuestionnaire48.update',$patient->id,$study_id]]) !!}
+{!! Form::model($IQ48,['route' => ['sp_IQuestionnaire48.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Interim Questionnaire(48 hours Post Dose Visit) --}}
 <h3>Interim Questionnaire(48 hours Post Dose Visit)</h3>
+<div class=" form-group row">
+    <div class="col-md-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <hr>
 <div class="form-group row">
     <div class="col-md-1">
@@ -15,7 +23,7 @@
         {!! Form::label('timeTaken', 'Time Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken',old("dateTaken",$IQ48->dateTaken),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken',old("timeTaken",$IQ48->timeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">

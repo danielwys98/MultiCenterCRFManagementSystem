@@ -1,18 +1,26 @@
-{!! Form::model($PDynamic,['route' => ['sp_Pdynamicsampling.update',$patient->id,$study_id]]) !!}
+{!! Form::model($PDynamic,['route' => ['sp_Pdynamicsampling.update',$patient->id,$study_id,$study_period]]) !!}
 @method('PUT')
 @csrf
 {{-- Pharmacodynamic Blood Sampling --}}
 <h3>Pharmacodynamic Blood Sampling</h3>
+<div class=" form-group row">
+    <div class="col-md-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <hr/>
     <div class="form-group row">
         <div class="col-md-2">
-            {!! Form::date('day1',old("day1",$PDynamic->day1),['class'=>'form-control']) !!}
+            {!! Form::date('day1',old("day1",$PDynamic->Day1),['class'=>'form-control']) !!}
         </div>
         <div class="col-md-1">
             <p class="text-center">to</p>
         </div>
         <div class="col-md-2">
-            {!! Form::date('day2',old("day2",$PDynamic->day2),['class'=>'form-control']) !!}
+            {!! Form::date('day2',old("day2",$PDynamic->Day2),['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="row col">

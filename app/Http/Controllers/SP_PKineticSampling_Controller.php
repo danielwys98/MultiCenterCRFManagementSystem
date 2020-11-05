@@ -14,7 +14,7 @@ use App\SP3_PKineticSampling;
 use App\SP4_PKineticSampling;
 use DB;
 
-class SP1_PKineticSampling_Controller extends Controller
+class SP_PKineticSampling_Controller extends Controller
 {
     public function __construct()
     {
@@ -354,18 +354,14 @@ class SP1_PKineticSampling_Controller extends Controller
         }
     }
 
-    public function update(Request $request, $patient_id, $study_id)
+    public function update(Request $request, $patient_id, $study_id,$study_period)
     {
-        $study_period = $request->studyPeriod;
         //find Patient Study Specific table
         $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
                                         ->where('study_id',$study_id)
                                         ->first();
         //check study period and save
-        if($study_period == '---'){
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.edit',$study_id));
-        }elseif($study_period == 1){
+        if($study_period == 1){
             if($this->updateSP1($findPSS,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacokinetic Blood Sampling!');
             }else{

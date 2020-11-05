@@ -15,6 +15,9 @@ class CreateSP3PDynamicSamplingsTable extends Migration
     {
         Schema::create('SP3_PDynamicSamplings', function (Blueprint $table) {
             $table->increments('SP3_PDynamicSampling_ID');
+
+            $table->boolean('NApplicable')->nullable();
+            
             $table->date('Day1')->nullable();
             $table->date('Day2')->nullable();
 
