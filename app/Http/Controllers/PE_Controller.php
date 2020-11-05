@@ -16,7 +16,7 @@ class PE_Controller extends Controller
     }
     public function storePE(Request $request,$id)
     {
-        $pe = new Patient_PhysicalExamination;
+        $findPatientPE = Patient_PhysicalExamination::with('Patient')->where('patient_id',$id)->first();
 
         $custom = [
             'dateTaken.required' => 'Please enter the date taken',
@@ -97,40 +97,50 @@ class PE_Controller extends Controller
 
         $data =$request->except('_token','dateTaken','timeTaken');
 
-        $pe->patient_id=$id;
-        $pe->dateTaken=$request->dateTaken;
-
-        foreach($data as $key=>$value)
+        if($findPatientPE==NULL)
         {
-            if($value=="Abnormal")
+            $pe = new Patient_PhysicalExamination;
+            $pe->patient_id=$id;
+            $pe->dateTaken=$request->dateTaken;
+
+            foreach($data as $key=>$value)
             {
-                $abnormal_txt=$key."_txt";
-                $pe->$key=$data[$abnormal_txt];
-            }else if($value=="Normal")
-            {
-                $normal_txt=$key;
-                $pe->$key=$data[$normal_txt];
-            }else if($key =="Cubital_Fossa_Veins")
-            {
-                $pe->$key=$data[$key];
-            }else if($value=="Physically Healthy")
-            {
-                $Comments_Physically_Healthy=$key."_Physically_Healthy";
-                $commentsSavePH=$key."_txt";
-                $pe->$key=$data[$key];
-                $pe->$commentsSavePH=$data[$Comments_Physically_Healthy];
-            }else if($value=="Otherwise")
-            {
-                $Comments_Otherwise=$key."_Otherwise";
-                $commentsSaveO=$key."_txt";
-                $pe->$key=$data[$key];
-                $pe->$commentsSaveO="Otherwise: ".$data[$Comments_Otherwise];
+                if($value=="Abnormal")
+                {
+                    $abnormal_txt=$key."_txt";
+                    $pe->$key=$data[$abnormal_txt];
+                }else if($value=="Normal")
+                {
+                    $normal_txt=$key;
+                    $pe->$key=$data[$normal_txt];
+                }else if($key =="Cubital_Fossa_Veins")
+                {
+                    $pe->$key=$data[$key];
+                }else if($value=="Physically Healthy")
+                {
+                    $Comments_Physically_Healthy=$key."_Physically_Healthy";
+                    $commentsSavePH=$key."_txt";
+                    $pe->$key=$data[$key];
+                    $pe->$commentsSavePH=$data[$Comments_Physically_Healthy];
+                }else if($value=="Otherwise")
+                {
+                    $Comments_Otherwise=$key."_Otherwise";
+                    $commentsSaveO=$key."_txt";
+                    $pe->$key=$data[$key];
+                    $pe->$commentsSaveO="Otherwise: ".$data[$Comments_Otherwise];
+                }
             }
+
+            $pe->save();
+
+            return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Physical Examination detail for the subject!');
+        }
+        else
+        {
+            alert()->error('Error!',"You have already created the subject's Physical Examination! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
         }
 
-        $pe->save();
-
-        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Physical Examination detail for the subject!');
     }
     public function updatePE(Request $request,$id)
     {

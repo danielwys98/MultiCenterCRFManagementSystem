@@ -17,7 +17,7 @@ class MH_Controller extends Controller
     }
     public function storeMH(Request $request,$id)
     {
-        $mh = new Patient_MedicalHistory();
+        $findPatientMH = Patient_MedicalHistory::with('Patient')->where('patient_id',$id)->first();
 
         $custom = [
             'dateTaken.required' => 'Please input the date taken',
@@ -129,72 +129,81 @@ class MH_Controller extends Controller
             'Conclusion' => 'required',
         ], $custom);
 
-        $data =$request->except('_token','dateTaken','timeTaken');
-        $mh->patient_id = $id;
-        $mh->dateTaken=$request->dateTaken;
-        $mh->timeTaken=$request->timeTaken;
-
-        //some key does not have the text box, therefore, those keys needed be checked individually.
-        foreach($data as $key=>$value)
+        if($findPatientMH==NULL)
         {
-            if($value =="Abnormal")
+            $mh = new Patient_MedicalHistory();
+            $data =$request->except('_token','dateTaken','timeTaken');
+            $mh->patient_id = $id;
+            $mh->dateTaken=$request->dateTaken;
+            $mh->timeTaken=$request->timeTaken;
+
+            //some key does not have the text box, therefore, those keys needed be checked individually.
+            foreach($data as $key=>$value)
             {
-                $abnormal_txt= $key."_txt";
-                 $mh->$key=$data[$abnormal_txt];
-            }else if($value == "Normal")
-            {
-                $normal_txt = $key;
-               $mh->$key=$data[$normal_txt];
-            }else if($key == "RegularPeriods" and $value == "Yes")
-            {
-                $RP_Yes = $key."_Yes_txt";
-                $mh->$key= $value;
-                $mh->$RP_Yes=$data[$RP_Yes];
-            }else if($key == "RegularPeriods" and $value == "No")
-            {
-                $RP_No= $key."_No_txt";
-                $mh->$key= $value;
-                $mh->$RP_No=$data[$RP_No];
-            }else if($key == "RegularPeriods" and $value =="Not Applicable")
-            {
-                $mh->$key=$data[$key];
-            }else if($key =="FertilityControl" and $value =="Yes")
-            {
+                if($value =="Abnormal")
+                {
+                    $abnormal_txt= $key."_txt";
+                    $mh->$key=$data[$abnormal_txt];
+                }else if($value == "Normal")
+                {
+                    $normal_txt = $key;
+                    $mh->$key=$data[$normal_txt];
+                }else if($key == "RegularPeriods" and $value == "Yes")
+                {
+                    $RP_Yes = $key."_Yes_txt";
+                    $mh->$key= $value;
+                    $mh->$RP_Yes=$data[$RP_Yes];
+                }else if($key == "RegularPeriods" and $value == "No")
+                {
+                    $RP_No= $key."_No_txt";
+                    $mh->$key= $value;
+                    $mh->$RP_No=$data[$RP_No];
+                }else if($key == "RegularPeriods" and $value =="Not Applicable")
+                {
+                    $mh->$key=$data[$key];
+                }else if($key =="FertilityControl" and $value =="Yes")
+                {
                     $FC_Yes = $key."_Yes_txt";
                     $mh->$key=$value;
                     $mh->$FC_Yes=$data[$FC_Yes];
-            }else if($key =="FertilityControl" and $value=="No")
-            {
-                $FC_No = $key."_No_txt";
-                $mh->$key=$value;
-                $mh->$FC_No=$data[$FC_No];
-            }else if($key =="FertilityControl" and $value == "Not Applicable")
-            {
-                $mh->$key=$data[$key];
-            }
-            else if($key == "ActiveSexAct")
-            {
-                $mh->$key=$data[$key];
-            }
-            else if($key == "Breastfeeding")
-            {
-                $mh->$key=$data[$key];
-            }else if($key == "Conclusion")
-            {
-                $mh->$key=$data[$key];
-            }
-            else if($value == "Yes")
-            {
-                $yes_txt = $key."_txt";
+                }else if($key =="FertilityControl" and $value=="No")
+                {
+                    $FC_No = $key."_No_txt";
+                    $mh->$key=$value;
+                    $mh->$FC_No=$data[$FC_No];
+                }else if($key =="FertilityControl" and $value == "Not Applicable")
+                {
+                    $mh->$key=$data[$key];
+                }
+                else if($key == "ActiveSexAct")
+                {
+                    $mh->$key=$data[$key];
+                }
+                else if($key == "Breastfeeding")
+                {
+                    $mh->$key=$data[$key];
+                }else if($key == "Conclusion")
+                {
+                    $mh->$key=$data[$key];
+                }
+                else if($value == "Yes")
+                {
+                    $yes_txt = $key."_txt";
                     $mh->$key=$data[$yes_txt];
-            }else if($value == "No")
-            {
-                $no_txt = $key;
-                $mh->$key=$data[$no_txt];
+                }else if($value == "No")
+                {
+                    $no_txt = $key;
+                    $mh->$key=$data[$no_txt];
+                }
             }
+            $mh->save();
+            return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Medical History detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Medical History! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
         }
-        $mh->save();
-       return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Medical History detail for the subject!');
+
     }
     public function updateMH(Request $request,$id)
     {

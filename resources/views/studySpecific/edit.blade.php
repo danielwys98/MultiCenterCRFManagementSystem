@@ -20,16 +20,16 @@
         @csrf
         <div class="form-group row">
             <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
+                {!! Form::label('startDate', 'Start Date: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::date('dateTaken', old('dateTaken',$study->dateTaken),['class'=>'form-control']) !!}
+                {!! Form::date('startDate', old('startDate',$study->startDate),['class'=>'form-control']) !!}
             </div>
             <div class=" offset-3 col-md-1">
-                {!! Form::label('timeTaken', 'Time Taken: ') !!}
+                {!! Form::label('startDate', 'End Date: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::time('timeTaken', old('timeTaken',$study->timeTaken),['class'=>'form-control']) !!}
+                {!! Form::date('startDate', old('endDate',$study->endDate),['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -67,6 +67,14 @@
             </div>
             <div class="col-md-3">
                 {!! Form::text('MRNno',old('MRNno',$study->MRNno),['class'=>'form-control']) !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2">
+                {!! Form::label('protocolNo', 'Protocol NO: ') !!}
+            </div>
+            <div class="col-md-3">
+                {!! Form::text('protocolNo',old('protocolNO',$study->protocolNo),['class'=>'form-control']) !!}
             </div>
         </div>
         {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}

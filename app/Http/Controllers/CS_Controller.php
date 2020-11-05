@@ -33,9 +33,7 @@ CS_Controller extends Controller
     }
     public function storeCS(Request $request,$id)
     {
-        //Insert this conclusion under this subject
-        $cs = new Patient_Conclusion_Signature;
-        $cs->patient_id=$id;
+        $findPatientCS = Patient_Conclusion_Signature::with('Patient')->where('patient_id',$id)->first();
 
         $custom = [
             'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
@@ -54,7 +52,10 @@ CS_Controller extends Controller
         ],$custom);
 
 
-        if($validatedData){
+        if($findPatientCS==NULL){
+            //Insert this conclusion under this subject
+            $cs = new Patient_Conclusion_Signature;
+            $cs->patient_id=$id;
             $inclusionYesNo = $request->inclusionYesNo;
             if($inclusionYesNo=="Yes")
             {
@@ -88,6 +89,9 @@ CS_Controller extends Controller
         }
         else{
             $savedData=false;
+            alert()->error('Error!',"You have already created the subject's Conclusion detail! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
+
         }
 
         if($savedData)

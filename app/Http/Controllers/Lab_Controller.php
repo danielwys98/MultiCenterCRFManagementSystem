@@ -16,8 +16,9 @@ class Lab_Controller extends Controller
 
     public function storeLT(Request $request, $id)
     {
-        $lt = new Patient_LaboratoryTest;
-        $lt->patient_id = $id;
+
+        $findPatientLab = Patient_LaboratoryTest::with('Patient')->where('patient_id',$id)->first();
+
 
         $custom = [
             'dateBTaken.required' => 'Please enter the date taken of Blood(Haematology and Chemistry)',
@@ -40,6 +41,11 @@ class Lab_Controller extends Controller
             'Urine_Laboratory' => 'required',
             'Urine_Laboratory_Text' => 'required_if:Urine_Laboratory,==,Other',
         ],$custom);
+
+        if($findPatientLab == NULL)
+        {
+        $lt = new Patient_LaboratoryTest;
+        $lt->patient_id = $id;
 
         $BloodLab = $request->Blood_Laboratory;
         $BloodLabRepeat = $request->BloodRepeat_Laboratory;
@@ -103,6 +109,11 @@ class Lab_Controller extends Controller
         $lt->save();
 
         return redirect(route('preScreeningForms.create', $id))->with('success',"You have added the Blood and Urine test's detail for the subject!");
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Blood and Urine test! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
+        }
     }
 
     public function updateLT(Request $request, $id)

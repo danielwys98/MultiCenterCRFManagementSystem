@@ -16,7 +16,7 @@ class ST_Controller extends Controller
     }
     public function storeST(Request $request,$id)
     {
-        $st = new Patient_Serology_Test;
+        $findPatientST = Patient_Serology_Test::with('Patient')->where('patient_id',$id)->first();
 
         $custom = [
             'dateCTaken.required' => 'Please enter the date of consent taken',
@@ -32,18 +32,25 @@ class ST_Controller extends Controller
             'laboratory_txt' => 'required_if:laboratory,==,Other',
         ],$custom);
 
-        $st->patient_id=$id;
-        $st->dateCTaken=$request->dateCTaken;
-        $st->dateBCollected=$request->dateBCollected;
+        if($findPatientST==NULL) {
+            $st = new Patient_Serology_Test;
+            $st->patient_id = $id;
+            $st->dateCTaken = $request->dateCTaken;
+            $st->dateBCollected = $request->dateBCollected;
 
-        if($request->Laboratory=='Other'){
-            $st->Laboratory=$request->laboratory_txt;
-        }else{
-            $st->Laboratory=$request->laboratory;
+            if ($request->Laboratory == 'Other') {
+                $st->Laboratory = $request->laboratory_txt;
+            } else {
+                $st->Laboratory = $request->laboratory;
+            }
+
+            $st->save();
+            return redirect(route('preScreeningForms.create', $id))->with('success', 'You have added the Serology Test detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Serology Test! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
         }
-
-        $st->save();
-        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Serology Test detail for the subject!');
     }
     public function updateST(Request $request,$id)
     {

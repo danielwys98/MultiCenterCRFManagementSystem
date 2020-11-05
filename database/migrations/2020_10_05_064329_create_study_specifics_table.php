@@ -19,8 +19,9 @@ class CreateStudySpecificsTable extends Migration
             $table->integer('patient_Count');
             $table->integer('studyPeriod_Count');
             $table->string('MRNno');
-            $table->time('timeTaken');
-            $table->date('dateTaken');
+            $table->string('protocolNo');
+            $table->date('startDate');
+            $table->date('endDate');
             $table->timestamps();
         });
     }

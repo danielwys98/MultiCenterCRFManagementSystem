@@ -108,8 +108,8 @@ class studySpecificController extends Controller
     {
         $custom = [
             'study_name.required' => 'Please enter the name of the study',
-            'timeTaken.required' => 'Please enter the time taken for study',
-            'dateTaken.required' => 'Please enter the date taken for the study',
+            'startDate.required' => 'Please select the start date for the study',
+            'endDate.required' => 'Please select the end date for the study',
             'patient_Count.required' => 'Please enter the amount of subject can be enroll in the study',
             'studyPeriod_Count.required' => 'Please enter amount of study period needed to be done in this study',
             'MRNno.required' => 'Please enter the MRN number',
@@ -117,8 +117,8 @@ class studySpecificController extends Controller
         //validation for required fields
         $validatedData=$this->validate($request,[
             'study_name' => 'required',
-            'timeTaken' => 'required',
-            'dateTaken' => 'required',
+            'startDate' => 'required',
+            'endDate' => 'required',
             'patient_Count' => 'required',
             'studyPeriod_Count' => 'required|numeric|min:1|max:4',
             'MRNno' => 'required',
@@ -126,11 +126,12 @@ class studySpecificController extends Controller
 
         $study = new studySpecific();
         $study->study_name=$request->study_name;
-        $study->timeTaken = $request->timeTaken;
-        $study->dateTaken=$request->dateTaken;
+        $study->startDate = $request->startDate;
+        $study->endDate=$request->endDate;
         $study->patient_Count=$request->patient_Count;
         $study->studyPeriod_Count=$request->studyPeriod_Count;
         $study->MRNno=$request->MRNno;
+        $study->protocolNO=$request->protocolNO;
         $study->save();
         return redirect(route('studySpecific.index'))->with('success','You have successfully added the study into the system!');
     }
@@ -182,23 +183,6 @@ class studySpecificController extends Controller
     public function update(Request $request, $id)
     {
         $study = studySpecific::find($id);
-        $custom = [
-            'study_name.required' => 'Please enter the name of the study',
-            'timeTaken.required' => 'Please enter the time taken for study',
-            'dateTaken.required' => 'Please enter the date taken for the study',
-            'patient_Count.required' => 'Please enter the amount of subject can be enroll in the study',
-            'studyPeriod_Count.required' => 'Please enter amount of study period needed to be done in this study',
-            'MRNno.required' => 'Please enter the MRN number',
-        ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'study_name' => 'required',
-            'timeTaken' => 'required',
-            'dateTaken' => 'required',
-            'patient_Count' => 'required',
-            'studyPeriod_Count' => 'required|numeric|min:1|max:4',
-            'MRNno' => 'required',
-        ],$custom);
 
         $data = $request->except('_token','_method');
         foreach($data as $key=>$value)
@@ -250,8 +234,8 @@ class studySpecificController extends Controller
     }
     public function testPDF()
     {
-        $PID = 22;
-        $study_id = 4;
+        $PID = 34;
+        $study_id = 1;
         $patient = Patient::where('id', $PID)->first();
         $study = studySpecific::where('study_id',$study_id)->first();
         $findPSS = PatientStudySpecific::with('StudyPeriod1')

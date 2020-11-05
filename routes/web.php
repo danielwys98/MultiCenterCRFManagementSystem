@@ -33,7 +33,7 @@ Route::get('/preScreening/admin','preScreeningController@index')->name('preScree
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
-Route::get('/chooseStudy','PagesController@chooseStudy');
+/*Route::get('/chooseStudy','PagesController@chooseStudy');*/
 
 /*Route::get('/studySpecific/input','studySpecificController@studies');*/
 Route::get('/studySpecific/admin','studySpecificController@index')->name('studySpecific.admin');

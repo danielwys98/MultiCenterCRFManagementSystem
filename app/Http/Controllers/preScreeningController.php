@@ -19,17 +19,7 @@ class preScreeningController extends Controller
         $this->middleware('auth');
         $this->middleware('checkAdmin');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-/*    public function index()
-    {
-            $patients = Patient::all();
 
-            return view('preScreening.admin',compact('patients'));
-    }*/
     public function index()
     {
         $patients = Patient::all();
@@ -48,26 +38,14 @@ class preScreeningController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
         return view('preScreening.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $patient = new Patient;
         //custom messages load for validation
         $custom = [
             'dateTaken.required' => 'Please input the date taken',
@@ -97,34 +75,46 @@ class preScreeningController extends Controller
             'maritalstatus'  => 'required',
             'MRNno'  => 'required',
         ], $custom);
+        $getPatients = Patient::all();
+        foreach($getPatients as $p)
+        {
+            if($p->NRIC == $request->NRIC)
+            {
+                $exist=true;
+                break;
+            }else
+            {
 
-        //save subject pre-Screening details 
-        $patient->id=$request->id;
-        $patient->dateTaken=$request->dateTaken;
-        $patient->timeTaken=$request->timeTaken;
-        $patient->NRIC=$request->NRIC;
-        $patient->name=$request->name;
-        $patient->Gender=$request->Gender;
-        if($request->Ethnicity=='Others'){
-            $patient->Ethnicity=$request->Ethnicity.$request->Ethnic_Text;
+                $exist=false;
+            }
+        }
+        if($exist == false)
+        {
+            $patient = new Patient;
+            $patient->dateTaken=$request->dateTaken;
+            $patient->timeTaken=$request->timeTaken;
+            $patient->NRIC=$request->NRIC;
+            $patient->name=$request->name;
+            $patient->Gender=$request->Gender;
+            if($request->Ethnicity=='Others'){
+                $patient->Ethnicity=$request->Ethnicity.$request->Ethnic_Text;
+            }else
+                $patient->Ethnicity=$request->Ethnicity;
+
+            $patient->DoB=$request->DoB;
+            $patient->age=$request->age;
+            $patient->maritalstatus=$request->maritalstatus;
+            $patient->MRNno=$request->MRNno;
+
+            $patient->save();
+            return redirect('preScreening/admin')->with('success','You have added '.$request->name.' into the system!');
         }else
-            $patient->Ethnicity=$request->Ethnicity;
-
-        $patient->DoB=$request->DoB;
-        $patient->age=$request->age;
-        $patient->maritalstatus=$request->maritalstatus;
-        $patient->MRNno=$request->MRNno;
-
-        $patient->save();
-        return redirect('preScreening/admin')->with('success','You have added '.$request->name.' into the system!');
+        {
+            alert()->error('Error!','The subject is already in the system!');
+            return redirect('preScreening/admin');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $patient = Patient::find($id);

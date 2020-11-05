@@ -1,7 +1,7 @@
 @extends('MasterLayout')
 
 @section('content')
-    <h1>This is the Past-Studies History Page</h1>
+    <h1>Dashboard</h1>
 
     <div class="card">
         <div class="card-title">
@@ -24,7 +24,7 @@
         </div>
     </div><br/>
     @can('adminFunctions')
-    <a href="{{ url('/studySpecific/create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
+        <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
     @endcan
-    <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
+
 @endsection

@@ -17,7 +17,8 @@ class UT_Controller extends Controller
     public function storeUT(Request $request,$id)
     {
 
-        $ut = new Patient_UrineTest;
+        $findPatientUT = Patient_UrineTest::with('Patient')->where('patient_id',$id)->first();
+
 
         $custom = [
             'UDrug_dateTaken.required' => 'Please enter the date taken for urine drugs of abuse test',
@@ -37,7 +38,9 @@ class UT_Controller extends Controller
             'UPreg_hCG.required' => 'Please select the results of hCG(Human chorionic gonadotropin) for urine pregnancy test',
             'UPreg_Transcribedby.required' => 'Please state the user transcribed for urine pregnancy test',
         ];
-
+        if($findPatientUT == NULL)
+        {
+        $ut = new Patient_UrineTest;
         $ut->patient_id=$id;
         // Urine Pregnancy
         $ut->UPreg_male=$request->UPreg_male;
@@ -84,6 +87,7 @@ class UT_Controller extends Controller
                 'UDrug_Transcribedby' => 'required',
             ],$custom);
 
+
             $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
             $ut->UPreg_TestTime=$request->UPreg_TestTime;
             $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
@@ -122,7 +126,12 @@ class UT_Controller extends Controller
         $ut->UDrug_Transcribedby=$request->UDrug_Transcribedby;
 
         $ut->save();
-        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Urine Test for pregnancy and drugs detail for the subject!');
+        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Urine Test for Pregnancy and Drugs detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Urine Test for Pregnancy and Drugs detail! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
+        }
     }
 
     public function updateUT(Request $request,$id)

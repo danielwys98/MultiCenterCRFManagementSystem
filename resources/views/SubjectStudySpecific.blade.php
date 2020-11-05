@@ -1,9 +1,8 @@
 @extends('MasterLayout')
 
 @section('content')
-    <h1>This is the Study Specific Page</h1>
+    <h1>This is the Study Specific Page for {{$study->study_name}}</h1>
     <div class="container-fluid">
-        <h3>Study Period 1 for {{$patient->name}}</h3>
         <ul class="nav nav-pills sticky-top bg-light">
             <li class="active"><a data-toggle="tab" href="#Admission">Admission</a></li>
             <li><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>

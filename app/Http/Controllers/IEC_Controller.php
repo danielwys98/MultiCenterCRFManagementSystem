@@ -16,9 +16,8 @@ class IEC_Controller extends Controller
     }
     public function storeIEC(Request $request,$id)
     {
-        $iec = new Patient_InclusionExclusionCriteria;
+        $findPatientIEC = Patient_InclusionExclusionCriteria::with('Patient')->where('patient_id',$id)->first();
 
-        $iec->patient_id=$id;
 
         $custom = [
             'Inclusion01.required' => 'Please select whether Yes or No on Inclusion 1',
@@ -88,6 +87,11 @@ class IEC_Controller extends Controller
             'Exclusion25' => 'required',
         ],$custom);
 
+        if($findPatientIEC==NULL)
+        {
+        $iec = new Patient_InclusionExclusionCriteria;
+
+        $iec->patient_id=$id;
         $iec->Inclusion01=$request->Inclusion01;
         $iec->Inclusion02=$request->Inclusion02;
         $iec->Inclusion03=$request->Inclusion03;
@@ -123,6 +127,11 @@ class IEC_Controller extends Controller
         $iec->save();
 
         return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Inclusion and Exclusion Criteria detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Inclusion and Exclusion Criteria detail! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
+        }
     }
     public function updateIEC(Request $request,$id)
     {

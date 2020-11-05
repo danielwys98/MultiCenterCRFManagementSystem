@@ -16,8 +16,7 @@ class BATER_Controller extends Controller
     }
     public function storeBATER(Request $request,$id)
     {
-        $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;
-
+        $findPatientBATER = Patient_BreathAlcoholTestAndElectrocardiogram::with('Patient')->where('patient_id',$id)->first();
         $custom = [
             'dateTaken.required' => 'Please enter the date taken for breath alcohol test',
             'timeTaken.required' => 'Please enter the time taken for breath alcohol test',
@@ -41,7 +40,8 @@ class BATER_Controller extends Controller
             'ECGdateTaken' => 'required',
             'Conclusion' => 'required',
         ], $custom);
-
+        if($findPatientBATER == NULL){
+        $bater = new Patient_BreathAlcoholTestAndElectrocardiogram;
         $lab = $request->Laboratory;
         if($lab == 'Others')
         {
@@ -61,6 +61,11 @@ class BATER_Controller extends Controller
         $bater->save();
 
         return redirect(route('preScreeningForms.create',$id))->with('success','You have added the Breath Alcohol Test and Electrocardiogram detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's Breath Alcohol Test and Electrocardiogram Recording! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
+        }
     }
     public function updateBATER(Request $request,$id)
     {

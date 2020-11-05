@@ -24,9 +24,8 @@ class BMVS_Controller extends Controller
     }
     public function store(Request $request,$id)
     {
-
-        $bmvs = new Patient_BodyAndVitalSigns;
-
+        //Find patient's bmvs first
+        $findPatientBMVS = Patient_BodyAndVitalSigns::with('Patient')->where('patient_id',$id)->first();
         $custom = [
             'dateTaken.required' => 'Please enter the date taken',
             'timeTaken.required' => 'Please enter the time taken',
@@ -69,37 +68,46 @@ class BMVS_Controller extends Controller
             'Initial' => 'required',
         ], $custom);
 
-        $bmvs->patient_id=$id;
-        $bmvs->dateTaken=$request->dateTaken;
-        $bmvs->timeTaken=$request->timeTaken;
+        //check if the bmvs of the patient is exist, if it does, system cannot store the details.
+        if($findPatientBMVS == NULL){
+            $bmvs = new Patient_BodyAndVitalSigns;
+            $bmvs->patient_id=$id;
+            $bmvs->dateTaken=$request->dateTaken;
+            $bmvs->timeTaken=$request->timeTaken;
 
-        $bmvs->weight=$request->weight;
-        $bmvs->height=$request->height;
+            $bmvs->weight=$request->weight;
+            $bmvs->height=$request->height;
 
-        if($request->height>0 && $request->weight>0) {
+            if($request->height>0 && $request->weight>0) {
 
-            $bmvs->bmi = $this->calculateBMI($request->height,$request->weight);
-        }else{
-            $bmvs->bmi=0;
+                $bmvs->bmi = $this->calculateBMI($request->height,$request->weight);
+            }else{
+                $bmvs->bmi=0;
+            }
+            $bmvs->temperature=$request->temperature;
+            $bmvs->Supine_ReadingTime=$request->Supine_ReadingTime;
+            $bmvs->Supine_BP=$request->Supine_BP;
+            $bmvs->Supine_HR=$request->Supine_HR;
+            $bmvs->Supine_RespiratoryRate=$request->Supine_RespiratoryRate;
+            $bmvs->Sitting_ReadingTime=$request->Sitting_ReadingTime;
+            $bmvs->Sitting_BP=$request->Sitting_BP;
+            $bmvs->Sitting_HR=$request->Sitting_HR;
+            $bmvs->Sitting_RespiratoryRate=$request->Sitting_RespiratoryRate;
+            $bmvs->Standing_ReadingTime=$request->Standing_ReadingTime;
+            $bmvs->Standing_BP=$request->Standing_BP;
+            $bmvs->Standing_HR=$request->Standing_HR;
+            $bmvs->Standing_RespiratoryRate=$request->Standing_RespiratoryRate;
+            $bmvs->Initial=$request->Initial;
+
+            $bmvs->save();
+
+            return redirect(route('preScreeningForms.create',$id))->with('success','You have added the body measurement and vital signs detail for the subject!');
+        }else
+        {
+            alert()->error('Error!',"You have already created the subject's body measurement and vital signs! Use update function!");
+            return redirect(route('preScreeningForms.create',$id));
         }
-        $bmvs->temperature=$request->temperature;
-        $bmvs->Supine_ReadingTime=$request->Supine_ReadingTime;
-        $bmvs->Supine_BP=$request->Supine_BP;
-        $bmvs->Supine_HR=$request->Supine_HR;
-        $bmvs->Supine_RespiratoryRate=$request->Supine_RespiratoryRate;
-        $bmvs->Sitting_ReadingTime=$request->Sitting_ReadingTime;
-        $bmvs->Sitting_BP=$request->Sitting_BP;
-        $bmvs->Sitting_HR=$request->Sitting_HR;
-        $bmvs->Sitting_RespiratoryRate=$request->Sitting_RespiratoryRate;
-        $bmvs->Standing_ReadingTime=$request->Standing_ReadingTime;
-        $bmvs->Standing_BP=$request->Standing_BP;
-        $bmvs->Standing_HR=$request->Standing_HR;
-        $bmvs->Standing_RespiratoryRate=$request->Standing_RespiratoryRate;
-        $bmvs->Initial=$request->Initial;
 
-        $bmvs->save();
-
-        return redirect(route('preScreeningForms.create',$id))->with('success','You have added the body measurement and vital signs detail for the subject!');
     }
 
     public function show($id)
@@ -111,21 +119,6 @@ class BMVS_Controller extends Controller
 
     public function edit($id)
     {
-
-        /*$patients = Patient::with('bodyandvitalsigns')->get();
-        foreach ($patients as $patient) {
-            //echo $patient->name;
-        }*/
-        /*,'BreathAlcoholTestAndElectrocardiogram','MedicalHistory','PhysicalExam','UrineTest','LabTest','SerologyTest','InclusionExclusion','Conclu'*/
-
-        //This can be used for future reference --> this get all patients that has BMVS form already and store their id into an array
-        /*$findBMVS=Patient_BodyAndVitalSigns::with('patient')->get();
-        foreach ($findBMVS as $findBMV) {
-            echo $findBMV->patient_id;
-            $BID[]=$findBMV->patient_id;
-        }*/
-
-
         $patient = Patient::find($id);
 
         $studies = studySpecific::all()->pluck('study_name','study_id');

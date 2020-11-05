@@ -31,17 +31,17 @@
         @csrf
         <div class="form-group row">
             <div class="col-md-1">
-                {!! Form::label('dateTaken', 'Date Taken: ') !!}
+                {!! Form::label('startDate', 'Start Date: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
+                {!! Form::date('startDate', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
             {{--TODO:create end date for study--}}
             <div class=" offset-3 col-md-1">
-                {!! Form::label('timeTaken', 'Time Taken: ') !!}
+                {!! Form::label('endDate', 'End Date: ') !!}
             </div>
             <div class="col-md-2">
-                {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+                {!! Form::date('endDate', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -79,6 +79,14 @@
             </div>
             <div class="col-md-3">
                 {!! Form::text('MRNno', '',['class'=>'form-control']) !!}
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-md-2">
+                {!! Form::label('protocolNO', 'Protocol NO: ') !!}
+            </div>
+            <div class="col-md-3">
+                {!! Form::text('protocolNO', '',['class'=>'form-control']) !!}
             </div>
         </div>
         <br>

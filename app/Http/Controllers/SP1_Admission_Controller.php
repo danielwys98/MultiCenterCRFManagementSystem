@@ -95,7 +95,7 @@ class SP1_Admission_Controller extends Controller
                                         ->where('study_id',$study_id)
                                         ->first();
         $this->bindingSP($findPSS,$study_period);
-        
+
         //PSS found and SP1_ID is bind
         if($study_period == 1)
         {

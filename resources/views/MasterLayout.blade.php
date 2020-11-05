@@ -28,17 +28,10 @@
             <li>
                 <a href="/dashboard" class="{{request()->is('dashboard')? 'active' :' '}}">Dashboard</a>
             </li>
-            <li>
+         {{--   <li>
                 <a href="/chooseStudy" class="{{request()->is('chooseStudy')? 'active' :' '}}" >Study Specific</a>
-            </li>
-            @can('adminFunctions')
-        {{--    <li>
-                <a href="/preScreening/admin" class="{{request()->is('preScreening/admin')? 'active' :' '}}" >Pre-Screening Database</a>
-            </li>
-
-            <li>
-                <a href="/studySpecificdb" class="{{request()->is('studySpecificdb')? 'active' :' '}}" >Study Specific Database</a>
             </li>--}}
+            @can('adminFunctions')
             <div class="dropdown">
             <li>
                     <a href="#" id="dropdownMenuButton" data-toggle="dropdown">Administrations</a>
