@@ -21,14 +21,16 @@ class CreateSP1DischargesTable extends Migration
             $table->text('UnscheduledDischarge')->nullable();
 
             $table->time('Sitting_ReadingTime')->nullable();
-            $table->text('Sitting_BP')->nullable();
+            $table->text('Sitting_BP_S')->nullable();
+            $table->text('Sitting_BP_D')->nullable();
             $table->integer('Sitting_HR')->nullable();
             $table->integer('Sitting_RespiratoryRate')->nullable();
 
             $table->text('SittingRepeat')->nullable();
 
             $table->time('SittingRepeat_ReadingTime')->nullable();
-            $table->text('SittingRepeat_BP')->nullable();
+            $table->text('SittingRepeat_BP_S')->nullable();
+            $table->text('SittingRepeat_BP_D')->nullable();
             $table->integer('SittingRepeat_HR')->nullable();
             $table->integer('SittingRepeat_RespiratoryRate')->nullable();
 
