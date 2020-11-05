@@ -129,20 +129,20 @@
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('uDrug_Laboratory', 'Laboratory: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
-        {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('uDrug_Laboratory', 'Sarawak General Hospital Heart Centre',(($UrineTest->UDrug_Laboratory)=='Sarawak General Hospital Heart Centre')? 'checked' : '') !!}
+        {!! Form::label('uDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('UDrug_Laboratory', 'Other',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre' && ($UrineTest->UDrug_Laboratory!=NULL))? 'checked' :'') !!}
-                {!! Form::label('UDrug_Laboratory', 'Others') !!}
+                {!! Form::radio('uDrug_Laboratory', 'Other',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre' && ($UrineTest->UDrug_Laboratory!=NULL))? 'checked' :'') !!}
+                {!! Form::label('uDrug_Laboratory', 'Others') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UDrug_Laboratory_Text',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UDrug_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('uDrug_Laboratory_Text',(($UrineTest->UDrug_Laboratory)!='Sarawak General Hospital Heart Centre')? $UrineTest->UDrug_Laboratory : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>

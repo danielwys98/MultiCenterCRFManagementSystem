@@ -34,7 +34,7 @@ class SP_UrineTest_Controller extends Controller
             $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $PSS = $findPSS->SP1_ID;
             $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $SP1->SP1_UrineTest)->first();
-            if($this->storeSP($findPSS,$request)){
+            if($this->storeSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -45,7 +45,7 @@ class SP_UrineTest_Controller extends Controller
             $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
             $PSS = $findPSS->SP2_ID;
             $UT = SP2_UrineTest::where('SP2_UrineTest_ID', $SP2->SP2_UrineTest)->first();
-            if($this->storeSP($findPSS,$request)){
+            if($this->storeSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -56,7 +56,7 @@ class SP_UrineTest_Controller extends Controller
             $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
             $PSS = $findPSS->SP3_ID;
             $UT = SP3_UrineTest::where('SP3_UrineTest_ID', $SP3->SP3_UrineTest)->first();
-            if($this->storeSP($findPSS,$request)){
+            if($this->storeSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 3 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -67,7 +67,7 @@ class SP_UrineTest_Controller extends Controller
             $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
             $PSS = $findPSS->SP4_ID;
             $UT = SP4_UrineTest::where('SP4_UrineTest_ID', $SP4->SP4_UrineTest)->first();
-            if($this->storeSP($findPSS,$request)){
+            if($this->storeSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 4 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -92,7 +92,7 @@ class SP_UrineTest_Controller extends Controller
             $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $PSS = $findPSS->SP1_ID;
             $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $SP1->SP1_UrineTest)->first();
-            if($this->updateSP($findPSS,$request)){
+            if($this->updateSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -103,7 +103,7 @@ class SP_UrineTest_Controller extends Controller
             $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
             $PSS = $findPSS->SP2_ID;
             $UT = SP2_UrineTest::where('SP2_UrineTest_ID', $SP2->SP2_UrineTest)->first();
-            if($this->updateSP($findPSS,$request)){
+            if($this->updateSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 2 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -114,7 +114,7 @@ class SP_UrineTest_Controller extends Controller
             $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
             $PSS = $findPSS->SP3_ID;
             $UT = SP3_UrineTest::where('SP3_UrineTest_ID', $SP3->SP3_UrineTest)->first();
-            if($this->updateSP($findPSS,$request)){
+            if($this->updateSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 3 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -125,7 +125,7 @@ class SP_UrineTest_Controller extends Controller
             $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
             $PSS = $findPSS->SP4_ID;
             $UT = SP4_UrineTest::where('SP4_UrineTest_ID', $SP4->SP4_UrineTest)->first();
-            if($this->updateSP($findPSS,$request)){
+            if($this->updateSP($findPSS,$PSS,$UT,$request)){
                 return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 4 details for Urine Test!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -138,7 +138,7 @@ class SP_UrineTest_Controller extends Controller
     }
 
     //store
-    public function storeSP($PSS,$request){
+    public function storeSP($findPSS,$PSS,$UT,$request){
         //custom messages load for validation
         $custom = [
             'UPreg_dateTaken.required_if' => 'Please enter the date taken for urine pregnancy test',
@@ -162,11 +162,7 @@ class SP_UrineTest_Controller extends Controller
             'physicianSign.required' => 'Physician’s signature is required',
             'physicianName.required' => 'Physician’s name is required',
            ];
-        if($PSS !=NULL && $PSS->SP1_ID != NULL){
-            //find admission table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
-            $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
-
+        if($findPSS !=NULL && $PSS != NULL){
             //validation for required fields
             $validatedData=$this->validate($request,[
                 'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
@@ -267,8 +263,54 @@ class SP_UrineTest_Controller extends Controller
     }
 
     //update
-    public function updateSP($PSS,$request){
-        if($PSS !=NULL){
+    public function updateSP($findPSS,$PSS,$UT,$request){
+        //custom messages load for validation
+        $custom = [
+            'UPreg_dateTaken.required_if' => 'Please enter the date taken for urine pregnancy test',
+            'UPreg_TestTime.required_if' => 'Please enter the test time for urine pregnancy test',
+            'UPreg_ReadTime.required_if' => 'Please enter the read time for urine pregnancy test',
+            'uPreg_Laboratory.required_if' => 'Please select which laboratory does the urine pregnancy test conducted',
+            'uPreg_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine pregnancy test conducted',
+            'UPreg_hCG.required_if' => 'Please select the results of hCG(Human chorionic gonadotropin) for urine pregnancy test',
+            'UPreg_Transcribedby.required_if' => 'Please state the user transcribed for urine pregnancy test',
+            'UDrug_dateTaken.required_if' => 'Please enter the date taken for urine drugs of abuse test',
+            'UDrug_TestTime.required_if' => 'Please enter the test time for urine drugs of abuse test',
+            'UDrug_ReadTime.required_if' => 'Please enter the read time for urine drugs of abuse test',
+            'uDrug_Laboratory.required_if' => 'Please select which laboratory does the urine drugs of abuse test conducted',
+            'uDrug_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine drugs of abuse test conducted',
+            'UDrug_Methamphetamine.required_if' => 'Please select the results of Methamphetamine for urine drugs of abuse test',
+            'UDrug_Morphine.required_if' => 'Please select the results of Morphine for urine drugs of abuse test',
+            'UDrug_Marijuana.required_if' => 'Please select the results of Marijuana for urine drugs of abuse test',
+            'UDrug_Transcribedby.required_if' => 'Please state the user transcribed for urine drugs of abuse test',
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'subjectFit.required' => 'Please select whether the subject is fit for dosing',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
+           ];
+        if($findPSS !=NULL){
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
+                'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
+                'uDrug_Laboratory' => 'required_if:UPreg_male,==,',
+                'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
+                'UPreg_dateTaken' => 'required_if:UPreg_male,==,',
+                'UPreg_TestTime' => 'required_if:UPreg_male,==,',
+                'UPreg_ReadTime' => 'required_if:UPreg_male,==,',
+                'UPreg_hCG' => 'required_if:UPreg_male,==,',
+                'UPreg_Transcribedby' => 'required_if:UPreg_male,==,',
+                'UDrug_dateTaken' => 'required_if:NApplicable,==,',
+                'UDrug_TestTime' => 'required_if:NApplicable,==,',
+                'UDrug_ReadTime' => 'required_if:NApplicable,==,',
+                'UDrug_Methamphetamine' => 'required_if:NApplicable,==,',
+                'UDrug_Morphine' => 'required_if:NApplicable,==,',
+                'UDrug_Marijuana' => 'required_if:NApplicable,==,',
+                'UDrug_Transcribedby' => 'required_if:NApplicable,==,',
+                'inclusionYesNo' => 'required',
+                'subjectFit' => 'required',
+                'physicianSign' => 'required',
+                'physicianName' => 'required',
+            ],$custom);
             //Urine Pregnacy
             $UT->UPreg_male=$request->UPreg_male;
             if($request->UPreg_male == 1){

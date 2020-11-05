@@ -46,6 +46,7 @@ class preScreeningController extends Controller
 
     public function store(Request $request)
     {
+        $exist=false;
         //custom messages load for validation
         $custom = [
             'dateTaken.required' => 'Please input the date taken',

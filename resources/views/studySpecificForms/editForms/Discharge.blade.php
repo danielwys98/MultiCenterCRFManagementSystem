@@ -39,7 +39,7 @@
     <tr>
         <th scope="col">Position</th>
         <th scope="col">Reading Time (24-hour clock)</th>
-        <th scope="col">Blood Pressure (systolic/diastolic) (mmHg)</th>
+        <th scope="col" class="col-md-2">Blood Pressure (systolic/diastolic) (mmHg)</th>
         <th scope="col">Heart Rate (beats per min)</th>
         <th scope="col">Respiratory Rate (breaths per min)</th>
     </tr>
@@ -48,7 +48,10 @@
     <tr>
         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
         <td>{!! Form::time('Sitting_ReadingTime', old('Sitting_ReadingTime',$Discharge->Sitting_ReadingTime),['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('Sitting_BP', old('Sitting_BP',$Discharge->Sitting_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>
+            {!! Form::number('Sitting_BP_S', old('Sitting_BP_S',$Discharge->Sitting_BP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::number('Sitting_BP_D', old('Sitting_BP_D',$Discharge->Sitting_BP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+        </td>
         <td>{!! Form::number('Sitting_HR', old('Sitting_HR',$Discharge->Sitting_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate',$Discharge->Sitting_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
@@ -60,7 +63,10 @@
             {!! Form::label('SittingRepeatYes','Sitting Repeated') !!}
         </th>
         <td>{!! Form::time('SittingRepeat_ReadingTime', '',['class'=>'form-control','placeholder'=>'']) !!}</td>
-        <td>{!! Form::number('SittingRepeat_BP',old('SittingRepeat_BP',$Discharge->SittingRepeat_BP),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>
+            {!! Form::number('SittingRepeat_BP_S',old('SittingRepeat_BP_S',$Discharge->SittingRepeat_BP_S),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+            {!! Form::number('SittingRepeat_BP_D',old('SittingRepeat_BP_D',$Discharge->SittingRepeat_BP_D),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+        </td>
         <td>{!! Form::number('SittingRepeat_HR',old('SittingRepeat_HR',$Discharge->SittingRepeat_HR),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{!! Form::number('SittingRepeat_RespiratoryRate',old('SittingRepeat_RespiratoryRate',$Discharge->SittingRepeat_RespiratoryRate),['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
@@ -71,5 +77,15 @@
     </tr>
     </tbody>
 </table>
-{!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+<div class="row col">
+    <p>Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100 (latest reading only).</p>
+</div>
+<div class="form-group row col-md-6">
+    {!! Form::label('Comment','Comments/ Remarks: ') !!}
+    {!! Form::text('Comment',old('Comment',$Discharge->Comment),['class'=>'form-control']) !!}
+</div>
+{{-- Body measurements and vital signs ends--}}
+<div class="row col">
+    {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+</div>
 {!! Form::close() !!}

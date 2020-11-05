@@ -43,11 +43,11 @@ Route::get('/studySpecific/index','studySpecificController@index');
 Route::get('/studySpecific/input/{id}','studySpecificController@studies')->name('studySpecific.input');
 
 //study specific Admission
-Route::post('sp_admission/{id}','SP1_Admission_Controller@store')->name('sp_Admission.store');
-Route::put('sp_admisison/{patient_id}/update/{study_id}/{study_period}','SP1_Admission_Controller@update')->name('sp_Admission.update');
+Route::post('sp_admission/{id}','SP_Admission_Controller@store')->name('sp_Admission.store');
+Route::put('sp_admisison/{patient_id}/update/{study_id}/{study_period}','SP_Admission_Controller@update')->name('sp_Admission.update');
 //study specific Body Measurements and Vital Signs
-Route::post('sp_bmvs/{id}','SP1_BMVS_Controller@store')->name('sp_Bmvs.store');
-Route::put('sp_bmvs/{patient_id}/update/{study_id}/{study_period}','SP1_BMVS_Controller@update')->name('sp_Bmvs.update');
+Route::post('sp_bmvs/{id}','SP_BMVS_Controller@store')->name('sp_Bmvs.store');
+Route::put('sp_bmvs/{patient_id}/update/{study_id}/{study_period}','SP_BMVS_Controller@update')->name('sp_Bmvs.update');
 //study specific Breath Alcohol Test
 Route::post('sp_bat/{id}','SP_BAT_Controller@store')->name('sp_Bat.store');
 Route::put('sp_bat/{patient_id}/update/{study_id}/{study_period}','SP_BAT_Controller@update')->name('sp_Bat.update');
@@ -67,8 +67,8 @@ Route::put('sp_pdynamicsampling/{patient_id}/update/{study_id}/{study_period}','
 Route::post('sp_padnalysis/{id}','SP_PDynamicAnalysis_Controller@store')->name('sp_PDAnalysis.store');
 Route::put('sp_padnalysis/{patient_id}/update/{study_id}/{study_period}','SP_PDynamicAnalysis_Controller@update')->name('sp_PDAnalysis.update');
 //study specific Vital Signs
-Route::post('sp_vitalsign/{id}','SP1_VitalSign_Controller@store')->name('sp_VitalSign.store');
-Route::put('sp_vitalsign/{patient_id}/update/{study_id}/{study_period}','SP1_VitalSign_Controller@update')->name('sp_VitalSign.update');
+Route::post('sp_vitalsign/{id}','SP_VitalSign_Controller@store')->name('sp_VitalSign.store');
+Route::put('sp_vitalsign/{patient_id}/update/{study_id}/{study_period}','SP_VitalSign_Controller@update')->name('sp_VitalSign.update');
 //study specific Discharge
 Route::post('sp_discharge/{id}','SP_Discharge_Controller@store')->name('sp_Discharge.store');
 Route::put('sp_discharge/{patient_id}/update/{study_id}/{study_period}','SP_Discharge_Controller@update')->name('sp_Discharge.update');

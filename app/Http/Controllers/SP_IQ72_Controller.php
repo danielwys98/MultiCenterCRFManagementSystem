@@ -158,26 +158,6 @@ class SP_IQ72_Controller extends Controller
             'Interim72hrsInterviewedby.required' => 'Please state interviewed by who for Interim Questionnaire(72hrs pose dose vist)',
             'Interim72hrsCheckedby.required' => 'Please state checked by who for Interim Questionnaire(72hrs pose dose vist)',
            ];
-           //validation for required fields
-           $validatedData=$this->validate($request,[
-            'dateTaken' => 'required',
-            'timeTaken' => 'required',
-            'Interim72hrs01' => 'required',
-            'Interim72hrs02' => 'required',
-            'Interim72hrs03' => 'required',
-            'Interim72hrs03txt' => 'required_if:Interim72hrs03,==,Yes',
-            'Interim72hrs04' => 'required',
-            'Interim72hrs04txt' => 'required_if:Interim72hrs04,==,Yes',
-            'Interim72hrs05' => 'required',
-            'Interim72hrs05txt' => 'required_if:Interim72hrs05,==,Yes',
-            'Interim72hrs06' => 'required',
-            'Interim72hrs06txt' => 'required_if:Interim72hrs06,==,Yes',
-            'Interim72hrs07' => 'required',
-            'Interim72hrs07txt' => 'required_if:Interim72hrs07,==,Yes',
-            'Interim72hrs08' => 'required',
-            'Interim72hrsInterviewedby' => 'required',
-            'Interim72hrsCheckedby' => 'required',
-        ],$custom);
 
         if($findPSS !=NULL && $PSS!= NULL){
             if($IQ72->dateTaken == NULL){
@@ -196,6 +176,26 @@ class SP_IQ72_Controller extends Controller
                     $IQ72->Interim72hrsInterviewedby=NULL;
                     $IQ72->Interim72hrsCheckedby=NULL;
                 }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'dateTaken' => 'required',
+                        'timeTaken' => 'required',
+                        'Interim72hrs01' => 'required',
+                        'Interim72hrs02' => 'required',
+                        'Interim72hrs03' => 'required',
+                        'Interim72hrs03txt' => 'required_if:Interim72hrs03,==,Yes',
+                        'Interim72hrs04' => 'required',
+                        'Interim72hrs04txt' => 'required_if:Interim72hrs04,==,Yes',
+                        'Interim72hrs05' => 'required',
+                        'Interim72hrs05txt' => 'required_if:Interim72hrs05,==,Yes',
+                        'Interim72hrs06' => 'required',
+                        'Interim72hrs06txt' => 'required_if:Interim72hrs06,==,Yes',
+                        'Interim72hrs07' => 'required',
+                        'Interim72hrs07txt' => 'required_if:Interim72hrs07,==,Yes',
+                        'Interim72hrs08' => 'required',
+                        'Interim72hrsInterviewedby' => 'required',
+                        'Interim72hrsCheckedby' => 'required',
+                    ],$custom);
                     //date and time for interim questionnaire
                     $IQ72->dateTaken=$request->dateTaken;
                     $IQ72->timeTaken=$request->timeTaken;
@@ -249,6 +249,26 @@ class SP_IQ72_Controller extends Controller
 
     //update
     public function updateSP($findPSS,$PSS,$IQ72,$request){
+        //custom messages load for validation
+        $custom = [
+            'dateTaken.required' => 'Please enter the date taken for Interim Questionnaire(72hrs pose dose vist)',
+            'timeTaken.required' => 'Please enter the time taken for Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs01.required' => 'Please choose a selection for number 1 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs02.required' => 'Please choose a selection for number 2 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs03.required' => 'Please choose a selection for number 3 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs03txt.required_if' => 'Please specify amount and time taken for number 3 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs04.required' => 'Please choose a selection for number 4 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs04txt.required_if' => 'Please specify amount and time taken for number 4 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs05.required' => 'Please choose a selection for number 5 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs05txt.required_if' => 'Please provide details for number 5 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs06.required' => 'Please choose a selection for number 6 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs06txt.required_if' => 'Please provide details for number 6 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs07.required' => 'Please choose a selection for number 7 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs07txt.required_if' => 'Please provide details for number 7 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrs08.required' => 'Please choose a selection for number 8 in Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrsInterviewedby.required' => 'Please state interviewed by who for Interim Questionnaire(72hrs pose dose vist)',
+            'Interim72hrsCheckedby.required' => 'Please state checked by who for Interim Questionnaire(72hrs pose dose vist)',
+           ];
         if($findPSS !=NULL){
             $IQ72->NApplicable=$request->NApplicable;
             if($request->NApplicable == 1){
@@ -264,6 +284,26 @@ class SP_IQ72_Controller extends Controller
                 $IQ72->Interim72hrsInterviewedby=NULL;
                 $IQ72->Interim72hrsCheckedby=NULL;
             }else{
+                //validation for required fields
+                $validatedData=$this->validate($request,[
+                    'dateTaken' => 'required',
+                    'timeTaken' => 'required',
+                    'Interim72hrs01' => 'required',
+                    'Interim72hrs02' => 'required',
+                    'Interim72hrs03' => 'required',
+                    'Interim72hrs03txt' => 'required_if:Interim72hrs03,==,Yes',
+                    'Interim72hrs04' => 'required',
+                    'Interim72hrs04txt' => 'required_if:Interim72hrs04,==,Yes',
+                    'Interim72hrs05' => 'required',
+                    'Interim72hrs05txt' => 'required_if:Interim72hrs05,==,Yes',
+                    'Interim72hrs06' => 'required',
+                    'Interim72hrs06txt' => 'required_if:Interim72hrs06,==,Yes',
+                    'Interim72hrs07' => 'required',
+                    'Interim72hrs07txt' => 'required_if:Interim72hrs07,==,Yes',
+                    'Interim72hrs08' => 'required',
+                    'Interim72hrsInterviewedby' => 'required',
+                    'Interim72hrsCheckedby' => 'required',
+                ],$custom);
                 //date and time for interim questionnaire
                 $IQ72->dateTaken=$request->dateTaken;
                 $IQ72->timeTaken=$request->timeTaken;

@@ -202,71 +202,8 @@ class SP_PDynamicSampling_Controller extends Controller
             'S9_Collected.required' => 'Please enter the person collected for S9 Pharmacodynamic Blood Sampling',
             'S9_Checked.required' => 'Please enter the person checked for S9 Pharmacodynamic Blood Sampling',
         ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'day1' => 'required',
-            'day2' => 'required',
-
-            'PD_Date_Day_1' => 'required',
-            'PD_AST' => 'required',
-            'PD_Collected' => 'required',
-            'PD_Checked' => 'required',
-            
-            'S1_Date_Day_1' => 'required',
-            'S1_SST' => 'required',
-            'S1_AST' => 'required',
-            'S1_Collected' => 'required',
-            'S1_Checked' => 'required',
-
-            'S2_Date_Day_1' => 'required',
-            'S2_SST' => 'required',
-            'S2_AST' => 'required',
-            'S2_Collected' => 'required',
-            'S2_Checked' => 'required',
-
-            'S3_Date_Day_1' => 'required',
-            'S3_SST' => 'required',
-            'S3_AST' => 'required',
-            'S3_Collected' => 'required',
-            'S3_Checked' => 'required',
-
-            'S4_Date_Day_1' => 'required',
-            'S4_SST' => 'required',
-            'S4_AST' => 'required',
-            'S4_Collected' => 'required',
-            'S4_Checked' => 'required',
-
-            'S5_Date_Day_1' => 'required',
-            'S5_SST' => 'required',
-            'S5_AST' => 'required',
-            'S5_Collected' => 'required',
-            'S5_Checked' => 'required',
-
-            'S6_Date_Day_1' => 'required',
-            'S6_SST' => 'required',
-            'S6_AST' => 'required',
-            'S6_Collected' => 'required',
-            'S6_Checked' => 'required',
-
-            'S7_Date_Day_1' => 'required',
-            'S7_SST' => 'required',
-            'S7_AST' => 'required',
-            'S7_Collected' => 'required',
-            'S7_Checked' => 'required',
-
-            'S8_Date_Day_1' => 'required',
-            'S8_SST' => 'required',
-            'S8_AST' => 'required',
-            'S8_Collected' => 'required',
-            'S8_Checked' => 'required',
-
-            'S9_Date_Day_2' => 'required',
-            'S9_SST' => 'required',
-            'S9_AST' => 'required',
-            'S9_Collected' => 'required',
-            'S9_Checked' => 'required',
-        ],$custom);
-        if($PSS !=NULL && $PSS != NULL){
+        
+        if($findPSS !=NULL && $PSS != NULL){
             if($PDSampling->day1 == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
@@ -279,6 +216,70 @@ class SP_PDynamicSampling_Controller extends Controller
                         }
                     }
                 }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'day1' => 'required',
+                        'day2' => 'required',
+
+                        'PD_Date_Day_1' => 'required',
+                        'PD_AST' => 'required',
+                        'PD_Collected' => 'required',
+                        'PD_Checked' => 'required',
+                        
+                        'S1_Date_Day_1' => 'required',
+                        'S1_SST' => 'required',
+                        'S1_AST' => 'required',
+                        'S1_Collected' => 'required',
+                        'S1_Checked' => 'required',
+
+                        'S2_Date_Day_1' => 'required',
+                        'S2_SST' => 'required',
+                        'S2_AST' => 'required',
+                        'S2_Collected' => 'required',
+                        'S2_Checked' => 'required',
+
+                        'S3_Date_Day_1' => 'required',
+                        'S3_SST' => 'required',
+                        'S3_AST' => 'required',
+                        'S3_Collected' => 'required',
+                        'S3_Checked' => 'required',
+
+                        'S4_Date_Day_1' => 'required',
+                        'S4_SST' => 'required',
+                        'S4_AST' => 'required',
+                        'S4_Collected' => 'required',
+                        'S4_Checked' => 'required',
+
+                        'S5_Date_Day_1' => 'required',
+                        'S5_SST' => 'required',
+                        'S5_AST' => 'required',
+                        'S5_Collected' => 'required',
+                        'S5_Checked' => 'required',
+
+                        'S6_Date_Day_1' => 'required',
+                        'S6_SST' => 'required',
+                        'S6_AST' => 'required',
+                        'S6_Collected' => 'required',
+                        'S6_Checked' => 'required',
+
+                        'S7_Date_Day_1' => 'required',
+                        'S7_SST' => 'required',
+                        'S7_AST' => 'required',
+                        'S7_Collected' => 'required',
+                        'S7_Checked' => 'required',
+
+                        'S8_Date_Day_1' => 'required',
+                        'S8_SST' => 'required',
+                        'S8_AST' => 'required',
+                        'S8_Collected' => 'required',
+                        'S8_Checked' => 'required',
+
+                        'S9_Date_Day_2' => 'required',
+                        'S9_SST' => 'required',
+                        'S9_AST' => 'required',
+                        'S9_Collected' => 'required',
+                        'S9_Checked' => 'required',
+                    ],$custom);
                     foreach($data as $key=>$value){
                         if($value != NULL)
                         {
