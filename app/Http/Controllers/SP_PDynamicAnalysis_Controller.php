@@ -22,8 +22,6 @@ class SP_PDynamicAnalysis_Controller extends Controller
 
     public function store(Request $request, $study_id)
     {
-        
-
         $PID = $request->patient_id;
         $study_period = $request->studyPeriod;
         //find Patient Study Specific table
@@ -269,7 +267,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
             'pda_S9_Conducted' => 'required',
             'pda_S9_Checked' => 'required',
         ],$custom);
-        if($PSS !=NULL && $PSS != NULL){
+        if($findPSS !=NULL && $PSS != NULL){
             if($PDAnalysis->Day1 == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');

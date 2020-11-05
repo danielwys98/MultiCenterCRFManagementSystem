@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\PatientStudySpecific;
-use App\StudyPeriod1;
-use App\StudyPeriod2;
-use App\StudyPeriod3;
-use App\StudyPeriod4;
 use App\SP1_PKineticSampling;
 use App\SP2_PKineticSampling;
 use App\SP3_PKineticSampling;
 use App\SP4_PKineticSampling;
-use DB;
+use App\StudyPeriod1;
+use App\StudyPeriod2;
+use App\StudyPeriod3;
+use App\StudyPeriod4;
+use Illuminate\Http\Request;
 
 class SP_PKineticSampling_Controller extends Controller
 {
@@ -23,6 +22,122 @@ class SP_PKineticSampling_Controller extends Controller
 
     public function store(Request $request,$study_id)
     {
+        $PID = $request->patient_id;
+        $study_period = $request->studyPeriod;
+        //find Patient Study Specific table
+        $findPSS = PatientStudySpecific::where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
+        //check study period and save
+        if($study_period == 1){
+            //SP1 query
+            $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PSS = $findPSS->SP1_ID;
+            $PKineticS = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $SP1->SP1_PKineticSampling)->first();
+            if($this->storeSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 2){
+            //SP2 query
+            $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+            $PSS = $findPSS->SP2_ID;
+            $PKineticS = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $SP2->SP2_PKineticSampling)->first();
+            if($this->storeSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 3){
+            //SP3 query
+            $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+            $PSS = $findPSS->SP3_ID;
+            $PKineticS = SP3_PKineticSampling::where('SP3_PKineticSampling_ID', $SP3->SP3_PKineticSampling)->first();
+            if($this->storeSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 3 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }elseif($study_period == 4){
+            //SP4 query
+            $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+            $PSS = $findPSS->SP4_ID;
+            $PKineticS = SP4_PKineticSampling::where('SP4_PKineticSampling_ID', $SP4->SP4_PKineticSampling)->first();
+            if($this->storeSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 4 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.input',$study_id));
+            }
+        }else{
+            alert()->error('Error!','You did not select the study period!');
+            return redirect(route('studySpecific.input',$study_id));
+        }
+    }
+
+    public function update(Request $request, $patient_id, $study_id,$study_period)
+    {
+        //find Patient Study Specific table
+        $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
+                                        ->where('study_id',$study_id)
+                                        ->first();
+        //check study period and save
+        if($study_period == 1){
+            //SP1 query
+            $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+            $PSS = $findPSS->SP1_ID;
+            $PKineticS = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $SP1->SP1_PKineticSampling)->first();
+            if($this->updateSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif($study_period == 2){
+            //SP2 query
+            $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+            $PSS = $findPSS->SP2_ID;
+            $PKineticS = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $SP2->SP2_PKineticSampling)->first();
+            if($this->updateSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif($study_period == 3){
+            //SP3 query
+            $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+            $PSS = $findPSS->SP3_ID;
+            $PKineticS = SP3_PKineticSampling::where('SP3_PKineticSampling_ID', $SP3->SP3_PKineticSampling)->first();
+            if($this->updateSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }elseif($study_period == 4){
+            //SP4 query
+            $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+            $PSS = $findPSS->SP4_ID;
+            $PKineticS = SP4_PKineticSampling::where('SP4_PKineticSampling_ID', $SP4->SP4_PKineticSampling)->first();
+            if($this->updateSP($findPSS,$PSS,$PKineticS,$request)){
+                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 4 details for Pharmacokinetic Blood Sampling!');
+            }else{
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect(route('studySpecific.edit',$study_id));
+            }
+        }else{
+            alert()->error('Error!','You did not select the study period!');
+            return redirect(route('studySpecific.edit',$study_id));
+        }
+    }
+
+    //store
+    public function storeSP($findPSS,$PSS,$PKineticS,$request){
         //custom messages load for validation
         $custom = [
             'Day1.required' => 'Please enter the day 1 of Pharmacokinetic Blood Sampling sampling date',
@@ -309,99 +424,8 @@ class SP_PKineticSampling_Controller extends Controller
             'pk_S21_Collected' => 'required',
             'pk_S21_Checked' => 'required',
         ],$custom);
-
-        $PID = $request->patient_id;
-        $study_period = $request->studyPeriod;
-        //find Patient Study Specific table
-        $findPSS = PatientStudySpecific::where('patient_id',$PID)
-                                        ->where('study_id',$study_id)
-                                        ->first();
-        //check study period and save
-        if($study_period == '---'){
-            alert()->error('Error!','This subject is not enrolled into any study!');
-            return redirect(route('studySpecific.input',$study_id));
-        }elseif($study_period == 1){
-            if($this->storeSP1($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
-            }
-        }elseif($study_period == 2){
-            if($this->storeSP2($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
-            }
-        }elseif($study_period == 3){
-            if($this->storeSP3($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 3 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
-            }
-        }elseif($study_period == 4){
-            if($this->storeSP4($findPSS,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 4 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.input',$study_id));
-            }
-        }else{
-            alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
-        }
-    }
-
-    public function update(Request $request, $patient_id, $study_id,$study_period)
-    {
-        //find Patient Study Specific table
-        $findPSS = PatientStudySpecific::where('patient_id',$patient_id)
-                                        ->where('study_id',$study_id)
-                                        ->first();
-        //check study period and save
-        if($study_period == 1){
-            if($this->updateSP1($findPSS,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif($study_period == 2){
-            if($this->updateSP2($findPSS,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif($study_period == 3){
-            if($this->updateSP3($findPSS,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }elseif($study_period == 4){
-            if($this->updateSP4($findPSS,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 4 details for Pharmacokinetic Blood Sampling!');
-            }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
-            }
-        }else{
-            alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.edit',$study_id));
-        }
-    }
-
-    //store SP1_PKineticSampling
-    public function storeSP1($PSS,$request){
-        if($PSS !=NULL && $PSS->SP1_ID != NULL){
-            //find admission table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
-            $PKineticS = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $findSP1->SP1_PKineticSampling)->first();
-
+        
+        if($findPSS !=NULL && $PSS != NULL){
             if($PKineticS->Day1 == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
@@ -423,174 +447,11 @@ class SP_PKineticSampling_Controller extends Controller
         return false;
     }
 
-    //store SP2_PKineticSampling
-    public function storeSP2($PSS,$request){
-        if($PSS !=NULL && $PSS->SP2_ID != NULL){
-            //find admission table and update it
-            $findSP2 = StudyPeriod2::where('SP2_ID',$PSS->SP2_ID)->first();
-            $PKineticS = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $findSP2->SP2_PKineticSampling)->first();
-
-            if($PKineticS->Day1 == NULL){
-                $flag=false;
-                $data = $request->except('patient_id','studyPeriod','_token','_method');
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $PKineticS[$key]=$value;
-                        $flag=true;
-                    }
-                }
-                if($flag){
-                    $PKineticS->save();
-                }
-                return true;
-            }else{
-                return false;
-            }
-        }else
-        return false;
-    }
-
-    //store SP3_PKineticSampling
-    public function storeSP3($PSS,$request){
-        if($PSS !=NULL && $PSS->SP3_ID != NULL){
-            //find admission table and update it
-            $findSP3 = StudyPeriod3::where('SP3_ID',$PSS->SP3_ID)->first();
-            $PKineticS = SP3_PKineticSampling::where('SP3_PKineticSampling_ID', $findSP3->SP3_PKineticSampling)->first();
-
-            if($PKineticS->Day1 == NULL){
-                $flag=false;
-                $data = $request->except('patient_id','studyPeriod','_token','_method');
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $PKineticS[$key]=$value;
-                        $flag=true;
-                    }
-                }
-                if($flag){
-                    $PKineticS->save();
-                }
-                return true;
-            }else{
-                return false;
-            }
-        }else
-        return false;
-    }
-
-    //store SP4_PKineticSampling
-    public function storeSP4($PSS,$request){
-        if($PSS !=NULL && $PSS->SP4_ID != NULL){
-            //find admission table and update it
-            $findSP4 = StudyPeriod4::where('SP4_ID',$PSS->SP4_ID)->first();
-            $PKineticS = SP4_PKineticSampling::where('SP4_PKineticSampling_ID', $findSP4->SP4_PKineticSampling)->first();
-
-            if($PKineticS->Day1 == NULL){
-                $flag=false;
-                $data = $request->except('patient_id','studyPeriod','_token','_method');
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $PKineticS[$key]=$value;
-                        $flag=true;
-                    }
-                }
-                if($flag){
-                    $PKineticS->save();
-                }
-                return true;
-            }else{
-                return false;
-            }
-        }else
-        return false;
-    }
-
-    //update SP1_PKineticSampling
-    public function updateSP1($PSS,$request){
-        if($PSS !=NULL){
-            //find admission table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
-            $PKineticS = SP1_PKineticSampling::where('SP1_PKineticSampling_ID', $findSP1->SP1_PKineticSampling)->first();
-
+    //update
+    public function updateSP($findPSS,$PSS,$PKineticS,$request){
+        if($findPSS !=NULL){
             $flag=false;
-            $data = $request->except('patient_id','studyPeriod','_token','_method');
-            foreach($data as $key=>$value){
-                if($value != NULL)
-                {
-                    $PKineticS[$key]=$value;
-                    $flag=true;
-                }
-            }
-            if($flag){
-                $PKineticS->save();
-            }
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    //update SP2_PKineticSampling
-    public function updateSP2($PSS,$request){
-        if($PSS !=NULL){
-            //find admission table and update it
-            $findSP2 = StudyPeriod2::where('SP2_ID',$PSS->SP2_ID)->first();
-            $PKineticS = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $findSP2->SP2_PKineticSampling)->first();
-
-            $flag=false;
-            $data = $request->except('patient_id','studyPeriod','_token','_method');
-            foreach($data as $key=>$value){
-                if($value != NULL)
-                {
-                    $PKineticS[$key]=$value;
-                    $flag=true;
-                }
-            }
-            if($flag){
-                $PKineticS->save();
-            }
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    //update SP3_PKineticSampling
-    public function updateSP3($PSS,$request){
-        if($PSS !=NULL){
-            //find admission table and update it
-            $findSP3 = StudyPeriod3::where('SP3_ID',$PSS->SP3_ID)->first();
-            $PKineticS = SP3_PKineticSampling::where('SP3_PKineticSampling_ID', $findSP3->SP3_PKineticSampling)->first();
-
-            $flag=false;
-            $data = $request->except('patient_id','studyPeriod','_token','_method');
-            foreach($data as $key=>$value){
-                if($value != NULL)
-                {
-                    $PKineticS[$key]=$value;
-                    $flag=true;
-                }
-            }
-            if($flag){
-                $PKineticS->save();
-            }
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    //update SP4_PKineticSampling
-    public function updateSP4($PSS,$request){
-        if($PSS !=NULL){
-            //find admission table and update it
-            $findSP4 = StudyPeriod4::where('SP4_ID',$PSS->SP4_ID)->first();
-            $PKineticS = SP4_PKineticSampling::where('SP4_PKineticSampling_ID', $findSP4->SP4_PKineticSampling)->first();
-
-            $flag=false;
-            $data = $request->except('patient_id','studyPeriod','_token','_method');
+            $data = $request->except('_token','_method');
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {

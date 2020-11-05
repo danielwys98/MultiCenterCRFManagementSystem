@@ -80,7 +80,7 @@ use App\SP4_VitalSigns;
 use Alert;
 use Psr\Log\NullLogger;
 
-class SP1_Admission_Controller extends Controller
+class SP_Admission_Controller extends Controller
 {
 
     public function __construct()
