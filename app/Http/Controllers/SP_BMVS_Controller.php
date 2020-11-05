@@ -34,7 +34,7 @@ class SP_BMVS_Controller extends Controller
             $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $PSS = $findPSS->SP1_ID;
             $BMVS = SP1_BMVS::where('SP1_BMVS_ID', $SP1->SP1_BMVS)->first();
-            if($this->storeSP1($findPSS,$PSS,$BMVS,$request)){
+            if($this->storeSP($findPSS,$PSS,$BMVS,$request)){
                 return redirect(route('studySpecific.input', $study_id))->with('success', 'You have successfully save the study period details for Body Measurement and Vital Signs!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
@@ -134,7 +134,7 @@ class SP_BMVS_Controller extends Controller
         }
     }
 
-    public function storeSP($findPSS,$PSS,$BAT,$request)
+    public function storeSP($findPSS,$PSS,$BMVS,$request)
     {
         //custom messages load for validation
         $custom = [
@@ -183,7 +183,7 @@ class SP_BMVS_Controller extends Controller
             'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
             'Initial' => 'required',
         ], $custom);
-        
+
         if ($findPSS != NULL && $PSS != NULL) {
             if ($BMVS->dateTaken == NULL) {
                 //date, time, weight, height, bmi will be auto calculate, temperature
@@ -252,7 +252,7 @@ class SP_BMVS_Controller extends Controller
         }
     }
 
-    public function updateSP($findPSS,$PSS,$BAT,$request){
+    public function updateSP($findPSS,$PSS,$BMVS,$request){
         if ($findPSS != NULL) {
             //date, time, weight, height, bmi will be auto calculate, temperature
             $BMVS->dateTaken = $request->dateTaken;
@@ -316,5 +316,12 @@ class SP_BMVS_Controller extends Controller
             return false;
         }
     }
-
+    public function calculateBMI($height, $weight)
+    {
+        $m_height = $height / 100;
+        $actual_height = $m_height * $m_height;
+        $bmi = $weight / $actual_height;
+        $final_bmi = number_format($bmi, 1);
+        return $final_bmi;
+    }
 }
