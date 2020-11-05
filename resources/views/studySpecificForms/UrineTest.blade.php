@@ -68,20 +68,20 @@
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::label('UPreg_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('uPreg_Laboratory', 'Laboratory: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('UPreg_Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'Sarawak General Hospital Heart Centre']) !!}
+        {!! Form::radio('uPreg_Laboratory', 'Sarawak General Hospital Heart Centre','',['id'=>'Sarawak General Hospital Heart Centre']) !!}
         {!! Form::label('Sarawak General Hospital Heart Centre', 'Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('UPreg_Laboratory', 'Other','',['id'=>'Other']) !!}
+                {!! Form::radio('uPreg_Laboratory', 'Other','',['id'=>'Other']) !!}
                 {!! Form::label('Other', 'Other: ') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UPreg_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('uPreg_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
@@ -161,20 +161,20 @@
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::label('UDrug_Laboratory', 'Laboratory: ') !!}
+        {!! Form::label('uDrug_Laboratory', 'Laboratory: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::radio('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
-        {!! Form::label('UDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::radio('uDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
+        {!! Form::label('uDrug_Laboratory', 'Sarawak General Hospital Heart Centre') !!}
     </div>
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-                {!! Form::radio('UDrug_Laboratory', 'Other') !!}
-                {!! Form::label('UDrug_Laboratory', 'Others') !!}
+                {!! Form::radio('uDrug_Laboratory', 'Other') !!}
+                {!! Form::label('uDrug_Laboratory', 'Others') !!}
             </div>
             <div class="col-md-7">
-                {!! Form::text('UDrug_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                {!! Form::text('uDrug_Laboratory_Text', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
             </div>
         </div>
     </div>
