@@ -134,7 +134,7 @@ class SP_BMVS_Controller extends Controller
         }
     }
 
-    public function storeSP($findPSS,$PSS,$BAT,$request)
+    public function storeSP($findPSS,$PSS,$BMVS,$request)
     {
         //custom messages load for validation
         $custom = [
@@ -252,7 +252,7 @@ class SP_BMVS_Controller extends Controller
         }
     }
 
-    public function updateSP($findPSS,$PSS,$BAT,$request){
+    public function updateSP($findPSS,$PSS,$BMVS,$request){
         if ($findPSS != NULL) {
             //date, time, weight, height, bmi will be auto calculate, temperature
             $BMVS->dateTaken = $request->dateTaken;
