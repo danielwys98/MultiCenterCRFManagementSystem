@@ -195,70 +195,69 @@ class SP_VitalSign_Controller extends Controller
             'TPD_48_Respiration.required' => 'Please enter the vital signs respiration rate of 48hr time post dose',
             'TPD_48_TakenBy.required' => 'Please enter the vital signs physician name of 48hr time post dose',
         ];
-
-        //validation for required fields
-        $validatedData = $this->validate($request, [
-            'TPD_1_Date' => 'required',
-            'TPD_1_ReadingTime' => 'required',
-            'TPD_1_SittingBP_S' => 'required',
-            'TPD_1_SittingBP_D' => 'required',
-            'TPD_1_Pulse' => 'required',
-            'TPD_1_Respiration' => 'required',
-            'TPD_1_TakenBy' => 'required',
-
-            'TPD_2_Date' => 'required',
-            'TPD_2_ReadingTime' => 'required',
-            'TPD_2_SittingBP_S' => 'required',
-            'TPD_2_SittingBP_D' => 'required',
-            'TPD_2_Pulse' => 'required',
-            'TPD_2_Respiration' => 'required',
-            'TPD_2_TakenBy' => 'required',
-
-            'TPD_5_Date' => 'required',
-            'TPD_5_ReadingTime' => 'required',
-            'TPD_5_SittingBP_S' => 'required',
-            'TPD_5_SittingBP_D' => 'required',
-            'TPD_5_Pulse' => 'required',
-            'TPD_5_Respiration' => 'required',
-            'TPD_5_TakenBy' => 'required',
-
-            'TPD_8_Date' => 'required',
-            'TPD_8_ReadingTime' => 'required',
-            'TPD_8_SittingBP_S' => 'required',
-            'TPD_8_SittingBP_D' => 'required',
-            'TPD_8_Pulse' => 'required',
-            'TPD_8_Respiration' => 'required',
-            'TPD_8_TakenBy' => 'required',
-
-            'TPD_12_Date' => 'required',
-            'TPD_12_ReadingTime' => 'required',
-            'TPD_12_SittingBP_S' => 'required',
-            'TPD_12_SittingBP_D' => 'required',
-            'TPD_12_Pulse' => 'required',
-            'TPD_12_Respiration' => 'required',
-            'TPD_12_TakenBy' => 'required',
-
-            'TPD_36_Date' => 'required',
-            'TPD_36_ReadingTime' => 'required',
-            'TPD_36_SittingBP_S' => 'required',
-            'TPD_36_SittingBP_D' => 'required',
-            'TPD_36_Pulse' => 'required',
-            'TPD_36_Respiration' => 'required',
-            'TPD_36_TakenBy' => 'required',
-
-            'TPD_48_Date' => 'required',
-            'TPD_48_ReadingTime' => 'required',
-            'TPD_48_SittingBP_S' => 'required',
-            'TPD_48_SittingBP_D' => 'required',
-            'TPD_48_Pulse' => 'required',
-            'TPD_48_Respiration' => 'required',
-            'TPD_48_TakenBy' => 'required',
-        ], $custom);
         
         if($findPSS !=NULL && $PSS != NULL){
             if($VitalSign->TPD_1_Date == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
+                //validation for required fields
+                $validatedData = $this->validate($request, [
+                    'TPD_1_Date' => 'required',
+                    'TPD_1_ReadingTime' => 'required',
+                    'TPD_1_SittingBP_S' => 'required',
+                    'TPD_1_SittingBP_D' => 'required',
+                    'TPD_1_Pulse' => 'required',
+                    'TPD_1_Respiration' => 'required',
+                    'TPD_1_TakenBy' => 'required',
+
+                    'TPD_2_Date' => 'required',
+                    'TPD_2_ReadingTime' => 'required',
+                    'TPD_2_SittingBP_S' => 'required',
+                    'TPD_2_SittingBP_D' => 'required',
+                    'TPD_2_Pulse' => 'required',
+                    'TPD_2_Respiration' => 'required',
+                    'TPD_2_TakenBy' => 'required',
+
+                    'TPD_5_Date' => 'required',
+                    'TPD_5_ReadingTime' => 'required',
+                    'TPD_5_SittingBP_S' => 'required',
+                    'TPD_5_SittingBP_D' => 'required',
+                    'TPD_5_Pulse' => 'required',
+                    'TPD_5_Respiration' => 'required',
+                    'TPD_5_TakenBy' => 'required',
+
+                    'TPD_8_Date' => 'required',
+                    'TPD_8_ReadingTime' => 'required',
+                    'TPD_8_SittingBP_S' => 'required',
+                    'TPD_8_SittingBP_D' => 'required',
+                    'TPD_8_Pulse' => 'required',
+                    'TPD_8_Respiration' => 'required',
+                    'TPD_8_TakenBy' => 'required',
+
+                    'TPD_12_Date' => 'required',
+                    'TPD_12_ReadingTime' => 'required',
+                    'TPD_12_SittingBP_S' => 'required',
+                    'TPD_12_SittingBP_D' => 'required',
+                    'TPD_12_Pulse' => 'required',
+                    'TPD_12_Respiration' => 'required',
+                    'TPD_12_TakenBy' => 'required',
+
+                    'TPD_36_Date' => 'required',
+                    'TPD_36_ReadingTime' => 'required',
+                    'TPD_36_SittingBP_S' => 'required',
+                    'TPD_36_SittingBP_D' => 'required',
+                    'TPD_36_Pulse' => 'required',
+                    'TPD_36_Respiration' => 'required',
+                    'TPD_36_TakenBy' => 'required',
+
+                    'TPD_48_Date' => 'required',
+                    'TPD_48_ReadingTime' => 'required',
+                    'TPD_48_SittingBP_S' => 'required',
+                    'TPD_48_SittingBP_D' => 'required',
+                    'TPD_48_Pulse' => 'required',
+                    'TPD_48_Respiration' => 'required',
+                    'TPD_48_TakenBy' => 'required',
+                ], $custom);
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {

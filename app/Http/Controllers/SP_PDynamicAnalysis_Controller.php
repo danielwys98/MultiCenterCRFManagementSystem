@@ -86,14 +86,13 @@ class SP_PDynamicAnalysis_Controller extends Controller
                                         ->where('study_id',$study_id)
                                         ->first();
         //check study period and save
-        dd($request);
         if($study_period == 1){
             //SP1 query
             $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $PSS = $findPSS->SP1_ID;
             $PDAnalysis = SP1_PDynamicAnalysis::where('SP1_PDynamicAnalysis_ID',$SP1->SP1_PDynamicAnalysis)->first();
             if($this->updateSP($findPSS,$PSS,$PDAnalysis,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.edit',$study_id))->with('success','You have successfully update the study period 1 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.edit',$study_id));
@@ -104,7 +103,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
             $PSS = $findPSS->SP2_ID;
             $PDAnalysis = SP2_PDynamicAnalysis::where('SP2_PDynamicAnalysis_ID',$SP2->SP2_PDynamicAnalysis)->first();
             if($this->updateSP($findPSS,$PSS,$PDAnalysis,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.edit',$study_id))->with('success','You have successfully update the study period 2 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.edit',$study_id));
@@ -115,7 +114,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
             $PSS = $findPSS->SP3_ID;
             $PDAnalysis = SP3_PDynamicAnalysis::where('SP3_PDynamicAnalysis_ID',$SP3->SP3_PDynamicAnalysis)->first();
             if($this->updateSP($findPSS,$PSS,$PDAnalysis,$request)){
-                return redirect(route('studySpecific.admin',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacodynamic (PD) Analysis sampling!');
+                return redirect(route('studySpecific.edit',$study_id))->with('success','You have successfully update the study period 3 details for Pharmacodynamic (PD) Analysis sampling!');
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.edit',$study_id));
@@ -203,73 +202,9 @@ class SP_PDynamicAnalysis_Controller extends Controller
             'pda_S9_Conducted.required' => 'Please enter the person collected for S9 Pharmacodynamic (PD) Analysis',
             'pda_S9_Checked.required' => 'Please enter the person checked for S9 Pharmacodynamic (PD) Analysis',
         ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'Day1' => 'required',
-            'Day2' => 'required',
 
-            'pda_Date_Day_PD' => 'required',
-            'pda_PD_Result' => 'required',
-            'pda_PD_Conducted' => 'required',
-            'pda_PD_Checked' => 'required',
-
-            'pda_Date_Day_S1' => 'required',
-            'pda_S1_Time' => 'required',
-            'pda_S1_Result' => 'required',
-            'pda_S1_Conducted' => 'required',
-            'pda_S1_Checked' => 'required',
-
-            'pda_Date_Day_S2' => 'required',
-            'pda_S2_Time' => 'required',
-            'pda_S2_Result' => 'required',
-            'pda_S2_Conducted' => 'required',
-            'pda_S2_Checked' => 'required',
-
-            'pda_Date_Day_S3' => 'required',
-            'pda_S3_Time' => 'required',
-            'pda_S3_Result' => 'required',
-            'pda_S3_Conducted' => 'required',
-            'pda_S3_Checked' => 'required',
-
-            'pda_Date_Day_S4' => 'required',
-            'pda_S4_Time' => 'required',
-            'pda_S4_Result' => 'required',
-            'pda_S4_Conducted' => 'required',
-            'pda_S4_Checked' => 'required',
-
-            'pda_Date_Day_S5' => 'required',
-            'pda_S5_Time' => 'required',
-            'pda_S5_Result' => 'required',
-            'pda_S5_Conducted' => 'required',
-            'pda_S5_Checked' => 'required',
-
-            'pda_Date_Day_S6' => 'required',
-            'pda_S6_Time' => 'required',
-            'pda_S6_Result' => 'required',
-            'pda_S6_Conducted' => 'required',
-            'pda_S6_Checked' => 'required',
-
-            'pda_Date_Day_S7' => 'required',
-            'pda_S7_Time' => 'required',
-            'pda_S7_Result' => 'required',
-            'pda_S7_Conducted' => 'required',
-            'pda_S7_Checked' => 'required',
-
-            'pda_Date_Day_S8' => 'required',
-            'pda_S8_Time' => 'required',
-            'pda_S8_Result' => 'required',
-            'pda_S8_Conducted' => 'required',
-            'pda_S8_Checked' => 'required',
-
-            'pda_Date_Day_S9' => 'required',
-            'pda_S9_Time' => 'required',
-            'pda_S9_Result' => 'required',
-            'pda_S9_Conducted' => 'required',
-            'pda_S9_Checked' => 'required',
-        ],$custom);
         if($findPSS !=NULL && $PSS != NULL){
             if($PDAnalysis->Day1 == NULL){
-                $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
                 if($request->NApplicable == 1){
                     foreach($data as $key=>$value){
@@ -280,6 +215,70 @@ class SP_PDynamicAnalysis_Controller extends Controller
                         }
                     }
                 }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'Day1' => 'required',
+                        'Day2' => 'required',
+
+                        'pda_Date_Day_PD' => 'required',
+                        'pda_PD_Result' => 'required',
+                        'pda_PD_Conducted' => 'required',
+                        'pda_PD_Checked' => 'required',
+
+                        'pda_Date_Day_S1' => 'required',
+                        'pda_S1_Time' => 'required',
+                        'pda_S1_Result' => 'required',
+                        'pda_S1_Conducted' => 'required',
+                        'pda_S1_Checked' => 'required',
+
+                        'pda_Date_Day_S2' => 'required',
+                        'pda_S2_Time' => 'required',
+                        'pda_S2_Result' => 'required',
+                        'pda_S2_Conducted' => 'required',
+                        'pda_S2_Checked' => 'required',
+
+                        'pda_Date_Day_S3' => 'required',
+                        'pda_S3_Time' => 'required',
+                        'pda_S3_Result' => 'required',
+                        'pda_S3_Conducted' => 'required',
+                        'pda_S3_Checked' => 'required',
+
+                        'pda_Date_Day_S4' => 'required',
+                        'pda_S4_Time' => 'required',
+                        'pda_S4_Result' => 'required',
+                        'pda_S4_Conducted' => 'required',
+                        'pda_S4_Checked' => 'required',
+
+                        'pda_Date_Day_S5' => 'required',
+                        'pda_S5_Time' => 'required',
+                        'pda_S5_Result' => 'required',
+                        'pda_S5_Conducted' => 'required',
+                        'pda_S5_Checked' => 'required',
+
+                        'pda_Date_Day_S6' => 'required',
+                        'pda_S6_Time' => 'required',
+                        'pda_S6_Result' => 'required',
+                        'pda_S6_Conducted' => 'required',
+                        'pda_S6_Checked' => 'required',
+
+                        'pda_Date_Day_S7' => 'required',
+                        'pda_S7_Time' => 'required',
+                        'pda_S7_Result' => 'required',
+                        'pda_S7_Conducted' => 'required',
+                        'pda_S7_Checked' => 'required',
+
+                        'pda_Date_Day_S8' => 'required',
+                        'pda_S8_Time' => 'required',
+                        'pda_S8_Result' => 'required',
+                        'pda_S8_Conducted' => 'required',
+                        'pda_S8_Checked' => 'required',
+
+                        'pda_Date_Day_S9' => 'required',
+                        'pda_S9_Time' => 'required',
+                        'pda_S9_Result' => 'required',
+                        'pda_S9_Conducted' => 'required',
+                        'pda_S9_Checked' => 'required',
+                    ],$custom);
                     foreach($data as $key=>$value){
                         if($value != NULL)
                         {
@@ -289,9 +288,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
                     }
                 }
                 $PDAnalysis->NApplicable=$request->NApplicable;
-                if($flag){
-                    $PDAnalysis->save();
-                }
+                $PDAnalysis->save();
                 return true;
             }else{
                 return false;
@@ -303,7 +300,6 @@ class SP_PDynamicAnalysis_Controller extends Controller
     //update
     public function updateSP($findPSS,$PSS,$PDAnalysis,$request){
         if($findPSS !=NULL){
-            $flag=false;
             $data = $request->except('_token','_method');
             if($request->NApplicable == 1){
                 foreach($data as $key=>$value){
@@ -323,13 +319,11 @@ class SP_PDynamicAnalysis_Controller extends Controller
                 }
             }
             $PDAnalysis->NApplicable=$request->NApplicable;
-            if($flag){
                 $PDAnalysis->save();
-            }
             return true;
         }else{
             return false;
         }
     }
-    
+
 }

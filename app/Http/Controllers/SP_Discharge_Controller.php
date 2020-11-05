@@ -73,7 +73,11 @@ class SP_Discharge_Controller extends Controller
                 alert()->error('Error!', 'This subject is not enrolled into any study!');
                 return redirect(route('studySpecific.input', $study_id));
             }
-        }
+        }else
+            {
+                alert()->error('Error!','You did not select the study period!');
+                return redirect(route('studySpecific.input', $study_id));
+            }
     }
 
     public function update(Request $request, $patient_id, $study_id,$study_period)
@@ -126,6 +130,9 @@ class SP_Discharge_Controller extends Controller
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.edit',$study_id));
             }
+        }else{
+            alert()->error('Error!','You did not select the study period!');
+            return redirect(route('studySpecific.edit',$study_id));
         }
     }
 
@@ -147,26 +154,25 @@ class SP_Discharge_Controller extends Controller
             'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
             'Initial.required' => 'Initial of the physician’s is required',
         ];
-        //validation for required fields
-        $validatedData = $this->validate($request, [
-            'DischargeDate' => 'required',
-            'unscheduledDischarge' => 'required',
-            'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
-            'Sitting_ReadingTime' => 'required',
-            'Sitting_BP_S' => 'required',
-            'Sitting_BP_D' => 'required',
-            'Sitting_HR' => 'required',
-            'Sitting_RespiratoryRate' => 'required',
-            'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Others',
-            'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'Initial' => 'required',
-        ], $custom);
 
         if ($findPSS != NULL && $PSS != NULL) {
-            $flag = false;
+            //validation for required fields
+            $validatedData = $this->validate($request, [
+                'DischargeDate' => 'required',
+                'unscheduledDischarge' => 'required',
+                'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+                'Sitting_ReadingTime' => 'required',
+                'Sitting_BP_S' => 'required',
+                'Sitting_BP_D' => 'required',
+                'Sitting_HR' => 'required',
+                'Sitting_RespiratoryRate' => 'required',
+                'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
+                'Initial' => 'required',
+            ], $custom);
             $Discharge->DischargeDate = $request->DischargeDate;
             $ud = $request->unscheduledDischarge;
             if ($ud == 'Yes') {
@@ -182,11 +188,10 @@ class SP_Discharge_Controller extends Controller
             $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
             //repeated sitting record
             $repeat = $request->SittingRepeat;
-            $Discharge->SittingRepeat = $request->sittingRepeat;
+            $Discharge->SittingRepeat = $request->SittingRepeat;
             if ($repeat == 'Yes') {
                 //if sitting is repeated
                 $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
                 $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
                 $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
                 $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
@@ -194,25 +199,56 @@ class SP_Discharge_Controller extends Controller
             } else {
                 //if sitting is repeated is NA
                 $Discharge->SittingRepeat_ReadingTime = NULL;
-                $Discharge->SittingRepeat_BP = NULL;
                 $Discharge->SittingRepeat_BP_S = NULL;
                 $Discharge->SittingRepeat_BP_D = NULL;
                 $Discharge->SittingRepeat_HR = NULL;
                 $Discharge->SittingRepeat_RespiratoryRate = NULL;
             }
             $Discharge->Initial = $request->Initial;
-            if ($flag) {
-                $Discharge->save();
-            }
+            $Discharge->save();
+            return true;
         }else{
             return false;
         }
     }
 
-    public function updateSP($findPSS,$PSS,$Discharge,$request)
-    {
+    public function updateSP($findPSS,$PSS,$Discharge,$request){
+        //custom messages load for validation
+        $custom = [
+            'DischargeDate.required' => 'Please enter the discharge date',
+            'unscheduledDischarge.required' => 'Please state whether is it an unscheduled discharge',
+            'unscheduledDischarge_Text.required_if' => 'If it is an unscheduled discharge, please state why',
+            'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
+            'Sitting_BP_S.required' => 'Please enter the systolic for Blood Pressure',
+            'Sitting_BP_D.required' => 'Please enter the diastolic for Blood Pressure',
+            'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
+            'Sitting_RespiratoryRate.required' => 'Please enter the Sitting Respiratory Rate',
+            'SittingRepeat_ReadingTime.required_if' => 'Please enter the Sitting Reading Time for the repeated test',
+            'SittingRepeat_BP_S.required_if' => 'Please enter the systolic for Blood Pressure for the repeated test',
+            'SittingRepeat_BP_D.required_if' => 'Please enter the diastolic for Blood Pressure for the repeated test',
+            'SittingRepeat_HR.required_if' => 'Please enter the Sitting Heart Rate for the repeated test',
+            'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
+            'Initial.required' => 'Initial of the physician’s is required',
+        ];
+
         if ($findPSS != NULL) {
-            $flag = false;
+            //validation for required fields
+            $validatedData = $this->validate($request, [
+                'DischargeDate' => 'required',
+                'unscheduledDischarge' => 'required',
+                'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+                'Sitting_ReadingTime' => 'required',
+                'Sitting_BP_S' => 'required',
+                'Sitting_BP_D' => 'required',
+                'Sitting_HR' => 'required',
+                'Sitting_RespiratoryRate' => 'required',
+                'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
+                'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
+                'Initial' => 'required',
+            ], $custom);
             $Discharge->DischargeDate = $request->DischargeDate;
             $ud = $request->unscheduledDischarge;
             if ($ud == 'Yes') {
@@ -232,7 +268,6 @@ class SP_Discharge_Controller extends Controller
             if ($repeat == 'Yes') {
                 //if sitting is repeated
                 $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                $Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
                 $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
                 $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
                 $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
@@ -240,16 +275,13 @@ class SP_Discharge_Controller extends Controller
             } else {
                 //if sitting is repeated is NA
                 $Discharge->SittingRepeat_ReadingTime = NULL;
-                $Discharge->SittingRepeat_BP = NULL;
                 $Discharge->SittingRepeat_BP_S = NULL;
                 $Discharge->SittingRepeat_BP_D = NULL;
                 $Discharge->SittingRepeat_HR = NULL;
                 $Discharge->SittingRepeat_RespiratoryRate = NULL;
             }
             $Discharge->Initial = $request->Initial;
-            if ($flag) {
-                $Discharge->save();
-            }
+            $Discharge->save();
             return true;
         }else{
             return false;

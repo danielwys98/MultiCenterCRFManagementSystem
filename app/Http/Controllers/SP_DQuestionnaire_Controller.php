@@ -146,19 +146,19 @@ class SP_DQuestionnaire_Controller extends Controller
             'PhysicianSign.required' => 'Physician’s signature is required',
             'PhysicianName.required' => 'Physician’s name is required',
         ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'DQtimeTaken' => 'required',
-            'Oriented' => 'required',
-            'ReadyDischarge' => 'required',
-            'PhysicianSign' => 'required',
-            'PhysicianName' => 'required',
-        ],$custom);
 
         if($findPSS !=NULL && $PSS != NULL){
             if($DQuestionnaire->DQtimeTaken == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
+                //validation for required fields
+                $validatedData=$this->validate($request,[
+                    'DQtimeTaken' => 'required',
+                    'Oriented' => 'required',
+                    'ReadyDischarge' => 'required',
+                    'PhysicianSign' => 'required',
+                    'PhysicianName' => 'required',
+                ],$custom);
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
@@ -179,9 +179,26 @@ class SP_DQuestionnaire_Controller extends Controller
 
     //update
     public function updateSP($findPSS,$PSS,$DQuestionnaire,$request){
+        //custom messages load for validation
+        $custom = [
+            'DQtimeTaken.required' => 'Please enter the discharge time taken',
+            'Oriented.required' => 'Please select the subject oriented',
+            'ReadyDischarge.required' => 'Please select whether the subject is fit for discharge',
+            'PhysicianSign.required' => 'Physician’s signature is required',
+            'PhysicianName.required' => 'Physician’s name is required',
+        ];
+        
         if($findPSS !=NULL){
             $flag=false;
             $data = $request->except('_token','_method');
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'DQtimeTaken' => 'required',
+                'Oriented' => 'required',
+                'ReadyDischarge' => 'required',
+                'PhysicianSign' => 'required',
+                'PhysicianName' => 'required',
+            ],$custom);
             foreach($data as $key=>$value){
                 if($value != NULL)
                 {

@@ -23,11 +23,11 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-2">
-            {!! Form::radio('unscheduledDischarge', 'Yes',($Discharge->UnscheduledDischarge!='No')? 'checked' : '') !!}
+            {!! Form::radio('unscheduledDischarge', 'Yes',($Discharge->UnscheduledDischarge!='No'AND $Discharge->UnscheduledDischarge!=NULL)? 'checked' : '') !!}
             {!! Form::label('UnscheduledDischarge ', 'Yes ') !!}
             </div>
             <div class="col-md-7">
-            {!! Form::text('unscheduledDischarge_Text', ($Discharge->UnscheduledDischarge!='No' &&$Discharge->UnscheduledDischarge!=NULL)?  $Discharge->UnscheduledDischarge: '',['class'=>'form-control','placeholder'=>'If yes, please explain']) !!}
+            {!! Form::text('unscheduledDischarge_Text', ($Discharge->UnscheduledDischarge!='No' )?  $Discharge->UnscheduledDischarge: '',['class'=>'form-control','placeholder'=>'If yes, please explain']) !!}
             </div>
         </div>
     </div>

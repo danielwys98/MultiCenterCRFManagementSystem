@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //Testing route
 Route::get('/testing','studySpecificController@testing')->name('testing');
 
-Route::post('/testing/{id}','studySpecificController@testPost')->name('testPost');
+Route::get('/downloadPDF/preScreening','studySpecificController@testPDFPreScreening');
 
 Route::get('/downloadPDF/','studySpecificController@testPDF')->name('test.PDF');
 //Testing route ends here
@@ -89,7 +89,7 @@ Route::post('sp_iq96/{id}','SP_IQ96_Controller@store')->name('sp_IQuestionnaire9
 Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Controller@update')->name('sp_IQuestionnaire96.update');
 
 //this is to edit the studies detail and the subject study details
-Route::post('/studySpecific/details/edit/{id}','SP1_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
+Route::post('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');

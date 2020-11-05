@@ -158,26 +158,6 @@ class SP_IQ48_Controller extends Controller
             'Interim48hrsInterviewedby.required' => 'Please state interviewed by who for Interim Questionnaire(48hrs pose dose vist)',
             'Interim48hrsCheckedby.required' => 'Please state checked by who for Interim Questionnaire(48hrs pose dose vist)',
            ];
-           //validation for required fields
-           $validatedData=$this->validate($request,[
-            'dateTaken' => 'required',
-            'timeTaken' => 'required',
-            'Interim48hrs01' => 'required',
-            'Interim48hrs02' => 'required',
-            'Interim48hrs03' => 'required',
-            'Interim48hrs03txt' => 'required_if:Interim48hrs03,==,Yes',
-            'Interim48hrs04' => 'required',
-            'Interim48hrs04txt' => 'required_if:Interim48hrs04,==,Yes',
-            'Interim48hrs05' => 'required',
-            'Interim48hrs05txt' => 'required_if:Interim48hrs05,==,Yes',
-            'Interim48hrs06' => 'required',
-            'Interim48hrs06txt' => 'required_if:Interim48hrs06,==,Yes',
-            'Interim48hrs07' => 'required',
-            'Interim48hrs07txt' => 'required_if:Interim48hrs07,==,Yes',
-            'Interim48hrs08' => 'required',
-            'Interim48hrsInterviewedby' => 'required',
-            'Interim48hrsCheckedby' => 'required',
-        ],$custom);
 
         if($findPSS !=NULL && $PSS!= NULL){
             if($IQ48->dateTaken == NULL){
@@ -196,6 +176,26 @@ class SP_IQ48_Controller extends Controller
                     $IQ48->Interim48hrsInterviewedby=NULL;
                     $IQ48->Interim48hrsCheckedby=NULL;
                 }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'dateTaken' => 'required',
+                        'timeTaken' => 'required',
+                        'Interim48hrs01' => 'required',
+                        'Interim48hrs02' => 'required',
+                        'Interim48hrs03' => 'required',
+                        'Interim48hrs03txt' => 'required_if:Interim48hrs03,==,Yes',
+                        'Interim48hrs04' => 'required',
+                        'Interim48hrs04txt' => 'required_if:Interim48hrs04,==,Yes',
+                        'Interim48hrs05' => 'required',
+                        'Interim48hrs05txt' => 'required_if:Interim48hrs05,==,Yes',
+                        'Interim48hrs06' => 'required',
+                        'Interim48hrs06txt' => 'required_if:Interim48hrs06,==,Yes',
+                        'Interim48hrs07' => 'required',
+                        'Interim48hrs07txt' => 'required_if:Interim48hrs07,==,Yes',
+                        'Interim48hrs08' => 'required',
+                        'Interim48hrsInterviewedby' => 'required',
+                        'Interim48hrsCheckedby' => 'required',
+                    ],$custom);
                     //date and time for interim questionnaire
                     $IQ48->dateTaken=$request->dateTaken;
                     $IQ48->timeTaken=$request->timeTaken;
@@ -249,6 +249,26 @@ class SP_IQ48_Controller extends Controller
 
     //update
     public function updateSP($findPSS,$PSS,$IQ48,$request){
+        //custom messages load for validation
+        $custom = [
+            'dateTaken.required' => 'Please enter the date taken for Interim Questionnaire(48hrs pose dose vist)',
+            'timeTaken.required' => 'Please enter the time taken for Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs01.required' => 'Please choose a selection for number 1 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs02.required' => 'Please choose a selection for number 2 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs03.required' => 'Please choose a selection for number 3 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs03txt.required_if' => 'Please specify amount and time taken for number 3 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs04.required' => 'Please choose a selection for number 4 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs04txt.required_if' => 'Please specify amount and time taken for number 4 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs05.required' => 'Please choose a selection for number 5 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs05txt.required_if' => 'Please provide details for number 5 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs06.required' => 'Please choose a selection for number 6 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs06txt.required_if' => 'Please provide details for number 6 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs07.required' => 'Please choose a selection for number 7 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs07txt.required_if' => 'Please provide details for number 7 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrs08.required' => 'Please choose a selection for number 8 in Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrsInterviewedby.required' => 'Please state interviewed by who for Interim Questionnaire(48hrs pose dose vist)',
+            'Interim48hrsCheckedby.required' => 'Please state checked by who for Interim Questionnaire(48hrs pose dose vist)',
+           ];
         if($findPSS !=NULL){
             $IQ48->NApplicable=$request->NApplicable;
             if($request->NApplicable == 1){
@@ -264,6 +284,26 @@ class SP_IQ48_Controller extends Controller
                 $IQ48->Interim48hrsInterviewedby=NULL;
                 $IQ48->Interim48hrsCheckedby=NULL;
             }else{
+                //validation for required fields
+                $validatedData=$this->validate($request,[
+                    'dateTaken' => 'required',
+                    'timeTaken' => 'required',
+                    'Interim48hrs01' => 'required',
+                    'Interim48hrs02' => 'required',
+                    'Interim48hrs03' => 'required',
+                    'Interim48hrs03txt' => 'required_if:Interim48hrs03,==,Yes',
+                    'Interim48hrs04' => 'required',
+                    'Interim48hrs04txt' => 'required_if:Interim48hrs04,==,Yes',
+                    'Interim48hrs05' => 'required',
+                    'Interim48hrs05txt' => 'required_if:Interim48hrs05,==,Yes',
+                    'Interim48hrs06' => 'required',
+                    'Interim48hrs06txt' => 'required_if:Interim48hrs06,==,Yes',
+                    'Interim48hrs07' => 'required',
+                    'Interim48hrs07txt' => 'required_if:Interim48hrs07,==,Yes',
+                    'Interim48hrs08' => 'required',
+                    'Interim48hrsInterviewedby' => 'required',
+                    'Interim48hrsCheckedby' => 'required',
+                ],$custom);
                 //date and time for interim questionnaire
                 $IQ48->dateTaken=$request->dateTaken;
                 $IQ48->timeTaken=$request->timeTaken;

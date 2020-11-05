@@ -96,48 +96,68 @@ class SP_Admission_Controller extends Controller
         $findPSS = PatientStudySpecific::where('patient_id',$PID)
                                         ->where('study_id',$study_id)
                                         ->first();
-        $this->bindingSP($findPSS,$study_period);
+        $binded=false;
+        if($findPSS != NULL)
+        {
+            $this->bindingSP($findPSS,$study_period);
+            $binded = true;
+        }
+        if($binded){
         //PSS found and SP1_ID is bind
         if($study_period == 1){
-            //SP1 query
-            $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
-            $PSS = $findPSS->SP1_ID;
-            $admission = SP1_Admission::where('SP1_Admission_ID',$SP1->SP1_Admission)->first();
-            if($this->initaliseForms($findPSS,$PID,$study_id) AND $this->storeSP($findPSS,$PSS,$admission,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Admission!');
+            if($this->initaliseForms($findPSS,$PID,$study_id)){
+                //SP1 queries
+                $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
+                $PSS = $findPSS->SP1_ID;
+                $admission = SP1_Admission::where('SP1_Admission_ID',$SP1->SP1_Admission)->first();
+                if($this->storeSP($findPSS,$PSS,$admission,$request)){
+                 return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 1 details for Admission!');
+                }
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.input',$study_id));
             }
         }elseif($study_period == 2){
-            //SP2 query
-            $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
-            $PSS = $findPSS->SP2_ID;
-            $admission = SP2_Admission::where('SP2_Admission_ID',$SP2->SP2_Admission)->first();
-            if($this->initaliseFormsSP2($findPSS,$PID,$study_id) AND $this->storeSP($findPSS,$PSS,$admission,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Admission!');
-            }else{
+            //SP2 queries
+            if($this->initaliseFormsSP2($findPSS,$PID,$study_id))
+            {
+                $SP2 = StudyPeriod2::where('SP2_ID',$findPSS->SP2_ID)->first();
+                $PSS = $findPSS->SP2_ID;
+                $admission = SP2_Admission::where('SP2_Admission_ID',$SP2->SP2_Admission)->first();
+                if($this->storeSP($findPSS,$PSS,$admission,$request))
+                {
+                    return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Admission!');
+                }
+        }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.input',$study_id));
             }
         }elseif($study_period == 3){
-            //SP3 query
-            $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
-            $PSS = $findPSS->SP3_ID;
-            $admission = SP3_Admission::where('SP3_Admission_ID',$SP3->SP3_Admission)->first();
-            if($this->initaliseFormsSP3($findPSS,$PID,$study_id) AND $this->storeSP($findPSS,$PSS,$admission,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 3 details for Admission!');
+            //SP3 queries
+            if($this->initaliseFormsSP3($findPSS,$PID,$study_id))
+            {
+                $SP3 = StudyPeriod3::where('SP3_ID',$findPSS->SP3_ID)->first();
+                $PSS = $findPSS->SP3_ID;
+                $admission = SP3_Admission::where('SP3_Admission_ID',$SP3->SP3_Admission)->first();
+                if($this->storeSP($findPSS,$PSS,$admission,$request))
+                {
+                    return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Admission!');
+                }
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.input',$study_id));
             }
         }elseif($study_period==4){
-            //SP4 query
-            $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
-            $PSS = $findPSS->SP4_ID;
-            $admission = SP4_Admission::where('SP4_Admission_ID',$SP4->SP4_Admission)->first();
-            if($this->initaliseFormsSP4($findPSS,$PID,$study_id) AND $this->storeSP($findPSS,$PSS,$admission,$request)){
-                return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 4 details for Admission!');
+            //SP4 queries
+            if($this->initaliseFormsSP4($findPSS,$PID,$study_id))
+            {
+                $SP4 = StudyPeriod4::where('SP4_ID',$findPSS->SP4_ID)->first();
+                $PSS = $findPSS->SP4_ID;
+                $admission = SP4_Admission::where('SP4_Admission_ID',$SP4->SP4_Admission)->first();
+                if($this->storeSP($findPSS,$PSS,$admission,$request))
+                {
+                    return redirect(route('studySpecific.input',$study_id))->with('success','You have successfully save the study period 2 details for Admission!');
+                }
             }else{
                 alert()->error('Error!','You have already key the data for this subject!');
                 return redirect(route('studySpecific.input',$study_id));
@@ -145,6 +165,7 @@ class SP_Admission_Controller extends Controller
         }else{
             alert()->error('Error!','You did not select the study period!');
             return redirect(route('studySpecific.input',$study_id));
+        }
         }
     }
 
@@ -580,8 +601,8 @@ class SP_Admission_Controller extends Controller
             $SP2->SP2_VitalSign=$VitalSign->SP2_VitalSign_ID;
             $SP2->SP2_IQ36 = $IQ36->SP2_IQ36_ID;
             $SP2->SP2_IQ48 = $IQ48->SP2_IQ48_ID;
-            $SP2->SP1_IQ72 = $IQ72->SP2_IQ72_ID;
-            $SP2->SP1_IQ96 = $IQ96->SP2_IQ96_ID;
+            $SP2->SP2_IQ72 = $IQ72->SP2_IQ72_ID;
+            $SP2->SP2_IQ96 = $IQ96->SP2_IQ96_ID;
 
             $SP2->save();
             //if all thing is saved and return true.
@@ -670,8 +691,8 @@ class SP_Admission_Controller extends Controller
         $SP3->SP3_VitalSign=$VitalSign->SP3_VitalSign_ID;
         $SP3->SP3_IQ36 = $IQ36->SP3_IQ36_ID;
         $SP3->SP3_IQ48 = $IQ48->SP3_IQ48_ID;
-        $SP3->SP1_IQ72 = $IQ72->SP3_IQ72_ID;
-        $SP3->SP1_IQ96 = $IQ96->SP3_IQ96_ID;
+        $SP3->SP3_IQ72 = $IQ72->SP3_IQ72_ID;
+        $SP3->SP3_IQ96 = $IQ96->SP3_IQ96_ID;
 
         $SP3->save();
         //if all thing is saved and return true.
@@ -759,8 +780,8 @@ class SP_Admission_Controller extends Controller
             $SP4->SP4_VitalSign=$VitalSign->SP4_VitalSign_ID;
             $SP4->SP4_IQ36 = $IQ36->SP4_IQ36_ID;
             $SP4->SP4_IQ48 = $IQ48->SP4_IQ48_ID;
-            $SP4->SP1_IQ72 = $IQ72->SP4_IQ72_ID;
-            $SP4->SP1_IQ96 = $IQ96->SP4_IQ96_ID;
+            $SP4->SP4_IQ72 = $IQ72->SP4_IQ72_ID;
+            $SP4->SP4_IQ96 = $IQ96->SP4_IQ96_ID;
 
             $SP4->save();
             //if all thing is saved and return true.
@@ -777,15 +798,16 @@ class SP_Admission_Controller extends Controller
             'ConsentDateTaken.required' => 'Please enter the consent date taken',
             'ConsentTimeTaken.required' => 'Please enter the consent time taken',
         ];
-        //validation for required fields
-        $validatedData=$this->validate($request,[
-            'AdmissionDateTaken' => 'required',
-            'AdmissionTimeTaken' => 'required',
-            'ConsentDateTaken' => 'required',
-            'ConsentTimeTaken' => 'required',
-        ],$custom);
+
         if($findPSS !=NULL && $PSS!= NULL){
-            if($admission->AdmisisonDateTaken == NULL){
+            if($admission->AdmissionDateTaken == NULL){
+                //validation for required fields
+                $validatedData=$this->validate($request,[
+                    'AdmissionDateTaken' => 'required',
+                    'AdmissionTimeTaken' => 'required',
+                    'ConsentDateTaken' => 'required',
+                    'ConsentTimeTaken' => 'required',
+                ],$custom);
                 //admission date and time
                 $admission->AdmissionDateTaken = $request->AdmissionDateTaken;
                 $admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
@@ -803,21 +825,33 @@ class SP_Admission_Controller extends Controller
     }
 
     public function updateSP($findPSS,$PSS,$admission,$request){
+        //custom messages load for validation
+        $custom = [
+            'AdmissionDateTaken.required' => 'Please enter the admission date taken',
+            'AdmissionTimeTaken.required' => 'Please enter the admission time taken',
+            'ConsentDateTaken.required' => 'Please enter the consent date taken',
+            'ConsentTimeTaken.required' => 'Please enter the consent time taken',
+        ];
         if($findPSS !=NULL){
-            $flag=false;
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'AdmissionDateTaken' => 'required',
+                'AdmissionTimeTaken' => 'required',
+                'ConsentDateTaken' => 'required',
+                'ConsentTimeTaken' => 'required',
+            ],$custom);
             //admission date and time
             $admission->AdmissionDateTaken = $request->AdmissionDateTaken;
             $admission->AdmissionTimeTaken = $request->AdmissionTimeTaken;
             //consent date and time
             $admission->ConsentDateTaken = $request->ConsentDateTaken;
             $admission->ConsentTimeTaken = $request->ConsentTimeTaken;
-            if($flag){
-                $admission->save();
-            }
+            $admission->save();
+
             return true;
         }else{
             return false;
-        }  
+        }
     }
 
 }

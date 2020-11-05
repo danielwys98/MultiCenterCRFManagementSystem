@@ -47,7 +47,7 @@
         <p>{!! Form::radio('Interim36hrs01', 'Yes',(old('Interim36hrs01',$IQ36->interim36hrs01)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs01', 'No',(old('Interim36hrs01',$IQ36->interim36hrs01)!='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs01', 'No',(old('Interim36hrs01',$IQ36->interim36hrs01)=='No')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -68,7 +68,7 @@
         <p>{!! Form::radio('Interim36hrs02', 'Yes',(old('Interim36hrs02',$IQ36->interim36hrs02)=='Yes')? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs02', 'No',(old('Interim36hrs02',$IQ36->interim36hrs02)!='Yes')? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs02', 'No',(old('Interim36hrs02',$IQ36->interim36hrs02)=='No')? 'checked' : '') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -88,7 +88,7 @@
         <p>{!! Form::radio('Interim36hrs03', 'Yes',(old('Interim36hrs03',$IQ36->nterim36hrs03)=='Yes' && ($IQ36->interim36hrs03!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs03', 'No',(old('Interim36hrs03',$IQ36->interim36hrs03)!='Yes')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs03', 'No',(old('Interim36hrs03',$IQ36->interim36hrs03)!='Yes' && ($IQ36->interim36hrs03!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -110,10 +110,10 @@
             last visit?/p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs04', 'Yes',(old('interim36hrs04',$IQ36->interim36hrs04)!='No' && ($IQ36->interim36hrs04!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs04', 'Yes',(old('interim36hrs04',$IQ36->interim36hrs04)=='Yes' && ($IQ36->interim36hrs04!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs04', 'No',(old('interim36hrs04',$IQ36->interim36hrs04)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs04', 'No',(old('interim36hrs04',$IQ36->interim36hrs04)!='Yes' && ($IQ36->interim36hrs04!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row col">
@@ -131,10 +131,10 @@
         <p>5. Has the subject participated in other experimental drug studies since last visit?</p>
     </div>
     <div class="col-md-1">
-        {!! Form::radio('Interim36hrs05', 'Yes',(old('interim36hrs05',$IQ36->interim36hrs05)!='No' && ($IQ36->interim36hrs05!=NULL))? 'checked' : '') !!}
+        {!! Form::radio('Interim36hrs05', 'Yes',(old('interim36hrs05',$IQ36->interim36hrs05)=='Yes' && ($IQ36->interim36hrs05!=NULL))? 'checked' : '') !!}
     </div>
     <div class="col-md-1">
-        {!! Form::radio('Interim36hrs05', 'No',(old('interim36hrs05',$IQ36->interim36hrs05)=='No')? 'checked' :'') !!}
+        {!! Form::radio('Interim36hrs05', 'No',(old('interim36hrs05',$IQ36->interim36hrs05)!='Yes' && ($IQ36->interim36hrs05!=NULL))? 'checked' :'') !!}
     </div>
 </div>
 <div class="row">
@@ -145,7 +145,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim36hrs05txt',(old('interim36hrs05',$IQ36->interim36hrs05)!='No' && ($IQ36->interim36hrs05!=NULL))? $IQ36->interim36hrs05 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim36hrs05txt',(old('interim36hrs05',$IQ36->interim36hrs05)!='Yes' && ($IQ36->interim36hrs05!=NULL))? $IQ36->interim36hrs05 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -156,10 +156,10 @@
             the procedures of this study) since last visit:</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs06', 'Yes',(old('interim36hrs06',$IQ36->interim36hrs06)!='No' && ($IQ36->interim36hrs06!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs06', 'Yes',(old('interim36hrs06',$IQ36->interim36hrs06)=='Yes' && ($IQ36->interim36hrs06!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs06', 'No',(old('interim36hrs06',$IQ36->interim36hrs06)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs06', 'No',(old('interim36hrs06',$IQ36->interim36hrs06)!='Yes' && ($IQ36->interim36hrs06!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -170,7 +170,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim36hrs06txt',(old('interim36hrs06',$IQ36->interim36hrs06)!='No' && ($IQ36->interim36hrs06!=NULL))? $IQ36->interim36hrs06 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim36hrs06txt',(old('interim36hrs06',$IQ36->interim36hrs06)!='Yes' && ($IQ36->interim36hrs06!=NULL))? $IQ36->interim36hrs06 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -181,10 +181,10 @@
             contraception since last visit?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs07', 'Yes',(old('interim36hrs07',$IQ36->interim36hrs07)!='No' && ($IQ36->interim36hrs07!=NULL))? 'checked' : '') !!}</p>
+        <p>{!! Form::radio('Interim36hrs07', 'Yes',(old('interim36hrs07',$IQ36->interim36hrs07)=='Yes' && ($IQ36->interim36hrs07!=NULL))? 'checked' : '') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Interim36hrs07', 'No',(old('interim36hrs07',$IQ36->interim36hrs07)=='No')? 'checked' :'') !!}</p>
+        <p>{!! Form::radio('Interim36hrs07', 'No',(old('interim36hrs07',$IQ36->interim36hrs07)!='Yes' && ($IQ36->interim36hrs07!=NULL))? 'checked' :'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -194,7 +194,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('Interim36hrs07txt',(old('interim36hrs07',$IQ36->interim36hrs07)!='No' && ($IQ36->interim36hrs07!=NULL))? $IQ36->interim36hrs07 :'',['class'=>'form-control']) !!}
+        {!! Form::text('Interim36hrs07txt',(old('interim36hrs07',$IQ36->interim36hrs07)!='Yes' && ($IQ36->interim36hrs07!=NULL))? $IQ36->interim36hrs07 :'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>

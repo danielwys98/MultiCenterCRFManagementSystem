@@ -264,7 +264,53 @@ class SP_UrineTest_Controller extends Controller
 
     //update
     public function updateSP($findPSS,$PSS,$UT,$request){
+        //custom messages load for validation
+        $custom = [
+            'UPreg_dateTaken.required_if' => 'Please enter the date taken for urine pregnancy test',
+            'UPreg_TestTime.required_if' => 'Please enter the test time for urine pregnancy test',
+            'UPreg_ReadTime.required_if' => 'Please enter the read time for urine pregnancy test',
+            'uPreg_Laboratory.required_if' => 'Please select which laboratory does the urine pregnancy test conducted',
+            'uPreg_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine pregnancy test conducted',
+            'UPreg_hCG.required_if' => 'Please select the results of hCG(Human chorionic gonadotropin) for urine pregnancy test',
+            'UPreg_Transcribedby.required_if' => 'Please state the user transcribed for urine pregnancy test',
+            'UDrug_dateTaken.required_if' => 'Please enter the date taken for urine drugs of abuse test',
+            'UDrug_TestTime.required_if' => 'Please enter the test time for urine drugs of abuse test',
+            'UDrug_ReadTime.required_if' => 'Please enter the read time for urine drugs of abuse test',
+            'uDrug_Laboratory.required_if' => 'Please select which laboratory does the urine drugs of abuse test conducted',
+            'uDrug_Laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where urine drugs of abuse test conducted',
+            'UDrug_Methamphetamine.required_if' => 'Please select the results of Methamphetamine for urine drugs of abuse test',
+            'UDrug_Morphine.required_if' => 'Please select the results of Morphine for urine drugs of abuse test',
+            'UDrug_Marijuana.required_if' => 'Please select the results of Marijuana for urine drugs of abuse test',
+            'UDrug_Transcribedby.required_if' => 'Please state the user transcribed for urine drugs of abuse test',
+            'inclusionYesNo.required' => 'Please select whether the subject fulfill all the inclusion criteria and none of the exclusion criteria',
+            'subjectFit.required' => 'Please select whether the subject is fit for dosing',
+            'physicianSign.required' => 'Physician’s signature is required',
+            'physicianName.required' => 'Physician’s name is required',
+           ];
         if($findPSS !=NULL){
+            //validation for required fields
+            $validatedData=$this->validate($request,[
+                'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
+                'uPreg_Laboratory_Text' => 'required_if:uPreg_Laboratory,==,Other',
+                'uDrug_Laboratory' => 'required_if:UPreg_male,==,',
+                'uDrug_Laboratory_Text' => 'required_if:uDrug_Laboratory,==,Other',
+                'UPreg_dateTaken' => 'required_if:UPreg_male,==,',
+                'UPreg_TestTime' => 'required_if:UPreg_male,==,',
+                'UPreg_ReadTime' => 'required_if:UPreg_male,==,',
+                'UPreg_hCG' => 'required_if:UPreg_male,==,',
+                'UPreg_Transcribedby' => 'required_if:UPreg_male,==,',
+                'UDrug_dateTaken' => 'required_if:NApplicable,==,',
+                'UDrug_TestTime' => 'required_if:NApplicable,==,',
+                'UDrug_ReadTime' => 'required_if:NApplicable,==,',
+                'UDrug_Methamphetamine' => 'required_if:NApplicable,==,',
+                'UDrug_Morphine' => 'required_if:NApplicable,==,',
+                'UDrug_Marijuana' => 'required_if:NApplicable,==,',
+                'UDrug_Transcribedby' => 'required_if:NApplicable,==,',
+                'inclusionYesNo' => 'required',
+                'subjectFit' => 'required',
+                'physicianSign' => 'required',
+                'physicianName' => 'required',
+            ],$custom);
             //Urine Pregnacy
             $UT->UPreg_male=$request->UPreg_male;
             if($request->UPreg_male == 1){
