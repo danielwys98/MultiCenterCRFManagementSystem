@@ -426,7 +426,7 @@
 </div>
 <div class="form-group row col-md-6">
     {!! Form::label('Comment','Comments/ Remarks: ') !!}
-    {!! Form::text('Comment','',['class'=>'form-control']) !!}
+    {!! Form::text('Comment',old('Comment',$VitalSign->Comment),['class'=>'form-control']) !!}
 </div>
 {{-- Body measurements and vital signs ends--}}
 <div class="row col">

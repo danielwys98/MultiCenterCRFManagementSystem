@@ -167,6 +167,8 @@ class SP1_Admission_Controller extends Controller
             ->where('patient_id', $PID)
             ->where('study_id', $study_id)
             ->first();
+
+        $study=studySpecific::where('study_id',$study_id)->first();
         if($study_period==1) {
             if ($findPSS != NULL) {
                 $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
@@ -201,6 +203,7 @@ class SP1_Admission_Controller extends Controller
                     'IQ72',
                     'IQ96',
                     'study_id',
+                    'study',
                     'study_period',
                     'patient'));
             }
@@ -239,6 +242,7 @@ class SP1_Admission_Controller extends Controller
                     'IQ72',
                     'IQ96',
                     'study_id',
+                    'study',
                     'study_period',
                     'patient'));
             }
@@ -277,13 +281,13 @@ class SP1_Admission_Controller extends Controller
                     'IQ72',
                     'IQ96',
                     'study_id',
+                    'study',
                     'study_period',
                     'patient'));
             }
         }elseif($study_period==4){
             if ($findPSS != NULL) {
                 $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
-
                 $Admission = SP4_Admission::where('SP4_Admission_ID', $findSP4->SP4_Admission)->first();
                 $BMVS = SP4_BMVS::where('SP4_BMVS_ID', $findSP4->SP4_BMVS)->first();
                 $BAT = SP4_BAT::where('SP4_BAT_ID', $findSP4->SP4_BATER)->first();
@@ -315,6 +319,7 @@ class SP1_Admission_Controller extends Controller
                     'IQ72',
                     'IQ96',
                     'study_id',
+                    'study',
                     'study_period',
                     'patient'));
             }

@@ -33,6 +33,7 @@ class CreateSP1DischargesTable extends Migration
             $table->integer('SittingRepeat_RespiratoryRate')->nullable();
 
             $table->text('Initial')->nullable();
+            $table->text('Comment')->nullable();
 
             $table->timestamps();
         });

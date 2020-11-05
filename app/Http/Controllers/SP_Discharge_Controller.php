@@ -31,11 +31,13 @@ class SP_Discharge_Controller extends Controller
             'unscheduledDischarge.required' => 'Please state whether is it an unscheduled discharge',
             'unscheduledDischarge_Text.required_if' => 'If it is an unscheduled discharge, please state why',
             'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
-            'Sitting_BP.required' => 'Please enter the Sitting Blood Pressure',
+            'Sitting_BP_S.required' => 'Please enter the systolic for Blood Pressure',
+            'Sitting_BP_D.required' => 'Please enter the diastolic for Blood Pressure',
             'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
             'Sitting_RespiratoryRate.required' => 'Please enter the Sitting Respiratory Rate',
             'SittingRepeat_ReadingTime.required_if' => 'Please enter the Sitting Reading Time for the repeated test',
-            'SittingRepeat_BP.required_if' => 'Please enter the Sitting Blood Pressure for the repeated test',
+            'SittingRepeat_BP_S.required_if' => 'Please enter the systolic for Blood Pressure for the repeated test',
+            'SittingRepeat_BP_D.required_if' => 'Please enter the diastolic for Blood Pressure for the repeated test',
             'SittingRepeat_HR.required_if' => 'Please enter the Sitting Heart Rate for the repeated test',
             'SittingRepeat_RespiratoryRate.required_if' => 'Please enter the Sitting Respiratory Rate for the repeated test',
             'Initial.required' => 'Initial of the physician’s is required',
@@ -47,11 +49,13 @@ class SP_Discharge_Controller extends Controller
             'unscheduledDischarge' => 'required',
             'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
             'Sitting_ReadingTime' => 'required',
-            'Sitting_BP' => 'required',
+            'Sitting_BP_S' => 'required',
+            'Sitting_BP_D' => 'required',
             'Sitting_HR' => 'required',
             'Sitting_RespiratoryRate' => 'required',
             'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Sitting Repeated',
-            'SittingRepeat_BP' => 'required_if:SittingRepeat,==,Sitting Repeated',
+            'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Sitting Repeated',
+            'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Sitting Repeated',
             'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Others',
             'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Sitting Repeated',
             'Initial' => 'required',
@@ -113,7 +117,8 @@ class SP_Discharge_Controller extends Controller
                 }
                 //sitting record
                 $findSP1_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP1_Discharge->Sitting_BP = $request->Sitting_BP;
+                $findSP1_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+                $findSP1_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
                 $findSP1_Discharge->Sitting_HR = $request->Sitting_HR;
                 $findSP1_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
 
@@ -123,18 +128,21 @@ class SP_Discharge_Controller extends Controller
                 if ($repeat == 'Yes') {
                     //if sitting is repeated
                     $findSP1_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP1_Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+                    $findSP1_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                    $findSP1_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
                     $findSP1_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
                     $findSP1_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
                 } else {
                     //if sitting is repeated is NA
                     $findSP1_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP1_Discharge->SittingRepeat_BP = NULL;
+                    $findSP1_Discharge->SittingRepeat_BP_S = NULL;
+                    $findSP1_Discharge->SittingRepeat_BP_D = NULL;
                     $findSP1_Discharge->SittingRepeat_HR = NULL;
                     $findSP1_Discharge->SittingRepeat_RespiratoryRate = NULL;
                 }
 
                 $findSP1_Discharge->Initial = $request->Initial;
+                $findSP1_Discharge->Comment = $request->Comment;
 
                 $findSP1_Discharge->save();
                 return true;
@@ -162,7 +170,8 @@ class SP_Discharge_Controller extends Controller
                 }
                 //sitting record
                 $findSP2_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP2_Discharge->Sitting_BP = $request->Sitting_BP;
+                $findSP2_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+                $findSP2_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
                 $findSP2_Discharge->Sitting_HR = $request->Sitting_HR;
                 $findSP2_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
 
@@ -172,18 +181,23 @@ class SP_Discharge_Controller extends Controller
                 if ($repeat == 'Yes') {
                     //if sitting is repeated
                     $findSP2_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP2_Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+                    $findSP2_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                    $findSP2_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
                     $findSP2_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
                     $findSP2_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
                 } else {
                     //if sitting is repeated is NA
                     $findSP2_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP2_Discharge->SittingRepeat_BP = NULL;
+                    $findSP2_Discharge->SittingRepeat_BP_S = NULL;
+                    $findSP2_Discharge->SittingRepeat_BP_D = NULL;
                     $findSP2_Discharge->SittingRepeat_HR = NULL;
                     $findSP2_Discharge->SittingRepeat_RespiratoryRate = NULL;
                 }
 
                 $findSP2_Discharge->Initial = $request->Initial;
+                $findSP2_Discharge->Comment = $request->Comment;
+
+
 
                 $findSP2_Discharge->save();
                 return true;
@@ -195,7 +209,7 @@ class SP_Discharge_Controller extends Controller
         }
     }
 
-    public function storeSP3($findPSS, Request $request)
+    public function storeSP3($findPSS, $request)
     {
         if ($findPSS != NULL && $findPSS->SP3_ID != NULL) {
             $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
@@ -211,7 +225,8 @@ class SP_Discharge_Controller extends Controller
                 }
                 //sitting record
                 $findSP3_Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-                $findSP3_Discharge->Sitting_BP = $request->Sitting_BP;
+                $findSP3_Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+                $findSP3_Discharge->Sitting_BP_D = $request->Sitting_BP_D;
                 $findSP3_Discharge->Sitting_HR = $request->Sitting_HR;
                 $findSP3_Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
 
@@ -221,18 +236,22 @@ class SP_Discharge_Controller extends Controller
                 if ($repeat == 'Yes') {
                     //if sitting is repeated
                     $findSP3_Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                    $findSP3_Discharge->SittingRepeat_BP = $request->SittingRepeat_BP;
+                    $findSP3_Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                    $findSP3_Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
                     $findSP3_Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
                     $findSP3_Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
                 } else {
                     //if sitting is repeated is NA
                     $findSP3_Discharge->SittingRepeat_ReadingTime = NULL;
-                    $findSP3_Discharge->SittingRepeat_BP = NULL;
+                    $findSP3_Discharge->SittingRepeat_BP_S = NULL;
+                    $findSP3_Discharge->SittingRepeat_BP_D = NULL;
                     $findSP3_Discharge->SittingRepeat_HR = NULL;
                     $findSP3_Discharge->SittingRepeat_RespiratoryRate = NULL;
                 }
 
                 $findSP3_Discharge->Initial = $request->Initial;
+                $findSP3_Discharge->Comment = $request->Comment;
+
 
                 $findSP3_Discharge->save();
                 return true;
@@ -244,7 +263,7 @@ class SP_Discharge_Controller extends Controller
         }
     }
 
-    public function storeSP4($findPSS, Request $request)
+    public function storeSP4($findPSS, $request)
     {
         if ($findPSS != NULL && $findPSS->SP4_ID != NULL) {
             $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
@@ -282,6 +301,8 @@ class SP_Discharge_Controller extends Controller
                 }
 
                 $findSP4_Discharge->Initial = $request->Initial;
+                $findSP4_Discharge->Comment = $request->Comment;
+
 
                 $findSP4_Discharge->save();
                 return true;
@@ -369,6 +390,8 @@ class SP_Discharge_Controller extends Controller
         }
 
         $Discharge->Initial = $request->Initial;
+        $Discharge->Comment = $request->Comment;
+
 
         if ($flag) {
             $Discharge->save();
@@ -417,6 +440,7 @@ class SP_Discharge_Controller extends Controller
         }
 
         $Discharge->Initial = $request->Initial;
+        $Discharge->Comment = $request->Comment;
 
         if ($flag) {
             $Discharge->save();
@@ -465,6 +489,7 @@ class SP_Discharge_Controller extends Controller
         }
 
         $Discharge->Initial = $request->Initial;
+        $Discharge->Comment = $request->Comment;
 
         if ($flag) {
             $Discharge->save();
@@ -513,6 +538,7 @@ class SP_Discharge_Controller extends Controller
         }
 
         $Discharge->Initial = $request->Initial;
+        $Discharge->Comment = $request->Comment;
 
         if ($flag) {
             $Discharge->save();
