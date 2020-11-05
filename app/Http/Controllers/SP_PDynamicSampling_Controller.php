@@ -266,7 +266,7 @@ class SP_PDynamicSampling_Controller extends Controller
             'S9_Collected' => 'required',
             'S9_Checked' => 'required',
         ],$custom);
-        if($PSS !=NULL && $PSS != NULL){
+        if($findPSS !=NULL && $PSS != NULL){
             if($PDSampling->day1 == NULL){
                 $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');

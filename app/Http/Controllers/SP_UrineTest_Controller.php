@@ -163,10 +163,6 @@ class SP_UrineTest_Controller extends Controller
             'physicianName.required' => 'Physician’s name is required',
            ];
         if($PSS !=NULL && $PSS->SP1_ID != NULL){
-            //find admission table and update it
-            $findSP1 = StudyPeriod1::where('SP1_ID',$PSS->SP1_ID)->first();
-            $UT = SP1_UrineTest::where('SP1_UrineTest_ID', $findSP1->SP1_UrineTest)->first();
-
             //validation for required fields
             $validatedData=$this->validate($request,[
                 'uPreg_Laboratory' => 'required_if:UPreg_male,==,',
