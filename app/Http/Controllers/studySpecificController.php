@@ -33,15 +33,15 @@ class studySpecificController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('checkAdmin',['except'=>'studies']);
+        $this->middleware('checkAdmin', ['except' => 'studies']);
     }
 
     //This return to the study-specific database page
     public function index()
     {
-        $studies=studySpecific::all();
+        $studies = studySpecific::all();
 
-        return view('studySpecific.index',compact('studies'));
+        return view('studySpecific.index', compact('studies'));
 
 
     }
@@ -54,48 +54,45 @@ class studySpecificController extends Controller
         //find the amount of period of this study
         $studyPeriodLimit = $study->studyPeriod_Count;
         $period = 0;
-        $studyPeriod[0]='---';
+        $studyPeriod[0] = '---';
 
-        for($i = 0; $i < $studyPeriodLimit; $i++)
-        {
+        for ($i = 0; $i < $studyPeriodLimit; $i++) {
             $period++;
-            $studyPeriod[] =$period;
+            $studyPeriod[] = $period;
         }
 
-        $findPSS = PatientStudySpecific::with(['Patient'])->where('study_id',$study_id)->get();
+        $findPSS = PatientStudySpecific::with(['Patient'])->where('study_id', $study_id)->get();
 
-          if(count($findPSS)>0){
-              foreach($findPSS as $p)
-              {
-                  $PatientList[] = $p->patient_id;
-              }
-              $oriPatientName =Patient::whereIn('id',$PatientList)->get()->pluck('name','id');
-              //increasing 0 until count of Subjects in the study
-              $subject_count=1;
-              foreach($oriPatientName as $id=>$name)
-              {
-                  /*echo $id.'='.$name.'<br/>';*/
-                  $PatientID[] = $id;
-                  $PatientName[] = str_replace($name,$subject_count++,$name);
-                  $newName = array_combine($PatientID,$PatientName);
-              }
-              return view('studySpecific',compact('oriPatientName','newName','study','studyPeriod'));
-          }
-          else{
-              alert()->error('Error!','No subject enrolled into this study!');
-              return back();
-          }
+        if (count($findPSS) > 0) {
+            foreach ($findPSS as $p) {
+                $PatientList[] = $p->patient_id;
+            }
+            $oriPatientName = Patient::whereIn('id', $PatientList)->get()->pluck('name', 'id');
+            //increasing 0 until count of Subjects in the study
+            $subject_count = 1;
+            foreach ($oriPatientName as $id => $name) {
+                /*echo $id.'='.$name.'<br/>';*/
+                $PatientID[] = $id;
+                $PatientName[] = str_replace($name, $subject_count++, $name);
+                $newName = array_combine($PatientID, $PatientName);
+            }
+            return view('studySpecific', compact('oriPatientName', 'newName', 'study', 'studyPeriod'));
+        } else {
+            alert()->error('Error!', 'No subject enrolled into this study!');
+            return back();
+        }
 
     }
 
-    public function search(Request $request){
-    /*    if($request->search_patient==NULL){
-            $patients = Patient::all();
-            return view('preScreening.admin',compact('patients'));
-        }else{
-            $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
-            return view('preScreening.admin',compact('patients'));
-        }*/
+    public function search(Request $request)
+    {
+        /*    if($request->search_patient==NULL){
+                $patients = Patient::all();
+                return view('preScreening.admin',compact('patients'));
+            }else{
+                $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
+                return view('preScreening.admin',compact('patients'));
+            }*/
     }
 
 
@@ -118,25 +115,25 @@ class studySpecificController extends Controller
             'MRNno.required' => 'Please enter the MRN number',
         ];
         //validation for required fields
-        $validatedData=$this->validate($request,[
+        $validatedData = $this->validate($request, [
             'study_name' => 'required',
             'startDate' => 'required',
             'endDate' => 'required',
             'patient_Count' => 'required',
             'studyPeriod_Count' => 'required|numeric|min:1|max:4',
             'MRNno' => 'required',
-        ],$custom);
+        ], $custom);
 
         $study = new studySpecific();
-        $study->study_name=$request->study_name;
+        $study->study_name = $request->study_name;
         $study->startDate = $request->startDate;
-        $study->endDate=$request->endDate;
-        $study->patient_Count=$request->patient_Count;
-        $study->studyPeriod_Count=$request->studyPeriod_Count;
-        $study->MRNno=$request->MRNno;
-        $study->protocolNO=$request->protocolNO;
+        $study->endDate = $request->endDate;
+        $study->patient_Count = $request->patient_Count;
+        $study->studyPeriod_Count = $request->studyPeriod_Count;
+        $study->MRNno = $request->MRNno;
+        $study->protocolNO = $request->protocolNO;
         $study->save();
-        return redirect(route('studySpecific.index'))->with('success','You have successfully added the study into the system!');
+        return redirect(route('studySpecific.index'))->with('success', 'You have successfully added the study into the system!');
     }
 
 
@@ -149,16 +146,15 @@ class studySpecificController extends Controller
         //find the amount of period of this study
         $studyPeriodLimit = $study->studyPeriod_Count;
         $period = 0;
-        $studyPeriod[0]='---';
+        $studyPeriod[0] = '---';
 
-        for($i = 0; $i < $studyPeriodLimit; $i++)
-        {
+        for ($i = 0; $i < $studyPeriodLimit; $i++) {
             $period++;
-            $studyPeriod[] =$period;
+            $studyPeriod[] = $period;
         }
 
         //check if the studies is found
-        if($study != NULL) {
+        if ($study != NULL) {
             //find the subject who enrolled into this studies
             $findPatient = PatientStudySpecific::with(['Patient'])->where('study_id', $study_id)->get();
 
@@ -167,15 +163,13 @@ class studySpecificController extends Controller
                     $PatientList[] = $p->patient_id;
                 }
                 $oriPatientName = Patient::whereIn('id', $PatientList)->get()->pluck('name', 'id');
-            } else
-            {
+            } else {
                 $oriPatientName = NULL;
             }
-                return view('studySpecific.edit',compact('study','oriPatientName','studyPeriod'));
+            return view('studySpecific.edit', compact('study', 'oriPatientName', 'studyPeriod'));
 
-        }else
-        {
-            alert()->error('Error!','Study is not found in the database!');
+        } else {
+            alert()->error('Error!', 'Study is not found in the database!');
             return back();
         }
 
@@ -186,18 +180,17 @@ class studySpecificController extends Controller
     public function update(Request $request, $id)
     {
         $study = studySpecific::find($id);
-        $data = $request->except('_token','_method');
-        foreach($data as $key=>$value)
-        {
-            if($value!=NULL){
+        $data = $request->except('_token', '_method');
+        foreach ($data as $key => $value) {
+            if ($value != NULL) {
                 DB::table('study_specifics')
-                ->where('study_id', $id)
-                ->update([
-                    $key => $data[$key]
-                ]);
+                    ->where('study_id', $id)
+                    ->update([
+                        $key => $data[$key]
+                    ]);
             }
         }
-        return redirect(route('studySpecific.edit',$study->study_id))->with('success','You updated the study details!');
+        return redirect(route('studySpecific.edit', $study->study_id))->with('success', 'You updated the study details!');
     }
 
 
@@ -208,7 +201,7 @@ class studySpecificController extends Controller
 
         $study->delete();
 
-         return redirect(route('studySpecific.index'))->with('ErrorMessages','You removed the study from the system!');
+        return redirect(route('studySpecific.index'))->with('ErrorMessages', 'You removed the study from the system!');
     }
 
 
@@ -219,27 +212,27 @@ class studySpecificController extends Controller
         $study_id = 4;
 
         //get study's study period count
-        $study = studySpecific::where('study_id',$study_id)->first();
+        $study = studySpecific::where('study_id', $study_id)->first();
         $studyPeriodLimit = $study->studyPeriod_Count;
 
         $period = 0;
-      /*  $studyPeriod = array();
-        array_unshift($studyPeriod,"");*/
-        $studyPeriod[0]='---';
+        /*  $studyPeriod = array();
+          array_unshift($studyPeriod,"");*/
+        $studyPeriod[0] = '---';
 
-        for($i = 0; $i < $studyPeriodLimit; $i++)
-        {
+        for ($i = 0; $i < $studyPeriodLimit; $i++) {
             $period++;
-            $studyPeriod[] =$period;
+            $studyPeriod[] = $period;
         }
-         return view('test',compact('study','studyPeriod'));
+        return view('test', compact('study', 'studyPeriod'));
     }
+
     public function testPDF()
     {
         $PID = 1;
         $study_id = 1;
         $patient = Patient::where('id', $PID)->first();
-        $study = studySpecific::where('study_id',$study_id)->first();
+        $study = studySpecific::where('study_id', $study_id)->first();
         $findPSS = PatientStudySpecific::with('StudyPeriod1')
             ->where('patient_id', $PID)
             ->where('study_id', $study_id)
@@ -263,7 +256,6 @@ class studySpecificController extends Controller
             $IQ96 = SP1_IQ96::where('SP1_IQ96_ID', $findSP1->SP1_IQ96)->first();
 
 
-
             $pdf = PDF::loadView('test', compact('Admission',
                 'BMVS',
                 'BAT',
@@ -281,7 +273,7 @@ class studySpecificController extends Controller
                 'IQ96',
                 'study',
                 'patient'))
-            ->setPaper('A4','landscape');
+                ->setPaper('A4', 'landscape');
 
             return $pdf->stream('test.pdf');
         }
@@ -292,19 +284,35 @@ class studySpecificController extends Controller
         $PID = 1;
         $study_id = 1;
         $patient = Patient::where('id', $PID)->first();
-        $study = studySpecific::where('study_id',$study_id)->first();
-        $findPSS = PatientStudySpecific::with('StudyPeriod1')
-            ->where('patient_id', $PID)
-            ->where('study_id', $study_id)
-            ->first();
+        $study = studySpecific::where('study_id', $study_id)->first();
+        $BodyAndVitals = $patient->bodyandvitalsigns;
+        $BATER = $patient->BreathAlcoholTestAndElectrocardiogram;
+        $Medical = $patient->MedicalHistory;
+        $Physical = $patient->PhysicalExam;
+        $UrineTest = $patient->UrineTest;
+        $LabTest = $patient->LabTest;
+        $Serology = $patient->SerologyTest;
+        $InclusionExclusion = $patient->InclusionExclusion;
+        $Conclu = $patient->Conclu;
 
-            $pdf = PDF::loadView('TestPreScreeningReport');
-            //PDF::loadView('bladefilename',compact('variable')) something like return view.
-            /*$pdf = PDF::loadView('test', compact('Admission'))->setPaper('A4','landscape');*/
 
-            //if want view in google use $filename->stream
-            //if want test download use $file->download('filename')
-            return $pdf->stream('preScreeningTest.pdf');
+        $pdf = PDF::loadView('TestPreScreeningReport', compact('BodyAndVitals',
+            'BATER',
+            'Medical',
+            'Physical',
+            'UrineTest',
+            'LabTest',
+            'Serology',
+            'InclusionExclusion',
+            'Conclu',
+            'study',
+            'patient'))->setpaper('A4','portrait');
+        //PDF::loadView('bladefilename',compact('variable')) something like return view.
+        /*$pdf = PDF::loadView('test', compact('Admission'))->setPaper('A4','landscape');*/
+
+        //if want view in google use $filename->stream
+        //if want test download use $file->download('filename')
+        return $pdf->stream('preScreeningTest.pdf');
 
 
     }
