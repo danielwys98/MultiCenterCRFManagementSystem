@@ -277,29 +277,29 @@ class SP_BMVS_Controller extends Controller
         ];
         if ($findPSS != NULL) {
             //validation for required fields
-            $validatedData = $this->validate($request, [
-                'dateTaken' => 'required',
-                'timeTaken' => 'required',
-                'weight' => 'required',
-                'height' => 'required',
-                'temperature' => 'required',
-                'Sitting_ReadingTime' => 'required',
-                'Sitting_BP_S' => 'required',
-                'Sitting_BP_D' => 'required',
-                'Sitting_HR' => 'required',
-                'Sitting_RespiratoryRate' => 'required',
-                'Sitting_ReadingTime_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                'Sitting_BP_S_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                'Sitting_BP_D_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                'Sitting_HR_Repeat1' => 'required_if:SittingRepeat1,==,Others',
-                'Sitting_RespiratoryRate_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                'Sitting_ReadingTime_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                'Sitting_BP_S_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                'Sitting_BP_D_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                'Sitting_HR_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                'Initial' => 'required',
-            ], $custom);
+            // $validatedData = $this->validate($request, [
+            //     'dateTaken' => 'required',
+            //     'timeTaken' => 'required',
+            //     'weight' => 'required',
+            //     'height' => 'required',
+            //     'temperature' => 'required',
+            //     'Sitting_ReadingTime' => 'required',
+            //     'Sitting_BP_S' => 'required',
+            //     'Sitting_BP_D' => 'required',
+            //     'Sitting_HR' => 'required',
+            //     'Sitting_RespiratoryRate' => 'required',
+            //     'Sitting_ReadingTime_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+            //     'Sitting_BP_S_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+            //     'Sitting_BP_D_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+            //     'Sitting_HR_Repeat1' => 'required_if:SittingRepeat1,==,Others',
+            //     'Sitting_RespiratoryRate_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+            //     'Sitting_ReadingTime_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+            //     'Sitting_BP_S_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+            //     'Sitting_BP_D_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+            //     'Sitting_HR_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+            //     'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+            //     'Initial' => 'required',
+            // ], $custom);
             //date, time, weight, height, bmi will be auto calculate, temperature
             $BMVS->dateTaken = $request->dateTaken;
             $BMVS->timeTaken = $request->timeTaken;

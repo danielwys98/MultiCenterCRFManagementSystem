@@ -285,25 +285,25 @@ class SP_IQ72_Controller extends Controller
                 $IQ72->Interim72hrsCheckedby=NULL;
             }else{
                 //validation for required fields
-                $validatedData=$this->validate($request,[
-                    'dateTaken' => 'required',
-                    'timeTaken' => 'required',
-                    'Interim72hrs01' => 'required',
-                    'Interim72hrs02' => 'required',
-                    'Interim72hrs03' => 'required',
-                    'Interim72hrs03txt' => 'required_if:Interim72hrs03,==,Yes',
-                    'Interim72hrs04' => 'required',
-                    'Interim72hrs04txt' => 'required_if:Interim72hrs04,==,Yes',
-                    'Interim72hrs05' => 'required',
-                    'Interim72hrs05txt' => 'required_if:Interim72hrs05,==,Yes',
-                    'Interim72hrs06' => 'required',
-                    'Interim72hrs06txt' => 'required_if:Interim72hrs06,==,Yes',
-                    'Interim72hrs07' => 'required',
-                    'Interim72hrs07txt' => 'required_if:Interim72hrs07,==,Yes',
-                    'Interim72hrs08' => 'required',
-                    'Interim72hrsInterviewedby' => 'required',
-                    'Interim72hrsCheckedby' => 'required',
-                ],$custom);
+                // $validatedData=$this->validate($request,[
+                //     'dateTaken' => 'required',
+                //     'timeTaken' => 'required',
+                //     'Interim72hrs01' => 'required',
+                //     'Interim72hrs02' => 'required',
+                //     'Interim72hrs03' => 'required',
+                //     'Interim72hrs03txt' => 'required_if:Interim72hrs03,==,Yes',
+                //     'Interim72hrs04' => 'required',
+                //     'Interim72hrs04txt' => 'required_if:Interim72hrs04,==,Yes',
+                //     'Interim72hrs05' => 'required',
+                //     'Interim72hrs05txt' => 'required_if:Interim72hrs05,==,Yes',
+                //     'Interim72hrs06' => 'required',
+                //     'Interim72hrs06txt' => 'required_if:Interim72hrs06,==,Yes',
+                //     'Interim72hrs07' => 'required',
+                //     'Interim72hrs07txt' => 'required_if:Interim72hrs07,==,Yes',
+                //     'Interim72hrs08' => 'required',
+                //     'Interim72hrsInterviewedby' => 'required',
+                //     'Interim72hrsCheckedby' => 'required',
+                // ],$custom);
                 //date and time for interim questionnaire
                 $IQ72->dateTaken=$request->dateTaken;
                 $IQ72->timeTaken=$request->timeTaken;

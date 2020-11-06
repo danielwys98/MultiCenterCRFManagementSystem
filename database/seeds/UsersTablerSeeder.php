@@ -14,8 +14,8 @@ class UsersTablerSeeder extends Seeder
     public function run()
     {
         // when do new seeding, delete all the rows, populate again. No repeating data
-        /*User::truncate();*/
-        /*DB::table('role_user')->truncate();*/
+        User::truncate();
+        DB::table('role_user')->truncate();
 
         $adminRole =Role::where('name','admin')->first();
         $userRole =Role::where('name','user')->first();

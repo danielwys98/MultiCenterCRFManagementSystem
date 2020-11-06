@@ -218,15 +218,15 @@ class SP_BAT_Controller extends Controller
                 $BAT->Usertranscribed = NULL;
             }else{
                 //validation for required fields
-                $validatedData = $this->validate($request, [
-                    'dateTaken' => 'required',
-                    'timeTaken' => 'required',
-                    'Laboratory' => 'required',
-                    'Laboratory_text' => 'required_if:Laboratory,==,Others',
-                    'breathalcohol' => 'required',
-                    'breathalcoholResult' => 'required',
-                    'Usertranscribed' => 'required',
-                ], $custom);
+                // $validatedData = $this->validate($request, [
+                //     'dateTaken' => 'required',
+                //     'timeTaken' => 'required',
+                //     'Laboratory' => 'required',
+                //     'Laboratory_text' => 'required_if:Laboratory,==,Others',
+                //     'breathalcohol' => 'required',
+                //     'breathalcoholResult' => 'required',
+                //     'Usertranscribed' => 'required',
+                // ], $custom);
                 //date and time
                 $BAT->dateTaken = $request->dateTaken;
                 $BAT->timeTaken = $request->timeTaken;

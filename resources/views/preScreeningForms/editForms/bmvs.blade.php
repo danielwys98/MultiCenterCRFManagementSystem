@@ -60,7 +60,7 @@
         <tr>
             <th scope="col">Position</th>
             <th scope="col">Reading Time (24-hour clock)</th>
-            <th scope="col">Blood Pressure (systolic/diastolic) (mmHg)</th>
+            <th scope="col" class="col-md-2">Blood Pressure (systolic/diastolic) (mmHg)</th>
             <th scope="col">Heart Rate (beats per min)</th>
             <th scope="col">Respiratory Rate (breaths per min)</th>
         </tr>
@@ -69,21 +69,30 @@
         <tr>
             <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
             <td>{!! Form::time('Supine_ReadingTime',old('Supine_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-            <td>{!! Form::number('Supine_BP', old('Supine_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>
+                {!! Form::number('Supine_BP_S', old('Supine_BP_S'),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                {!! Form::number('Supine_BP_D', old('Supine_BP_D'),['class'=>'form-control col-md-6','placeholder'=>'siastolic']) !!}
+            </td>
             <td>{!! Form::number('Supine_HR', old('Supine_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Supine_RespiratoryRate', old('Supine_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
             <td>{!! Form::time('Sitting_ReadingTime', old('Sitting_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-            <td>{!! Form::number('Sitting_BP', old('Sitting_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>
+                {!! Form::number('Sitting_BP_S', old('Sitting_BP_S'),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                {!! Form::number('Sitting_BP_D', old('Sitting_BP_D'),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+            </td>
             <td>{!! Form::number('Sitting_HR', old('Sitting_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Sitting_RespiratoryRate', old('Sitting_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
             <td>{!! Form::time('Standing_ReadingTime',old('Standing_ReadingTime'),['class'=>'form-control','placeholder'=>'']) !!}</td>
-            <td>{!! Form::number('Standing_BP', old('Standing_BP'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>
+                {!! Form::number('Standing_BP_S', old('Standing_BP_S'),['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
+                {!! Form::number('Standing_BP_D', old('Standing_BP_D'),['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
+            </td>
             <td>{!! Form::number('Standing_HR', old('Standing_HR'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>{!! Form::number('Standing_RespiratoryRate', old('Standing_RespiratoryRate'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         </tr>
@@ -97,6 +106,12 @@
     <p>
         {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
     </p>
-    <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
-    {{Form::submit('Update',['class'=>'btn btn-primary'])}}
+    <div class="form-group row col-md-6">
+        {!! Form::label('Comment','Comments/ Remarks: ') !!}
+        {!! Form::text('Comment','',['class'=>'form-control']) !!}
+    </div>
+   {{-- <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>--}}
+    <div class="row col">
+        {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+    </div>
     {!! Form::close() !!}

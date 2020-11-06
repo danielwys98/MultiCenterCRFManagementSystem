@@ -1,114 +1,159 @@
 {!! Form::model($LabTest,['route' => ['update.labtest',$patient->id]]) !!}
 @method('PUT')
 @csrf
-<div class="form-group">
-    <h3>Laboratory Tests</h3>
-    <p>(Laboratory Test Report attached in Appendix)</p>
-    <h5>Blood (Haematology and Chemistry)</h5>
-    <div class="row">
-        <div class="col-sm-3">
+<h3>Laboratory Tests</h3>
+<p>(Laboratory Test Report attached in Appendix)</p>
+<br>
+<fieldset>
+    <legend>Blood (Haematology and Chemistry)</legend>
+    <div class="form-group row">
+        <div class="col-md-2">
             {!! Form::label('dateBTaken', 'Date Blood Taken: ') !!}
-            {!! Form::date('dateBTaken') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('dateBTaken',$LabTest->dateBTaken,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="form-group row">
+        <div class="col-md-2">
             {!! Form::label('dateLMTaken', 'Date Last Meal Taken: ') !!}
-            {!! Form::date('dateLMTaken') !!}
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-2">
+            {!! Form::date('dateLMTaken',$LabTest->dateLMTaken,['class'=>'form-control']) !!}
+        </div>
+        <div class="offset-1 col-md-2">
             {!! Form::label('TimeLMTaken', 'Time Last Meal Taken: ') !!}
-            {!! Form::time('TimeLMTaken') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::time('TimeLMTaken',$LabTest->TimeLMTaken,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
+    <div class="form-group row">
+        <div class="col-md-3">
             {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
-            {!! Form::text('describemeal', $LabTest->describemeal) !!}
+        </div>
+        <div class="col-md-3">
+            {!! Form::text('describemeal', $LabTest->describemeal,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div>
-        {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
-
-        {!! Form::radio('blood_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->Blood_Laboratory=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
-        {!! Form::label('blood_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-
-        {!! Form::radio('blood_laboratory',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
-        {!! Form::label('blood_laboratory', 'Other, specify: ') !!}
-
-        {!! Form::text('Blood_Laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Blood_Laboratory : '') !!}
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::radio('blood_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->Blood_Laboratory=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
+            {!! Form::label('blood_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('blood_laboratory',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
+            {!! Form::label('blood_laboratory', 'Other: ') !!}
+        </div>
+        <div class="col-md-3">
+            {!! Form::text('Blood_Laboratory_Text',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Blood_Laboratory : '',['class'=>'form-control']) !!}
+        </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
+</fieldset>
+<fieldset>
+    <legend>Repeated Blood Test</legend>
+    <div class="form-group row">
+        <div class="col-md-2">
             {!! Form::checkbox('Blood_NAtest', 'Not Applicable') !!}
-            {!! Form::label('Blood_NAtest', 'Repeated test: ') !!}
-            {!! Form::text('Blood_NAtest', '') !!}
+            {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="form-group row">
+        <div class="col-md-4">
+            {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
+            {!! Form::text('Blood_RepeatTest', '',['class'=>'form-control']) !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">
             {!! Form::label('Repeat_dateBCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('Repeat_dateBCollected') !!}
+            {!! Form::date('Repeat_dateBCollected',$LabTest->Repeat_dateBCollected,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div>
-        {!! Form::label('bloodrepeat_laboratory', 'Laboratory: ') !!}
-
-        {!! Form::radio('bloodrepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->BloodRepeat_Laboratory=='B.P. Clinical Lab Sdn Bhd')?'checked':'') !!}
-        {!! Form::label('bloodrepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-
-        {!! Form::radio('bloodrepeat_laboratory', 'Other',($LabTest->BloodRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->BloodRepeat_Laboratory!=NULL)?'checked':'') !!}
-        {!! Form::label('bloodrepeat_laboratory', 'Other, specify: ') !!}
-
-        {!! Form::text('Bloodrepeat_Laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '') !!}
+    <div class="form-group row">
+        <div class="col-md-2">
+            {!! Form::label('bloodrepeat_laboratory', 'Laboratory: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::radio('bloodrepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->BloodRepeat_Laboratory=='B.P. Clinical Lab Sdn Bhd')?'checked':'') !!}
+            {!! Form::label('bloodrepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('bloodrepeat_laboratory', 'Other',($LabTest->BloodRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->BloodRepeat_Laboratory!=NULL)?'checked':'') !!}
+            {!! Form::label('bloodrepeat_laboratory', 'Other: ') !!}
+        </div>
+        <div class="col-md-3">
+            {!! Form::text('Bloodrepeat_Laboratory_Text', ($LabTest->BloodRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->BloodRepeat_Laboratory!=NULL)? $LabTest->BloodRepeat_Laboratory: '',['class'=>'form-control']) !!}
+        </div>
     </div>
-
-    <h5>Urine (Microbiology)</h5>
-    <div class="row">
-        <div class="col-sm-3">
+</fieldset>
+<fieldset>
+    <legend>Urine (Microbiology)</legend>
+    <div class="form-group row">
+        <div class="col-md-2">
             {!! Form::label('dateUTaken', 'Date Urine Collected: ') !!}
-            {!! Form::date('dateUTaken') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::date('dateUTaken',$LabTest->dateUTaken,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div>
-        {!! Form::label('urine_laboratory', 'Laboratory: ') !!}
-
-        {!! Form::radio('urine_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->Urine_Laboratory=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
-        {!! Form::label('urine_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-
-        {!! Form::radio('urine_laboratory','Other',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd' &&  $LabTest->Urine_Laboratory!=NULL)? 'checked' : '') !!}
-        {!! Form::label('urine_laboratory', 'Other, specify: ') !!}
-
-        {!! Form::text('Urine_Laboratory_Text',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Urine_Laboratory : '') !!}
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('urine_laboratory', 'Laboratory: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::radio('urine_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->Urine_Laboratory=='B.P. Clinical Lab Sdn Bhd')? 'checked' : '') !!}
+            {!! Form::label('urine_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('urine_laboratory','Other',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd' &&  $LabTest->Urine_Laboratory!=NULL)? 'checked' : '') !!}
+            {!! Form::label('urine_laboratory', 'Other: ') !!}
+        </div>
+        <div class="col-md-3">
+            {!! Form::text('Urine_Laboratory_Text',($LabTest->Urine_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->Urine_Laboratory : '',['class'=>'form-control']) !!}
+        </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6">
-            {!! Form::label('Urine_NAtest', 'Not Applicable') !!}
+</fieldset>
+<fieldset>
+    <legend>Repeated Urine Test</legend>
+    <div class="form-group row">
+        <div class="col-md-2">
             {!! Form::checkbox('Urine_NAtest', 'Not Applicable') !!}
+            {!! Form::label('Urine_NAtest', 'Not Applicable') !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-4">
             {!! Form::label('Urine_RepeatTest', 'Repeated test: ') !!}
-            {!! Form::text('Urine_RepeatTest', '') !!}
+            {!! Form::text('Urine_RepeatTest',$LabTest->Urine_RepeatTest,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="form-group row">
+        <div class="col-md-4">
             {!! Form::label('Repeat_dateUCollected', 'Date Blood Collected: ') !!}
-            {!! Form::date('Repeat_dateUCollected') !!}
+            {!! Form::date('Repeat_dateUCollected',$LabTest->Repeat_dateUCollected,['class'=>'form-control']) !!}
         </div>
     </div>
-    <div>
-        {!! Form::label('urinerepeat_laboratory', 'Laboratory: ') !!}
-
-        {!! Form::radio('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->UrineRepeat_Laboratory=='Sarawak General Hospital Heart Centre')?'checked':'') !!}
-        {!! Form::label('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
-
-        {!! Form::radio('urinerepeat_laboratory', 'Other',($LabTest->UrineRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->UrineRepeat_Laboratory!=NULL)?'checked':'') !!}
-        {!! Form::label('urinerepeat_laboratory', 'Other, specify: ') !!}
-
-        {!! Form::text('UrineRepeat_Laboratory_Text',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->UrineRepeat_Laboratory : '') !!}
+    <div class="form-group row">
+        <div class="col-md-2">
+            {!! Form::label('urinerepeat_laboratory', 'Laboratory: ') !!}
+        </div>
+        <div class="col-md-2">
+            {!! Form::radio('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->UrineRepeat_Laboratory=='Sarawak General Hospital Heart Centre')?'checked':'') !!}
+            {!! Form::label('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
+        </div>
+        <div class="col-md-1">
+            {!! Form::radio('urinerepeat_laboratory', 'Other',($LabTest->UrineRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->UrineRepeat_Laboratory!=NULL)?'checked':'') !!}
+            {!! Form::label('urinerepeat_laboratory', 'Other: ') !!}
+        </div>
+        <div class="col-md-3">
+            {!! Form::text('UrineRepeat_Laboratory_Text',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->UrineRepeat_Laboratory : '',['class'=>'form-control']) !!}
+        </div>
     </div>
-    </div>
-        <a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
-        {{Form::submit('Update',['class'=>'btn btn-primary'])}}
-        {!! Form::close() !!}
+</fieldset>
+<a href="{{url('preScreening/admin')}}" class="btn btn-primary">Back</a>
+{{Form::submit('Update',['class'=>'btn btn-primary'])}}
+{!! Form::close() !!}
