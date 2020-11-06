@@ -9,11 +9,14 @@ use App\SP1_Discharge;
 use App\SP1_DQuestionnaire;
 use App\SP1_IQ36;
 use App\SP1_IQ48;
+use App\SP1_IQ72;
+use App\SP1_IQ96;
 use App\SP1_PDynamicAnalysis;
 use App\SP1_PDynamicSampling;
 use App\SP1_PKineticSampling;
 use App\SP1_UrineTest;
 use App\SP1_VitalSigns;
+use Illuminate\Support\Facades\Schema;
 use PDF;
 use Illuminate\Http\Request;
 use App\Patient;
@@ -256,6 +259,11 @@ class studySpecificController extends Controller
             $DQuestionnaire = SP1_DQuestionnaire::where('SP1_DQuestionnaire_ID', $findSP1->SP1_DQuestionnaire)->first();
             $IQ36 = SP1_IQ36::where('SP1_IQ36_ID', $findSP1->SP1_IQ36)->first();
             $IQ48 = SP1_IQ48::where('SP1_IQ48_ID', $findSP1->SP1_IQ48)->first();
+            $IQ72 = SP1_IQ72::where('SP1_IQ72_ID', $findSP1->SP1_IQ72)->first();
+            $IQ96 = SP1_IQ96::where('SP1_IQ96_ID', $findSP1->SP1_IQ96)->first();
+
+
+
             $pdf = PDF::loadView('test', compact('Admission',
                 'BMVS',
                 'BAT',
@@ -269,6 +277,8 @@ class studySpecificController extends Controller
                 'DQuestionnaire',
                 'IQ36',
                 'IQ48',
+                'IQ72',
+                'IQ96',
                 'study',
                 'patient'))
             ->setPaper('A4','landscape');
