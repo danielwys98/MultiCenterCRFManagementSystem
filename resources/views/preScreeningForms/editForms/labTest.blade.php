@@ -45,7 +45,7 @@
             {!! Form::label('blood_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::radio('blood_laboratory',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
+            {!! Form::radio('blood_laboratory','Others',($LabTest->Blood_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->Blood_Laboratory==NULL)? 'checked' : '') !!}
             {!! Form::label('blood_laboratory', 'Other: ') !!}
         </div>
         <div class="col-md-3">
@@ -64,7 +64,7 @@
     <div class="form-group row">
         <div class="col-md-4">
             {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
-            {!! Form::text('Blood_RepeatTest', '',['class'=>'form-control']) !!}
+            {!! Form::text('Blood_RepeatTest', $LabTest->Blood_RepeatTest,['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="form-group row">
@@ -142,12 +142,12 @@
             {!! Form::label('urinerepeat_laboratory', 'Laboratory: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::radio('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->UrineRepeat_Laboratory=='Sarawak General Hospital Heart Centre')?'checked':'') !!}
+            {!! Form::radio('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd',($LabTest->UrineRepeat_Laboratory=='B.P. Clinical Lab Sdn Bhd')?'checked':'') !!}
             {!! Form::label('urinerepeat_laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
         </div>
         <div class="col-md-1">
-            {!! Form::radio('urinerepeat_laboratory', 'Other',($LabTest->UrineRepeat_Laboratory!='Sarawak General Hospital Heart Centre' && $LabTest->UrineRepeat_Laboratory!=NULL)?'checked':'') !!}
-            {!! Form::label('urinerepeat_laboratory', 'Other: ') !!}
+            {!! Form::radio('urinerepeat_laboratory', 'Other',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd' && $LabTest->UrineRepeat_Laboratory!=NULL)?'checked':'') !!}
+            {!! Form::label('urinerepeat_laboratory_other', 'Other: ') !!}
         </div>
         <div class="col-md-3">
             {!! Form::text('UrineRepeat_Laboratory_Text',($LabTest->UrineRepeat_Laboratory!='B.P. Clinical Lab Sdn Bhd')? $LabTest->UrineRepeat_Laboratory : '',['class'=>'form-control']) !!}

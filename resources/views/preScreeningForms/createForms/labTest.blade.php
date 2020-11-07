@@ -151,7 +151,7 @@
         {!! Form::label('UrineRepeat_Laboratory_Other', 'Other: ') !!}
         </div>
         <div class="col-md-3">
-        {!! Form::text('UrineRepeat_Laboratory_txt', '',['placeholder'=>'Please specify']) !!}
+        {!! Form::text('UrineRepeat_Laboratory_txt', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
         </div>
     </div>
 </fieldset>

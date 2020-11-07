@@ -66,7 +66,7 @@ class Lab_Controller extends Controller
 
         //Check if Repeat Blood Test id Required
         $lt->Blood_NAtest = $request->Blood_NAtest;
-        if ($request->Blood_NAtest == true) {
+        if ($request->Blood_NAtest == 'Not Applicable') {
             $lt->Blood_RepeatTest = NULL;
             $lt->Repeat_dateBCollected = NULL;
             $lt->BloodRepeat_Laboratory = NULL;
@@ -91,7 +91,7 @@ class Lab_Controller extends Controller
 
         //Check if Repeat Urine Test is Required
         $lt->Urine_NAtest = $request->Urine_NAtest;
-        if ($request->Urine_NAtest == true) {
+        if ($request->Urine_NAtest == 'Not Applicable') {
             $lt->Urine_RepeatTest = NULL;
             $lt->Repeat_dateUCollected = NULL;
             $lt->UrineRepeat_Laboratory = NULL;
@@ -129,17 +129,15 @@ class Lab_Controller extends Controller
 
                 'dateUTaken' => $request->dateUTaken,
 
-                'Urine_NAtest' => $request->Urine_NAtest,
-                'Urine_RepeatTest' => $request->Urine_RepeatTest,
-                'Repeat_dateUCollected' => $request->Repeat_dateUCollected,
-                'UrineRepeat_Laboratory' => $request->urinerepeat_laboratory
+                'Blood_NAtest' => $request->Blood_NAtest,
+                'Urine_NAtest' => $request->Urine_NAtest
             ]);
 
         if ($request->blood_laboratory != 'B.P. Clinical Lab Sdn Bhd') {
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
-                    'Blood_Laboratory' => $request->blood_laboratory_Text
+                    'Blood_Laboratory' => $request->Blood_Laboratory_Text
                 ]);
         } else {
             DB::table('patient_laboratory_tests')
@@ -148,9 +146,10 @@ class Lab_Controller extends Controller
                     'Blood_Laboratory' => $request->blood_laboratory
                 ]);
         }
-
         //To check if repeat blood test is needed
-        if($request->Blood_NAtest==true){
+
+
+        if($request->Blood_NAtest=='Not Applicable'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id',$id)
                 ->update([
@@ -159,12 +158,17 @@ class Lab_Controller extends Controller
                 'BloodRepeat_Laboratory' => NULL
             ]);
         }else{
+            if($request->bloodrepeat_laboratory!= 'B.P. Clinical Lab Sdn Bhd'){
+                $blood_repeatlab=$request->Bloodrepeat_Laboratory_Text;
+            }else{
+                $blood_repeatlab=$request->bloodrepeat_laboratory;
+            }
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
                     'Blood_RepeatTest' => $request->Blood_RepeatTest,
                     'Repeat_dateBCollected' => $request->Repeat_dateBCollected,
-                    'BloodRepeat_Laboratory' => $request->bloodrepeat_laboratory
+                    'BloodRepeat_Laboratory' => $blood_repeatlab
                 ]);
         }
 
@@ -172,7 +176,7 @@ class Lab_Controller extends Controller
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
-                    'Urine_Laboratory' => $request->urine_laboratory_Text
+                    'Urine_Laboratory' => $request->Urine_Laboratory_Text
                 ]);
         }else{
             DB::table('patient_laboratory_tests')
@@ -183,7 +187,7 @@ class Lab_Controller extends Controller
         }
 
         //Check if repeat urine test is needed
-        if( $request->Urine_NAtest==true){
+        if( $request->Urine_NAtest=='Not Applicable'){
             DB::table('patient_laboratory_tests')
                 ->where('patient_id',$id)
                 ->update([
@@ -192,12 +196,17 @@ class Lab_Controller extends Controller
                     'UrineRepeat_Laboratory' => NULL
                 ]);
         }else{
+            if($request->urinerepeat_laboratory!= 'B.P. Clinical Lab Sdn Bhd'){
+                $urine_repeatlab=$request->UrineRepeat_Laboratory_Text;
+            }else{
+                $urine_repeatlab=$request->urinerepeat_laboratory;
+            }
             DB::table('patient_laboratory_tests')
                 ->where('patient_id', $id)
                 ->update([
                     'Urine_RepeatTest' => $request->Urine_RepeatTest,
                     'Repeat_dateUCollected' => $request->Repeat_dateUCollected,
-                    'UrineRepeat_Laboratory' => $request->urinerepeat_laboratory
+                    'UrineRepeat_Laboratory' => $urine_repeatlab
                 ]);
         }
 

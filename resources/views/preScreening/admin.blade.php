@@ -57,7 +57,7 @@
                     <p>{{$patient->name}}</p><br>
                 </td>
                 <td>
-                    <a href="{{ route('preScreening.show',$patient->id) }}" class="btn btn-dark">View Profile</a>
+                    <a href="{{ route('preScreening.edit',$patient->id) }}" class="btn btn-dark">Edit Profile</a>
                 </td>
                 <td>
                     <a href="{{route('preScreeningForms.create',$patient->id)}}" class="btn btn-primary">Add Details</a>

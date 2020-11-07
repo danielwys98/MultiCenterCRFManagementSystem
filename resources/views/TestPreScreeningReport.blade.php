@@ -10,6 +10,10 @@
     .page-break {
         page-break-after: always;
     }
+
+    td{
+        text-align: center;
+    }
 </style>
 <body>
 <h3>{{$patient->name}}'s Pre-Screening Details</h3>
@@ -29,33 +33,34 @@
 <div class="form-group row">
     <div class="col-md-4">
         {!! Form::label('weight', 'Weight: ') !!}
-        {!! Form::label('weight',$BodyAndVitals->weight, ['class'=>'form-control','placeholder'=>'kg']) !!}
+        {!! Form::label('weight',$BodyAndVitals->weight. ' kg', ['class'=>'form-control','placeholder'=>'kg']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-4">
         {!! Form::label('height', 'Height: ') !!}
-        {!! Form::label('height',$BodyAndVitals->height, ['class'=> 'form-control','placeholder'=>'cm']) !!}
+        {!! Form::label('height',$BodyAndVitals->height .' cm', ['class'=> 'form-control','placeholder'=>'cm']) !!}
     </div>
 </div>
 
 <div class="form-group row">
     <div class="col-md-4">
         {!! Form::label('bmi', 'Body Mass Index: ') !!}
-        {!! Form::label('bmi',$BodyAndVitals->bmi,['class'=>'form-control','placeholder'=>'','readonly']) !!}
+        {!! Form::label('bmi',$BodyAndVitals->bmi.  ' kg/m^2',['class'=>'form-control','placeholder'=>'','readonly']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-4">
         {!! Form::label('temperature', 'Temperature: ') !!}
-        {!! Form::label('temperature',$BodyAndVitals->temperature,['class'=>'form-control','placeholder'=>'°C']) !!}
+        {!! Form::label('temperature',$BodyAndVitals->temperature. ' &deg;C',['class'=>'form-control','placeholder'=>'°C']) !!}
     </div>
 </div>
 {{--Vital Signs--}}
-<h4>Vital Signs</h4>
-<hr>
 <table border="1">
     <thead>
+    <tr>
+        <th colspan="5">Vital Signs</th>
+    </tr>
     <tr>
         <th scope="col">Position</th>
         <th scope="col">Reading Time (24-hour clock)</th>
@@ -105,12 +110,13 @@
     </tr>
     </tbody>
 </table>
-<p>
-    {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
-</p>
+
+<p>Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.</p>
 <div class="form-group row col-md-6">
     {!! Form::label('Comment','Comments/ Remarks: ') !!}
-    {!! Form::label('Comment',$BodyAndVitals->Comment,['class'=>'form-control']) !!}
+    @if($BodyAndVitals->Comment!=NULL)
+    {!! Form::label('Comment',$BodyAndVitals->Comment) !!}
+        @endif
 </div>
 {{--BATER--}}
 <div class="page-break">
@@ -185,11 +191,11 @@
 <div class="row">
     <div class="col-sm-3">
         {!! Form::label('dateTaken', 'Date Taken: ') !!}
-        {!! Form::label('dateTaken', \Carbon\Carbon::now()) !!}
+        {!! Form::label('dateTaken',$Medical->dateTaken) !!}
     </div>
     <div class="col-sm-3">
         {!! Form::label('timeTaken', 'Time Taken: ') !!}
-        {!! Form::label('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s')) !!}
+        {!! Form::label('timeTaken',$Medical->timeTaken) !!}
     </div>
 </div>
 <h4>System Review</h4>
@@ -269,7 +275,7 @@
 <table border="1">
     <tr>
         <th>Subject Lifestyle</th>
-        <th>No</th>
+        <th>Results</th>
         <th>Pertinent details (if applicable)</th>
     </tr>
     <tr>
@@ -396,18 +402,334 @@
     {!! Form::label('conclusion', 'Conclusion: ') !!}
     {!! Form::label('conclusion',$Medical->Conclusion) !!}
 </div>
-
 <div class="page-break">
-    {{--TODO Physical Exam here--}}
+
+</div>
+<div class="page-break">
+    <h3>Physical Examination</h3>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+            {!! Form::label('dateTaken', 'Date Taken: ') !!}
+            {!! Form::label('dateTaken',$Physical->dateTaken) !!}
+        </div>
+    </div>
+    <h4>System Review</h4>
+    <hr>
+    <table border="1">
+        <tr>
+            <th>System Review </th>
+            <th>If abnormal, give pertinent details</th>
+        </tr>
+        <tr>
+            <td>General Appearance </td>
+            <td>{!! Form::label('generalappearance',$Physical->GeneralAppearance) !!}</td>
+        </tr>
+        <tr>
+            <td>Skin</td>
+            <td>{!! Form::label('skin', $Physical->Skin) !!}</td>
+        </tr>
+        <tr>
+            <td>Head-Neck</td>
+            <td>{!! Form::label('head_neck', $Physical->Head_Neck) !!}</td>
+        </tr>
+        <tr>
+            <td>Eyes</td>
+            <td>{!! Form::label('eyes', $Physical->Eyes) !!}</td>
+        </tr>
+        <tr>
+            <td>Ears / Nose / Throat</td>
+            <td>{!! Form::label('ears_nose_throat', $Physical->Ears_Nose_Throat) !!}</td>
+        </tr>
+        <tr>
+            <td>Mouth</td>
+            <td>{!! Form::label('mouth', $Physical->Mouth) !!}</td>
+        </tr>
+        <tr>
+            <td>Chest / Lungs</td>
+            <td>{!! Form::label('chest_lungs',$Physical->Chest_Lungs) !!}</td>
+        </tr>
+        <tr>
+            <td>Heart</td>
+            <td>{!! Form::label('heart',$Physical->Heart) !!}</td>
+        </tr>
+        <tr>
+            <td>Abdomen</td>
+            <td>{!! Form::label('abdomen', $Physical->Abdomen) !!}</td>
+        </tr>
+        <tr>
+            <td>Back-Spine</td>
+            <td>{!! Form::label('back_spine',$Physical->Back_Spine) !!}</td>
+        </tr>
+        <tr>
+            <td>Musculoskeletal</td>
+            <td>{!! Form::label('musculoskeletal',$Physical->Musculoskeletal) !!}</td>
+        </tr>
+        <tr>
+            <td>Neurological</td>
+            <td>{!! Form::label('neurological', $Physical->Neurological) !!}</td>
+        </tr>
+        <tr>
+            <td>Extremities</td>
+            <td>{!! Form::label('extremities', $Physical->Extremities) !!}</td>
+        </tr>
+        <tr>
+            <td>Lymph Nodes</td>
+            <td>{!! Form::label('lymph_nodes',$Physical->Lymph_Nodes) !!}</td>
+        </tr>
+        <tr>
+            <td>Other</td>
+            <td>{!! Form::label('other', $Physical->Other) !!}</td>
+        </tr>
+    </table>
+    <br>
+    <div>
+        {!! Form::label('Cubital_Fossa_Veins', 'Cubital fossa veins: ') !!}
+        {!! Form::label('Cubital_Fossa_Veins',$Physical->Cubital_Fossa_Veins) !!}
+    </div>
+    <div>
+        <p>{!! Form::label('comments', 'Comments: ') !!}
+            {!! Form::label('comments',$Physical->Comments.'. '.$Physical->Comments_txt)!!}</p>
+    </div>
 </div>
 
 <div class="page-break">
-    {{--TODO Urine Test here--}}
+    <h3>Urine Pregnancy Test</h3>
+    <p>(Transcribed from Urine Logbook)</p>
+    <hr>
+    @if($UrineTest->UPreg_male==1)
+        <strong>{!! Form::label('UPreg_male', 'Not Applicable for male') !!}</strong>
+    @else
+        <div class="row">
+            <div class="col-sm-3">
+                {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
+                {!! Form::label('UPreg_dateTaken', $UrineTest->UPreg_dateTaken)!!}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
+                {!! Form::label('UPreg_TestTime', $UrineTest->UPreg_dateTaken) !!}
+            </div>
+            <div class="col-sm-3">
+                {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
+                {!! Form::label('UPreg_ReadTime', $UrineTest->UPreg_dateTaken)!!}
+            </div>
+        </div>
+        <div>
+            {!! Form::label('upreg_laboratory', 'Laboratory: ') !!}
+            {!! Form::label('UPreg_Laboratory_Text',$UrineTest->UPreg_Laboratory) !!}
+
+        </div>
+        <table border="1">
+            <tr>
+                <th class="col-sm-3">
+                    Test
+                </th>
+                <th class="col-sm-3">
+                    Result
+                </th>
+                <th class="col-sm-3">
+                    Comment
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    {!! Form::label('UPreg_hCG', 'hCG: ') !!}
+                </td>
+                <td>
+                {!! Form::label('UPreg_hCG',$UrineTest->UPreg_hCG) !!}
+                <td>
+                    {!! Form::label('UPreg_hCG_Comment',($UrineTest->UPreg_hCG_Comment!=NULL)? $UrineTest->UPreg_hCG_Comment:'Nothing') !!}
+                </td>
+            <tr>
+                <td colspan="2">{!! Form::label('UPreg_Transcribedby', 'Transcribed by (initial): ') !!}</td>
+                <td>{!! Form::label('UPreg_Transcribedby', $UrineTest->UPreg_Transcribedby) !!}</td>
+                </td>
+            </tr>
+        </table>
+    @endif
+
+    <h3>Urine Drugs of Abuse Test</h3>
+    <p>(Transcribed from Urine Logbook)</p>
+    <hr>
+    <div class="row">
+        <div class="col-sm-3">
+            {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
+            {!! Form::label('UDrug_dateTaken', $UrineTest->UDrug_dateTaken) !!}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            {!! Form::label('UDrug_TestTime', 'Test Time: ') !!}
+            {!! Form::label('UDrug_TestTime',  $UrineTest->UDrug_TestTime) !!}
+        </div>
+        <div class="col-sm-3">
+            {!! Form::label('UDrug_ReadTime', 'Read Time: ') !!}
+            {!! Form::label('UDrug_ReadTime', $UrineTest->UDrug_ReadTime) !!}
+        </div>
+    </div>
+    <div>
+        {!! Form::label('udrug_laboratory', 'Laboratory: ') !!}
+        {!! Form::label('udrug_laboratory',$UrineTest->UDrug_Laboratory) !!}
+    </div>
+    <br>
+    <table border="1">
+        <tr>
+            <td>Test</td>
+            <td>Result</td>
+            <td>Comment</td>
+        </tr>
+        <tr>
+            <td>
+                {!! Form::label('UDrug_Methamphetamine', 'Methamphetamine (mAMP): ') !!}
+            </td>
+            <td>
+                {!! Form::label('UDrug_Methamphetamine',$UrineTest->UDrug_Methamphetamine) !!}
+            </td>
+            <td>
+                {!! Form::label('UDrug_Methamphetamine_Comment',($UrineTest->UDrug_Methamphetamine_Comment!=NULL)? $UrineTest->UDrug_Methamphetamine_Comment:'None') !!}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {!! Form::label('Morphine', 'Morphine (MOR): ') !!}
+            </td>
+            <td>
+                {!! Form::label('UDrug_Morphine', $UrineTest->UDrug_Morphine) !!}
+            </td>
+            <td>
+                {!! Form::label('UDrug_Morphine_Comment',($UrineTest->UDrug_Morphine_Comment!=NULL)? $UrineTest->UDrug_Morphine_Comment:'None') !!}
+            </td>
+        </tr>
+        <tr class="row">
+            <td class="col-sm-3">
+                {!! Form::label('UDrug_Marijuana', 'Marijuana (THC): ') !!}
+            </td>
+            <td class="col-sm-3">
+                {!! Form::label('UDrug_Marijuana', $UrineTest->UDrug_Marijuana) !!}
+            </td>
+            <td class="col-sm-3">
+                {!! Form::label('UDrug_Marijuana_Comment',($UrineTest->UDrug_Marijuana_Comment!=NULL)? $UrineTest->UDrug_Marijuana_Comment:'None') !!}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                {!! Form::label('UDrug_Transcribedby', 'Transcribed by (initial): ') !!}
+            </td>
+            <td>
+                {!! Form::label('UDrug_Transcribedby', $UrineTest->UDrug_Transcribedby) !!}
+            </td>
+        </tr>
+    </table>
 </div>
 
 <div class="page-break">
-    {{--TODO Lab Test here--}}
-</div>
+    <h3>Laboratory Tests</h3>
+    <p>(Laboratory Test Report attached in Appendix)</p>
+    <hr>
+    <h5>Blood (Haematology and Chemistry)</h5>
+    <div class="form-group row">
+        {!! Form::label('dateBTaken', 'Date Blood Taken: ') !!}
+        {!! Form::label('dateBTaken',$LabTest->dateBTaken) !!}
+    </div>
+    <div class="form-group row">
+        <div class="col-md-2">
+            {!! Form::label('dateLMTaken', 'Date Last Meal Taken: ') !!}
+            {!! Form::label('dateLMTaken',$LabTest->dateLMTaken) !!}
+        </div>
+        <div class="offset-1 col-md-2">
+            {!! Form::label('TimeLMTaken', 'Time Last Meal Taken: ') !!}
+            {!! Form::label('TimeLMTaken',$LabTest->TimeLMTaken) !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            {!! Form::label('describemeal', 'If within 8 hours, describe meal taken: ') !!}
+            {!! Form::label('describemeal', $LabTest->describemeal) !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('Blood_Laboratory', 'Laboratory: ') !!}
+            {!! Form::label('blood_laboratory',$LabTest->Blood_Laboratory) !!}
+        </div>
+    </div>
+    <br>
+    <fieldset>
+        <legend>Repeated Blood Test</legend>
+        @if($LabTest->Blood_NAtest=='Not Applicable')
+            <div class="form-group row">
+                <div class="col-md-2">
+                    {!! Form::label('Blood_NAtest', 'Not Applicable') !!}
+                </div>
+            </div>
+        @else
+            <div class="form-group row">
+                <div class="col-md-4">
+                    {!! Form::label('Blood_RepeatTest', 'Repeated test: ') !!}
+                    {!! Form::label('Blood_RepeatTest', $LabTest->Blood_RepeatTest) !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    {!! Form::label('Repeat_dateBCollected', 'Date Blood Collected: ') !!}
+                    {!! Form::label('Repeat_dateBCollected',$LabTest->Repeat_dateBCollected) !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    {!! Form::label('bloodrepeat_laboratory', 'Laboratory: ') !!}
+                    {!! Form::label('bloodrepeat_laboratory',$LabTest->BloodRepeat_Laboratory) !!}
+                </div>
+            </div>
+        @endif
+    </fieldset>
+    <br>
+    <h5>Urine (Microbiology)</h5>
+    <div class="form-group row">
+        <div class="col-md-2">
+            {!! Form::label('dateUTaken', 'Date Urine Collected: ') !!}
+            {!! Form::label('dateUTaken',$LabTest->dateUTaken) !!}
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('urine_laboratory', 'Laboratory: ') !!}
+            {!! Form::label('urine_laboratory', $LabTest->Urine_Laboratory) !!}
+        </div>
+    </div>
+
+    <br>
+    <fieldset>
+        <legend>Repeated Urine Test</legend>
+        @if($LabTest->Urine_NAtest=="Not Applicable")
+            <div class="form-group row">
+                <div class="col-md-2">
+                    {!! Form::label('Urine_NAtest', 'Not Applicable') !!}
+                </div>
+            </div>
+        @else
+            <div class="form-group row">
+                <div class="col-md-4">
+                    {!! Form::label('Urine_RepeatTest', 'Repeated test: ') !!}
+                    {!! Form::label('Urine_RepeatTest',$LabTest->Urine_RepeatTest) !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    {!! Form::label('Repeat_dateUCollected', 'Date Blood Collected: ') !!}
+                    {!! Form::label('Repeat_dateUCollected',$LabTest->Repeat_dateUCollected) !!}
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-2">
+                    {!! Form::label('urinerepeat_laboratory', 'Laboratory: ') !!}
+                    {!! Form::label('urinerepeat_laboratory',$LabTest->UrineRepeat_Laboratory) !!}
+                </div>
+            </div>
+        @endif
+    </fieldset>
 
 {{--Serology Test--}}
 <h3>Serology Test</h3>
@@ -427,8 +749,6 @@
     {!! Form::label('laboratory', 'Laboratory: ') !!}
     {!! Form::label('laboratory',$Serology->Laboratory) !!}
 </div>
-<div class="page-break">
-
 </div>
 {{--Inclusion Exclusion--}}
 <h3>Inclusion and Exclusion Criteria</h3>
@@ -494,8 +814,6 @@
     <div class="col-sm-6">
         <p>3. Systolic blood pressure outside 90-140 mmHg or diastolic blood pressure outside 50-90
             mmHg.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion03',$InclusionExclusion->Exclusion03) !!}</p>
     </div>
 </div>
@@ -503,24 +821,18 @@
     <div class="col-sm-6">
         <p>4. Bradycardia defined as symptomatic heart rate < 50 bpm or asymptomatic heart rate < 45 bpm
             and tachycardia defined as heart rate > 100 bpm.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion04', $InclusionExclusion->Exclusion04) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>5. Clinically significant ECG abnormalities.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion05',$InclusionExclusion->Exclusion05) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>6. QTc > 450 ms for male and > 460 ms for female.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion06',$InclusionExclusion->Exclusion06) !!}</p>
     </div>
 </div>
@@ -528,8 +840,6 @@
     <div class="col-sm-6">
         <p>7. A history of asthma and allergies, or any significant adverse reactions, to any
             medications.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion07', $InclusionExclusion->Exclusion07) !!}</p>
     </div>
 </div>
@@ -539,48 +849,36 @@
             cardiovascular, gastrointestinal, genitourinary, neurological, haematopoietic, lymphatic,
             endocrine, metabolic, dermatological, musculoskeletal, psychological, family history or
             surgical history.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion08',$InclusionExclusion->Exclusion08) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>9. A history of gastritis or peptic ulcer.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion09',$InclusionExclusion->Exclusion09) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>10. Family history of sudden cardiac death.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion10',$InclusionExclusion->Exclusion10) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>11. Clinically significant physical examination finding.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion11',$InclusionExclusion->Exclusion11) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>12. Clinically significant laboratory abnormalities.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion12',$InclusionExclusion->Exclusion12) !!}</p>
-    </div>=
+    </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>13. Haemoglobin < 12.0 g/dL for male and < 11.0 g/dL for female at screening.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion13', $InclusionExclusion->Exclusion13) !!}</p>
     </div>
 </div>
@@ -589,16 +887,12 @@
         <p>14. Total bilirubin > 1.25 x upper limit of normal (unless it is an isolated elevation where
             the direct bilirubin is ≤ 35% of total), ALT/AST > 1.5 x upper limit of normal, or CPK > 2 x
             upper limit of normal.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion14', $InclusionExclusion->Exclusion14) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>15. Hepatitis B, Hepatitis C or HIV positive.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion15', $InclusionExclusion->Exclusion15) !!}</p>
     </div>
 </div>
@@ -607,24 +901,18 @@
         <p>16. A history of drug or substance abuse, including alcohol (≥ 14 units per week) within 6
             months before dosing (1 unit of alcohol equals approximately ½ pint [285 mL] of beer, 1
             glass [125 mL] of wine, or 1 shot [25 mL] of spirit).</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion16', $InclusionExclusion->Exclusion16) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>17. Urine DOA test positive.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion17',$InclusionExclusion->Exclusion17) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>18. Breath alcohol test positive.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion18',$InclusionExclusion->Exclusion18) !!}</p>
     </div>
 </div>
@@ -633,8 +921,6 @@
         <p>19. Have taken any medications (including herbal remedies) within 7 days before dosing, with
             the exception of birth control and other medications deemed acceptable by the
             Investigator.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion19',$InclusionExclusion->Exclusion19) !!}</p>
     </div>
 </div>
@@ -642,8 +928,6 @@
     <div class="col-sm-6">
         <p>20. Clinically significant illness or injury or hospitalisation for any reason within 28 days
             before dosing.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion20',$InclusionExclusion->Exclusion20) !!}</p>
     </div>
 </div>
@@ -651,8 +935,6 @@
     <div class="col-sm-6">
         <p>21. Participation in other clinical study involving a marketed or investigational drug within
             28 days or 10 half-lives of the drug before dosing, whichever is longer.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion21',$InclusionExclusion->Exclusion21) !!}</p>
     </div>
 </div>
@@ -664,16 +946,12 @@
         <p>- 50-300 mL within 28 days,</p>
         <p>- 301-500 mL within 42 days, or</p>
         <p>- > 500 mL within 84 days.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion22',$InclusionExclusion->Exclusion22) !!}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-6">
         <p>23. Difficulty to swallow the study drug.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion23',$InclusionExclusion->Exclusion23) !!}</p>
     </div>
 </div>
@@ -681,8 +959,6 @@
     <div class="col-sm-6">
         <p>24. Any other medical condition or reason that, in the opinion of the Investigator or
             Research Physician, makes the subject unsuitable to participate in the clinical study.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion24',$InclusionExclusion->Exclusion24) !!}</p>
     </div>
 </div>
@@ -697,32 +973,31 @@
         <p>- intrauterine contraceptive system,</p>
         <p>- surgical (vasectomy or tubal ligation), or</p>
         <p>- sexual abstinence.</p>
-    </div>
-    <div class="col-sm-3">
         <p>{!! Form::label('Exclusion25',$InclusionExclusion->Exclusion25) !!}</p>
     </div>
 </div>
-<div class="page-break">
-{{--Conclusion and Signature--}}
-<h3>Conclusion</h3>
-<hr>
-<div class="row">
+    {{--Conclusion and Signature--}}
+    <h3>Conclusion</h3>
+    <hr>
+    <div class="row">
         <p>Does the subject fulfill all the inclusion criteria and none of the exclusion criteria?</p>
         <p>{!! Form::label('inclusionyesno',$Conclu->inclusionYesNo) !!}</p>
     </div>
-</div>
 <p>If “Yes”, enroll the subject into the study.</p>
 <p>If “No”, provide details. The subject may or may not be enrolled into the study, based on the
     discretion of the research physician.</p>
-{!! Form::label('NoDetails',(($Conclu->inclusionyesno)!='Yes')? $Conclu->inclusionYesNo : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}<br/>
+{!! Form::label('NoDetails',(($Conclu->inclusionyesno)!='Yes')? $Conclu->inclusionYesNo : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+<br/>
 <div>
-    <p>The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to receive <strong>{{$study->study_name}}</strong>, the study medication.<p></p>
+    <p>The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to
+        receive <strong>{{$study->study_name}}</strong>, the study medication.
+    <p></p>
 </div>
 @if($Conclu->abnormality!=NULL)
-<div>
-    {!! Form::label('abnormality', 'Clinically significant abnormality (ies), this subject cannot be enrolled into this study.') !!}
-</div>
-    @endif
+    <div>
+        {!! Form::label('abnormality', 'Clinically significant abnormality (ies), this subject cannot be enrolled into this study.') !!}
+    </div>
+@endif
 </body>
 
 

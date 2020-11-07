@@ -56,25 +56,25 @@
                 {!! Form::label('race', 'Ethnicity:') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Chinese') !!}
+                {!! Form::radio('ethnicity', 'Chinese',(($patient->Ethnicity)=='Chinese')?'checked':'') !!}
                 {!! Form::label('Chinese', 'Chinese') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Malay') !!}
+                {!! Form::radio('ethnicity', 'Malay',(($patient->Ethnicity)=='Malay')?'checked':'') !!}
                 {!! Form::label('Malay', 'Malay') !!}
             </div>
             <div class="col-md-1">
-                {!! Form::radio('Ethnicity', 'Indian') !!}
+                {!! Form::radio('ethnicity', 'Indian',(($patient->Ethnicity)=='Indian')?'checked':'') !!}
                 {!! Form::label('Indian', 'Indian') !!}
             </div>
             <div class="offset-4 col-md-6">
                 <div class="row">
                     <div class="col-md-4">
-                        {!! Form::radio('Ethnicity', 'Others') !!}
+                        {!! Form::radio('ethnicity', 'Others',(($patient->Ethnicity)!='Malay' && ($patient->Ethnicity)!='Chinese' && ($patient->Ethnicity)!='Indian')? 'checked' : '') !!}
                         {!! Form::label('Others', 'Others') !!}
                     </div>
                     <div class="col-md-8">
-                        {!! Form::text('Others', '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
+                        {!! Form::text('Others_txt',(($patient->Ethnicity)!='Malay' && ($patient->Ethnicity)!='Chinese' && ($patient->Ethnicity)!='Indian')? $patient->Ethnicity : '',['class'=>'form-control','placeholder'=>'Please specify']) !!}
                     </div>
                 </div>
             </div>
