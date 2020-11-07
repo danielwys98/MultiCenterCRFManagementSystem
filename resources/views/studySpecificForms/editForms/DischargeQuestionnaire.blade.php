@@ -7,7 +7,7 @@
         {!! Form::label('time', 'Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken',old("timeTaken",$DQuestionnaire->DQtimeTaken),['class'=>'form-control']) !!}
+        {!! Form::time('DQtimeTaken',old("DQtimeTaken",$DQuestionnaire->DQtimeTaken),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">
@@ -52,24 +52,24 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::label('Remarks', 'Additional Remarks (where applicable)') !!}
+        {!! Form::label('AdditionalRemarks', 'Additional Remarks (where applicable)') !!}
     </div>
 </div>
 <div class="row">
     <div class="col-md-8">
-        {!! Form::textarea('Remarks',old("Remarks",$DQuestionnaire->Remarks),['class'=>'form-control']) !!}
+        {!! Form::textarea('AdditionalRemarks',old("AdditionalRemarks",$DQuestionnaire->AdditionalRemarks),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
-        {!! Form::label('physicianSign', 'Physician/Investigator’s Signature: ') !!}
-        {!! Form::text('physicianSign',old("physicianSign",$DQuestionnaire->PhysicianSign),['class'=>'form-control']) !!}
+        {!! Form::label('PhysicianSign', 'Physician/Investigator’s Signature: ') !!}
+        {!! Form::text('PhysicianSign',old("PhysicianSign",$DQuestionnaire->PhysicianSign),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
-        {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-        {!! Form::text('physicianName',old("physicianName",$DQuestionnaire->PhysicianName),['class'=>'form-control']) !!}
+        {!! Form::label('PhysicianName', 'Name (Printed) : ') !!}
+        {!! Form::text('PhysicianName',old("PhysicianName",$DQuestionnaire->PhysicianName),['class'=>'form-control']) !!}
     </div>
 </div>
 
