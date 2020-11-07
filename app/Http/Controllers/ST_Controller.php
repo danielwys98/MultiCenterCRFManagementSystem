@@ -38,7 +38,7 @@ class ST_Controller extends Controller
             $st->dateCTaken = $request->dateCTaken;
             $st->dateBCollected = $request->dateBCollected;
 
-            if ($request->Laboratory == 'Other') {
+            if ($request->laboratory == 'Other') {
                 $st->Laboratory = $request->laboratory_txt;
             } else {
                 $st->Laboratory = $request->laboratory;
@@ -61,7 +61,7 @@ class ST_Controller extends Controller
             'dateBCollected'=>$request->dateBCollected,
         ]);
 
-       if($request->Laboratory=='Other'){
+       if($request->laboratory=='Other'){
            DB::table('patient_serology_tests')
                ->where('patient_id',$id)
                ->update([

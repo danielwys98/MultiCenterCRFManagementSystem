@@ -91,9 +91,9 @@ class UT_Controller extends Controller
             $ut->UPreg_dateTaken=$request->UPreg_dateTaken;
             $ut->UPreg_TestTime=$request->UPreg_TestTime;
             $ut->UPreg_ReadTime=$request->UPreg_ReadTime;
-            $UPreg_lab=$request->UPreg_Laboratory;
+            $UPreg_lab=$request->upreg_laboratory;
 
-            if($UPreg_lab=='Other'){
+            if($UPreg_lab!='Sarawak General Hospital Heart Centre'){
                 $ut->UPreg_Laboratory=$request->UPreg_Laboratory_Text;
             }else{
                 $ut->UPreg_Laboratory=$UPreg_lab;
@@ -108,9 +108,8 @@ class UT_Controller extends Controller
         $ut->UDrug_dateTaken=$request->UDrug_dateTaken;
         $ut->UDrug_TestTime=$request->UDrug_TestTime;
         $ut->UDrug_ReadTime=$request->UDrug_ReadTime;
-        $UDrug_lab=$request->UDrug_Laboratory;
-
-        if($UDrug_lab=='Other')
+        $UDrug_lab=$request->udrug_laboratory;
+        if($UDrug_lab!='Sarawak General Hospital Heart Centre')
             $ut->UDrug_Laboratory=$request->UDrug_Laboratory_Text;
         else
             $ut->UDrug_Laboratory=$UDrug_lab;
@@ -156,7 +155,7 @@ class UT_Controller extends Controller
         $UPreg_male=$request->UPreg_male;
 
         //Check and Store Drug Test Lab
-        if($request->UDrug_Laboratory!='Sarawak General Hospital Heart Centre'){
+        if($request->udrug_laboratory!='Sarawak General Hospital Heart Centre'){
             DB::table('patient_urine_tests')
                 ->where('patient_id',$id)
                 ->update([

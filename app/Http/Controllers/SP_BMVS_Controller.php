@@ -254,10 +254,8 @@ class SP_BMVS_Controller extends Controller
     }
 
     public function updateSP($findPSS,$PSS,$BMVS,$request){
-
-        //date, time, weight, height, bmi will be auto calculate, temperature
         if ($findPSS != NULL) {
-
+            //date, time, weight, height, bmi will be auto calculate, temperature
             $BMVS->dateTaken = $request->dateTaken;
             $BMVS->timeTaken = $request->timeTaken;
             $BMVS->weight = $request->weight;

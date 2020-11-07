@@ -249,26 +249,6 @@ class SP_IQ96_Controller extends Controller
 
     //update
     public function updateSP($findPSS,$PSS,$IQ96,$request){
-        //custom messages load for validation
-        $custom = [
-            'dateTaken.required' => 'Please enter the date taken for Interim Questionnaire(96hrs pose dose vist)',
-            'timeTaken.required' => 'Please enter the time taken for Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs01.required' => 'Please choose a selection for number 1 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs02.required' => 'Please choose a selection for number 2 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs03.required' => 'Please choose a selection for number 3 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs03txt.required_if' => 'Please specify amount and time taken for number 3 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs04.required' => 'Please choose a selection for number 4 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs04txt.required_if' => 'Please specify amount and time taken for number 4 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs05.required' => 'Please choose a selection for number 5 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs05txt.required_if' => 'Please provide details for number 5 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs06.required' => 'Please choose a selection for number 6 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs06txt.required_if' => 'Please provide details for number 6 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs07.required' => 'Please choose a selection for number 7 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs07txt.required_if' => 'Please provide details for number 7 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrs08.required' => 'Please choose a selection for number 8 in Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrsInterviewedby.required' => 'Please state interviewed by who for Interim Questionnaire(96hrs pose dose vist)',
-            'Interim96hrsCheckedby.required' => 'Please state checked by who for Interim Questionnaire(96hrs pose dose vist)',
-           ];
         if($findPSS !=NULL){
             $IQ96->NApplicable=$request->NApplicable;
             if($request->NApplicable == 1){
@@ -284,26 +264,6 @@ class SP_IQ96_Controller extends Controller
                 $IQ96->Interim96hrsInterviewedby=NULL;
                 $IQ96->Interim96hrsCheckedby=NULL;
             }else{
-                //validation for required fields
-                // $validatedData=$this->validate($request,[
-                //     'dateTaken' => 'required',
-                //     'timeTaken' => 'required',
-                //     'Interim96hrs01' => 'required',
-                //     'Interim96hrs02' => 'required',
-                //     'Interim96hrs03' => 'required',
-                //     'Interim96hrs03txt' => 'required_if:Interim96hrs03,==,Yes',
-                //     'Interim96hrs04' => 'required',
-                //     'Interim96hrs04txt' => 'required_if:Interim96hrs04,==,Yes',
-                //     'Interim96hrs05' => 'required',
-                //     'Interim96hrs05txt' => 'required_if:Interim96hrs05,==,Yes',
-                //     'Interim96hrs06' => 'required',
-                //     'Interim96hrs06txt' => 'required_if:Interim96hrs06,==,Yes',
-                //     'Interim96hrs07' => 'required',
-                //     'Interim96hrs07txt' => 'required_if:Interim96hrs07,==,Yes',
-                //     'Interim96hrs08' => 'required',
-                //     'Interim96hrsInterviewedby' => 'required',
-                //     'Interim96hrsCheckedby' => 'required',
-                // ],$custom);
                 //date and time for interim questionnaire
                 $IQ96->dateTaken=$request->dateTaken;
                 $IQ96->timeTaken=$request->timeTaken;

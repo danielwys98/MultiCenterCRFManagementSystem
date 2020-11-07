@@ -24,7 +24,7 @@
             {!! Form::label('laboratory', 'B.P. Clinical Lab Sdn Bhd') !!}
 
             {!! Form::radio('laboratory', 'Other','',['id'=>'Laboratory_Other']) !!}
-            {!! Form::label('laboratory', 'Other: ') !!}
+            {!! Form::label('Laboratory_Other', 'Other: ') !!}
 
             {!! Form::text('laboratory_txt', '',['placeholder'=>'Please specify']) !!}
         </div>

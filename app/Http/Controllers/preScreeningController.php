@@ -148,7 +148,11 @@ class preScreeningController extends Controller
         $patient->NRIC=$request->NRIC;
         $patient->name=$request->name;
         $patient->Gender=$request->Gender;
-        $patient->Ethnicity=$request->Ethnicity;
+        if($request->ethnicity=='Others'){
+            $patient->Ethnicity=$request->Others_txt;
+        }else{
+            $patient->Ethnicity=$request->ethnicity;
+        }
         $patient->DoB=$request->DoB;
         $patient->age=$request->age;
         $patient->maritalstatus=$request->maritalstatus;
