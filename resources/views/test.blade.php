@@ -168,8 +168,7 @@
 </div>
 
 {{--BREATH ALCOHOL TEST STARTS HERE--}}
-
-
+<div class="page-break">
 <h3>Breath Alcohol Test</h3>
 <p>(Transcribed from Breath Alcohol Test Logbook)</p>
 <hr>
@@ -211,7 +210,7 @@
     </tr>
     </tbody>
 </table>
-
+</div>
 
 {{--Admission Questionnaire starts here--}}
 
@@ -281,7 +280,6 @@
 <hr>
 
 {{-- Admission Question 3 --}}
-
 
 <div class="page-break">
     <div class="row">

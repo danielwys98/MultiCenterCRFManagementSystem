@@ -66,7 +66,7 @@ class preScreeningController extends Controller
         $validatedData=$this->validate($request,[
             'dateTaken'  => 'required',
             'timeTaken' => 'required',
-            'NRIC'  => 'required|regex:"\d{6}\d{2}\d{4}"',
+            'NRIC'  => 'required|regex:/^\d{6}\d{2}\d{4}$/',
             'name' => 'required',
             'Gender'  => 'required',
             'Ethnicity' => 'required',

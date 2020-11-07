@@ -109,11 +109,11 @@
             </div>
         </div>
 
-        {!! Form::submit('View subject study period details',['class'=>'btn btn-success'])!!}
+        {!! Form::submit('View subject study period details',['class'=>'btn btn-success','onclick'=>'are you sure?'])!!}
         {!! Form::close() !!}
         <br>
         <br>
-        {!! Form::open(['route' => ['subject.removePSS',$study->study_id]]) !!}
+        {!! Form::open(['route' => ['subject.removePSS',$study->study_id],'onsubmit' => 'return confirm("Are you sure?")']) !!}
         <div class="form-group row">
             <div class="col-md-2">
                 <div>

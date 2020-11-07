@@ -18,7 +18,7 @@ Route::get('/testing','studySpecificController@testing')->name('testing');
 
 Route::get('/downloadPDF/preScreening','studySpecificController@testPDFPreScreening');
 
-Route::get('/downloadPDF/','studySpecificController@testPDF')->name('test.PDF');
+Route::get('/downloadPDF/{id}/{study_id}/{study_period}','studySpecificController@testPDF')->name('test.PDF');
 //Testing route ends here
 
 Route::get('/','PagesController@loginPage');
@@ -33,6 +33,7 @@ Route::get('/preScreening/admin','preScreeningController@index')->name('preScree
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
+Route::get('/studySpecific/admin/search','studySpecificController@search');
 /*Route::get('/chooseStudy','PagesController@chooseStudy');*/
 
 /*Route::get('/studySpecific/input','studySpecificController@studies');*/
