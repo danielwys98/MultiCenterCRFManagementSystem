@@ -3,6 +3,14 @@
 @csrf
 {{-- body measurements and vital signs --}}
 <h3>Body Measurements and Vital Signs</h3>
+<div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('Absent', 'Absent:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('Absent') !!}
+    </div>
+</div>
 <hr>
 <div class="form-group row">
     <div class="col-md-1">

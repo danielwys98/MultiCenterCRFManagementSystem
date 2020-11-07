@@ -84,6 +84,7 @@
         <hr/>
         {{--new forms to select the subject and view their study periods details--}}
         {!! Form::open(['route' => ['SubjectStudySpecific.edit',$study->study_id]]) !!}
+        @method("GET")
         <div class="form-group row">
             <div class="col-md-2">
                 <div>

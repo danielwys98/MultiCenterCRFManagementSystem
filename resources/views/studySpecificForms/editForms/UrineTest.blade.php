@@ -5,6 +5,12 @@
 <h3>Urine Pregnancy Test</h3>
 <p>(Transcribed from Urine Logbook)</p>
 <div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('AbsentUPreg', 'Absent for Urine Pregnancy Test:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('AbsentUPreg') !!}
+    </div>
     <div class="col-md-2">
         {!! Form::label('UPreg_male', 'Not Applicable for male: ') !!}
     </div>
@@ -12,6 +18,7 @@
         {!! Form::checkbox('UPreg_male') !!}
     </div>
 </div>
+<hr>
 <div class=" form-group row">
     <div class="col-md-1">
         {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
@@ -97,13 +104,20 @@
 <h3>Urine Drugs of Abuse Test</h3>
 <p>(Transcribed from Urine Logbook)</p>
 <div class=" form-group row">
-    <div class="col-md-2">
+    <div class="col-md-1">
+        {!! Form::label('AbsentUDrug', 'Absent for Urine Drugs of Abuse Test:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('AbsentUDrug') !!}
+    </div>
+    <div class="col-md-1 offset-2">
         {!! Form::label('NApplicable', 'Not Applicable:') !!}
     </div>
     <div class="col-md-1">
         {!! Form::checkbox('NApplicable') !!}
     </div>
 </div>
+<hr>
 <div class="form-group row">
     <div class="col-md-1">
         {!! Form::label('UDrug_dateTaken', 'Date Taken: ') !!}
@@ -211,6 +225,15 @@
 <hr>
 {{-- conclusion --}}
 <h3>Conclusion</h3>
+<div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('AbsentC', 'Absent for this conclusion:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('AbsentC') !!}
+    </div>
+</div>
+<hr>
 <div class="row">
     <div class="col-md-7"></div>
     <div class="col-md-1">

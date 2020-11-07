@@ -34,15 +34,21 @@
         </div>
     </div>
 </div>
-    <h3>Pharmacodynamic Blood Sampling</h3>
-    <div class=" form-group row">
-        <div class="col-md-2">
-            {!! Form::label('NApplicable', 'Not Applicable:') !!}
-        </div>
-        <div class="col-md-1">
-            {!! Form::checkbox('NApplicable') !!}
-        </div>
+<h3>Pharmacodynamic Blood Sampling</h3>
+<div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('Absent', 'Absent:') !!}
     </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('Absent') !!}
+    </div>
+    <div class="col-md-1 offset-2">
+        {!! Form::label('NApplicable', 'Not Applicable:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('NApplicable') !!}
+    </div>
+</div>
 <hr/>
     <div class="form-group row">
         <div class="col-md-2">

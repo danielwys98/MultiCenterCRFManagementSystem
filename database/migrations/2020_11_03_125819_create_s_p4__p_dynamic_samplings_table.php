@@ -16,6 +16,7 @@ class CreateSP4PDynamicSamplingsTable extends Migration
         Schema::create('SP4_PDynamicSamplings', function (Blueprint $table) {
             $table->increments('SP4_PDynamicSampling_ID');
 
+            $table->boolean('Absent')->nullable();
             $table->boolean('NApplicable')->nullable();
             
             $table->date('Day1')->nullable();

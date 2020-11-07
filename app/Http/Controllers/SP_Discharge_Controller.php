@@ -156,25 +156,105 @@ class SP_Discharge_Controller extends Controller
         ];
 
         if ($findPSS != NULL && $PSS != NULL) {
-                //validation for required fields
-                $validatedData = $this->validate($request, [
-                    'DischargeDate' => 'required',
-                    'unscheduledDischarge' => 'required',
-                    'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
-                    'Sitting_ReadingTime' => 'required',
-                    'Sitting_BP_S' => 'required',
-                    'Sitting_BP_D' => 'required',
-                    'Sitting_HR' => 'required',
-                    'Sitting_RespiratoryRate' => 'required',
-                    'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
-                    'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
-                    'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
-                    'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
-                    'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
-                    'Initial' => 'required',
-                ], $custom);
-                
-                if($Discharge->DischargeDate == NULL){
+            if($Discharge->DischargeDate == NULL){
+                if($request->Absent == 1){
+                    $Discharge->DischargeDate = NULL;
+                    $Discharge->UnscheduledDischarge = NULL;
+                    //sitting record
+                    $Discharge->Sitting_ReadingTime = NULL;
+                    $Discharge->Sitting_BP_S = NULL;
+                    $Discharge->Sitting_BP_D = NULL;
+                    $Discharge->Sitting_HR = NULL;
+                    $Discharge->Sitting_RespiratoryRate = NULL;
+                    //repeated sitting record
+                    $Discharge->SittingRepeat = NULL;
+                    $Discharge->SittingRepeat_ReadingTime = NULL;
+                    $Discharge->SittingRepeat_BP_S = NULL;
+                    $Discharge->SittingRepeat_BP_D = NULL;
+                    $Discharge->SittingRepeat_HR = NULL;
+                    $Discharge->SittingRepeat_RespiratoryRate = NULL;
+                    $Discharge->Initial = NULL;
+                }else{
+                    //validation for required fields
+                    $validatedData = $this->validate($request, [
+                        'DischargeDate' => 'required',
+                        'unscheduledDischarge' => 'required',
+                        'unscheduledDischarge_Text' => 'required_if:unscheduledDischarge,==,Yes',
+                        'Sitting_ReadingTime' => 'required',
+                        'Sitting_BP_S' => 'required',
+                        'Sitting_BP_D' => 'required',
+                        'Sitting_HR' => 'required',
+                        'Sitting_RespiratoryRate' => 'required',
+                        'SittingRepeat_ReadingTime' => 'required_if:SittingRepeat,==,Yes',
+                        'SittingRepeat_BP_S' => 'required_if:SittingRepeat,==,Yes',
+                        'SittingRepeat_BP_D' => 'required_if:SittingRepeat,==,Yes',
+                        'SittingRepeat_HR' => 'required_if:SittingRepeat,==,Yes',
+                        'SittingRepeat_RespiratoryRate' => 'required_if:SittingRepeat,==,Yes',
+                        'Initial' => 'required',
+                    ], $custom);
+                    $Discharge->DischargeDate = $request->DischargeDate;
+                    $ud = $request->unscheduledDischarge;
+                    if ($ud == 'Yes') {
+                        $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
+                    } else {
+                        $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
+                    }
+                    //sitting record
+                    $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+                    $Discharge->Sitting_BP_S = $request->Sitting_BP_S;
+                    $Discharge->Sitting_BP_D = $request->Sitting_BP_D;
+                    $Discharge->Sitting_HR = $request->Sitting_HR;
+                    $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+                    //repeated sitting record
+                    $repeat = $request->SittingRepeat;
+                    $Discharge->SittingRepeat = $request->sittingRepeat;
+                    if ($repeat == 'Yes') {
+                        //if sitting is repeated
+                        $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
+                        $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
+                        $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
+                        $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
+                        $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
+                    } else {
+                        //if sitting is repeated is NA
+                        $Discharge->SittingRepeat_ReadingTime = NULL;
+                        $Discharge->SittingRepeat_BP_S = NULL;
+                        $Discharge->SittingRepeat_BP_D = NULL;
+                        $Discharge->SittingRepeat_HR = NULL;
+                        $Discharge->SittingRepeat_RespiratoryRate = NULL;
+                    }
+                    $Discharge->Initial = $request->Initial;
+                }
+                $Discharge->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public function updateSP($findPSS,$PSS,$Discharge,$request){
+        if ($findPSS != NULL) {
+            if($request->Absent == 1){
+                $Discharge->DischargeDate = NULL;
+                $Discharge->UnscheduledDischarge = NULL;
+                //sitting record
+                $Discharge->Sitting_ReadingTime = NULL;
+                $Discharge->Sitting_BP_S = NULL;
+                $Discharge->Sitting_BP_D = NULL;
+                $Discharge->Sitting_HR = NULL;
+                $Discharge->Sitting_RespiratoryRate = NULL;
+                //repeated sitting record
+                $Discharge->SittingRepeat = NULL;
+                $Discharge->SittingRepeat_ReadingTime = NULL;
+                $Discharge->SittingRepeat_BP_S = NULL;
+                $Discharge->SittingRepeat_BP_D = NULL;
+                $Discharge->SittingRepeat_HR = NULL;
+                $Discharge->SittingRepeat_RespiratoryRate = NULL;
+                $Discharge->Initial = NULL;
+            }else{
                 $Discharge->DischargeDate = $request->DischargeDate;
                 $ud = $request->unscheduledDischarge;
                 if ($ud == 'Yes') {
@@ -190,7 +270,7 @@ class SP_Discharge_Controller extends Controller
                 $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
                 //repeated sitting record
                 $repeat = $request->SittingRepeat;
-                $Discharge->SittingRepeat = $request->SittingRepeat;
+                $Discharge->SittingRepeat = $request->sittingRepeat;
                 if ($repeat == 'Yes') {
                     //if sitting is repeated
                     $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
@@ -207,50 +287,9 @@ class SP_Discharge_Controller extends Controller
                     $Discharge->SittingRepeat_RespiratoryRate = NULL;
                 }
                 $Discharge->Initial = $request->Initial;
-                $Discharge->save();
-                return true;
-            }else{
-                return false;
             }
-        }else{
-            return false;
-        }
-    }
-
-    public function updateSP($findPSS,$PSS,$Discharge,$request){
-        if ($findPSS != NULL) {
-            $Discharge->DischargeDate = $request->DischargeDate;
-            $ud = $request->unscheduledDischarge;
-            if ($ud == 'Yes') {
-                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge_Text;
-            } else {
-                $Discharge->UnscheduledDischarge = $request->unscheduledDischarge;
-            }
-            //sitting record
-            $Discharge->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-            $Discharge->Sitting_BP_S = $request->Sitting_BP_S;
-            $Discharge->Sitting_BP_D = $request->Sitting_BP_D;
-            $Discharge->Sitting_HR = $request->Sitting_HR;
-            $Discharge->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-            //repeated sitting record
-            $repeat = $request->SittingRepeat;
-            $Discharge->SittingRepeat = $request->sittingRepeat;
-            if ($repeat == 'Yes') {
-                //if sitting is repeated
-                $Discharge->SittingRepeat_ReadingTime = $request->SittingRepeat_ReadingTime;
-                $Discharge->SittingRepeat_BP_S = $request->SittingRepeat_BP_S;
-                $Discharge->SittingRepeat_BP_D = $request->SittingRepeat_BP_D;
-                $Discharge->SittingRepeat_HR = $request->SittingRepeat_HR;
-                $Discharge->SittingRepeat_RespiratoryRate = $request->SittingRepeat_RespiratoryRate;
-            } else {
-                //if sitting is repeated is NA
-                $Discharge->SittingRepeat_ReadingTime = NULL;
-                $Discharge->SittingRepeat_BP_S = NULL;
-                $Discharge->SittingRepeat_BP_D = NULL;
-                $Discharge->SittingRepeat_HR = NULL;
-                $Discharge->SittingRepeat_RespiratoryRate = NULL;
-            }
-            $Discharge->Initial = $request->Initial;
+            
+            $Discharge->Absent = $request->Absent;
             $Discharge->save();
             return true;
         }else{

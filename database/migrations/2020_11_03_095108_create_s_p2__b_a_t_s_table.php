@@ -15,6 +15,7 @@ class CreateSP2BATSTable extends Migration
     {
         Schema::create('SP2_BAT', function (Blueprint $table) {
             $table->increments('SP2_BAT_ID');
+            $table->boolean('Absent')->nullable();
             $table->boolean('NApplicable')->nullable();
             $table->date('dateTaken')->nullable();
             $table->time('timeTaken')->nullable();

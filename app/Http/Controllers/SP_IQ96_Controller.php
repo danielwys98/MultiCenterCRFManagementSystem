@@ -161,8 +161,122 @@ class SP_IQ96_Controller extends Controller
 
         if($findPSS !=NULL && $PSS!= NULL){
             if($IQ96->dateTaken == NULL){
-
+                if($request->Absent == 1){
+                    $IQ96->dateTaken=NULL;
+                    $IQ96->timeTaken=NULL;
+                    $IQ96->interim96hrs01=NULL;
+                    $IQ96->interim96hrs02=NULL;
+                    $IQ96->interim96hrs03=NULL;
+                    $IQ96->interim96hrs04=NULL;
+                    $IQ96->interim96hrs05=NULL;
+                    $IQ96->interim96hrs06=NULL;
+                    $IQ96->interim96hrs07=NULL;
+                    $IQ96->Interim96hrsInterviewedby=NULL;
+                    $IQ96->Interim96hrsCheckedby=NULL;
+                }else{
+                    if($request->NApplicable == 1){
+                        $IQ96->dateTaken=NULL;
+                        $IQ96->timeTaken=NULL;
+                        $IQ96->interim96hrs01=NULL;
+                        $IQ96->interim96hrs02=NULL;
+                        $IQ96->interim96hrs03=NULL;
+                        $IQ96->interim96hrs04=NULL;
+                        $IQ96->interim96hrs05=NULL;
+                        $IQ96->interim96hrs06=NULL;
+                        $IQ96->interim96hrs07=NULL;
+                        $IQ96->Interim96hrsInterviewedby=NULL;
+                        $IQ96->Interim96hrsCheckedby=NULL;
+                    }else{
+                        //validation for required fields
+                        $validatedData=$this->validate($request,[
+                            'dateTaken' => 'required',
+                            'timeTaken' => 'required',
+                            'Interim96hrs01' => 'required',
+                            'Interim96hrs02' => 'required',
+                            'Interim96hrs03' => 'required',
+                            'Interim96hrs03txt' => 'required_if:Interim96hrs03,==,Yes',
+                            'Interim96hrs04' => 'required',
+                            'Interim96hrs04txt' => 'required_if:Interim96hrs04,==,Yes',
+                            'Interim96hrs05' => 'required',
+                            'Interim96hrs05txt' => 'required_if:Interim96hrs05,==,Yes',
+                            'Interim96hrs06' => 'required',
+                            'Interim96hrs06txt' => 'required_if:Interim96hrs06,==,Yes',
+                            'Interim96hrs07' => 'required',
+                            'Interim96hrs07txt' => 'required_if:Interim96hrs07,==,Yes',
+                            'Interim96hrs08' => 'required',
+                            'Interim96hrsInterviewedby' => 'required',
+                            'Interim96hrsCheckedby' => 'required',
+                        ],$custom);
+                        //date and time for interim questionnaire
+                        $IQ96->dateTaken=$request->dateTaken;
+                        $IQ96->timeTaken=$request->timeTaken;
+                        //interim questionnaire
+                        $IQ96->interim96hrs01=$request->Interim96hrs01;
+                        $IQ96->interim96hrs02=$request->Interim96hrs02;
+                        $iq03 = $request->Interim96hrs03;
+                        if ($iq03 == 'No') {
+                            $IQ96->interim96hrs03=$request->Interim96hrs03;
+                        } else{
+                            $IQ96->interim96hrs03=$request->Interim96hrs03txt;
+                        }
+                        $iq04 = $request->Interim96hrs04;
+                        if ($iq04 == 'No') {
+                            $IQ96->interim96hrs04=$request->Interim96hrs04;
+                        } else{
+                            $IQ96->interim96hrs04=$request->Interim96hrs04txt;
+                        }
+                        $iq05 = $request->Interim96hrs05;
+                        if ($iq05 == 'No') {
+                            $IQ96->interim96hrs05=$request->Interim96hrs05;
+                        } else{
+                            $IQ96->interim96hrs05=$request->Interim96hrs05txt;
+                        }
+                        $iq06 = $request->Interim96hrs06;
+                        if ($iq06 == 'No') {
+                            $IQ96->interim96hrs06=$request->Interim96hrs06;
+                        } else{
+                            $IQ96->interim96hrs06=$request->Interim96hrs06txt;
+                        }
+                        $iq07 = $request->Interim96hrs07;
+                        if ($iq07 == 'No') {
+                            $IQ96->interim96hrs07=$request->Interim96hrs07;
+                        } else{
+                            $IQ96->interim96hrs07=$request->Interim96hrs07txt;
+                        }
+                        $IQ96->interim96hrs08=$request->Interim96hrs08;
+                        //interviewed and checked by
+                        $IQ96->Interim96hrsInterviewedby=$request->Interim96hrsInterviewedby;
+                        $IQ96->Interim96hrsCheckedby=$request->Interim96hrsCheckedby;
+                    }
+                }
+                
+                $IQ96->Absent=$request->Absent;
                 $IQ96->NApplicable=$request->NApplicable;
+                $IQ96->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //update
+    public function updateSP($findPSS,$PSS,$IQ96,$request){
+        if($findPSS !=NULL){
+            if($request->Absent == 1){
+                $IQ96->dateTaken=NULL;
+                $IQ96->timeTaken=NULL;
+                $IQ96->interim96hrs01=NULL;
+                $IQ96->interim96hrs02=NULL;
+                $IQ96->interim96hrs03=NULL;
+                $IQ96->interim96hrs04=NULL;
+                $IQ96->interim96hrs05=NULL;
+                $IQ96->interim96hrs06=NULL;
+                $IQ96->interim96hrs07=NULL;
+                $IQ96->Interim96hrsInterviewedby=NULL;
+                $IQ96->Interim96hrsCheckedby=NULL;
+            }else{
                 if($request->NApplicable == 1){
                     $IQ96->dateTaken=NULL;
                     $IQ96->timeTaken=NULL;
@@ -176,26 +290,6 @@ class SP_IQ96_Controller extends Controller
                     $IQ96->Interim96hrsInterviewedby=NULL;
                     $IQ96->Interim96hrsCheckedby=NULL;
                 }else{
-                    //validation for required fields
-                    $validatedData=$this->validate($request,[
-                        'dateTaken' => 'required',
-                        'timeTaken' => 'required',
-                        'Interim96hrs01' => 'required',
-                        'Interim96hrs02' => 'required',
-                        'Interim96hrs03' => 'required',
-                        'Interim96hrs03txt' => 'required_if:Interim96hrs03,==,Yes',
-                        'Interim96hrs04' => 'required',
-                        'Interim96hrs04txt' => 'required_if:Interim96hrs04,==,Yes',
-                        'Interim96hrs05' => 'required',
-                        'Interim96hrs05txt' => 'required_if:Interim96hrs05,==,Yes',
-                        'Interim96hrs06' => 'required',
-                        'Interim96hrs06txt' => 'required_if:Interim96hrs06,==,Yes',
-                        'Interim96hrs07' => 'required',
-                        'Interim96hrs07txt' => 'required_if:Interim96hrs07,==,Yes',
-                        'Interim96hrs08' => 'required',
-                        'Interim96hrsInterviewedby' => 'required',
-                        'Interim96hrsCheckedby' => 'required',
-                    ],$custom);
                     //date and time for interim questionnaire
                     $IQ96->dateTaken=$request->dateTaken;
                     $IQ96->timeTaken=$request->timeTaken;
@@ -237,75 +331,10 @@ class SP_IQ96_Controller extends Controller
                     $IQ96->Interim96hrsInterviewedby=$request->Interim96hrsInterviewedby;
                     $IQ96->Interim96hrsCheckedby=$request->Interim96hrsCheckedby;
                 }
-                
-                $IQ96->save();
-                return true;
-            }else{
-                return false;
             }
-        }else
-        return false;
-    }
 
-    //update
-    public function updateSP($findPSS,$PSS,$IQ96,$request){
-        if($findPSS !=NULL){
+            $IQ96->Absent=$request->Absent;
             $IQ96->NApplicable=$request->NApplicable;
-            if($request->NApplicable == 1){
-                $IQ96->dateTaken=NULL;
-                $IQ96->timeTaken=NULL;
-                $IQ96->interim96hrs01=NULL;
-                $IQ96->interim96hrs02=NULL;
-                $IQ96->interim96hrs03=NULL;
-                $IQ96->interim96hrs04=NULL;
-                $IQ96->interim96hrs05=NULL;
-                $IQ96->interim96hrs06=NULL;
-                $IQ96->interim96hrs07=NULL;
-                $IQ96->Interim96hrsInterviewedby=NULL;
-                $IQ96->Interim96hrsCheckedby=NULL;
-            }else{
-                //date and time for interim questionnaire
-                $IQ96->dateTaken=$request->dateTaken;
-                $IQ96->timeTaken=$request->timeTaken;
-                //interim questionnaire
-                $IQ96->interim96hrs01=$request->Interim96hrs01;
-                $IQ96->interim96hrs02=$request->Interim96hrs02;
-                $iq03 = $request->Interim96hrs03;
-                if ($iq03 == 'No') {
-                    $IQ96->interim96hrs03=$request->Interim96hrs03;
-                } else{
-                    $IQ96->interim96hrs03=$request->Interim96hrs03txt;
-                }
-                $iq04 = $request->Interim96hrs04;
-                if ($iq04 == 'No') {
-                    $IQ96->interim96hrs04=$request->Interim96hrs04;
-                } else{
-                    $IQ96->interim96hrs04=$request->Interim96hrs04txt;
-                }
-                $iq05 = $request->Interim96hrs05;
-                if ($iq05 == 'No') {
-                    $IQ96->interim96hrs05=$request->Interim96hrs05;
-                } else{
-                    $IQ96->interim96hrs05=$request->Interim96hrs05txt;
-                }
-                $iq06 = $request->Interim96hrs06;
-                if ($iq06 == 'No') {
-                    $IQ96->interim96hrs06=$request->Interim96hrs06;
-                } else{
-                    $IQ96->interim96hrs06=$request->Interim96hrs06txt;
-                }
-                $iq07 = $request->Interim96hrs07;
-                if ($iq07 == 'No') {
-                    $IQ96->interim96hrs07=$request->Interim96hrs07;
-                } else{
-                    $IQ96->interim96hrs07=$request->Interim96hrs07txt;
-                }
-                $IQ96->interim96hrs08=$request->Interim96hrs08;
-                //interviewed and checked by
-                $IQ96->Interim96hrsInterviewedby=$request->Interim96hrsInterviewedby;
-                $IQ96->Interim96hrsCheckedby=$request->Interim96hrsCheckedby;
-            }
-
             $IQ96->save();
             return true;
         }else{

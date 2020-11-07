@@ -206,87 +206,97 @@ class SP_PDynamicAnalysis_Controller extends Controller
         if($findPSS !=NULL && $PSS != NULL){
             if($PDAnalysis->Day1 == NULL){
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
-                if($request->NApplicable == 1){
+
+                if($request->Absent == 1){
                     foreach($data as $key=>$value){
                         if($value != NULL)
                         {
                             $PDAnalysis[$key]=NULL;
-                            $flag=false;
                         }
                     }
                 }else{
-                    //validation for required fields
-                    $validatedData=$this->validate($request,[
-                        'Day1' => 'required',
-                        'Day2' => 'required',
+                    if($request->NApplicable == 1){
+                        foreach($data as $key=>$value){
+                            if($value != NULL)
+                            {
+                                $PDAnalysis[$key]=NULL;
+                            }
+                        }
+                    }else{
+                        //validation for required fields
+                        $validatedData=$this->validate($request,[
+                            'Day1' => 'required',
+                            'Day2' => 'required',
 
-                        'pda_Date_Day_PD' => 'required',
-                        'pda_PD_Result' => 'required',
-                        'pda_PD_Conducted' => 'required',
-                        'pda_PD_Checked' => 'required',
+                            'pda_Date_Day_PD' => 'required',
+                            'pda_PD_Result' => 'required',
+                            'pda_PD_Conducted' => 'required',
+                            'pda_PD_Checked' => 'required',
 
-                        'pda_Date_Day_S1' => 'required',
-                        'pda_S1_Time' => 'required',
-                        'pda_S1_Result' => 'required',
-                        'pda_S1_Conducted' => 'required',
-                        'pda_S1_Checked' => 'required',
+                            'pda_Date_Day_S1' => 'required',
+                            'pda_S1_Time' => 'required',
+                            'pda_S1_Result' => 'required',
+                            'pda_S1_Conducted' => 'required',
+                            'pda_S1_Checked' => 'required',
 
-                        'pda_Date_Day_S2' => 'required',
-                        'pda_S2_Time' => 'required',
-                        'pda_S2_Result' => 'required',
-                        'pda_S2_Conducted' => 'required',
-                        'pda_S2_Checked' => 'required',
+                            'pda_Date_Day_S2' => 'required',
+                            'pda_S2_Time' => 'required',
+                            'pda_S2_Result' => 'required',
+                            'pda_S2_Conducted' => 'required',
+                            'pda_S2_Checked' => 'required',
 
-                        'pda_Date_Day_S3' => 'required',
-                        'pda_S3_Time' => 'required',
-                        'pda_S3_Result' => 'required',
-                        'pda_S3_Conducted' => 'required',
-                        'pda_S3_Checked' => 'required',
+                            'pda_Date_Day_S3' => 'required',
+                            'pda_S3_Time' => 'required',
+                            'pda_S3_Result' => 'required',
+                            'pda_S3_Conducted' => 'required',
+                            'pda_S3_Checked' => 'required',
 
-                        'pda_Date_Day_S4' => 'required',
-                        'pda_S4_Time' => 'required',
-                        'pda_S4_Result' => 'required',
-                        'pda_S4_Conducted' => 'required',
-                        'pda_S4_Checked' => 'required',
+                            'pda_Date_Day_S4' => 'required',
+                            'pda_S4_Time' => 'required',
+                            'pda_S4_Result' => 'required',
+                            'pda_S4_Conducted' => 'required',
+                            'pda_S4_Checked' => 'required',
 
-                        'pda_Date_Day_S5' => 'required',
-                        'pda_S5_Time' => 'required',
-                        'pda_S5_Result' => 'required',
-                        'pda_S5_Conducted' => 'required',
-                        'pda_S5_Checked' => 'required',
+                            'pda_Date_Day_S5' => 'required',
+                            'pda_S5_Time' => 'required',
+                            'pda_S5_Result' => 'required',
+                            'pda_S5_Conducted' => 'required',
+                            'pda_S5_Checked' => 'required',
 
-                        'pda_Date_Day_S6' => 'required',
-                        'pda_S6_Time' => 'required',
-                        'pda_S6_Result' => 'required',
-                        'pda_S6_Conducted' => 'required',
-                        'pda_S6_Checked' => 'required',
+                            'pda_Date_Day_S6' => 'required',
+                            'pda_S6_Time' => 'required',
+                            'pda_S6_Result' => 'required',
+                            'pda_S6_Conducted' => 'required',
+                            'pda_S6_Checked' => 'required',
 
-                        'pda_Date_Day_S7' => 'required',
-                        'pda_S7_Time' => 'required',
-                        'pda_S7_Result' => 'required',
-                        'pda_S7_Conducted' => 'required',
-                        'pda_S7_Checked' => 'required',
+                            'pda_Date_Day_S7' => 'required',
+                            'pda_S7_Time' => 'required',
+                            'pda_S7_Result' => 'required',
+                            'pda_S7_Conducted' => 'required',
+                            'pda_S7_Checked' => 'required',
 
-                        'pda_Date_Day_S8' => 'required',
-                        'pda_S8_Time' => 'required',
-                        'pda_S8_Result' => 'required',
-                        'pda_S8_Conducted' => 'required',
-                        'pda_S8_Checked' => 'required',
+                            'pda_Date_Day_S8' => 'required',
+                            'pda_S8_Time' => 'required',
+                            'pda_S8_Result' => 'required',
+                            'pda_S8_Conducted' => 'required',
+                            'pda_S8_Checked' => 'required',
 
-                        'pda_Date_Day_S9' => 'required',
-                        'pda_S9_Time' => 'required',
-                        'pda_S9_Result' => 'required',
-                        'pda_S9_Conducted' => 'required',
-                        'pda_S9_Checked' => 'required',
-                    ],$custom);
-                    foreach($data as $key=>$value){
-                        if($value != NULL)
-                        {
-                            $PDAnalysis[$key]=$value;
-                            $flag=true;
+                            'pda_Date_Day_S9' => 'required',
+                            'pda_S9_Time' => 'required',
+                            'pda_S9_Result' => 'required',
+                            'pda_S9_Conducted' => 'required',
+                            'pda_S9_Checked' => 'required',
+                        ],$custom);
+                        foreach($data as $key=>$value){
+                            if($value != NULL)
+                            {
+                                $PDAnalysis[$key]=$value;
+                            }
                         }
                     }
                 }
+
+                $PDAnalysis->Absent=$request->Absent;
                 $PDAnalysis->NApplicable=$request->NApplicable;
                 $PDAnalysis->save();
                 return true;
@@ -301,25 +311,34 @@ class SP_PDynamicAnalysis_Controller extends Controller
     public function updateSP($findPSS,$PSS,$PDAnalysis,$request){
         if($findPSS !=NULL){
             $data = $request->except('_token','_method');
-            if($request->NApplicable == 1){
+            if($request->Absent == 1){
                 foreach($data as $key=>$value){
                     if($value != NULL)
                     {
                         $PDAnalysis[$key]=NULL;
-                        $flag=false;
                     }
                 }
             }else{
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $PDAnalysis[$key]=$value;
-                        $flag=true;
+                if($request->NApplicable == 1){
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $PDAnalysis[$key]=NULL;
+                        }
+                    }
+                }else{
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $PDAnalysis[$key]=$value;
+                        }
                     }
                 }
             }
+            
+            $PDAnalysis->Absent=$request->Absent;
             $PDAnalysis->NApplicable=$request->NApplicable;
-                $PDAnalysis->save();
+            $PDAnalysis->save();
             return true;
         }else{
             return false;

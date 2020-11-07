@@ -16,6 +16,7 @@ class CreateSP1PDynamicAnalysisTable extends Migration
         Schema::create('SP1_PDynamicAnalysis', function (Blueprint $table) {
             $table->increments('SP1_PDynamicAnalysis_ID');
 
+            $table->boolean('Absent')->nullable();
             $table->boolean('NApplicable')->nullable();
 
             //date for day 1 and 2 of the study
