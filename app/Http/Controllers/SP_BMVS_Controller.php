@@ -252,54 +252,7 @@ class SP_BMVS_Controller extends Controller
     }
 
     public function updateSP($findPSS,$PSS,$BMVS,$request){
-        //custom messages load for validation
-        $custom = [
-            'dateTaken.required' => 'Please enter the date taken for body measurement vital signs',
-            'timeTaken.required' => 'Please enter the time taken for body measurement vital signs',
-            'weight.required' => 'Please enter the weight for body measurement vital signs',
-            'height.required' => 'Please enter the height for body measurement vital signs',
-            'Sitting_ReadingTime.required' => 'Please enter the Sitting Reading Time',
-            'Sitting_BP_S.required' => 'Please enter the Systolic for Blood Pressure',
-            'Sitting_BP_D.required' => 'Please enter the Diastolic for Blood Pressure',
-            'Sitting_HR.required' => 'Please enter the Sitting Heart Rate',
-            'Sitting_RespiratoryRate.required' => 'Please enter the Sitting Respiratory Rate',
-            'Sitting_ReadingTime_Repeat1.required_if' => 'Please enter the Sitting Reading Time for the first repeated test',
-            'Sitting_BP_S_Repeat1.required_if' => 'Please enter the Systolic for Blood Pressure for the first repeated test',
-            'Sitting_BP_D_Repeat1.required_if' => 'Please enter the Diastolic for Blood Pressure for the first repeated test',
-            'Sitting_HR_Repeat1.required_if' => 'Please enter the Sitting Heart Rate for the first repeated test',
-            'Sitting_RespiratoryRate_Repeat1.required_if' => 'Please enter the Sitting Respiratory Rate for the first repeated test',
-            'Sitting_ReadingTime_Repeat2.required_if' => 'Please enter the Sitting Reading Time for the second repeated test',
-            'Sitting_BP_S_Repeat2.required_if' => 'Please enter the Systolic for Blood Pressure for the second repeated test',
-            'Sitting_BP_D_Repeat2.required_if' => 'Please enter the Diastolic for Blood Pressure for the second repeated test',
-            'Sitting_HR_Repeat2.required_if' => 'Please enter the Sitting Heart Rate for the second repeated test',
-            'Sitting_RespiratoryRate_Repeat2.required_if' => 'Please enter the Sitting Respiratory Rate for the second repeated test',
-            'Initial.required' => 'Initial of the physician’s is required',
-        ];
         if ($findPSS != NULL) {
-            //validation for required fields
-            // $validatedData = $this->validate($request, [
-            //     'dateTaken' => 'required',
-            //     'timeTaken' => 'required',
-            //     'weight' => 'required',
-            //     'height' => 'required',
-            //     'temperature' => 'required',
-            //     'Sitting_ReadingTime' => 'required',
-            //     'Sitting_BP_S' => 'required',
-            //     'Sitting_BP_D' => 'required',
-            //     'Sitting_HR' => 'required',
-            //     'Sitting_RespiratoryRate' => 'required',
-            //     'Sitting_ReadingTime_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-            //     'Sitting_BP_S_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-            //     'Sitting_BP_D_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-            //     'Sitting_HR_Repeat1' => 'required_if:SittingRepeat1,==,Others',
-            //     'Sitting_RespiratoryRate_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-            //     'Sitting_ReadingTime_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-            //     'Sitting_BP_S_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-            //     'Sitting_BP_D_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-            //     'Sitting_HR_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-            //     'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-            //     'Initial' => 'required',
-            // ], $custom);
             //date, time, weight, height, bmi will be auto calculate, temperature
             $BMVS->dateTaken = $request->dateTaken;
             $BMVS->timeTaken = $request->timeTaken;
