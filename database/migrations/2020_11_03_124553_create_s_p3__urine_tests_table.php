@@ -17,6 +17,7 @@ class CreateSP3UrineTestsTable extends Migration
             $table->increments('SP3_UrineTest_ID');
 
             //Urine Pregnancy
+            $table->boolean('AbsentUPreg')->nullable();
             $table->boolean('UPreg_male')->nullable();
             $table->date('UPreg_dateTaken')->nullable();
             $table->time('UPreg_TestTime')->nullable();
@@ -27,6 +28,7 @@ class CreateSP3UrineTestsTable extends Migration
             $table->string('UPreg_Transcribedby')->nullable();
 
              //Urine Drug
+             $table->boolean('AbsentUDrug')->nullable();
              $table->boolean('NApplicable')->nullable();
              $table->date('UDrug_dateTaken')->nullable();
              $table->time('UDrug_TestTime')->nullable();
@@ -41,6 +43,7 @@ class CreateSP3UrineTestsTable extends Migration
              $table->string('UDrug_Transcribedby')->nullable();
              
              //Conclusion
+             $table->boolean('AbsentC')->nullable();
              $table->string('inclusionYesNo')->nullable();
              $table->string('Comments')->nullable();
              $table->string('subjectFit')->nullable();

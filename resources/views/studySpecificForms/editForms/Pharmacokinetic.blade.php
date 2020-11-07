@@ -3,6 +3,15 @@
 @csrf
 {{-- Pharmacokinetic Blood Sampling --}}
 <h3>Pharmacokinetic Blood Sampling</h3>
+<div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('Absent', 'Absent:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('Absent') !!}
+    </div>
+</div>
+<hr>
 <div class="form-group row">
     <div class="col-md-2">
         {!! Form::date('Day1',old("Day1",$PKinetic->Day1),['class'=>'form-control']) !!}

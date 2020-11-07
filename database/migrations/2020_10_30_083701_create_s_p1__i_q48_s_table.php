@@ -16,6 +16,7 @@ class CreateSP1IQ48STable extends Migration
         Schema::create('SP1_IQ48s', function (Blueprint $table) {
             $table->increments('SP1_IQ48_ID');
 
+            $table->boolean('Absent')->nullable();
             $table->boolean('NApplicable')->nullable();
             //date and time for interim questionnaire
             $table->date('dateTaken')->nullable();

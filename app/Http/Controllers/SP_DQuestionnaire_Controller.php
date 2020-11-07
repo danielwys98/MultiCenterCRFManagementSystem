@@ -149,26 +149,33 @@ class SP_DQuestionnaire_Controller extends Controller
 
         if($findPSS !=NULL && $PSS != NULL){
             if($DQuestionnaire->DQtimeTaken == NULL){
-                $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
-                //validation for required fields
-                $validatedData=$this->validate($request,[
-                    'DQtimeTaken' => 'required',
-                    'Oriented' => 'required',
-                    'ReadyDischarge' => 'required',
-                    'PhysicianSign' => 'required',
-                    'PhysicianName' => 'required',
-                ],$custom);
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $DQuestionnaire[$key]=$value;
-                        $flag=true;
+                if($request->Absent == 1){
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $DQuestionnaire[$key]=NULL;
+                        }
+                    }
+                }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'DQtimeTaken' => 'required',
+                        'Oriented' => 'required',
+                        'ReadyDischarge' => 'required',
+                        'PhysicianSign' => 'required',
+                        'PhysicianName' => 'required',
+                    ],$custom);
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $DQuestionnaire[$key]=$value;
+                        }
                     }
                 }
-                if($flag){
-                    $DQuestionnaire->save();
-                }
+                
+                $DQuestionnaire->Absent=$request->Absent;
+                $DQuestionnaire->save();
                 return true;
             }else{
                 return false;
@@ -180,18 +187,25 @@ class SP_DQuestionnaire_Controller extends Controller
     //update
     public function updateSP($findPSS,$PSS,$DQuestionnaire,$request){
         if($findPSS !=NULL){
-            $flag=false;
             $data = $request->except('_token','_method');
-            foreach($data as $key=>$value){
-                if($value != NULL)
-                {
-                    $DQuestionnaire[$key]=$value;
-                    $flag=true;
+            if($request->Absent == 1){
+                foreach($data as $key=>$value){
+                    if($value != NULL)
+                    {
+                        $DQuestionnaire[$key]=NULL;
+                    }
+                }
+            }else{
+                foreach($data as $key=>$value){
+                    if($value != NULL)
+                    {
+                        $DQuestionnaire[$key]=$value;
+                    }
                 }
             }
-            if($flag){
-                $DQuestionnaire->save();
-            }
+            
+            $DQuestionnaire->Absent=$request->Absent;
+            $DQuestionnaire->save();
             return true;
         }else{
             return false;

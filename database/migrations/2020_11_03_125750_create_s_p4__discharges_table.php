@@ -16,6 +16,7 @@ class CreateSP4DischargesTable extends Migration
         Schema::create('SP4_Discharges', function (Blueprint $table) {
             $table->increments('SP4_Discharge_ID');
 
+            $table->boolean('Absent')->nullable();
             $table->date('DischargeDate')->nullable();
 
             $table->text('UnscheduledDischarge')->nullable();

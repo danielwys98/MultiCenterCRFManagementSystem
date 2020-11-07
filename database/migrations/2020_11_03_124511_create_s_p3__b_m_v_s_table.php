@@ -15,6 +15,7 @@ class CreateSP3BMVSTable extends Migration
     {
         Schema::create('SP3_BMVS', function (Blueprint $table) {
             $table->increments('SP3_BMVS_ID');
+            $table->boolean('Absent')->nullable();
             $table->date('dateTaken')->nullable();
             $table->time('timeTaken')->nullable();
             $table->decimal('weight')->nullable();

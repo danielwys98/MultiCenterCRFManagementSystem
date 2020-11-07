@@ -16,6 +16,7 @@ class CreateSP4VitalSignsTable extends Migration
         Schema::create('SP4_VitalSigns', function (Blueprint $table) {
             $table->increments('SP4_VitalSign_ID');
 
+            $table->boolean('Absent')->nullable();
             //TPD=Time Pose Dose
 
             //Time Pose Dose 1hr

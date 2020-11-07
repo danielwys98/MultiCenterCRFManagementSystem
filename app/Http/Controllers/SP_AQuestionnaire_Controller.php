@@ -174,39 +174,197 @@ class SP_AQuestionnaire_Controller extends Controller
         
         if($findPSS !=NULL && $PSS != NULL){
             if($AQ->AQuestionnaireDateTaken == NULL){
-                //validation for required fields
-                $validatedData=$this->validate($request,[
-                    'AQuestionnaireDateTaken' => 'required',
-                    'AQuestionnaireTimeTaken' => 'required',
-                    'MedicalProblem' => 'required',
-                    'MP_IncreaseRisk' => 'required_if:MedicalProblem,==,Yes',
-                    'MP_InfluencePKinetic' => 'required_if:MedicalProblem,==,Yes',
-                    'Medication' => 'required',
-                    'Medi_IncreaseRisk' => 'required_if:Medication,==,Yes',
-                    'Medi_InfluencePKinetic' => 'required_if:Medication,==,Yes',
-                    'Hospitalized' => 'required',
-                    'H_IncreaseRisk' => 'required_if:Hospitalized,==,Yes',
-                    'H_InfluencePKinetic' => 'required_if:Hospitalized,==,Yes',
-                    'alcoholXanthine' => 'required',
-                    'alcoholXanthine_Yes' => 'required_if:alcoholXanthine,==,Yes',
-                    'AX_InfluencePKinetic' => 'required_if:alcoholXanthine,==,Yes',
-                    'poppySeeds' => 'required',
-                    'poppySeeds_Yes' => 'required_if:poppySeeds,==,Yes',
-                    'PS_InfluencePKinetic' => 'required_if:poppySeeds,==,Yes',
-                    'grapefruitPomelo' => 'required',
-                    'grapefruitPomelo_Yes' => 'required_if:grapefruitPomelo,==,Yes',
-                    'Grapefruit_InfluencePKinetic' => 'required_if:grapefruitPomelo,==,Yes',
-                    'otherDrugStudies' => 'required',
-                    'otherDrugStudies_Yes' => 'required_if:otherDrugStudies,==,Yes',
-                    'Other_IncreaseRisk' => 'required_if:otherDrugStudies,==,Yes',
-                    'Other_InfluencePKinetic' => 'required_if:otherDrugStudies,==,Yes',
-                    'bloodDono' => 'required',
-                    'bloodDono_Yes' => 'required_if:bloodDono,==,Yes',
-                    'Blood_IncreaseRisk' => 'required_if:bloodDono,==,Yes',
-                    'contraception' => 'required',
-                    'contraception_Yes' => 'required_if:contraception,==,Yes',
-                    'Contraception_IncreaseRisk' => 'required_if:contraception,==,Yes',
-                ],$custom);
+                if($request->Absent == 1){
+                    $AQ->AQuestionnaireDateTaken = NULL;
+                    $AQ->AQuestionnaireTimeTaken = NULL;
+                    $AQ->MedicalProblem = NULL;
+                    $AQ->MP_IncreaseRisk = NULL;
+                    $AQ->MP_InfluencePKinetic = NULL;
+                    $AQ->Medication = NULL;
+                    $AQ->Medi_IncreaseRisk = NULL;
+                    $AQ->Medi_InfluencePKinetic = NULL;
+                    $AQ->Hospitalized = NULL;
+                    $AQ->H_IncreaseRisk = NULL;
+                    $AQ->H_InfluencePKinetic = NULL;
+                    $AQ->AlcoholXanthine = NULL;
+                    $AQ->AX_InfluencePKinetic = NULL;
+                    $AQ->PoppySeeds = NULL;
+                    $AQ->PS_InfluencePKinetic = NULL;
+                    $AQ->GrapefruitPomelo = NULL;
+                    $AQ->Grapefruit_InfluencePKinetic = NULL;
+                    $AQ->OtherDrugStudies = NULL;
+                    $AQ->Other_IncreaseRisk = NULL;
+                    $AQ->Other_InfluencePKinetic = NULL;
+                    $AQ->BloodDono = NULL;
+                    $AQ->Blood_IncreaseRisk = NULL;
+                    $AQ->Contraception = NULL;
+                    $AQ->Contraception_IncreaseRisk = NULL;
+                    $AQ->PhysicianInitial = NULL;
+                }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'AQuestionnaireDateTaken' => 'required',
+                        'AQuestionnaireTimeTaken' => 'required',
+                        'MedicalProblem' => 'required',
+                        'MP_IncreaseRisk' => 'required_if:MedicalProblem,==,Yes',
+                        'MP_InfluencePKinetic' => 'required_if:MedicalProblem,==,Yes',
+                        'Medication' => 'required',
+                        'Medi_IncreaseRisk' => 'required_if:Medication,==,Yes',
+                        'Medi_InfluencePKinetic' => 'required_if:Medication,==,Yes',
+                        'Hospitalized' => 'required',
+                        'H_IncreaseRisk' => 'required_if:Hospitalized,==,Yes',
+                        'H_InfluencePKinetic' => 'required_if:Hospitalized,==,Yes',
+                        'alcoholXanthine' => 'required',
+                        'alcoholXanthine_Yes' => 'required_if:alcoholXanthine,==,Yes',
+                        'AX_InfluencePKinetic' => 'required_if:alcoholXanthine,==,Yes',
+                        'poppySeeds' => 'required',
+                        'poppySeeds_Yes' => 'required_if:poppySeeds,==,Yes',
+                        'PS_InfluencePKinetic' => 'required_if:poppySeeds,==,Yes',
+                        'grapefruitPomelo' => 'required',
+                        'grapefruitPomelo_Yes' => 'required_if:grapefruitPomelo,==,Yes',
+                        'Grapefruit_InfluencePKinetic' => 'required_if:grapefruitPomelo,==,Yes',
+                        'otherDrugStudies' => 'required',
+                        'otherDrugStudies_Yes' => 'required_if:otherDrugStudies,==,Yes',
+                        'Other_IncreaseRisk' => 'required_if:otherDrugStudies,==,Yes',
+                        'Other_InfluencePKinetic' => 'required_if:otherDrugStudies,==,Yes',
+                        'bloodDono' => 'required',
+                        'bloodDono_Yes' => 'required_if:bloodDono,==,Yes',
+                        'Blood_IncreaseRisk' => 'required_if:bloodDono,==,Yes',
+                        'contraception' => 'required',
+                        'contraception_Yes' => 'required_if:contraception,==,Yes',
+                        'Contraception_IncreaseRisk' => 'required_if:contraception,==,Yes',
+                    ],$custom);
+                    //date and time for admission questionnaire
+                    $AQ->AQuestionnaireDateTaken = $request->AQuestionnaireDateTaken;
+                    $AQ->AQuestionnaireTimeTaken = $request->AQuestionnaireTimeTaken;
+                    //admission questionnaire
+                    //question 1
+                    $AQ->MedicalProblem = $request->MedicalProblem;
+                    if($request->MedicalProblem=='Yes') {
+                        $AQ->MP_IncreaseRisk = $request->MP_IncreaseRisk;
+                        $AQ->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
+                    }else{
+                        $AQ->MP_IncreaseRisk = NULL;
+                        $AQ->MP_InfluencePKinetic = NULL;
+                    }
+                    //question 2
+                    $AQ->Medication = $request->Medication;
+                    if($request->Medication=='Yes') {
+                        $AQ->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
+                        $AQ->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
+                    }else{
+                        $AQ->Medi_IncreaseRisk = NULL;
+                        $AQ->Medi_InfluencePKinetic = NULL;
+                    }
+                    //question 3
+                    $AQ->Hospitalized = $request->Hospitalized;
+                    if($request->Hospitalized=='Yes') {
+                        $AQ->H_IncreaseRisk = $request->H_IncreaseRisk;
+                        $AQ->H_InfluencePKinetic = $request->H_InfluencePKinetic;
+                    }else{
+                        $AQ->H_IncreaseRisk = NULL;
+                        $AQ->H_InfluencePKinetic = NULL;
+                    }
+                    //question 4
+                    $q4=$request->alcoholXanthine;
+                    if ($q4 == 'Yes') {
+                        $AQ->AlcoholXanthine = $request->alcoholXanthine_Yes;
+                        $AQ->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
+                    } else{
+                        $AQ->AlcoholXanthine = $request->alcoholXanthine;
+                        $AQ->AX_InfluencePKinetic = NULL;
+                    }
+                    //question 5
+                    $q5=$request->poppySeeds;
+                    if ($q5 == 'Yes') {
+                        $AQ->PoppySeeds = $request->poppySeeds_Yes;
+                        $AQ->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
+                    } else{
+                        $AQ->PoppySeeds = $request->poppySeeds;
+                        $AQ->PS_InfluencePKinetic = NULL;
+                    }
+                    //question 6
+                    $q6=$request->grapefruitPomelo;
+                    if ($q6 == 'Yes') {
+                        $AQ->GrapefruitPomelo = $request->grapefruitPomelo_Yes;
+                        $AQ->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
+                    } else{
+                        $AQ->GrapefruitPomelo = $request->grapefruitPomelo;
+                        $AQ->Grapefruit_InfluencePKinetic = NULL;
+                    }
+                    //question 7
+                    $q7=$request->otherDrugStudies;
+                    if ($q7 == 'Yes') {
+                        $AQ->OtherDrugStudies = $request->otherDrugStudies_Yes;
+                        $AQ->Other_IncreaseRisk = $request->Other_IncreaseRisk;
+                        $AQ->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
+                    } else{
+                        $AQ->OtherDrugStudies = $request->otherDrugStudies;
+                        $AQ->Other_IncreaseRisk = NULL;
+                        $AQ->Other_InfluencePKinetic = NULL;
+                    }
+                    //question 8
+                    $q8=$request->bloodDono;
+                    if ($q8 == 'Yes') {
+                        $AQ->BloodDono = $request->bloodDono_Yes;
+                        $AQ->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
+                    } else{
+                        $AQ->BloodDono = $request->bloodDono;
+                        $AQ->Blood_IncreaseRisk = NULL;
+                    }
+                    //question 9
+                    $q9=$request->contraception;
+                    if ($q9 == 'Yes') {
+                        $AQ->Contraception = $request->contraception_Yes;
+                        $AQ->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
+                    } else{
+                        $AQ->Contraception = $request->contraception;
+                        $AQ->Contraception_IncreaseRisk = NULL;
+                    }
+                    //physician initial
+                    $AQ->PhysicianInitial = $request->PhysicianInitial;
+                }
+                
+                $AQ->Absent=$request->Absent;
+                $AQ->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //update
+    public function updateSP($findPSS,$PSS,$AQ,$request){
+        if($findPSS !=NULL){
+            if($request->Absent == 1){
+                $AQ->AQuestionnaireDateTaken = NULL;
+                $AQ->AQuestionnaireTimeTaken = NULL;
+                $AQ->MedicalProblem = NULL;
+                $AQ->MP_IncreaseRisk = NULL;
+                $AQ->MP_InfluencePKinetic = NULL;
+                $AQ->Medication = NULL;
+                $AQ->Medi_IncreaseRisk = NULL;
+                $AQ->Medi_InfluencePKinetic = NULL;
+                $AQ->Hospitalized = NULL;
+                $AQ->H_IncreaseRisk = NULL;
+                $AQ->H_InfluencePKinetic = NULL;
+                $AQ->AlcoholXanthine = NULL;
+                $AQ->AX_InfluencePKinetic = NULL;
+                $AQ->PoppySeeds = NULL;
+                $AQ->PS_InfluencePKinetic = NULL;
+                $AQ->GrapefruitPomelo = NULL;
+                $AQ->Grapefruit_InfluencePKinetic = NULL;
+                $AQ->OtherDrugStudies = NULL;
+                $AQ->Other_IncreaseRisk = NULL;
+                $AQ->Other_InfluencePKinetic = NULL;
+                $AQ->BloodDono = NULL;
+                $AQ->Blood_IncreaseRisk = NULL;
+                $AQ->Contraception = NULL;
+                $AQ->Contraception_IncreaseRisk = NULL;
+                $AQ->PhysicianInitial = NULL;
+            }else{
                 //date and time for admission questionnaire
                 $AQ->AQuestionnaireDateTaken = $request->AQuestionnaireDateTaken;
                 $AQ->AQuestionnaireTimeTaken = $request->AQuestionnaireTimeTaken;
@@ -296,109 +454,9 @@ class SP_AQuestionnaire_Controller extends Controller
                 }
                 //physician initial
                 $AQ->PhysicianInitial = $request->PhysicianInitial;
-                //save
-                $AQ->save();
-                return true;
-            }else{
-                return false;
             }
-        }else
-        return false;
-    }
-
-    //update
-    public function updateSP($findPSS,$PSS,$AQ,$request){
-        if($findPSS !=NULL){
-            //date and time for admission questionnaire
-            $AQ->AQuestionnaireDateTaken = $request->AQuestionnaireDateTaken;
-            $AQ->AQuestionnaireTimeTaken = $request->AQuestionnaireTimeTaken;
-            //admission questionnaire
-            //question 1
-            $AQ->MedicalProblem = $request->MedicalProblem;
-            if($request->MedicalProblem=='Yes') {
-                $AQ->MP_IncreaseRisk = $request->MP_IncreaseRisk;
-                $AQ->MP_InfluencePKinetic = $request->MP_InfluencePKinetic;
-            }else{
-                $AQ->MP_IncreaseRisk = NULL;
-                $AQ->MP_InfluencePKinetic = NULL;
-            }
-            //question 2
-            $AQ->Medication = $request->Medication;
-            if($request->Medication=='Yes') {
-                $AQ->Medi_IncreaseRisk = $request->Medi_IncreaseRisk;
-                $AQ->Medi_InfluencePKinetic = $request->Medi_InfluencePKinetic;
-            }else{
-                $AQ->Medi_IncreaseRisk = NULL;
-                $AQ->Medi_InfluencePKinetic = NULL;
-            }
-            //question 3
-            $AQ->Hospitalized = $request->Hospitalized;
-            if($request->Hospitalized=='Yes') {
-                $AQ->H_IncreaseRisk = $request->H_IncreaseRisk;
-                $AQ->H_InfluencePKinetic = $request->H_InfluencePKinetic;
-            }else{
-                $AQ->H_IncreaseRisk = NULL;
-                $AQ->H_InfluencePKinetic = NULL;
-            }
-            //question 4
-            $q4=$request->alcoholXanthine;
-            if ($q4 == 'Yes') {
-                $AQ->AlcoholXanthine = $request->alcoholXanthine_Yes;
-                $AQ->AX_InfluencePKinetic = $request->AX_InfluencePKinetic;
-            } else{
-                $AQ->AlcoholXanthine = $request->alcoholXanthine;
-                $AQ->AX_InfluencePKinetic = NULL;
-            }
-            //question 5
-            $q5=$request->poppySeeds;
-            if ($q5 == 'Yes') {
-                $AQ->PoppySeeds = $request->poppySeeds_Yes;
-                $AQ->PS_InfluencePKinetic = $request->PS_InfluencePKinetic;
-            } else{
-                $AQ->PoppySeeds = $request->poppySeeds;
-                $AQ->PS_InfluencePKinetic = NULL;
-            }
-            //question 6
-            $q6=$request->grapefruitPomelo;
-            if ($q6 == 'Yes') {
-                $AQ->GrapefruitPomelo = $request->grapefruitPomelo_Yes;
-                $AQ->Grapefruit_InfluencePKinetic = $request->Grapefruit_InfluencePKinetic;
-            } else{
-                $AQ->GrapefruitPomelo = $request->grapefruitPomelo;
-                $AQ->Grapefruit_InfluencePKinetic = NULL;
-            }
-            //question 7
-            $q7=$request->otherDrugStudies;
-            if ($q7 == 'Yes') {
-                $AQ->OtherDrugStudies = $request->otherDrugStudies_Yes;
-                $AQ->Other_IncreaseRisk = $request->Other_IncreaseRisk;
-                $AQ->Other_InfluencePKinetic = $request->Other_InfluencePKinetic;
-            } else{
-                $AQ->OtherDrugStudies = $request->otherDrugStudies;
-                $AQ->Other_IncreaseRisk = NULL;
-                $AQ->Other_InfluencePKinetic = NULL;
-            }
-            //question 8
-            $q8=$request->bloodDono;
-            if ($q8 == 'Yes') {
-                $AQ->BloodDono = $request->bloodDono_Yes;
-                $AQ->Blood_IncreaseRisk = $request->Blood_IncreaseRisk;
-            } else{
-                $AQ->BloodDono = $request->bloodDono;
-                $AQ->Blood_IncreaseRisk = NULL;
-            }
-            //question 9
-            $q9=$request->contraception;
-            if ($q9 == 'Yes') {
-                $AQ->Contraception = $request->contraception_Yes;
-                $AQ->Contraception_IncreaseRisk = $request->Contraception_IncreaseRisk;
-            } else{
-                $AQ->Contraception = $request->contraception;
-                $AQ->Contraception_IncreaseRisk = NULL;
-            }
-            //physician initial
-            $AQ->PhysicianInitial = $request->PhysicianInitial;
-            //save
+            
+            $AQ->Absent=$request->Absent;
             $AQ->save();
             return true;
         }else{
