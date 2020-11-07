@@ -26,6 +26,7 @@ use App\PatientStudySpecific;
 use App\StudyPeriod1;
 use App\SP1_Admission;
 use DB;
+use Psr\Log\NullLogger;
 
 class studySpecificController extends Controller
 {
@@ -40,10 +41,7 @@ class studySpecificController extends Controller
     public function index()
     {
         $studies = studySpecific::all();
-
         return view('studySpecific.index', compact('studies'));
-
-
     }
 
     //This return to the studySpecific forms
@@ -51,6 +49,7 @@ class studySpecificController extends Controller
     {
 
         $study = studySpecific::find($study_id);
+        $findPSS = PatientStudySpecific::where('study_id',$study_id)->get();
         //find the amount of period of this study
         $studyPeriodLimit = $study->studyPeriod_Count;
         $period = 0;
@@ -84,15 +83,14 @@ class studySpecificController extends Controller
 
     }
 
-    public function search(Request $request)
-    {
-        /*    if($request->search_patient==NULL){
-                $patients = Patient::all();
-                return view('preScreening.admin',compact('patients'));
-            }else{
-                $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
-                return view('preScreening.admin',compact('patients'));
-            }*/
+    public function search(Request $request){
+        if($request->search_patient==NULL){
+            $patients = Patient::all();
+            return view('preScreening.admin',compact('patients'));
+        }else{
+            $patients=Patient::where('name',"LIKE","%".$request->search_patient."%")->get();
+            return view('preScreening.admin',compact('patients'));
+        }
     }
 
 
@@ -142,7 +140,6 @@ class studySpecificController extends Controller
     {
         //find the details of the studies.
         $study = studySpecific::find($study_id);
-
         //find the amount of period of this study
         $studyPeriodLimit = $study->studyPeriod_Count;
         $period = 0;
@@ -179,6 +176,11 @@ class studySpecificController extends Controller
     //Edit the specific studies details and store it
     public function update(Request $request, $id)
     {
+
+        $validatedData = $this->validate($request, [
+            'studyPeriod_Count' => 'required|numeric|min:1|max:4',
+        ]);
+
         $study = studySpecific::find($id);
         $data = $request->except('_token', '_method');
         foreach ($data as $key => $value) {
@@ -204,6 +206,31 @@ class studySpecificController extends Controller
         return redirect(route('studySpecific.index'))->with('ErrorMessages', 'You removed the study from the system!');
     }
 
+    public function PSSRemove(Request $request,$study_id)
+    {
+        $PID = $request->patient_id;
+        $findPSS = PatientStudySpecific::where('patient_id',$PID)
+                                        ->where('study_id',$study_id)
+                                        ->first();
+        if($findPSS->SP1_ID == NULL)
+        {
+            $findPSS->study_id=0;
+            $findPSS->patient_id=$PID;
+            $findPSS->save();
+            return redirect(route('studySpecific.index'))->with('success', 'You have successfully remove the subject from the study!');
+        }else
+        {
+            $findPSS->SP1_ID = NULL;
+            $findPSS->SP2_ID = NULL;
+            $findPSS->SP3_ID = NULL;
+            $findPSS->SP4_ID = NULL;
+            $findPSS->study_id=0;
+            $findPSS->patient_id=$PID;
+            $findPSS->save();
+            return redirect(route('studySpecific.index'))->with('success', 'You have successfully remove the subject from the study!');
+        }
+
+    }
 
     //Will be delete. just for testing purpose.
     public function testing()

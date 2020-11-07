@@ -110,7 +110,7 @@
     <tr>
         <th scope="row" colspan="4"
             class="text-lg-right">{!! Form::label('Initial','Initial: ',['class'=>'text-md-left']) !!}</th>
-        <td>{!! Form::text('Initial', old('Initial',$BMVS->Initial),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::text('Initial',($BMVS->Initial),['class'=>'form-control','placeholder'=>'']) !!}</td>
     </tr>
     </tbody>
 </table>

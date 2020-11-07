@@ -91,6 +91,7 @@ Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Cont
 //this is to edit the studies detail and the subject study details
 Route::post('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
+Route::post('/studySpecific/PSSRemove/{id}/','studySpecificController@PSSRemove')->name('subject.removePSS');
 
 /*Route::get('/studySpecificdb/create','studySpecificController@create');
 

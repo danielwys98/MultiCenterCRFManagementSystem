@@ -19,7 +19,8 @@ class BMVS_Controller extends Controller
     public function create($id)
     {
         $patient = Patient::find($id);
-        $studies = studySpecific::all()->pluck('study_name','study_id');
+        $studies =studySpecific::all()->pluck('study_name','study_id');
+        $studies[0] = '---';
         return view('preScreeningForms.create',compact('patient'))->with('studies',$studies);
     }
     public function store(Request $request,$id)
@@ -130,8 +131,8 @@ class BMVS_Controller extends Controller
     public function edit($id)
     {
         $patient = Patient::find($id);
-
         $studies = studySpecific::all()->pluck('study_name','study_id');
+        $studies[0] = '---';
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical=$patient->MedicalHistory;

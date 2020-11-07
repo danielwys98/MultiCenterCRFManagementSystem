@@ -84,16 +84,17 @@ class SP_BMVS_Controller extends Controller
         $findPSS = PatientStudySpecific::where('patient_id', $patient_id)
             ->where('study_id', $study_id)
             ->first();
+        {
         if ($study_period == 1) {
             //SP1 query
             $SP1 = StudyPeriod1::where('SP1_ID',$findPSS->SP1_ID)->first();
             $PSS = $findPSS->SP1_ID;
             $BMVS = SP1_BMVS::where('SP1_BMVS_ID', $SP1->SP1_BMVS)->first();
-            if($this->updateSP($findPSS,$PSS,$BMVS,$request)){
+           if($this->updateSP($findPSS,$PSS,$BMVS,$request)){
                 return redirect(route('studySpecific.admin'))->with('success', 'You updated the subject study period details for Body Measurement and Vital Signs!');
               }else{
-                alert()->error('Error!','You have already key the data for this subject!');
-                return redirect(route('studySpecific.edit',$study_id));
+                alert()->error('Error!','something wrong');
+                return redirect(route('studySpecific.admin',$study_id));
             }
         } elseif ($study_period == 2) {
             //SP2 query
@@ -131,6 +132,7 @@ class SP_BMVS_Controller extends Controller
         }else {
             alert()->error('Error!', 'You did not select the study period!');
             return redirect(route('studySpecific.edit', $study_id));
+        }
         }
     }
 
