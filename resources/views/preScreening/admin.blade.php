@@ -1,26 +1,6 @@
 	@extends('MasterLayout')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-5">
-            <h1>Pre-Screening Database</h1>
-        </div>
-        <div class="col-md-7">
-            <div class="row">
-                <form class="form-inline" method="get" action="{{url('/preScreening/admin/search')}}">
-                    <div class="col-md-8">
-                        <input name="search_patient" class="form-control" type="search" placeholder="Patient">
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-success" type="submit">Search</button>
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-warning" type="submit" value="show">Show all</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -43,6 +23,29 @@
             </div>
         @endif
     </div>
+    {{--content starts here--}}
+    <div class="row">
+        <div class="col-md-5">
+            <h1>Pre-Screening Database</h1>
+            <a href="{{ route('preScreening.create') }}" class="btn btn-primary">Add a new Subject</a>
+            {{--search bar--}}
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <form class="form-inline" method="get" action="{{url('/preScreening/admin/search')}}">
+                    <div class="col-md-8">
+                        <input name="search_patient" class="form-control" type="search" placeholder="Patient">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-warning" type="submit" value="show">Show all</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -50,6 +53,7 @@
             <th>Actions</th>
         </tr>
         </thead>
+        @if(count($patients)>0)
         <tbody>
         @foreach($patients as $patient)
             <tr>
@@ -74,8 +78,13 @@
                     </form>
                 </td>
             </tr>
-        @endforeach
         </tbody>
+        @endforeach
+        @else
+            <td>No Patient found!</td>
+        @endif
     </table>
-    <a href="{{ route('preScreening.create') }}" class="btn btn-primary">Add a new Subject</a>
+    <div>
+        {{$patients->links()}}
+    </div>
 @endsection

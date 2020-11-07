@@ -93,10 +93,13 @@ CS_Controller extends Controller
             return redirect(route('preScreeningForms.create',$id));
 
         }
-
+        //assign subject into the study after saving data for conclusions.
         if($savedData)
         {
             //Find study's subject count, need to check whether the study is full or not
+
+            if($request->study_id != 0)
+            {
             $findStudy = studySpecific::where('study_id',$request->study_id)->first();
             $studySubjectCount = $findStudy->patient_Count;
 
@@ -116,6 +119,14 @@ CS_Controller extends Controller
                 alert()->error('Error!','This study has reached the limit of subject!');
                 return redirect(route('preScreeningForms.create',$id));
             }
+          }else
+          {
+              $PSS = new PatientStudySpecific;
+              $PSS->study_id=$request->study_id;
+              $PSS->patient_id=$id;
+              $PSS->save();
+              return redirect(route('preScreeningForms.create',$id))->with('success','You have added the conclusion detail for the subject!');
+          }
         }
     }
     public function updateCS(Request $request,$id)
@@ -136,11 +147,6 @@ CS_Controller extends Controller
             'dateTaken' => 'required',
         ],$custom);
 
-        DB::table('patient_study_specifics')
-            ->where('patient_id',$id)
-            ->update([
-                'study_id'=>$request->study_id
-            ]);
         DB::table('patient_conclusion_signatures')
             ->where('patient_id',$id)
             ->update([
@@ -196,6 +202,23 @@ CS_Controller extends Controller
                     'abnormality'=>"No"
                 ]);
         }
+        //assign new pss to subject to keep the old data.
+        $findPSS = PatientStudySpecific::where('patient_id',$id)
+                                         ->where('study_id',0)
+                                         ->first();
+        if($findPSS == NULL)
+        {
+            $PSS = new PatientStudySpecific;
+            $PSS->study_id = $request->study_id;
+            $PSS->patient_id=$id;
+            $PSS->save();
+        }else
+        {
+            $findPSS->study_id = $request->study_id;
+            $findPSS->patient_id=$id;
+            $findPSS->save();
+        }
+
 
         return redirect(route('preScreeningForms.edit',$id))->with('success','You have updated the conclusion detail for the subject!');
     }

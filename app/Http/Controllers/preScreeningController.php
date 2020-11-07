@@ -22,7 +22,7 @@ class preScreeningController extends Controller
 
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(10);
 
         return view('preScreening.admin',compact('patients'));
 
@@ -49,18 +49,18 @@ class preScreeningController extends Controller
         $exist=false;
         //custom messages load for validation
         $custom = [
-            'dateTaken.required' => 'Please input the date taken',
-            'timeTaken.required' => 'Please input the time taken',
-            'NRIC.required' => 'NRIC field cannot be blank',
-            'NRIC.regex' => 'Please only enter the NRIC correctly without dashes',
-            'name.required' => 'Name field cannot be blank',
-            'Gender.required' => 'Please choose between a gender',
-            'Ethnicity.required' => 'Please state the ethnicity',
-            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity',
-            'DoB.required' => 'Date of Birth field cannot be blank',
-            'age.required' => 'Age field cannot be blank',
-            'maritalstatus.required' => 'Please choose between a maritial status',
-            'MRNno.required' => 'MRN Hopsital Registration Number is required',
+            'dateTaken.required' => 'Please input the date taken.',
+            'timeTaken.required' => 'Please input the time taken.',
+            'NRIC.required' => 'NRIC field cannot be blank.',
+            'NRIC.regex' => 'Please only enter the NRIC correctly without dashes and check the digit.',
+            'name.required' => 'Name field cannot be blank.',
+            'Gender.required' => 'Please choose between a gender.',
+            'Ethnicity.required' => 'Please state the ethnicity.',
+            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity.',
+            'DoB.required' => 'Date of Birth field cannot be blank.',
+            'age.required' => 'Age field cannot be blank.',
+            'maritalstatus.required' => 'Please choose between a maritial status.',
+            'MRNno.required' => 'MRN Hopsital Registration Number is required.',
         ];
         //validation for required fields
         $validatedData=$this->validate($request,[
@@ -76,19 +76,27 @@ class preScreeningController extends Controller
             'maritalstatus'  => 'required',
             'MRNno'  => 'required',
         ], $custom);
-        $getPatients = Patient::all();
-        foreach($getPatients as $p)
+        //if validatedData, then check if the subject newly added is existed in the system.
+        if($validatedData)
         {
-            if($p->NRIC == $request->NRIC)
+            $getPatients = Patient::all();
+            foreach($getPatients as $p)
             {
-                $exist=true;
-                break;
-            }else
-            {
+                if($p->NRIC == $request->NRIC)
+                {
+                    $exist=true;
+                    break;
+                }else
+                {
 
-                $exist=false;
+                    $exist=false;
+                }
             }
+        }else
+        {
+            alert()->error('Error!');
         }
+       //if not exist, then create new
         if($exist == false)
         {
             $patient = new Patient;
@@ -123,12 +131,7 @@ class preScreeningController extends Controller
          return view('preScreening.show',compact('patient'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $patient = Patient::find($id);
@@ -136,13 +139,6 @@ class preScreeningController extends Controller
          return view('preScreening.edit',compact('patient'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $patient = Patient::find($id);
@@ -163,23 +159,10 @@ class preScreeningController extends Controller
         return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $patient = Patient::find($id);
 
-        // Alert::warning('Deleting user -<br/>are you sure?')
-        // ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
-        // ->showConfirmButton(
-        //     $btnText = '<a class="add-padding" href="/admin/users/'. $id .'/delete">Yes</a>', // here is class for link
-        //     $btnColor = '#38c177',
-        //     ['className'  => 'no-padding'], // add class to button
-        // )->autoClose(false);
 
         $patient->bodyandvitalsigns()->delete();
         $patient->BreathAlcoholTestAndElectrocardiogram()->delete();
