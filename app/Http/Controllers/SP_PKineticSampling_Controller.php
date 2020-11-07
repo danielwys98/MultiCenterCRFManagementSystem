@@ -284,161 +284,168 @@ class SP_PKineticSampling_Controller extends Controller
         
         if($findPSS !=NULL && $PSS != NULL){
             if($PKineticS->Day1 == NULL){
-                $flag=false;
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
-                //validation for required fields
-                $validatedData=$this->validate($request,[
-                    'Day1' => 'required',
-                    'Day3' => 'required',
+                if($request->Absent == 1){
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $PKineticS[$key]=NULL;
+                        }
+                    }
+                }else{
+                    //validation for required fields
+                    $validatedData=$this->validate($request,[
+                        'Day1' => 'required',
+                        'Day3' => 'required',
 
-                    'LastFoodDate' => 'required',
-                    'LastWaterDate' => 'required',
-                    'StudyDrugDate' => 'required',
-                    'LastFoodTime' => 'required',
-                    'LastWaterTime' => 'required',
-                    'StudyDrugTime' => 'required',
+                        'LastFoodDate' => 'required',
+                        'LastWaterDate' => 'required',
+                        'StudyDrugDate' => 'required',
+                        'LastFoodTime' => 'required',
+                        'LastWaterTime' => 'required',
+                        'StudyDrugTime' => 'required',
 
-                    'pk_Date_Day_PD' => 'required',
-                    'pk_PD_AST' => 'required',
-                    'pk_PD_Collected' => 'required',
-                    'pk_PD_Checked' => 'required',
-                    
-                    'pk_Date_Day_S1' => 'required',
-                    'pk_S1_SST' => 'required',
-                    'pk_S1_AST' => 'required',
-                    'pk_S1_Collected' => 'required',
-                    'pk_S1_Checked' => 'required',
+                        'pk_Date_Day_PD' => 'required',
+                        'pk_PD_AST' => 'required',
+                        'pk_PD_Collected' => 'required',
+                        'pk_PD_Checked' => 'required',
+                        
+                        'pk_Date_Day_S1' => 'required',
+                        'pk_S1_SST' => 'required',
+                        'pk_S1_AST' => 'required',
+                        'pk_S1_Collected' => 'required',
+                        'pk_S1_Checked' => 'required',
 
-                    'pk_Date_Day_S2' => 'required',
-                    'pk_S2_SST' => 'required',
-                    'pk_S2_AST' => 'required',
-                    'pk_S2_Collected' => 'required',
-                    'pk_S2_Checked' => 'required',
+                        'pk_Date_Day_S2' => 'required',
+                        'pk_S2_SST' => 'required',
+                        'pk_S2_AST' => 'required',
+                        'pk_S2_Collected' => 'required',
+                        'pk_S2_Checked' => 'required',
 
-                    'pk_Date_Day_S3' => 'required',
-                    'pk_S3_SST' => 'required',
-                    'pk_S3_AST' => 'required',
-                    'pk_S3_Collected' => 'required',
-                    'pk_S3_Checked' => 'required',
+                        'pk_Date_Day_S3' => 'required',
+                        'pk_S3_SST' => 'required',
+                        'pk_S3_AST' => 'required',
+                        'pk_S3_Collected' => 'required',
+                        'pk_S3_Checked' => 'required',
 
-                    'pk_Date_Day_S4' => 'required',
-                    'pk_S4_SST' => 'required',
-                    'pk_S4_AST' => 'required',
-                    'pk_S4_Collected' => 'required',
-                    'pk_S4_Checked' => 'required',
+                        'pk_Date_Day_S4' => 'required',
+                        'pk_S4_SST' => 'required',
+                        'pk_S4_AST' => 'required',
+                        'pk_S4_Collected' => 'required',
+                        'pk_S4_Checked' => 'required',
 
-                    'pk_Date_Day_S5' => 'required',
-                    'pk_S5_SST' => 'required',
-                    'pk_S5_AST' => 'required',
-                    'pk_S5_Collected' => 'required',
-                    'pk_S5_Checked' => 'required',
+                        'pk_Date_Day_S5' => 'required',
+                        'pk_S5_SST' => 'required',
+                        'pk_S5_AST' => 'required',
+                        'pk_S5_Collected' => 'required',
+                        'pk_S5_Checked' => 'required',
 
-                    'pk_Date_Day_S6' => 'required',
-                    'pk_S6_SST' => 'required',
-                    'pk_S6_AST' => 'required',
-                    'pk_S6_Collected' => 'required',
-                    'pk_S6_Checked' => 'required',
+                        'pk_Date_Day_S6' => 'required',
+                        'pk_S6_SST' => 'required',
+                        'pk_S6_AST' => 'required',
+                        'pk_S6_Collected' => 'required',
+                        'pk_S6_Checked' => 'required',
 
-                    'pk_Date_Day_S7' => 'required',
-                    'pk_S7_SST' => 'required',
-                    'pk_S7_AST' => 'required',
-                    'pk_S7_Collected' => 'required',
-                    'pk_S7_Checked' => 'required',
+                        'pk_Date_Day_S7' => 'required',
+                        'pk_S7_SST' => 'required',
+                        'pk_S7_AST' => 'required',
+                        'pk_S7_Collected' => 'required',
+                        'pk_S7_Checked' => 'required',
 
-                    'pk_Date_Day_S8' => 'required',
-                    'pk_S8_SST' => 'required',
-                    'pk_S8_AST' => 'required',
-                    'pk_S8_Collected' => 'required',
-                    'pk_S8_Checked' => 'required',
+                        'pk_Date_Day_S8' => 'required',
+                        'pk_S8_SST' => 'required',
+                        'pk_S8_AST' => 'required',
+                        'pk_S8_Collected' => 'required',
+                        'pk_S8_Checked' => 'required',
 
-                    'pk_Date_Day_S9' => 'required',
-                    'pk_S9_SST' => 'required',
-                    'pk_S9_AST' => 'required',
-                    'pk_S9_Collected' => 'required',
-                    'pk_S9_Checked' => 'required',
+                        'pk_Date_Day_S9' => 'required',
+                        'pk_S9_SST' => 'required',
+                        'pk_S9_AST' => 'required',
+                        'pk_S9_Collected' => 'required',
+                        'pk_S9_Checked' => 'required',
 
-                    'pk_Date_Day_S10' => 'required',
-                    'pk_S10_SST' => 'required',
-                    'pk_S10_AST' => 'required',
-                    'pk_S10_Collected' => 'required',
-                    'pk_S10_Checked' => 'required',
+                        'pk_Date_Day_S10' => 'required',
+                        'pk_S10_SST' => 'required',
+                        'pk_S10_AST' => 'required',
+                        'pk_S10_Collected' => 'required',
+                        'pk_S10_Checked' => 'required',
 
-                    'pk_Date_Day_S11' => 'required',
-                    'pk_S11_SST' => 'required',
-                    'pk_S11_AST' => 'required',
-                    'pk_S11_Collected' => 'required',
-                    'pk_S11_Checked' => 'required',
+                        'pk_Date_Day_S11' => 'required',
+                        'pk_S11_SST' => 'required',
+                        'pk_S11_AST' => 'required',
+                        'pk_S11_Collected' => 'required',
+                        'pk_S11_Checked' => 'required',
 
-                    'pk_Date_Day_S12' => 'required',
-                    'pk_S12_SST' => 'required',
-                    'pk_S12_AST' => 'required',
-                    'pk_S12_Collected' => 'required',
-                    'pk_S12_Checked' => 'required',
+                        'pk_Date_Day_S12' => 'required',
+                        'pk_S12_SST' => 'required',
+                        'pk_S12_AST' => 'required',
+                        'pk_S12_Collected' => 'required',
+                        'pk_S12_Checked' => 'required',
 
-                    'pk_Date_Day_S13' => 'required',
-                    'pk_S13_SST' => 'required',
-                    'pk_S13_AST' => 'required',
-                    'pk_S13_Collected' => 'required',
-                    'pk_S13_Checked' => 'required',
+                        'pk_Date_Day_S13' => 'required',
+                        'pk_S13_SST' => 'required',
+                        'pk_S13_AST' => 'required',
+                        'pk_S13_Collected' => 'required',
+                        'pk_S13_Checked' => 'required',
 
-                    'pk_Date_Day_S14' => 'required',
-                    'pk_S14_SST' => 'required',
-                    'pk_S14_AST' => 'required',
-                    'pk_S14_Collected' => 'required',
-                    'pk_S14_Checked' => 'required',
+                        'pk_Date_Day_S14' => 'required',
+                        'pk_S14_SST' => 'required',
+                        'pk_S14_AST' => 'required',
+                        'pk_S14_Collected' => 'required',
+                        'pk_S14_Checked' => 'required',
 
-                    'pk_Date_Day_S15' => 'required',
-                    'pk_S15_SST' => 'required',
-                    'pk_S15_AST' => 'required',
-                    'pk_S15_Collected' => 'required',
-                    'pk_S15_Checked' => 'required',
+                        'pk_Date_Day_S15' => 'required',
+                        'pk_S15_SST' => 'required',
+                        'pk_S15_AST' => 'required',
+                        'pk_S15_Collected' => 'required',
+                        'pk_S15_Checked' => 'required',
 
-                    'pk_Date_Day_S16' => 'required',
-                    'pk_S16_SST' => 'required',
-                    'pk_S16_AST' => 'required',
-                    'pk_S16_Collected' => 'required',
-                    'pk_S16_Checked' => 'required',
+                        'pk_Date_Day_S16' => 'required',
+                        'pk_S16_SST' => 'required',
+                        'pk_S16_AST' => 'required',
+                        'pk_S16_Collected' => 'required',
+                        'pk_S16_Checked' => 'required',
 
-                    'pk_Date_Day_S17' => 'required',
-                    'pk_S17_SST' => 'required',
-                    'pk_S17_AST' => 'required',
-                    'pk_S17_Collected' => 'required',
-                    'pk_S17_Checked' => 'required',
+                        'pk_Date_Day_S17' => 'required',
+                        'pk_S17_SST' => 'required',
+                        'pk_S17_AST' => 'required',
+                        'pk_S17_Collected' => 'required',
+                        'pk_S17_Checked' => 'required',
 
-                    'pk_Date_Day_S18' => 'required',
-                    'pk_S18_SST' => 'required',
-                    'pk_S18_AST' => 'required',
-                    'pk_S18_Collected' => 'required',
-                    'pk_S18_Checked' => 'required',
+                        'pk_Date_Day_S18' => 'required',
+                        'pk_S18_SST' => 'required',
+                        'pk_S18_AST' => 'required',
+                        'pk_S18_Collected' => 'required',
+                        'pk_S18_Checked' => 'required',
 
-                    'pk_Date_Day_S19' => 'required',
-                    'pk_S19_SST' => 'required',
-                    'pk_S19_AST' => 'required',
-                    'pk_S19_Collected' => 'required',
-                    'pk_S19_Checked' => 'required',
+                        'pk_Date_Day_S19' => 'required',
+                        'pk_S19_SST' => 'required',
+                        'pk_S19_AST' => 'required',
+                        'pk_S19_Collected' => 'required',
+                        'pk_S19_Checked' => 'required',
 
-                    'pk_Date_Day_S20' => 'required',
-                    'pk_S20_SST' => 'required',
-                    'pk_S20_AST' => 'required',
-                    'pk_S20_Collected' => 'required',
-                    'pk_S20_Checked' => 'required',
+                        'pk_Date_Day_S20' => 'required',
+                        'pk_S20_SST' => 'required',
+                        'pk_S20_AST' => 'required',
+                        'pk_S20_Collected' => 'required',
+                        'pk_S20_Checked' => 'required',
 
-                    'pk_Date_Day_S21' => 'required',
-                    'pk_S21_SST' => 'required',
-                    'pk_S21_AST' => 'required',
-                    'pk_S21_Collected' => 'required',
-                    'pk_S21_Checked' => 'required',
-                ],$custom);
-                foreach($data as $key=>$value){
-                    if($value != NULL)
-                    {
-                        $PKineticS[$key]=$value;
-                        $flag=true;
+                        'pk_Date_Day_S21' => 'required',
+                        'pk_S21_SST' => 'required',
+                        'pk_S21_AST' => 'required',
+                        'pk_S21_Collected' => 'required',
+                        'pk_S21_Checked' => 'required',
+                    ],$custom);
+                    foreach($data as $key=>$value){
+                        if($value != NULL)
+                        {
+                            $PKineticS[$key]=$value;
+                        }
                     }
                 }
-                if($flag){
-                    $PKineticS->save();
-                }
+                
+                $PKineticS->Absent=$request->Absent;
+                $PKineticS->save();
                 return true;
             }else{
                 return false;
@@ -450,18 +457,25 @@ class SP_PKineticSampling_Controller extends Controller
     //update
     public function updateSP($findPSS,$PSS,$PKineticS,$request){
         if($findPSS !=NULL){
-            $flag=false;
             $data = $request->except('_token','_method');
-            foreach($data as $key=>$value){
-                if($value != NULL)
-                {
-                    $PKineticS[$key]=$value;
-                    $flag=true;
+            if($request->Absent == 1){
+                foreach($data as $key=>$value){
+                    if($value != NULL)
+                    {
+                        $PKineticS[$key]=NULL;
+                    }
+                }
+            }else{
+                foreach($data as $key=>$value){
+                    if($value != NULL)
+                    {
+                        $PKineticS[$key]=$value;
+                    }
                 }
             }
-            if($flag){
-                $PKineticS->save();
-            }
+            
+            $PKineticS->Absent=$request->Absent;
+            $PKineticS->save();
             return true;
         }else{
             return false;

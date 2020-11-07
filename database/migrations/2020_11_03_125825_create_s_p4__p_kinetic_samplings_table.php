@@ -16,6 +16,7 @@ class CreateSP4PKineticSamplingsTable extends Migration
         Schema::create('SP4_PKineticSamplings', function (Blueprint $table) {
             $table->increments('SP4_PKineticSampling_ID');
 
+            $table->boolean('Absent')->nullable();
             //day 1 to day 3 date
             $table->date('Day1')->nullable();
             $table->date('Day3')->nullable();

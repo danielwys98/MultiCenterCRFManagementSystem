@@ -163,37 +163,155 @@ class SP_BMVS_Controller extends Controller
 
         if ($findPSS != NULL && $PSS != NULL) {
             if ($BMVS->dateTaken == NULL) {
-                //validation for required fields
-                $validatedData = $this->validate($request, [
-                    'dateTaken' => 'required',
-                    'timeTaken' => 'required',
-                    'weight' => 'required',
-                    'height' => 'required',
-                    'temperature' => 'required',
-                    'Sitting_ReadingTime' => 'required',
-                    'Sitting_BP_S' => 'required',
-                    'Sitting_BP_D' => 'required',
-                    'Sitting_HR' => 'required',
-                    'Sitting_RespiratoryRate' => 'required',
-                    'Sitting_ReadingTime_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                    'Sitting_BP_S_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                    'Sitting_BP_D_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                    'Sitting_HR_Repeat1' => 'required_if:SittingRepeat1,==,Others',
-                    'Sitting_RespiratoryRate_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
-                    'Sitting_ReadingTime_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                    'Sitting_BP_S_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                    'Sitting_BP_D_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                    'Sitting_HR_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                    'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
-                    'Initial' => 'required',
-                ], $custom);
+                if($request->Absent == 1){
+                    $BMVS->dateTaken = NULL;
+                    $BMVS->timeTaken = NULL;
+                    $BMVS->weight = NULL;
+                    $BMVS->height = NULL;
+                    $BMVS->bmi = NULL;
+                    $BMVS->temperature = NULL;
+                    $BMVS->Sitting_ReadingTime = NULL;
+                    $BMVS->Sitting_BP_S = NULL;
+                    $BMVS->Sitting_BP_D = NULL;
+                    $BMVS->Sitting_HR = NULL;
+                    $BMVS->Sitting_RespiratoryRate = NULL;
+                    $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+                    $BMVS->Sitting_BP_S_Repeat1 = NULL;
+                    $BMVS->Sitting_BP_D_Repeat1 = NULL;
+                    $BMVS->Sitting_HR_Repeat1 = NULL;
+                    $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+                    $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+                    $BMVS->Sitting_BP_S_Repeat2 = NULL;
+                    $BMVS->Sitting_BP_D_Repeat2 = NULL;
+                    $BMVS->Sitting_HR_Repeat2 = NULL;
+                    $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+                    $BMVS->Initial = NULL;
+                    $BMVS->Comment = NULL;
+                }else{
+                    //validation for required fields
+                    $validatedData = $this->validate($request, [
+                        'dateTaken' => 'required',
+                        'timeTaken' => 'required',
+                        'weight' => 'required',
+                        'height' => 'required',
+                        'temperature' => 'required',
+                        'Sitting_ReadingTime' => 'required',
+                        'Sitting_BP_S' => 'required',
+                        'Sitting_BP_D' => 'required',
+                        'Sitting_HR' => 'required',
+                        'Sitting_RespiratoryRate' => 'required',
+                        'Sitting_ReadingTime_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+                        'Sitting_BP_S_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+                        'Sitting_BP_D_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+                        'Sitting_HR_Repeat1' => 'required_if:SittingRepeat1,==,Others',
+                        'Sitting_RespiratoryRate_Repeat1' => 'required_if:SittingRepeat1,==,Sitting Repeated',
+                        'Sitting_ReadingTime_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+                        'Sitting_BP_S_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+                        'Sitting_BP_D_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+                        'Sitting_HR_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+                        'Sitting_RespiratoryRate_Repeat2' => 'required_if:SittingRepeat2,==,Sitting Repeated',
+                        'Initial' => 'required',
+                    ], $custom);
+                    //date, time, weight, height, bmi will be auto calculate, temperature
+                    $BMVS->dateTaken = $request->dateTaken;
+                    $BMVS->timeTaken = $request->timeTaken;
+                    $BMVS->weight = $request->weight;
+                    $BMVS->height = $request->height;
+                    if ($request->height > 0 && $request->weight > 0) {
+                        $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
+                    } else {
+                        $BMVS->bmi = 0;
+                    }
+                    $BMVS->temperature = $request->temperature;
+                    //sitting record
+                    $BMVS->Sitting_ReadingTime = $request->Sitting_ReadingTime;
+                    $BMVS->Sitting_BP_S = $request->Sitting_BP_S;
+                    $BMVS->Sitting_BP_D = $request->Sitting_BP_D;
+                    $BMVS->Sitting_HR = $request->Sitting_HR;
+                    $BMVS->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
+                    //first repeated sitting record
+                    $repeat1 = $request->SittingRepeat1;
+                    if ($repeat1 == 'Sitting Repeated') {
+                        //if sitting is repeated for the first time
+                        $BMVS->Sitting_ReadingTime_Repeat1 = $request->Sitting_ReadingTime_Repeat1;
+                        $BMVS->Sitting_BP_S_Repeat1 = $request->Sitting_BP_S_Repeat1;
+                        $BMVS->Sitting_BP_D_Repeat1 = $request->Sitting_BP_D_Repeat1;
+                        $BMVS->Sitting_HR_Repeat1 = $request->Sitting_HR_Repeat1;
+                        $BMVS->Sitting_RespiratoryRate_Repeat1 = $request->Sitting_RespiratoryRate_Repeat1;
+                    } else {
+                        //if sitting is repeated is non
+                        $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+                        $BMVS->Sitting_BP_S_Repeat1 = NULL;
+                        $BMVS->Sitting_BP_D_Repeat1 = NULL;
+                        $BMVS->Sitting_HR_Repeat1 = NULL;
+                        $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+                    }
+                    //second repeated sitting record
+                    $repeat2 = $request->SittingRepeat2;
+                    if ($repeat2 == 'Sitting Repeated') {
+                        //if sitting is repeated for the second time
+                        $BMVS->Sitting_ReadingTime_Repeat2 = $request->Sitting_ReadingTime_Repeat2;
+                        $BMVS->Sitting_BP_S_Repeat2 = $request->Sitting_BP_S_Repeat2;
+                        $BMVS->Sitting_BP_D_Repeat2 = $request->_BP_D_Repeat2;
+                        $BMVS->Sitting_HR_Repeat2 = $request->Sitting_HR_Repeat2;
+                        $BMVS->Sitting_RespiratoryRate_Repeat2 = $request->Sitting_RespiratoryRate_Repeat2;
+                    } else {
+                        //if sitting is repeated is non
+                        $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+                        $BMVS->Sitting_BP_S_Repeat2 = NULL;
+                        $BMVS->Sitting_BP_D_Repeat2 = NULL;
+                        $BMVS->Sitting_HR_Repeat2 = NULL;
+                        $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+                    }
+                    //physician's initial
+                    $BMVS->Initial = $request->Initial;
+                    $BMVS->Comment=$request->Comment;
+                }
+                
+                $BMVS->Absent=$request->Absent;
+                $BMVS->save();
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function updateSP($findPSS,$PSS,$BMVS,$request){
+        if ($findPSS != NULL) {
+            if($request->Absent == 1){
+                $BMVS->dateTaken = NULL;
+                $BMVS->timeTaken = NULL;
+                $BMVS->weight = NULL;
+                $BMVS->height = NULL;
+                $BMVS->bmi = NULL;
+                $BMVS->temperature = NULL;
+                $BMVS->Sitting_ReadingTime = NULL;
+                $BMVS->Sitting_BP_S = NULL;
+                $BMVS->Sitting_BP_D = NULL;
+                $BMVS->Sitting_HR = NULL;
+                $BMVS->Sitting_RespiratoryRate = NULL;
+                $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
+                $BMVS->Sitting_BP_S_Repeat1 = NULL;
+                $BMVS->Sitting_BP_D_Repeat1 = NULL;
+                $BMVS->Sitting_HR_Repeat1 = NULL;
+                $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
+                $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
+                $BMVS->Sitting_BP_S_Repeat2 = NULL;
+                $BMVS->Sitting_BP_D_Repeat2 = NULL;
+                $BMVS->Sitting_HR_Repeat2 = NULL;
+                $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
+                $BMVS->Initial = NULL;
+                $BMVS->Comment = NULL;
+            }else{
                 //date, time, weight, height, bmi will be auto calculate, temperature
                 $BMVS->dateTaken = $request->dateTaken;
                 $BMVS->timeTaken = $request->timeTaken;
                 $BMVS->weight = $request->weight;
                 $BMVS->height = $request->height;
                 if ($request->height > 0 && $request->weight > 0) {
-
                     $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
                 } else {
                     $BMVS->bmi = 0;
@@ -242,75 +360,9 @@ class SP_BMVS_Controller extends Controller
                 //physician's initial
                 $BMVS->Initial = $request->Initial;
                 $BMVS->Comment=$request->Comment;
-
-                $BMVS->save();
-                return true;
-            } else {
-                return false;
             }
-        } else {
-            return false;
-        }
-    }
-
-    public function updateSP($findPSS,$PSS,$BMVS,$request){
-        if ($findPSS != NULL) {
-            //date, time, weight, height, bmi will be auto calculate, temperature
-            $BMVS->dateTaken = $request->dateTaken;
-            $BMVS->timeTaken = $request->timeTaken;
-            $BMVS->weight = $request->weight;
-            $BMVS->height = $request->height;
-            if ($request->height > 0 && $request->weight > 0) {
-
-                $BMVS->bmi = $this->calculateBMI($request->height, $request->weight);
-            } else {
-                $BMVS->bmi = 0;
-            }
-            $BMVS->temperature = $request->temperature;
-            //sitting record
-            $BMVS->Sitting_ReadingTime = $request->Sitting_ReadingTime;
-            $BMVS->Sitting_BP_S = $request->Sitting_BP_S;
-            $BMVS->Sitting_BP_D = $request->Sitting_BP_D;
-            $BMVS->Sitting_HR = $request->Sitting_HR;
-            $BMVS->Sitting_RespiratoryRate = $request->Sitting_RespiratoryRate;
-            //first repeated sitting record
-            $repeat1 = $request->SittingRepeat1;
-            if ($repeat1 == 'Sitting Repeated') {
-                //if sitting is repeated for the first time
-                $BMVS->Sitting_ReadingTime_Repeat1 = $request->Sitting_ReadingTime_Repeat1;
-                $BMVS->Sitting_BP_S_Repeat1 = $request->Sitting_BP_S_Repeat1;
-                $BMVS->Sitting_BP_D_Repeat1 = $request->Sitting_BP_D_Repeat1;
-                $BMVS->Sitting_HR_Repeat1 = $request->Sitting_HR_Repeat1;
-                $BMVS->Sitting_RespiratoryRate_Repeat1 = $request->Sitting_RespiratoryRate_Repeat1;
-            } else {
-                //if sitting is repeated is non
-                $BMVS->Sitting_ReadingTime_Repeat1 = NULL;
-                $BMVS->Sitting_BP_S_Repeat1 = NULL;
-                $BMVS->Sitting_BP_D_Repeat1 = NULL;
-                $BMVS->Sitting_HR_Repeat1 = NULL;
-                $BMVS->Sitting_RespiratoryRate_Repeat1 = NULL;
-            }
-            //second repeated sitting record
-            $repeat2 = $request->SittingRepeat2;
-            if ($repeat2 == 'Sitting Repeated') {
-                //if sitting is repeated for the second time
-                $BMVS->Sitting_ReadingTime_Repeat2 = $request->Sitting_ReadingTime_Repeat2;
-                $BMVS->Sitting_BP_S_Repeat2 = $request->Sitting_BP_S_Repeat2;
-                $BMVS->Sitting_BP_D_Repeat2 = $request->_BP_D_Repeat2;
-                $BMVS->Sitting_HR_Repeat2 = $request->Sitting_HR_Repeat2;
-                $BMVS->Sitting_RespiratoryRate_Repeat2 = $request->Sitting_RespiratoryRate_Repeat2;
-            } else {
-                //if sitting is repeated is non
-                $BMVS->Sitting_ReadingTime_Repeat2 = NULL;
-                $BMVS->Sitting_BP_S_Repeat2 = NULL;
-                $BMVS->Sitting_BP_D_Repeat2 = NULL;
-                $BMVS->Sitting_HR_Repeat2 = NULL;
-                $BMVS->Sitting_RespiratoryRate_Repeat2 = NULL;
-            }
-            //physician's initial
-            $BMVS->Initial = $request->Initial;
-            $BMVS->Comment=$request->Comment;
-
+            
+            $BMVS->Absent=$request->Absent;
             $BMVS->save();
             return true;
         }else{

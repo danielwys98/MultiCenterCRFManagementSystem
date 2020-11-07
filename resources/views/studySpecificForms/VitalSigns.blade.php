@@ -35,6 +35,14 @@
 </div>
 {{-- Vital Signs --}}
 <h3 xmlns="http://www.w3.org/1999/html">Vital Signs</h3>
+<div class=" form-group row">
+    <div class="col-md-1">
+        {!! Form::label('Absent', 'Absent:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('Absent') !!}
+    </div>
+</div>
 <hr>
 <div class="row col">
     <p>During the confinement period, vital signs should be measured within ± 30 minutes of the scheduled measurement

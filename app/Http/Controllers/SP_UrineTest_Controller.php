@@ -188,7 +188,17 @@ class SP_UrineTest_Controller extends Controller
 
             if($UT->inclusionYesNo == NULL){
                 //Urine Pregnacy
-                $UT->UPreg_male=$request->UPreg_male;
+            $UT->AbsentUPreg=$request->AbsentUPreg;
+            $UT->UPreg_male=$request->UPreg_male;
+            if($request->AbsentUPreg == 1){
+                $UT->UPreg_dateTaken=NULL;
+                $UT->UPreg_TestTime=NULL;
+                $UT->UPreg_ReadTime=NULL;
+                $UT->UPreg_Laboratory=NULL;
+                $UT->UPreg_hCG=NULL;
+                $UT->UPreg_hCG_Comment=NULL;
+                $UT->UPreg_Transcribedby=NULL;
+            }else{
                 if($request->UPreg_male == 1){
                     //if subject is male
                     $UT->UPreg_dateTaken=NULL;
@@ -213,8 +223,24 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
                     $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
                 }
-                $UT->NApplicable=$request->NApplicable;
-                //Urine Drug
+            }
+            
+            //Urine Drug
+            $UT->AbsentUDrug=$request->AbsentUDrug;
+            $UT->NApplicable=$request->NApplicable;
+            if($request->AbsentUDrug == 1){
+                $UT->UDrug_dateTaken=NULL;
+                $UT->UDrug_TestTime=NULL;
+                $UT->UDrug_ReadTime=NULL;
+                $UT->UDrug_Laboratory=NULL;
+                $UT->UDrug_Methamphetamine=NULL;
+                $UT->UDrug_Methamphetamine_Comment=NULL;
+                $UT->UDrug_Morphine=NULL;
+                $UT->UDrug_Morphine_Comment=NULL;
+                $UT->UDrug_Marijuana=NULL;
+                $UT->UDrug_Marijuana_Comment=NULL;
+                $UT->UDrug_Transcribedby=NULL;
+            }else{
                 if($request->NApplicable == 1){
                     $UT->UDrug_dateTaken=NULL;
                     $UT->UDrug_TestTime=NULL;
@@ -245,12 +271,23 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
                     $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
                 }
-                //Conclusion
+            }
+            
+            //Conclusion
+            $UT->AbsentC=$request->AbsentC;
+            if($request->AbsentC == 1){
+                $UT->inclusionYesNo=NULL;
+                $UT->Comments=NULL;
+                $UT->subjectFit=NULL;
+                $UT->physicianSign=NULL;
+                $UT->physicianName=NULL;
+            }else{
                 $UT->inclusionYesNo=$request->inclusionYesNo;
                 $UT->Comments=$request->Comments;
                 $UT->subjectFit=$request->subjectFit;
                 $UT->physicianSign=$request->physicianSign;
                 $UT->physicianName=$request->physicianName;
+            }
 
                 $UT->save();
                 return true;
@@ -265,9 +302,9 @@ class SP_UrineTest_Controller extends Controller
     public function updateSP($findPSS,$PSS,$UT,$request){ 
         if($findPSS !=NULL){
             //Urine Pregnacy
+            $UT->AbsentUPreg=$request->AbsentUPreg;
             $UT->UPreg_male=$request->UPreg_male;
-            if($request->UPreg_male == 1){
-                //if subject is male
+            if($request->AbsentUPreg == 1){
                 $UT->UPreg_dateTaken=NULL;
                 $UT->UPreg_TestTime=NULL;
                 $UT->UPreg_ReadTime=NULL;
@@ -276,23 +313,36 @@ class SP_UrineTest_Controller extends Controller
                 $UT->UPreg_hCG_Comment=NULL;
                 $UT->UPreg_Transcribedby=NULL;
             }else{
-                //if subject is female
-                $UT->UPreg_dateTaken=$request->UPreg_dateTaken;
-                $UT->UPreg_TestTime=$request->UPreg_TestTime;
-                $UT->UPreg_ReadTime=$request->UPreg_ReadTime;
-                $upreglab = $request->uPreg_Laboratory;
-                if ($upreglab == 'Other') {
-                    $UT->UPreg_Laboratory=$request->uPreg_Laboratory_Text;
-                } else{
-                    $UT->UPreg_Laboratory=$request->uPreg_Laboratory;
+                if($request->UPreg_male == 1){
+                    //if subject is male
+                    $UT->UPreg_dateTaken=NULL;
+                    $UT->UPreg_TestTime=NULL;
+                    $UT->UPreg_ReadTime=NULL;
+                    $UT->UPreg_Laboratory=NULL;
+                    $UT->UPreg_hCG=NULL;
+                    $UT->UPreg_hCG_Comment=NULL;
+                    $UT->UPreg_Transcribedby=NULL;
+                }else{
+                    //if subject is female
+                    $UT->UPreg_dateTaken=$request->UPreg_dateTaken;
+                    $UT->UPreg_TestTime=$request->UPreg_TestTime;
+                    $UT->UPreg_ReadTime=$request->UPreg_ReadTime;
+                    $upreglab = $request->uPreg_Laboratory;
+                    if ($upreglab == 'Other') {
+                        $UT->UPreg_Laboratory=$request->uPreg_Laboratory_Text;
+                    } else{
+                        $UT->UPreg_Laboratory=$request->uPreg_Laboratory;
+                    }
+                    $UT->UPreg_hCG=$request->UPreg_hCG;
+                    $UT->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
+                    $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
                 }
-                $UT->UPreg_hCG=$request->UPreg_hCG;
-                $UT->UPreg_hCG_Comment=$request->UPreg_hCG_Comment;
-                $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
             }
-            $UT->NApplicable=$request->NApplicable;
+            
             //Urine Drug
-            if($request->NApplicable == 1){
+            $UT->AbsentUDrug=$request->AbsentUDrug;
+            $UT->NApplicable=$request->NApplicable;
+            if($request->AbsentUDrug == 1){
                 $UT->UDrug_dateTaken=NULL;
                 $UT->UDrug_TestTime=NULL;
                 $UT->UDrug_ReadTime=NULL;
@@ -305,30 +355,54 @@ class SP_UrineTest_Controller extends Controller
                 $UT->UDrug_Marijuana_Comment=NULL;
                 $UT->UDrug_Transcribedby=NULL;
             }else{
-                $UT->UDrug_dateTaken=$request->UDrug_dateTaken;
-                $UT->UDrug_TestTime=$request->UDrug_TestTime;
-                $UT->UDrug_ReadTime=$request->UDrug_ReadTime;
-                $udruglab = $request->uDrug_Laboratory;
-                if ($udruglab == 'Other') {
-                    $UT->UDrug_Laboratory=$request->uDrug_Laboratory_Text;
-                } else{
-                    $UT->UDrug_Laboratory=$request->uDrug_Laboratory;
+                if($request->NApplicable == 1){
+                    $UT->UDrug_dateTaken=NULL;
+                    $UT->UDrug_TestTime=NULL;
+                    $UT->UDrug_ReadTime=NULL;
+                    $UT->UDrug_Laboratory=NULL;
+                    $UT->UDrug_Methamphetamine=NULL;
+                    $UT->UDrug_Methamphetamine_Comment=NULL;
+                    $UT->UDrug_Morphine=NULL;
+                    $UT->UDrug_Morphine_Comment=NULL;
+                    $UT->UDrug_Marijuana=NULL;
+                    $UT->UDrug_Marijuana_Comment=NULL;
+                    $UT->UDrug_Transcribedby=NULL;
+                }else{
+                    $UT->UDrug_dateTaken=$request->UDrug_dateTaken;
+                    $UT->UDrug_TestTime=$request->UDrug_TestTime;
+                    $UT->UDrug_ReadTime=$request->UDrug_ReadTime;
+                    $udruglab = $request->uDrug_Laboratory;
+                    if ($udruglab == 'Other') {
+                        $UT->UDrug_Laboratory=$request->uDrug_Laboratory_Text;
+                    } else{
+                        $UT->UDrug_Laboratory=$request->uDrug_Laboratory;
+                    }
+                    $UT->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
+                    $UT->UDrug_Methamphetamine_Comment=$request->UDrug_Methamphetamine_Comment;
+                    $UT->UDrug_Morphine=$request->UDrug_Morphine;
+                    $UT->UDrug_Morphine_Comment=$request->UDrug_Morphine_Comment;
+                    $UT->UDrug_Marijuana=$request->UDrug_Marijuana;
+                    $UT->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
+                    $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
                 }
-                $UT->UDrug_Methamphetamine=$request->UDrug_Methamphetamine;
-                $UT->UDrug_Methamphetamine_Comment=$request->UDrug_Methamphetamine_Comment;
-                $UT->UDrug_Morphine=$request->UDrug_Morphine;
-                $UT->UDrug_Morphine_Comment=$request->UDrug_Morphine_Comment;
-                $UT->UDrug_Marijuana=$request->UDrug_Marijuana;
-                $UT->UDrug_Marijuana_Comment=$request->UDrug_Marijuana_Comment;
-                $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
             }
+            
             //Conclusion
-            $UT->inclusionYesNo=$request->inclusionYesNo;
-            $UT->Comments=$request->Comments;
-            $UT->subjectFit=$request->subjectFit;
-            $UT->physicianSign=$request->physicianSign;
-            $UT->physicianName=$request->physicianName;
-
+            $UT->AbsentC=$request->AbsentC;
+            if($request->AbsentC == 1){
+                $UT->inclusionYesNo=NULL;
+                $UT->Comments=NULL;
+                $UT->subjectFit=NULL;
+                $UT->physicianSign=NULL;
+                $UT->physicianName=NULL;
+            }else{
+                $UT->inclusionYesNo=$request->inclusionYesNo;
+                $UT->Comments=$request->Comments;
+                $UT->subjectFit=$request->subjectFit;
+                $UT->physicianSign=$request->physicianSign;
+                $UT->physicianName=$request->physicianName;
+            }
+            
             $UT->save();
             return true;
         }else{

@@ -150,8 +150,71 @@ class SP_BAT_Controller extends Controller
         ];
         if($findPSS !=NULL && $PSS != NULL){
             if($BAT->dateTaken == NULL){
-
+                if($request->Absent == 1){
+                    $BAT->dateTaken = NULL;
+                    $BAT->timeTaken = NULL;
+                    $BAT->laboratory = NULL;
+                    $BAT->breathalcohol = NULL;
+                    $BAT->breathalcoholResult = NULL;
+                    $BAT->Usertranscribed = NULL;
+                }else{
+                    if($request->NApplicable == 1){
+                        $BAT->dateTaken = NULL;
+                        $BAT->timeTaken = NULL;
+                        $BAT->laboratory = NULL;
+                        $BAT->breathalcohol = NULL;
+                        $BAT->breathalcoholResult = NULL;
+                        $BAT->Usertranscribed = NULL;
+                    }else{
+                        //validation for required fields
+                        $validatedData = $this->validate($request, [
+                            'dateTaken' => 'required',
+                            'timeTaken' => 'required',
+                            'Laboratory' => 'required',
+                            'Laboratory_text' => 'required_if:Laboratory,==,Others',
+                            'breathalcohol' => 'required',
+                            'breathalcoholResult' => 'required',
+                            'Usertranscribed' => 'required',
+                        ], $custom);
+                        //date and time
+                        $BAT->dateTaken = $request->dateTaken;
+                        $BAT->timeTaken = $request->timeTaken;
+                        //laboratory
+                        if ($request->Laboratory == 'Others') {
+                            //if lab is others, save text
+                            $BAT->laboratory = $request->Laboratory_text;
+                        } else {//if lab is selected
+                            $BAT->laboratory = $request->Laboratory;
+                        }
+                        //breath alcohol record and user transcribed
+                        $BAT->breathalcohol = $request->breathalcohol;
+                        $BAT->breathalcoholResult = $request->breathalcoholResult;
+                        $BAT->Usertranscribed = $request->Usertranscribed;
+                    }
+                }
+    
                 $BAT->NApplicable=$request->NApplicable;
+                $BAT->Absent=$request->Absent;
+                $BAT->save();
+                return true;
+            }else{
+                return false;
+            }
+        }else
+        return false;
+    }
+
+    //update
+    public function updateSP($findPSS,$PSS,$BAT,$request){
+        if($findPSS !=NULL){
+            if($request->Absent == 1){
+                $BAT->dateTaken = NULL;
+                $BAT->timeTaken = NULL;
+                $BAT->laboratory = NULL;
+                $BAT->breathalcohol = NULL;
+                $BAT->breathalcoholResult = NULL;
+                $BAT->Usertranscribed = NULL;
+            }else{
                 if($request->NApplicable == 1){
                     $BAT->dateTaken = NULL;
                     $BAT->timeTaken = NULL;
@@ -160,16 +223,6 @@ class SP_BAT_Controller extends Controller
                     $BAT->breathalcoholResult = NULL;
                     $BAT->Usertranscribed = NULL;
                 }else{
-                    //validation for required fields
-                    $validatedData = $this->validate($request, [
-                        'dateTaken' => 'required',
-                        'timeTaken' => 'required',
-                        'Laboratory' => 'required',
-                        'Laboratory_text' => 'required_if:Laboratory,==,Others',
-                        'breathalcohol' => 'required',
-                        'breathalcoholResult' => 'required',
-                        'Usertranscribed' => 'required',
-                    ], $custom);
                     //date and time
                     $BAT->dateTaken = $request->dateTaken;
                     $BAT->timeTaken = $request->timeTaken;
@@ -185,43 +238,10 @@ class SP_BAT_Controller extends Controller
                     $BAT->breathalcoholResult = $request->breathalcoholResult;
                     $BAT->Usertranscribed = $request->Usertranscribed;
                 }
-                
-                $BAT->save();
-                return true;
-            }else{
-                return false;
             }
-        }else
-        return false;
-    }
 
-    //update
-    public function updateSP($findPSS,$PSS,$BAT,$request){
-        if($findPSS !=NULL){
             $BAT->NApplicable=$request->NApplicable;
-            if($request->NApplicable == 1){
-                $BAT->dateTaken = NULL;
-                $BAT->timeTaken = NULL;
-                $BAT->laboratory = NULL;
-                $BAT->breathalcohol = NULL;
-                $BAT->breathalcoholResult = NULL;
-                $BAT->Usertranscribed = NULL;
-            }else{
-                //date and time
-                $BAT->dateTaken = $request->dateTaken;
-                $BAT->timeTaken = $request->timeTaken;
-                //laboratory
-                if ($request->Laboratory == 'Others') {
-                    //if lab is others, save text
-                    $BAT->laboratory = $request->Laboratory_text;
-                } else {//if lab is selected
-                    $BAT->laboratory = $request->Laboratory;
-                }
-                //breath alcohol record and user transcribed
-                $BAT->breathalcohol = $request->breathalcohol;
-                $BAT->breathalcoholResult = $request->breathalcoholResult;
-                $BAT->Usertranscribed = $request->Usertranscribed;
-            }
+            $BAT->Absent=$request->Absent;
             $BAT->save();
             return true;
         }else{

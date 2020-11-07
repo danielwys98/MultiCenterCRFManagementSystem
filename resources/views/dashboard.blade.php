@@ -24,8 +24,8 @@
         </div>
     </div><br/>
     @can('adminFunctions')
-        <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
-        <a href="{{route('preScreening.PDF') }}"><button class="btn btn-success" type="submit">test preScreening report</button></a>
+   {{--     <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
+        <a href="{{ url('/downloadPDF/preScreening') }}"><button class="btn btn-success" type="submit">test preScreening report</button></a>--}}
     @endcan
 
 @endsection

@@ -16,6 +16,7 @@ class CreateSP2DischargesTable extends Migration
         Schema::create('SP2_Discharges', function (Blueprint $table) {
             $table->increments('SP2_Discharge_ID');
 
+            $table->boolean('Absent')->nullable();
             $table->date('DischargeDate')->nullable();
 
             $table->text('UnscheduledDischarge')->nullable();

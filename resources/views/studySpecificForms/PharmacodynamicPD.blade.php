@@ -36,13 +36,20 @@
 {{-- Pharmacodynamic (PD) Analysis --}}
 <h3>Pharmacodynamic (PD) Analysis</h3>
 <div class=" form-group row">
-    <div class="col-md-2">
+    <div class="col-md-1">
+        {!! Form::label('Absent', 'Absent:') !!}
+    </div>
+    <div class="col-md-1">
+        {!! Form::checkbox('Absent') !!}
+    </div>
+    <div class="col-md-1 offset-2">
         {!! Form::label('NApplicable', 'Not Applicable:') !!}
     </div>
     <div class="col-md-1">
         {!! Form::checkbox('NApplicable') !!}
     </div>
 </div>
+<hr>
 <div class="form-group row">
     <div class="col-md-1">
         {!! Form::label('Day1', 'Day 1: ') !!}

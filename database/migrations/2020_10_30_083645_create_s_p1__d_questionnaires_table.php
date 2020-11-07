@@ -15,6 +15,8 @@ class CreateSP1DQuestionnairesTable extends Migration
     {
         Schema::create('SP1_DQuestionnaires', function (Blueprint $table) {
             $table->increments('SP1_DQuestionnaire_ID');
+
+            $table->boolean('Absent')->nullable();
             $table->time('DQtimeTaken')->nullable();
 
             $table->text('Oriented')->nullable();

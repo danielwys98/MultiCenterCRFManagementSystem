@@ -18,7 +18,7 @@ Route::get('/testing','studySpecificController@testing')->name('testing');
 
 Route::get('/downloadPDF/preScreening/{PID}','studySpecificController@testPDFPreScreening')->name('preScreening.PDF');
 
-Route::get('/downloadPDF/','studySpecificController@testPDF')->name('test.PDF');
+Route::get('/downloadPDF/{id}/{study_id}/{study_period}','studySpecificController@testPDF')->name('test.PDF');
 //Testing route ends here
 
 Route::get('/','PagesController@loginPage');
@@ -33,6 +33,7 @@ Route::get('/preScreening/admin','preScreeningController@index')->name('preScree
 
 Route::get('/preScreening/admin/search','preScreeningController@search');
 
+Route::get('/studySpecific/admin/search','studySpecificController@search');
 /*Route::get('/chooseStudy','PagesController@chooseStudy');*/
 
 /*Route::get('/studySpecific/input','studySpecificController@studies');*/
@@ -89,7 +90,7 @@ Route::post('sp_iq96/{id}','SP_IQ96_Controller@store')->name('sp_IQuestionnaire9
 Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Controller@update')->name('sp_IQuestionnaire96.update');
 
 //this is to edit the studies detail and the subject study details
-Route::post('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
+Route::get('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
 
 Route::post('/studySpecific/PSSRemove/{id}/','studySpecificController@PSSRemove')->name('subject.removePSS');
 

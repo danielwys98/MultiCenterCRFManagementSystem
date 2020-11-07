@@ -180,8 +180,10 @@ class SP_Admission_Controller extends Controller
 
         $study=studySpecific::where('study_id',$study_id)->first();
         if($study_period==1) {
+            $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
             if ($findPSS != NULL) {
-                $findSP1 = StudyPeriod1::where('SP1_ID', $findPSS->SP1_ID)->first();
+                if($findSP1 != NULL)
+                {
                 $Admission = SP1_Admission::where('SP1_Admission_ID', $findSP1->SP1_Admission)->first();
                 $BMVS = SP1_BMVS::where('SP1_BMVS_ID', $findSP1->SP1_BMVS)->first();
                 $BAT = SP1_BAT::where('SP1_BAT_ID', $findSP1->SP1_BATER)->first();
@@ -216,50 +218,62 @@ class SP_Admission_Controller extends Controller
                     'study',
                     'study_period',
                     'patient'));
+                }
+                else
+                {
+                    alert()->error('Error!','The admission form is not created for the subject!');
+                    return redirect(route('studySpecific.admin',$study_id));
+                }
             }
         }elseif($study_period==2){
+            $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
             if ($findPSS != NULL) {
-                $findSP2 = StudyPeriod2::where('SP2_ID', $findPSS->SP2_ID)->first();
-
-                $Admission = SP2_Admission::where('SP2_Admission_ID', $findSP2->SP2_Admission)->first();
-                $BMVS = SP2_BMVS::where('SP2_BMVS_ID', $findSP2->SP2_BMVS)->first();
-                $BAT = SP2_BAT::where('SP2_BAT_ID', $findSP2->SP2_BATER)->first();
-                $AQuestionnaire = SP2_AQuestionnaire::where('SP2_AQuestionnaire_ID', $findSP2->SP2_AQuestionnaire)->first();
-                $UrineTest = SP2_UrineTest::where('SP2_UrineTest_ID', $findSP2->SP2_UrineTest)->first();
-                $PKinetic = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $findSP2->SP2_PKineticSampling)->first();
-                $PDynamic = SP2_PDynamicSampling::where('SP2_PDynamicSampling_ID', $findSP2->SP2_PDynamicSampling)->first();
-                $PDAnalysis = SP2_PDynamicAnalysis::where('SP2_PDynamicAnalysis_ID', $findSP2->SP2_PDynamicAnalysis)->first();
-                $VitalSign = SP2_VitalSigns::where('SP2_VitalSign_ID', $findSP2->SP2_VitalSign)->first();
-                $Discharge = SP2_Discharge::where('SP2_Discharge_ID', $findSP2->SP2_Discharge)->first();
-                $DQuestionnaire = SP2_DQuestionnaire::where('SP2_DQuestionnaire_ID', $findSP2->SP2_DQuestionnaire)->first();
-                $IQ36 = SP2_IQ36::where('SP2_IQ36_ID', $findSP2->SP2_IQ36)->first();
-                $IQ48 = SP2_IQ48::where('SP2_IQ48_ID', $findSP2->SP2_IQ48)->first();
-                $IQ72 = SP2_IQ72::where('SP2_IQ72_ID', $findSP2->SP2_IQ72)->first();
-                $IQ96 = SP2_IQ96::where('SP2_IQ96_ID', $findSP2->SP2_IQ96)->first();
-                return view('SubjectStudySpecific', compact('Admission',
-                    'BMVS',
-                    'BAT',
-                    'AQuestionnaire',
-                    'UrineTest',
-                    'PKinetic',
-                    'PDynamic',
-                    'PDAnalysis',
-                    'VitalSign',
-                    'Discharge',
-                    'DQuestionnaire',
-                    'IQ36',
-                    'IQ48',
-                    'IQ72',
-                    'IQ96',
-                    'study_id',
-                    'study',
-                    'study_period',
-                    'patient'));
+                if($findSP2 !=NULL)
+                {
+                    $Admission = SP2_Admission::where('SP2_Admission_ID', $findSP2->SP2_Admission)->first();
+                    $BMVS = SP2_BMVS::where('SP2_BMVS_ID', $findSP2->SP2_BMVS)->first();
+                    $BAT = SP2_BAT::where('SP2_BAT_ID', $findSP2->SP2_BATER)->first();
+                    $AQuestionnaire = SP2_AQuestionnaire::where('SP2_AQuestionnaire_ID', $findSP2->SP2_AQuestionnaire)->first();
+                    $UrineTest = SP2_UrineTest::where('SP2_UrineTest_ID', $findSP2->SP2_UrineTest)->first();
+                    $PKinetic = SP2_PKineticSampling::where('SP2_PKineticSampling_ID', $findSP2->SP2_PKineticSampling)->first();
+                    $PDynamic = SP2_PDynamicSampling::where('SP2_PDynamicSampling_ID', $findSP2->SP2_PDynamicSampling)->first();
+                    $PDAnalysis = SP2_PDynamicAnalysis::where('SP2_PDynamicAnalysis_ID', $findSP2->SP2_PDynamicAnalysis)->first();
+                    $VitalSign = SP2_VitalSigns::where('SP2_VitalSign_ID', $findSP2->SP2_VitalSign)->first();
+                    $Discharge = SP2_Discharge::where('SP2_Discharge_ID', $findSP2->SP2_Discharge)->first();
+                    $DQuestionnaire = SP2_DQuestionnaire::where('SP2_DQuestionnaire_ID', $findSP2->SP2_DQuestionnaire)->first();
+                    $IQ36 = SP2_IQ36::where('SP2_IQ36_ID', $findSP2->SP2_IQ36)->first();
+                    $IQ48 = SP2_IQ48::where('SP2_IQ48_ID', $findSP2->SP2_IQ48)->first();
+                    $IQ72 = SP2_IQ72::where('SP2_IQ72_ID', $findSP2->SP2_IQ72)->first();
+                    $IQ96 = SP2_IQ96::where('SP2_IQ96_ID', $findSP2->SP2_IQ96)->first();
+                    return view('SubjectStudySpecific', compact('Admission',
+                        'BMVS',
+                        'BAT',
+                        'AQuestionnaire',
+                        'UrineTest',
+                        'PKinetic',
+                        'PDynamic',
+                        'PDAnalysis',
+                        'VitalSign',
+                        'Discharge',
+                        'DQuestionnaire',
+                        'IQ36',
+                        'IQ48',
+                        'IQ72',
+                        'IQ96',
+                        'study_id',
+                        'study',
+                        'study_period',
+                        'patient'));
+                }
+                else{
+                    alert()->error('Error!','The admission form is not created for the subject!');
+                    return redirect(route('studySpecific.admin',$study_id));
+                }
             }
         }elseif($study_period==3){
+            $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
             if ($findPSS != NULL) {
-                $findSP3 = StudyPeriod3::where('SP3_ID', $findPSS->SP3_ID)->first();
-
+                if($findSP3 != NULL){
                 $Admission = SP3_Admission::where('SP3_Admission_ID', $findSP3->SP3_Admission)->first();
                 $BMVS = SP3_BMVS::where('SP3_BMVS_ID', $findSP3->SP3_BMVS)->first();
                 $BAT = SP3_BAT::where('SP3_BAT_ID', $findSP3->SP3_BATER)->first();
@@ -294,10 +308,16 @@ class SP_Admission_Controller extends Controller
                     'study',
                     'study_period',
                     'patient'));
-            }
+            }else
+                {
+                    alert()->error('Error!','The admission form is not created for the subject!');
+                    return redirect(route('studySpecific.admin',$study_id));
+                }
+          }
         }elseif($study_period==4){
+            $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
             if ($findPSS != NULL) {
-                $findSP4 = StudyPeriod4::where('SP4_ID', $findPSS->SP4_ID)->first();
+                if($findSP4 != NULL) {
                 $Admission = SP4_Admission::where('SP4_Admission_ID', $findSP4->SP4_Admission)->first();
                 $BMVS = SP4_BMVS::where('SP4_BMVS_ID', $findSP4->SP4_BMVS)->first();
                 $BAT = SP4_BAT::where('SP4_BAT_ID', $findSP4->SP4_BATER)->first();
@@ -332,7 +352,12 @@ class SP_Admission_Controller extends Controller
                     'study',
                     'study_period',
                     'patient'));
-            }
+            } else
+                {
+                    alert()->error('Error!','The admission form is not created for the subject!');
+                    return redirect(route('studySpecific.admin',$study_id));
+                }
+          }
         }
     }
 
