@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PatientStudySpecific;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\Patient_BodyAndVitalSigns;
@@ -132,7 +133,12 @@ class BMVS_Controller extends Controller
     {
         $patient = Patient::find($id);
         $studies = studySpecific::all()->pluck('study_name','study_id');
-        $studies[0] = '---';
+        $findPSS=PatientStudySpecific::where('patient_id',$patient->id)->get();
+        $testing=array();
+        foreach ($findPSS as $PSS) {
+            $testing[]=$PSS->study_id;
+        }
+        $study=studySpecific::where('study_id',$testing)->get();
         $BodyAndVitals =$patient->bodyandvitalsigns;
         $BATER =$patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical=$patient->MedicalHistory;
@@ -182,7 +188,8 @@ class BMVS_Controller extends Controller
                 'Serology',
                 'InclusionExclusion',
                 'Conclu',
-                'studies'
+                'studies',
+                'study'
             ))->with('patient', $patient);
         }
         //This is to do checking for ensure all forms are available to allow users to enter edit page

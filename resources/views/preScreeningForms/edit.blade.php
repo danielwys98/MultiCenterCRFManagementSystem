@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
         <h2>Visit 1: Pre-Study Screening of {{$patient->name}}</h2>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ route('preScreening.PDF',[$patient->id]) }}">testing</a>
+            </div>
+        </div>
         <ul class="nav nav-pills sticky-top bg-light">
             <li class="active"><a data-toggle="tab" href="#BMVS">Body Measurements and Vital Signs</a></li>
             <li><a data-toggle="tab" href="#BATER">Breath Alcohol Test and Electrocardiogram Recording</a></li>

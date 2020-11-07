@@ -235,23 +235,7 @@ class studySpecificController extends Controller
     //Will be delete. just for testing purpose.
     public function testing()
     {
-        //assuming the study_id is 4
-        $study_id = 4;
-
-        //get study's study period count
-        $study = studySpecific::where('study_id', $study_id)->first();
-        $studyPeriodLimit = $study->studyPeriod_Count;
-
-        $period = 0;
-        /*  $studyPeriod = array();
-          array_unshift($studyPeriod,"");*/
-        $studyPeriod[0] = '---';
-
-        for ($i = 0; $i < $studyPeriodLimit; $i++) {
-            $period++;
-            $studyPeriod[] = $period;
-        }
-        return view('test', compact('study', 'studyPeriod'));
+        return view('studySpecific.FollowUpQuestionnaire');
     }
 
     public function testPDF()
@@ -306,12 +290,10 @@ class studySpecificController extends Controller
         }
     }
 
-    public function testPDFPreScreening()
+    public function testPDFPreScreening($PID)
     {
-        $PID = 1;
-        $study_id = 1;
         $patient = Patient::where('id', $PID)->first();
-        $study = studySpecific::where('study_id', $study_id)->first();
+        //$study = studySpecific::where('study_id', $study_id)->first();
         $BodyAndVitals = $patient->bodyandvitalsigns;
         $BATER = $patient->BreathAlcoholTestAndElectrocardiogram;
         $Medical = $patient->MedicalHistory;
@@ -332,7 +314,6 @@ class studySpecificController extends Controller
             'Serology',
             'InclusionExclusion',
             'Conclu',
-            'study',
             'patient'))->setpaper('A4','portrait');
         //PDF::loadView('bladefilename',compact('variable')) something like return view.
         /*$pdf = PDF::loadView('test', compact('Admission'))->setPaper('A4','landscape');*/

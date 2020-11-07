@@ -990,7 +990,7 @@
 <br/>
 <div>
     <p>The abnormality (ies) not clinically significant, this subject can be enrolled into this study and is safe to
-        receive <strong>{{$study->study_name}}</strong>, the study medication.
+        receive <strong>(Refer to Subject's Study Report)</strong>, the study medication.
     <p></p>
 </div>
 @if($Conclu->abnormality!=NULL)

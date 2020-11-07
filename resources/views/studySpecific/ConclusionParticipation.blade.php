@@ -47,7 +47,7 @@
                 {!! Form::radio('Pre_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('Pre_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Pre_Others_text','') !!}
+                {!! Form::text('Pre_Others_text','',['class'=>'form-control']) !!}
             </td>
 
             <td>
@@ -80,7 +80,7 @@
                 {!! Form::radio('SP1_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('SP1_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('SP1_Others_text','') !!}
+                {!! Form::text('SP1_Others_text','',['class'=>'form-control']) !!}
             </td>
             {{--Study Period 2--}}
             <td>
@@ -113,7 +113,7 @@
                 {!! Form::radio('SP2_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('SP2_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('SP2_Others_text','') !!}
+                {!! Form::text('SP2_Others_text','',['class'=>'form-control']) !!}
             </td>
         </tr>
         </tbody>
@@ -162,7 +162,7 @@
                 {!! Form::radio('SP3_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('SP3_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('SP3_Others_text','') !!}
+                {!! Form::text('SP3_Others_text','',['class'=>'form-control']) !!}
             </td>
             {{--Study Period 4--}}
             <td>
@@ -195,7 +195,7 @@
                 {!! Form::radio('SP4_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('SP4_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('SP4_Others_text','') !!}
+                {!! Form::text('SP4_Others_text','',['class'=>'form-control']) !!}
             </td>
             {{--Follow Up--}}
             <td>
@@ -228,7 +228,7 @@
                 {!! Form::radio('Fol_Others', 'Others','',['id'=>'Others']) !!}
                 {!! Form::label('Fol_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Fol_Others_text','') !!}
+                {!! Form::text('Fol_Others_text','',['class'=>'form-control']) !!}
             </td>
         </tr>
         </tbody>

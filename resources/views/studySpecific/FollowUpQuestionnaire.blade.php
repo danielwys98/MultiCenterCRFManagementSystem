@@ -110,6 +110,9 @@
 {{--End of Questions--}}
 
 <div class="row">
+    <div class="col-md-6">
+
+    </div>
     <div class="col-md-2">
         {!! Form::label('PhysicianInitial', 'Physician’s Initial: ') !!}
     </div>
@@ -117,43 +120,43 @@
         {!! Form::text('PhysicianInitial','',['class'=>'form-control']) !!}
     </div>
 </div>
-
-<h4>Comments</h4>
+<hr>
+<h4>Comments: </h4>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
         {!! Form::radio('Comment', 'Well','',['id'=>'Well']) !!}
     </div>
-    <div class="col-10">
+    <div class="col-md-10">
         {!! Form::label('Well', "The subject's follow up indicated that the subject is well and do not require further medical attention.") !!}
     </div>
 </div>
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-1">
         {!! Form::radio('Comment', 'Unsolved','',['id'=>'Unsolved']) !!}
     </div>
     <div class="col-10">
         {!! Form::label('Unsolved', "Baseline and/or adverse event(s) not resolved. Provide details") !!}
     </div>
 </div>
-<div class="row">
+<div class="form-group row">
     <div class="col-md-8">
-        {!! Form::textarea('Comment_text','',['class'=>'form-control']) !!}
+        {!! Form::textarea('Comment_text','',['class'=>'form-control','rows'=>'3']) !!}
     </div>
 </div>
 
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianSign', 'Physician/Investigator’s Signature: ') !!}
-        {!! Form::text('physicianSign',old("physicianSign",$DQuestionnaire->PhysicianSign),['class'=>'form-control']) !!}
+        {!! Form::text('physicianSign','',['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-        {!! Form::text('physicianName',old("physicianName",$DQuestionnaire->PhysicianName),['class'=>'form-control']) !!}
+        {!! Form::text('physicianName','',['class'=>'form-control']) !!}
     </div>
 </div>
-<div class="row">
+<div class="form-group row">
     <div class="col-md-2">
         {!! Form::date('FollowUpDateTaken',\Carbon\Carbon::now(),['class'=>'form-control']) !!}
     </div>

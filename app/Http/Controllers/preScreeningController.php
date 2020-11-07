@@ -178,7 +178,6 @@ class preScreeningController extends Controller
         $patient->InclusionExclusion()->delete();
         $patient->Conclu()->delete();
 
-        //TODO: DELETE STUDY SPECIFIC STUFF ONCE SUBJECT IS DELETED AS WELL!
         $patient->delete();
 
         Alert::success('Deleted', 'The subject has been removed from the system!');

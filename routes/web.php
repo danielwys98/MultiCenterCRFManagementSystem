@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //Testing route
 Route::get('/testing','studySpecificController@testing')->name('testing');
 
-Route::get('/downloadPDF/preScreening','studySpecificController@testPDFPreScreening');
+Route::get('/downloadPDF/preScreening/{PID}','studySpecificController@testPDFPreScreening')->name('preScreening.PDF');
 
 Route::get('/downloadPDF/','studySpecificController@testPDF')->name('test.PDF');
 //Testing route ends here
@@ -142,3 +142,5 @@ Route::resource('users','Admin\UsersController',['except'=>['show','create','sto
 Route::resource('preScreening','preScreeningController');
 
 Route::resource('studySpecific','studySpecificController');
+
+//testing only
