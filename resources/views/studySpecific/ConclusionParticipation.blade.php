@@ -4,7 +4,6 @@
     {!! Form::open() !!}
     <h3>Conclusion of Participation</h3>
     <hr>
-    {{--TODO: Add Pre, SP1, SP2, SP3, SP4, FollowUp to all the names of the respective radio and label--}}
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -16,110 +15,112 @@
         <tbody>
         <tr>
             <td>
-                {!! Form::radio('Reserve', 'Reserve Subject','',['id'=>'Reserve']) !!}
-                {!! Form::label('Reserve', 'Reserve Subject') !!}
+                {!! Form::radio('Pre_Reserve', 'Reserve Subject','',['id'=>'Reserve']) !!}
+                {!! Form::label('Pre_Reserve', 'Reserve Subject') !!}
                 <br>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('Pre_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('Pre_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('Pre_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('Pre_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('Pre_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('Pre_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('Pre_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('Pre_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('Pre_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::radio('Pre_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
                 {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('Pre_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('Pre_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('Pre_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('Pre_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('Pre_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('Pre_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('Pre_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('Pre_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('Pre_Others_text','') !!}
             </td>
 
             <td>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('SP1_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('SP1_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('SP1_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('SP1_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('SP1_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('SP1_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('SP1_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('SP1_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('SP1_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
-                {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
+                {!! Form::radio('SP1_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::label('SP1_ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('SP1_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('SP1_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('SP1_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('SP1_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('SP1_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('SP1_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('SP1_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('SP1_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('SP1_Others_text','') !!}
             </td>
+            {{--Study Period 2--}}
             <td>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('SP2_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('SP2_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('SP2_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('SP2_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('SP2_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('SP2_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('SP2_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('SP2_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('SP2_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
-                {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
+                {!! Form::radio('SP2_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::label('SP2_ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('SP2_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('SP2_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('SP2_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('SP2_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('SP2_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('SP2_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('SP2_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('SP2_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('SP2_Others_text','') !!}
             </td>
         </tr>
         </tbody>
     </table>
     <br>
     <br>
+
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -130,102 +131,104 @@
         </thead>
         <tbody>
         <tr>
+            {{--Study Period 3--}}
             <td>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('SP3_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('SP3_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('SP3_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('SP3_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('SP3_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('SP3_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('SP3_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('SP3_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('SP3_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
-                {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
+                {!! Form::radio('SP3_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::label('SP3_ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('SP3_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('SP3_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('SP3_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('SP3_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('SP3_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('SP3_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('SP3_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('SP3_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('SP3_Others_text','') !!}
             </td>
-
+            {{--Study Period 4--}}
             <td>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('SP4_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('SP4_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('SP4_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('SP4_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('SP4_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('SP4_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('SP4_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('SP4_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('SP4_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
-                {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
+                {!! Form::radio('SP4_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::label('SP4_ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('SP4_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('SP4_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('SP4_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('SP4_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('SP4_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('SP4_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('SP4_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('SP4_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('SP4_Others_text','') !!}
             </td>
+            {{--Follow Up--}}
             <td>
-                {!! Form::radio('Yes', 'Yes','',['id'=>'Yes']) !!}
-                {!! Form::label('Yes', 'Yes') !!}
+                {!! Form::radio('Fol_Yes', 'Yes','',['id'=>'Yes']) !!}
+                {!! Form::label('Fol_Yes', 'Yes') !!}
                 <br>
-                {!! Form::label('No','No,Explain: ') !!}
+                {!! Form::label('Fol_No','No,Explain: ') !!}
                 <br>
-                {!! Form::radio('SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
-                {!! Form::label('SubDecision', 'Subject Decision') !!}
+                {!! Form::radio('Fol_SubDecision', 'Subject Decision','',['id'=>'SubDecision']) !!}
+                {!! Form::label('Fol_SubDecision', 'Subject Decision') !!}
                 <br>
-                {!! Form::radio('PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
-                {!! Form::label('PhyDecision', 'Physician Decision') !!}
+                {!! Form::radio('Fol_PhyDecision', 'Physician Decision','',['id'=>'PhyDecision']) !!}
+                {!! Form::label('Fol_PhyDecision', 'Physician Decision') !!}
                 <br>
-                {!! Form::radio('Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
-                {!! Form::label('Exclusion', 'Entry Criteria Exclusion') !!}
+                {!! Form::radio('Fol_Exclusion', 'Entry Criteria Exclusion','',['id'=>'Exclusion']) !!}
+                {!! Form::label('Fol_Exclusion', 'Entry Criteria Exclusion') !!}
                 <br>
-                {!! Form::radio('ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
-                {!! Form::label('ProtoViolation', 'Protocol Violation') !!}
+                {!! Form::radio('Fol_ProtoViolation', 'Protocol Violation','',['id'=>'ProtoViolation']) !!}
+                {!! Form::label('Fol_ProtoViolation', 'Protocol Violation') !!}
                 <br>
-                {!! Form::radio('Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
-                {!! Form::label('Lost', 'Lost to Follow Up') !!}
+                {!! Form::radio('Fol_Lost', 'Lost to Follow Up','',['id'=>'Lost']) !!}
+                {!! Form::label('Fol_Lost', 'Lost to Follow Up') !!}
                 <br>
-                {!! Form::radio('Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
-                {!! Form::label('Adverse', 'Adverse Event') !!}
+                {!! Form::radio('Fol_Adverse', 'Adverse Event','',['id'=>'Adverse']) !!}
+                {!! Form::label('Fol_Adverse', 'Adverse Event') !!}
                 <br>
-                {!! Form::radio('Death', 'Death','',['id'=>'Death']) !!}
-                {!! Form::label('Death', 'Death') !!}
+                {!! Form::radio('Fol_Death', 'Death','',['id'=>'Death']) !!}
+                {!! Form::label('Fol_Death', 'Death') !!}
                 <br>
-                {!! Form::radio('Others', 'Others','',['id'=>'Others']) !!}
-                {!! Form::label('Others', 'Others: ') !!}
+                {!! Form::radio('Fol_Others', 'Others','',['id'=>'Others']) !!}
+                {!! Form::label('Fol_Others', 'Others: ') !!}
                 <br>
-                {!! Form::text('Others_text','') !!}
+                {!! Form::text('Fol_Others_text','') !!}
             </td>
         </tr>
         </tbody>
