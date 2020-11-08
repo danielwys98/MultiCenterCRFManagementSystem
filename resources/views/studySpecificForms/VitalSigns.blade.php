@@ -471,6 +471,6 @@
 </div>
 {{-- Body measurements and vital signs ends--}}
 <div class="row col">
-    {!! Form::submit('Update',['class'=>'btn btn-primary'])!!}
+    {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
 </div>
 {!! Form::close() !!}

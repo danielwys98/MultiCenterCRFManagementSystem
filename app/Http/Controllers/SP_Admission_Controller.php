@@ -352,12 +352,16 @@ class SP_Admission_Controller extends Controller
                     'study',
                     'study_period',
                     'patient'));
-            } else
+            }else
                 {
                     alert()->error('Error!','The admission form is not created for the subject!');
                     return redirect(route('studySpecific.admin',$study_id));
                 }
           }
+        } else
+        {
+            alert()->error('Error!','You did not select the study period!');
+            return redirect(route('studySpecific.admin',$study_id));
         }
     }
 
