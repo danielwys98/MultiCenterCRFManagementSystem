@@ -45,6 +45,12 @@
     <div>
         <h3>Body Measurements and Vital Signs</h3>
         <hr>
+        @if($BMVS->Absent == 1)
+            <div class="form-group row">
+                <div class="col-md-1">
+                   <h3>Subject is absent for study period 1!</h3>
+                </div>
+        @else
         <div class="form-group row">
             <div class="col-md-1">
                 {!! Form::label('dateTaken', 'Date Taken: ') !!}
@@ -165,6 +171,7 @@
             {!! Form::label('note1', 'Only latest reading is transcribed. Please comment if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
         </p>
     </div>
+   @endif
 </div>
 
 {{--BREATH ALCOHOL TEST STARTS HERE--}}
@@ -172,6 +179,17 @@
 <h3>Breath Alcohol Test</h3>
 <p>(Transcribed from Breath Alcohol Test Logbook)</p>
 <hr>
+    @if($BAT->Absent == 1)
+        <div class="form-group row">
+            <div class="col-md-1">
+                <h3>Subject is absent for study period 1!</h3>
+            </div>
+    @elseif($BAT->NApplicable)
+                <div class="form-group row">
+                    <div class="col-md-1">
+                        <h3>Not Applicable!</h3>
+                    </div>
+    @else
 <div class="form-group row">
     <div class="col-md-1">
         {!! Form::label('dateTaken', 'Date Taken: ') !!}
@@ -210,10 +228,11 @@
     </tr>
     </tbody>
 </table>
+        @endif
+     </div>
 </div>
 
 {{--Admission Questionnaire starts here--}}
-
 <h3>Admission Questionnaire</h3>
 <hr>
 <div class="form-group row">
@@ -229,8 +248,13 @@
 <hr>
 
 {{-- Admission Question 1 --}}
-
-
+    @if($AQuestionnaire->Absent ==1)
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Subject is absent for study period 1!</h3>
+                </div>
+            </div>
+    @else
 <div class="row">
     <div class="col-md-6">
         <p>1. Has the subject had any medical problems within the last 7 days before dosing?</p>
@@ -281,7 +305,6 @@
 
 {{-- Admission Question 3 --}}
 
-<div class="page-break">
     <div class="row">
         <div class="col-sm-6">
             <p>3. Has the subject been hospitalized within 4 weeks before dosing?</p>
@@ -302,10 +325,8 @@
             </div>
         </div>
     @endif
-    <hr>
 </div>
 <hr>
-
 {{-- Admission Question 4 --}}
 
 
@@ -329,8 +350,7 @@
     <hr>
 
     {{-- Admission Question 5 --}}
-
-
+    <div class="page-break">
     <div class="row">
         <div class="col-sm-6">
             <p>5. Has the subject consumed any food or beverage containing poppy seeds within 48 hours before drugs of
@@ -396,8 +416,10 @@
                                 <p>{!! Form::label('Other_InfluencePKinetic', 'Yes',(($AQuestionnaire->Other_InfluencePKinetic)=='Yes')? 'checked' : '') !!}</p>
                             </div>
                         </div>
-                        @endif
                     </div>
+                        @endif
+                    {{--page break ends here--}}
+            </div>
                     <hr>
                     {{-- Admission Question 8 --}}
                     <div class="row">
@@ -459,17 +481,24 @@
                             </div>
                         </div>
                     </div>
+            @endif
                     <hr>
                     {{-- urine drugs for abuse test --}}
                     <h3>Urine Pregnancy Test</h3>
                     <p>(Transcribed from Urine Logbook)</p>
+                    @if($UrineTest->UPreg_male == 1)
                     <div class=" form-group row">
-                        @if($UrineTest->UPreg_male == 1)
                             <div class="col-md-2">
-                                {!! Form::label('UPreg_male', 'Not Applicable for male: ') !!}
+                                {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
                             </div>
                     </div>
-                @else
+                    @elseif ($UrineTest->Absent == 1)
+                    <div class=" form-group row">
+                        <div class="col-md-2">
+                            {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
+                        </div>
+                    </div>
+                    @else
                     <div class=" form-group row">
                         <div class="col-md-1">
                             {!! Form::label('UPreg_dateTaken', 'Date Taken: ') !!}
@@ -539,6 +568,12 @@
                     <h3>Urine Drugs of Abuse Test</h3>
                     <p>(Transcribed from Urine Logbook)</p>
                     @if($UrineTest->NApplicable == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                {!! Form::label('NApplicable', 'Not Applicable') !!}
+                            </div>
+                        </div>
+                    @elseif ($UrineTest->Absent == 1)
                         <div class=" form-group row">
                             <div class="col-md-2">
                                 {!! Form::label('NApplicable', 'Not Applicable') !!}
@@ -637,6 +672,16 @@
                 {{-- conclusion --}}
                 <div class="page-break">
                     <h3>Conclusion</h3>
+                    @if($UrineTest->AbsentC == 1)
+                        <div class="col-md-7">
+                            <p>Does the subject obey all the restrictions and/or fulfill all the inclusion criteria and
+                                none
+                                of the
+                                exclusion criteria?</p>
+                            <p>{!! Form::label('inclusionYesNo', ($UrineTest->inclusionYesNo)) !!}</p>
+                        </div>
+                        </div>
+                    @else
                     <div class=" form-group row">
                         <div class="col-md-7">
                             <p>Does the subject obey all the restrictions and/or fulfill all the inclusion criteria and
@@ -692,6 +737,7 @@
                             {!! Form::label('physicianName',($UrineTest->physicianName)) !!}
                         </div>
                     </div>
+                @endif
                 </div>
                 <div class="page-break">
                     <h3>Pharmacokinetic Blood Sampling</h3>
