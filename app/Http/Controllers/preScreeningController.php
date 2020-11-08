@@ -143,6 +143,17 @@ class preScreeningController extends Controller
     {
         $patient = Patient::find($id);
 
+        //custom messages load for validation
+        $custom = [
+            'ethnicity.required' => 'Please state the ethnicity.',
+            'Ethnic_Text.required' => 'If Others has been selected on ethnicity, please state your ethnicity.',
+        ];
+        //validation for required fields
+        $validatedData=$this->validate($request,[
+            'ethnicity.required' => 'Please state the ethnicity.',
+            'Ethnic_Text' => 'required_if:ethnicity,==,Others',
+        ], $custom);
+
         $patient->dateTaken=$request->dateTaken;
         $patient->timeTaken=$request->timeTaken;
         $patient->NRIC=$request->NRIC;

@@ -2,6 +2,15 @@
 
 @section('content')
     <h3>Edit Subject Details</h3>
+    @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     <div class="container-fluid">
         <h4>General Consent</h4>
         {!! Form::model($patient,['route' => ['preScreening.update',$patient->id]]) !!}
