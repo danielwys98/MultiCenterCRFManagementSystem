@@ -22,7 +22,7 @@ class preScreeningController extends Controller
 
     public function index()
     {
-        $patients = Patient::paginate(10);
+        $patients = Patient::all();
 
         return view('preScreening.admin',compact('patients'));
 

@@ -64,10 +64,10 @@
                     <a href="{{ route('preScreening.edit',$patient->id) }}" class="btn btn-dark">Edit Profile</a>
                 </td>
                 <td>
-                    <a href="{{route('preScreeningForms.create',$patient->id)}}" class="btn btn-primary">Add Details</a>
+                    <a href="{{route('preScreeningForms.create',$patient->id)}}" class="btn btn-primary">Add Pre-Screening Details</a>
                 </td>
                 <td>
-                    <a href="{{route('preScreeningForms.edit',$patient->id)}}" class="btn btn-primary">Edit Details</a>
+                    <a href="{{route('preScreeningForms.edit',$patient->id)}}" class="btn btn-primary">Edit Pre-Screening Details</a>
                 </td>
                 <td>
                     <form action="{{route('preScreening.destroy',$patient->id)}}" method="POST">
@@ -79,12 +79,10 @@
                 </td>
             </tr>
         </tbody>
-        @endforeach
+            @endforeach
         @else
-            <td>No Patient found!</td>
+            <td>No Subject found!</td>
         @endif
     </table>
-    <div>
-        {{$patients->links()}}
-    </div>
+
 @endsection
