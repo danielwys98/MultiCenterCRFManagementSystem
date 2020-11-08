@@ -7,7 +7,7 @@
         <h2>Visit 1: Pre-Study Screening of {{$patient->name}}</h2>
             </div>
             <div class="col-md-2">
-                <a href="{{ route('preScreening.PDF',[$patient->id]) }}">testing</a>
+                <a href="{{ route('preScreening.PDF',[$patient->id]) }}"><button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-share"></span> Generate Report</button></a>
             </div>
         </div>
         <ul class="nav nav-pills sticky-top bg-light">
