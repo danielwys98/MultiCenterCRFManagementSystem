@@ -106,7 +106,7 @@ class preScreeningController extends Controller
             $patient->name=$request->name;
             $patient->Gender=$request->Gender;
             if($request->Ethnicity=='Others'){
-                $patient->Ethnicity=$request->Ethnicity.$request->Ethnic_Text;
+                $patient->Ethnicity=$request->Ethnic_Text;
             }else
                 $patient->Ethnicity=$request->Ethnicity;
 
