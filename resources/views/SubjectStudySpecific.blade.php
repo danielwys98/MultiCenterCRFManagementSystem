@@ -5,7 +5,7 @@
         <div class="col-9">
             <h1>{{$patient->name}}'s {{$study->study_name}} study details for Study Period {{$study_period}}</h1></div>
         <div class="col-md-3 float-right ">
-    <a href="{{ route('test.PDF',[$patient->id,$study->study_id,$study_period])}}"><button class="btn btn-success" type="submit">Generate Report</button></a>
+    <a href="{{ route('test.PDF',[$patient->id,$study->study_id,$study_period])}}"><button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-share"></span>  Generate Report</button></a>
         </div>
     </div>
     <div class="container-fluid">
