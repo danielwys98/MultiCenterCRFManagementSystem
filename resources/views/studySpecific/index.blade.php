@@ -66,5 +66,5 @@
         @else
                 <h1>You dont have studies! add study!</h1>
         @endif
-    <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
+    <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus"></span>  Create new study-specific</button></a>
 @endsection
