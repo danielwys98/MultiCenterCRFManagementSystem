@@ -28,6 +28,7 @@
             </form>
 
         </div>
+    @if(count($studies)>0)
         <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -37,7 +38,6 @@
                 <th scope="col" class="col-md-2">Actions</th>
                 </tr>
                 </thead>
-        @if(count($studies)>0)
         <tbody>
         @foreach($studies as $study)
             <tr>
@@ -66,6 +66,5 @@
         @else
                 <h1>You dont have studies! add study!</h1>
         @endif
-            <td><a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a></td>
-
+    <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit">Create new study-specific</button></a>
 @endsection

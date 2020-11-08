@@ -339,7 +339,7 @@ class studySpecificController extends Controller
                     'patient'))
                     ->setPaper('A4', 'landscape');
 
-                return $pdf->download($patient->name.$study->study_name.'study period1.pdf');
+                return $pdf->stream($patient->name.$study->study_name.'study period1.pdf');
             }else
                 {
                     alert()->error('Error!','The admission form is not created for the subject!');
@@ -388,7 +388,7 @@ class studySpecificController extends Controller
                     'patient'))
                     ->setPaper('A4', 'landscape');
 
-                    return $pdf->download($patient->name.$study->study_name.'study period2.pdf');
+                    return $pdf->stream($patient->name.$study->study_name.'study period2.pdf');
                 }else
                 {
                     alert()->error('Error!','The admission form is not created for the subject!');
@@ -436,7 +436,7 @@ class studySpecificController extends Controller
                     'patient'))
                     ->setPaper('A4', 'landscape');
 
-                    return $pdf->download($patient->name.$study->study_name.'study period3.pdf');
+                    return $pdf->stream($patient->name.$study->study_name.'study period3.pdf');
                 }else
                 {
                     alert()->error('Error!','The admission form is not created for the subject!');
@@ -484,7 +484,7 @@ class studySpecificController extends Controller
                     'patient'))
                     ->setPaper('A4', 'landscape');
 
-                    return $pdf->download($patient->name.$study->study_name.'study period4.pdf');
+                    return $pdf->stream($patient->name.$study->study_name.'study period4.pdf');
             }else
             {
                 alert()->error('Error!','The admission form is not created for the subject!');

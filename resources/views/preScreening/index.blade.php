@@ -19,7 +19,7 @@
         @endforeach
         @else
             <tr>
-                <th>You dont have patients! add patients!</th>
+                <th>You dont have subject! add subject!</th>
             </tr>
         @endif
         </tbody>
