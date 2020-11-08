@@ -24,7 +24,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Created At (Date and Time)</th>
                                 <th scope="col">Roles</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col" class="col-md-2">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -35,8 +35,8 @@
                                 <td class="text-justify col-md-2">{{$user->email}}</td>
                                 <td class="text-justify col-md-2">{{$user->created_at}}</td>
                                 <td class="text-justify col-md-2">{{implode(', ',$user->roles()->get()->pluck('name')->toArray())}}</td>
-                                <td class="col-md-1">
-                                    <button class="btn btn-outline-primary float-md-left"><a href="{{route('users.edit',$user->id)}}"><i class="fas fa-user-edit"></i></a></button>
+                                <td>
+                                    <a href="{{route('users.edit',$user->id)}}"><button class="btn btn-outline-primary float-md-left"><i class="fas fa-user-edit"></i></button></a>
                                         {{--submit it as form to delete the users--}}
                                        <form action="{{route('users.destroy',$user->id)}}" method="POST">
                                            @csrf
