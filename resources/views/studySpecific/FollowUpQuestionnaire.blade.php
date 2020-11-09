@@ -9,7 +9,7 @@
         {!! Form::label('FollowUpDateTaken', 'Date Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::date('FollowUpDateTaken',old('FollowUpDateTaken'),['class'=>'form-control']) !!}
+        {!! Form::date('FollowUpDateTaken',old('FollowUpDateTaken',$followUpQ->FollowUpDateTaken),['class'=>'form-control']) !!}
     </div>
     <div class=" offset-3 col-md-1">
         {!! Form::label('AdmissionTimeTaken', 'Time Taken: ') !!}
@@ -35,10 +35,10 @@
         <p>1. Has the subject had any unresolved or newly onset medical problem(s) since the last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('MedicalProblem', 'Yes') !!}</p>
+        <p>{!! Form::radio('MedicalProblem', 'Yes',(old('MedicalProblem',$followUpQ->MedicalProblem)=='Yes')?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('MedicalProblem', 'No') !!}</p>
+        <p>{!! Form::radio('MedicalProblem', 'No',(old('MedicalProblem',$followUpQ->MedicalProblem)!='Yes'&& $followUpQ->MedicalProblem!=NULL)?'checked':'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -54,10 +54,10 @@
             medications) since the last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Medication', 'Yes') !!}</p>
+        <p>{!! Form::radio('Medication', 'Yes',(old('Medication',$followUpQ->Medication)=='Yes')?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Medication', 'No') !!}</p>
+        <p>{!! Form::radio('Medication', 'No',(old('Medication',$followUpQ->Medication)!='Yes'&& $followUpQ->Medication!=NULL)?'checked':'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -72,10 +72,10 @@
         <p>3. Has the subject been hospitalized sine the last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Hospitalized', 'Yes') !!}</p>
+        <p>{!! Form::radio('Hospitalized', 'Yes',(old('Hospitalized',$followUpQ->Hospitalized)=='Yes')?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('Hospitalized', 'No') !!}</p>
+        <p>{!! Form::radio('Hospitalized', 'No',(old('Hospitalized',$followUpQ->Hospitalized)!='Yes'&& $followUpQ->Hospitalized!=NULL)?'checked':'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -90,10 +90,10 @@
         <p>7. Has the subject participated in other experimental drug studies or blood donation since last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('otherDrugStudies', 'Yes') !!}</p>
+        <p>{!! Form::radio('otherDrugStudies', 'Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('otherDrugStudies', 'No') !!}</p>
+        <p>{!! Form::radio('otherDrugStudies', 'No',(old('otherDrugStudies',$followUpQ->otherDrugStudies)=='No')?'checked':'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -103,7 +103,7 @@
 </div>
 <div class="row">
     <div class="col-md-5">
-        {!! Form::text('otherDrugStudies_Yes', '',['class'=>'form-control']) !!}
+        {!! Form::text('otherDrugStudies_Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?$followUpQ->otherDrugStudies:'',['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
@@ -117,14 +117,14 @@
         {!! Form::label('PhysicianInitial', 'Physician’s Initial: ') !!}
     </div>
     <div class="col-md-3">
-        {!! Form::text('PhysicianInitial','',['class'=>'form-control']) !!}
+        {!! Form::text('PhysicianInitial',old('PhysicianInitial',$followUpQ->PhysicianInitial),['class'=>'form-control']) !!}
     </div>
 </div>
 <hr>
 <h4>Comments: </h4>
 <div class="row">
     <div class="col-md-1">
-        {!! Form::radio('Comment', 'Well','',['id'=>'Well']) !!}
+        {!! Form::radio('Comment', 'Well',(old('Comment',$followUpQ->Comment)=='Well')?'checked':'',['id'=>'Well']) !!}
     </div>
     <div class="col-md-10">
         {!! Form::label('Well', "The subject's follow up indicated that the subject is well and do not require further medical attention.") !!}
@@ -132,7 +132,7 @@
 </div>
 <div class="row">
     <div class="col-md-1">
-        {!! Form::radio('Comment', 'Unsolved','',['id'=>'Unsolved']) !!}
+        {!! Form::radio('Comment', 'Unsolved',(old('Comment',$followUpQ->Comment)!='Well'&& $followUpQ->Comment!=NULL)?'checked':'',['id'=>'Unsolved']) !!}
     </div>
     <div class="col-10">
         {!! Form::label('Unsolved', "Baseline and/or adverse event(s) not resolved. Provide details") !!}
@@ -140,25 +140,25 @@
 </div>
 <div class="form-group row">
     <div class="col-md-8">
-        {!! Form::textarea('Comment_text','',['class'=>'form-control','rows'=>'3']) !!}
+        {!! Form::textarea('Comment_text',(old('Comment',$followUpQ->Comment)!='Well' && $followUpQ->Comment!=NULL)?$followUpQ->Comment:'',['class'=>'form-control','rows'=>'3']) !!}
     </div>
 </div>
 
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianSign', 'Physician/Investigator’s Signature: ') !!}
-        {!! Form::text('physicianSign','',['class'=>'form-control']) !!}
+        {!! Form::text('physicianSign',old('physicianSign',$followUpQ->physicianSign),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-3">
         {!! Form::label('physicianName', 'Name (Printed) : ') !!}
-        {!! Form::text('physicianName','',['class'=>'form-control']) !!}
+        {!! Form::text('physicianName',old('physicianName',$followUpQ->physicianName),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::date('FollowUpDateTaken',old('FollowUpDateTaken'),['class'=>'form-control' ,'readonly']) !!}
+        {!! Form::date('DateSign',old('DateSign',$followUpQ->DateSign),['class'=>'form-control']) !!}
     </div>
 </div>
     {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}

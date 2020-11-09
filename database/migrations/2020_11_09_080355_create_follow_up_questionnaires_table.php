@@ -25,6 +25,7 @@ class CreateFollowUpQuestionnairesTable extends Migration
             $table->text('Comment')->nullable();
             $table->text('physicianSign')->nullable();
             $table->text('physicianName')->nullable();
+            $table->date('DateSign')->nullable();
 
             $table->timestamps();
         });
