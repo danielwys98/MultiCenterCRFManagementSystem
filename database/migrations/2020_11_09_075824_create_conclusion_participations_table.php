@@ -14,7 +14,7 @@ class CreateConclusionParticipationsTable extends Migration
     public function up()
     {
         Schema::create('conclusion_participations', function (Blueprint $table) {
-            $table->increments('conclusion_participations_ID');
+            $table->increments('conclusion_participation_id');
 
             $table->boolean('Pre_Reserve')->nullable();
             $table->boolean('Pre_Yes')->nullable();
@@ -79,7 +79,7 @@ class CreateConclusionParticipationsTable extends Migration
 
             $table->text('InvestSign')->nullable();
             $table->text('InvestName')->nullable();
-            $table->date('DateTaken')->nullable();            
+            $table->date('DateTaken')->nullable();
 
             $table->timestamps();
         });
