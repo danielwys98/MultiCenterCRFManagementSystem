@@ -15,7 +15,7 @@ class PostStudy_Controller extends Controller
         $this->middleware('checkAdmin');
     }
 
-    public function update($PID,$study_id,Request $request){
+    public function updateFollowUpQ($PID,$study_id,Request $request){
         $pss=PatientStudySpecific::where('study_id',$study_id)->where('patient_id',$PID)->first();
 
         $FollowUpQ=FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID',$pss->FollowUpQuestionnaire_ID)->first();
@@ -33,7 +33,8 @@ class PostStudy_Controller extends Controller
         $FollowUpQ->physicianName=$request->physicianName;
         $FollowUpQ->save();
 
-        return redirect(route('studySpecific.admin'));
+        echo"lmao";
+        //return redirect(route('studySpecific.admin'));
 
     }
 }

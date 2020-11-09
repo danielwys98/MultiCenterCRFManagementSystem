@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Testing route
 Route::get('/testing','studySpecificController@testing')->name('testing');
-Route::post('/testing2/{PID}/{study_id}','PostStudy_Controller@update')->name('testing2');
+
 
 Route::get('/downloadPDF/preScreening/{PID}','studySpecificController@testPDFPreScreening')->name('preScreening.PDF');
 
@@ -89,6 +89,9 @@ Route::put('sp_iq72/{patient_id}/update/{study_id}/{study_period}','SP_IQ72_Cont
 //study specific Interim Questionnaire(96 hours Post Dose Visit)
 Route::post('sp_iq96/{id}','SP_IQ96_Controller@store')->name('sp_IQuestionnaire96.store');
 Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Controller@update')->name('sp_IQuestionnaire96.update');
+
+//Safety Follow Up Questionnaire
+Route::post('/FollowUpQuestion/{PID}/{study_id}','PostStudy_Controller@updateFollowUpQ')->name('updateFollowUpQ');
 
 //this is to edit the studies detail and the subject study details
 Route::get('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');

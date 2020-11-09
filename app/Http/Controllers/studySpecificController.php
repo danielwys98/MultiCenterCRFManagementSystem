@@ -285,7 +285,7 @@ class studySpecificController extends Controller
     //Will be delete. just for testing purpose.
     public function testing($pid,$study_id)
     {
-        return view('studySpecific.FollowUpQuestionnaire',compact('pid','study_id'));
+        //return view('studySpecific.FollowUpQuestionnaire',compact('pid','study_id'));
     }
 
     public function testPDF($PID,$study_id,$study_period)

@@ -181,9 +181,11 @@ class SP_Admission_Controller extends Controller
             ->first();
 
         $followUpQ=FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID',$findPSS->FollowUpQuestionnaire_ID)->first();
-        if ($request->submitbutton == "Follow Up Questionnaire") {
+        if ($request->submitbutton == "Safety Follow Up Questionnaire") {
             return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ'));
             /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/
+        }elseif($request->submitbutton == "Conclusion of Participation"){
+            //Do return view here
         } else {
             $study = studySpecific::where('study_id', $study_id)->first();
             if ($study_period == 1) {

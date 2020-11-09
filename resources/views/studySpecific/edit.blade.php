@@ -58,7 +58,7 @@
         </div>
         <div class="form-group row">
             <div class="col-md-2">
-                <p><strong>Name:   </strong>{{Auth::user()->name}}</p>
+                <p><strong>Name: </strong>{{Auth::user()->name}}</p>
             </div>
         </div>
         <div class="form-group row">
@@ -89,8 +89,8 @@
             <div class="col-md-3">
                 <div>
                     @if($oriPatientName != NULL)
-                    {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
-                    {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
+                        {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
+                        {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
                     @else
                         {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
                         {!! Form::select('patient_id',['---'],null,['class'=>'form-control']) !!}
@@ -108,31 +108,51 @@
                     @endif
                 </div>
             </div>
-        </div>
-
-        {!! Form::submit('View subject study period details',['class'=>'btn btn-success','onclick'=>'are you sure?'])!!}
-        <div class="col-md-4">
-            {!! Form::submit('Follow Up Questionnaire',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
-            {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
-        </div>
-        {!! Form::close() !!}
-        <br>
-        <br>
-        {!! Form::open(['route' => ['subject.removePSS',$study->study_id],'onsubmit' => 'return confirm("Are you sure?")']) !!}
-        <div class="form-group row">
-            <div class="col-md-2">
-                <div>
-                    @if($oriPatientName != NULL)
-                        {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
-                        {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
-                    @else
-                        {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
-                        {!! Form::select('patient_id',['---'],null,['class'=>'form-control']) !!}
-                    @endif
+            {{--<div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! Form::submit('Follow Up Questionnaire',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+                        --}}{{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}{{--
+                    </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        {!! Form::submit('Conclusion of Participation',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+                    </div>
+                </div>
+            </div>--}}
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {!! Form::submit('View subject study period details',['class'=>'btn btn-primary','onclick'=>'are you sure?'])!!}
+            </div>
+            <div class="col-md-2">
+                {!! Form::submit('Safety Follow Up Questionnaire',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+                {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
+            </div>
+            <div class="col-md-3">
+                {!! Form::submit('Conclusion of Participation',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
             </div>
         </div>
-        {!! Form::submit('Remove subject from study',['class'=>'btn btn-danger'])!!}
-        {!! Form::close() !!}
+    {!! Form::close() !!}
+    <br>
+    <br>
+    {!! Form::open(['route' => ['subject.removePSS',$study->study_id],'onsubmit' => 'return confirm("Are you sure?")']) !!}
+    <div class="form-group row">
+        <div class="col-md-2">
+            <div>
+                @if($oriPatientName != NULL)
+                    {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
+                    {!! Form::select('patient_id',$oriPatientName,null,['class'=>'form-control']) !!}
+                @else
+                    {!! Form::label('SubjectName', 'Subject that enrolled into the study') !!}
+                    {!! Form::select('patient_id',['---'],null,['class'=>'form-control']) !!}
+                @endif
+            </div>
+        </div>
+    </div>
+    {!! Form::submit('Remove subject from study',['class'=>'btn btn-danger'])!!}
+    {!! Form::close() !!}
     </div>
 @endsection
