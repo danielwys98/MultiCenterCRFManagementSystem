@@ -9,8 +9,8 @@ class ConclusionParticipation extends Model
     protected $table="conclusion_participations";
     protected $primaryKey='conclusion_participation_id';
 
-    // public function StudyPeriod1()
-    // {
-    //     return $this->belongsTo('App\StudyPeriod1','SP1_PDynamicSampling','SP1_PDynamicSampling_ID');
-    // }
+    public function PatientStudySpecific()
+    {
+        return $this->belongsTo('App\PatientStudySpecific','conclusion_participation_id','conclusion_participation_id');
+    }
 }

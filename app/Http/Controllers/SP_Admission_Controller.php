@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\ConclusionParticipation;
-use App\FollowUpQuestionnaire;
 use Illuminate\Http\Request;
 use App\Patient;
 use App\studySpecific;
@@ -83,6 +81,9 @@ use App\SP4_PDynamicSampling;
 use App\SP4_PKineticSampling;
 use App\SP4_UrineTest;
 use App\SP4_VitalSigns;
+
+use App\ConclusionParticipation;
+use App\FollowUpQuestionnaire;
 
 use Alert;
 use Psr\Log\NullLogger;
@@ -179,12 +180,15 @@ class SP_Admission_Controller extends Controller
             ->where('patient_id', $PID)
             ->where('study_id', $study_id)
             ->first();
+        
         $followUpQ = FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID', $findPSS->FollowUpQuestionnaire_ID)->first();
+        $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $findPSS->conclusion_participation_id)->first();
+        
         if ($request->submitbutton == "Safety Follow Up Questionnaire") {
             return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ'));
             /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/
         }elseif($request->submitbutton == "Conclusion of Participation"){
-            //Do return view here
+            return view('studySpecific.ConclusionParticipation', compact('PID', 'study_id','ConclusionP'));
         } else {
             $study = studySpecific::where('study_id', $study_id)->first();
             if ($study_period == 1) {
@@ -538,12 +542,12 @@ class SP_Admission_Controller extends Controller
             $FollowUpQ->save();
 
             //Initialise Conclusion of Participation
-            $ConclusionParticipation = new ConclusionParticipation();
-            $ConclusionParticipation->save();
+            $ConclusionP = new ConclusionParticipation();
+            $ConclusionP->save();
 
             //Bind Follow Up Questionnaire and Conclusion of Participation to the particular PSS
             $pss->FollowUpQuestionnaire_ID = $FollowUpQ->FollowUpQuestionnaire_ID;
-            $pss->conclusion_participation_id = $ConclusionParticipation->conclusion_participation_id;
+            $pss->conclusion_participation_id = $ConclusionP->conclusion_participation_id;
             $pss->save();
 
             //bind SP1's form into SP1

@@ -92,6 +92,7 @@ Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Cont
 
 //Safety Follow Up Questionnaire
 Route::post('/FollowUpQuestion/{PID}/{study_id}','PostStudy_Controller@updateFollowUpQ')->name('updateFollowUpQ');
+Route::post('/ConclusionParticipation/{PID}/{study_id}','PostStudy_Controller@updateConclusionP')->name('updateConclusionP');
 
 //this is to edit the studies detail and the subject study details
 Route::get('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');
