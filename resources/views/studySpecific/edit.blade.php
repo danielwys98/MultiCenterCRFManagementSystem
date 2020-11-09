@@ -111,6 +111,10 @@
         </div>
 
         {!! Form::submit('View subject study period details',['class'=>'btn btn-success','onclick'=>'are you sure?'])!!}
+        <div class="col-md-4">
+            {!! Form::submit('Follow Up Questionnaire',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+            {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
+        </div>
         {!! Form::close() !!}
         <br>
         <br>

@@ -1,7 +1,7 @@
 @extends('MasterLayout')
 
 @section('content')
-    {!! Form::open() !!}
+   {{-- {!! Form::model(['route'=>'testing']) !!}--}}
     <h3>Conclusion of Participation</h3>
     <hr>
     <table class="table table-bordered">
@@ -251,6 +251,6 @@
             {!! Form::date('DateTaken',\Carbon\Carbon::now(),['class'=>'form-control']) !!}
         </div>
     </div>
-
+    {!! Form::submit('PostStudy_') !!}
     {!! Form::close() !!}
 @endsection

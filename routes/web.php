@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //Testing route
 Route::get('/testing','studySpecificController@testing')->name('testing');
+Route::post('/testing2/{PID}/{study_id}','PostStudy_Controller@update')->name('testing2');
 
 Route::get('/downloadPDF/preScreening/{PID}','studySpecificController@testPDFPreScreening')->name('preScreening.PDF');
 

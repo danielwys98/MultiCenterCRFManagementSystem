@@ -1,7 +1,7 @@
 @extends('MasterLayout')
 
 @section('content')
-{!! Form::open() !!}
+    {!! Form::model($followUpQ,['route'=>['testing2',$PID,$study_id]]) !!}
 <h3>Safety Follow Up Questionnaire</h3>
 <hr>
 <div class="form-group row">
@@ -158,9 +158,9 @@
 </div>
 <div class="form-group row">
     <div class="col-md-2">
-        {!! Form::date('FollowUpDateTaken',\Carbon\Carbon::now(),['class'=>'form-control']) !!}
+        {!! Form::date('FollowUpDateTaken',old('FollowUpDateTaken'),['class'=>'form-control' ,'readonly']) !!}
     </div>
 </div>
-
+    {!! Form::submit() !!}
 {!! Form::close() !!}
 @endsection

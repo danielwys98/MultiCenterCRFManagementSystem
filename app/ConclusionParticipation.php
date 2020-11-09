@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConclusionParticipation extends Model
 {
     protected $table="conclusion_participations";
-    protected $primaryKey='conclusion_participations_ID';
+    protected $primaryKey='conclusion_participation_id';
 
     // public function StudyPeriod1()
     // {
