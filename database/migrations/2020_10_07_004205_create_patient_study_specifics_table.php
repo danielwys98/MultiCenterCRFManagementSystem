@@ -22,6 +22,8 @@ class CreatePatientStudySpecificsTable extends Migration
             $table->bigInteger('SP2_ID')->unsigned()->nullable();
             $table->bigInteger('SP3_ID')->unsigned()->nullable();
             $table->bigInteger('SP4_ID')->unsigned()->nullable();
+            $table->bigInteger('FollowUpQuestionnaire_ID')->unsigned()->nullable();
+            $table->bigInteger('conclusion_participation_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }
