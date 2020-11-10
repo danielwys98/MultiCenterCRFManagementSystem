@@ -94,7 +94,7 @@
         <p>7. Has the subject participated in other experimental drug studies or blood donation since last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('otherdrugdtudies', 'Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?'checked':'') !!}</p>
+        <p>{!! Form::radio('otherdrugstudies', 'Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
         <p>{!! Form::radio('otherdrugstudies', 'No',(old('otherDrugStudies',$followUpQ->otherDrugStudies)=='No')?'checked':'') !!}</p>
