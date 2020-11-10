@@ -12,7 +12,7 @@
     }
 </style>
 <body>
-<h3>{{$patient->name}} {{$study->study_name}}'s study specific details</h3>
+<h3>{{$patient->name}} {{$study->study_name}}'s study specific details for study period {{$study_period}}</h3>
 <h3>Admission</h3>
 <hr>
 <div class="row">
@@ -28,7 +28,6 @@
 </div>
 
 {{-- consent --}}
-
 
 <h3>Study-Specific Consent Taken</h3>
 <hr>
@@ -47,9 +46,8 @@
         <hr>
         @if($BMVS->Absent == 1)
             <div class="form-group row">
-                <div class="col-md-1">
-                   <h3>Subject is absent for study period 1!</h3>
-                </div>
+                    <pre><h4>Subject is absent from Body Measurement and Vital Signs for study period {{$study_period}}!</h4></pre>
+            </div>
         @else
         <div class="form-group row">
             <div class="col-md-1">
@@ -182,12 +180,12 @@
     @if($BAT->Absent == 1)
         <div class="form-group row">
             <div class="col-md-1">
-                <h3>Subject is absent for study period 1!</h3>
+                <pre><h4>Subject is absent from Breath Alcohol Test for study period {{$study_period}}!</h4></pre>
             </div>
     @elseif($BAT->NApplicable)
                 <div class="form-group row">
                     <div class="col-md-1">
-                        <h3>Not Applicable!</h3>
+                        <pre><h4>Not applicable for this study!</h4></pre>
                     </div>
     @else
 <div class="form-group row">
@@ -235,26 +233,25 @@
 {{--Admission Questionnaire starts here--}}
 <h3>Admission Questionnaire</h3>
 <hr>
-<div class="form-group row">
-    <div class="col-md-1">
-        {!! Form::label('AQuestionnaireDateTaken', 'Date Taken: ') !!}
-        {!! Form::label('AQuestionnaireDateTaken',old('AQuestionnaireDateTaken',$AQuestionnaire->AQuestionnaireDateTaken),['class'=>'form-control']) !!}
-    </div>
-    <div class=" offset-3 col-md-1">
-        {!! Form::label('AQuestionnaireTimeTaken', 'Time Taken: ') !!}
-        {!! Form::label('AQuestionnaireTimeTaken',old('AQuestionnaireTimeTaken',$AQuestionnaire->AQuestionnaireTimeTaken),['class'=>'form-control']) !!}
-    </div>
-</div>
-<hr>
-
-{{-- Admission Question 1 --}}
     @if($AQuestionnaire->Absent ==1)
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Subject is absent for study period 1!</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <pre><h4>Subject is absent from Body Measurement and Vital Signs for study period {{$study_period}}!</h4></pre>
+                    </div>
                 </div>
-            </div>
     @else
+    <div class="form-group row">
+        <div class="col-md-1">
+            {!! Form::label('AQuestionnaireDateTaken', 'Date Taken: ') !!}
+            {!! Form::label('AQuestionnaireDateTaken',old('AQuestionnaireDateTaken',$AQuestionnaire->AQuestionnaireDateTaken),['class'=>'form-control']) !!}
+        </div>
+        <div class=" offset-3 col-md-1">
+            {!! Form::label('AQuestionnaireTimeTaken', 'Time Taken: ') !!}
+            {!! Form::label('AQuestionnaireTimeTaken',old('AQuestionnaireTimeTaken',$AQuestionnaire->AQuestionnaireTimeTaken),['class'=>'form-control']) !!}
+        </div>
+    </div>
+    <hr>
+{{-- Admission Question 1 --}}
 <div class="row">
     <div class="col-md-6">
         <p>1. Has the subject had any medical problems within the last 7 days before dosing?</p>
@@ -346,7 +343,6 @@
         </div>
     </div>
     @endif
-    </div>
     <hr>
 
     {{-- Admission Question 5 --}}
@@ -488,15 +484,11 @@
                     <p>(Transcribed from Urine Logbook)</p>
                     @if($UrineTest->UPreg_male == 1)
                     <div class=" form-group row">
-                            <div class="col-md-2">
-                                {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
-                            </div>
+                        <pre><h4>Not Applicable for study period {{$study_period}}!</h4></pre>
                     </div>
                     @elseif ($UrineTest->Absent == 1)
                     <div class=" form-group row">
-                        <div class="col-md-2">
-                            {!! Form::label('UPreg_male', 'Not Applicable for male') !!}
-                        </div>
+                        <pre><h4>Subject is absent from Urine Pregnancy Test for study period {{$study_period}}!</h4></pre>
                     </div>
                     @else
                     <div class=" form-group row">
@@ -569,14 +561,12 @@
                     <p>(Transcribed from Urine Logbook)</p>
                     @if($UrineTest->NApplicable == 1)
                         <div class=" form-group row">
-                            <div class="col-md-2">
-                                {!! Form::label('NApplicable', 'Not Applicable') !!}
-                            </div>
+                            <pre><h4>Not Applicable for study period {{$study_period}}!</h4></pre>
                         </div>
-                    @elseif ($UrineTest->Absent == 1)
+                    @elseif ($UrineTest->AbsentUDrug == 1)
                         <div class=" form-group row">
                             <div class="col-md-2">
-                                {!! Form::label('NApplicable', 'Not Applicable') !!}
+                                <pre><h4>Subject is Absent from Urine Drugs of Abuse Test for study period {{$study_period}}!</h4></pre>
                             </div>
                         </div>
                     @else
@@ -674,11 +664,7 @@
                     <h3>Conclusion</h3>
                     @if($UrineTest->AbsentC == 1)
                         <div class="col-md-7">
-                            <p>Does the subject obey all the restrictions and/or fulfill all the inclusion criteria and
-                                none
-                                of the
-                                exclusion criteria?</p>
-                            <p>{!! Form::label('inclusionYesNo', ($UrineTest->inclusionYesNo)) !!}</p>
+                            <pre><h4>Subject is absent from both Urine Test for study period {{$study_period}}!</h4></pre>
                         </div>
                         </div>
                     @else
@@ -740,6 +726,11 @@
                 @endif
                 </div>
                 <div class="page-break">
+                    @if($PKinetic->Absent == 1)
+                        <div class=" form-group row">
+                            <pre><h4>Subject is absent from Pharmacokinetic Blood Sampling for study period {{$study_period}}!</h4></pre>
+                        </div>
+                    @else
                     <h3>Pharmacokinetic Blood Sampling</h3>
                     {{-- Pharmacokinetic Blood Sampling --}}
                     <div class="form-group row">
@@ -763,7 +754,7 @@
                             minutes, store below
                             -20˚C.</p>
                     </div>
-
+                    <div class="page-break">
                     <table border="1">
                         <thead>
                         <tr>
@@ -810,8 +801,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <br>
-                    <br>
+                    </div>
                     <table border="1">
                         <thead>
                         <tr>
@@ -1512,21 +1502,23 @@
                         </ul>
                     </div>
                 </div>
+                @endif
                 <div class="page-break">
                     {{-- Pharmacodynamic Blood Sampling starts here--}}
                     <h3>Pharmacodynamic Blood Sampling</h3>
                     @if($PDynamic->NApplicable== 1)
                         <div class=" form-group row">
                             <div class="col-md-2">
-                                <h3>Not applicable for this study</h3>
+                                <pre><h4>Not Applicable for the study!</h4></pre>
+                            </div>
+                        </div>
+                    @elseif ($PDynamic->Absent == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                <pre><h4>Subject is absent from Pharmacodynamic Blood Sampling for study period {{$study_period}}!</h4></pre>
                             </div>
                         </div>
                     @else
-                        <div class=" form-group row">
-                            <div class="col-md-2">
-                                {!! Form::label('NApplicable', 'Not Applicable:') !!}
-                            </div>
-                        </div>
                         <hr/>
                         <div class="form-group row">
                             <div class="col-md-2">
@@ -1913,7 +1905,13 @@
                     @if($PDAnalysis->NApplicable == 1)
                         <div class=" form-group row">
                             <div class="col-md-2">
-                                <h3>Not applicable for this study</h3>
+                                <pre><h4>Not Applicable for this study!</h4></pre>
+                            </div>
+                        </div>
+                    @elseif($PDAnalysis->Absent == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                <pre><h4>Subject is absent from Pharmacodynamic(PD)Analysis for study period {{$study_period}}!</h4></pre>
                             </div>
                         </div>
                     @else
@@ -2279,8 +2277,14 @@
 
 
                     {{-- Vital Signs STARTS HERE--}}
-
-
+                    @if($VitalSign->Absent == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                <pre><h4>Subject is absent from Vital Signs for study period {{$study_period}}!</h4></pre>
+                            </div>
+                        </div>
+                    @else
+                    <div class="page-break">
                     <h3>Vital Signs</h3>
                     <hr>
                     <div class="row col">
@@ -2509,12 +2513,48 @@
                                 {!! Form::label('TPD_48_TakenBy', old('TPD_48_TakenBy',$VitalSign->TPD_48_TakenBy),['class'=>'form-control']) !!}
                             </td>
                         </tr>
+                       </table>
+                    </div>
+                        {{--new table for repeat vital signs--}}
+                        <h3> For repeat/extra vital signs</h3>
+                      <table border="1">
+                          <thead>
+                          <tr>
+                              <th scope="col" class="text-center">
+                                  <p>Date</p>
+                                  <p>(yyyy/mm/dd)</p>
+                              </th>
+                              <th scope="col" class="text-center">
+                                  <p>Time Post Dose</p>
+                                  <p>(hour)</p>
+                              </th>
+                              <th scope="col" class="text-center">
+                                  <p>Reading Time</p>
+                                  <p>(24-hour clock)</p>
+                              </th>
+                              <th scope="col" class="text-center col-md-2">
+                                  <p>Sitting Blood Pressure</p>
+                                  <p>(systolic/diastolic) (mmHg)</p>
+                              </th>
+                              <th scope="col" class="text-center">
+                                  <p>Pulse Rate</p>
+                                  <p>(beats per min.)</p>
+                              </th>
+                              <th scope="col" class="text-center">
+                                  <p>Respiration Rate</p>
+                                  <p>(breaths per min.)</p>
+                              </th>
+                              <th scope="col" class="text-center">
+                                  <p>Taken by</p>
+                                  <p>(Initial)</p>
+                              </th>
+                          </tr>
+                          </thead>
+                          <tbody>
                         <tr>
-                            <td colspan="7" class="font-weight-bold">
-                                For repeat/extra vital signs
-                            </td>
-                        </tr>
-                        <tr>
+                            @if($VitalSign->Extra1_TPD == NULL)
+                            <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra1_Date', old('Extra1_Date',$VitalSign->Extra1_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2538,8 +2578,12 @@
                             <td>
                                 {!! Form::label('Extra1_TakenBy', old('Extra1_TakenBy',$VitalSign->Extra1_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra2_TPD == NULL)
+                            <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra2_Date', old('Extra2_Date',$VitalSign->Extra2_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2563,8 +2607,12 @@
                             <td>
                                 {!! Form::label('Extra2_TakenBy', old('Extra2_TakenBy',$VitalSign->Extra2_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra3_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra3_Date', old('Extra3_Date',$VitalSign->Extra3_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2588,8 +2636,12 @@
                             <td>
                                 {!! Form::label('Extra3_TakenBy', old('Extra3_TakenBy',$VitalSign->Extra3_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra4_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra4_Date',old('Extra4_Date',$VitalSign->Extra4_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2613,8 +2665,12 @@
                             <td>
                                 {!! Form::label('Extra4_TakenBy', old('Extra4_TakenBy',$VitalSign->Extra4_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra5_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra5_Date', old('Extra5_Date',$VitalSign->Extra5_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2638,8 +2694,12 @@
                             <td>
                                 {!! Form::label('Extra5_TakenBy', old('Extra5_TakenBy',$VitalSign->Extra5_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra6_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra6_Date', old('Extra6_Date',$VitalSign->Extra6_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2663,8 +2723,12 @@
                             <td>
                                 {!! Form::label('Extra6_TakenBy', old('Extra6_TakenBy',$VitalSign->Extra6_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra7_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra7_Date', old('Extra7_Date',$VitalSign->Extra7_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2688,8 +2752,12 @@
                             <td>
                                 {!! Form::label('Extra7_TakenBy', old('Extra7_TakenBy',$VitalSign->Extra7_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
                         <tr>
+                            @if($VitalSign->Extra2_TPD == NULL)
+                                <td>Not Repeated</td>
+                            @else
                             <td>
                                 {!! Form::label('Extra8_Date', old('Extra8_Date',$VitalSign->Extra8_Date),['class'=>'form-control']) !!}
                             </td>
@@ -2713,8 +2781,8 @@
                             <td>
                                 {!! Form::label('Extra8_TakenBy', old('Extra8_TakenBy',$VitalSign->Extra8_TakenBy),['class'=>'form-control']) !!}
                             </td>
+                            @endif
                         </tr>
-
                         </tbody>
                     </table>
                     <div class="row col">
@@ -2725,10 +2793,16 @@
                         {!! Form::label('Comment','Comments/ Remarks: ') !!}
                         {!! Form::label('Comment',old('Comment',$VitalSign->Comment),['class'=>'form-control']) !!}
                     </div>
-
+                    @endif
                 </div>
                 {{-- Discharge STARTS HERE--}}
-
+                @if($Discharge->Absent == 1)
+                <div class="form-group row">
+                    <div class="col-md-1">
+                        <pre><h4>Subject is absent from Discharge for study period {{$study_period}}!</h4></pre>
+                    </div>
+                </div>
+                @else
                 <div class="page-break">
                     <h3>Discharge</h3>
                     <hr>
@@ -2814,12 +2888,18 @@
                         </tr>
                         </tbody>
                     </table>
+                    @endif
                 </div>
                 <hr>
 
                 {{--Discharge Questionnaire starts here--}}
-
-
+                 @if($DQuestionnaire->Absent ==1)
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <pre><h4>Subject is absent from Discharge Questionnaire and Vital Signs for study period {{$study_period}}!</h4></pre>
+                        </div>
+                    </div>
+                 @else
                 <div class="page-break">
                     <h3>Discharge Questionnaire</h3>
                     <div class="form-group row">
@@ -2872,18 +2952,23 @@
                         </div>
                     </div>
                 </div>
-
+                @endif
                 {{-- Interim Questionnaire(36 hours Post Dose Visit) --}}
-
                 <div class="page-break">
                 <h3>Interim Questionnaire(36 hours Post Dose Visit)</h3>
                 @if($IQ36->NApplicable == 1)
                     <div class=" form-group row">
                         <div class="col-md-2">
-                            <h3>Not Applicable</h3>
+                            <pre><h4>Not Applicable for the study!</h4></pre>
                         </div>
                     </div>
-                <hr>
+                @elseif($IQ36->Absent == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                <pre><h4>Subject is absent from Interim Questionnaire 36 hours Post Dose Visit for study period {{$study_period}}!</h4></pre>
+                                <hr>
+                            </div>
+                        </div>
                 @else
                     <div class="form-group row">
                         <div class="col-md-1">
@@ -2897,7 +2982,6 @@
                     </div>
 
                     {{-- Interim Question 1 --}}
-
 
                     <div class="row">
                         <div class="col-md-6">
@@ -3073,10 +3157,15 @@
                     @if($IQ48->NApplicable == 1)
                         <div class=" form-group row">
                             <div class="col-md-2">
-                                <h3>Not Applicable</h3>
+                                <pre><h4>Not Applicable for the study!</h4></pre>
                             </div>
                         </div>
-                    <hr>
+                    @elseif($IQ48->Absent == 1)
+                        <div class=" form-group row">
+                            <div class="col-md-2">
+                                <pre><h4>Subject is absent from Interim Questionnaire 48 hours Post Dose Visit for study period {{$study_period}}!</h4></pre>
+                            </div>
+                        </div>
                     @else
                         <div class="form-group row">
                             <div class="col-md-1">
@@ -3090,8 +3179,6 @@
                         </div>
 
                         {{-- Interim Question 1 --}}
-
-
                         <div class="row">
                             <div class="col-md-6">
                                 <p>1. Has the subject had any medical problems since last visit?</p>
@@ -3265,10 +3352,15 @@
                 @if($IQ72->NApplicable == 1)
                     <div class=" form-group row">
                         <div class="col-md-2">
-                            <h3>Not Applicable</h3>
+                            <pre><h4>Not Applicable for the study!</h4></pre>
                         </div>
                     </div>
-                    <hr>
+                @elseif($IQ72->Absent == 1)
+                    <div class=" form-group row">
+                        <div class="col-md-2">
+                            <pre><h4>Subject is absent from Interim Questionnaire 72 hours Post Dose Visit for study period {{$study_period}}!</h4></pre>
+                        </div>
+                    </div>
                 @else
                     <div class="form-group row">
                         <div class="col-md-1">
@@ -3456,10 +3548,15 @@
                 @if($IQ96->NApplicable == 1)
                     <div class=" form-group row">
                         <div class="col-md-2">
-                            <h3>Not Applicable</h3>
+                            <pre><h4>Not Applicable for the study!</h4></pre>
                         </div>
                     </div>
-                    <hr>
+                @elseif($IQ96->Absent == 1)
+                    <div class=" form-group row">
+                        <div class="col-md-2">
+                            <pre><h4>Subject is absent from Interim Questionnaire 96 hours Post Dose Visit for study period {{$study_period}}!</h4></pre>
+                        </div>
+                    </div>
                 @else
                     <div class="form-group row">
                         <div class="col-md-1">

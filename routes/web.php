@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/testing','studySpecificController@testing')->name('testing');
 
 
-Route::get('/downloadPDF/preScreening/{PID}','studySpecificController@testPDFPreScreening')->name('preScreening.PDF');
+Route::get('/downloadPDF/preScreening/{PID}','PDFController@PreScreeningPDF')->name('preScreening.PDF');
 
-Route::get('/downloadPDF/{id}/{study_id}/{study_period}','studySpecificController@testPDF')->name('test.PDF');
+Route::get('/downloadPDF/{id}/{study_id}/{study_period}','PDFController@StudySpecificPDF')->name('test.PDF');
 //Testing route ends here
 
 Route::get('/','PagesController@loginPage');
