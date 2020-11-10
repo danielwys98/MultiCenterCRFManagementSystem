@@ -185,7 +185,7 @@ class SP_Admission_Controller extends Controller
         $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $findPSS->conclusion_participation_id)->first();
 
         if ($request->submitbutton == "Safety Follow Up Questionnaire") {
-            return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ'));
+            return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ','patient'));
             /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/
         }elseif($request->submitbutton == "Conclusion of Participation"){
             return view('studySpecific.ConclusionParticipation', compact('PID', 'study_id','ConclusionP'));
