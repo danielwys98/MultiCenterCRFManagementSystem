@@ -188,12 +188,12 @@ class PostStudy_Controller extends Controller
 
     public function downloadConclusionP($PID, $study_id)
     {
-        //do the things similar the ones on downloadFollowUpQ function
-        //already created the route in wbe.php for you
-        //already created the view blade file for you name "ConclusionParticipationReport"
-        // you will have to copy the ConclusionParticipation view and paste into it the Report view and change all the input into label so can be viewed
-        echo "this is downloadConclucionP function";
-        //If you unclear can ask me
+        $pss = PatientStudySpecific::where('study_id', $study_id)->where('patient_id', $PID)->first();
+        $study = studySpecific::where('study_id', $study_id)->first();
+        $patient = Patient::where('id', $PID)->first();
+        $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $pss->conclusion_participation_id)->first();
 
+        $pdf = PDF::loadView('studySpecific.ConclusionParticipationReport', compact('ConclusionP', 'patient', 'study'))->setpaper('A4', 'portrait');
+        return $pdf->stream('ConclusionParticipation.pdf');
     }
 }

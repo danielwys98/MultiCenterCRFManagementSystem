@@ -7,16 +7,6 @@
     {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
 </div>
     <h3>Conclusion of Participation</h3>
-    @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    <p>There are a few criteria that didn't fill in. Please fill in all the criteria</p>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     <hr>
     <table class="table table-bordered">
         <thead>
