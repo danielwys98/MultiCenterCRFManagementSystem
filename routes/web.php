@@ -90,9 +90,12 @@ Route::put('sp_iq72/{patient_id}/update/{study_id}/{study_period}','SP_IQ72_Cont
 Route::post('sp_iq96/{id}','SP_IQ96_Controller@store')->name('sp_IQuestionnaire96.store');
 Route::put('sp_iq96/{patient_id}/update/{study_id}/{study_period}','SP_IQ96_Controller@update')->name('sp_IQuestionnaire96.update');
 
-//Safety Follow Up Questionnaire
+//Safety Follow Up Questionnaire & Conclusion of Participation
 Route::post('/FollowUpQuestion/{PID}/{study_id}','PostStudy_Controller@updateFollowUpQ')->name('updateFollowUpQ');
+Route::get('/FollowUpQuestion/download/{PID}/{study_id}','PostStudy_Controller@downloadFollowUpQ')->name('downloadFollowUpQ');
+
 Route::post('/ConclusionParticipation/{PID}/{study_id}','PostStudy_Controller@updateConclusionP')->name('updateConclusionP');
+Route::get('/ConclusionParticipation/download/{PID}/{study_id}','PostStudy_Controller@downloadConclusionP')->name('downloadConclusionP');
 
 //this is to edit the studies detail and the subject study details
 Route::get('/studySpecific/details/edit/{id}','SP_Admission_Controller@edit')->name('SubjectStudySpecific.edit');

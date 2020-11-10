@@ -180,10 +180,10 @@ class SP_Admission_Controller extends Controller
             ->where('patient_id', $PID)
             ->where('study_id', $study_id)
             ->first();
-        
+
         $followUpQ = FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID', $findPSS->FollowUpQuestionnaire_ID)->first();
         $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $findPSS->conclusion_participation_id)->first();
-        
+
         if ($request->submitbutton == "Safety Follow Up Questionnaire") {
             return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ'));
             /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/

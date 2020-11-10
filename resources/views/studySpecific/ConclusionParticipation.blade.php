@@ -2,6 +2,10 @@
 
 @section('content')
 {!! Form::model($ConclusionP,['route'=>['updateConclusionP',$PID,$study_id]]) !!}
+<div class="col-md-2">
+    {!! Form::submit('Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+    {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
+</div>
     <h3>Conclusion of Participation</h3>
     @if ($errors->any())
             <div class="alert alert-danger">

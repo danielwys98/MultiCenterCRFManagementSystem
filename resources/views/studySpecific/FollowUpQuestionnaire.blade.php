@@ -2,6 +2,10 @@
 
 @section('content')
     {!! Form::model($followUpQ,['route'=>['updateFollowUpQ',$PID,$study_id]]) !!}
+    <div class="col-md-2">
+        {!! Form::submit('Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+        {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
+    </div>
 <h3>Safety Follow Up Questionnaire for </h3>
 <hr>
 <div class="form-group row">
@@ -90,10 +94,10 @@
         <p>7. Has the subject participated in other experimental drug studies or blood donation since last review?</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('otherDrugStudies', 'Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?'checked':'') !!}</p>
+        <p>{!! Form::radio('otherdrugdtudies', 'Yes',(old('otherDrugStudies',$followUpQ->otherDrugStudies)!='No' && $followUpQ->otherDrugStudies!=NULL)?'checked':'') !!}</p>
     </div>
     <div class="col-md-1">
-        <p>{!! Form::radio('otherDrugStudies', 'No',(old('otherDrugStudies',$followUpQ->otherDrugStudies)=='No')?'checked':'') !!}</p>
+        <p>{!! Form::radio('otherdrugstudies', 'No',(old('otherDrugStudies',$followUpQ->otherDrugStudies)=='No')?'checked':'') !!}</p>
     </div>
 </div>
 <div class="row">
@@ -124,7 +128,7 @@
 <h4>Comments: </h4>
 <div class="row">
     <div class="col-md-1">
-        {!! Form::radio('Comment', 'Well',(old('Comment',$followUpQ->Comment)=='Well')?'checked':'',['id'=>'Well']) !!}
+        {!! Form::radio('comment', 'Well',(old('Comment',$followUpQ->Comment)=='Well')?'checked':'',['id'=>'Well']) !!}
     </div>
     <div class="col-md-10">
         {!! Form::label('Well', "The subject's follow up indicated that the subject is well and do not require further medical attention.") !!}
@@ -132,7 +136,7 @@
 </div>
 <div class="row">
     <div class="col-md-1">
-        {!! Form::radio('Comment', 'Unsolved',(old('Comment',$followUpQ->Comment)!='Well'&& $followUpQ->Comment!=NULL)?'checked':'',['id'=>'Unsolved']) !!}
+        {!! Form::radio('comment', 'Unsolved',(old('Comment',$followUpQ->Comment)!='Well'&& $followUpQ->Comment!=NULL)?'checked':'',['id'=>'Unsolved']) !!}
     </div>
     <div class="col-10">
         {!! Form::label('Unsolved', "Baseline and/or adverse event(s) not resolved. Provide details") !!}
