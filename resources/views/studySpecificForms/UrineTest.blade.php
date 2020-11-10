@@ -336,6 +336,7 @@
         {!! Form::text('physicianName', '',['class'=>'form-control']) !!}
     </div>
 </div>
-
+<div class="row col">
 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}
+</div>
 {!! Form::close() !!}
