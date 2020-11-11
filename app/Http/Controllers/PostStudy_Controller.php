@@ -21,7 +21,7 @@ class PostStudy_Controller extends Controller
     public function updateFollowUpQ($PID, $study_id, Request $request)
     {
         $pss = PatientStudySpecific::where('study_id', $study_id)->where('patient_id', $PID)->first();
-        if ($request->submitbutton == "Generate Report") {
+        if ($request->submitbutton == 'Generate Report') {
             //$this->downloadFollowUpQ($PID,$study_id);
             return redirect(route('downloadFollowUpQ', ['PID' => $PID, 'study_id' => $study_id]));
         } else {

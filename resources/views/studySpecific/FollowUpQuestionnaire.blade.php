@@ -7,7 +7,8 @@
             <h3>Safety Follow Up Questionnaire for {{$patient->name}}</h3>
         </div>
         <div class="col-md-2">
-            {!! Form::submit('Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
+            {{--{!! Form::button('<span class="glyphicon glyphicon-share"></span> Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton','type'=>'submit'])!!}--}}
+            <a href="{{ route('updateFollowUpQ',[$PID,$study_id,$patient]) }}"><button class="btn btn-success" type="submit" name="submitbutton" value="Generate Report"><span class="glyphicon glyphicon-share"></span> Generate Report</button></a>
             {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
         </div>
     </div>

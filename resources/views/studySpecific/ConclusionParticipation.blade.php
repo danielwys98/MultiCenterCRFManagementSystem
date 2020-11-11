@@ -1,12 +1,17 @@
 @extends('MasterLayout')
 
 @section('content')
-{!! Form::model($ConclusionP,['route'=>['updateConclusionP',$PID,$study_id]]) !!}
-<div class="col-md-2">
-    {!! Form::submit('Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
-    {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
-</div>
-    <h3>Conclusion of Participation</h3>
+    {!! Form::model($ConclusionP,['route'=>['updateConclusionP',$PID,$study_id,$patient]]) !!}
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Conclusion of Participation for {{$patient->name}}</h3>
+        </div>
+        <div class="col-md-2">
+            {{--{!! Form::button('<span class="glyphicon glyphicon-share"></span> Generate Report',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton','type'=>'submit'])!!}--}}
+            <a href="{{ route('updateConclusionP',[$PID,$study_id,$patient]) }}"><button class="btn btn-success" type="submit" name="submitbutton" value="Generate Report"><span class="glyphicon glyphicon-share"></span> Generate Report</button></a>
+            {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
+        </div>
+    </div>
     <hr>
     <table class="table table-bordered">
         <thead>
@@ -256,5 +261,5 @@
         </div>
     </div>
     {!! Form::submit('Submit',['class'=>'btn btn-primary']) !!}
-{!! Form::close() !!}
+    {!! Form::close() !!}
 @endsection

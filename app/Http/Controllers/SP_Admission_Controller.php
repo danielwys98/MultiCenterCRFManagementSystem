@@ -188,7 +188,7 @@ class SP_Admission_Controller extends Controller
             return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id','followUpQ','patient'));
             /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/
         }elseif($request->submitbutton == "Conclusion of Participation"){
-            return view('studySpecific.ConclusionParticipation', compact('PID', 'study_id','ConclusionP'));
+            return view('studySpecific.ConclusionParticipation', compact('PID', 'study_id','ConclusionP','patient'));
         } else {
             $study = studySpecific::where('study_id', $study_id)->first();
             if ($study_period == 1) {
