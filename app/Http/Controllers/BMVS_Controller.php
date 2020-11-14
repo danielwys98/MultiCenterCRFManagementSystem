@@ -133,6 +133,7 @@ class BMVS_Controller extends Controller
     {
         $patient = Patient::find($id);
         $studies = studySpecific::all()->pluck('study_name','study_id');
+        $studies[0] = '---';
         $findPSS=PatientStudySpecific::where('patient_id',$patient->id)->get();
         /*$testing=array();
         foreach ($findPSS as $PSS) {
