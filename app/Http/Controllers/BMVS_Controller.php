@@ -15,7 +15,6 @@ class BMVS_Controller extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('checkAdmin');
     }
     public function create($id)
     {

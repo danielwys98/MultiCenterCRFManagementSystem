@@ -29,7 +29,7 @@ class Lab_Controller extends Controller
             'dateUTaken.required' => 'Please enter the date taken for Urine(Microbiology) test',
             'Urine_Laboratory.required' => 'Please select which laboratory does the Urine(Microbiology) test conducted',
             'urine_laboratory_Text.required_if' => 'If other laboratory were selected, please state the name of the laboratory where Urine(Microbiology) test conducted',
-            
+
             'Blood_RepeatTest.required_if' => 'Please state the details of the repeated blood test',
             'BloodRepeat_Laboratory.required_if' => 'Please state the laboratory of the repeated blood test conducted',
             'Urine_RepeatTest.required_if' => 'Please state the details of the repeated urine test',

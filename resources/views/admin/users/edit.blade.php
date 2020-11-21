@@ -41,7 +41,7 @@
                                     @foreach($roles as $role)
                                             <div class="form-check">
                                                 {{--checking whether the users has any roles if yes, make it checked--}}
-                                                <input type="checkbox" name="roles[]" value="{{$role->id}}"
+                                                <input type="radio" name="roles[]" value="{{$role->id}}"
                                                 @if($user->hasRole($role->name))checked @endif>
                                                 <label>{{$role->name}}</label>
                                             </div>

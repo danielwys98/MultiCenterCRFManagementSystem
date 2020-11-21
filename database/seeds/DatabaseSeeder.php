@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         Eloquent::unguard();
         $this->call(RolesTablerSeeder::class);
-        // $this->call(UserSeeder::class);
         $this->call(UsersTablerSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

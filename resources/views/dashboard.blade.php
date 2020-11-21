@@ -2,7 +2,6 @@
 
 @section('content')
     <h1>Dashboard</h1>
-
     <div class="card">
         <div class="card-title">
             <p>Currently undergoing studies</p>
@@ -13,9 +12,5 @@
             @endforeach
         </div>
     </div><br/>
-    @can('adminFunctions')
-   {{--     <a href="{{ route('test.PDF') }}"><button class="btn btn-success" type="submit">test</button></a>
-        <a href="{{ url('/downloadPDF/preScreening') }}"><button class="btn btn-success" type="submit">test preScreening report</button></a>--}}
-    @endcan
 
 @endsection

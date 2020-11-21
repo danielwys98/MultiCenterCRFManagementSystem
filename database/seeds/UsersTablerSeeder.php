@@ -14,26 +14,34 @@ class UsersTablerSeeder extends Seeder
     public function run()
     {
         // when do new seeding, delete all the rows, populate again. No repeating data
-        User::truncate();
+        /*User::truncate();*/
         DB::table('role_user')->truncate();
 
+        $superAdminRole = Role::where('name','superAdmin')->first();
         $adminRole =Role::where('name','admin')->first();
         $userRole =Role::where('name','user')->first();
 
-        $admin = User::create([
-           'name'=>'Admin',
-            'email'=>'admin@admin.com',
+        $SuperAdmin = User::create([
+           'name'=>'Super Admin',
+            'email'=>'superadmin@admin.com',
             'password'=> Hash::make('admin123')
         ]);
 
-        $user = User::create([
-            'name'=>'User',
+        $AdminUser = User::create([
+            'name'=>'Admin User',
             'email'=>'user@user.com',
             'password'=> Hash::make('user123')
         ]);
 
-        $admin->roles()->attach($adminRole);
-        $user->roles()->attach($userRole);
+        $user2 = User::create([
+            'name'=>'User',
+            'email'=>'user@test.com',
+            'password'=> Hash::make('user123')
+        ]);
+
+        $SuperAdmin->roles()->attach($superAdminRole);
+        $AdminUser->roles()->attach($adminRole);
+        $user2->roles()->attach($userRole);
 
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class checkAdmin
+class checkSuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class checkAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->check() && auth()->user()->hasAnyRoles(['admin','superAdmin'])) {
+        if(auth()->check() && auth()->user()->hasRole('superAdmin')){
             return $next($request);
         }else
         {
@@ -24,5 +24,4 @@ class checkAdmin
         }
 
     }
-
 }
