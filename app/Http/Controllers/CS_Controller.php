@@ -96,10 +96,11 @@ CS_Controller extends Controller
         //assign subject into the study after saving data for conclusions.
         if($savedData)
         {
-            //Find study's subject count, need to check whether the study is full or not
 
+            //Find if the study id is not equal to 0, as 0 is a General Pool which mean the subject is not assign into any studies yet.
             if($request->study_id != 0)
             {
+            //Find study's subject count, need to check whether the study is full or not
             $findStudy = studySpecific::where('study_id',$request->study_id)->first();
             $studySubjectCount = $findStudy->patient_Count;
 
