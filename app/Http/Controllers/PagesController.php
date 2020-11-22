@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\PatientStudySpecific;
 use App\User;
 use App\studySpecific;
 use Illuminate\Http\Request;
@@ -30,7 +31,6 @@ class PagesController extends Controller
     public function index()
     {
         $data = studySpecific::all();
-
         return view('dashboard')->with('studies',$data);
     }
     public function preScreening()

@@ -2,7 +2,7 @@
 @csrf
 <div class="form-group row">
     <div class="col-md-5">
-        @if(Auth::check() && Auth::user()->hasRole('Admin'))
+        @if(Auth::check() && Auth::user()->hasAnyRoles(['Admin','superAdmin']))
             <div class="row">
                 <div class="col-md-2">
                     <h4>{!! Form::label('SubjectName', 'Subject: ') !!}</h4>
