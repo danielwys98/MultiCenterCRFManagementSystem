@@ -139,7 +139,7 @@ class SP_VitalSign_Controller extends Controller
     //store
     public function storeSP($findPSS,$PSS,$VitalSign,$request){
         //custom messages load for validation
-        $custom = [
+      /*  $custom = [
             'TPD_1_Date.required' => 'Please enter the vital signs date of 1hr time post dose',
             'TPD_1_ReadingTime.required' => 'Please enter the vital signs reading time of 1hr time post dose',
             'TPD_1_SittingBP_S.required' => 'Please enter the systolic for blood pressure of 1hr time post dose',
@@ -195,10 +195,10 @@ class SP_VitalSign_Controller extends Controller
             'TPD_48_Pulse.required' => 'Please enter the vital signs pulse rate of 48hr time post dose',
             'TPD_48_Respiration.required' => 'Please enter the vital signs respiration rate of 48hr time post dose',
             'TPD_48_TakenBy.required' => 'Please enter the vital signs physician name of 48hr time post dose',
-        ];
+        ];*/
 
-        if($findPSS !=NULL && $PSS != NULL){
-            if($VitalSign->TPD_1_Date == NULL){
+        if($findPSS !=NULL && $PSS != NULL){/*
+            if($VitalSign->TPD_1_Date == NULL){*/
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
                 if($request->Absent == 1){
                     foreach($data as $key=>$value){
@@ -209,7 +209,7 @@ class SP_VitalSign_Controller extends Controller
                     }
                 }else{
                     //validation for required fields
-                    $validatedData = $this->validate($request, [
+                    /*$validatedData = $this->validate($request, [
                         'TPD_1_Date' => 'required',
                         'TPD_1_ReadingTime' => 'required',
                         'TPD_1_SittingBP_S' => 'required',
@@ -265,7 +265,7 @@ class SP_VitalSign_Controller extends Controller
                         'TPD_48_Pulse' => 'required',
                         'TPD_48_Respiration' => 'required',
                         'TPD_48_TakenBy' => 'required',
-                    ], $custom);
+                    ], $custom);*/
                     foreach($data as $key=>$value){
                         if($value != NULL)
                         {
@@ -278,9 +278,9 @@ class SP_VitalSign_Controller extends Controller
                 return true;
             }else{
                 return false;
-            }
+            }/*
         }else
-        return false;
+        return false;*/
     }
 
     //update

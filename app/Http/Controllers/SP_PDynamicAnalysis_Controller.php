@@ -140,7 +140,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
     //store
     public function storeSP($findPSS,$PSS,$PDAnalysis,$request){
         //custom messages load for validation
-        $custom = [
+      /*  $custom = [
             'Day1.required' => 'Please enter the day 1 of Pharmacodynamic (PD) Analysis sampling date',
             'Day2.required' => 'Please enter the day 2 of Pharmacodynamic (PD) Analysis sampling date',
 
@@ -202,10 +202,10 @@ class SP_PDynamicAnalysis_Controller extends Controller
             'pda_S9_Result.required' => 'Please enter the S9 Actual Sampling Time for Pharmacodynamic (PD) Analysis',
             'pda_S9_Conducted.required' => 'Please enter the person collected for S9 Pharmacodynamic (PD) Analysis',
             'pda_S9_Checked.required' => 'Please enter the person checked for S9 Pharmacodynamic (PD) Analysis',
-        ];
+        ];*/
 
-        if($findPSS !=NULL && $PSS != NULL){
-            if($PDAnalysis->Day1 == NULL){
+        if($findPSS !=NULL && $PSS != NULL){/*
+            if($PDAnalysis->Day1 == NULL){*/
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
 
                 if($request->Absent == 1){
@@ -225,7 +225,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
                         }
                     }else{
                         //validation for required fields
-                        $validatedData=$this->validate($request,[
+                      /*  $validatedData=$this->validate($request,[
                             'Day1' => 'required',
                             'Day2' => 'required',
 
@@ -287,7 +287,7 @@ class SP_PDynamicAnalysis_Controller extends Controller
                             'pda_S9_Result' => 'required',
                             'pda_S9_Conducted' => 'required',
                             'pda_S9_Checked' => 'required',
-                        ],$custom);
+                        ],$custom);*/
                         foreach($data as $key=>$value){
                             if($value != NULL)
                             {
@@ -303,9 +303,9 @@ class SP_PDynamicAnalysis_Controller extends Controller
                 return true;
             }else{
                 return false;
-            }
+            }/*
         }else
-        return false;
+        return false;*/
     }
 
     //update

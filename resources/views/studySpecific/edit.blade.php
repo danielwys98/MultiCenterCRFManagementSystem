@@ -124,10 +124,10 @@
             </div>--}}
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {!! Form::submit('View subject study period details',['class'=>'btn btn-primary','onclick'=>'are you sure?'])!!}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 {!! Form::submit('Safety Follow Up Questionnaire',['class'=>'btn btn-success','onclick'=>'are you sure?','name'=>'submitbutton'])!!}
                 {{--<button name="test" value="test"><a href="{{route('testing')}}"></a> Follow Up Questionnaire</button>--}}
             </div>

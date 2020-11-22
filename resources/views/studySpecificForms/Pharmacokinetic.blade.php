@@ -155,16 +155,16 @@
         <td class="text-center">______</td>
         <td class="text-center">______</td>
         <td>
-            {!! Form::time('pk_PD_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('pk_PD_AST', old('pk_PD_AST'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('pk_PD_Collected', '',['class'=>'form-control']) !!}
+            {!! Form::text('pk_PD_Collected', old('pk_PD_Collected'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::text('pk_PD_Checked', '',['class'=>'form-control']) !!}
+            {!! Form::text('pk_PD_Checked',old('pk_PD_Checked'),['class'=>'form-control']) !!}
         </td>
         <td class="col-md-3">
-            {!! Form::text('pk_PD_Comments', '',['class'=>'form-control']) !!}
+            {!! Form::text('pk_PD_Comments', old('pk_PD_Comments'),['class'=>'form-control']) !!}
         </td>
     </tr>
     <tr>

@@ -13,7 +13,7 @@
     @endif
         <div class="row">
             <div class="col-md-4">
-            <h1>This is the Study Specific Database Page</h1>
+            <h1>This is the Study Database Page</h1>
             </div>
             <form class="form-inline" method="get" action="{{url('/studySpecific/admin/search')}}">
                 <div class="col-md-6">

@@ -140,7 +140,7 @@ class SP_PDynamicSampling_Controller extends Controller
     //store
     public function storeSP($findPSS,$PSS,$PDSampling,$request){
         //custom messages load for validation
-        $custom = [
+      /*  $custom = [
             'day1.required' => 'Please enter the day 1 of Pharmacodynamic Blood Sampling sampling date',
             'day2.required' => 'Please enter the day 3 of Pharmacodynamic Blood Sampling sampling date',
 
@@ -202,10 +202,10 @@ class SP_PDynamicSampling_Controller extends Controller
             'S9_AST.required' => 'Please enter the S9 Actual Sampling Time for Pharmacodynamic Blood Sampling',
             'S9_Collected.required' => 'Please enter the person collected for S9 Pharmacodynamic Blood Sampling',
             'S9_Checked.required' => 'Please enter the person checked for S9 Pharmacodynamic Blood Sampling',
-        ];
+        ];*/
 
-        if($findPSS !=NULL && $PSS != NULL){
-            if($PDSampling->day1 == NULL){
+        if($findPSS !=NULL && $PSS != NULL){/*
+            if($PDSampling->day1 == NULL){*/
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
 
                 if($request->Absent == 1){
@@ -225,7 +225,7 @@ class SP_PDynamicSampling_Controller extends Controller
                         }
                     }else{
                         //validation for required fields
-                        $validatedData=$this->validate($request,[
+                       /* $validatedData=$this->validate($request,[
                             'day1' => 'required',
                             'day2' => 'required',
 
@@ -287,7 +287,7 @@ class SP_PDynamicSampling_Controller extends Controller
                             'S9_AST' => 'required',
                             'S9_Collected' => 'required',
                             'S9_Checked' => 'required',
-                        ],$custom);
+                        ],$custom);*/
                         foreach($data as $key=>$value){
                             if($value != NULL)
                             {
@@ -303,9 +303,9 @@ class SP_PDynamicSampling_Controller extends Controller
                 return true;
             }else{
                 return false;
-            }
+            }/*
         }else
-        return false;
+        return false;*/
     }
 
 

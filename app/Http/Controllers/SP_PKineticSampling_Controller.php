@@ -140,7 +140,7 @@ class SP_PKineticSampling_Controller extends Controller
     //store
     public function storeSP($findPSS,$PSS,$PKineticS,$request){
         //custom messages load for validation
-        $custom = [
+        /*$custom = [
             'Day1.required' => 'Please enter the day 1 of Pharmacokinetic Blood Sampling sampling date',
             'Day3.required' => 'Please enter the day 3 of Pharmacokinetic Blood Sampling sampling date',
 
@@ -281,10 +281,10 @@ class SP_PKineticSampling_Controller extends Controller
             'pk_S21_AST.required' => 'Please enter the S21 Actual Sampling Time for Pharmacokinetic Blood Sampling',
             'pk_S21_Collected.required' => 'Please enter the person collected for S21 Pharmacokinetic Blood Sampling',
             'pk_S21_Checked.required' => 'Please enter the person checked for S21 Pharmacokinetic Blood Sampling',
-           ];
+           ];*/
 
-        if($findPSS !=NULL && $PSS != NULL){
-            if($PKineticS->Day1 == NULL){
+        if($findPSS !=NULL && $PSS != NULL){/*
+            if($PKineticS->Day1 == NULL){*/
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
                 if($request->Absent == 1){
                     foreach($data as $key=>$value){
@@ -295,7 +295,7 @@ class SP_PKineticSampling_Controller extends Controller
                     }
                 }else{
                     //validation for required fields
-                    $validatedData=$this->validate($request,[
+                    /*$validatedData=$this->validate($request,[
                         'Day1' => 'required',
                         'Day3' => 'required',
 
@@ -436,7 +436,7 @@ class SP_PKineticSampling_Controller extends Controller
                         'pk_S21_AST' => 'required',
                         'pk_S21_Collected' => 'required',
                         'pk_S21_Checked' => 'required',
-                    ],$custom);
+                    ],$custom);*/
                     foreach($data as $key=>$value){
                         if($value != NULL)
                         {
@@ -450,9 +450,9 @@ class SP_PKineticSampling_Controller extends Controller
                 return true;
             }else{
                 return false;
-            }
+            }/*
         }else
-        return false;
+        return false;*/
     }
 
     //update
