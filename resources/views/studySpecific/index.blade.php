@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-            <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus"></span>  Create new study-specific</button></a>
+            <a href="{{ route('studySpecific.create') }}"><button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus"></span>  Create new study</button></a>
             </div>
         </div>
         <br/>
