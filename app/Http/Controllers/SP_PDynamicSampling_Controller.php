@@ -75,7 +75,8 @@ class SP_PDynamicSampling_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            /*return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -206,7 +207,7 @@ class SP_PDynamicSampling_Controller extends Controller
         if($findPSS !=NULL && $PSS != NULL){
             if($PDSampling->day1 == NULL){
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
-                
+
                 if($request->Absent == 1){
                     foreach($data as $key=>$value){
                         if($value != NULL)
@@ -336,7 +337,7 @@ class SP_PDynamicSampling_Controller extends Controller
                     }
                 }
             }
-            
+
             $PDSampling->Absent=$request->Absent;
             $PDSampling->NApplicable=$request->NApplicable;
             $PDSampling->save();

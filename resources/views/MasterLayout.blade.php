@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="FYP-Group 1" content="Multicentre-CRF management system">
+    <meta name="copyright" content="Borneo Kinetics Shd Bhd">
     <title>Multicentre-CRF management system</title>
 
     <!-- Scripts -->
@@ -44,6 +45,7 @@
             </div>
             @endcan
         </ul>
+        <small id="copyright">Copyright &copy; 2020 Borneo Kinetic Sdn Bhd. All Rights Reserved</small>
     </div>
         <div class="content-container">
             <div class="HeaderInContent">
@@ -64,11 +66,10 @@
             {{--//main content starts here--}}
             <div class="container-fluid">
                 @yield('content')
-
             </div>
         </div>
-    </div>
 
+    </div>
     @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 </body>
 </html>

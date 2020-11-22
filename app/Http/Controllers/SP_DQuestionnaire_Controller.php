@@ -75,7 +75,8 @@ class SP_DQuestionnaire_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+          /*  return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -173,7 +174,7 @@ class SP_DQuestionnaire_Controller extends Controller
                         }
                     }
                 }
-                
+
                 $DQuestionnaire->Absent=$request->Absent;
                 $DQuestionnaire->save();
                 return true;
@@ -203,7 +204,7 @@ class SP_DQuestionnaire_Controller extends Controller
                     }
                 }
             }
-            
+
             $DQuestionnaire->Absent=$request->Absent;
             $DQuestionnaire->save();
             return true;

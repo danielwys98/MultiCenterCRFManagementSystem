@@ -75,7 +75,8 @@ class SP_IQ36_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            /*return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -249,7 +250,7 @@ class SP_IQ36_Controller extends Controller
                         $IQ36->Interim36hrsCheckedby=$request->Interim36hrsCheckedby;
                     }
                 }
-                
+
                 $IQ36->Absent=$request->Absent;
                 $IQ36->NApplicable=$request->NApplicable;
                 $IQ36->save();
@@ -341,5 +342,5 @@ class SP_IQ36_Controller extends Controller
             return false;
         }
     }
-    
+
 }

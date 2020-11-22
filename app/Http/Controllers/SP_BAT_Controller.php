@@ -75,7 +75,8 @@ class SP_BAT_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+          /*  return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -192,7 +193,7 @@ class SP_BAT_Controller extends Controller
                         $BAT->Usertranscribed = $request->Usertranscribed;
                     }
                 }
-    
+
                 $BAT->NApplicable=$request->NApplicable;
                 $BAT->Absent=$request->Absent;
                 $BAT->save();

@@ -75,7 +75,8 @@ class SP_IQ96_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            /*return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -249,7 +250,7 @@ class SP_IQ96_Controller extends Controller
                         $IQ96->Interim96hrsCheckedby=$request->Interim96hrsCheckedby;
                     }
                 }
-                
+
                 $IQ96->Absent=$request->Absent;
                 $IQ96->NApplicable=$request->NApplicable;
                 $IQ96->save();
@@ -341,5 +342,5 @@ class SP_IQ96_Controller extends Controller
             return false;
         }
     }
-    
+
 }

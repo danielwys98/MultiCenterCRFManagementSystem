@@ -171,7 +171,7 @@ class SP_AQuestionnaire_Controller extends Controller
             'contraception_Yes.required_if' => 'If Yes is selected in question 9, please provide details',
             'Contraception_IncreaseRisk.required_if' => 'Please answer the question 9 second sub question',
         ];
-        
+
         if($findPSS !=NULL && $PSS != NULL){
             if($AQ->AQuestionnaireDateTaken == NULL){
                 if($request->Absent == 1){
@@ -324,7 +324,7 @@ class SP_AQuestionnaire_Controller extends Controller
                     //physician initial
                     $AQ->PhysicianInitial = $request->PhysicianInitial;
                 }
-                
+
                 $AQ->Absent=$request->Absent;
                 $AQ->save();
                 return true;
@@ -455,7 +455,7 @@ class SP_AQuestionnaire_Controller extends Controller
                 //physician initial
                 $AQ->PhysicianInitial = $request->PhysicianInitial;
             }
-            
+
             $AQ->Absent=$request->Absent;
             $AQ->save();
             return true;

@@ -75,7 +75,8 @@ class SP_BMVS_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+        /*    return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -267,7 +268,7 @@ class SP_BMVS_Controller extends Controller
                     $BMVS->Initial = $request->Initial;
                     $BMVS->Comment=$request->Comment;
                 }
-                
+
                 $BMVS->Absent=$request->Absent;
                 $BMVS->save();
                 return true;
@@ -361,7 +362,7 @@ class SP_BMVS_Controller extends Controller
                 $BMVS->Initial = $request->Initial;
                 $BMVS->Comment=$request->Comment;
             }
-            
+
             $BMVS->Absent=$request->Absent;
             $BMVS->save();
             return true;

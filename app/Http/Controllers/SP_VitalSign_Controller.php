@@ -74,7 +74,8 @@ class SP_VitalSign_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            /*return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -195,7 +196,7 @@ class SP_VitalSign_Controller extends Controller
             'TPD_48_Respiration.required' => 'Please enter the vital signs respiration rate of 48hr time post dose',
             'TPD_48_TakenBy.required' => 'Please enter the vital signs physician name of 48hr time post dose',
         ];
-        
+
         if($findPSS !=NULL && $PSS != NULL){
             if($VitalSign->TPD_1_Date == NULL){
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
@@ -301,7 +302,7 @@ class SP_VitalSign_Controller extends Controller
                     }
                 }
             }
-            
+
             $VitalSign->Absent=$request->Absent;
             $VitalSign->save();
             return true;

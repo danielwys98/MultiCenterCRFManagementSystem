@@ -75,7 +75,8 @@ class SP_PKineticSampling_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            /*return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -281,7 +282,7 @@ class SP_PKineticSampling_Controller extends Controller
             'pk_S21_Collected.required' => 'Please enter the person collected for S21 Pharmacokinetic Blood Sampling',
             'pk_S21_Checked.required' => 'Please enter the person checked for S21 Pharmacokinetic Blood Sampling',
            ];
-        
+
         if($findPSS !=NULL && $PSS != NULL){
             if($PKineticS->Day1 == NULL){
                 $data = $request->except('patient_id','studyPeriod','_token','_method');
@@ -309,7 +310,7 @@ class SP_PKineticSampling_Controller extends Controller
                         'pk_PD_AST' => 'required',
                         'pk_PD_Collected' => 'required',
                         'pk_PD_Checked' => 'required',
-                        
+
                         'pk_Date_Day_S1' => 'required',
                         'pk_S1_SST' => 'required',
                         'pk_S1_AST' => 'required',
@@ -443,7 +444,7 @@ class SP_PKineticSampling_Controller extends Controller
                         }
                     }
                 }
-                
+
                 $PKineticS->Absent=$request->Absent;
                 $PKineticS->save();
                 return true;
@@ -473,7 +474,7 @@ class SP_PKineticSampling_Controller extends Controller
                     }
                 }
             }
-            
+
             $PKineticS->Absent=$request->Absent;
             $PKineticS->save();
             return true;

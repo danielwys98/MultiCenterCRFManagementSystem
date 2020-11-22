@@ -76,7 +76,8 @@ class SP_Discharge_Controller extends Controller
         }else
             {
                 alert()->error('Error!','You did not select the study period!');
-                return redirect(route('studySpecific.input', $study_id));
+                /*return redirect(route('studySpecific.input', $study_id));*/
+                return redirect()->back()->withInput();
             }
     }
 
@@ -288,7 +289,7 @@ class SP_Discharge_Controller extends Controller
                 }
                 $Discharge->Initial = $request->Initial;
             }
-            
+
             $Discharge->Absent = $request->Absent;
             $Discharge->save();
             return true;

@@ -75,7 +75,8 @@ class SP_UrineTest_Controller extends Controller
             }
         }else{
             alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+          /*  return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
 
     }
@@ -224,7 +225,7 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
                 }
             }
-            
+
             //Urine Drug
             $UT->AbsentUDrug=$request->AbsentUDrug;
             $UT->NApplicable=$request->NApplicable;
@@ -272,7 +273,7 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
                 }
             }
-            
+
             //Conclusion
             $UT->AbsentC=$request->AbsentC;
             if($request->AbsentC == 1){
@@ -299,7 +300,7 @@ class SP_UrineTest_Controller extends Controller
     }
 
     //update
-    public function updateSP($findPSS,$PSS,$UT,$request){ 
+    public function updateSP($findPSS,$PSS,$UT,$request){
         if($findPSS !=NULL){
             //Urine Pregnacy
             $UT->AbsentUPreg=$request->AbsentUPreg;
@@ -338,7 +339,7 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UPreg_Transcribedby=$request->UPreg_Transcribedby;
                 }
             }
-            
+
             //Urine Drug
             $UT->AbsentUDrug=$request->AbsentUDrug;
             $UT->NApplicable=$request->NApplicable;
@@ -386,7 +387,7 @@ class SP_UrineTest_Controller extends Controller
                     $UT->UDrug_Transcribedby=$request->UDrug_Transcribedby;
                 }
             }
-            
+
             //Conclusion
             $UT->AbsentC=$request->AbsentC;
             if($request->AbsentC == 1){
@@ -402,7 +403,7 @@ class SP_UrineTest_Controller extends Controller
                 $UT->physicianSign=$request->physicianSign;
                 $UT->physicianName=$request->physicianName;
             }
-            
+
             $UT->save();
             return true;
         }else{
