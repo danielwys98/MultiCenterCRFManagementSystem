@@ -153,7 +153,7 @@
     </tbody>
 </table>
 <p>
-    {!! Form::label('note1', 'Only latest reading is transcribed.Comment below if outside Systolic 90-140, Diastolic 50-90, HR 50-100, or if difference of Systolic or Diastolic between two positions > 20 or 10 respectively.') !!}
+    {!! Form::label('note1', 'Only latest reading is transcribed.Comment below if outside Systolic 90-140, Diastolic 50-90, HR 50-100') !!}
 </p>
 <div class="form-group row col-md-6">
     {!! Form::label('Comment','Comments/ Remarks: ') !!}

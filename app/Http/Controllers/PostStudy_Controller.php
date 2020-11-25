@@ -43,13 +43,15 @@ class PostStudy_Controller extends Controller
                     $FollowUpQ->Comment = $request->Comment_text;
                 }
                 $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
+                $FollowUpQ->DateSign = $request->DateSign;
                 $FollowUpQ->physicianSign = $request->physicianSign;
                 $FollowUpQ->physicianName = $request->physicianName;
                 $FollowUpQ->save();
 
-                return redirect(route('studySpecific.admin'));
+                return redirect(route('studySpecific.admin'))->with('success','You have successfully save the Safety Follow Up Questionnaire');
             } else {
-                echo "No Follow Up Questionnaire is created for this subject";
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect()->back();
             }
         }
     }
@@ -67,7 +69,7 @@ class PostStudy_Controller extends Controller
 
         //if want view in google use $filename->stream
         //if want test download use $file->download('filename')
-        return $pdf->stream('FollowUpQuestionnaire.pdf');
+        return $pdf->download('FollowUpQuestionnaire.pdf');
 
         /*  echo"This works";*/
     }
@@ -179,9 +181,10 @@ class PostStudy_Controller extends Controller
 
                 $ConclusionP->save();
 
-                return redirect(route('studySpecific.admin'));
+                return redirect(route('studySpecific.admin'))->with('success','You have successfully save the Conclusion of Participation Form');
             } else {
-                echo "No Conclusion Participation is created for this subject";
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect()->back();
             }
         }
     }
@@ -194,6 +197,6 @@ class PostStudy_Controller extends Controller
         $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $pss->conclusion_participation_id)->first();
 
         $pdf = PDF::loadView('studySpecific.ConclusionParticipationReport', compact('ConclusionP', 'patient', 'study'))->setpaper('A4', 'portrait');
-        return $pdf->stream('ConclusionParticipation.pdf');
+        return $pdf->download('ConclusionParticipation.pdf');
     }
 }
