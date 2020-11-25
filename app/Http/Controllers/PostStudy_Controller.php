@@ -57,7 +57,6 @@ class PostStudy_Controller extends Controller
                     $FollowUpQ->Comment = $request->Comment_text;
                 }
                 $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
-                $FollowUpQ->DateSign = $request->DateSign;
                 $FollowUpQ->physicianSign = $request->physicianSign;
                 $FollowUpQ->physicianName = $request->physicianName;
                 $FollowUpQ->DateSign = $request->DateSign;
