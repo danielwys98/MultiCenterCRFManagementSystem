@@ -74,8 +74,9 @@ class SP_AQuestionnaire_Controller extends Controller
                 return redirect(route('studySpecific.input',$study_id));
             }
         }else{
-            alert()->error('Error!','You did not select the study period!');
-            return redirect(route('studySpecific.input',$study_id));
+            alert()->error('Error!','You did not select the study period!');/*
+            return redirect(route('studySpecific.input',$study_id));*/
+            return redirect()->back()->withInput();
         }
     }
 
@@ -170,6 +171,7 @@ class SP_AQuestionnaire_Controller extends Controller
             'contraception.required' => 'Please answer the question 9',
             'contraception_Yes.required_if' => 'If Yes is selected in question 9, please provide details',
             'Contraception_IncreaseRisk.required_if' => 'Please answer the question 9 second sub question',
+            'PhysicianInitial.required'=>"Please enter the Physician's initial",
         ];
 
         if($findPSS !=NULL && $PSS != NULL){
@@ -233,6 +235,7 @@ class SP_AQuestionnaire_Controller extends Controller
                         'contraception' => 'required',
                         'contraception_Yes' => 'required_if:contraception,==,Yes',
                         'Contraception_IncreaseRisk' => 'required_if:contraception,==,Yes',
+                        'PhysicianInitial'=>'required',
                     ],$custom);
                     //date and time for admission questionnaire
                     $AQ->AQuestionnaireDateTaken = $request->AQuestionnaireDateTaken;
