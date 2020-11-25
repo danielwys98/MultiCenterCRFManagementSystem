@@ -39,27 +39,27 @@ class PostStudy_Controller extends Controller
                     $FollowUpQ->physicianSign = NULL;
                     $FollowUpQ->physicianName = NULL;
                     $FollowUpQ->DateSign = NULL;
-
+                }else {
+                    $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
+                    $FollowUpQ->MedicalProblem = $request->MedicalProblem;
+                    $FollowUpQ->Medication = $request->Medication;
+                    $FollowUpQ->Hospitalized = $request->Hospitalized;
+                    if ($request->otherdrugdtudies == 'Yes') {
+                        $FollowUpQ->otherDrugStudies = $request->otherDrugStudies_Yes;
+                    } else {
+                        $FollowUpQ->otherDrugStudies = $request->otherdrugstudies;
+                    }
+                    if ($request->comment == 'Well') {
+                        $FollowUpQ->Comment = $request->comment;
+                    } else {
+                        $FollowUpQ->Comment = $request->Comment_text;
+                    }
+                    $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
+                    $FollowUpQ->physicianSign = $request->physicianSign;
+                    $FollowUpQ->physicianName = $request->physicianName;
+                    $FollowUpQ->DateSign = $request->DateSign;
                 }
                 $FollowUpQ->NApplicable = $request->NApplicable;
-                $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
-                $FollowUpQ->MedicalProblem = $request->MedicalProblem;
-                $FollowUpQ->Medication = $request->Medication;
-                $FollowUpQ->Hospitalized = $request->Hospitalized;
-                if ($request->otherdrugdtudies == 'Yes') {
-                    $FollowUpQ->otherDrugStudies = $request->otherDrugStudies_Yes;
-                } else {
-                    $FollowUpQ->otherDrugStudies = $request->otherdrugstudies;
-                }
-                if ($request->comment == 'Well') {
-                    $FollowUpQ->Comment = $request->comment;
-                } else {
-                    $FollowUpQ->Comment = $request->Comment_text;
-                }
-                $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
-                $FollowUpQ->physicianSign = $request->physicianSign;
-                $FollowUpQ->physicianName = $request->physicianName;
-                $FollowUpQ->DateSign = $request->DateSign;
                 $FollowUpQ->save();
 
                 return redirect(route('studySpecific.admin'))->with('success','You have successfully save the Safety Follow Up Questionnaire');

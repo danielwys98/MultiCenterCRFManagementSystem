@@ -188,8 +188,10 @@ class SP_Admission_Controller extends Controller
             if ($request->submitbutton == "Safety Follow Up Questionnaire") {
                 if($followUpQ!=NULL)
                     return view('studySpecific.FollowUpQuestionnaire', compact('PID', 'study_id', 'followUpQ', 'patient'));
-                else
-
+                else {
+                    alert()->error('Error!', 'Subject has not been admitted yet.');
+                    return redirect(route('studySpecific.admin', $study_id));
+                }
                 /*return redirect(route('testing',['PID'=>$PID,'study_id'=>$study_id]));*/
             } elseif ($request->submitbutton == "Conclusion of Participation") {
                 return view('studySpecific.ConclusionParticipation', compact('PID', 'study_id', 'ConclusionP', 'patient'));
