@@ -15,6 +15,7 @@ class CreateFollowUpQuestionnairesTable extends Migration
     {
         Schema::create('follow_up_questionnaires', function (Blueprint $table) {
             $table->increments('FollowUpQuestionnaire_ID');
+            $table->boolean('NApplicable')->nullable();
             $table->date('FollowUpDateTaken')->nullable();
             $table->time('AdmissionTimeTaken')->nullable();
             $table->text('MedicalProblem')->nullable();

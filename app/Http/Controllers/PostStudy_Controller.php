@@ -27,7 +27,21 @@ class PostStudy_Controller extends Controller
         } else {
             if ($pss->FollowUpQuestionnaire_ID != NULL) {
                 $FollowUpQ = FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID', $pss->FollowUpQuestionnaire_ID)->first();
-                $FollowUpQ->FollowUpDateTaken = $request->FollowUpDateTaken;
+                if($request->NApplicable==1){
+                    $FollowUpQ->FollowUpDateTaken = NULL;
+                    $FollowUpQ->AdmissionTimeTaken =NULL;
+                    $FollowUpQ->MedicalProblem = NULL;
+                    $FollowUpQ->Medication = NULL;
+                    $FollowUpQ->Hospitalized = NULL;
+                    $FollowUpQ->otherDrugStudies= NULL;
+                    $FollowUpQ->Comment= NULL;
+                    $FollowUpQ->PhysicianInitial = NULL;
+                    $FollowUpQ->physicianSign = NULL;
+                    $FollowUpQ->physicianName = NULL;
+                    $FollowUpQ->DateSign = NULL;
+
+                }
+                $FollowUpQ->NApplicable = $request->NApplicable;
                 $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
                 $FollowUpQ->MedicalProblem = $request->MedicalProblem;
                 $FollowUpQ->Medication = $request->Medication;
@@ -45,6 +59,7 @@ class PostStudy_Controller extends Controller
                 $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
                 $FollowUpQ->physicianSign = $request->physicianSign;
                 $FollowUpQ->physicianName = $request->physicianName;
+                $FollowUpQ->DateSign = $request->DateSign;
                 $FollowUpQ->save();
 
                 return redirect(route('studySpecific.admin'));
