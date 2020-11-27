@@ -27,29 +27,45 @@ class PostStudy_Controller extends Controller
         } else {
             if ($pss->FollowUpQuestionnaire_ID != NULL) {
                 $FollowUpQ = FollowUpQuestionnaire::where('FollowUpQuestionnaire_ID', $pss->FollowUpQuestionnaire_ID)->first();
-                $FollowUpQ->FollowUpDateTaken = $request->FollowUpDateTaken;
-                $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
-                $FollowUpQ->MedicalProblem = $request->MedicalProblem;
-                $FollowUpQ->Medication = $request->Medication;
-                $FollowUpQ->Hospitalized = $request->Hospitalized;
-                if ($request->otherdrugdtudies == 'Yes') {
-                    $FollowUpQ->otherDrugStudies = $request->otherDrugStudies_Yes;
-                } else {
-                    $FollowUpQ->otherDrugStudies = $request->otherdrugstudies;
+                if($request->NApplicable==1){
+                    $FollowUpQ->FollowUpDateTaken = NULL;
+                    $FollowUpQ->AdmissionTimeTaken =NULL;
+                    $FollowUpQ->MedicalProblem = NULL;
+                    $FollowUpQ->Medication = NULL;
+                    $FollowUpQ->Hospitalized = NULL;
+                    $FollowUpQ->otherDrugStudies= NULL;
+                    $FollowUpQ->Comment= NULL;
+                    $FollowUpQ->PhysicianInitial = NULL;
+                    $FollowUpQ->physicianSign = NULL;
+                    $FollowUpQ->physicianName = NULL;
+                    $FollowUpQ->DateSign = NULL;
+                }else {
+                    $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
+                    $FollowUpQ->MedicalProblem = $request->MedicalProblem;
+                    $FollowUpQ->Medication = $request->Medication;
+                    $FollowUpQ->Hospitalized = $request->Hospitalized;
+                    if ($request->otherdrugdtudies == 'Yes') {
+                        $FollowUpQ->otherDrugStudies = $request->otherDrugStudies_Yes;
+                    } else {
+                        $FollowUpQ->otherDrugStudies = $request->otherdrugstudies;
+                    }
+                    if ($request->comment == 'Well') {
+                        $FollowUpQ->Comment = $request->comment;
+                    } else {
+                        $FollowUpQ->Comment = $request->Comment_text;
+                    }
+                    $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
+                    $FollowUpQ->physicianSign = $request->physicianSign;
+                    $FollowUpQ->physicianName = $request->physicianName;
+                    $FollowUpQ->DateSign = $request->DateSign;
                 }
-                if ($request->comment == 'Well') {
-                    $FollowUpQ->Comment = $request->comment;
-                } else {
-                    $FollowUpQ->Comment = $request->Comment_text;
-                }
-                $FollowUpQ->PhysicianInitial = $request->PhysicianInitial;
-                $FollowUpQ->physicianSign = $request->physicianSign;
-                $FollowUpQ->physicianName = $request->physicianName;
+                $FollowUpQ->NApplicable = $request->NApplicable;
                 $FollowUpQ->save();
 
-                return redirect(route('studySpecific.admin'));
+                return redirect(route('studySpecific.admin'))->with('success','You have successfully save the Safety Follow Up Questionnaire');
             } else {
-                echo "No Follow Up Questionnaire is created for this subject";
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect()->back();
             }
         }
     }
@@ -67,7 +83,7 @@ class PostStudy_Controller extends Controller
 
         //if want view in google use $filename->stream
         //if want test download use $file->download('filename')
-        return $pdf->stream('FollowUpQuestionnaire.pdf');
+        return $pdf->download('FollowUpQuestionnaire.pdf');
 
         /*  echo"This works";*/
     }
@@ -179,9 +195,10 @@ class PostStudy_Controller extends Controller
 
                 $ConclusionP->save();
 
-                return redirect(route('studySpecific.admin'));
+                return redirect(route('studySpecific.admin'))->with('success','You have successfully save the Conclusion of Participation Form');
             } else {
-                echo "No Conclusion Participation is created for this subject";
+                alert()->error('Error!','You have already key the data for this subject!');
+                return redirect()->back();
             }
         }
     }
@@ -194,6 +211,6 @@ class PostStudy_Controller extends Controller
         $ConclusionP = ConclusionParticipation::where('conclusion_participation_id', $pss->conclusion_participation_id)->first();
 
         $pdf = PDF::loadView('studySpecific.ConclusionParticipationReport', compact('ConclusionP', 'patient', 'study'))->setpaper('A4', 'portrait');
-        return $pdf->stream('ConclusionParticipation.pdf');
+        return $pdf->download('ConclusionParticipation.pdf');
     }
 }
