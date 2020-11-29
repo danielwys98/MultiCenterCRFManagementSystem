@@ -40,6 +40,7 @@ class PostStudy_Controller extends Controller
                     $FollowUpQ->physicianName = NULL;
                     $FollowUpQ->DateSign = NULL;
                 }else {
+                    $FollowUpQ->FollowUpDateTaken = $request->FollowUpDateTaken;
                     $FollowUpQ->AdmissionTimeTaken = $request->AdmissionTimeTaken;
                     $FollowUpQ->MedicalProblem = $request->MedicalProblem;
                     $FollowUpQ->Medication = $request->Medication;
