@@ -180,7 +180,7 @@ class studySpecificController extends Controller
         $study->MRNno = $request->MRNno;
         $study->protocolNO = $request->protocolNO;
         $study->save();
-        return redirect(route('studySpecific.index'))->with('success', 'You have successfully added the study into the system!');
+        return redirect(route('studySpecific.index'))->with('success', 'You have successfully added '.$request->name.' into the system!');
     }
 
 
@@ -250,10 +250,10 @@ class studySpecificController extends Controller
     public function destroy($id)
     {
         $study = studySpecific::find($id);
-
+        $studyname = $study->study_name;
         $study->delete();
 
-        return redirect(route('studySpecific.index'))->with('ErrorMessages', 'You removed the study from the system!');
+        return redirect(route('studySpecific.index'))->with('success', 'You removed the '.$studyname.' from the system!');
     }
 
     public function PSSRemove(Request $request,$study_id)

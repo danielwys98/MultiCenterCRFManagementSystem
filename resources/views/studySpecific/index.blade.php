@@ -74,6 +74,6 @@
         </tbody>
     </table>
         @else
-                <h1>You dont have studies! add study!</h1>
+                <h1>No study found!</h1>
         @endif
 @endsection

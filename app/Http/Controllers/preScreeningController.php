@@ -170,14 +170,13 @@ class preScreeningController extends Controller
         $patient->MRNno=$request->MRNno;
 
         $patient->save();
-        Alert::success('Updated', 'The subject details has been updated from the system!');
-        return redirect('preScreening/admin')->with('Messages','You have updated the information of the subject!');
+        return redirect('preScreening/admin')->with('success','You have updated the information of the subject!');
     }
 
     public function destroy($id)
     {
         $patient = Patient::find($id);
-
+        $tempname = $patient->name;
 
         $patient->bodyandvitalsigns()->delete();
         $patient->BreathAlcoholTestAndElectrocardiogram()->delete();
@@ -191,7 +190,6 @@ class preScreeningController extends Controller
 
         $patient->delete();
 
-        Alert::success('Deleted', 'The subject has been removed from the system!');
-        return redirect('preScreening/admin')->with('ErrorMessages','The subject has been removed from the system!');
+        return redirect('preScreening/admin')->with('success',$tempname.' has been removed from the system!');
     }
 }
