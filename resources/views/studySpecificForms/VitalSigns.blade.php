@@ -90,7 +90,7 @@
             1
         </td>
         <td>
-            {!! Form::time('TPD_1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_1_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -114,7 +114,7 @@
             <p>2</p>
         </td>
         <td>
-            {!! Form::time('TPD_2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_2_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -138,7 +138,7 @@
             5
         </td>
         <td>
-            {!! Form::time('TPD_5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_5_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -162,7 +162,7 @@
             8
         </td>
         <td>
-            {!! Form::time('TPD_8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_8_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -186,7 +186,7 @@
             12
         </td>
         <td>
-            {!! Form::time('TPD_12_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_12_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_12_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -221,7 +221,7 @@
             <p>36</p>
         </td>
         <td>
-            {!! Form::time('TPD_36_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_36_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_36_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -245,7 +245,7 @@
             <p>48</p>
         </td>
         <td>
-            {!! Form::time('TPD_48_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TPD_48_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('TPD_48_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -274,7 +274,7 @@
             {!! Form::text('Extra1_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra1_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra1_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -298,7 +298,7 @@
             {!! Form::text('Extra2_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra2_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra2_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -322,7 +322,7 @@
             {!! Form::text('Extra3_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra3_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra3_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -346,7 +346,7 @@
             {!! Form::text('Extra4_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra4_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra4_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -370,7 +370,7 @@
             {!! Form::text('Extra5_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra5_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra5_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -394,7 +394,7 @@
             {!! Form::text('Extra6_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra6_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra6_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra6_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -418,7 +418,7 @@
             {!! Form::text('Extra7_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra7_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra7_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
@@ -442,7 +442,7 @@
             {!! Form::text('Extra8_TPD', '',['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('Extra8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('Extra8_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('Extra8_SittingBP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}

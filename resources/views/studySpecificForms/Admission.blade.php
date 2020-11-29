@@ -48,7 +48,7 @@
             {!! Form::label('AdmissionTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('AdmissionTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('AdmissionTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </div>
     </div>
 
@@ -66,7 +66,7 @@
             {!! Form::label('ConsentTimeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('ConsentTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('ConsentTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </div>
     </div>
 {!! Form::submit('Create',['class'=>'btn btn-primary'])!!}

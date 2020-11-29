@@ -48,7 +48,7 @@
         {!! Form::label('DQtimeTaken', 'Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('DQtimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('DQtimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="row">

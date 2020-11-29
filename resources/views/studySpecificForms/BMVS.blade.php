@@ -55,7 +55,7 @@
         {!! Form::label('timeTaken', 'Time Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
@@ -109,7 +109,7 @@
     <tbody>
     <tr>
         <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-        <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>
             {!! Form::number('Sitting_BP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
             {!! Form::number('Sitting_BP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
@@ -124,7 +124,7 @@
             {!! Form::radio('SittingRepeat1', 'Sitting Repeated','',['id'=>'SittingRepeat1']) !!}
             {!! Form::label('SittingRepeat1','Sitting Repeated') !!}
         </th>
-        <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::time('Sitting_ReadingTime_Repeat1', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{{--{!! Form::number('Sitting_BP_Repeat1', '',['class'=>'form-control','placeholder'=>'']) !!}--}}
             {!! Form::number('Sitting_BP_S_Repeat1', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
             {!! Form::number('Sitting_BP_D_Repeat1', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}</td>
@@ -138,7 +138,7 @@
             {!! Form::radio('SittingRepeat2', 'Sitting Repeated','',['id'=>'SittingRepeat2']) !!}
             {!! Form::label('SittingRepeat2','Sitting Repeated') !!}
         </th>
-        <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+        <td>{!! Form::time('Sitting_ReadingTime_Repeat2', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
         <td>{{--{!! Form::number('Sitting_BP_Repeat2', '',['class'=>'form-control','placeholder'=>'']) !!}--}}
             {!! Form::number('Sitting_BP_S_Repeat2', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
             {!! Form::number('Sitting_BP_D_Repeat2', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}</td>

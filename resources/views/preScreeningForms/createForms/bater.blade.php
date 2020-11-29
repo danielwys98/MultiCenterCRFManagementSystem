@@ -15,7 +15,7 @@
             {!! Form::label('timeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </div>
     </div>
     {{-- end date and time --}}

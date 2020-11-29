@@ -115,7 +115,7 @@
             <p>______</p>
         </td>
         <td>
-            {!! Form::time('PD_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('PD_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('PD_Collected', '',['class'=>'form-control']) !!}
@@ -138,10 +138,10 @@
             1
         </td>
         <td>
-            {!! Form::time('S1_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S1_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S1_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S1_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S1_Collected', '',['class'=>'form-control']) !!}
@@ -164,10 +164,10 @@
             2
         </td>
         <td>
-            {!! Form::time('S2_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S2_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S2_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S2_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S2_Collected', '',['class'=>'form-control']) !!}
@@ -190,10 +190,10 @@
             3
         </td>
         <td>
-            {!! Form::time('S3_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S3_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S3_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S3_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S3_Collected', '',['class'=>'form-control']) !!}
@@ -216,10 +216,10 @@
             4
         </td>
         <td>
-            {!! Form::time('S4_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S4_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S4_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S4_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S4_Collected', '',['class'=>'form-control']) !!}
@@ -242,10 +242,10 @@
             5
         </td>
         <td>
-            {!! Form::time('S5_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S5_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S5_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S5_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S5_Collected', '',['class'=>'form-control']) !!}
@@ -268,10 +268,10 @@
             8
         </td>
         <td>
-            {!! Form::time('S6_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S6_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S6_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S6_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S6_Collected', '',['class'=>'form-control']) !!}
@@ -294,10 +294,10 @@
             12
         </td>
         <td>
-            {!! Form::time('S7_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S7_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S7_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S7_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S7_Collected', '',['class'=>'form-control']) !!}
@@ -320,10 +320,10 @@
             16
         </td>
         <td>
-            {!! Form::time('S8_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S8_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
-            {!! Form::time('S8_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S8_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S8_Collected', '',['class'=>'form-control']) !!}
@@ -346,10 +346,10 @@
             24
         </td>
         <td>
-            {!! Form::time('S9_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S9_SST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td class="col-sm-1">
-            {!! Form::time('S9_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('S9_AST', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </td>
         <td>
             {!! Form::text('S9_Collected', '',['class'=>'form-control']) !!}

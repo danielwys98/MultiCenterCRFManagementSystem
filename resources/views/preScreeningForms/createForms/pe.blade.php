@@ -3,10 +3,12 @@
     {{--physical examination --}}
     <div class="form-group">
         <h3>Physical Examination</h3>
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="form-group row">
+            <div class="col-md-2">
                 {!! Form::label('dateTaken', 'Date Taken: ') !!}
-                {!! Form::date('dateTaken', \Carbon\Carbon::now()) !!}
+            </div>
+            <div class="col-md-2">
+                {!! Form::date('dateTaken', \Carbon\Carbon::now(),['class'=>'form-control']) !!}
             </div>
         </div>
         {{-- system review --}}

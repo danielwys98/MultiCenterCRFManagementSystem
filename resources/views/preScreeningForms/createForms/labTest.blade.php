@@ -25,7 +25,7 @@
             {!! Form::label('TimeLMTaken', 'Time Last Meal Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('TimeLMTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('TimeLMTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </div>
     </div>
     <div class="form-group row">

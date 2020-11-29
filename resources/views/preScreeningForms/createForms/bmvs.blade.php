@@ -15,7 +15,7 @@
             {!! Form::label('timeTaken', 'Time Taken: ') !!}
         </div>
         <div class="col-md-2">
-            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+            {!! Form::time('timeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
         </div>
     </div>
     {{-- end date and time --}}
@@ -69,7 +69,7 @@
         <tbody>
         <tr>
             <th scope="row">{!! Form::label('Supine', 'Supine: ') !!}</th>
-            <td>{!! Form::time('Supine_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Supine_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>
                 {!! Form::number('Supine_BP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
                 {!! Form::number('Supine_BP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
@@ -79,7 +79,7 @@
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Sitting', 'Sitting: ') !!}</th>
-            <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Sitting_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>
                 {!! Form::number('Sitting_BP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
                 {!! Form::number('Sitting_BP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}
@@ -89,7 +89,7 @@
         </tr>
         <tr>
             <th scope="row">{!! Form::label('Standing', 'Standing: ') !!}</th>
-            <td>{!! Form::time('Standing_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control','placeholder'=>'']) !!}</td>
+            <td>{!! Form::time('Standing_ReadingTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control','placeholder'=>'']) !!}</td>
             <td>
                 {!! Form::number('Standing_BP_S', '',['class'=>'form-control col-md-6','placeholder'=>'systolic']) !!}
                 {!! Form::number('Standing_BP_D', '',['class'=>'form-control col-md-6','placeholder'=>'diastolic']) !!}

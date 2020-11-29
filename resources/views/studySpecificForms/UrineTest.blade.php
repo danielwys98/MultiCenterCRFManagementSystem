@@ -64,13 +64,13 @@
         {!! Form::label('UPreg_TestTime', 'Test Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UPreg_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UPreg_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
     <div class="offset-3 col-md-1">
         {!! Form::label('UPreg_ReadTime', 'Read Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UPreg_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">
@@ -164,13 +164,13 @@
         {!! Form::label('UDrug_TestTime', 'Test Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UDrug_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UDrug_TestTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
     <div class=" offset-3 col-md-1">
         {!! Form::label('UDrug_ReadTime', 'Read Time: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('UDrug_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('UDrug_ReadTime', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class="form-group row">

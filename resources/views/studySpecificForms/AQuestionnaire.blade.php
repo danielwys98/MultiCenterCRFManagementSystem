@@ -54,7 +54,7 @@
         {!! Form::label('AQuestionnaireTimeTaken', 'Time Taken: ') !!}
     </div>
     <div class="col-md-2">
-        {!! Form::time('AQuestionnaireTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i:s'),['class'=>'form-control']) !!}
+        {!! Form::time('AQuestionnaireTimeTaken', \Carbon\Carbon::now()->timezone('Asia/Singapore')->format('H:i'),['class'=>'form-control']) !!}
     </div>
 </div>
 <div class=" form-group row">
